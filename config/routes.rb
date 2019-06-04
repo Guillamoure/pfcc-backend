@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :klasses
       resources :klass_features
+      resources :users, only: [:create]
+        post '/signup', to: 'users#create'
+        post '/login', to: 'users#login'
+        get '/profile', to: 'users#profile'
     end
   end
 end
