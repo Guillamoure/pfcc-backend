@@ -1,17 +1,23 @@
 class Api::V1::KlassesController < ApplicationController
 
   def index
-    @klass = Klass.all
+    @klasses = Klass.all
+    render json: @klasses
+  end
+
+  def show
+    @klass = Klass.find_by(name: params["id"])
     render json: @klass
+
   end
 
   def create
     @klass = Klass.create(name: params["name"], description: params["description"], hit_die: params["hit_die"], skill_ranks: params["skill_ranks"])
     if @klass.valid?
-      
-      render json: { user: KlassSerializer.new(@klass) }, status: 200
+
+      render json: { klass: KlassSerializer.new(@klass) }, status: 200
     else
-      render json: { error: "Could not authenticate"}, status: 401
+      render json: { error: "Could not create" }, status: 401
     end
   end
 
