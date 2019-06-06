@@ -8,7 +8,6 @@ Rails.application.routes.draw do
         post '/signup', to: 'users#create'
         post '/login', to: 'users#login'
         get '/profile', to: 'users#profile'
-        post '/class', to: 'klasses#create'
     end
   end
 end
