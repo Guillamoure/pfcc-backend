@@ -20,4 +20,11 @@ class Api::V1::KlassFeaturesController < ApplicationController
     end
   end
 
+  def destroy
+    @klass_feature = KlassFeature.find(params["klass_feature_id"])
+    id = @klass_feature.id
+    @klass_feature.destroy
+    render json: id, status: 201
+  end
+
 end
