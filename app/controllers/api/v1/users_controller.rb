@@ -2,7 +2,6 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.create(username: params["username"], password: params["password"])
-    byebug
     if @user.valid?
       render json: { user: UserSerializer.new(@user) }, status: :created
     else
@@ -13,7 +12,6 @@ class Api::V1::UsersController < ApplicationController
   def login
     @user = User.find_by(username: params["username"])
     if @user && @user.authenticate(params["password"])
-      byebug
       render json: { user: UserSerializer.new(@user) }, status: 200
     else
       render json: { error: "Could not authenticate"}, status: 401
