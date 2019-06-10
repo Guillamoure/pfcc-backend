@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_211534) do
+ActiveRecord::Schema.define(version: 2019_06_10_190011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,25 @@ ActiveRecord::Schema.define(version: 2019_06_06_211534) do
     t.float "fortitude"
     t.float "reflex"
     t.float "will"
+  end
+
+  create_table "race_ability_score_modifiers", force: :cascade do |t|
+    t.integer "race_id"
+    t.string "ability_score"
+    t.integer "bonus"
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.string "name"
+    t.integer "speed"
+    t.string "size"
+    t.string "description"
+  end
+
+  create_table "racial_traits", force: :cascade do |t|
+    t.string "name"
+    t.integer "race_id"
+    t.string "description"
   end
 
   create_table "skills", force: :cascade do |t|
