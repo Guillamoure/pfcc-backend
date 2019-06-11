@@ -28,7 +28,7 @@ class Api::V1::KlassesController < ApplicationController
     if @klass.valid?
       render json: { klass: KlassSerializer.new(@klass) }, status: 201
     else
-      render json: {error: "Could not edit. Please complete all of fields." }, status: 402
+      render json: {error: "Could not edit. Please complete all of the fields." }, status: 402
     end
   end
 
