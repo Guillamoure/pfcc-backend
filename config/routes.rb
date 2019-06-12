@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :racial_traits
       resources :race_ability_score_modifiers, only: [:create]
       resources :users, only: [:create]
+      resources :characters
         post '/signup', to: 'users#create'
         post '/login', to: 'users#login'
         get '/profile', to: 'users#profile'

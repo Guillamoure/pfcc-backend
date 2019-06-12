@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  hp: 1
+  alignment: MyString
+  deity: MyString
+  homeland: MyString
+  gender: MyString
+  age: 1
+  height: MyString
+  weight: MyString
+  hair: MyString
+  eyes: MyString
+  user_id: 1
+  strength: 1
+  dexterity: 1
+  constitution: 1
+  intelligence: 1
+  wisdom: 1
+  charisma: 1
+  description: MyString
+  background: MyString
+
+two:
+  name: MyString
+  hp: 1
+  alignment: MyString
+  deity: MyString
+  homeland: MyString
+  gender: MyString
+  age: 1
+  height: MyString
+  weight: MyString
+  hair: MyString
+  eyes: MyString
+  user_id: 1
+  strength: 1
+  dexterity: 1
+  constitution: 1
+  intelligence: 1
+  wisdom: 1
+  charisma: 1
+  description: MyString
+  background: MyString
