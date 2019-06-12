@@ -20,7 +20,7 @@ class Api::V1::RacesController < ApplicationController
       end
       render json: { race: RaceSerializer.new(@race) }, status: 201
     else
-      render json: { error: "Could not create" }, status: 401
+      render json: { error: "Could not create" }, status: 400
     end
   end
 
@@ -37,7 +37,7 @@ class Api::V1::RacesController < ApplicationController
       end
       render json: { race: RaceSerializer.new(@race) }, status: 201
     else
-      render json: { error: "Could not edit. Please complete all of the fields" }, status: 402
+      render json: { error: "Could not edit. Please complete all of the fields" }, status: 400
     end
   end
 
@@ -45,7 +45,7 @@ class Api::V1::RacesController < ApplicationController
     @race = Race.find(params[:race_id])
     id = @race.id
     @race.destroy
-    render json: id, status: 201
+    render json: id, status: 202
   end
 
 
