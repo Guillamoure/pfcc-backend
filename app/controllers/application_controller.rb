@@ -2,6 +2,7 @@ class ApplicationController < ActionController::API
 
   def issue_token(payload)
     JWT.encode(payload, 'secret', 'HS256')
+    # JWT.encode(payload, ENV['JWT_SECRET'], 'HS256')  
   end
 
   def token
