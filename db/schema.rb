@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_151336) do
+ActiveRecord::Schema.define(version: 2019_06_13_192651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2019_06_12_151336) do
     t.float "fortitude"
     t.float "reflex"
     t.float "will"
+    t.string "img_url"
   end
 
   create_table "race_ability_score_modifiers", force: :cascade do |t|
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 2019_06_12_151336) do
     t.integer "speed"
     t.string "size"
     t.string "description"
+    t.string "img_url"
   end
 
   create_table "racial_traits", force: :cascade do |t|
