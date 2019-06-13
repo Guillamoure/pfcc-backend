@@ -3,4 +3,5 @@ class CharacterKlassSerializer < ActiveModel::Serializer
 
   belongs_to :character
   belongs_to :klass
+  has_many :klass_features, through: :klass
 end
