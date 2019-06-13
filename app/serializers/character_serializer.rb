@@ -6,5 +6,4 @@ class CharacterSerializer < ActiveModel::Serializer
   has_many :klasses, through: :character_klasses
   # has_many :klass_features, through: :klasses
   belongs_to :race
-  # has_many :racial_traits, through: :race
 end

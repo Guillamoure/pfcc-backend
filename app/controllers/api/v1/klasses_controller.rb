@@ -12,7 +12,7 @@ class Api::V1::KlassesController < ApplicationController
   end
 
   def create
-    @klass = Klass.create(name: params["name"], description: params["description"], hit_die: params["hit_die"], skill_ranks: params["skill_ranks"], fortitude: params["fortitude"], reflex: params["reflex"], will: params["will"])
+    @klass = Klass.create(name: params["name"], description: params["description"], hit_die: params["hit_die"], skill_ranks: params["skill_ranks"], fortitude: params["fortitude"], reflex: params["reflex"], will: params["will"], img_url: params["img_url"])
 
     if @klass.valid?
 
@@ -24,7 +24,7 @@ class Api::V1::KlassesController < ApplicationController
 
   def update
     @klass = Klass.find(params["klass_id"])
-    @klass.update(name: params["updates"]["name"], hit_die: params["updates"]["hit_die"], description: params["updates"]["description"], skill_ranks: params["updates"]["skill_ranks"], fortitude: params["updates"]["fortitude"], reflex: params["updates"]["reflex"], will: params["updates"]["will"])
+    @klass.update(name: params["updates"]["name"], hit_die: params["updates"]["hit_die"], description: params["updates"]["description"], skill_ranks: params["updates"]["skill_ranks"], fortitude: params["updates"]["fortitude"], reflex: params["updates"]["reflex"], will: params["updates"]["will"], img_url: params["updates"]["img_url"])
     if @klass.valid?
       render json: { klass: KlassSerializer.new(@klass) }, status: 201
     else
