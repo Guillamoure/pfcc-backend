@@ -12,7 +12,8 @@ class Api::V1::CharactersController < ApplicationController
   end
 
   def create
-    @character = Character.create(name: params[:character][:name], description: params[:character][:description], user_id: params[:user_id], strength: params[:character][:strength], dexterity: params[:character][:dexterity], constitution: params[:character][:constitution], intelligence: params[:character][:intelligence], wisdom: params[:character][:wisdom], charisma: params[:character][:charisma], race_id: params[:character][:race])
+    @character = Character.create(name: params[:character][:name], description: params[:character][:description], user_id: params[:user_id], strength: params[:character][:strength], dexterity: params[:character][:dexterity], constitution: params[:character][:constitution], intelligence: params[:character][:intelligence], wisdom: params[:character][:wisdom], charisma: params[:character][:charisma], race_id: params[:character][:race], any_bonus: params[:character][:anyBonus])
+    byebug
     if @character.valid?
       render json: { character: CharacterSerializer.new(@character) }, status: 201
     else

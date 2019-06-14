@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_192651) do
+ActiveRecord::Schema.define(version: 2019_06_14_165444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 2019_06_13_192651) do
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hp"
   end
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
-    t.integer "hp"
     t.string "alignment"
     t.string "deity"
     t.string "homeland"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_192651) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "race_id"
+    t.string "any_bonus"
   end
 
   create_table "klass_features", force: :cascade do |t|
