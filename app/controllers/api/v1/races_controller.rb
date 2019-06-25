@@ -11,7 +11,7 @@ class Api::V1::RacesController < ApplicationController
   end
 
   def create
-    @race = Race.create(name: params[:race][:name], description: params[:race][:description], size: params[:race][:size], speed: params[:race][:speed])
+    @race = Race.create(name: params[:race][:name], description: params[:race][:description], size: params[:race][:size], speed: params[:race][:speed], img_url: params[:race][:img_url])
 
     if @race.valid?
       params[:abilityScoreModifiers].each do |mod|
@@ -26,7 +26,7 @@ class Api::V1::RacesController < ApplicationController
 
   def update
     @race = Race.find(params["race_id"])
-    @race.update(name: params[:updates][:name], description: params[:updates][:description], size: params[:updates][:size], speed: params[:updates][:speed])
+    @race.update(name: params[:updates][:name], description: params[:updates][:description], size: params[:updates][:size], speed: params[:updates][:speed], img_url: params[:race][:img_url])
     if @race.valid?
       @modifiers = RaceAbilityScoreModifier.where(race_id: @race.id)
       deleteRemovedModifiers(@modifiers, params[:updates][:abilityScoreModifiers])
