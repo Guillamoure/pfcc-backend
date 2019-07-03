@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         post '/login', to: 'users#login'
         get '/profile', to: 'users#profile'
         get '/auth', to: 'users#auth'
+        patch '/background', to: 'char_edits#background'
     end
   end
 end
