@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         get '/profile', to: 'users#profile'
         get '/auth', to: 'users#auth'
         patch '/background', to: 'char_edits#background'
+        patch '/character', to: 'char_edits#character'
     end
   end
 end
