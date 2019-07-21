@@ -10,12 +10,14 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       resources :characters
       resources :character_klasses
+      resources :skills
         post '/signup', to: 'users#create'
         post '/login', to: 'users#login'
         get '/profile', to: 'users#profile'
         get '/auth', to: 'users#auth'
         patch '/background', to: 'char_edits#background'
         patch '/character', to: 'char_edits#character'
+        patch '/ability', to: 'char_edits#ability'
     end
   end
 end

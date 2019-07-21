@@ -30,6 +30,16 @@ class Api::V1::CharEditsController < ApplicationController
 
   end
 
+  def ability
+    @character = Character.find(params[:char_edit][:id])
+    @character.update(strength: params[:char_edit][:strength], dexterity: params[:char_edit][:dexterity], constitution: params[:char_edit][:constitution], intelligence: params[:char_edit][:intelligence], wisdom: params[:char_edit][:wisdom], charisma: params[:char_edit][:charisma])
+    if @character.valid?
+      render json: { character: CharacterSerializer.new(@character) }, status: 201
+      else
+      render json: { error: "Could not update" }, status: 401
+    end
+  end
+
   def deleteRemovedKlasses(saved_classes, updated_classes)
 
     remapped_saved = saved_classes.map do |klass|
