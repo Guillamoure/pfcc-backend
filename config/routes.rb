@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         patch '/background', to: 'char_edits#background'
         patch '/character', to: 'char_edits#character'
         patch '/ability', to: 'char_edits#ability'
+        patch 'users/active_skillset', to: 'users#update_skillset'
     end
   end
 end

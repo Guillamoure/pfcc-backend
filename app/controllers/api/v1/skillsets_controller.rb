@@ -11,16 +11,19 @@ class Api::V1::SkillsetsController < ApplicationController
   #
   # end
   #
-  # def create
-  #   @klass = Klass.create(name: params["name"], description: params["description"], hit_die: params["hit_die"], skill_ranks: params["skill_ranks"], fortitude: params["fortitude"], reflex: params["reflex"], will: params["will"], img_url: params["img_url"])
-  #
-  #   if @klass.valid?
-  #
-  #     render json: { klass: KlassSerializer.new(@klass) }, status: 200
-  #   else
-  #     render json: { error: "Could not create" }, status: 401
-  #   end
-  # end
+  def create
+    byebug
+    @skillset = Skillset.create(name: params[:skillset][:name])
+    params[:chosen_skills].each do |skill_id|
+      SkillsetSkill.create(skill_id: skill_id, skillset_id: @skillset.id)
+    end
+    byebug
+    if @skillset.valid?
+      render json: { skillset: SkillsetSerializer.new(@skillset) }, status: 200
+    else
+      render json: { error: "Could not create" }, status: 401
+    end
+  end
 
   # def update
   #   @klass = Klass.find(params["klass_id"])
