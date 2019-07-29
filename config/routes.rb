@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :characters
       resources :character_klasses
       resources :skills
+      resources :skillsets
         post '/signup', to: 'users#create'
         post '/login', to: 'users#login'
         get '/profile', to: 'users#profile'
