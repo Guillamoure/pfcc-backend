@@ -11,7 +11,6 @@ class Api::V1::SkillsController < ApplicationController
   end
 
   def create
-    byebug
     @skill = Skill.create(name: params["name"], description: params["description"], ability_score: params["abilityScore"], untrained: params["untrained"])
 
     if @skill.valid?

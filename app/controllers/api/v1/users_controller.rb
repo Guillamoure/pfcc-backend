@@ -35,6 +35,17 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def update_skillset
+    @user = User.find(params[:id])
+    @user.update(skillset_id: params[:active_skillset])
+    @user.save
+    if @user.valid?
+      render json: { user: UserSerializer.new(@user)}, status: 200
+    else
+      render json: { error: "Could not adjust Skillset"}, status: 401
+    end
+  end
+
   # unused code
 
   # private
