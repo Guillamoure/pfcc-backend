@@ -45,19 +45,14 @@ class Api::V1::SkillsetsController < ApplicationController
     else
       render json: { error: "Could not edit" }, status: 401
     end
-  #   @klass.update(name: params["updates"]["name"], hit_die: params["updates"]["hit_die"], description: params["updates"]["description"], skill_ranks: params["updates"]["skill_ranks"], fortitude: params["updates"]["fortitude"], reflex: params["updates"]["reflex"], will: params["updates"]["will"], img_url: params["updates"]["img_url"])
-  #   if @klass.valid?
-  #     render json: { klass: KlassSerializer.new(@klass) }, status: 201
-  #   else
-  #     render json: {error: "Could not edit. Please complete all of the fields." }, status: 402
-  #   end
+
   end
-  #
-  # def destroy
-  #   @klass = Klass.find(params["klass_id"])
-  #   id = @klass.id
-  #   @klass.destroy
-  #   render json: id, status: 201
-  # end
+
+  def destroy
+    @skillset = Skillset.find(params[:id])
+    id = @skillset.id
+    @skillset.destroy
+    render json: id, status: 201
+  end
 
 end
