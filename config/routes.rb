@@ -12,14 +12,15 @@ Rails.application.routes.draw do
       resources :character_klasses
       resources :skills
       resources :skillsets
-        post '/signup', to: 'users#create'
-        post '/login', to: 'users#login'
-        get '/profile', to: 'users#profile'
-        get '/auth', to: 'users#auth'
-        patch '/background', to: 'char_edits#background'
-        patch '/character', to: 'char_edits#character'
-        patch '/ability', to: 'char_edits#ability'
-        patch 'users/active_skillset', to: 'users#update_skillset'
+
+      post '/signup', to: 'users#create'
+      post '/login', to: 'users#login'
+      get '/profile', to: 'users#profile'
+      get '/auth', to: 'users#auth'
+      patch '/background', to: 'char_edits#background'
+      patch '/character', to: 'char_edits#character'
+      patch '/ability', to: 'char_edits#ability'
+      patch 'users/active_skillset', to: 'users#update_skillset'
     end
   end
 end
