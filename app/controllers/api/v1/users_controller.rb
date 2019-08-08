@@ -3,6 +3,8 @@ class Api::V1::UsersController < ApplicationController
   def create
 
     @user = User.create(username: params["username"], password: params["password"])
+    #set skillset_id to a default value in the migration, don't just set it up here
+    @user.update(skillset_id: 1)
 
     if @user.valid?
       token = issue_token({id: @user.id})

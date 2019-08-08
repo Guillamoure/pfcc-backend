@@ -4,6 +4,11 @@ class Api::V1::SkillsetsController < ApplicationController
     @skillset = Skillset.all
     render json: @skillset
   end
+
+  def show
+    @skillset = Skillset.find(params[:id])
+    render json: { skillset: SkillsetSerializer.new(@skillset) }, status: 200
+  end
   #
   # def show
   #   @klass = Klass.find_by(name: params["id"])
