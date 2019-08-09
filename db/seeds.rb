@@ -1,5 +1,3 @@
-
-
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Races!-*-*-*-----*-*->
 # /////////////////////////////////////////
@@ -428,3 +426,10 @@ SkillsetSkill.create!(skillset_id: dmc.id, skill_id: unc_spel.id)
 SkillsetSkill.create!(skillset_id: dmc.id, skill_id: stea.id)
 SkillsetSkill.create!(skillset_id: dmc.id, skill_id: surv.id)
 SkillsetSkill.create!(skillset_id: dmc.id, skill_id: swim.id)
+
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Users!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+admin = User.create!(username: "jack", password: "ey", admin: true, skillset_id: dmc.id)
