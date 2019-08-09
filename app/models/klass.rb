@@ -1,7 +1,10 @@
 class Klass < ApplicationRecord
   has_many :klass_features, dependent: :destroy
   has_many :character_klasses, dependent: :destroy
-  
+
+  has_many :class_skillset_skills, dependent: :destroy
+  has_many :skills, through: :class_skillset_skills
+
   validates :name, uniqueness: { case_sensitive: false }
   validates :description, presence: true
   validates :skill_ranks, presence: true
