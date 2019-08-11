@@ -6,5 +6,6 @@ class Skillset < ApplicationRecord
   has_many :characters
 
   has_many :class_skillset_skills, dependent: :destroy
+  has_many :character_skillset_skills
 
 end
