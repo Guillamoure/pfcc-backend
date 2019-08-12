@@ -1,9 +1,10 @@
 class Api::V1::CharacterKlassesController < ApplicationController
 
   def create
+    byebug
     class_array = []
-    params[:classes].each do |klass|
-      @character_klass = CharacterKlass.create(character_id: params[:character_id], klass_id: klass[:classId], level: klass[:level])
+    params[:classes].each do |id|
+      @character_klass = CharacterKlass.create(character_id: params[:character_id], klass_id: id)
       if @character_klass.valid?
         class_array.push(CharacterKlassSerializer.new(@character_klass))
       else
