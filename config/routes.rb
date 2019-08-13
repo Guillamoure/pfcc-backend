@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       patch 'users/active_skillset', to: 'users#update_skillset'
       post 'class_skillset_skills', to: 'class_skillset_skills#create'
       patch 'class_skillset_skills', to: 'class_skillset_skills#update'
+      post 'character_skillset_skills', to: 'character_skillset_skills#ranks'
     end
   end
 end
