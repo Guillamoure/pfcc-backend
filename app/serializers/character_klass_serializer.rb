@@ -1,5 +1,5 @@
 class CharacterKlassSerializer < ActiveModel::Serializer
-  attributes :id, :character_id, :klass_id, :hp, :feat_id, :ability_score_improvement
+  attributes :id, :character_id, :klass_id, :hp, :feat_id, :ability_score_improvement, :level
 
   belongs_to :character
   belongs_to :klass

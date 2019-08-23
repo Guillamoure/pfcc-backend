@@ -5,7 +5,7 @@ class Api::V1::CharEditsController < ApplicationController
     @character.update(age: params[:char_edit][:age], background: params[:char_edit][:background], alignment: params[:char_edit][:alignment], homeland: params[:char_edit][:homeland], deity: params[:char_edit][:deity])
     if @character.valid?
       render json: { character: CharacterSerializer.new(@character) }, status: 201
-      else
+    else
       render json: { error: "Could not update" }, status: 401
     end
   end
@@ -14,14 +14,26 @@ class Api::V1::CharEditsController < ApplicationController
     @character = Character.find(params[:char_edit][:id])
     @character.update(name: params[:char_edit][:name], race_id: params[:char_edit][:race], any_bonus: params[:char_edit][:anyBonus])
 
-
     if @character.valid?
-      @char_klasses = CharacterKlass.where(character_id: @character.id)
-      deleteRemovedKlasses(@char_klasses, params[:char_edit][:classes])
-
-      params[:char_edit][:classes].each do |klass|
-        @char_klass = @char_klasses.find_or_create_by(klass_id: klass[:classId])
-        @char_klass.update(level: klass[:level])
+      @char_klasses = @character.character_klasses
+    #   # deleteRemovedKlasses(@char_klasses, params[:char_edit][:classes])
+      counter = 1
+      params[:char_edit][:classes].each do |id|
+        @char_klass = @char_klasses.find_by(level: counter, character_id: @character.id)
+        if @char_klass == nil
+          CharacterKlass.create(level: counter, character_id: @character.id, klass_id: id)
+        elsif @char_klass.klass_id != id
+          @char_klass.destroy
+          CharacterKlass.create(level: counter, character_id: @character.id, klass_id: id)
+        end
+        counter += 1
+      end
+      if @char_klasses.length > params[:char_edit][:classes].length
+        @char_klasses.each do |char_klass|
+          if char_klass.level > params[:char_edit][:classes].length
+            char_klass.destroy
+          end
+        end
       end
       render json: { character: CharacterSerializer.new(@character) }, status: 201
     else
