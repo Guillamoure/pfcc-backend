@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_17_154712) do
+ActiveRecord::Schema.define(version: 2019_08_25_184433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 2019_08_17_154712) do
     t.integer "race_id"
     t.string "any_bonus"
     t.integer "skillset_id"
+    t.integer "lethal_damage", default: 0
+    t.integer "non_lethal_damage", default: 0
   end
 
   create_table "class_skillset_skills", force: :cascade do |t|
