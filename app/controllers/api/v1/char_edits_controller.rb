@@ -106,8 +106,44 @@ class Api::V1::CharEditsController < ApplicationController
       else
       render json: { error: "Could not update" }, status: 401
     end
+  end
 
-
+  def hp_changes
+    @character = Character.find(params[:char_edit][:id])
+    amount = params[:char_edit][:amount].to_i
+    case params[:char_edit][:adjustment]
+    when "harm"
+      if params[:char_edit][:lethality] == "lethal"
+        difference = @character.temp_hp - amount
+        if difference < 0
+          @character.update(temp_hp: 0, lethal_damage: amount - @character.temp_hp + @character.lethal_damage)
+        else
+          @character.update(temp_hp: difference)
+        end
+      elsif params[:character][:lethality] == "nonLethal"
+        @character.update(non_lethal_damage: @character.non_lethal_damage + amount)
+      end
+    when "heal"
+      difference = @character.lethal_damage - amount
+      if difference > -1
+        @character.update(lethal_damage: difference)
+      else
+        @character.update(lethal_damage: 0)
+      end
+      non_lethal_difference = @character.non_lethal_damage - amount
+      if non_lethal_difference > -1
+        @character.update(non_lethal_damage: non_lethal_difference)
+      else
+        @character.update(non_lethal_damage: 0)
+      end
+    when "temp"
+      @character.update(temp_hp: @character.temp_hp + amount)
+    end
+    if @character.valid?
+      render json: { character: CharacterSerializer.new(@character) }, status: 201
+      else
+      render json: { error: "Could not update" }, status: 401
+    end
   end
 
 end
