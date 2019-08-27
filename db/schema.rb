@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_08_25_184433) do
     t.integer "skillset_id"
     t.integer "lethal_damage", default: 0
     t.integer "non_lethal_damage", default: 0
+    t.integer "temp_hp", default: 0
   end
 
   create_table "class_skillset_skills", force: :cascade do |t|
