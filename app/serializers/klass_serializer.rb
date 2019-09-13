@@ -4,4 +4,6 @@ class KlassSerializer < ActiveModel::Serializer
   has_many :klass_features
   has_many :class_skillset_skills
   has_many :skills, through: :class_skillset_skills
+
+  
 end

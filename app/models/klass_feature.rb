@@ -1,5 +1,6 @@
 class KlassFeature < ApplicationRecord
   belongs_to :klass
+  has_one :spellcasting
   validates :name, presence: true
   validates :description, presence: true
   validate :correct_level_range
