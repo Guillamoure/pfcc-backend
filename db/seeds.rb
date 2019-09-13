@@ -307,6 +307,28 @@ Role: Bards capably confuse and confound their foes while inspiring their allies
 
 Alignment: Any")
 
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Class Features!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+oracle1 = KlassFeature.create!(klass_id: oracle.id, name: "Weapon and Armor Proficiency", level_learned: 1, description: "Oracles are proficient with all simple weapons, light armor, medium armor, and shields (except tower shields). Some oracle revelations grant additional proficiencies.")
+
+oracle2 = KlassFeature.create!(klass_id: oracle.id, name: "Spellcasting", level_learned: 1, description: "An oracle casts divine spells drawn from the cleric spell lists. She can cast any spell she knows without preparing it ahead of time. To learn or cast a spell, an oracle must have a Charisma score equal to at least 10 + the spell level. The Difficulty Class for a saving throw against an oracle’s spell is 10 + the spell’s level + the oracle’s Charisma modifier (see FAQ).
+
+Like other spellcasters, an oracle can cast only a certain number of spells per day of each spell level. Her base daily spell allotment is given on Table: Oracle. In addition, she receives bonus spells per day if she has a high Charisma score (see Table: Ability Modifiers and Bonus Spells).
+
+Unlike other divine spellcasters, an oracle’s selection of spells is extremely limited. An oracle begins play knowing four 0-level spells and two 1st-level spells of her choice. At each new oracle level, she gains one or more new spells, as indicated on Table: Oracle Spells Known. Unlike spells per day, the number of spells an oracle knows is not affected by her Charisma score; the numbers on Table: Oracle Spells Known are fixed.
+
+In addition to the spells gained by oracles as they gain levels, each oracle also adds all of either the cure spells or the inflict spells to her list of spells known (cure spells include all spells with “cure” in the name, inflict spells include all spells with “inflict” in the name). These spells are added as soon as the oracle is capable of casting them. This choice is made when the oracle gains her first level and cannot be changed.
+
+Upon reaching 4th level, and at every even-numbered oracle level after that (6th, 8th, and so on), an oracle can choose to learn a new spell in place of one she already knows. In effect, the oracle loses the old spell in exchange for the new one. The new spell’s level must be the same as that of the spell being exchanged. An oracle may swap only a single spell at any given level, and must choose whether or not to swap the spell at the same time that she gains new spells known for the level. She cannot swap any cure or inflict spells, nor can she swap any spells gained from her mystery. Unlike a cleric, an oracle need not prepare her spells in advance. She can cast any spell she knows at any time, assuming she has not yet used up her spells per day for that spell level. Oracles do not need to provide a divine focus to cast spells that list divine focus (DF) as part of the components.")
+
+  # /////////////////////////////////////////
+  # <-*-*-----*-*-*- Class Feature Details!-*-*-*-----*-*->
+  # /////////////////////////////////////////
+
+Spellcasting.create!(klass_feature_id: oracle2, ability_score: "Charisma", prepared: false, limited: true)
+
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Skillsets!-*-*-*-----*-*->
