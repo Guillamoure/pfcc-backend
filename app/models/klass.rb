@@ -5,6 +5,8 @@ class Klass < ApplicationRecord
   has_many :class_skillset_skills, dependent: :destroy
   has_many :skills, through: :class_skillset_skills
 
+  has_many :spells_per_days
+
   validates :name, uniqueness: { case_sensitive: false }
   validates :description, presence: true
   validates :skill_ranks, presence: true

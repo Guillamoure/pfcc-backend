@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       post 'class_skillset_skills', to: 'class_skillset_skills#create'
       patch 'class_skillset_skills', to: 'class_skillset_skills#update'
       post 'character_skillset_skills', to: 'character_skillset_skills#ranks'
+      post 'spells_per_day', to: 'klasses#spells'
 
       post 'spellcasting', to: 'effects#spellcasting'
     end
