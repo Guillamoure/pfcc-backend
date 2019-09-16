@@ -323,11 +323,11 @@ In addition to the spells gained by oracles as they gain levels, each oracle als
 
 Upon reaching 4th level, and at every even-numbered oracle level after that (6th, 8th, and so on), an oracle can choose to learn a new spell in place of one she already knows. In effect, the oracle loses the old spell in exchange for the new one. The new spell’s level must be the same as that of the spell being exchanged. An oracle may swap only a single spell at any given level, and must choose whether or not to swap the spell at the same time that she gains new spells known for the level. She cannot swap any cure or inflict spells, nor can she swap any spells gained from her mystery. Unlike a cleric, an oracle need not prepare her spells in advance. She can cast any spell she knows at any time, assuming she has not yet used up her spells per day for that spell level. Oracles do not need to provide a divine focus to cast spells that list divine focus (DF) as part of the components.")
 
-  # /////////////////////////////////////////
-  # <-*-*-----*-*-*- Class Feature Details!-*-*-*-----*-*->
-  # /////////////////////////////////////////
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Class Feature Details!-*-*-*-----*-*->
+# /////////////////////////////////////////
 
-Spellcasting.create!(klass_feature_id: oracle2, ability_score: "Charisma", prepared: false, limited: true)
+Spellcasting.create!(klass_feature_id: oracle2.id, ability_score: "Charisma", prepared: false, limited: true)
 
 
 # /////////////////////////////////////////

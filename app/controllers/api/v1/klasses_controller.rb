@@ -39,4 +39,16 @@ class Api::V1::KlassesController < ApplicationController
     render json: id, status: 201
   end
 
+  def spells
+    params[:spells_per_day].each do |sp_lvl, sp_day|
+      sp_day.each_with_index do |amount, index|
+        if amount.to_i > 0
+          @spd = SpellsPerDay.create!(spell_level: sp_lvl, klass_level: index + 1, klass_id: params[:klass_id], spells: amount)
+        end
+      end
+    end
+    @klass = Klass.find(params[:klass_id])
+    render json: { klass: KlassSerializer.new(@klass) }, status: 201
+  end
+
 end
