@@ -7,6 +7,9 @@ class Klass < ApplicationRecord
 
   has_many :spells_per_days
 
+  has_many :klass_spells
+  has_many :spells, through: :klass_spells
+
   validates :name, uniqueness: { case_sensitive: false }
   validates :description, presence: true
   validates :skill_ranks, presence: true

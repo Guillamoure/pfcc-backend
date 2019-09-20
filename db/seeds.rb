@@ -740,3 +740,121 @@ ClassSkillsetSkill.create!(klass_id: vig.id, skillset_id: dmc.id, skill_id: unc_
 ClassSkillsetSkill.create!(klass_id: vig.id, skillset_id: dmc.id, skill_id: stea.id)
 ClassSkillsetSkill.create!(klass_id: vig.id, skillset_id: dmc.id, skill_id: surv.id)
 ClassSkillsetSkill.create!(klass_id: vig.id, skillset_id: dmc.id, skill_id: swim.id)
+
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Schools of Magic!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+abjuration = MagicSchool.create!(name: "Abjuration", description: "Abjurations are protective spells. They create physical or magical barriers, negate magical or physical abilities, harm trespassers, or even banish the subject of the spell to another plane of existence.
+
+If one abjuration spell is active within 10 feet of another for 24 hours or more, the magical fields interfere with each other and create barely visible energy fluctuations. The DC to find such spells with the Perception skill drops by 4.
+
+If an abjuration creates a barrier that keeps certain types of creatures at bay, that barrier cannot be used to push away those creatures. If you force the barrier against such a creature, you feel a discernible pressure against the barrier. If you continue to apply pressure, you end the spell.")
+
+conjuration = MagicSchool.create!(name: "Conjuration", description: "Each conjuration spell belongs to one of five subschools. Conjurations transport creatures from another plane of existence to your plane (calling); create objects or effects on the spot (creation); heal (healing); bring manifestations of objects, creatures, or forms of energy to you (summoning); or transport creatures or objects over great distances (teleportation). Creatures you conjure usually- but not always- obey your commands.
+
+A creature or object brought into being or transported to your location by a conjuration spell cannot appear inside another creature or object, nor can it appear floating in an empty space. It must arrive in an open location on a surface capable of supporting it.
+
+The creature or object must appear within the spell’s range, but it does not have to remain within the range.")
+
+divination = MagicSchool.create!(name: "Divination", description: "Divination spells enable you to learn secrets long forgotten, predict the future, find hidden things, and foil deceptive spells.
+
+Many divination spells have cone-shaped areas. These move with you and extend in the direction you choose. The cone defines the area that you can sweep each round. If you study the same area for multiple rounds, you can often gain additional information, as noted in the descriptive text for the spell.")
+
+enchantment = MagicSchool.create!(name: "Enchantment", description: "Enchantment spells affect the minds of others, influencing or controlling their behavior.
+
+All enchantments are mind-affecting spells. Two subschools of enchantment spells grant you influence over a subject creature.")
+
+evocation = MagicSchool.create!(name: "Evocation", description: "Evocation spells manipulate magical energy or tap an unseen source of power to produce a desired end. In effect, an evocation draws upon magic to create something out of nothing. Many of these spells produce spectacular effects, and evocation spells can deal large amounts of damage.")
+
+illusion = MagicSchool.create!(name: "Illusion", description: "Illusion spells deceive the senses or minds of others. They cause people to see things that are not there, not see things that are there, hear phantom noises, or remember things that never happened.
+
+Saving Throws and Illusions (Disbelief): Creatures encountering an illusion usually do not receive saving throws to recognize it as illusory until they study it carefully or interact with it in some fashion.
+
+A successful saving throw against an illusion reveals it to be false, but a figment or phantasm remains as a translucent outline.
+
+A failed saving throw indicates that a character fails to notice something is amiss. a character faced with proof that an illusion isn’t real needs no saving throw. If any viewer successfully disbelieves an illusion and communicates this fact to others, each such viewer gains a saving throw with a +4 bonus.")
+
+necromancy = MagicSchool.create!(name: "Necromancy", description: "Necromancy spells manipulate the power of death, unlife, and the life force. Spells involving undead creatures make up a large part of this school.")
+
+transmutation = MagicSchool.create!(name: "Transmutation", description: "Transmutation spells change the properties of some creature, thing, or condition.")
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Spell Components!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+verbal = Component.create!(name: "Verbal", description: "A verbal component is a spoken incantation. To provide a verbal component, you must be able to speak in a strong voice. A silence spell or a gag spoils the incantation (and thus the spell). a spellcaster who has been deafened has a 20% chance of spoiling any spell with a verbal component that he tries to cast.")
+somatic = Component.create!(name: "Somatic", description: "A somatic component is a measured and precise movement of the hand. You must have at least one hand free to provide a somatic component.")
+material = Component.create!(name: "Material", description: "A material component consists of one or more physical substances or objects that are annihilated by the spell energies in the casting process. Unless a cost is given for a material component, the cost is negligible. Don’t bother to keep track of material components with negligible cost. Assume you have all you need as long as you have your spell component pouch.")
+focus = Component.create!(name: "Focus", description: "A focus component is a prop of some sort. Unlike a material component, a focus is not consumed when the spell is cast and can be reused. As with material components, the cost for a focus is negligible unless a price is given. Assume that focus components of negligible cost are in your spell component pouch.")
+divine_focus = Component.create!(name: "Divine Focus", description: "A divine focus component is an item of spiritual significance. The divine focus for a cleric or a paladin is a holy symbol appropriate to the character’s faith. The divine focus for a druid or a ranger is a sprig of holly, or some other sacred plant.
+
+If the Components line includes F/DF or M/DF, the arcane version of the spell has a focus component or a material component (the abbreviation before the slash) and the divine version has a divine focus component (the abbreviation after the slash).")
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Actions-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+standard = Action.create!(name: "Standard Action")
+full_round = Action.create!(name: "Full-Round Action")
+move = Action.create!(name: "Move Action")
+swift = Action.create!(name: "Swift Action")
+free = Action.create!(name: "Free Action")
+immediate = Action.create!(name: "Immediate Action")
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Spell Ranges-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+personal = SpellRange.create!(name: "Personal", feet: 0, increase_per_level: 0, description: "The spell affects only you.")
+touch = SpellRange.create!(name: "Touch", feet: 0, increase_per_level: 0, description: "You must touch a creature or object to affect it. A touch spell that deals damage can score a critical hit just as a weapon can. A touch spell threatens a critical hit on a natural roll of 20 and deals double damage on a successful critical hit. Some touch spells allow you to touch multiple targets. You can touch up to 6 willing targets as part of the casting, but all targets of the spell must be touched in the same round that you finish casting the spell. If the spell allows you to touch targets over multiple rounds, touching 6 creatures is a full-round action.")
+close = SpellRange.create!(name: "Close", feet: 25, increase_per_level: 2.5, description: "The spell reaches as far as 25 feet away from you. The maximum range increases by 5 feet for every two full caster levels.")
+medium = SpellRange.create!(name: "Medium", feet: 100, increase_per_level: 10, description: "The spell reaches as far as 100 feet + 10 feet per caster level.")
+long = SpellRange.create!(name: "Long", feet: 400, increase_per_level: 40, description: "The spell reaches as far as 400 feet + 40 feet per caster level.")
+unlimited = SpellRange.create!(name: "Unlimited", feet: 1000000, increase_per_level: 0, description: "The spell reaches anywhere on the same plane of existence.")
+
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Subschools!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+charm = Subschool.create!(name: "Charm", description: "A charm spell changes how the subject views you, typically making it see you as a good friend.")
+mind_affecting = Subschool.create!(name: "Mind-Affecting", description: "Mindless creatures (those with an Intelligence score of “—”) and undead are immune to mind-affecting effects.")
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Spells!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+
+sp1 = Spell.create!(name: "Charm Person", description: "This charm makes a humanoid creature regard you as its trusted friend and ally (treat the target’s attitude as friendly). If the creature is currently being threatened or attacked by you or your allies, however, it receives a +5 bonus on its saving throw.
+
+The spell does not enable you to control the charmed person as if it were an automaton, but it perceives your words and actions in the most favorable way. You can try to give the subject orders, but you must win an opposed Charisma check to convince it to do anything it wouldn’t ordinarily do. (Retries are not allowed.) An affected creature never obeys suicidal or obviously harmful orders, but it might be convinced that something very dangerous is worth doing. Any act by you or your apparent allies that threatens the charmed person breaks the spell. You must speak the person’s language to communicate your commands, or else be good at pantomiming.", target: "one humanoid creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: enchantment.id, duration: "1 hour/lvl", time: 1, unit_of_time: "hour", increase_per_level: 1, dismissible: false, concentration: false)
+
+SpellSubschool.create!(spell_id: sp1.id, subschool_id: charm.id)
+SpellSubschool.create!(spell_id: sp1.id, subschool_id: mind_affecting.id)
+SpellComponent.create!(spell_id: sp1.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp1.id, component_id: somatic.id)
+ks1 = KlassSpell.create!(klass_id: witch.id, spell_id: sp1.id, spell_level: 1)
+# Spell.create!(name: "", description: "", target: "", savingt_throw: "", spell_resistance: false, action_id: , range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: dismissible: false, concentration: false)
+# Spell.create!(name: "", description: "", target: "", savingt_throw: "", spell_resistance: false, action_id: , range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: dismissible: false, concentration: false)
+# # Spell.create!(name: "", description: "", target: "", savingt_throw: "", spell_resistance: false, action_id: , range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: dismissible: false, concentration: false)
+# Spell.create!(name: "", description: "", target: "", savingt_throw: "", spell_resistance: false, action_id: , range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: dismissible: false, concentration: false)
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Character!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+character = Character.create!(user_id: admin.id, name: "Persephone", strength: 5, dexterity: 12, constitution: 11, intelligence: 16, wisdom: 10, charisma: 13, race_id: cha.id, skillset_id: dmc.id)
+
+CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1)
+CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 2)
+CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 3)
+CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 4)
+CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 5)
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Prepared Spells!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+PreparedSpell.create!(klass_spell_id: ks1.id, character_id: character.id, spell_level: 1)
