@@ -10,10 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_15_041702) do
+ActiveRecord::Schema.define(version: 2019_09_20_201146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actions", force: :cascade do |t|
+    t.string "name"
+  end
 
   create_table "character_klasses", force: :cascade do |t|
     t.integer "character_id"
@@ -69,6 +73,22 @@ ActiveRecord::Schema.define(version: 2019_09_15_041702) do
     t.integer "skill_id"
   end
 
+  create_table "components", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "abbreviation"
+  end
+
+  create_table "durations", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "time"
+    t.boolean "dismissible"
+    t.boolean "concentration"
+    t.string "unit"
+    t.integer "increase_per_level"
+  end
+
   create_table "klass_features", force: :cascade do |t|
     t.integer "klass_id"
     t.string "name"
@@ -76,6 +96,12 @@ ActiveRecord::Schema.define(version: 2019_09_15_041702) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "klass_spells", force: :cascade do |t|
+    t.integer "klass_id"
+    t.integer "spell_id"
+    t.integer "spell_level"
   end
 
   create_table "klasses", force: :cascade do |t|
@@ -89,6 +115,22 @@ ActiveRecord::Schema.define(version: 2019_09_15_041702) do
     t.float "reflex"
     t.float "will"
     t.string "img_url"
+  end
+
+  create_table "known_spells", force: :cascade do |t|
+    t.integer "klass_spell_id"
+    t.integer "character_id"
+  end
+
+  create_table "magic_schools", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+  end
+
+  create_table "prepared_spells", force: :cascade do |t|
+    t.integer "klass_spell_id"
+    t.integer "character_id"
+    t.integer "spell_level"
   end
 
   create_table "race_ability_score_modifiers", force: :cascade do |t|
@@ -127,6 +169,23 @@ ActiveRecord::Schema.define(version: 2019_09_15_041702) do
     t.string "name"
   end
 
+  create_table "spell_components", force: :cascade do |t|
+    t.integer "spell_id"
+    t.integer "component_id"
+  end
+
+  create_table "spell_ranges", force: :cascade do |t|
+    t.string "name"
+    t.integer "feet"
+    t.float "increase_per_level"
+    t.string "description"
+  end
+
+  create_table "spell_subschools", force: :cascade do |t|
+    t.integer "spell_id"
+    t.integer "subschool_id"
+  end
+
   create_table "spellcastings", force: :cascade do |t|
     t.string "ability_score"
     t.integer "klass_feature_id"
@@ -134,11 +193,33 @@ ActiveRecord::Schema.define(version: 2019_09_15_041702) do
     t.boolean "limited"
   end
 
+  create_table "spells", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "target"
+    t.string "saving_throw"
+    t.boolean "spell_resistance"
+    t.integer "magic_school_id"
+    t.integer "action_id"
+    t.string "duration"
+    t.integer "time"
+    t.string "unit_of_time"
+    t.integer "increase_per_level"
+    t.boolean "dismissible"
+    t.boolean "concentration"
+    t.integer "spell_range_id"
+  end
+
   create_table "spells_per_days", force: :cascade do |t|
     t.integer "spell_level"
     t.integer "klass_level"
     t.integer "spells"
     t.integer "klass_id"
+  end
+
+  create_table "subschools", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
   end
 
   create_table "users", force: :cascade do |t|

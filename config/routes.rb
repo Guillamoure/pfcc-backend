@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :character_klasses
       resources :skills
       resources :skillsets
+      resources :spells
 
       post '/signup', to: 'users#create'
       post '/login', to: 'users#login'

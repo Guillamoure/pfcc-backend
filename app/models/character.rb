@@ -8,6 +8,9 @@ class Character < ApplicationRecord
   has_many :klasses, through: :character_klasses
   has_many :klass_features, through: :klasses
 
+  has_many :prepared_spells
+  has_many :known_spells
+
   validates :name, presence: true
 
 end
