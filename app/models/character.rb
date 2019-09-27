@@ -8,8 +8,8 @@ class Character < ApplicationRecord
   has_many :klasses, through: :character_klasses
   has_many :klass_features, through: :klasses
 
-  has_many :prepared_spells
-  has_many :known_spells
+  has_many :prepared_spells, dependent: :destroy
+  has_many :known_spells, dependent: :destroy
 
   validates :name, presence: true
 
