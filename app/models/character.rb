@@ -10,6 +10,7 @@ class Character < ApplicationRecord
 
   has_many :prepared_spells, dependent: :destroy
   has_many :known_spells, dependent: :destroy
+  has_many :cast_spells, dependent: :destroy
 
   validates :name, presence: true
 

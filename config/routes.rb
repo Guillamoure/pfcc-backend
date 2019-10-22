@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       post '/login', to: 'users#login'
       get '/profile', to: 'users#profile'
       get '/auth', to: 'users#auth'
+      get '/data', to: 'data#all'
       patch '/background', to: 'char_edits#background'
       patch '/character', to: 'char_edits#character'
       patch '/ability', to: 'char_edits#ability'
@@ -30,7 +31,6 @@ Rails.application.routes.draw do
       patch 'class_skillset_skills', to: 'class_skillset_skills#update'
       post 'character_skillset_skills', to: 'character_skillset_skills#ranks'
       post 'spells_per_day', to: 'klasses#spells'
-
       post 'spellcasting', to: 'effects#spellcasting'
     end
   end
