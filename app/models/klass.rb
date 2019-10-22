@@ -9,6 +9,7 @@ class Klass < ApplicationRecord
 
   has_many :klass_spells
   has_many :spells, through: :klass_spells
+  has_many :cast_spells, dependent: :destroy
 
   validates :name, uniqueness: { case_sensitive: false }
   validates :description, presence: true
