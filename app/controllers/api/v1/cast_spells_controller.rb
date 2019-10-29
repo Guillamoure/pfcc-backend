@@ -9,8 +9,5 @@ class Api::V1::CastSpellsController < ApplicationController
 
   end
 
-  def clear_all
-    byebug
-  end
 
 end

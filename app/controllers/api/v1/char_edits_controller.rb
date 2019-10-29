@@ -146,4 +146,17 @@ class Api::V1::CharEditsController < ApplicationController
     end
   end
 
+  def clear_all
+    # find the character
+    @char = Character.find(params[:id])
+    # calculate damage healed
+    damage = @char.lethal_damage < @char.character_klasses.length ? 0 : @char.lethal_damage - @char.character_klasses.length
+    # change hp
+    @char.update(temp_hp: 0, non_lethal_damage: 0, lethal_damage: damage)
+    # reset all spells
+    @char.cast_spells.destroy_all
+    # serialize
+    render json: { character: CharacterSerializer.new(@char) }, status: 201
+  end
+
 end
