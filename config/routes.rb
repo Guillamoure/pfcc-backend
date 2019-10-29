@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :spells
       resources :known_spells
       resources :prepared_spells
+      resources :cast_spells
 
       post '/signup', to: 'users#create'
       post '/login', to: 'users#login'
