@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :spells
       resources :known_spells
       resources :prepared_spells
+      resources :cast_spells
 
       post '/signup', to: 'users#create'
       post '/login', to: 'users#login'
@@ -32,6 +33,8 @@ Rails.application.routes.draw do
       post 'character_skillset_skills', to: 'character_skillset_skills#ranks'
       post 'spells_per_day', to: 'klasses#spells'
       post 'spellcasting', to: 'effects#spellcasting'
+      delete 'rest', to: 'char_edits#clear_all'
+      patch 'cast_spells', to: 'cast_spells#rollback'
     end
   end
 end
