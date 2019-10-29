@@ -5,4 +5,12 @@ class Api::V1::CastSpellsController < ApplicationController
     render json: @cs, status: 201
   end
 
+  def rollback
+
+  end
+
+  def clear_all
+    byebug
+  end
+
 end

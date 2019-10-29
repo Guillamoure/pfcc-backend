@@ -33,6 +33,8 @@ Rails.application.routes.draw do
       post 'character_skillset_skills', to: 'character_skillset_skills#ranks'
       post 'spells_per_day', to: 'klasses#spells'
       post 'spellcasting', to: 'effects#spellcasting'
+      delete 'cast_spells', to: 'cast_spells#clear_all'
+      patch 'cast_spells', to: 'cast_spells#rollback'
     end
   end
 end
