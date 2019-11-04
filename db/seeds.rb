@@ -854,6 +854,12 @@ CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, fe
 CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 5)
 
 # /////////////////////////////////////////
+# <-*-*-----*-*-*- Known Spells!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+KnownSpell.create!(klass_spell_id: ks1.id, character_id: character.id)
+
+# /////////////////////////////////////////
 # <-*-*-----*-*-*- Prepared Spells!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
