@@ -14,4 +14,14 @@ class Api::V1::PreparedSpellsController < ApplicationController
     end
   end
 
+  def destroy
+    @ps = PreparedSpell.find(params[:id])
+    if @ps
+      @ps.destroy
+      render json: {response: "Spell #{@ps.klass_spell.spell.name} has been removed from the list of your prepared spells"}
+    else
+      render json: {error: "Could not find spell to delete"}
+    end
+  end
+
 end

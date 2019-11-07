@@ -295,7 +295,7 @@ Role: Arcanists are scholars of all things magical. They constantly seek out new
 
 Alignment: Any.")
 
-braw = Klass.create!(name: "Brawler", hit_die: 10, skill_ranks: 4, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i3.wp.com/img00.deviantart.net/5ffd/i/2016/229/6/d/female_wood_elf_brawler_by_nikolaiostertag-dae85qt.jpg", description: "Deadly even with nothing in her hands, a brawler eschews using the fighter’s heavy armor and the monk’s mysticism, focusing instead on perfecting many styles of brutal unarmed combat. Versatile, agile, and able to adapt to most enemy attacks, a brawler’s body is a powerful weapon.
+braw = Klass.create!(name: "Brawler", hit_die: 10, skill_ranks: 4, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/71/90/a8/7190a8fb193a883fda6f7fa5f1cc7bdd.jpg", description: "Deadly even with nothing in her hands, a brawler eschews using the fighter’s heavy armor and the monk’s mysticism, focusing instead on perfecting many styles of brutal unarmed combat. Versatile, agile, and able to adapt to most enemy attacks, a brawler’s body is a powerful weapon.
 
 Role: Brawlers are maneuverable and well suited for creating flanking situations or dealing with lightly armored enemies, as well as quickly adapting to a rapidly changing battlefield.
 
@@ -852,6 +852,12 @@ CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, fe
 CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 3)
 CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 4)
 CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 5)
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Known Spells!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+KnownSpell.create!(klass_spell_id: ks1.id, character_id: character.id)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Prepared Spells!-*-*-*-----*-*->
