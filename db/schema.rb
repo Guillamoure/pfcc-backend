@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_192633) do
+ActiveRecord::Schema.define(version: 2019_11_19_051318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_192633) do
     t.integer "lethal_damage", default: 0
     t.integer "non_lethal_damage", default: 0
     t.integer "temp_hp", default: 0
+    t.boolean "is_done_preparing_spells", default: false
   end
 
   create_table "class_skillset_skills", force: :cascade do |t|
@@ -178,6 +179,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_192633) do
   create_table "spell_components", force: :cascade do |t|
     t.integer "spell_id"
     t.integer "component_id"
+    t.string "item"
   end
 
   create_table "spell_ranges", force: :cascade do |t|
