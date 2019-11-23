@@ -918,16 +918,17 @@ CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, fe
 # <-*-*-----*-*-*- Known Spells!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-KnownSpell.create!(klass_spell_id: ks1.id, character_id: character.id)
-KnownSpell.create!(klass_spell_id: ks2.id, character_id: character.id)
-KnownSpell.create!(klass_spell_id: ks3.id, character_id: character.id)
-KnownSpell.create!(klass_spell_id: ks4.id, character_id: character.id)
-KnownSpell.create!(klass_spell_id: ks5.id, character_id: character.id)
+KnownSpell.create!(klass_spell_id: ks1.id, character_id: character.id, klass_id: witch.id)
+KnownSpell.create!(klass_spell_id: ks2.id, character_id: character.id, klass_id: witch.id)
+KnownSpell.create!(klass_spell_id: ks3.id, character_id: character.id, klass_id: witch.id)
+KnownSpell.create!(klass_spell_id: ks4.id, character_id: character.id, klass_id: witch.id)
+KnownSpell.create!(klass_spell_id: ks5.id, character_id: character.id, klass_id: witch.id)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Prepared Spells!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
+PreparedSpell.create!(klass_spell_id: ks1.id, character_id: character.id, spell_level: 1, cast: false)
 PreparedSpell.create!(klass_spell_id: ks1.id, character_id: character.id, spell_level: 1, cast: false)
 PreparedSpell.create!(klass_spell_id: ks2.id, character_id: character.id, spell_level: 0, cast: false)
 PreparedSpell.create!(klass_spell_id: ks3.id, character_id: character.id, spell_level: 0, cast: false)
