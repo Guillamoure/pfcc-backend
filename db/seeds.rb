@@ -928,8 +928,8 @@ KnownSpell.create!(klass_spell_id: ks5.id, character_id: character.id)
 # <-*-*-----*-*-*- Prepared Spells!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-PreparedSpell.create!(klass_spell_id: ks1.id, character_id: character.id, spell_level: 1)
-PreparedSpell.create!(klass_spell_id: ks2.id, character_id: character.id, spell_level: 0)
-PreparedSpell.create!(klass_spell_id: ks3.id, character_id: character.id, spell_level: 0)
-PreparedSpell.create!(klass_spell_id: ks4.id, character_id: character.id, spell_level: 0)
-PreparedSpell.create!(klass_spell_id: ks5.id, character_id: character.id, spell_level: 0)
+PreparedSpell.create!(klass_spell_id: ks1.id, character_id: character.id, spell_level: 1, cast: false)
+PreparedSpell.create!(klass_spell_id: ks2.id, character_id: character.id, spell_level: 0, cast: false)
+PreparedSpell.create!(klass_spell_id: ks3.id, character_id: character.id, spell_level: 0, cast: false)
+PreparedSpell.create!(klass_spell_id: ks4.id, character_id: character.id, spell_level: 0, cast: false)
+PreparedSpell.create!(klass_spell_id: ks5.id, character_id: character.id, spell_level: 0, cast: false)
