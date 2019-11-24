@@ -155,6 +155,8 @@ class Api::V1::CharEditsController < ApplicationController
     @char.update(temp_hp: 0, non_lethal_damage: 0, lethal_damage: damage)
     # reset all spells
     @char.cast_spells.destroy_all
+    @char.prepared_spells.destroy_all
+    @char.update(is_done_preparing_spells: false)
     # serialize
     render json: { character: CharacterSerializer.new(@char) }, status: 201
   end

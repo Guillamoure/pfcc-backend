@@ -14,6 +14,18 @@ class Api::V1::PreparedSpellsController < ApplicationController
     end
   end
 
+  def create
+    @prepared_spells = params[:spells].map do |sp|
+      @ps = PreparedSpell.create(klass_spell_id: sp[:known_spell_id], character_id: params[:character_id], spell_level: sp[:level], cast: false)
+      if @ps
+        PreparedSpellSerializer.new(@ps)
+      else
+        render json: {error: "Could not prepare spell"}, status: 401
+      end
+    end
+    render json: @prepared_spells, status: 201
+  end
+
   def destroy
     @ps = PreparedSpell.find(params[:id])
     if @ps

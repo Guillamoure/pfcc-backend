@@ -802,6 +802,7 @@ move = Action.create!(name: "Move Action")
 swift = Action.create!(name: "Swift Action")
 free = Action.create!(name: "Free Action")
 immediate = Action.create!(name: "Immediate Action")
+ten = Action.create!(name: "Ten Minutes")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spell Ranges-*-*-*-----*-*->
@@ -813,6 +814,8 @@ close = SpellRange.create!(name: "Close", feet: 25, increase_per_level: 2.5, des
 medium = SpellRange.create!(name: "Medium", feet: 100, increase_per_level: 10, description: "The spell reaches as far as 100 feet + 10 feet per caster level.")
 long = SpellRange.create!(name: "Long", feet: 400, increase_per_level: 40, description: "The spell reaches as far as 400 feet + 40 feet per caster level.")
 unlimited = SpellRange.create!(name: "Unlimited", feet: 1000000, increase_per_level: 0, description: "The spell reaches anywhere on the same plane of existence.")
+sixty_feet = SpellRange.create!(name: "60 ft", feet: 60, increase_per_level: 0, description: "60 ft")
+ten_feet = SpellRange.create!(name: "10 ft", feet: 10, increase_per_level: 0, description: "10 ft")
 
 
 # /////////////////////////////////////////
@@ -821,6 +824,8 @@ unlimited = SpellRange.create!(name: "Unlimited", feet: 1000000, increase_per_le
 
 charm = Subschool.create!(name: "Charm", description: "A charm spell changes how the subject views you, typically making it see you as a good friend.")
 mind_affecting = Subschool.create!(name: "Mind-Affecting", description: "Mindless creatures (those with an Intelligence score of “—”) and undead are immune to mind-affecting effects.")
+language_dependent = Subschool.create!(name: "Language-Dependent", description: "A language-dependent spell uses intelligible language as a medium for communication. If the target cannot understand or hear what the caster of a language-dependent spell says, the spell has no effect, even if the target fails its saving throw.")
+light = Subschool.create!(name: "Light", description: "Spells that create significant amounts of light or attack darkness effects should have the light descriptor. Giving a spell the light descriptor indicates whether a spell like darkness is high enough level counter or dispel it.")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells!-*-*-*-----*-*->
@@ -836,10 +841,66 @@ SpellSubschool.create!(spell_id: sp1.id, subschool_id: mind_affecting.id)
 SpellComponent.create!(spell_id: sp1.id, component_id: verbal.id)
 SpellComponent.create!(spell_id: sp1.id, component_id: somatic.id)
 ks1 = KlassSpell.create!(klass_id: witch.id, spell_id: sp1.id, spell_level: 1)
-# Spell.create!(name: "", description: "", target: "", savingt_throw: "", spell_resistance: false, action_id: , range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: dismissible: false, concentration: false)
-# Spell.create!(name: "", description: "", target: "", savingt_throw: "", spell_resistance: false, action_id: , range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: dismissible: false, concentration: false)
-# # Spell.create!(name: "", description: "", target: "", savingt_throw: "", spell_resistance: false, action_id: , range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: dismissible: false, concentration: false)
-# Spell.create!(name: "", description: "", target: "", savingt_throw: "", spell_resistance: false, action_id: , range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: dismissible: false, concentration: false)
+
+sp2 = Spell.create!(name: "Detect Magic", description: "You detect magical auras. The amount of information revealed depends on how long you study a particular area or subject.
+
+1st Round: Presence or absence of magical auras.
+
+2nd Round: Number of different magical auras and the power of the most potent aura.
+
+3rd Round: The strength and location of each aura. If the items or creatures bearing the auras are in line of sight, you can make Knowledge (arcana) skill checks to determine the school of magic involved in each. (Make one check per aura: DC 15 + spell level, or 15 + 1/2 caster level for a nonspell effect.) If the aura emanates from a magic item, you can attempt to identify its properties (see Spellcraft).
+
+Magical areas, multiple types of magic, or strong local magical emanations may distort or conceal weaker auras.
+
+Aura Strength: An aura’s power depends on a spell’s functioning spell level or an item’s caster level; see the accompanying table. If an aura falls into more than one category, detect magic indicates the stronger of the two.
+
+Spell or Object	Aura Power
+Faint	Moderate	Strong	Overwhelming
+Functioning spell (spell level)	3rd or lower	4th-6th	7th-9th	10th+ (deity-level)
+Magic item (caster level)	5th or lower	6th-11th	12th-20th	21st+ (artifact)
+Lingering Aura: A magical aura lingers after its original source dissipates (in the case of a spell) or is destroyed (in the case of a magic item). If detect magic is cast and directed at such a location, the spell indicates an aura strength of dim (even weaker than a faint aura). How long the aura lingers at this dim level depends on its original power:
+
+Original Strength	Duration of Lingering Aura
+Faint	1d6 rounds
+Moderate	1d6 minutes
+Strong	1d6x10 minutes
+Overwhelming	1d6 days
+Outsiders and elementals are not magical in themselves, but if they are summoned, the conjuration spell registers. Each round, you can turn to detect magic in a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.
+
+Detect magic can be made permanent with a permanency spell.", target: "cone-shaped emanation", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: sixty_feet.id, magic_school_id: divination.id, duration: "concentration, up to 1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: true)
+
+SpellComponent.create!(spell_id: sp2.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp2.id, component_id: somatic.id)
+ks2 = KlassSpell.create!(klass_id: witch.id, spell_id: sp2.id, spell_level: 0)
+
+sp3 = Spell.create!(name: "Mending", description: "This spell repairs damaged objects, restoring 1d4 hit points to the object. If the object has the broken condition, this condition is removed if the object is restored to at least half its original hit points. All of the pieces of an object must be present for this spell to function. Magic items can be repaired by this spell, but you must have a caster level equal to or higher than that of the object. Magic items that are destroyed (at 0 hit points or less) can be repaired with this spell, but this spell does not restore their magic abilities. This spell does not affect creatures (including constructs). This spell has no effect on objects that have been warped or otherwise transmuted, but it can still repair damage done to such items.", target: "one object of up to 1 lb./level", saving_throw: "Will", spell_resistance: true, action_id: ten.id, spell_range_id: ten_feet.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+
+SpellComponent.create!(spell_id: sp3.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp3.id, component_id: somatic.id)
+ks3 = KlassSpell.create!(klass_id: witch.id, spell_id: sp3.id, spell_level: 0)
+
+sp4 = Spell.create!(name: "Message", description: "You can whisper messages and receive whispered replies. Those nearby can hear these messages with a DC 25 Perception check. You point your finger at each creature you want to receive the message. When you whisper, the whispered message is audible to all targeted creatures within range. Magical silence, 1 foot of stone, 1 inch of common metal (or a thin sheet of lead), or 3 feet of wood or dirt blocks the spell. The message does not have to travel in a straight line. It can circumvent a barrier if there is an open path between you and the subject, and the path’s entire length lies within the spell’s range. The creatures that receive the message can whisper a reply that you hear. The spell transmits sound, not meaning; it doesn’t transcend language barriers. To speak a message, you must mouth the words and whisper.", target: "one creature/level", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: transmutation.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
+
+SpellSubschool.create!(spell_id: sp4.id, subschool_id: language_dependent.id)
+SpellComponent.create!(spell_id: sp4.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp4.id, component_id: somatic.id)
+SpellComponent.create!(spell_id: sp4.id, component_id: focus.id, item: "a piece of copper wire")
+ks4 = KlassSpell.create!(klass_id: witch.id, spell_id: sp4.id, spell_level: 0)
+
+
+sp5 = Spell.create!(name: "Light", description: "This spell causes a touched object to glow like a torch, shedding normal light in a 20-foot radius from the point touched, and increasing the light level for an additional 20 feet by one step, up to normal light (darkness becomes dim light, and dim light becomes normal light). In an area of normal or bright light, this spell has no effect. The effect is immobile, but it can be cast on a movable object.
+
+You can only have one light spell active at any one time. If you cast this spell while another casting is still in effect, the previous casting is dispelled. If you make this spell permanent (through permanency or a similar effect), it does not count against this limit. Light can be used to counter or dispel any darkness spell of equal or lower spell level.", target: "object touched", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: evocation.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
+
+SpellSubschool.create!(spell_id: sp5.id, subschool_id: light.id)
+SpellComponent.create!(spell_id: sp5.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp5.id, component_id: material.id, item: "a firefly")
+SpellComponent.create!(spell_id: sp5.id, component_id: divine_focus.id, item: "a firefly")
+ks5 = KlassSpell.create!(klass_id: witch.id, spell_id: sp5.id, spell_level: 0)
+
+# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Character!-*-*-*-----*-*->
@@ -857,10 +918,19 @@ CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, fe
 # <-*-*-----*-*-*- Known Spells!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-KnownSpell.create!(klass_spell_id: ks1.id, character_id: character.id)
+KnownSpell.create!(klass_spell_id: ks1.id, character_id: character.id, klass_id: witch.id)
+KnownSpell.create!(klass_spell_id: ks2.id, character_id: character.id, klass_id: witch.id)
+KnownSpell.create!(klass_spell_id: ks3.id, character_id: character.id, klass_id: witch.id)
+KnownSpell.create!(klass_spell_id: ks4.id, character_id: character.id, klass_id: witch.id)
+KnownSpell.create!(klass_spell_id: ks5.id, character_id: character.id, klass_id: witch.id)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Prepared Spells!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-PreparedSpell.create!(klass_spell_id: ks1.id, character_id: character.id, spell_level: 1)
+PreparedSpell.create!(klass_spell_id: ks1.id, character_id: character.id, spell_level: 1, cast: false)
+PreparedSpell.create!(klass_spell_id: ks1.id, character_id: character.id, spell_level: 1, cast: false)
+PreparedSpell.create!(klass_spell_id: ks2.id, character_id: character.id, spell_level: 0, cast: false)
+PreparedSpell.create!(klass_spell_id: ks3.id, character_id: character.id, spell_level: 0, cast: false)
+PreparedSpell.create!(klass_spell_id: ks4.id, character_id: character.id, spell_level: 0, cast: false)
+PreparedSpell.create!(klass_spell_id: ks5.id, character_id: character.id, spell_level: 0, cast: false)
