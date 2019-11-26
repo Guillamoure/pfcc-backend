@@ -784,13 +784,13 @@ transmutation = MagicSchool.create!(name: "Transmutation", description: "Transmu
 # <-*-*-----*-*-*- Spell Components!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-verbal = Component.create!(name: "Verbal", description: "A verbal component is a spoken incantation. To provide a verbal component, you must be able to speak in a strong voice. A silence spell or a gag spoils the incantation (and thus the spell). a spellcaster who has been deafened has a 20% chance of spoiling any spell with a verbal component that he tries to cast.")
-somatic = Component.create!(name: "Somatic", description: "A somatic component is a measured and precise movement of the hand. You must have at least one hand free to provide a somatic component.")
-material = Component.create!(name: "Material", description: "A material component consists of one or more physical substances or objects that are annihilated by the spell energies in the casting process. Unless a cost is given for a material component, the cost is negligible. Don’t bother to keep track of material components with negligible cost. Assume you have all you need as long as you have your spell component pouch.")
-focus = Component.create!(name: "Focus", description: "A focus component is a prop of some sort. Unlike a material component, a focus is not consumed when the spell is cast and can be reused. As with material components, the cost for a focus is negligible unless a price is given. Assume that focus components of negligible cost are in your spell component pouch.")
+verbal = Component.create!(name: "Verbal", description: "A verbal component is a spoken incantation. To provide a verbal component, you must be able to speak in a strong voice. A silence spell or a gag spoils the incantation (and thus the spell). a spellcaster who has been deafened has a 20% chance of spoiling any spell with a verbal component that he tries to cast.", abbreviation: "V")
+somatic = Component.create!(name: "Somatic", description: "A somatic component is a measured and precise movement of the hand. You must have at least one hand free to provide a somatic component.", abbreviation: "S")
+material = Component.create!(name: "Material", description: "A material component consists of one or more physical substances or objects that are annihilated by the spell energies in the casting process. Unless a cost is given for a material component, the cost is negligible. Don’t bother to keep track of material components with negligible cost. Assume you have all you need as long as you have your spell component pouch.", abbreviation: "M")
+focus = Component.create!(name: "Focus", description: "A focus component is a prop of some sort. Unlike a material component, a focus is not consumed when the spell is cast and can be reused. As with material components, the cost for a focus is negligible unless a price is given. Assume that focus components of negligible cost are in your spell component pouch.", abbreviation: "F")
 divine_focus = Component.create!(name: "Divine Focus", description: "A divine focus component is an item of spiritual significance. The divine focus for a cleric or a paladin is a holy symbol appropriate to the character’s faith. The divine focus for a druid or a ranger is a sprig of holly, or some other sacred plant.
 
-If the Components line includes F/DF or M/DF, the arcane version of the spell has a focus component or a material component (the abbreviation before the slash) and the divine version has a divine focus component (the abbreviation after the slash).")
+If the Components line includes F/DF or M/DF, the arcane version of the spell has a focus component or a material component (the abbreviation before the slash) and the divine version has a divine focus component (the abbreviation after the slash).", abbreviation: "DF")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Actions-*-*-*-----*-*->
@@ -816,6 +816,7 @@ long = SpellRange.create!(name: "Long", feet: 400, increase_per_level: 40, descr
 unlimited = SpellRange.create!(name: "Unlimited", feet: 1000000, increase_per_level: 0, description: "The spell reaches anywhere on the same plane of existence.")
 sixty_feet = SpellRange.create!(name: "60 ft", feet: 60, increase_per_level: 0, description: "60 ft")
 ten_feet = SpellRange.create!(name: "10 ft", feet: 10, increase_per_level: 0, description: "10 ft")
+one_hundred_twenty_feet = SpellRange.create!(name: "120 ft", feet: 120, increase_per_level: 0, description: "120 ft")
 
 
 # /////////////////////////////////////////
@@ -826,6 +827,8 @@ charm = Subschool.create!(name: "Charm", description: "A charm spell changes how
 mind_affecting = Subschool.create!(name: "Mind-Affecting", description: "Mindless creatures (those with an Intelligence score of “—”) and undead are immune to mind-affecting effects.")
 language_dependent = Subschool.create!(name: "Language-Dependent", description: "A language-dependent spell uses intelligible language as a medium for communication. If the target cannot understand or hear what the caster of a language-dependent spell says, the spell has no effect, even if the target fails its saving throw.")
 light = Subschool.create!(name: "Light", description: "Spells that create significant amounts of light or attack darkness effects should have the light descriptor. Giving a spell the light descriptor indicates whether a spell like darkness is high enough level counter or dispel it.")
+electricity = Subschool.create!(name: "Electricity", description: "Electricity effects involve the presence and flow of electrical charge, whether expressed in amperes or volts. Electricity deals damage to creatures by disrupting their biological systems. It deals damage to objects (as well as creatures) by heating the material it passes through, and thus technically many electricity spells could also be treated as fire spells, but for sake of game simplicity, it is better to just let electricity-based spells deal electricity damage. Electricity effects may stun, paralyze, or even kill.")
+compulsion = Subschool.create!(name: "Compulsion", description: "A compulsion spell forces the subject to act in some manner or changes the way its mind works. Some compulsion spells determine the subject’s actions or the effects on the subject, others allow you to determine the subject’s actions when you cast the spell, and still others give you ongoing control over the subject.")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells!-*-*-*-----*-*->
@@ -898,6 +901,62 @@ SpellComponent.create!(spell_id: sp5.id, component_id: material.id, item: "a fir
 SpellComponent.create!(spell_id: sp5.id, component_id: divine_focus.id, item: "a firefly")
 ks5 = KlassSpell.create!(klass_id: witch.id, spell_id: sp5.id, spell_level: 0)
 
+sp6 = Spell.create!(name: "Discern Next of Kin", description: "You can scan the thoughts of one individual and learn the names and locations of the target’s living relatives, as well as the attitude of the target toward those relatives (and vice versa). You learn about one relative per round you concentrate on the target. For example, you might learn the target’s father’s name, that the father lives on a nearby farm, and that the target and his father don’t get along. Since this spell reads the target’s mind, you can learn only what the target knows or believes.", target: "one creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: sixty_feet.id, magic_school_id: divination.id, duration: "concentration, up to 1 minute/level (D)", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: true)
+
+SpellSubschool.create!(spell_id: sp6.id, subschool_id: mind_affecting.id)
+SpellComponent.create!(spell_id: sp6.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp6.id, component_id: somatic.id)
+SpellComponent.create!(spell_id: sp6.id, component_id: focus.id, item: "a copper piece")
+
+sp7 = Spell.create!(name: "Lightning Bolt", description: "You release a powerful stroke of electrical energy that deals 1d6 points of electricity damage per caster level (maximum 10d6) to each creature within its area. The bolt begins at your fingertips.
+
+The lightning bolt sets fire to combustibles and damages objects in its path. It can melt metals with a low melting point, such as lead, gold, copper, silver, or bronze. If the damage caused to an interposing barrier shatters or breaks through it, the bolt may continue beyond the barrier if the spell’s range permits; otherwise, it stops at the barrier just as any other spell effect does.", target: "120 ft", saving_throw: "Reflex", spell_resistance: true, action_id: standard.id, spell_range_id: one_hundred_twenty_feet.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+
+SpellSubschool.create!(spell_id: sp7.id, subschool_id: electricity.id)
+SpellComponent.create!(spell_id: sp7.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp7.id, component_id: somatic.id)
+SpellComponent.create!(spell_id: sp7.id, component_id: material.id, item: "fur and a glass rod")
+
+sp8 = Spell.create!(name: "Open/Close", description: "You can open or close (your choice) a door, chest, box, window, bag, pouch, bottle, barrel, or other container. If anything resists this activity (such as a bar on a door or a lock on a chest), the spell fails. In addition, the spell can only open and close things weighing 30 pounds or less. Thus, doors, chests, and similar objects sized for enormous creatures may be beyond this spell’s ability to affect.", target: "object weighing up to 30 lbs. or portal that can be opened or closed", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+
+SpellComponent.create!(spell_id: sp8.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp8.id, component_id: somatic.id)
+SpellComponent.create!(spell_id: sp8.id, component_id: focus.id, item: "a brass key")
+
+sp9 = Spell.create!(name: "Haste", description: "The transmuted creatures move and act more quickly than normal. This extra speed has several effects.
+
+When making a full attack action, a hasted creature may make one extra attack with one natural or manufactured weapon. The attack is made using the creature’s full base attack bonus, plus any modifiers appropriate to the situation. (This effect is not cumulative with similar effects, such as that provided by a speed weapon, nor does it actually grant an extra action, so you can’t use it to cast a second spell or otherwise take an extra action in the round.)
+
+A hasted creature gains a +1 bonus on attack rolls and a +1 dodge bonus to AC and Reflex saves. Any condition that makes you lose your Dexterity bonus to Armor Class (if any) also makes you lose dodge bonuses.
+
+All of the hasted creature’s modes of movement (including land movement, burrow, climb, fly, and swim) increase by 30 feet, to a maximum of twice the subject’s normal speed using that form of movement. This increase counts as an enhancement bonus, and it affects the creature’s jumping distance as normal for increased speed. Multiple haste effects don’t stack. Haste dispels and counters slow.", target: "one creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Fortitude", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+
+SpellComponent.create!(spell_id: sp9.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp9.id, component_id: somatic.id)
+SpellComponent.create!(spell_id: sp9.id, component_id: material.id, item: "a shaving of licorice root")
+
+sp10 = Spell.create!(name: "Mage Hand", description: "You point your finger at an object and can lift it and move it at will from a distance. As a move action, you can propel the object as far as 15 feet in any direction, though the spell ends if the distance between you and the object ever exceeds the spell’s range.", target: "one non-magical, unattended object weighing up to 5 lbs.", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "concentration", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: true)
+
+SpellComponent.create!(spell_id: sp10.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp10.id, component_id: somatic.id)
+
+sp11 = Spell.create!(name: "Suggestion", description: "You influence the actions of the target creature by suggesting a course of activity (limited to a sentence or two). The suggestion must be worded in such a manner as to make the activity sound reasonable. Asking the creature to do some obviously harmful act automatically negates the effect of the spell.
+
+The suggested course of activity can continue for the entire duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do. You can instead specify conditions that will trigger a special activity during the duration. If the condition is not met before the spell duration expires, the activity is not performed.
+
+A very reasonable suggestion causes the save to be made with a penalty (such as -1 or -2).", target: "one living creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: enchantment.id, duration: "1 hour/level or until completed", time: 1, unit_of_time: "hour", increase_per_level: 1, dismissible: false, concentration: false)
+
+SpellSubschool.create!(spell_id: sp11.id, subschool_id: compulsion.id)
+SpellSubschool.create!(spell_id: sp11.id, subschool_id: mind_affecting.id)
+SpellSubschool.create!(spell_id: sp11.id, subschool_id: language_dependent.id)
+SpellComponent.create!(spell_id: sp11.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp11.id, component_id: material.id, item: "a snake’s tongue and a honeycomb")
+
+
+
+# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
 # Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
 # Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
 # Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
