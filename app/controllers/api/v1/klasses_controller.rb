@@ -7,8 +7,10 @@ class Api::V1::KlassesController < ApplicationController
 
   def show
     @klass = Klass.find_by(name: params["id"])
+    if !@klass
+      @klass = Klass.find(params[:id])
+    end
     render json: { klass: KlassSerializer.new(@klass) }, status: 200
-
   end
 
   def create
