@@ -1,4 +1,17 @@
 # /////////////////////////////////////////
+# <-*-*-----*-*-*- Actions-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+standard = Action.create!(name: "Standard Action")
+full_round = Action.create!(name: "Full-Round Action")
+move = Action.create!(name: "Move Action")
+swift = Action.create!(name: "Swift Action")
+free = Action.create!(name: "Free Action")
+immediate = Action.create!(name: "Immediate Action")
+ten = Action.create!(name: "Ten Minutes")
+one_minute = Action.create!(name: "One Minute")
+
+# /////////////////////////////////////////
 # <-*-*-----*-*-*- Races!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
@@ -307,13 +320,23 @@ Role: Bards capably confuse and confound their foes while inspiring their allies
 
 Alignment: Any")
 
+fate_weaver = Klass.create!(name: "Fate Weaver", hit_die: 6, skill_ranks: 6, fortitude: 0.34, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/db/9f/cc/db9fcc1ded708f4ea2e90b515334b3b3.png", description: "The Fate Weaver has been touched by those who control destiny, allowing their chaotic nature to benefit them tremendously. Whether they are aware of their powers, or believe they are just lucky, the Fate Weaver seeks domination. With their granted gifts, their fortune is more real than anyone else's: they just have to take it.
+
+Role: The Fate Weaver has a wide array of options, but they may not always be consistent, necessary, or beneficial. Be wary of the Fate Weaver’s power: it is awesome in the both the good and the bad sense. A clutch Fate Weaver can change the tide in an instant, and often has a card up their sleeve for the most unlikely situations.
+
+Alignment: Any Chaotic")
+# Klass.create!(name: "", hit_die: , skill_ranks: , fortitude: , reflex: , will: , img_url: "", description: "")
+# Klass.create!(name: "", hit_die: , skill_ranks: , fortitude: , reflex: , will: , img_url: "", description: "")
+# Klass.create!(name: "", hit_die: , skill_ranks: , fortitude: , reflex: , will: , img_url: "", description: "")
+# Klass.create!(name: "", hit_die: , skill_ranks: , fortitude: , reflex: , will: , img_url: "", description: "")
+
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Class Features!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-oracle1 = KlassFeature.create!(klass_id: oracle.id, name: "Weapon and Armor Proficiency", level_learned: 1, description: "Oracles are proficient with all simple weapons, light armor, medium armor, and shields (except tower shields). Some oracle revelations grant additional proficiencies.")
+oracle1 = KlassFeature.create!(klass_id: oracle.id, name: "Weapon and Armor Proficiency", description: "Oracles are proficient with all simple weapons, light armor, medium armor, and shields (except tower shields). Some oracle revelations grant additional proficiencies.")
 
-oracle2 = KlassFeature.create!(klass_id: oracle.id, name: "Spellcasting", level_learned: 1, description: "An oracle casts divine spells drawn from the cleric spell lists. She can cast any spell she knows without preparing it ahead of time. To learn or cast a spell, an oracle must have a Charisma score equal to at least 10 + the spell level. The Difficulty Class for a saving throw against an oracle’s spell is 10 + the spell’s level + the oracle’s Charisma modifier (see FAQ).
+oracle2 = KlassFeature.create!(klass_id: oracle.id, name: "Spellcasting", description: "An oracle casts divine spells drawn from the cleric spell lists. She can cast any spell she knows without preparing it ahead of time. To learn or cast a spell, an oracle must have a Charisma score equal to at least 10 + the spell level. The Difficulty Class for a saving throw against an oracle’s spell is 10 + the spell’s level + the oracle’s Charisma modifier (see FAQ).
 
 Like other spellcasters, an oracle can cast only a certain number of spells per day of each spell level. Her base daily spell allotment is given on Table: Oracle. In addition, she receives bonus spells per day if she has a high Charisma score (see Table: Ability Modifiers and Bonus Spells).
 
@@ -323,9 +346,10 @@ In addition to the spells gained by oracles as they gain levels, each oracle als
 
 Upon reaching 4th level, and at every even-numbered oracle level after that (6th, 8th, and so on), an oracle can choose to learn a new spell in place of one she already knows. In effect, the oracle loses the old spell in exchange for the new one. The new spell’s level must be the same as that of the spell being exchanged. An oracle may swap only a single spell at any given level, and must choose whether or not to swap the spell at the same time that she gains new spells known for the level. She cannot swap any cure or inflict spells, nor can she swap any spells gained from her mystery. Unlike a cleric, an oracle need not prepare her spells in advance. She can cast any spell she knows at any time, assuming she has not yet used up her spells per day for that spell level. Oracles do not need to provide a divine focus to cast spells that list divine focus (DF) as part of the components.")
 
-  witch1 = KlassFeature.create!(klass_id: witch.id, name: "Weapon and Armor Proficiency", level_learned: 1, description: "Witches are proficient with all simple weapons. They are not proficient with any type of armor or shield. Armor interferes with a witch’s gestures, which can cause her spells with somatic components to fail.")
+  witch1 = KlassFeature.create!(klass_id: witch.id, name: "Weapon and Armor Proficiency", description: "Witches are proficient with all simple weapons. They are not proficient with any type of armor or shield. Armor interferes with a witch’s gestures, which can cause her spells with somatic components to fail.")
+    FeatureLevel.create!(klass_feature_id: witch1.id, level: 1, table_description: "none")
 
-  witch2 = KlassFeature.create!(klass_id: witch.id, name: "Spells", level_learned: 1, description: "A witch casts arcane spells drawn from the witch spell list. A witch must choose and prepare her spells ahead of time.
+  witch2 = KlassFeature.create!(klass_id: witch.id, name: "Spells", description: "A witch casts arcane spells drawn from the witch spell list. A witch must choose and prepare her spells ahead of time.
 
   To learn or cast a spell, a witch must have an Intelligence score equal to at least 10 + the spell level. The Difficulty Class for a saving throw against a witch’s spell is 10 + the spell level + the witch’s Intelligence modifier.
 
@@ -334,10 +358,141 @@ Upon reaching 4th level, and at every even-numbered oracle level after that (6th
   A witch may know any number of spells. She must choose and prepare her spells ahead of time by getting 8 hours of sleep and spending 1 hour communing with her familiar. While communing, the witch decides which spells to prepare.
 
   Cantrips Witches can prepare a number of cantrips, or 0-level spells, each day, as noted on Table: Witch under “Spells per Day.” These spells are cast like any other spell, but they are not expended when cast and may be used again. Cantrips prepared using other spell slots, due to metamagic feats for example, are expended normally.")
+    FeatureLevel.create!(klass_feature_id: witch2.id, level: 1, table_description: "none")
 
-  witch3 = KlassFeature.create!(klass_id: witch.id, name: "Hex", level_learned: 1, description: "Witches learn a number of magic tricks, called hexes, that grant them powers or weaken foes. At 1st level, a witch gains one hex of her choice. She gains an additional hex at 2nd level and for every 2 levels attained after 2nd level, as noted on Table: Witch. A witch cannot select an individual hex more than once.
+
+  witch3 = KlassFeature.create!(klass_id: witch.id, name: "Hex", description: "Witches learn a number of magic tricks, called hexes, that grant them powers or weaken foes. At 1st level, a witch gains one hex of her choice. She gains an additional hex at 2nd level and for every 2 levels attained after 2nd level, as noted on Table: Witch. A witch cannot select an individual hex more than once.
 
   Unless otherwise noted, using a hex is a standard action that does not provoke an attack of opportunity. The save to resist a hex is equal to 10 + 1/2 the witch’s level + the witch’s Intelligence modifier.")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 1, table_description: "Hex")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 2, table_description: "Hex")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 4, table_description: "Hex")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 6, table_description: "Hex")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 8, table_description: "Hex")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 10, table_description: "Hex")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 12, table_description: "Hex")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 14, table_description: "Hex")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 16, table_description: "Hex")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 18, table_description: "Hex")
+    FeatureLevel.create!(klass_feature_id: witch3.id, level: 20, table_description: "Hex")
+
+
+  fate_weaver1 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Chaotic Nature", description: "A Fate Weaver is initially a victim of chaos, but over time, she learns to become not only an agent, but a master of chaos. If she is damaged by a lawful creature’s unarmed attack, a lawfully aligned or axiomatic weapon, or a spell with a lawful descriptor, she takes additional damage equal to her Hit Dice.
+
+  The Fate Weaver is more talented than she knows, even when pursuing other paths. She gains the Eschew Materials feat as a bonus feat, but only for spells cast through this class. If the Fate Weaver gains levels in other classes, but every 6th level gained in another class lets her roll once for an ability through her Chaotic Reveal class feature.")
+    FeatureLevel.create!(klass_feature_id: fate_weaver1.id, level: 1, table_description: "Chaotic Nature")
+
+
+  fate_weaver2 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Chaotic Reveal", description: "A Fate Weaver is dominated by chance, and revels in the potential of chaos. At 1st level and every subsequent odd level, a Fate Weaver rolls a d100. Depending on the results, she gains an additional feature, power, stat increase, or ability, described in the Chaotic Reveal chart below. Unless otherwise mundane, the effect of these features are considered supernatural abilities.")
+    FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 1, table_description: "Chaotic Reveal")
+    FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 3, table_description: "Chaotic Reveal")
+    FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 5, table_description: "Chaotic Reveal")
+    FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 7, table_description: "Chaotic Reveal")
+    FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 9, table_description: "Chaotic Reveal")
+    FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 11, table_description: "Chaotic Reveal")
+    FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 13, table_description: "Chaotic Reveal")
+    FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 15, table_description: "Chaotic Reveal")
+    FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 17, table_description: "Chaotic Reveal")
+    FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 19, table_description: "Chaotic Reveal")
+    chaotic1 = FeatureOption.create!(klass_feature_id: fate_weaver2.id, name: "Nightmare Forme", description: "Once a day, as an action lasts takes 1 minute, you can transform yourself into a Nightmare Form, a frightening and powerful being that augments your abilities. You size increases by one category, and your race alters into a different shape of your choice with additional changes: roll a 4d20 to decide what changes.
+
+    1 - long and lithe, 2 - hulking and slouched, 3, glistening/flaking/wrinkled skin, 4 - a limb changes into a mechanical part/tentacle/claw, 5 - extra eyes on your head, 6 - shaggy hair, 7 - flaming/iced/rocky/translucent/metallic, 8 - ornamental wings, 9 - face goes into torso, 10 - hovering, 11 - body has holes like swiss cheese, 12 - sunken eyes and wide mouth, 13 - ornamental tail, 14 - proboscis, 15 - third arm, 16 - face on the back of you, 17 - spines/quills, 18 - impaled with weapon and bleeding, 19 - gaunt and withered, 20 - wispy, flowing clothing. You cannot apply the same result to your nightmare form.
+
+    Select an ability score: it increases by +2 while in this form. Select a skill: increase your modifier for that skill by +5 while in this form. The duration of this form is 1 minute per day per hit die, and you can revert back to your normal form as a full-round action. This is a polymorph effect.
+
+    For every 2 levels after gaining this Chaotic Reveal, you may increase the ability score by an additional +1, and increase one skill modifier by +3 (you can choose the same skill, or different skills).
+
+    After 4 levels since gaining this Chaotic Reveal, you can change into your Nightmare Form as a full-round action, and you may choose a secondary ability score; it gains the same modifier as the original chosen ability score -2.", level_available: 1)
+      FeatureOptionAction.create!(feature_option_id: chaotic1.id, action_id: one_minute.id, level: 1)
+
+    chaotic2 = FeatureOption.create!(klass_feature_id: fate_weaver2.id, name: "Gravity Manipulation", description: "Add feather fall to your list of known spells. You can affect an area of a 20 ft radius in space with heavy or light gravity as a standard action (PA 58-59). You must be within 60 ft of the point of origin and maintain concentration each round, or else the affected area no longer has any change in gravity. You can affect an area for a number of rounds a day equal to 4 times your Fate Weaver level.
+
+    For every 4 levels after gaining this Chaotic Reveal, increase the bonuses and penalties of the gravitational zones you created by 1, and the duration of the area continues for 1 additional round after you cease concentration (which is not deducted from your total amount of rounds for the day).
+
+    After 3 levels since gaining this Chaotic Reveal, you gain the Heavy Gravity Acclimation and Light Gravity Acclimation as bonus feats, even if you don't fulfill the prerequisites. You can adjust the gravity of the zone you've affected to a different type as a move action.
+
+    After 6 levels since gaining this Chaotic Reveal, you gain the Gravitational Vital Strike feat as a bonus feat, even if you don't fulfill the prerequisites. As a standard action, you can touch a creature, temporarily affecting it with either Heavy Gravity Acclimation or Light Gravity Acclimation for 10 minutes.
+
+    After 10 levels since gaining this Chaotic Reveal, you learn the reverse gravity as a spell-like ability once a day. Additionally, the radius of this effect increases to 40 ft, and you only need to be within 100 ft of the point of origin to maintain concentration.", level_available: 1)
+      FeatureOptionAction.create!(feature_option_id: chaotic2.id, action_id: standard.id, level: 1)
+
+    chaotic3 = FeatureOption.create!(klass_feature_id: fate_weaver2.id, name: "Combat Prowess", description: "Once a day, you can make a combat maneuver in place of your attack of opportunity. Doing this does not threaten an attack of opportunity from the target, but it does threaten from adjacent creatures. If you have a relevant Improved feat for a combat maneuver, you can make that specific combat maneuver +2 times per day, in addition to the once per day for all combat maneuvers. If you have a relevant Greater feat, you gain an additional +2 times per day.
+
+    For every 4 levels after gaining this Chaotic Reveal, you gain a +1 bonus to all combat maneuvers for which you have the relevant Improved feat, and an additional +1 bonus if you have the relevant Greater feat. This does not compound retroactively, if you get a feat after getting this bonus.
+
+    After 3 levels since gaining this Chaotic Reveal, as a standard action, you may forgo one use of this ability to let an ally within 30 ft of you attempt this ability. The ally gains a bonus to this ability equal to the bonuses gained from this feature, if they are using a specific combat maneuver for which you have either the relevant Improved or Greater feat. They must use this ability within 1 minute of you \"teaching\" them, or the ability is lost.", level_available: 1)
+
+    # FeatureOption.create!(klass_feature_id: , name: "", description: "", level_available: )
+    # FeatureOption.create!(klass_feature_id: , name: "", description: "", level_available: )
+    # FeatureOption.create!(klass_feature_id: , name: "", description: "", level_available: )
+    # FeatureOption.create!(klass_feature_id: , name: "", description: "", level_available: )
+    # FeatureOption.create!(klass_feature_id: , name: "", description: "", level_available: )
+
+  fate_weaver3 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Exasperations", description: "During times of fortune or misfortune, a Fate Weaver can attempt to alter fate by reaching into the energy of the cosmos, and tearing magic from it. By taking 3 points of nonlethal damage, as a swift action, she may declare a category of exasperation (Alter, Generate, Overwhelm), and roll a d100. For the chosen result, apply the listed effect. She is precisely aware of the result of the effect but not necessarily the target, and may react accordingly. The duration of these effects is written next to them. Consult the DM for random targets or other choices that she does not get to choose.
+
+  A Fate Weaver may also use an Exasperation as an action that takes 10 minutes, and requires concentration. After the end of the 10 minutes, she may roll for an Exasperation without taking the above nonlethal damage (all nonlethal damage from other modifications are still dealt; see below). If she fails a concentration check, she loses the Exasperation as if the chosen result had no effect.
+
+  She may also modify her Exasperation by taking additional nonlethal damage.
+
+  At 1st level, she may take an additional 1 point of nonlethal damage to roll another d100. This effect can be used multiple times within the same Exasperation. She may also take an additional 2 points of nonlethal damage to select an additional category. This effect can be used multiple times within the same Exasperation. However, you may only select one Exasperation from all the available categories.
+
+  At 4th level, she may take an additional 3 points of nonlethal damage to have an additional Exasperation trigger with the original Exasperation. This effect can be used multiple times within the same Exasperation. If she does not have access to multiple choices, she may have the same chosen Exasperation happen multiple times.
+
+  At 8th level, she may take an additional 4 points of nonlethal damage to delay her chosen Exasperation or Exasperations. After choosing the results of the Exasperation, she can hold those effects from activating for a number of rounds equal to 5 + her Charisma modifier. She can trigger any number of these effects as a Free Action during the given rounds. Any inactivated Exasperations after the duration ends are lost.
+
+  At 12th level, she may take an additional 5 points of nonlethal damage to roll for an Exasperation as an Immediate Action, rather than a Swift Action.
+
+  At 16th level, she may take an additional 6 points of nonlethal damage to select up to 2 additional targets for all of your Exasperations that you choose, if they ask you to select one target. Additionally, the duration for all of your Exasperations are doubled.")
+    FeatureLevel.create!(klass_feature_id: fate_weaver3.id, level: 1, table_description: "Exasperations")
+    FeatureAction.create!(klass_feature_id: fate_weaver3.id, action_id: swift.id, level: 1)
+    FeatureAction.create!(klass_feature_id: fate_weaver3.id, action_id: immediate.id, level: 12)
+
+  fate_weaver4 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Spells", description: "A Fate Weaver casts divine spells drawn from the Fate Weaver spell list (below). To cast a spell, a Fate Weaver must have a Charisma score equal to at least 10 + the spell level. The Difficulty Class for a saving throw against a Fate Weaver’s spell is 10 + the spell level + the Fate Weaver’s Charisma modifier.
+
+  A Fate Weaver’s spell list is massive, drawn from the agents of fate themselves to embody and embolden your actions. The spell list is combination of bard, cleric, druid, wizard, alchemist, inquisitor, medium, and oracle spells, focusing on enchantment, conjuration, divination, and transmutation spells, with evocation spells that alter the environment.
+
+  A Fate Weaver’s selection of spells known is extremely limited. At 2nd level, she learns 4 orisons, and 2 additional orisons at 3rd level. At 4th level, she learns 2 1st-level spells. At each new Fate Weaver level, she gains one or more new spells, as indicated on the table above.
+
+  At 3rd level, and every level after that, a Fate Weaver can choose to learn a new spell in place of one she already knows. In effect, the Fate Weaver loses the old spell in exchange for the new one. The new spell's level must be the same as that of the spell being exchanged. A Fate Weaver may swap only a single spell at any given level, and must choose whether or not to swap the spell at the same time that she gains new spells known for the level. She cannot swap any spells that were granted by a Chaotic Reveal.
+
+  Like a sorcerer, a Fate Weaver need not prepare her spells in advance. She can cast any spell she knows at any time, assuming she has not yet used up her Fate points for the day.
+
+  Orisons: At 2nd level, a Fate Weaver can cast orisons, or 0-level spells, by spending 1/2 Fate Points. These spells are cast like any other spell, and do not need to be prepared in advance.")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 2, table_description: "Orisons +4")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 3, table_description: "Orisons +2")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 4, table_description: "1st-level +2")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 5, table_description: "1st-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 6, table_description: "1st-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 7, table_description: "1st-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 8, table_description: "2nd-level +2")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 9, table_description: "2nd-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 10, table_description: "2nd-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 11, table_description: "2nd-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 12, table_description: "3rd-level +2")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 13, table_description: "3rd-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 14, table_description: "3rd-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 15, table_description: "3rd-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 16, table_description: "4th-level +2")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 17, table_description: "4th-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 18, table_description: "4th-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 19, table_description: "4th-level +1")
+    FeatureLevel.create!(klass_feature_id: fate_weaver4.id, level: 20, table_description: "5th-level +2")
+
+  fate_weaver5 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Fate Points", description: "A Fate Weaver’s doesn’t have a specific amount of spells cast per day, they have a Fate point pool from which they spend to cast spells. Each time a Fate Weaver wants to cast a spell, she must first deduct a number of points from her Fate point pool equal to the spell’s level, including if the spell level is modified by a metamagic feat (Orisons cost 1/2 point). If she does not have enough Fate points to spend, she cannot cast that spell. She restores her Fate points to their maximum after 8 hours of rest.
+
+  A Fate Weaver's Fate Points begin at a random amount each day. At 2nd level, at the start of a new day, a Fate Weaver has a number of Fate Points equal to the dice rolled + her Charisma modifier. The dice the Fate Weaver uses to roll at the beginning of each day will change at subsequent levels.")
+    FeatureLevel.create!(klass_feature_id: fate_weaver5.id, level: 2, table_description: "Fate Points 1d4")
+    FeatureLevel.create!(klass_feature_id: fate_weaver5.id, level: 4, table_description: "Fate Points 1d6")
+    FeatureLevel.create!(klass_feature_id: fate_weaver5.id, level: 7, table_description: "Fate Points 2d4")
+    FeatureLevel.create!(klass_feature_id: fate_weaver5.id, level: 10, table_description: "Fate Points 2d6")
+    FeatureLevel.create!(klass_feature_id: fate_weaver5.id, level: 13, table_description: "Fate Points 2d8")
+    FeatureLevel.create!(klass_feature_id: fate_weaver5.id, level: 16, table_description: "Fate Points 2d10")
+    FeatureLevel.create!(klass_feature_id: fate_weaver5.id, level: 19, table_description: "Fate Points 2d12")
+
+  fate_weaver6 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Destiny Maker", description: "At 5th level, instead of rolling a d100 on the Chaotic Reveal, a Fate Weaver may choose to select the result. If the result requires more dice to be rolled, she may also choose the result of those dice. At 11th level, and 17th level, she may choose another Chaotic Reveal instead of rolling.")
+    FeatureLevel.create!(klass_feature_id: fate_weaver6.id, level: 5, table_description: "Destiny Maker")
+    FeatureLevel.create!(klass_feature_id: fate_weaver6.id, level: 11, table_description: "Destiny Maker")
+    FeatureLevel.create!(klass_feature_id: fate_weaver6.id, level: 17, table_description: "Destiny Maker")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Class Feature Details!-*-*-*-----*-*->
@@ -347,6 +502,7 @@ Spellcasting.create!(klass_feature_id: oracle2.id, ability_score: "Charisma", pr
 
 Spellcasting.create!(klass_feature_id: witch2.id, ability_score: "Intelligence", prepared: true, limited: true)
 
+Spellcasting.create!(klass_feature_id: fate_weaver4.id, ability_score: "Charisma", prepared: false, limited: true)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells Per Day!-*-*-*-----*-*->
@@ -741,6 +897,17 @@ ClassSkillsetSkill.create!(klass_id: vig.id, skillset_id: dmc.id, skill_id: stea
 ClassSkillsetSkill.create!(klass_id: vig.id, skillset_id: dmc.id, skill_id: surv.id)
 ClassSkillsetSkill.create!(klass_id: vig.id, skillset_id: dmc.id, skill_id: swim.id)
 
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: bluf.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: dipl.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: unc_fine.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: hand.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: heal.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: inti.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: ling.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: perf.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: perc.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: sens.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: surv.id)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Schools of Magic!-*-*-*-----*-*->
@@ -780,6 +947,8 @@ necromancy = MagicSchool.create!(name: "Necromancy", description: "Necromancy sp
 
 transmutation = MagicSchool.create!(name: "Transmutation", description: "Transmutation spells change the properties of some creature, thing, or condition.")
 
+universal = MagicSchool.create!(name: "Universal", description: "Universal spells belongs to specific school of magic.")
+
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spell Components!-*-*-*-----*-*->
 # /////////////////////////////////////////
@@ -791,18 +960,6 @@ focus = Component.create!(name: "Focus", description: "A focus component is a pr
 divine_focus = Component.create!(name: "Divine Focus", description: "A divine focus component is an item of spiritual significance. The divine focus for a cleric or a paladin is a holy symbol appropriate to the character’s faith. The divine focus for a druid or a ranger is a sprig of holly, or some other sacred plant.
 
 If the Components line includes F/DF or M/DF, the arcane version of the spell has a focus component or a material component (the abbreviation before the slash) and the divine version has a divine focus component (the abbreviation after the slash).", abbreviation: "DF")
-
-# /////////////////////////////////////////
-# <-*-*-----*-*-*- Actions-*-*-*-----*-*->
-# /////////////////////////////////////////
-
-standard = Action.create!(name: "Standard Action")
-full_round = Action.create!(name: "Full-Round Action")
-move = Action.create!(name: "Move Action")
-swift = Action.create!(name: "Swift Action")
-free = Action.create!(name: "Free Action")
-immediate = Action.create!(name: "Immediate Action")
-ten = Action.create!(name: "Ten Minutes")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spell Ranges-*-*-*-----*-*->
@@ -829,6 +986,9 @@ language_dependent = Subschool.create!(name: "Language-Dependent", description: 
 light = Subschool.create!(name: "Light", description: "Spells that create significant amounts of light or attack darkness effects should have the light descriptor. Giving a spell the light descriptor indicates whether a spell like darkness is high enough level counter or dispel it.")
 electricity = Subschool.create!(name: "Electricity", description: "Electricity effects involve the presence and flow of electrical charge, whether expressed in amperes or volts. Electricity deals damage to creatures by disrupting their biological systems. It deals damage to objects (as well as creatures) by heating the material it passes through, and thus technically many electricity spells could also be treated as fire spells, but for sake of game simplicity, it is better to just let electricity-based spells deal electricity damage. Electricity effects may stun, paralyze, or even kill.")
 compulsion = Subschool.create!(name: "Compulsion", description: "A compulsion spell forces the subject to act in some manner or changes the way its mind works. Some compulsion spells determine the subject’s actions or the effects on the subject, others allow you to determine the subject’s actions when you cast the spell, and still others give you ongoing control over the subject.")
+glamer = Subschool.create!(name: "Glamer", description: "A glamer spell changes a subject’s sensory qualities, making it look, feel, taste, smell, or sound like something else, or even seem to disappear.")
+healing = Subschool.create!(name: "Healing", description: "Certain divine conjurations heal creatures or even bring them back to life.")
+force = Subschool.create!(name: "Force", description: "Spells with the force descriptor create or manipulate magical force. Force spells affect incorporeal creatures normally (as if they were corporeal creatures).")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells!-*-*-*-----*-*->
@@ -901,7 +1061,7 @@ SpellComponent.create!(spell_id: sp5.id, component_id: material.id, item: "a fir
 SpellComponent.create!(spell_id: sp5.id, component_id: divine_focus.id, item: "a firefly")
 ks5 = KlassSpell.create!(klass_id: witch.id, spell_id: sp5.id, spell_level: 0)
 
-sp6 = Spell.create!(name: "Discern Next of Kin", description: "You can scan the thoughts of one individual and learn the names and locations of the target’s living relatives, as well as the attitude of the target toward those relatives (and vice versa). You learn about one relative per round you concentrate on the target. For example, you might learn the target’s father’s name, that the father lives on a nearby farm, and that the target and his father don’t get along. Since this spell reads the target’s mind, you can learn only what the target knows or believes.", target: "one creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: sixty_feet.id, magic_school_id: divination.id, duration: "concentration, up to 1 minute/level (D)", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: true)
+sp6 = Spell.create!(name: "Discern Next of Kin", description: "You can scan the thoughts of one individual and learn the names and locations of the target’s living relatives, as well as the attitude of the target toward those relatives (and vice versa). You learn about one relative per round you concentrate on the target. For example, you might learn the target’s father’s name, that the father lives on a nearby farm, and that the target and his father don’t get along. Since this spell reads the target’s mind, you can learn only what the target knows or believes.", target: "one creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: sixty_feet.id, magic_school_id: divination.id, duration: "concentration, up to 1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: true)
 
 SpellSubschool.create!(spell_id: sp6.id, subschool_id: mind_affecting.id)
 SpellComponent.create!(spell_id: sp6.id, component_id: verbal.id)
@@ -952,14 +1112,80 @@ SpellSubschool.create!(spell_id: sp11.id, subschool_id: language_dependent.id)
 SpellComponent.create!(spell_id: sp11.id, component_id: verbal.id)
 SpellComponent.create!(spell_id: sp11.id, component_id: material.id, item: "a snake’s tongue and a honeycomb")
 
+sp12 = Spell.create!(name: "Decrepit Disguise", description: "You make an object seem like a worthless version of itself. A masterwork or magic sword could seem to be a useless, rusting, discarded blade, and a luxurious throne could appear to be a decrepit wooden chair. If used against an attended object, the wielder can immediately attempt a Will save to disbelieve the effect. Decrepit disguise counters and dispels quintessence.
 
+Decrepit disguise can be made permanent with a permanency spell by a caster of 9th level or higher for the cost of 500 gp.", target: "one object of no more than 10 cu. ft./level", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: illusion.id, duration: "1 day/level", time: 1, unit_of_time: "day", increase_per_level: 1, dismissible: false, concentration: false)
 
-# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id:, duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+SpellSubschool.create!(spell_id: sp12.id, subschool_id: glamer.id)
+SpellComponent.create!(spell_id: sp12.id, component_id: verbal.id)
+
+sp13 = Spell.create!(name: "Prestidigitation", description: "Prestidigitations are minor tricks that novice spellcasters use for practice. Once cast, a prestidigitation spell enables you to perform simple magical effects for 1 hour. The effects are minor and have severe limitations. A prestidigitation can slowly lift 1 pound of material. It can color, clean, or soil items in a 1-foot cube each round. It can chill, warm, or flavor 1 pound of nonliving material. It cannot deal damage or affect the concentration of spellcasters. Prestidigitation can create small objects, but they look crude and artificial. The materials created by a prestidigitation spell are extremely fragile, and they cannot be used as tools, weapons, or spell components. Finally, prestidigitation lacks the power to duplicate any other spell effects. Any actual change to an object (beyond just moving, cleaning, or soiling it) persists only 1 hour.", target: "see text", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: ten_feet.id, magic_school_id: universal.id, duration: "1 hour", time: 1, unit_of_time: "hour", increase_per_level: 0, dismissible: false, concentration: false)
+
+SpellComponent.create!(spell_id: sp13.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp13.id, component_id: somatic.id)
+
+sp14 = Spell.create!(name: "Identify", description: "This spell functions as detect magic, except that it gives you a +10 enhancement bonus on Spellcraft checks made to identify the properties and command words of magic items in your possession. This spell does not allow you to identify artifacts.", target: "cone-shaped emanation", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: sixty_feet.id, magic_school_id: divination.id, duration: "3 rounds/level", time: 3, unit_of_time: "round", increase_per_level: 3, dismissible: true, concentration: false)
+
+SpellComponent.create!(spell_id: sp14.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp14.id, component_id: somatic.id)
+SpellComponent.create!(spell_id: sp14.id, component_id: material.id, item: "wine stirred with an owl’s feather")
+
+sp15 = Spell.create!(name: "Vanish", description: "This spell functions like invisibility, except the effect only lasts for 1 round per caster level (maximum of 5 rounds). Like invisibility, the spell immediately ends if the subject attacks any creature.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: illusion.id, duration: "1 round/level (up to 5 rounds)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+
+SpellSubschool.create!(spell_id: sp15.id, subschool_id: glamer.id)
+SpellComponent.create!(spell_id: sp15.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp15.id, component_id: somatic.id)
+
+sp16 = Spell.create!(name: "Invisibility", description: "The creature or object touched becomes invisible. If the recipient is a creature carrying gear, that vanishes, too. If you cast the spell on someone else, neither you nor your allies can see the subject, unless you can normally see invisible things or you employ magic to do so.
+
+Items dropped or put down by an invisible creature become visible; items picked up disappear if tucked into the clothing or pouches worn by the creature. Light, however, never becomes invisible, although a source of light can become so (thus, the effect is that of a light with no visible source). Any part of an item that the subject carries but that extends more than 10 feet from it becomes visible.
+
+Of course, the subject is not magically silenced, and certain other conditions can render the recipient detectable (such as swimming in water or stepping in a puddle). If a check is required, a stationary invisible creature has a +40 bonus on its Stealth checks. This bonus is reduced to +20 if the creature is moving. The spell ends if the subject attacks any creature. For purposes of this spell, an attack includes any spell targeting a foe or whose area or effect includes a foe. Exactly who is a foe depends on the invisible character’s perceptions. Actions directed at unattended objects do not break the spell. Causing harm indirectly is not an attack. Thus, an invisible being can open doors, talk, eat, climb stairs, summon monsters and have them attack, cut the ropes holding a rope bridge while enemies are on the bridge, remotely trigger traps, open a portcullis to release attack dogs, and so forth. If the subject attacks directly, however, it immediately becomes visible along with all its gear. Spells such as bless that specifically affect allies but not foes are not attacks for this purpose, even when they include foes in their area.
+
+Invisibility can be made permanent (on objects only) with a permanency spell.", target: "you or a creature or object weighing no more than 100 lbs./level", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: illusion.id, duration: "1 min./level ", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+
+SpellSubschool.create!(spell_id: sp16.id, subschool_id: glamer.id)
+SpellComponent.create!(spell_id: sp16.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp16.id, component_id: somatic.id)
+SpellComponent.create!(spell_id: sp16.id, component_id: material.id, item: "an eyelash encased in gum arabic")
+SpellComponent.create!(spell_id: sp16.id, component_id: divine_focus.id, item: "an eyelash encased in gum arabic")
+
+sp17 = Spell.create!(name: "Cure Light Wounds", description: "When laying your hand upon a living creature, you channel positive energy that cures 1d8 points of damage +1 point per caster level (maximum +5). Since undead are powered by negative energy, this spell deals damage to them instead of curing their wounds. An undead creature can apply Spell Resistance, and can attempt a Will save to take half damage.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+
+SpellSubschool.create!(spell_id: sp17.id, subschool_id: healing.id)
+SpellComponent.create!(spell_id: sp17.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp17.id, component_id: somatic.id)
+
+sp18 = Spell.create!(name: "Feather Fall", description: "The affected creatures or objects fall slowly. Feather fall instantly changes the rate at which the targets fall to a mere 60 feet per round (equivalent to the end of a fall from a few feet), and the subjects take no damage upon landing while the spell is in effect. When the spell duration expires, a normal rate of falling resumes.
+
+The spell affects one or more Medium or smaller creatures (including gear and carried objects up to each creature’s maximum load) or objects, or the equivalent in larger creatures: a Large creature or object counts as two Medium creatures or objects, a Huge creature or object counts as four Medium creatures or objects, and so forth.
+
+This spell has no special effect on ranged weapons unless they are falling quite a distance. If the spell is cast on a falling item, the object does half normal damage based on its weight, with no bonus for the height of the drop.
+
+Feather fall works only upon free-falling objects. It does not affect a sword blow or a charging or flying creature.", target: "one Medium or smaller free-falling object or creature/level, no two of which may be more than 20 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: immediate.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "until landing or 1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+
+SpellComponent.create!(spell_id: sp18.id, component_id: verbal.id)
+
+sp19 = Spell.create!(name: "Shield", description: "Shield creates an invisible shield of force that hovers in front of you. It negates magic missile attacks directed at you. The disk also provides a +4 shield bonus to AC. This bonus applies against incorporeal touch attacks, since it is a force effect. The shield has no armor check penalty or arcane spell failure chance.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: abjuration.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+
+SpellSubschool.create!(spell_id: sp19.id, subschool_id: force.id)
+SpellComponent.create!(spell_id: sp19.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp19.id, component_id: somatic.id)
+
+sp20 = Spell.create!(name: "Dancing Lights", description: "Depending on the version selected, you create up to four lights that resemble lanterns or torches (and cast that amount of light), or up to four glowing spheres of light (which look like will-o’-wisps), or one faintly glowing, vaguely humanoid shape. The dancing lights must stay within a 10-foot-radius area in relation to each other but otherwise move as you desire (no concentration required): forward or back, up or down, straight or turning corners, or the like. The lights can move up to 100 feet per round. A light winks out if the distance between you and it exceeds the spell’s range.
+
+You can only have one dancing lights spell active at any one time. If you cast this spell while another casting is still in effect, the previous casting is dispelled. If you make this spell permanent, it does not count against this limit.
+
+Dancing lights can be made permanent with a permanency spell.", target: "Up to four lights, all within a 10-ft.-radius area", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: evocation.id, duration: "1 minute", time: 1, unit_of_time: "minute", increase_per_level: 0, dismissible: true, concentration: false)
+
+SpellSubschool.create!(spell_id: sp20.id, subschool_id: light.id)
+SpellComponent.create!(spell_id: sp20.id, component_id: verbal.id)
+SpellComponent.create!(spell_id: sp20.id, component_id: somatic.id)
+
+# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+# Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Character!-*-*-*-----*-*->
@@ -972,6 +1198,45 @@ CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, fe
 CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 3)
 CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 4)
 CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 5)
+
+sly = Character.create!(user_id: admin.id, name: "Sylvester", strength: 8, dexterity: 16, constitution: 16, intelligence: 8, wisdom: 13, charisma: 18, race_id: grip.id, skillset_id: dmc.id)
+
+sly1 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1)
+  CharacterKlassOption.create!(character_klass_id: sly1.id, feature_option_id: chaotic2.id)
+sly2 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2)
+sly3 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 3)
+ CharacterKlassOption.create!(character_klass_id: sly3.id, feature_option_id: chaotic3.id)
+sly4 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 4)
+sly5 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5)
+  CharacterKlassOption.create!(character_klass_id: sly5.id, feature_option_id: chaotic1.id)
+
+nettie = Character.create!(user_id: admin.id, name: "Nettie", strength: 14, dexterity: 14, constitution: 13, intelligence: 18, wisdom: 14, charisma: 14, race_id: vine.id, skillset_id: dmc.id)
+
+nettie1 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 1)
+nettie2 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2)
+nettie3 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 3)
+nettie4 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: "intelligence", level: 4)
+nettie5 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5)
+nettie6 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6)
+nettie7 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7)
+
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: acro.id, ranks: 4)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: clim.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_fine.id, ranks: 4)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: hand.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: heal.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: ling.id, ranks: 7)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_natu.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: perc.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: perf.id, ranks: 3)
+# wind ^
+# CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: perf.id, ranks: 2)
+# percussion ^
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_reli.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: sens.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_soci.id, ranks: 5)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_spel.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: stea.id, ranks: 6)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Known Spells!-*-*-*-----*-*->

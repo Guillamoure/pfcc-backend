@@ -6,7 +6,7 @@ class Api::V1::KlassFeaturesController < ApplicationController
   end
 
   def create
-    @klass_feature = KlassFeature.create(name: params["features"]["name"], klass_id: params["klass_id"], level_learned: params["features"]["level_learned"], description: params["features"]["description"])
+    @klass_feature = KlassFeature.create(name: params["features"]["name"], klass_id: params["klass_id"],  description: params["features"]["description"])
     if @klass_feature.valid?
 
       render json: { klass_feature: KlassFeatureSerializer.new(@klass_feature) }, status: 201
@@ -17,7 +17,7 @@ class Api::V1::KlassFeaturesController < ApplicationController
 
   def update
     @klass_feature = KlassFeature.find(params["klass_feature_id"])
-    @klass_feature.update(name: params["features"]["name"], level_learned: params["features"]["level_learned"], description: params["features"]["description"])
+    @klass_feature.update(name: params["features"]["name"], description: params["features"]["description"])
     if @klass_feature.valid?
       render json: { klass_feature: KlassFeatureSerializer.new(@klass_feature) }, status: 201
     else
