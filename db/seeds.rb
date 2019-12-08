@@ -1,4 +1,17 @@
 # /////////////////////////////////////////
+# <-*-*-----*-*-*- Actions-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+standard = Action.create!(name: "Standard Action")
+full_round = Action.create!(name: "Full-Round Action")
+move = Action.create!(name: "Move Action")
+swift = Action.create!(name: "Swift Action")
+free = Action.create!(name: "Free Action")
+immediate = Action.create!(name: "Immediate Action")
+ten = Action.create!(name: "Ten Minutes")
+one_minute = Action.create!(name: "One Minute")
+
+# /////////////////////////////////////////
 # <-*-*-----*-*-*- Races!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
@@ -307,7 +320,7 @@ Role: Bards capably confuse and confound their foes while inspiring their allies
 
 Alignment: Any")
 
-fate_weaver = Klass.create!(name: "Fate Weaver", hit_die: 6, skill_ranks: 6, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/db/9f/cc/db9fcc1ded708f4ea2e90b515334b3b3.png", description: "The Fate Weaver has been touched by those who control destiny, allowing their chaotic nature to benefit them tremendously. Whether they are aware of their powers, or believe they are just lucky, the Fate Weaver seeks domination. With their granted gifts, their fortune is more real than anyone else's: they just have to take it.
+fate_weaver = Klass.create!(name: "Fate Weaver", hit_die: 6, skill_ranks: 6, fortitude: 0.34, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/db/9f/cc/db9fcc1ded708f4ea2e90b515334b3b3.png", description: "The Fate Weaver has been touched by those who control destiny, allowing their chaotic nature to benefit them tremendously. Whether they are aware of their powers, or believe they are just lucky, the Fate Weaver seeks domination. With their granted gifts, their fortune is more real than anyone else's: they just have to take it.
 
 Role: The Fate Weaver has a wide array of options, but they may not always be consistent, necessary, or beneficial. Be wary of the Fate Weaver’s power: it is awesome in the both the good and the bad sense. A clutch Fate Weaver can change the tide in an instant, and often has a card up their sleeve for the most unlikely situations.
 
@@ -369,6 +382,7 @@ Upon reaching 4th level, and at every even-numbered oracle level after that (6th
   The Fate Weaver is more talented than she knows, even when pursuing other paths. She gains the Eschew Materials feat as a bonus feat, but only for spells cast through this class. If the Fate Weaver gains levels in other classes, but every 6th level gained in another class lets her roll once for an ability through her Chaotic Reveal class feature.")
     FeatureLevel.create!(klass_feature_id: fate_weaver1.id, level: 1, table_description: "Chaotic Nature")
 
+
   fate_weaver2 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Chaotic Reveal", description: "A Fate Weaver is dominated by chance, and revels in the potential of chaos. At 1st level and every subsequent odd level, a Fate Weaver rolls a d100. Depending on the results, she gains an additional feature, power, stat increase, or ability, described in the Chaotic Reveal chart below. Unless otherwise mundane, the effect of these features are considered supernatural abilities.")
     FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 1, table_description: "Chaotic Reveal")
     FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 3, table_description: "Chaotic Reveal")
@@ -380,6 +394,39 @@ Upon reaching 4th level, and at every even-numbered oracle level after that (6th
     FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 15, table_description: "Chaotic Reveal")
     FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 17, table_description: "Chaotic Reveal")
     FeatureLevel.create!(klass_feature_id: fate_weaver2.id, level: 19, table_description: "Chaotic Reveal")
+    chaotic1 = FeatureOption.create!(klass_feature_id: fate_weaver2.id, name: "Nightmare Forme", description: "Once a day, as an action lasts takes 1 minute, you can transform yourself into a Nightmare Form, a frightening and powerful being that augments your abilities. You size increases by one category, and your race alters into a different shape of your choice with additional changes: roll a 4d20 to decide what changes.
+
+    1 - long and lithe, 2 - hulking and slouched, 3, glistening/flaking/wrinkled skin, 4 - a limb changes into a mechanical part/tentacle/claw, 5 - extra eyes on your head, 6 - shaggy hair, 7 - flaming/iced/rocky/translucent/metallic, 8 - ornamental wings, 9 - face goes into torso, 10 - hovering, 11 - body has holes like swiss cheese, 12 - sunken eyes and wide mouth, 13 - ornamental tail, 14 - proboscis, 15 - third arm, 16 - face on the back of you, 17 - spines/quills, 18 - impaled with weapon and bleeding, 19 - gaunt and withered, 20 - wispy, flowing clothing. You cannot apply the same result to your nightmare form.
+
+    Select an ability score: it increases by +2 while in this form. Select a skill: increase your modifier for that skill by +5 while in this form. The duration of this form is 1 minute per day per hit die, and you can revert back to your normal form as a full-round action. This is a polymorph effect.
+
+    For every 2 levels after gaining this Chaotic Reveal, you may increase the ability score by an additional +1, and increase one skill modifier by +3 (you can choose the same skill, or different skills).
+
+    After 4 levels since gaining this Chaotic Reveal, you can change into your Nightmare Form as a full-round action, and you may choose a secondary ability score; it gains the same modifier as the original chosen ability score -2.", level_available: 1)
+      FeatureOptionAction.create!(feature_option_id: chaotic1.id, action_id: one_minute.id, level: 1)
+
+    chaotic2 = FeatureOption.create!(klass_feature_id: fate_weaver2.id, name: "Gravity Manipulation", description: "Add feather fall to your list of known spells. You can affect an area of a 20 ft radius in space with heavy or light gravity as a standard action (PA 58-59). You must be within 60 ft of the point of origin and maintain concentration each round, or else the affected area no longer has any change in gravity. You can affect an area for a number of rounds a day equal to 4 times your Fate Weaver level.
+
+    For every 4 levels after gaining this Chaotic Reveal, increase the bonuses and penalties of the gravitational zones you created by 1, and the duration of the area continues for 1 additional round after you cease concentration (which is not deducted from your total amount of rounds for the day).
+
+    After 3 levels since gaining this Chaotic Reveal, you gain the Heavy Gravity Acclimation and Light Gravity Acclimation as bonus feats, even if you don't fulfill the prerequisites. You can adjust the gravity of the zone you've affected to a different type as a move action.
+
+    After 6 levels since gaining this Chaotic Reveal, you gain the Gravitational Vital Strike feat as a bonus feat, even if you don't fulfill the prerequisites. As a standard action, you can touch a creature, temporarily affecting it with either Heavy Gravity Acclimation or Light Gravity Acclimation for 10 minutes.
+
+    After 10 levels since gaining this Chaotic Reveal, you learn the reverse gravity as a spell-like ability once a day. Additionally, the radius of this effect increases to 40 ft, and you only need to be within 100 ft of the point of origin to maintain concentration.", level_available: 1)
+      FeatureOptionAction.create!(feature_option_id: chaotic2.id, action_id: standard.id, level: 1)
+
+    chaotic3 = FeatureOption.create!(klass_feature_id: fate_weaver2.id, name: "Combat Prowess", description: "Once a day, you can make a combat maneuver in place of your attack of opportunity. Doing this does not threaten an attack of opportunity from the target, but it does threaten from adjacent creatures. If you have a relevant Improved feat for a combat maneuver, you can make that specific combat maneuver +2 times per day, in addition to the once per day for all combat maneuvers. If you have a relevant Greater feat, you gain an additional +2 times per day.
+
+    For every 4 levels after gaining this Chaotic Reveal, you gain a +1 bonus to all combat maneuvers for which you have the relevant Improved feat, and an additional +1 bonus if you have the relevant Greater feat. This does not compound retroactively, if you get a feat after getting this bonus.
+
+    After 3 levels since gaining this Chaotic Reveal, as a standard action, you may forgo one use of this ability to let an ally within 30 ft of you attempt this ability. The ally gains a bonus to this ability equal to the bonuses gained from this feature, if they are using a specific combat maneuver for which you have either the relevant Improved or Greater feat. They must use this ability within 1 minute of you \"teaching\" them, or the ability is lost.", level_available: 1)
+
+    # FeatureOption.create!(klass_feature_id: , name: "", description: "", level_available: )
+    # FeatureOption.create!(klass_feature_id: , name: "", description: "", level_available: )
+    # FeatureOption.create!(klass_feature_id: , name: "", description: "", level_available: )
+    # FeatureOption.create!(klass_feature_id: , name: "", description: "", level_available: )
+    # FeatureOption.create!(klass_feature_id: , name: "", description: "", level_available: )
 
   fate_weaver3 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Exasperations", description: "During times of fortune or misfortune, a Fate Weaver can attempt to alter fate by reaching into the energy of the cosmos, and tearing magic from it. By taking 3 points of nonlethal damage, as a swift action, she may declare a category of exasperation (Alter, Generate, Overwhelm), and roll a d100. For the chosen result, apply the listed effect. She is precisely aware of the result of the effect but not necessarily the target, and may react accordingly. The duration of these effects is written next to them. Consult the DM for random targets or other choices that she does not get to choose.
 
@@ -397,6 +444,8 @@ Upon reaching 4th level, and at every even-numbered oracle level after that (6th
 
   At 16th level, she may take an additional 6 points of nonlethal damage to select up to 2 additional targets for all of your Exasperations that you choose, if they ask you to select one target. Additionally, the duration for all of your Exasperations are doubled.")
     FeatureLevel.create!(klass_feature_id: fate_weaver3.id, level: 1, table_description: "Exasperations")
+    FeatureAction.create!(klass_feature_id: fate_weaver3.id, action_id: swift.id, level: 1)
+    FeatureAction.create!(klass_feature_id: fate_weaver3.id, action_id: immediate.id, level: 12)
 
   fate_weaver4 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Spells", description: "A Fate Weaver casts divine spells drawn from the Fate Weaver spell list (below). To cast a spell, a Fate Weaver must have a Charisma score equal to at least 10 + the spell level. The Difficulty Class for a saving throw against a Fate Weaver’s spell is 10 + the spell level + the Fate Weaver’s Charisma modifier.
 
@@ -453,6 +502,7 @@ Spellcasting.create!(klass_feature_id: oracle2.id, ability_score: "Charisma", pr
 
 Spellcasting.create!(klass_feature_id: witch2.id, ability_score: "Intelligence", prepared: true, limited: true)
 
+Spellcasting.create!(klass_feature_id: fate_weaver4.id, ability_score: "Charisma", prepared: false, limited: true)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells Per Day!-*-*-*-----*-*->
@@ -847,6 +897,17 @@ ClassSkillsetSkill.create!(klass_id: vig.id, skillset_id: dmc.id, skill_id: stea
 ClassSkillsetSkill.create!(klass_id: vig.id, skillset_id: dmc.id, skill_id: surv.id)
 ClassSkillsetSkill.create!(klass_id: vig.id, skillset_id: dmc.id, skill_id: swim.id)
 
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: bluf.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: dipl.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: unc_fine.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: hand.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: heal.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: inti.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: ling.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: perf.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: perc.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: sens.id)
+ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: surv.id)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Schools of Magic!-*-*-*-----*-*->
@@ -899,18 +960,6 @@ focus = Component.create!(name: "Focus", description: "A focus component is a pr
 divine_focus = Component.create!(name: "Divine Focus", description: "A divine focus component is an item of spiritual significance. The divine focus for a cleric or a paladin is a holy symbol appropriate to the character’s faith. The divine focus for a druid or a ranger is a sprig of holly, or some other sacred plant.
 
 If the Components line includes F/DF or M/DF, the arcane version of the spell has a focus component or a material component (the abbreviation before the slash) and the divine version has a divine focus component (the abbreviation after the slash).", abbreviation: "DF")
-
-# /////////////////////////////////////////
-# <-*-*-----*-*-*- Actions-*-*-*-----*-*->
-# /////////////////////////////////////////
-
-standard = Action.create!(name: "Standard Action")
-full_round = Action.create!(name: "Full-Round Action")
-move = Action.create!(name: "Move Action")
-swift = Action.create!(name: "Swift Action")
-free = Action.create!(name: "Free Action")
-immediate = Action.create!(name: "Immediate Action")
-ten = Action.create!(name: "Ten Minutes")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spell Ranges-*-*-*-----*-*->
@@ -1149,6 +1198,45 @@ CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, fe
 CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 3)
 CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 4)
 CharacterKlass.create!(character_id: character.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 5)
+
+sly = Character.create!(user_id: admin.id, name: "Sylvester", strength: 8, dexterity: 16, constitution: 16, intelligence: 8, wisdom: 13, charisma: 18, race_id: grip.id, skillset_id: dmc.id)
+
+sly1 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1)
+  CharacterKlassOption.create!(character_klass_id: sly1.id, feature_option_id: chaotic2.id)
+sly2 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2)
+sly3 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 3)
+ CharacterKlassOption.create!(character_klass_id: sly3.id, feature_option_id: chaotic3.id)
+sly4 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 4)
+sly5 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5)
+  CharacterKlassOption.create!(character_klass_id: sly5.id, feature_option_id: chaotic1.id)
+
+nettie = Character.create!(user_id: admin.id, name: "Nettie", strength: 14, dexterity: 14, constitution: 13, intelligence: 18, wisdom: 14, charisma: 14, race_id: vine.id, skillset_id: dmc.id)
+
+nettie1 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 1)
+nettie2 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2)
+nettie3 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 3)
+nettie4 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: "intelligence", level: 4)
+nettie5 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5)
+nettie6 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6)
+nettie7 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7)
+
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: acro.id, ranks: 4)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: clim.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_fine.id, ranks: 4)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: hand.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: heal.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: ling.id, ranks: 7)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_natu.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: perc.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: perf.id, ranks: 3)
+# wind ^
+# CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: perf.id, ranks: 2)
+# percussion ^
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_reli.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: sens.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_soci.id, ranks: 5)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_spel.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: stea.id, ranks: 6)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Known Spells!-*-*-*-----*-*->

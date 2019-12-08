@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_185151) do
+ActiveRecord::Schema.define(version: 2019_11_28_040012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 2019_11_26_185151) do
     t.integer "character_id"
     t.integer "klass_id"
     t.integer "spell_level"
+  end
+
+  create_table "character_klass_options", force: :cascade do |t|
+    t.integer "character_klass_id"
+    t.integer "feature_option_id"
   end
 
   create_table "character_klasses", force: :cascade do |t|
@@ -96,10 +101,29 @@ ActiveRecord::Schema.define(version: 2019_11_26_185151) do
     t.integer "increase_per_level"
   end
 
+  create_table "feature_actions", force: :cascade do |t|
+    t.integer "klass_feature_id"
+    t.integer "action_id"
+    t.integer "level"
+  end
+
   create_table "feature_levels", force: :cascade do |t|
     t.integer "klass_feature_id"
     t.integer "level"
     t.string "table_description"
+  end
+
+  create_table "feature_option_actions", force: :cascade do |t|
+    t.integer "feature_option_id"
+    t.integer "action_id"
+    t.integer "level"
+  end
+
+  create_table "feature_options", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "klass_feature_id"
+    t.integer "level_available"
   end
 
   create_table "klass_features", force: :cascade do |t|

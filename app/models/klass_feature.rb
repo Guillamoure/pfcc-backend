@@ -2,6 +2,10 @@ class KlassFeature < ApplicationRecord
   belongs_to :klass
   has_one :spellcasting
   has_many :feature_levels
+  has_many :feature_options
+  has_many :feature_actions
+  has_many :actions, through: :feature_actions
+
   validates :name, presence: true
   validates :description, presence: true
   # validate :correct_level_range
