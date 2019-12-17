@@ -1,5 +1,7 @@
 class KnownSpellSerializer < ActiveModel::Serializer
-  attributes :id, :klass_spell, :character, :spell, :klass
+  attributes :id, :klass_spell, :spell, :klass
 
-  belongs_to :spell
+  def spell
+    SpellSerializer.new(self.object.spell)
+  end
 end
