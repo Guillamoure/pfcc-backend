@@ -7,9 +7,7 @@ class CharacterSerializer < ActiveModel::Serializer
   # has_many :klass_features, through: :klasses
   belongs_to :race
   belongs_to :skillset
-  puts "does this work?"
   # has_many :character_skillset_skills
-  puts "maybe this?"
   has_many :cast_spells
   has_many :known_spells
   has_many :prepared_spells
