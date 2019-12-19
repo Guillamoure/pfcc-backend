@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_040012) do
+ActiveRecord::Schema.define(version: 2019_12_16_145713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -230,6 +230,9 @@ ActiveRecord::Schema.define(version: 2019_11_28_040012) do
     t.integer "klass_feature_id"
     t.boolean "prepared"
     t.boolean "limited"
+    t.boolean "expendable", default: true
+    t.boolean "infinite_zero_level", default: false
+    t.boolean "bonus_spells", default: true
   end
 
   create_table "spells", force: :cascade do |t|

@@ -1,7 +1,7 @@
 class Api::V1::CastSpellsController < ApplicationController
 
   def create
-    if params[:prepared] && params[:spell_level] != 0
+    if params[:expendable] && params[:spell_level] != 0
       @psp = PreparedSpell.find(params[:id])
       @psp.update(cast: true)
       render json: @psp, status: 201

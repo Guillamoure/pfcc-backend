@@ -8,5 +8,10 @@ class Api::V1::SpellsController < ApplicationController
     render json: @spells, status: 200
   end
 
+  def show
+    @spell = Spell.find(params[:id])
+    render json: { spell: SpellSerializer.new(@spell) }, status: 200 
+  end
+
 
 end
