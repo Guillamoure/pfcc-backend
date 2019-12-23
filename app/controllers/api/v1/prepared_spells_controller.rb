@@ -16,7 +16,7 @@ class Api::V1::PreparedSpellsController < ApplicationController
 
   def create
     @prepared_spells = params[:spells].map do |sp|
-      @ps = PreparedSpell.create(klass_spell_id: sp[:known_spell_id], character_id: params[:character_id], spell_level: sp[:level], cast: false)
+      @ps = PreparedSpell.create(klass_spell_id: sp[:known_spell_id], character_id: params[:character_id], spell_level: sp[:level], cast: false, klass_id: sp[:klass])
       if @ps
         PreparedSpellSerializer.new(@ps)
       else

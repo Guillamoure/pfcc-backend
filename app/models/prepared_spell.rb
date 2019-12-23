@@ -9,5 +9,5 @@ class PreparedSpell < ApplicationRecord
   has_one :spell_range, through: :spell
   has_one :magic_school, through: :spell
 
-  has_one :klass, through: :klass_spell
+  belongs_to :klass
 end

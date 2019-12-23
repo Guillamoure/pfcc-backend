@@ -11,12 +11,12 @@ class Klass < ApplicationRecord
   has_many :klass_spells
   has_many :spells, through: :klass_spells
   has_many :cast_spells, dependent: :destroy
+  has_many :favored_klass_bonuses, class_name: 'FavoredKlassBonus'
 
   validates :name, uniqueness: { case_sensitive: false }
   validates :description, presence: true
   validates :skill_ranks, presence: true
   validate :hit_die_exists
-
 
 
    def hit_die_exists

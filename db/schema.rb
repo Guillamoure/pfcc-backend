@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_145713) do
+ActiveRecord::Schema.define(version: 2019_12_23_002433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_145713) do
     t.integer "feat_id"
     t.string "ability_score_improvement"
     t.integer "level"
+    t.integer "favored_klass_bonus_id"
   end
 
   create_table "character_skillset_skills", force: :cascade do |t|
@@ -99,6 +100,12 @@ ActiveRecord::Schema.define(version: 2019_12_16_145713) do
     t.boolean "concentration"
     t.string "unit"
     t.integer "increase_per_level"
+  end
+
+  create_table "favored_klass_bonuses", force: :cascade do |t|
+    t.string "description"
+    t.integer "klass_id"
+    t.integer "race_id"
   end
 
   create_table "feature_actions", force: :cascade do |t|
@@ -169,6 +176,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_145713) do
     t.integer "character_id"
     t.integer "spell_level"
     t.boolean "cast", default: false
+    t.integer "klass_id"
   end
 
   create_table "race_ability_score_modifiers", force: :cascade do |t|
@@ -233,6 +241,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_145713) do
     t.boolean "expendable", default: true
     t.boolean "infinite_zero_level", default: false
     t.boolean "bonus_spells", default: true
+    t.integer "klass_spell_list_id"
   end
 
   create_table "spells", force: :cascade do |t|
