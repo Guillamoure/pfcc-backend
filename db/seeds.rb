@@ -673,6 +673,32 @@ An arcanist begins play with a spellbook containing all 0-level wizard/sorcerer 
 Cantrips: Arcanists can prepare a number of cantrips, or 0-level spells, each day as noted on Table: Arcanist Spells Prepared. These spells are cast like any other spell, but they do not consume spell slots. As with her other spells, these spells are not expended when cast.")
   FeatureLevel.create!(klass_feature_id: arcanist2.id, level: 1, table_description: "none")
 
+arcanist3 = KlassFeature.create!(klass_id: arcanist.id, name: 'Arcane Reservoir', description: 'An arcanist has an innate pool of magical energy that she can draw upon to fuel her arcanist exploits and enhance her spells. The arcanist’s arcane reservoir can hold a maximum amount of magical energy equal to 3 + the arcanist’s level. Each day, when the arcanist prepares spells, the arcanist’s arcane reservoir fills with raw magical energy, gaining a number of points equal to 3 + 1/2 her arcanist level. Any points she had from the previous day are lost. She can also regain these points through the consume spells class feature and some arcanist exploits. The arcane reservoir can never hold more points than the maximum amount noted above; points gained in excess of this total are lost.
+
+Points from the arcane reservoir are used to fuel many of the arcanist’s powers. In addition, the arcanist can expend 1 point from her arcane reservoir as a free action whenever she casts an arcanist spell. If she does, she can choose to increase the caster level by 1 or increase the spell’s DC by 1. She can expend no more than 1 point from her reservoir on a given spell in this way.')
+  FeatureLevel.create!(klass_feature_id: arcanist3.id, level: 1, table_description: 'Arcane Reservoir')
+
+arcanist4 = KlassFeature.create!(klass_id: arcanist.id, name: 'Arcanist Exploit', description: 'By bending and sometimes even breaking the rules of magic, the arcanist learns to exploit gaps and exceptions in the laws of magic. Some of these exploits allow her to break down various forms of magic, adding their essence to her arcane reservoir. At 1st level and every 2 levels thereafter, the arcanist learns a new arcane exploit selected from the following list. An arcanist exploit cannot be selected more than once. Once an arcanist exploit has been selected, it cannot be changed. Most arcanist exploits require the arcanist to expend points from her arcane reservoir to function. Unless otherwise noted, the saving throw DC of an arcanist exploit is equal to 10 + 1/2 the arcanist’s level + the arcanist’s Charisma modifier.')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 1, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 3, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 5, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 7, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 9, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 11, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 13, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 15, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 17, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 19, table_description: 'Arcanist Exploit')
+
+arcanist5 = KlassFeature.create!(klass_id: arcanist.id, name: 'Consume Spells', description: 'At 1st level, an arcanist can expend an available arcanist spell slot as a move action, making it unavailable for the rest of the day, just as if she had used it to cast a spell. She can use this ability a number of times per day equal to her Charisma modifier (minimum 1). Doing this adds a number of points to her arcane reservoir equal to the level of the spell slot consumed. She cannot consume cantrips (0 level spells) in this way. Points gained in excess of the reservoir’s maximum are lost.')
+  FeatureLevel.create!(klass_feature_id: arcanist5.id, level: 1, table_description: 'Consume Spells')
+
+arcanist6 = KlassFeature.create!(klass_id: arcanist.id, name: 'Greater Exploits', description: 'At 11th level and every 2 levels thereafter, an arcanist can choose one of the following greater exploits in place of an arcanist exploit.')
+  FeatureLevel.create!(klass_feature_id: arcanist6.id, level: 11, table_description: 'Greater Exploits')
+
+arcanist7 = KlassFeature.create!(klass_id: arcanist.id, name: 'Magical Supremacy', description: 'At 20th level, the arcanist learns how to convert her arcane reservoir into spells and back again. She can cast any spell she has prepared by expending a number of points from her arcane reservoir equal to 1 + the level of the spell to be cast instead of expending a spell slot. When she casts a spell in this fashion, she treats her caster level as 2 higher than normal, and the DCs of any saving throws associated with the spell increase by 2. She cannot further expend points from her arcane reservoir to enhance a spell cast in this way.')
+  FeatureLevel.create!(klass_feature_id: arcanist7.id, level: 20, table_description: 'Magical Supremacy')
+
 
 vigilante1 = KlassFeature.create!(klass_id: vigilante.id, name: "Weapon and Armor Proficiency", description: "Vigilantes are proficient with all simple and martial weapons, light armor, medium armor, and shields (except tower shields).")
   FeatureLevel.create!(klass_feature_id: vigilante1.id, level: 1, table_description: "none")
@@ -2272,11 +2298,29 @@ This spell does not function underwater.", target: "cloud spreads in 20-ft. radi
   # obscuring_mist_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp63.id, spell_level: 1)
   # obscuring_mist_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp63.id, spell_level: 1)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+sp64 = Spell.create!(name: "Enlarge Person", description: "This spell causes instant growth of a humanoid creature, doubling its height and multiplying its weight by 8. This increase changes the creature’s size category to the next larger one. The target gains a +2 size bonus to Strength, a -2 size penalty to Dexterity (to a minimum of 1), and a -1 penalty on attack rolls and AC due to its increased size.
+
+A humanoid creature whose size increases to Large has a space of 10 feet and a natural reach of 10 feet. This spell does not change the target’s speed.
+
+If insufficient room is available for the desired growth, the creature attains the maximum possible size and may make a Strength check (using its increased Strength) to burst any enclosures in the process. If it fails, it is constrained without harm by the materials enclosing it–the spell cannot be used to crush a creature by increasing its size.
+
+All equipment worn or carried by a creature is similarly enlarged by the spell. Melee weapons affected by this spell deal more damage (see Table: Medium/Large Weapon Damage). Other magical properties are not affected by this spell. Any enlarged item that leaves an enlarged creature’s possession (including a projectile or thrown weapon) instantly returns to its normal size. This means that thrown and projectile weapons deal their normal damage. Magical properties of enlarged items are not increased by this spell.
+
+Multiple magical effects that increase size do not stack.
+
+Enlarge person counters and dispels reduce person .
+
+Enlarge person can be made permanent with a permanency spell.", target: "one humanoid creature", saving_throw: "Fort", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp64.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp64.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp64.id, component_id: material.id, item: 'powdered iron')
+  # enlarge_person_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp64.id, spell_level: 1)
+  # enlarge_person_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp64.id, spell_level: 1)
+  # enlarge_person_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp64.id, spell_level: 1)
+  # enlarge_person_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp64.id, spell_level: 1)
+  enlarge_person_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp64.id, spell_level: 1)
+  enlarge_person_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp64.id, spell_level: 1)
+  enlarge_person_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp64.id, spell_level: 1)
 
 #IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
