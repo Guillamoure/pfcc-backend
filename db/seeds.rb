@@ -2310,7 +2310,7 @@ Multiple magical effects that increase size do not stack.
 
 Enlarge person counters and dispels reduce person .
 
-Enlarge person can be made permanent with a permanency spell.", target: "one humanoid creature", saving_throw: "Fort", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+Enlarge person can be made permanent with a permanency spell.", target: "one humanoid creature", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
   SpellComponent.create!(spell_id: sp64.id, component_id: verbal.id, item: nil)
   SpellComponent.create!(spell_id: sp64.id, component_id: somatic.id, item: nil)
   SpellComponent.create!(spell_id: sp64.id, component_id: material.id, item: 'powdered iron')
@@ -2322,23 +2322,68 @@ Enlarge person can be made permanent with a permanency spell.", target: "one hum
   enlarge_person_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp64.id, spell_level: 1)
   enlarge_person_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp64.id, spell_level: 1)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+sp65 = Spell.create!(name: "Reduce Person", description: "This spell causes instant diminution of a humanoid creature, halving its height, length, and width and dividing its weight by 8. This decrease changes the creature’s size category to the next smaller one. The target gains a +2 size bonus to Dexterity, a -2 size penalty to Strength (to a minimum of 1), and a +1 bonus on attack rolls and AC due to its reduced size.
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+A Small humanoid creature whose size decreases to Tiny has a space of 2-1/2 feet and a natural reach of 0 feet (meaning that it must enter an opponent’s square to attack). A Large humanoid creature whose size decreases to Medium has a space of 5 feet and a natural reach of 5 feet. This spell doesn’t change the target’s speed.
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+All equipment worn or carried by a creature is similarly reduced by the spell.
+
+Melee and projectile weapons deal less damage. Other magical properties are not affected by this spell. Any reduced item that leaves the reduced creature’s possession (including a projectile or thrown weapon) instantly returns to its normal size. This means that thrown weapons deal their normal damage (projectiles deal damage based on the size of the weapon that fired them).
+
+Multiple magical effects that reduce size do not stack. Reduce person counters and dispels enlarge person.
+
+Reduce person can be made permanent with a permanency spell.", target: "one humanoid creature", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp65.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp65.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp65.id, component_id: material.id, item: 'a pinch of powdered iron')
+  # reduce_person_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp65.id, spell_level: 1)
+  # reduce_person_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp65.id, spell_level: 1)
+  # reduce_person_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp65.id, spell_level: 1)
+  # reduce_person_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp65.id, spell_level: 1)
+  reduce_person_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp65.id, spell_level: 1)
+  reduce_person_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp65.id, spell_level: 1)
+  reduce_person_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp65.id, spell_level: 1)
+
+sp66 = Spell.create!(name: "Shrink Item", description: "You are able to shrink one nonmagical item (if it is within the size limit) to 1/16 of its normal size in each dimension (to about 1/4,000 the original volume and mass). This change effectively reduces the object’s size by four categories. Optionally, you can also change its now shrunken composition to a clothlike one. Objects changed by a shrink item spell can be returned to normal composition and size merely by tossing them onto any solid surface or by a word of command from the original caster. Even a burning fire and its fuel can be shrunk by this spell. Restoring the shrunken object to its normal size and composition ends the spell.
+
+Shrink item can be made permanent with a permanency spell, in which case the affected object can be shrunk and expanded an indefinite number of times, but only by the original caster.", target: "one touched object of up to 2 cu. ft./level", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 day/level", time: 1, unit_of_time: "day", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp66.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp66.id, component_id: somatic.id, item: nil)
+  shrink_item_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp66.id, spell_level: 3)
+
+
+sp67 = Spell.create!(name: "Mass Enlarge Person", description: "This spell functions like enlarge person, except that it affects multiple creatures.", target: "one humanoid creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp67.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp67.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp67.id, component_id: material.id, item: 'powdered iron')
+  # enlarge_person_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp67.id, spell_level: 4)
+  # enlarge_person_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp67.id, spell_level: 4)
+  # enlarge_person_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp67.id, spell_level: 4)
+  enlarge_person_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp67.id, spell_level: 4)
+  enlarge_person_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp67.id, spell_level: 4)
+
+sp68 = Spell.create!(name: "Mass Reduce Person", description: "This spell functions like reduce person, except that it affects multiple creatures.", target: "one humanoid creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp68.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp68.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp68.id, component_id: material.id, item: 'a pinch of powdered iron')
+  # reduce_person_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp68.id, spell_level: 4)
+  # reduce_person_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp68.id, spell_level: 4)
+  # reduce_person_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp68.id, spell_level: 4)
+  reduce_person_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp68.id, spell_level: 4)
+  reduce_person_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp68.id, spell_level: 4)
+
+sp69 = Spell.create!(name: "Fireball", description: "A fireball spell generates a searing explosion of flame that detonates with a low roar and deals 1d6 points of fire damage per caster level (maximum 10d6) to every creature within the area. Unattended objects also take this damage. The explosion creates almost no pressure.
+
+You point your finger and determine the range (distance and height) at which the fireball is to burst. A glowing, pea-sized bead streaks from the pointing digit and, unless it impacts upon a material body or solid barrier prior to attaining the prescribed range, blossoms into the fireball at that point. An early impact results in an early detonation. If you attempt to send the bead through a narrow passage, such as through an arrow slit, you must “hit” the opening with a ranged touch attack, or else the bead strikes the barrier and detonates prematurely.
+
+The fireball sets fire to combustibles and damages objects in the area. It can melt metals with low melting points, such as lead, gold, copper, silver, and bronze. If the damage caused to an interposing barrier shatters or breaks through it, the fireball may continue beyond the barrier if the area permits; otherwise it stops at the barrier just as any other spell effect does.", target: "20-ft.-radius spread", saving_throw: "Reflex", spell_resistance: true, action_id: standard.id, spell_range_id: long.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp69.id, subschool_id: fire.id)
+  SpellComponent.create!(spell_id: sp69.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp69.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp69.id, component_id: material.id, item: 'a ball of bat guano and sulfur')
+  # fireball_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp69.id, spell_level: 3)
+  # fireball_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp69.id, spell_level: 3)
+  fireball_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp69.id, spell_level: 3)
 
 #IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
