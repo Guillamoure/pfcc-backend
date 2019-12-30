@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_23_002433) do
+ActiveRecord::Schema.define(version: 2019_12_30_051335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_002433) do
     t.integer "non_lethal_damage", default: 0
     t.integer "temp_hp", default: 0
     t.boolean "is_done_preparing_spells", default: false
+    t.string "full_name"
   end
 
   create_table "class_skillset_skills", force: :cascade do |t|

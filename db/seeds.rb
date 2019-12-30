@@ -1744,6 +1744,23 @@ fire = Subschool.create!(name: "Fire", description: "Fire effects make the targe
 acid = Subschool.create!(name: "Acid", description: "Acid effects deal damage with chemical reactions rather than cold, electricity, heat, or vibration. This descriptor includes both actual acids and their chemical opposites, called bases or alkalines (such as ammonia and lye).")
 creation = Subschool.create!(name: "Creation", description: "A creation spell manipulates matter to create an object or creature in the place the spellcaster designates. If the spell has a duration other than instantaneous, magic holds the creation together, and when the spell ends, the conjured creature or object vanishes without a trace. If the spell has an instantaneous duration, the created object or creature is merely assembled through magic. It lasts indefinitely and does not depend on magic for its existence.")
 sonic = Subschool.create!(name: "Sonic", description: "Sonic effects transmit energy to the target through frequent oscillations of pressure through the air, water, or ground. Sounds that are too high or too low for the humanoid ear to detect can still transmit enough energy to cause harm, which means that these effects can even affect deafened creatures. Sound effects can cause hit point damage, deafness, dizziness, nausea, pain, shortness of breath, and temporary blindness, and can detect creatures using batlike echolocation.")
+water = Subschool.create!(name: 'Water', description: 'Spells that manipulate water or conjure creatures from water-dominant planes or with the water subtype should have the water descriptor.')
+air = Subschool.create!(name: 'Air', description: 'Spells that create air, manipulate air, or conjure creatures from air-dominant planes or with the air subtype should have the air descriptor.')
+polymorph = Subschool.create!(name: 'Polymorph', description:'a polymorph spell transforms your physical body to take on the shape of another creature. While these spells make you appear to be the creature, granting you a +10 bonus on Disguise skill checks, they do not grant you all of the abilities and powers of the creature. Each polymorph spell allows you to assume the form of a creature of a specific type, granting you a number of bonuses to your ability scores and a bonus to your natural armor. In addition, each polymorph spell can grant you a number of other benefits, including movement types, resistances, and senses. If the form you choose grants these benefits, or a greater ability of the same type, you gain the listed benefit. If the form grants a lesser ability of the same type, you gain the lesser ability instead. Your base speed changes to match that of the form you assume. If the form grants a swim or burrow speed, you maintain the ability to breathe if you are swimming or burrowing. The DC for any of these abilities equals your DC for the polymorph spell used to change you into that form.
+
+In addition to these benefits, you gain any of the natural attacks of the base creature, including proficiency in those attacks. These attacks are based on your base attack bonus, modified by your Strength or Dexterity as appropriate, and use your Strength modifier for determining damage bonuses.
+
+If a polymorph spell causes you to change size, apply the size modifiers appropriately, changing your armor class, attack bonus, Combat Maneuver Bonus, and Stealth skill modifiers. Your ability scores are not modified by this change unless noted by the spell.
+
+Unless otherwise noted, polymorph spells cannot be used to change into specific individuals. Although many of the fine details can be controlled, your appearance is always that of a generic member of that creature’s type. Polymorph spells cannot be used to assume the form of a creature with a template or an advanced version of a creature.
+
+When you cast a polymorph spell that changes you into a creature of the animal, dragon, elemental, magical beast, plant, or vermin type, all of your gear melds into your body. Items that provide constant bonuses and do not need to be activated continue to function while melded in this way (with the exception of armor and shield bonuses, which cease to function). Items that require activation cannot be used while you maintain that form. While in such a form, you cannot cast any spells that require material components (unless you have the Eschew Materials or Natural Spell feat), and can only cast spells with somatic or verbal components if the form you choose has the capability to make such movements or speak, such as a dragon. Other polymorph spells might be subject to this restriction as well, if they change you into a form that is unlike your original form (subject to GM discretion). If your new form does not cause your equipment to meld into your form, the equipment resizes to match your new size.
+
+While under the effects of a polymorph spell, you lose all extraordinary and supernatural abilities that depend on your original form (such as keen senses, scent, and darkvision), as well as any natural attacks and movement types possessed by your original form. You also lose any class features that depend upon form, but those that allow you to add features (such as sorcerers that can grow claws) still function. While most of these should be obvious, the GM is the final arbiter of what abilities depend on form and are lost when a new form is assumed. Your new form might restore a number of these abilities if they are possessed by the new form.
+
+You can only be affected by one polymorph spell at a time. If a new polymorph spell is cast on you (or you activate a polymorph effect, such as wild shape), you can decide whether or not to allow it to affect you, taking the place of the old spell. In addition, other spells that change your size have no effect on you while you are under the effects of a polymorph spell.
+
+If a polymorph spell is cast on a creature that is smaller than Small or larger than Medium, first adjust its ability scores to one of these two sizes using the following table before applying the bonuses granted by the polymorph spell.')
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells!-*-*-*-----*-*->
@@ -2534,10 +2551,177 @@ sp70 = Spell.create!(name: "Touch of the Sea", description: "You cause webs to g
   SpellComponent.create!(spell_id: sp70.id, component_id: verbal.id, item: nil)
   SpellComponent.create!(spell_id: sp70.id, component_id: somatic.id, item: nil)
   SpellComponent.create!(spell_id: sp70.id, component_id: material.id, item: 'a fish scale')
-  # alchemist_touch_of_the_sea = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp70.id, spell_level: 1)
-  # bloodrager_touch_of_the_sea = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp70.id, spell_level: 1)
-  # druid_touch_of_the_sea = KlassSpell.create!(klass_id: druid.id, spell_id: sp70.id, spell_level: 1)
-  wizard_touch_of_the_sea = KlassSpell.create!(klass_id: wizard.id, spell_id: sp70.id, spell_level: 1)
+  # touch_of_the_sea_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp70.id, spell_level: 1)
+  # touch_of_the_sea_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp70.id, spell_level: 1)
+  # touch_of_the_sea_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp70.id, spell_level: 1)
+  touch_of_the_sea_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp70.id, spell_level: 1)
+
+sp71 = Spell.create!(name: "Hydraulic Push", description: "You call forth a quick blast of water that knocks over and soaks one creature or square. You can use this blast of water to make a bull rush against any one creature or object. Your CMB for this bull rush is equal to your caster level plus your Intelligence, Wisdom, or Charisma modifier, whichever is highest. This bull rush does not provoke an attack of opportunity. Hydraulic push extinguishes any normal fires on a creature, object, or in a single 5-foot square which it is targeted against. Magical fires are unaffected.", target: "one creature or object", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp71.id, subschool_id: water.id)
+  SpellComponent.create!(spell_id: sp71.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp71.id, component_id: somatic.id, item: nil)
+  # hydraulic_push_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp71.id, spell_level: 1)
+  # hydraulic_push_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp71.id, spell_level: 1)
+  # hydraulic_push_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp71.id, spell_level: 1)
+  # hydraulic_push_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp71.id, spell_level: 1)
+  hydraulic_push_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp71.id, spell_level: 1)
+
+sp72 = Spell.create!(name: "Gust of Wind", description: "This spell creates a severe blast of air (approximately 50 mph) that originates from you, affecting all creatures in its path. All flying creatures in this area take a -4 penalty on Fly skill checks. Tiny or smaller flying creatures must make a DC 25 Fly skill check or be blown back 2d6 x 10 feet and take 2d6 points of damage. Small or smaller flying creatures must make a DC 20 Fly skill check to move against the force of the wind.
+
+A Tiny or smaller creature on the ground is knocked down and rolled 1d4 x 10 feet, taking 1d4 points of nonlethal damage per 10 feet.
+
+Small creatures are knocked prone by the force of the wind.
+
+Medium or smaller creatures are unable to move forward against the force of the wind unless they succeed at a DC 15 Strength check.
+
+Large or larger creatures may move normally within a gust of wind effect.
+
+This spell can’t move a creature beyond the limit of it’s range.
+
+Any creature, regardless of size, takes a -4 penalty on ranged attacks and Perception checks in the area of a gust of wind.
+
+The force of the gust automatically extinguishes candles, torches, and similar unprotected flames. It causes protected flames, such as those in lanterns, to dance wildly and has a 50% chance to extinguish those lights.
+
+In addition to the effects noted, a gust of wind can do anything that a sudden blast of wind would be expected to do. It can create a stinging spray of sand or dust, fan a large fire, overturn delicate awnings or hangings, heel over a small boat, and blow gases or vapors to the edge of its range.
+
+Gust of wind can be made permanent with a permanency spell.", target: "line-shaped gust of severe wind emanating out from you to the extreme of the range", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: sixty_feet.id, magic_school_id: evocation.id, duration: "1 round", time: 1, unit_of_time: "round", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp72.id, subschool_id: air.id)
+  SpellComponent.create!(spell_id: sp72.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp72.id, component_id: somatic.id, item: nil)
+  # gust_of_wind_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp72.id, spell_level: 2)
+  # gust_of_wind_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp72.id, spell_level: 2)
+  # gust_of_wind_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp72.id, spell_level: 2)
+  gust_of_wind_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp72.id, spell_level: 2)
+
+sp73 = Spell.create!(name: "Slipstream", description: "You create a low-cresting wave of water that carries the target along the surface of water or the ground. When moving across level ground, the target’s speed increases by 10 feet.
+
+If going downhill, speed increases by 20 feet instead, but slipstream provides no movement bonus when going uphill.
+
+While swimming, the slipstream increases the target’s swim speed by 20 feet-if the target does not have a swim speed, this spell grants a swim speed of 20 ft.", target: "creature touched", saving_throw: "Reflex", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "10 minutes/level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp73.id, subschool_id: creation.id)
+  SpellSubschool.create!(spell_id: sp73.id, subschool_id: water.id)
+  SpellComponent.create!(spell_id: sp73.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp73.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp73.id, component_id: material.id, item: 'a few drops of oil and water')
+  SpellComponent.create!(spell_id: sp73.id, component_id: divine_focus.id, item: 'a few drops of oil and water')
+  # slipstream_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp73.id, spell_level: 2)
+  # slipstream_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp73.id, spell_level: 2)
+  # slipstream_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp73.id, spell_level: 2)
+  slipstream_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp73.id, spell_level: 2)
+
+sp74 = Spell.create!(name: "Augury", description: "An augury can tell you whether a particular action will bring good or bad results for you in the immediate future.
+
+The base chance for receiving a meaningful reply is 70% + 1% per caster level, to a maximum of 90%; this roll is made secretly. A question may be so straightforward that a successful result is automatic, or so vague as to have no chance of success. If the augury succeeds, you get one of four results:
+
+Weal (if the action will probably bring good results).
+Woe (for bad results).
+Weal and woe (for both).
+Nothing (for actions that don’t have especially good or bad results).
+If the spell fails, you get the “nothing” result. A cleric who gets the “nothing” result has no way to tell whether it was the consequence of a failed or successful augury.
+
+The augury can see into the future only about half an hour, so anything that might happen after that does not affect the result. Thus, the result might not take into account the long-term consequences of a contemplated action. All auguries cast by the same person about the same topic use the same die result as the first casting.", target: "you", saving_throw: "none", spell_resistance: false, action_id: one_minute.id, spell_range_id: personal.id, magic_school_id: divination.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp74.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp74.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp74.id, component_id: material.id, item: 'incense worth at least 25 gp')
+  SpellComponent.create!(spell_id: sp74.id, component_id: focus.id, item: 'a set of marked sticks or bones worth at least 25 gp')
+  augury_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp74.id, spell_level: 2)
+  # augury_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp74.id, spell_level: 2)
+  # augury_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp74.id, spell_level: 2)
+  augury_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp74.id, spell_level: 2)
+
+sp75 = Spell.create!(name: "Endure Elements", description: "A creature protected by endure elements suffers no harm from being in a hot or cold environment. It can exist comfortably in conditions between -50 and 140 degrees Fahrenheit (-45 and 60 degrees Celsius) without having to make Fortitude saves. The creature’s equipment is likewise protected.
+
+Endure elements doesn’t provide any protection from fire or cold damage, nor does it protect against other environmental hazards such as smoke, lack of air, and so forth.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: abjuration.id, duration: "24 hours", time: 24, unit_of_time: "hour", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp75.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp75.id, component_id: somatic.id, item: nil)
+  # endure_elements_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp75.id, spell_level: 1)
+  endure_elements_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_paladin = KlassSpell.create!(klass_id: paladin.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp75.id, spell_level: 1)
+  endure_elements_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp75.id, spell_level: 1)
+  endure_elements_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp75.id, spell_level: 1)
+
+sp76 = Spell.create!(name: "Alter Self", description: "When you cast this spell, you can assume the form of any Small or Medium creature of the humanoid type. If the form you assume has any of the following abilities, you gain the listed ability: darkvision 60 feet, low-light vision, scent, and swim 30 feet.
+
+Small creature: If the form you take is that of a Small humanoid, you gain a +2 size bonus to your Dexterity.
+
+Medium creature: If the form you take is that of a Medium humanoid, you gain a +2 size bonus to your Strength.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp76.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp76.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp76.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp76.id, component_id: material.id, item: 'a piece of the creature whose form you plan to assume')
+  # alter_self_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp76.id, spell_level: 2)
+  alter_self_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp76.id, spell_level: 2)
+  # alter_self_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp76.id, spell_level: 2)
+  # alter_self_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp76.id, spell_level: 2)
+  # alter_self_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp76.id, spell_level: 2)
+  alter_self_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp76.id, spell_level: 2)
+  alter_self_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp76.id, spell_level: 2)
+
+sp77 = Spell.create!(name: "Air Bubble", description: "Air bubble creates a small pocket of breathable air that surrounds the touched creature’s head or the touched object. The air bubble allows the creature touched to breathe underwater or in similar airless environments, or protects the object touched from water damage. A firearm within an air bubble can be loaded—assuming the black powder comes from a powder horn, a cartridge, or some other airtight protective device—and fired. When shooting such a firearm underwater, the shot still takes the standard –2 penalty on attack rolls for every 5 feet of water the bullet passes through, in addition to normal penalties due to range. If a firearm within the air bubble explodes, the explosion occurs normally.", target: "one creature or one object no larger than a Large two-handed weapon", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp77.id, subschool_id: creation.id)
+  SpellComponent.create!(spell_id: sp77.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp77.id, component_id: material.id, item: 'a small bladder filled with air')
+  SpellComponent.create!(spell_id: sp77.id, component_id: divine_focus.id, item: 'a small bladder filled with air')
+  air_bubble_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp77.id, spell_level: 1)
+  # air_bubble_driud = KlassSpell.create!(klass_id: driud.id, spell_id: sp77.id, spell_level: 1)
+  # air_bubble_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp77.id, spell_level: 1)
+  # air_bubble_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp77.id, spell_level: 1)
+  air_bubble_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp77.id, spell_level: 1)
+  air_bubble_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp77.id, spell_level: 1)
+
+sp78 = Spell.create!(name: "Enhance Water", description: "This spell transforms water into an alcoholic beverage, typically ale, beer, mead, or wine. The alcohol is of middling quality but perfectly drinkable. The spell also serves to remove poisons, diseases, minerals, and other toxins from the water as it transforms. The more contaminants that exist in the water, the darker the ale or the more full-bodied the wine becomes. The beverage’s alcohol content is not affected by the presence or absence of contaminants.
+
+This spell does not work on unholy water, potions, or other liquids with magical power.", target: "1 pint of water/level", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp78.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp78.id, component_id: somatic.id, item: nil)
+  enhance_water_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp78.id, spell_level: 1)
+  enhance_water_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp78.id, spell_level: 1)
+  # enhance_water_paladin = KlassSpell.create!(klass_id: paladin.id, spell_id: sp78.id, spell_level: 1)
+
+sp79 = Spell.create!(name: "Fabricate Disguise", description: "You change outfits or create a disguise out of materials you are wearing or carrying (potentially including a disguise kit). The spell can’t alter your body or change the structure of objects, but can style wigs, apply makeup or piercings, and otherwise make use of tools to make superficial changes. In an instant, you have a non-magical disguise or clothing change. Attempt a Disguise check to determine the effectiveness of the disguise.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp79.id, component_id: somatic.id, item: nil)
+  # fabricate_disguise_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp79.id, spell_level: 1)
+  # fabricate_disguise_antipaladin = KlassSpell.create!(klass_id: antipaladin.id, spell_id: sp79.id, spell_level: 1)
+  fabricate_disguise_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp79.id, spell_level: 1)
+  # fabricate_disguise_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp79.id, spell_level: 1)
+  # fabricate_disguise_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp79.id, spell_level: 1)
+  fabricate_disguise_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp79.id, spell_level: 1)
+  fabricate_disguise_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp79.id, spell_level: 1)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
 #IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
@@ -2613,7 +2797,7 @@ CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil,
 CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: witch_changeling.id)
 CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: witch_changeling.id)
 
-sly = Character.create!(user_id: admin.id, name: "Sylvester", strength: 8, dexterity: 16, constitution: 16, intelligence: 8, wisdom: 13, charisma: 18, race_id: grippli.id, skillset_id: dmc.id)
+sly = Character.create!(user_id: admin.id, name: "Sly", full_name: 'Slyvester Ruby', strength: 8, dexterity: 16, constitution: 16, intelligence: 8, wisdom: 13, charisma: 18, race_id: grippli.id, skillset_id: dmc.id)
 
 sly1 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: fate_weaver_human.id)
   CharacterKlassOption.create!(character_klass_id: sly1.id, feature_option_id: chaotic2.id)
@@ -2624,7 +2808,7 @@ sly4 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp
 sly5 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: fate_weaver_human.id)
   CharacterKlassOption.create!(character_klass_id: sly5.id, feature_option_id: chaotic1.id)
 
-nettie = Character.create!(user_id: admin.id, name: "Nettie", strength: 14, dexterity: 14, constitution: 13, intelligence: 18, wisdom: 14, charisma: 14, race_id: vine_leshy.id, skillset_id: dmc.id)
+nettie = Character.create!(user_id: admin.id, name: "Nettie", full_name: 'Apple Nettlekiss', strength: 14, dexterity: 14, constitution: 13, intelligence: 18, wisdom: 14, charisma: 14, race_id: vine_leshy.id, skillset_id: dmc.id)
 
 nettie1 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
 nettie2 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
@@ -2663,7 +2847,7 @@ merg5 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbar
 merg6 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: one_skill_point.id)
 merg7 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: one_skill_point.id)
 
-cedrick = Character.create!(user_id: admin.id, name: "Cedrick", strength: 17, dexterity: 14, constitution: 12, intelligence: 10, wisdom: 17, charisma: 10, race_id: grippli.id, skillset_id: dmc.id)
+cedrick = Character.create!(user_id: admin.id, name: "Cedrick", full_name: "Cedrick Ren 'Renny' Briarwert VII, Prince of Indiaster", strength: 17, dexterity: 14, constitution: 12, intelligence: 10, wisdom: 17, charisma: 10, race_id: grippli.id, skillset_id: dmc.id)
 
 cedrick1 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: hp_up.id)
 cedrick2 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: hp_up.id)
@@ -2673,7 +2857,7 @@ cedrick5 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id
 cedrick6 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
 cedrick7 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
 
-maddox = Character.create!(user_id: admin.id, name: "Maddox", strength: 9, dexterity: 16, constitution: 14, intelligence: 18, wisdom: 11, charisma: 17, race_id: samsaran.id, skillset_id: dmc.id)
+maddox = Character.create!(user_id: admin.id, name: "Maddox", full_name: 'Maddox Magpie', strength: 9, dexterity: 16, constitution: 14, intelligence: 18, wisdom: 11, charisma: 17, race_id: samsaran.id, skillset_id: dmc.id)
 # +1 to Charisma, Tome of Leadership and Influence
 
 maddox1 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
@@ -2684,16 +2868,31 @@ maddox5 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id,
 maddox6 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
 maddox7 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
 
-robby = Character.create!(user_id: admin.id, name: 'Robby', strength: 13, dexterity: 16, constitution: 10, intelligence: 9, wisdom: 13, charisma: 17, race_id: kitsune.id, skillset_id: dmc.id)
+robby = Character.create!(user_id: admin.id, name: 'Robby', full_name: 'Sir Robby Redfurred', strength: 13, dexterity: 16, constitution: 10, intelligence: 9, wisdom: 13, charisma: 17, race_id: kitsune.id, skillset_id: dmc.id)
 # +1 to Strength, Manual of Gainful Exercise
 
 robby1 = CharacterKlass.create!(character_id: robby.id, klass_id: swashbuckler.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
-robby2 = CharacterKlass.create!(character_id: robby.id, klass_id: swashbuckler.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
-robby3 = CharacterKlass.create!(character_id: robby.id, klass_id: swashbuckler.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
-robby4 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 10, feat_id: nil, ability_score_improvement: 'intelligence', level: 4, favored_klass_bonus_id: nil)
-robby5 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: nil)
-robby6 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
-robby7 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
+robby2 = CharacterKlass.create!(character_id: robby.id, klass_id: swashbuckler.id, hp: 9, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+robby3 = CharacterKlass.create!(character_id: robby.id, klass_id: swashbuckler.id, hp: 8, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
+robby4 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 6, feat_id: nil, ability_score_improvement: 'intelligence', level: 4, favored_klass_bonus_id: nil)
+robby5 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: nil)
+robby6 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
+robby7 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
+
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: acro.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: bluf.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: clim.id, ranks: 4)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: dipl.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: disg.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: unc_fine.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: hand.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: heal.id, ranks: 1)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: inti.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: ling.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: perc.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: sens.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: stea.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: swim.id, ranks: 3)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Known Spells!-*-*-*-----*-*->
