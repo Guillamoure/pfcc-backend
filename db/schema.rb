@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_30_051335) do
+ActiveRecord::Schema.define(version: 2020_01_02_145055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string "name"
+    t.string "date"
+    t.integer "dm_id"
   end
 
   create_table "cast_spells", force: :cascade do |t|
@@ -40,6 +46,11 @@ ActiveRecord::Schema.define(version: 2019_12_30_051335) do
     t.string "ability_score_improvement"
     t.integer "level"
     t.integer "favored_klass_bonus_id"
+  end
+
+  create_table "character_magic_items", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "magic_item_id"
   end
 
   create_table "character_skillset_skills", force: :cascade do |t|
@@ -79,6 +90,7 @@ ActiveRecord::Schema.define(version: 2019_12_30_051335) do
     t.integer "temp_hp", default: 0
     t.boolean "is_done_preparing_spells", default: false
     t.string "full_name"
+    t.integer "campaign_id"
   end
 
   create_table "class_skillset_skills", force: :cascade do |t|
@@ -165,6 +177,23 @@ ActiveRecord::Schema.define(version: 2019_12_30_051335) do
     t.integer "klass_spell_id"
     t.integer "character_id"
     t.integer "klass_id"
+  end
+
+  create_table "magic_item_spell_references", force: :cascade do |t|
+    t.integer "spell_id"
+    t.integer "magic_item_id"
+  end
+
+  create_table "magic_items", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "slot"
+    t.string "aura"
+    t.integer "caster_level"
+    t.float "price_in_gp"
+    t.float "weight"
+    t.boolean "activatable"
+    t.boolean "expendable"
   end
 
   create_table "magic_schools", force: :cascade do |t|

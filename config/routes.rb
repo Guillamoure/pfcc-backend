@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       post 'spellcasting', to: 'effects#spellcasting'
       delete 'rest', to: 'char_edits#clear_all'
       patch 'cast_spells', to: 'cast_spells#rollback'
+      get 'item_search', to: 'items#index'
+      post 'character_items', to: 'items#create'
     end
   end
 end

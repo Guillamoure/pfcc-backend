@@ -31,7 +31,7 @@ class Api::V1::UsersController < ApplicationController
   def auth
 
     if current_user
-      render json: {current_user: current_user}
+      render json: {current_user: UserSerializer.new(current_user)}
     else
       render json: {error: "Could not authenticate"}, status: 401
     end
