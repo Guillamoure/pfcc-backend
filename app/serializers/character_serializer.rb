@@ -1,5 +1,5 @@
 class CharacterSerializer < ActiveModel::Serializer
-  attributes :id, :name, :alignment, :deity, :homeland, :gender, :age, :height, :weight, :hair, :eyes, :user_id, :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, :description, :background, :any_bonus, :character_skillset_skills, :lethal_damage, :non_lethal_damage, :temp_hp, :uniq_klasses, :character_klasses
+  attributes :id, :name, :alignment, :deity, :homeland, :gender, :age, :height, :weight, :hair, :eyes, :user_id, :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, :description, :background, :any_bonus, :character_skillset_skills, :lethal_damage, :non_lethal_damage, :temp_hp, :uniq_klasses, :character_klasses, :full_name, :character_magic_items, :character_magic_item_feature_usages, :allies, :campaign
 
   belongs_to :user
   # has_many :character_klasses
@@ -22,6 +22,12 @@ class CharacterSerializer < ActiveModel::Serializer
     self.object.character_klasses.map do |ck|
       print "hey"
       CharacterKlassSerializer.new(ck)
+    end
+  end
+
+  def character_magic_items
+    self.object.character_magic_items.map do |mi|
+      CharacterMagicItemSerializer.new(mi)
     end
   end
 end

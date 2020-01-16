@@ -357,7 +357,7 @@ Role: The Fate Weaver has a wide array of options, but they may not always be co
 
 Alignment: Any Chaotic")
 
-wizard = Klass.create!(name: "Wizard", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/e0/cc/47/e0cc47ea55051b8221c15cfc208f3a20.png", description: "Beyond the veil of the mundane hide the secrets of absolute power. The works of beings beyond mortals, the legends of realms where gods and spirits tread, the lore of creations both wondrous and terrible—such mysteries call to those with the ambition and the intellect to rise above the common folk to grasp true might. Such is the path of the wizard. These shrewd magic-users seek, collect, and covet esoteric knowledge, drawing on cultic arts to work wonders beyond the abilities of mere mortals. While some might choose a particular field of magical study and become masters of such powers, others embrace versatility, reveling in the unbounded wonders of all magic. In either case, wizards prove a cunning and potent lot, capable of smiting their foes, empowering their allies, and shaping the world to their every desire.
+wizard = Klass.create!(name: "Wizard", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/e0/cc/47/e0cc47ea55051b8221c15cfc208f3a20.png", description: "Beyond the veil of the mundane hide the secrets of absolute power. The works of beings beyond mortals, the legends of realms where gods and spirits tread, the lore of creations both Wondrous Item and terrible—such mysteries call to those with the ambition and the intellect to rise above the common folk to grasp true might. Such is the path of the wizard. These shrewd magic-users seek, collect, and covet esoteric knowledge, drawing on cultic arts to work wonders beyond the abilities of mere mortals. While some might choose a particular field of magical study and become masters of such powers, others embrace versatility, reveling in the unbounded wonders of all magic. In either case, wizards prove a cunning and potent lot, capable of smiting their foes, empowering their allies, and shaping the world to their every desire.
 
 Role: While universalist wizards might study to prepare themselves for any manner of danger, specialist wizards research schools of magic that make them exceptionally skilled within a specific focus. Yet no matter their specialty, all wizards are masters of the impossible and can aid their allies in overcoming any danger.
 
@@ -673,6 +673,32 @@ An arcanist begins play with a spellbook containing all 0-level wizard/sorcerer 
 Cantrips: Arcanists can prepare a number of cantrips, or 0-level spells, each day as noted on Table: Arcanist Spells Prepared. These spells are cast like any other spell, but they do not consume spell slots. As with her other spells, these spells are not expended when cast.")
   FeatureLevel.create!(klass_feature_id: arcanist2.id, level: 1, table_description: "none")
 
+arcanist3 = KlassFeature.create!(klass_id: arcanist.id, name: 'Arcane Reservoir', description: 'An arcanist has an innate pool of magical energy that she can draw upon to fuel her arcanist exploits and enhance her spells. The arcanist’s arcane reservoir can hold a maximum amount of magical energy equal to 3 + the arcanist’s level. Each day, when the arcanist prepares spells, the arcanist’s arcane reservoir fills with raw magical energy, gaining a number of points equal to 3 + 1/2 her arcanist level. Any points she had from the previous day are lost. She can also regain these points through the consume spells class feature and some arcanist exploits. The arcane reservoir can never hold more points than the maximum amount noted above; points gained in excess of this total are lost.
+
+Points from the arcane reservoir are used to fuel many of the arcanist’s powers. In addition, the arcanist can expend 1 point from her arcane reservoir as a free action whenever she casts an arcanist spell. If she does, she can choose to increase the caster level by 1 or increase the spell’s DC by 1. She can expend no more than 1 point from her reservoir on a given spell in this way.')
+  FeatureLevel.create!(klass_feature_id: arcanist3.id, level: 1, table_description: 'Arcane Reservoir')
+
+arcanist4 = KlassFeature.create!(klass_id: arcanist.id, name: 'Arcanist Exploit', description: 'By bending and sometimes even breaking the rules of magic, the arcanist learns to exploit gaps and exceptions in the laws of magic. Some of these exploits allow her to break down various forms of magic, adding their essence to her arcane reservoir. At 1st level and every 2 levels thereafter, the arcanist learns a new arcane exploit selected from the following list. An arcanist exploit cannot be selected more than once. Once an arcanist exploit has been selected, it cannot be changed. Most arcanist exploits require the arcanist to expend points from her arcane reservoir to function. Unless otherwise noted, the saving throw DC of an arcanist exploit is equal to 10 + 1/2 the arcanist’s level + the arcanist’s Charisma modifier.')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 1, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 3, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 5, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 7, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 9, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 11, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 13, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 15, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 17, table_description: 'Arcanist Exploit')
+  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 19, table_description: 'Arcanist Exploit')
+
+arcanist5 = KlassFeature.create!(klass_id: arcanist.id, name: 'Consume Spells', description: 'At 1st level, an arcanist can expend an available arcanist spell slot as a move action, making it unavailable for the rest of the day, just as if she had used it to cast a spell. She can use this ability a number of times per day equal to her Charisma modifier (minimum 1). Doing this adds a number of points to her arcane reservoir equal to the level of the spell slot consumed. She cannot consume cantrips (0 level spells) in this way. Points gained in excess of the reservoir’s maximum are lost.')
+  FeatureLevel.create!(klass_feature_id: arcanist5.id, level: 1, table_description: 'Consume Spells')
+
+arcanist6 = KlassFeature.create!(klass_id: arcanist.id, name: 'Greater Exploits', description: 'At 11th level and every 2 levels thereafter, an arcanist can choose one of the following greater exploits in place of an arcanist exploit.')
+  FeatureLevel.create!(klass_feature_id: arcanist6.id, level: 11, table_description: 'Greater Exploits')
+
+arcanist7 = KlassFeature.create!(klass_id: arcanist.id, name: 'Magical Supremacy', description: 'At 20th level, the arcanist learns how to convert her arcane reservoir into spells and back again. She can cast any spell she has prepared by expending a number of points from her arcane reservoir equal to 1 + the level of the spell to be cast instead of expending a spell slot. When she casts a spell in this fashion, she treats her caster level as 2 higher than normal, and the DCs of any saving throws associated with the spell increase by 2. She cannot further expend points from her arcane reservoir to enhance a spell cast in this way.')
+  FeatureLevel.create!(klass_feature_id: arcanist7.id, level: 20, table_description: 'Magical Supremacy')
+
 
 vigilante1 = KlassFeature.create!(klass_id: vigilante.id, name: "Weapon and Armor Proficiency", description: "Vigilantes are proficient with all simple and martial weapons, light armor, medium armor, and shields (except tower shields).")
   FeatureLevel.create!(klass_feature_id: vigilante1.id, level: 1, table_description: "none")
@@ -833,26 +859,317 @@ Additionally, by spending 1 Chimera Point, as an immediate action, she can shift
 ")
   FeatureLevel.create!(klass_feature_id: shifter12.id, level: 17, table_description: "Multi Form")
 
- # = KlassFeature.create!(klass_id: , name: "", description: "")
- #  FeatureLevel.create!(klass_feature_id: , level: 1, table_description: "")
+swashbuckler1 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Weapon and Armor Proficiency", description: "Swashbucklers are proficient with all simple and martial weapons, as well as light armor and bucklers.")
+  FeatureLevel.create!(klass_feature_id: swashbuckler1.id, level: 1, table_description: "none")
 
- # = KlassFeature.create!(klass_id: , name: "", description: "")
- #  FeatureLevel.create!(klass_feature_id: , level: 1, table_description: "")
+swashbuckler2 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Panache", description: "More than just a lightly armored warrior,
+a swashbuckler is a daring combatant. She fights with panache: a fluctuating measure of a swashbuckler’s ability to perform amazing actions in combat. At the start of each day, a swashbuckler gains a number of panache points equal to her Charisma modifier (minimum 1). Her panache goes up or down throughout the day, but usually can’t exceed her Charisma modifier (minimum 1), though feats and magic items can affect this maximum. A swashbuckler spends panache points to accomplish deeds")
+  FeatureLevel.create!(klass_feature_id: swashbuckler2.id, level: 1, table_description: "Panache")
 
- # = KlassFeature.create!(klass_id: , name: "", description: "")
- #  FeatureLevel.create!(klass_feature_id: , level: 1, table_description: "")
+swashbuckler3 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Deeds", description: "Swashbucklers spend panache points to accomplish deeds. Most deeds grant the swashbuckler a momentary bonus or effect, but some provide longer- lasting effects. Some deeds remain in effect while the swashbuckler has at least 1 panache point, but do not require the expenditure of panache points to be maintained. A swashbuckler can perform deeds only of her level or lower. Unless otherwise noted, a deed can be performed multiple successive times, as long as the swashbuckler has or spends the required number of panache points to perform the deed.")
+  FeatureLevel.create!(klass_feature_id: swashbuckler3.id, level: 1, table_description: "Deeds")
+  FeatureLevel.create!(klass_feature_id: swashbuckler3.id, level: 3, table_description: "Deeds")
+  FeatureLevel.create!(klass_feature_id: swashbuckler3.id, level: 7, table_description: "Deeds")
+  FeatureLevel.create!(klass_feature_id: swashbuckler3.id, level: 15, table_description: "Deeds")
+  FeatureLevel.create!(klass_feature_id: swashbuckler3.id, level: 19, table_description: "Deeds")
 
- # = KlassFeature.create!(klass_id: , name: "", description: "")
- #  FeatureLevel.create!(klass_feature_id: , level: 1, table_description: "")
+swashbuckler4 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Swashbuckler Finesse", description: "At 1st level, a swashbuckler gains the benefits of the Weapon Finesse feat with light or one-handed piercing melee weapons, and she can use her Charisma score in place of Intelligence as a prerequisite for combat feats. This ability counts as having the Weapon Finesse feat for purposes of meeting feat prerequisites.")
+  FeatureLevel.create!(klass_feature_id: swashbuckler4.id, level: 1, table_description: "Swashbuckler Finesse")
 
- # = KlassFeature.create!(klass_id: , name: "", description: "")
- #  FeatureLevel.create!(klass_feature_id: , level: 1, table_description: "")
+swashbuckler5 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Charmed Life", description: "At 2nd level, the swashbuckler gains a knack for getting out of trouble. Three times per day as an immediate action before attempting a saving throw, she can add her Charisma modifier to the result of the save. She must choose to do this before the roll is made. At 6th level and every 4 levels thereafter, the number of times she can do this per day increases by one (to a maximum of 7 times per day at 18th level).")
+  FeatureLevel.create!(klass_feature_id: swashbuckler5.id, level: 2, table_description: "Charmed Life 3/day")
+  FeatureLevel.create!(klass_feature_id: swashbuckler5.id, level: 6, table_description: "Charmed Life 4/day")
+  FeatureLevel.create!(klass_feature_id: swashbuckler5.id, level: 10, table_description: "Charmed Life 5/day")
+  FeatureLevel.create!(klass_feature_id: swashbuckler5.id, level: 14, table_description: "Charmed Life 6/day")
+  FeatureLevel.create!(klass_feature_id: swashbuckler5.id, level: 18, table_description: "Charmed Life 7/day")
 
- # = KlassFeature.create!(klass_id: , name: "", description: "")
- #  FeatureLevel.create!(klass_feature_id: , level: 1, table_description: "")
+swashbuckler6 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Nimble", description: "At 3rd level, a swashbuckler gains a +1 dodge bonus to AC while wearing light or no armor. Anything that causes the swashbuckler to lose her Dexterity bonus to AC also causes her to lose this dodge bonus. This bonus increases by 1 for every 4 levels beyond 3rd (to a maximum of +5 at 19th level).")
+  FeatureLevel.create!(klass_feature_id: swashbuckler6.id, level: 3, table_description: "Nimble +1")
+  FeatureLevel.create!(klass_feature_id: swashbuckler6.id, level: 7, table_description: "Nimble +2")
+  FeatureLevel.create!(klass_feature_id: swashbuckler6.id, level: 11, table_description: "Nimble +3")
+  FeatureLevel.create!(klass_feature_id: swashbuckler6.id, level: 15, table_description: "Nimble +4")
+  FeatureLevel.create!(klass_feature_id: swashbuckler6.id, level: 19, table_description: "Nimble +5")
 
- # = KlassFeature.create!(klass_id: , name: "", description: "")
- #  FeatureLevel.create!(klass_feature_id: , level: 1, table_description: "")
+swashbuckler7 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Bonus Feat", description: "At 4th level and every 4 levels thereafter, a swashbuckler gains a bonus feat in addition to those gained from normal advancement. These bonus feats must be selected from those listed as combat feats. Swashbuckler levels are considered fighter levels for the purpose of meeting combat feat prerequisites.
+
+In addition, upon reaching 4th level and every 4 levels thereafter, a swashbuckler can choose to learn a new bonus feat in place of a bonus feat she has already learned. In effect, the swashbuckler loses the bonus feat in exchange for the new one. The old feat cannot be one that was used as a prerequisite for another feat, prestige class, or other ability. A swashbuckler can only change one feat at any given level, and must choose whether or not to swap the feat at the time she gains a new bonus feat for the level.")
+  FeatureLevel.create!(klass_feature_id: swashbuckler7.id, level: 4, table_description: "Bonus Feat")
+  FeatureLevel.create!(klass_feature_id: swashbuckler7.id, level: 8, table_description: "Bonus Feat")
+  FeatureLevel.create!(klass_feature_id: swashbuckler7.id, level: 12, table_description: "Bonus Feat")
+  FeatureLevel.create!(klass_feature_id: swashbuckler7.id, level: 16, table_description: "Bonus Feat")
+  FeatureLevel.create!(klass_feature_id: swashbuckler7.id, level: 20, table_description: "Bonus Feat")
+
+swashbuckler7 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Swashbuckler Weapon Training", description: "At 5th level, a swashbuckler gains a +1 bonus on attack and damage rolls with one-handed or light piercing melee weapons. While wielding such a weapon, she gains the benefit of the Improved Critical feat. These attack and damage bonuses increase by 1 for every 4 levels beyond 5th level (to a maximum of +4 at 17th level).")
+  FeatureLevel.create!(klass_feature_id: swashbuckler7.id, level: 5, table_description: "Swashbuckler Weapon Training +1")
+  FeatureLevel.create!(klass_feature_id: swashbuckler7.id, level: 9, table_description: "Swashbuckler Weapon Training +2")
+  FeatureLevel.create!(klass_feature_id: swashbuckler7.id, level: 13, table_description: "Swashbuckler Weapon Training +3")
+  FeatureLevel.create!(klass_feature_id: swashbuckler7.id, level: 17, table_description: "Swashbuckler Weapon Training +4")
+
+swashbuckler8 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Swashbuckler Weapon Mastery", description: "At 20th level, when a swashbuckler threatens a critical hit with a light or one-handed piercing melee weapon, that critical is automatically confirmed. Furthermore, the critical modifiers of such weapons increase by 1 (×2 becomes ×3, and so on).")
+  FeatureLevel.create!(klass_feature_id: swashbuckler8.id, level: 20, table_description: "Swashbuckler Weapon Mastery")
+
+unchained_rogue1 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Weapon and Armor Proficiency", description: "Rogues are proficient with all simple weapons, plus the hand crossbow, rapier, sap, short sword, and shortbow. They are proficient with light armor, but not with shields.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue1.id, level: 1, table_description: "none")
+
+unchained_rogue2 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Sneak Attack", description: "If a rogue can catch an opponent when he is unable to defend himself effectively from her attack, she can strike a vital spot for extra damage.
+
+The rogue’s attack deals extra damage anytime her target would be denied a Dexterity bonus to AC (whether the target actually has a Dexterity bonus or not), or when the rogue flanks her target. This extra damage is 1d6 at 1st level, and increases by 1d6 every 2 rogue levels thereafter. Ranged attacks can count as sneak attacks only if the target is within 30 feet. This additional damage is precision damage and is not multiplied on a critical hit.
+
+With a weapon that deals nonlethal damage (such as a sap, unarmed strike, or whip), a rogue can make a sneak attack that deals nonlethal damage instead of lethal damage. She cannot use a weapon that deals lethal damage to deal nonlethal damage in a sneak attack—not even with the usual –4 penalty.
+
+The rogue must be able to see the target well enough to pick out a vital spot and must be able to reach such a spot. A rogue cannot sneak attack while striking a creature with total concealment.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue2.id, level: 1, table_description: "Sneak Attack +1d6")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue2.id, level: 3, table_description: "Sneak Attack +2d6")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue2.id, level: 5, table_description: "Sneak Attack +3d6")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue2.id, level: 7, table_description: "Sneak Attack +4d6")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue2.id, level: 9, table_description: "Sneak Attack +5d6")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue2.id, level: 11, table_description: "Sneak Attack +6d6")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue2.id, level: 13, table_description: "Sneak Attack +7d6")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue2.id, level: 15, table_description: "Sneak Attack +8d6")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue2.id, level: 17, table_description: "Sneak Attack +9d6")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue2.id, level: 19, table_description: "Sneak Attack +10d6")
+
+unchained_rogue3 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Trapfinding", description: "A rogue adds 1/2 her level on Perception checks to locate traps and on Disable Device checks (minimum +1). A rogue can use Disable Device to disarm magic traps.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue3.id, level: 1, table_description: "Trapfinding")
+
+unchained_rogue4 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Finesse Training", description: "At 1st level, a rogue gains Weapon Finesse as a bonus feat. In addition, starting at 3rd level, she can select any one type of weapon that can be used with Weapon Finesse (such as rapiers or daggers). Once this choice is made, it cannot be changed. Whenever she makes a successful melee attack with the selected weapon, she adds her Dexterity modifier instead of her Strength modifier to the damage roll. If any effect would prevent the rogue from adding her Strength modifier to the damage roll, she does not add her Dexterity modifier. The rogue can select a second weapon at 11th level and a third at 19th level.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue4.id, level: 1, table_description: "Finesse Training")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue4.id, level: 3, table_description: "Finesse Training")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue4.id, level: 11, table_description: "Finesse Training")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue4.id, level: 19, table_description: "Finesse Training")
+
+unchained_rogue5 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Evasion", description: "At 2nd level, a rogue can avoid even magical and unusual attacks with great agility. If she succeeds at a Reflex saving throw against an attack that normally deals half damage on a successful save, she instead takes no damage. Evasion can be used only if the rogue is wearing light armor or no armor. A helpless rogue does not gain the benefit of evasion.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue5.id, level: 2, table_description: "Evasion")
+
+unchained_rogue6 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Rogue Talent", description: "As a rogue gains experience, she learns a number of talents that aid her and confound her foes. Starting at 2nd level, a rogue gains one rogue talent. She gains an additional rogue talent for every 2 levels of rogue attained after 2nd level. A rogue cannot select an individual talent more than once.
+
+Talents marked with an asterisk add effects to a rogue’s sneak attack. Only one of these talents can be applied to an individual attack, and the decision must be made before the attack roll is made.
+
+A rogue cannot choose a ninja trick with the same name as a rogue talent.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue6.id, level: 2, table_description: "Rogue Talent")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue6.id, level: 4, table_description: "Rogue Talent")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue6.id, level: 6, table_description: "Rogue Talent")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue6.id, level: 8, table_description: "Rogue Talent")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue6.id, level: 10, table_description: "Rogue Talent")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue6.id, level: 12, table_description: "Rogue Talent")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue6.id, level: 14, table_description: "Rogue Talent")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue6.id, level: 16, table_description: "Rogue Talent")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue6.id, level: 18, table_description: "Rogue Talent")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue6.id, level: 20, table_description: "Rogue Talent")
+
+unchained_rogue7 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Danger Sense", description: "At 3rd level, a rogue gains a +1 bonus on Reflex saves to avoid traps and a +1 dodge bonus to AC against attacks made by traps. In addition, she gains a +1 bonus on Perception checks to avoid being surprised by a foe. These bonuses increase by 1 every 3 rogue levels thereafter (to a maximum of +6 at 18th level). This ability counts as trap sense for the purpose of any feat or class prerequisite, and can be replaced by any archetype class feature that replaces trap sense. The bonuses gained from this ability stack with those gained from trap sense (from another class).")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue7.id, level: 3, table_description: "Danger Sense +1")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue7.id, level: 6, table_description: "Danger Sense +2")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue7.id, level: 9, table_description: "Danger Sense +3")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue7.id, level: 12, table_description: "Danger Sense +4")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue7.id, level: 15, table_description: "Danger Sense +5")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue7.id, level: 18, table_description: "Danger Sense +6")
+
+unchained_rogue8 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Debilitating Injury", description: "At 4th level, whenever a rogue deals sneak attack damage to a foe, she can also debilitate the target of her attack, causing it to take a penalty for 1 round (this is in addition to any penalty caused by a rogue talent or other special ability). The rogue can choose to apply any one of the following penalties when the damage is dealt.
+
+Bewildered: The target becomes bewildered, taking a –2 penalty to AC. The target takes an additional –2 penalty to AC against all attacks made by the rogue. At 10th level and 16th level, the penalty to AC against attacks made by the rogue increases by –2 (to a total maximum of –8).
+
+Disoriented: The target takes a –2 penalty on attack rolls. In addition, the target takes an additional –2 penalty on all attack rolls it makes against the rogue. At 10th level and 16th level, the penalty on attack rolls made against the rogue increases by –2 (to a total maximum of –8).
+
+Hampered: All of the target’s speeds are reduced by half (to a minimum of 5 feet). In addition, the target cannot take a 5-foot step.
+
+These penalties do not stack with themselves, but additional attacks that deal sneak attack damage extend the duration by 1 round. A creature cannot suffer from more than one penalty from this ability at a time. If a new penalty is applied, the old penalty immediately ends. Any form of healing applied to a target suffering from one of these penalties also removes the penalty.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue8.id, level: 4, table_description: "Debilitating Injury")
+
+unchained_rogue9 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Uncanny Dodge", description: "At 4th level, a rogue can react to danger before her senses would normally allow her to do so. She cannot be caught flat-footed, nor does she lose her Dexterity bonus to AC if the attacker is invisible. She still loses her Dexterity bonus to AC if immobilized. A rogue with this ability can still lose her Dexterity bonus to AC if an opponent successfully uses the feint action against her.
+
+If a rogue already has uncanny dodge from a different class, she automatically gains improved uncanny dodge (see below) instead.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue9.id, level: 4, table_description: "Uncanny Dodge")
+
+unchained_rogue10 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Rogue's Edge", description: "At 5th level, a rogue has mastered a single skill beyond that skill’s normal boundaries, gaining results that others can only dream about. She gains the skill unlock powers for that skill as appropriate for her number of ranks in that skill. At 10th, 15th, and 20th levels, she chooses an additional skill and gains skill unlock powers for that skill as well.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue10.id, level: 5, table_description: "Rogue's Edge")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue10.id, level: 10, table_description: "Rogue's Edge")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue10.id, level: 15, table_description: "Rogue's Edge")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue10.id, level: 20, table_description: "Rogue's Edge")
+
+unchained_rogue11 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Improved Uncanny Dodge", description: "At 8th level, a rogue can no longer be flanked.
+
+This defense denies another rogue the ability to sneak attack the character by flanking her, unless the attacker has at least four more rogue levels than the target does.
+
+If a character already has uncanny dodge from another class, the levels from the classes that grant uncanny dodge stack to determine the minimum rogue level required to flank the character.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue11.id, level: 8, table_description: "Improved Uncanny Dodge")
+
+unchained_rogue12 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Advanced Talents", description: "At 10th level and every 2 levels thereafter, a rogue can choose one of the following advanced talents in place of a rogue talent.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue12.id, level: 10, table_description: "Advanced Talents")
+
+unchained_rogue13 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Master Strike", description: "At 20th level, an rogue becomes incredibly deadly when dealing sneak attack damage. Each time the rogue deals sneak attack damage, she can choose one of the following three effects: the target can be put to sleep for 1d4 hours, paralyzed for 2d6 rounds, or slain. Regardless of the effect chosen, the target can attempt a Fortitude save to negate the additional effect. The DC of this save is equal to 10 + 1/2 the rogue’s level + the rogue’s Dexterity modifier. Once a creature has been the target of a master strike, regardless of whether or not the save is successful, that creature is immune to that rogue’s master strike for 24 hours. Creatures that are immune to sneak attack damage are also immune to this ability.")
+  FeatureLevel.create!(klass_feature_id: unchained_rogue13.id, level: 20, table_description: "Master Strike")
+
+unchained_barbarian1 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Weapon and Armor Proficiency", description: "A barbarian is proficient with all simple and martial weapons, light armor, medium armor, and shields (except tower shields).")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian1.id, level: 1, table_description: "none")
+
+unchained_barbarian2 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Fast Movement", description: "A barbarian’s base speed is faster than the norm for her race by 10 feet. This benefit applies only when she is wearing no armor, light armor, or medium armor, and not carrying a heavy load. Apply this bonus before modifying the barbarian’s speed because of any load carried or armor worn. This bonus stacks with any other bonuses to the barbarian’s base speed.")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian2.id, level: 1, table_description: "Fast Movement")
+
+unchained_barbarian3 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Rage", description: "A barbarian can call upon inner reserves of strength and ferocity, granting her additional combat prowess. At 1st level, a barbarian can rage for a number of rounds per day equal to 4 + her Constitution modifier. For each level after 1st she possesses, the barbarian can rage for 2 additional rounds per day. Temporary increases to Constitution, such as that gained from bear’s endurance, do not increase the total number of rounds that a barbarian can rage per day. A barbarian can enter a rage as a free action. The total number of rounds of rage per day is renewed after resting for 8 hours, although these hours need not be consecutive.
+
+While in a rage, a barbarian gains a +2 bonus on melee attack rolls, melee damage rolls, thrown weapon damage rolls, and Will saving throws. In addition, she takes a –2 penalty to Armor Class. She also gains 2 temporary hit points per Hit Die. These temporary hit points are lost first when a character takes damage, disappear when the rage ends, and are not replenished if the barbarian enters a rage again within 1 minute of her previous rage. While in a rage, a barbarian cannot use any Charisma-, Dexterity-, or Intelligence-based skill (except Acrobatics, Fly, Intimidate, and Ride) or any ability that requires patience or concentration (such as spellcasting).
+
+A barbarian can end her rage as a free action, and is fatigued for 1 minute after a rage ends. A barbarian can’t enter a new rage while fatigued or exhausted, but can otherwise enter a rage multiple times per day. If a barbarian falls unconscious, her rage immediately ends.")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian3.id, level: 1, table_description: "Rage")
+
+unchained_barbarian4 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Rage Powers", description: "As a barbarian gains levels, she learns to use her rage in new ways. At 2nd level and every 2 levels thereafter, the barbarian gains a rage power. A barbarian gains the benefits of rage powers only while raging. Some of these powers are always active during a rage, and others require the barbarian to take an action to use them. Unless otherwise noted, a barbarian cannot select an individual power more than once.
+
+Some of the following rage powers are stances. Activating a stance rage power is a move action. A barbarian can’t have more than one stance rage power active at a time. If she activates a stance rage power while another one is active, the current stance immediately ends. The stance can be intentionally ended at the beginning of the barbarian’s turn as a free action; otherwise, it lasts until the rage ends.")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian4.id, level: 2, table_description: "Rage Power")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian4.id, level: 4, table_description: "Rage Power")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian4.id, level: 6, table_description: "Rage Power")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian4.id, level: 8, table_description: "Rage Power")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian4.id, level: 10, table_description: "Rage Power")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian4.id, level: 12, table_description: "Rage Power")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian4.id, level: 14, table_description: "Rage Power")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian4.id, level: 16, table_description: "Rage Power")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian4.id, level: 18, table_description: "Rage Power")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian4.id, level: 20, table_description: "Rage Power")
+
+unchained_barbarian5 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Uncanny Dodge", description: "At 2nd level, a barbarian gains the ability to react to danger before her senses would normally allow her to do so. She cannot be caught flat-footed, nor does she lose her Dexterity bonus to AC if immobilized. A barbarian with this ability can still lose her Dexterity bonus to AC if an opponent successfully uses the feint action against her.
+
+If a barbarian already has uncanny dodge from a different class, she automatically gains improved uncanny dodge (see below) instead.")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian5.id, level: 2, table_description: "Uncanny Dodge")
+
+unchained_barbarian6 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Danger Sense", description: "At 3rd level, a barbarian gains a +1 bonus on Reflex saves to avoid traps and a +1 dodge bonus to AC against attacks by traps. In addition, she gains a +1 bonus on Perception checks to avoid being surprised by a foe. These bonuses increase by 1 every 3 levels thereafter (to a maximum of +6 at 18th level). This ability counts as trap sense for any feat or class prerequisite, and can be replaced by any archetype class feature that replaces trap sense. The bonuses gained from this ability stack with those gained from trap sense (if the barbarian has trap sense from another class).")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian6.id, level: 3, table_description: "Danger Sense +1")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian6.id, level: 6, table_description: "Danger Sense +2")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian6.id, level: 9, table_description: "Danger Sense +3")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian6.id, level: 12, table_description: "Danger Sense +4")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian6.id, level: 15, table_description: "Danger Sense +5")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian6.id, level: 18, table_description: "Danger Sense +6")
+
+unchained_barbarian7 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Improved Uncanny Dodge", description: "At 5th level, a barbarian can no longer be flanked. This defense denies enemies the ability to sneak attack the barbarian by flanking her, unless the attacker has at least 4 more levels in a class that provides sneak attack than the barbarian has barbarian levels.
+
+If the barbarian also has uncanny dodge from another class, levels from the classes that grant uncanny dodge stack to determine the minimum level required to flank the barbarian.")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian7.id, level: 5, table_description: "Improved Uncanny Dodge")
+
+unchained_barbarian8 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Damage Reduction", description: "At 7th level, a barbarian gains damage reduction. Each time the barbarian takes damage from a weapon or natural attack, subtract 1 from the damage taken. At 10th level and every 3 levels thereafter, this damage reduction rises by 1 point (up to 5 points at 19th level). Damage Reduction can reduce damage to 0, but not below 0.")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian8.id, level: 7, table_description: "Damage Reduction 1/-")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian8.id, level: 10, table_description: "Damage Reduction 2/-")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian8.id, level: 13, table_description: "Damage Reduction 3/-")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian8.id, level: 16, table_description: "Damage Reduction 4/-")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian8.id, level: 19, table_description: "Damage Reduction 5/-")
+
+unchained_barbarian9 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Greater Rage", description: "At 11th level, a barbarian’s bonus on melee attack rolls, melee damage rolls, thrown weapon damage rolls, and Will saves while raging increases to +3. In addition, the amount of temporary hit points gained when entering a rage increases to 3 per Hit Die.")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian9.id, level: 11, table_description: "Greater Rage")
+
+unchained_barbarian10 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Indomitable Will", description: "At 14th level, the barbarian gains a +4 bonus on Will saves to resist enchantment spells while raging. This bonus stacks with all other modifiers, including the morale bonus on Will saves she gains during her rage.")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian10.id, level: 14, table_description: "Indomitable Will")
+
+unchained_barbarian11 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Tireless Rage", description: "At 17th level, a barbarian is no longer fatigued at the end of her rage. If she enters a rage again within 1 minute of ending a rage, she doesn’t gain any temporary hit points from her rage.")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian11.id, level: 17, table_description: "Tireless Rage")
+
+unchained_barbarian12 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Mighty Rage", description: "At 20th level, a barbarian’s bonus on melee attack rolls, melee damage rolls, thrown weapon damage rolls, and Will saves while raging increases to +4. In addition, the amount of temporary hit points gained when entering a rage increases to 4 per Hit Die.")
+  FeatureLevel.create!(klass_feature_id: unchained_barbarian12.id, level: 20, table_description: "Mighty Rage")
+
+brawler1 = KlassFeature.create!(klass_id: brawler.id, name: "Weapon and Armor Proficiency", description: "A brawler is proficient with all simple weapons plus the handaxe, short sword, and weapons from the close fighter weapon group. She is proficient with light armor and shields (except tower shields).")
+  FeatureLevel.create!(klass_feature_id: brawler1.id, level: 1, table_description: "none")
+
+brawler2 = KlassFeature.create!(klass_id: brawler.id, name: "Brawler's Cunning", description: "If the brawler’s Intelligence score is less than 13, it counts as 13 for the purpose of meeting the prerequisites of combat feats.")
+  FeatureLevel.create!(klass_feature_id: brawler2.id, level: 1, table_description: "Brawler's Cunning")
+
+brawler3 = KlassFeature.create!(klass_id: brawler.id, name: "Martial Flexibility", description: "A brawler can take a move action to gain the benefit of a combat feat she doesn’t possess. This effect lasts for 1 minute. The brawler must meet all the feat’s prerequisites. She may use this ability a number of times per day equal to 3 + 1/2 her brawler level (minimum 1).
+
+The brawler can use this ability again before the duration expires in order to replace the previous combat feat with another choice.
+
+If a combat feat has a daily use limitation (such as Stunning Fist), any uses of that combat feat while using this ability count toward that feat’s daily limit.
+
+At 6th level, a brawler can use this ability to gain the benefit of two combat feats at the same time. She may select one feat as a swift action or two feats as a move action. She may use one of these feats to meet a prerequisite of the second feat; doing so means that she cannot replace a feat currently fulfilling another’s prerequisite without also replacing those feats that require it. Each individual feat selected counts toward her daily uses of this ability.
+
+At 10th level, a brawler can use this ability to gain the benefit of three combat feats at the same time. She may select one feat as a free action, two feats as a swift action, or three feats as a move action. She may use one of the feats to meet a prerequisite of the second and third feats, and use the second feat to meet a prerequisite of the third feat. Each individual feat selected counts toward her daily uses of this ability.
+
+At 12th level, a brawler can use this ability to gain the benefit of one combat feat as an immediate action or three combat feats as a swift action. Each individual feat selected counts toward her daily uses of this ability.
+
+At 20th level, a brawler can use this ability to gain the benefit of any number of combat feats as a swift action. Each feat selected counts toward her daily uses of this ability.
+
+")
+  FeatureLevel.create!(klass_feature_id: brawler3.id, level: 1, table_description: "Martial Flexibility")
+  FeatureLevel.create!(klass_feature_id: brawler3.id, level: 6, table_description: "Martial Flexibility (swift action)")
+  FeatureLevel.create!(klass_feature_id: brawler3.id, level: 10, table_description: "Martial Flexibility (free action)")
+  FeatureLevel.create!(klass_feature_id: brawler3.id, level: 12, table_description: "Martial Flexibility (immediate action)")
+  FeatureLevel.create!(klass_feature_id: brawler3.id, level: 20, table_description: "Martial Flexibility (any number)")
+
+brawler4 = KlassFeature.create!(klass_id: brawler.id, name: "Martial Training", description: "At 1st level, a brawler counts her total brawler levels as both fighter levels and monk levels for the purpose of qualifying for feats. She also counts as both a fighter and a monk for feats and magic items that have different effects based on whether the character has levels in those classes (such as Stunning Fist and a monk’s robe). This ability does not automatically grant feats normally granted to fighters and monks based on class level, namely Stunning Fist.")
+  FeatureLevel.create!(klass_feature_id: brawler4.id, level: 1, table_description: "Martial Training")
+
+brawler5 = KlassFeature.create!(klass_id: brawler.id, name: "Unarmed Strike", description: "At 1st level, a brawler gains Improved Unarmed Strike as a bonus feat. A brawler may attack with fists, elbows, knees, and feet. This means that a brawler may make unarmed strikes with her hands full. A brawler applies her full Strength modifier (not half ) on damage rolls for all her unarmed strikes.
+
+Usually, a brawler’s unarmed strikes deal lethal damage, but she can choose to deal nonlethal damage instead with no penalty on her attack roll. She has the same choice to deal lethal or nonlethal damage while grappling.
+
+A brawler’s unarmed strike is treated as both a manufactured weapon and a natural weapon for the purpose of spells and effects that modify either manufactured weapons or natural weapons.
+
+A brawler also deals more damage with her unarmed strikes than others, as shown on Table: Brawler. The unarmed damage values listed on that table are for Medium brawlers.")
+  FeatureLevel.create!(klass_feature_id: brawler5.id, level: 1, table_description: "Unarmed Strike 1d6")
+  FeatureLevel.create!(klass_feature_id: brawler5.id, level: 4, table_description: "Unarmed Strike 1d8")
+  FeatureLevel.create!(klass_feature_id: brawler5.id, level: 8, table_description: "Unarmed Strike 1d10")
+  FeatureLevel.create!(klass_feature_id: brawler5.id, level: 12, table_description: "Unarmed Strike 2d6")
+  FeatureLevel.create!(klass_feature_id: brawler5.id, level: 16, table_description: "Unarmed Strike 2d8")
+  FeatureLevel.create!(klass_feature_id: brawler5.id, level: 20, table_description: "Unarmed Strike 2d10")
+
+brawler6 = KlassFeature.create!(klass_id: brawler.id, name: "Bonus Combat Feats", description: "At 2nd level and every 3 levels thereafter, a brawler gains a bonus combat feat in addition to those gained from normal advancement. These bonus feats must be ones that affect or improve her defenses or melee attacks. The brawler must meet the prerequisites of the selected bonus combat feat.
+
+Upon reaching 5th level and every 3 levels thereafter, a brawler can choose to learn a new bonus combat feat in place of a bonus combat feat she has already learned. In effect, the brawler loses the bonus combat feat in exchange for the new one. The old feat cannot be one that was used as a prerequisite for another feat, prestige class, or other ability. A brawler can only change one feat at any given level, and must choose whether or not to swap the feat at the time she gains a new bonus combat feat for the level.")
+  FeatureLevel.create!(klass_feature_id: brawler6.id, level: 2, table_description: "Bonus Combat Feat")
+  FeatureLevel.create!(klass_feature_id: brawler6.id, level: 5, table_description: "Bonus Combat Feat")
+  FeatureLevel.create!(klass_feature_id: brawler6.id, level: 8, table_description: "Bonus Combat Feat")
+  FeatureLevel.create!(klass_feature_id: brawler6.id, level: 11, table_description: "Bonus Combat Feat")
+  FeatureLevel.create!(klass_feature_id: brawler6.id, level: 14, table_description: "Bonus Combat Feat")
+  FeatureLevel.create!(klass_feature_id: brawler6.id, level: 17, table_description: "Bonus Combat Feat")
+  FeatureLevel.create!(klass_feature_id: brawler6.id, level: 20, table_description: "Bonus Combat Feat")
+
+brawler7 = KlassFeature.create!(klass_id: brawler.id, name: "Brawler's Flurry", description: "Starting at 2nd level, a brawler can make a brawler’s flurry as a full-attack action. When doing so, a brawler has the Two-Weapon Fighting feat when attacking with any combination of unarmed strikes, weapons from the close fighter weapon group, or weapons with the “monk” special feature. She does not need to use two different weapons to use this ability.
+
+A brawler applies her full Strength modifier to her damage rolls for all attacks made with brawler’s flurry, whether the attacks are made with an off-hand weapon or a weapon wielded in both hands. A brawler can substitute disarm, sunder, and trip combat maneuvers for unarmed attacks as part of brawler’s flurry. A brawler with natural weapons can’t use such weapons as part of brawler’s flurry, nor can she make natural weapon attacks in addition to her brawler’s flurry attacks.
+
+At 8th level, the brawler gains use of the Improved Two-Weapon Fighting feat when using brawler’s flurry. At 15th level, she gains use of the Greater Two-Weapon Fighting feat when using brawler’s flurry.")
+  FeatureLevel.create!(klass_feature_id: brawler7.id, level: 2, table_description: "Brawler's Flurry (Two-Wepon Fighting)")
+  FeatureLevel.create!(klass_feature_id: brawler7.id, level: 8, table_description: "Brawler's Flurry (Improved Two-Wepon Fighting)")
+  FeatureLevel.create!(klass_feature_id: brawler7.id, level: 15, table_description: "Brawler's Flurry (Greater Two-Wepon Fighting)")
+
+brawler8 = KlassFeature.create!(klass_id: brawler.id, name: "Maneuver Training", description: "At 3rd level, a brawler can select one combat maneuver to receive additional training. She gains a +1 bonus on combat maneuver checks when performing that combat maneuver and a +1 bonus to her CMD when defending against that maneuver.
+
+At 7th level and every 4 levels thereafter, the brawler becomes further trained in another combat maneuver, gaining the above +1 bonus combat maneuver checks and to CMD. In addition, the bonuses granted by all previous maneuver training increase by 1 each. (For example, if a brawler chooses grapple at 3rd level and sunder at 7th level, her bonuses to grapple are +2 and bonuses to sunder are +1. If she then chooses bull rush upon reaching 11th level, her bonuses to grapple are +3, to sunder are +2, and to bull rush are +1.)")
+  FeatureLevel.create!(klass_feature_id: brawler8.id, level: 3, table_description: "Maneuver Training 1")
+  FeatureLevel.create!(klass_feature_id: brawler8.id, level: 7, table_description: "Maneuver Training 2")
+  FeatureLevel.create!(klass_feature_id: brawler8.id, level: 11, table_description: "Maneuver Training 3")
+  FeatureLevel.create!(klass_feature_id: brawler8.id, level: 15, table_description: "Maneuver Training 4")
+  FeatureLevel.create!(klass_feature_id: brawler8.id, level: 19, table_description: "Maneuver Training 5")
+
+brawler9 = KlassFeature.create!(klass_id: brawler.id, name: "AC Bonus", description: "At 4th level, when a brawler wears light or no armor, she gains a +1 dodge bonus to AC and CMD. This bonus increases by 1 at 9th, 13th, and 18th levels.
+
+These bonuses to AC apply against touch attacks. She loses these bonuses while immobilized or helpless, wearing medium or heavy armor, or carrying a medium or heavy load.")
+  FeatureLevel.create!(klass_feature_id: brawler9.id, level: 4, table_description: "AC Bonus +1")
+  FeatureLevel.create!(klass_feature_id: brawler9.id, level: 9, table_description: "AC Bonus +2")
+  FeatureLevel.create!(klass_feature_id: brawler9.id, level: 13, table_description: "AC Bonus +3")
+  FeatureLevel.create!(klass_feature_id: brawler9.id, level: 18, table_description: "AC Bonus +4")
+
+brawler10 = KlassFeature.create!(klass_id: brawler.id, name: "Knockout", description: "At 4th level, once per day a brawler can unleash a devastating attack that can instantly knock a target unconscious. She must announce this intent before making her attack roll. If the brawler hits and the target takes damage from the blow, the target must succeed at a Fortitude saving throw (DC = 10 + 1/2 the brawler’s level + the higher of the brawler’s Strength or Dexterity modifier) or fall unconscious for 1d6 rounds. Each round on its turn, the unconscious target may attempt a new saving throw to end the effect as a full-round action that does not provoke attacks of opportunity. Creatures immune to critical hits or nonlethal damage are immune to this ability. At 10th level, the brawler may use this ability twice per day; at 16th level, she may use it three times per day.")
+  FeatureLevel.create!(klass_feature_id: brawler10.id, level: 4, table_description: "Knockout 1/day")
+  FeatureLevel.create!(klass_feature_id: brawler10.id, level: 10, table_description: "Knockout 2/day")
+  FeatureLevel.create!(klass_feature_id: brawler10.id, level: 16, table_description: "Knockout 3/day")
+
+brawler11 = KlassFeature.create!(klass_id: brawler.id, name: "Brawler's Strike", description: "At 5th level, a brawler’s unarmed strikes are treated as magic weapons for the purpose of overcoming damage reduction. At 9th level, her unarmed attacks are also treated as cold iron and silver for the purpose of overcoming damage reduction. At 12th level, she chooses one alignment component: chaotic, evil, good, or lawful; her unarmed strikes also count as this alignment for the purpose of overcoming damage reduction. (This alignment component cannot be the opposite of the brawler’s actual alignment, such as a good brawler choosing evil strikes.) At 17th level, her unarmed attacks are also treated as adamantine weapons for the purpose of overcoming damage reduction and bypassing hardness.")
+  FeatureLevel.create!(klass_feature_id: brawler11.id, level: 5, table_description: "Brawler's Strike (magic)")
+  FeatureLevel.create!(klass_feature_id: brawler11.id, level: 9, table_description: "Brawler's Strike (cold iron and silver)")
+  FeatureLevel.create!(klass_feature_id: brawler11.id, level: 12, table_description: "Brawler's Strike (alignment)")
+  FeatureLevel.create!(klass_feature_id: brawler11.id, level: 17, table_description: "Brawler's Strike (adamantine)")
+
+brawler12 = KlassFeature.create!(klass_id: brawler.id, name: "Close Weapon Mastery", description: "At 5th level, a brawler’s damage with close weapons increases. When wielding a close weapon, she uses the unarmed strike damage of a brawler 4 levels lower instead of the base damage for that weapon (for example, a 5th-level Medium brawler wielding a punching dagger deals 1d6 points of damage instead of the weapon’s normal 1d4). If the weapon normally deals more damage than this, its damage is unchanged. This ability does not affect any other aspect of the weapon. The brawler can decide to use the weapon’s base damage instead of her adjusted unarmed strike damage—this must be declared before the attack roll is made.")
+  FeatureLevel.create!(klass_feature_id: brawler12.id, level: 5, table_description: "Close Weapon Mastery")
+
+brawler13 = KlassFeature.create!(klass_id: brawler.id, name: "Awesome Blow", description: "At 16th level, the brawler can as a standard action perform an awesome blow combat maneuver against a corporeal creature of her size or smaller. If the combat maneuver check succeeds, the opponent takes damage as if the brawler hit it with the close weapon she is wielding or an unarmed strike, it is knocked flying 10 feet in a direction of the brawler’s choice, and it falls prone. The brawler can only push the opponent in a straight line, and the opponent can’t move closer to the brawler than the square it started in. If an obstacle prevents the completion of the opponent’s move, the opponent and the obstacle each take 1d6 points of damage, and the opponent is knocked prone in the space adjacent to the obstacle. (Unlike the Awesome Blow monster feat, the brawler can be of any size to use this ability.)")
+  FeatureLevel.create!(klass_feature_id: brawler13.id, level: 16, table_description: "Awesome Blow")
+
+brawler14 = KlassFeature.create!(klass_id: brawler.id, name: "Improved Awesome Blow", description: "At 20th level, the brawler can use her awesome blow ability as an attack rather than as a standard action. She may use it on creatures of any size. If the maneuver roll is a natural 20, the brawler can immediately attempt to confirm the critical by rolling another combat maneuver check with all the same modifiers as the one just rolled; if the confirmation roll is successful, the attack deals double damage, and the damage from hitting an obstacle (if any) is also doubled.")
+  FeatureLevel.create!(klass_feature_id: brawler14.id, level: 20, table_description: "Improved Awesome Blow")
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
 
 
 # /////////////////////////////////////////
@@ -1315,8 +1632,21 @@ SkillsetSkill.create!(skillset_id: dmc.id, skill_id: swim.id)
 # /////////////////////////////////////////
 
 admin = User.create!(username: "jack", password: "ey", admin: true, skillset_id: dmc.id)
+cole = User.create!(username: "cole", password: "password", admin: false, skillset_id: dmc.id)
+jeff = User.create!(username: "jeff", password: "password", admin: false, skillset_id: dmc.id)
+michael = User.create!(username: "michael", password: "password", admin: false, skillset_id: dmc.id)
+clare = User.create!(username: "clare", password: "password", admin: false, skillset_id: dmc.id)
+iggy = User.create!(username: "iggy", password: "password", admin: false, skillset_id: dmc.id)
+jenn = User.create!(username: "jenn", password: "password", admin: false, skillset_id: dmc.id)
+sarah = User.create!(username: "sarah", password: "password", admin: false, skillset_id: dmc.id)
+scott = User.create!(username: "scott", password: "password", admin: false, skillset_id: dmc.id)
 
 
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Campaigns!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+current_campaign = Campaign.create!(name: '', date: '', dm_id: admin.id)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Class Skillset Skills!-*-*-*-----*-*->
@@ -1404,6 +1734,7 @@ ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id:
 ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: unc_reli.id)
 ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: unc_soci.id)
 ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: unc_spel.id)
+ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: inve.id)
 
 ClassSkillsetSkill.create!(klass_id: brawler.id, skillset_id: dmc.id, skill_id: acro.id)
 ClassSkillsetSkill.create!(klass_id: brawler.id, skillset_id: dmc.id, skill_id: clim.id)
@@ -1540,12 +1871,14 @@ close = SpellRange.create!(name: "Close", feet: 25, increase_per_level: 2.5, des
 medium = SpellRange.create!(name: "Medium", feet: 100, increase_per_level: 10, description: "The spell reaches as far as 100 feet + 10 feet per caster level.")
 long = SpellRange.create!(name: "Long", feet: 400, increase_per_level: 40, description: "The spell reaches as far as 400 feet + 40 feet per caster level.")
 unlimited = SpellRange.create!(name: "Unlimited", feet: 1000000, increase_per_level: 0, description: "The spell reaches anywhere on the same plane of existence.")
-sixty_feet = SpellRange.create!(name: "60 ft", feet: 60, increase_per_level: 0, description: "60 ft")
-ten_feet = SpellRange.create!(name: "10 ft", feet: 10, increase_per_level: 0, description: "10 ft")
-one_hundred_twenty_feet = SpellRange.create!(name: "120 ft", feet: 120, increase_per_level: 0, description: "120 ft")
 zero_feet = SpellRange.create!(name: "0 ft", feet: 0, increase_per_level: 0, description: "0 ft")
-twenty_feet = SpellRange.create!(name: "20 ft", feet: 20, increase_per_level: 0, description: "20 ft")
 five_feet = SpellRange.create!(name: "5 ft", feet: 5, increase_per_level: 0, description: "5 ft")
+ten_feet = SpellRange.create!(name: "10 ft", feet: 10, increase_per_level: 0, description: "10 ft")
+fifteen_feet = SpellRange.create!(name: "15 ft", feet: 15, increase_per_level: 0, description: "15 ft")
+twenty_feet = SpellRange.create!(name: "20 ft", feet: 20, increase_per_level: 0, description: "20 ft")
+thirty_feet = SpellRange.create!(name: "30 ft", feet: 30, increase_per_level: 0, description: "30 ft")
+sixty_feet = SpellRange.create!(name: "60 ft", feet: 60, increase_per_level: 0, description: "60 ft")
+one_hundred_twenty_feet = SpellRange.create!(name: "120 ft", feet: 120, increase_per_level: 0, description: "120 ft")
 
 
 # /////////////////////////////////////////
@@ -1573,6 +1906,27 @@ fire = Subschool.create!(name: "Fire", description: "Fire effects make the targe
 acid = Subschool.create!(name: "Acid", description: "Acid effects deal damage with chemical reactions rather than cold, electricity, heat, or vibration. This descriptor includes both actual acids and their chemical opposites, called bases or alkalines (such as ammonia and lye).")
 creation = Subschool.create!(name: "Creation", description: "A creation spell manipulates matter to create an object or creature in the place the spellcaster designates. If the spell has a duration other than instantaneous, magic holds the creation together, and when the spell ends, the conjured creature or object vanishes without a trace. If the spell has an instantaneous duration, the created object or creature is merely assembled through magic. It lasts indefinitely and does not depend on magic for its existence.")
 sonic = Subschool.create!(name: "Sonic", description: "Sonic effects transmit energy to the target through frequent oscillations of pressure through the air, water, or ground. Sounds that are too high or too low for the humanoid ear to detect can still transmit enough energy to cause harm, which means that these effects can even affect deafened creatures. Sound effects can cause hit point damage, deafness, dizziness, nausea, pain, shortness of breath, and temporary blindness, and can detect creatures using batlike echolocation.")
+water = Subschool.create!(name: 'Water', description: 'Spells that manipulate water or conjure creatures from water-dominant planes or with the water subtype should have the water descriptor.')
+air = Subschool.create!(name: 'Air', description: 'Spells that create air, manipulate air, or conjure creatures from air-dominant planes or with the air subtype should have the air descriptor.')
+polymorph = Subschool.create!(name: 'Polymorph', description:'a polymorph spell transforms your physical body to take on the shape of another creature. While these spells make you appear to be the creature, granting you a +10 bonus on Disguise skill checks, they do not grant you all of the abilities and powers of the creature. Each polymorph spell allows you to assume the form of a creature of a specific type, granting you a number of bonuses to your ability scores and a bonus to your natural armor. In addition, each polymorph spell can grant you a number of other benefits, including movement types, resistances, and senses. If the form you choose grants these benefits, or a greater ability of the same type, you gain the listed benefit. If the form grants a lesser ability of the same type, you gain the lesser ability instead. Your base speed changes to match that of the form you assume. If the form grants a swim or burrow speed, you maintain the ability to breathe if you are swimming or burrowing. The DC for any of these abilities equals your DC for the polymorph spell used to change you into that form.
+
+In addition to these benefits, you gain any of the natural attacks of the base creature, including proficiency in those attacks. These attacks are based on your base attack bonus, modified by your Strength or Dexterity as appropriate, and use your Strength modifier for determining damage bonuses.
+
+If a polymorph spell causes you to change size, apply the size modifiers appropriately, changing your armor class, attack bonus, Combat Maneuver Bonus, and Stealth skill modifiers. Your ability scores are not modified by this change unless noted by the spell.
+
+Unless otherwise noted, polymorph spells cannot be used to change into specific individuals. Although many of the fine details can be controlled, your appearance is always that of a generic member of that creature’s type. Polymorph spells cannot be used to assume the form of a creature with a template or an advanced version of a creature.
+
+When you cast a polymorph spell that changes you into a creature of the animal, dragon, elemental, magical beast, plant, or vermin type, all of your gear melds into your body. Items that provide constant bonuses and do not need to be activated continue to function while melded in this way (with the exception of armor and shield bonuses, which cease to function). Items that require activation cannot be used while you maintain that form. While in such a form, you cannot cast any spells that require material components (unless you have the Eschew Materials or Natural Spell feat), and can only cast spells with somatic or verbal components if the form you choose has the capability to make such movements or speak, such as a dragon. Other polymorph spells might be subject to this restriction as well, if they change you into a form that is unlike your original form (subject to GM discretion). If your new form does not cause your equipment to meld into your form, the equipment resizes to match your new size.
+
+While under the effects of a polymorph spell, you lose all extraordinary and supernatural abilities that depend on your original form (such as keen senses, scent, and darkvision), as well as any natural attacks and movement types possessed by your original form. You also lose any class features that depend upon form, but those that allow you to add features (such as sorcerers that can grow claws) still function. While most of these should be obvious, the GM is the final arbiter of what abilities depend on form and are lost when a new form is assumed. Your new form might restore a number of these abilities if they are possessed by the new form.
+
+You can only be affected by one polymorph spell at a time. If a new polymorph spell is cast on you (or you activate a polymorph effect, such as wild shape), you can decide whether or not to allow it to affect you, taking the place of the old spell. In addition, other spells that change your size have no effect on you while you are under the effects of a polymorph spell.
+
+If a polymorph spell is cast on a creature that is smaller than Small or larger than Medium, first adjust its ability scores to one of these two sizes using the following table before applying the bonuses granted by the polymorph spell.')
+cold = Subschool.create!(name: 'Cold', description: 'Cold effects deal damage by making the target colder, typically by blasting it with supernaturally cooled matter or energy. Cold effects also include those that create ice, sleet, or snow out of nothing. They can cause frostbite, numbness, coordination problems, slowed movement and reactions, stupor, and death.')
+death = Subschool.create!(name: 'Death', description: 'Spells with the death descriptor directly attack a creature’s life force to cause immediate death, or to draw on the power of a dead or dying creature. The death ward spell protects against death effects, and some creature types are immune to death effects.')
+poison = Subschool.create!(name: 'Poison', description: 'Poison effects use poison, venom, drugs, or similar toxic substances to disrupt and damage living creatures through chemical reactions. Technically, acids and poisons are both chemical reactions, but for the purpose of this game, they are categorized as different effects, with acids dealing hit point damage and poisons causing ability damage, ability drain, bleeding, confusion, convulsions, nausea, paralysis, reduced healing, suffocation, unconsciousness, or death. Creatures with resistance to poison (such as dwarves) apply that resistance to their saving throws and the effects of poison spells. Creatures with immunity are immune to poisonous aspects of poison spells, but not necessarily all effects of the spell (for example, a spell that creates a pit full of liquid poison could still trap or drown a poison-immune creature).')
+earth = Subschool.create!(name: 'Earth', description: 'Spells that manipulate earth or conjure creatures from earth-dominant planes or with the earth subtype should have the earth descriptor.')
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells!-*-*-*-----*-*->
@@ -2272,73 +2626,942 @@ This spell does not function underwater.", target: "cloud spreads in 20-ft. radi
   # obscuring_mist_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp63.id, spell_level: 1)
   # obscuring_mist_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp63.id, spell_level: 1)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+sp64 = Spell.create!(name: "Enlarge Person", description: "This spell causes instant growth of a humanoid creature, doubling its height and multiplying its weight by 8. This increase changes the creature’s size category to the next larger one. The target gains a +2 size bonus to Strength, a -2 size penalty to Dexterity (to a minimum of 1), and a -1 penalty on attack rolls and AC due to its increased size.
+
+A humanoid creature whose size increases to Large has a space of 10 feet and a natural reach of 10 feet. This spell does not change the target’s speed.
+
+If insufficient room is available for the desired growth, the creature attains the maximum possible size and may make a Strength check (using its increased Strength) to burst any enclosures in the process. If it fails, it is constrained without harm by the materials enclosing it–the spell cannot be used to crush a creature by increasing its size.
+
+All equipment worn or carried by a creature is similarly enlarged by the spell. Melee weapons affected by this spell deal more damage (see Table: Medium/Large Weapon Damage). Other magical properties are not affected by this spell. Any enlarged item that leaves an enlarged creature’s possession (including a projectile or thrown weapon) instantly returns to its normal size. This means that thrown and projectile weapons deal their normal damage. Magical properties of enlarged items are not increased by this spell.
+
+Multiple magical effects that increase size do not stack.
+
+Enlarge person counters and dispels reduce person .
+
+Enlarge person can be made permanent with a permanency spell.", target: "one humanoid creature", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp64.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp64.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp64.id, component_id: material.id, item: 'powdered iron')
+  # enlarge_person_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp64.id, spell_level: 1)
+  # enlarge_person_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp64.id, spell_level: 1)
+  # enlarge_person_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp64.id, spell_level: 1)
+  # enlarge_person_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp64.id, spell_level: 1)
+  enlarge_person_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp64.id, spell_level: 1)
+  enlarge_person_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp64.id, spell_level: 1)
+  enlarge_person_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp64.id, spell_level: 1)
+
+sp65 = Spell.create!(name: "Reduce Person", description: "This spell causes instant diminution of a humanoid creature, halving its height, length, and width and dividing its weight by 8. This decrease changes the creature’s size category to the next smaller one. The target gains a +2 size bonus to Dexterity, a -2 size penalty to Strength (to a minimum of 1), and a +1 bonus on attack rolls and AC due to its reduced size.
+
+A Small humanoid creature whose size decreases to Tiny has a space of 2-1/2 feet and a natural reach of 0 feet (meaning that it must enter an opponent’s square to attack). A Large humanoid creature whose size decreases to Medium has a space of 5 feet and a natural reach of 5 feet. This spell doesn’t change the target’s speed.
+
+All equipment worn or carried by a creature is similarly reduced by the spell.
+
+Melee and projectile weapons deal less damage. Other magical properties are not affected by this spell. Any reduced item that leaves the reduced creature’s possession (including a projectile or thrown weapon) instantly returns to its normal size. This means that thrown weapons deal their normal damage (projectiles deal damage based on the size of the weapon that fired them).
+
+Multiple magical effects that reduce size do not stack. Reduce person counters and dispels enlarge person.
+
+Reduce person can be made permanent with a permanency spell.", target: "one humanoid creature", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp65.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp65.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp65.id, component_id: material.id, item: 'a pinch of powdered iron')
+  # reduce_person_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp65.id, spell_level: 1)
+  # reduce_person_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp65.id, spell_level: 1)
+  # reduce_person_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp65.id, spell_level: 1)
+  # reduce_person_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp65.id, spell_level: 1)
+  reduce_person_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp65.id, spell_level: 1)
+  reduce_person_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp65.id, spell_level: 1)
+  reduce_person_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp65.id, spell_level: 1)
+
+sp66 = Spell.create!(name: "Shrink Item", description: "You are able to shrink one nonmagical item (if it is within the size limit) to 1/16 of its normal size in each dimension (to about 1/4,000 the original volume and mass). This change effectively reduces the object’s size by four categories. Optionally, you can also change its now shrunken composition to a clothlike one. Objects changed by a shrink item spell can be returned to normal composition and size merely by tossing them onto any solid surface or by a word of command from the original caster. Even a burning fire and its fuel can be shrunk by this spell. Restoring the shrunken object to its normal size and composition ends the spell.
+
+Shrink item can be made permanent with a permanency spell, in which case the affected object can be shrunk and expanded an indefinite number of times, but only by the original caster.", target: "one touched object of up to 2 cu. ft./level", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 day/level", time: 1, unit_of_time: "day", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp66.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp66.id, component_id: somatic.id, item: nil)
+  shrink_item_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp66.id, spell_level: 3)
+
+
+sp67 = Spell.create!(name: "Mass Enlarge Person", description: "This spell functions like enlarge person, except that it affects multiple creatures.", target: "one humanoid creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp67.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp67.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp67.id, component_id: material.id, item: 'powdered iron')
+  # enlarge_person_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp67.id, spell_level: 4)
+  # enlarge_person_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp67.id, spell_level: 4)
+  # enlarge_person_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp67.id, spell_level: 4)
+  enlarge_person_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp67.id, spell_level: 4)
+  enlarge_person_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp67.id, spell_level: 4)
+
+sp68 = Spell.create!(name: "Mass Reduce Person", description: "This spell functions like reduce person, except that it affects multiple creatures.", target: "one humanoid creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp68.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp68.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp68.id, component_id: material.id, item: 'a pinch of powdered iron')
+  # reduce_person_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp68.id, spell_level: 4)
+  # reduce_person_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp68.id, spell_level: 4)
+  # reduce_person_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp68.id, spell_level: 4)
+  reduce_person_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp68.id, spell_level: 4)
+  reduce_person_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp68.id, spell_level: 4)
+
+sp69 = Spell.create!(name: "Fireball", description: "A fireball spell generates a searing explosion of flame that detonates with a low roar and deals 1d6 points of fire damage per caster level (maximum 10d6) to every creature within the area. Unattended objects also take this damage. The explosion creates almost no pressure.
+
+You point your finger and determine the range (distance and height) at which the fireball is to burst. A glowing, pea-sized bead streaks from the pointing digit and, unless it impacts upon a material body or solid barrier prior to attaining the prescribed range, blossoms into the fireball at that point. An early impact results in an early detonation. If you attempt to send the bead through a narrow passage, such as through an arrow slit, you must “hit” the opening with a ranged touch attack, or else the bead strikes the barrier and detonates prematurely.
+
+The fireball sets fire to combustibles and damages objects in the area. It can melt metals with low melting points, such as lead, gold, copper, silver, and bronze. If the damage caused to an interposing barrier shatters or breaks through it, the fireball may continue beyond the barrier if the area permits; otherwise it stops at the barrier just as any other spell effect does.", target: "20-ft.-radius spread", saving_throw: "Reflex", spell_resistance: true, action_id: standard.id, spell_range_id: long.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp69.id, subschool_id: fire.id)
+  SpellComponent.create!(spell_id: sp69.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp69.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp69.id, component_id: material.id, item: 'a ball of bat guano and sulfur')
+  # fireball_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp69.id, spell_level: 3)
+  # fireball_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp69.id, spell_level: 3)
+  fireball_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp69.id, spell_level: 3)
+
+sp70 = Spell.create!(name: "Touch of the Sea", description: "You cause webs to grow between the target’s fingers and its feet to transform into flippers, granting a swim speed of 30 feet along with the standard +8 bonus on Swim checks and the ability to take 10 even if distracted or endangered. You can also use the run action while swimming, provided you swim in a straight line. This transformation causes any boots or gloves the target is wearing to meld into its form (although magic items with a continuous effect continue to function). This spell does not grant the target any ability to breathe water.", target: "creature touched", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp70.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp70.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp70.id, component_id: material.id, item: 'a fish scale')
+  # touch_of_the_sea_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp70.id, spell_level: 1)
+  # touch_of_the_sea_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp70.id, spell_level: 1)
+  # touch_of_the_sea_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp70.id, spell_level: 1)
+  touch_of_the_sea_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp70.id, spell_level: 1)
+
+sp71 = Spell.create!(name: "Hydraulic Push", description: "You call forth a quick blast of water that knocks over and soaks one creature or square. You can use this blast of water to make a bull rush against any one creature or object. Your CMB for this bull rush is equal to your caster level plus your Intelligence, Wisdom, or Charisma modifier, whichever is highest. This bull rush does not provoke an attack of opportunity. Hydraulic push extinguishes any normal fires on a creature, object, or in a single 5-foot square which it is targeted against. Magical fires are unaffected.", target: "one creature or object", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp71.id, subschool_id: water.id)
+  SpellComponent.create!(spell_id: sp71.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp71.id, component_id: somatic.id, item: nil)
+  # hydraulic_push_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp71.id, spell_level: 1)
+  # hydraulic_push_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp71.id, spell_level: 1)
+  # hydraulic_push_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp71.id, spell_level: 1)
+  # hydraulic_push_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp71.id, spell_level: 1)
+  hydraulic_push_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp71.id, spell_level: 1)
+
+sp72 = Spell.create!(name: "Gust of Wind", description: "This spell creates a severe blast of air (approximately 50 mph) that originates from you, affecting all creatures in its path. All flying creatures in this area take a -4 penalty on Fly skill checks. Tiny or smaller flying creatures must make a DC 25 Fly skill check or be blown back 2d6 x 10 feet and take 2d6 points of damage. Small or smaller flying creatures must make a DC 20 Fly skill check to move against the force of the wind.
+
+A Tiny or smaller creature on the ground is knocked down and rolled 1d4 x 10 feet, taking 1d4 points of nonlethal damage per 10 feet.
+
+Small creatures are knocked prone by the force of the wind.
+
+Medium or smaller creatures are unable to move forward against the force of the wind unless they succeed at a DC 15 Strength check.
+
+Large or larger creatures may move normally within a gust of wind effect.
+
+This spell can’t move a creature beyond the limit of it’s range.
+
+Any creature, regardless of size, takes a -4 penalty on ranged attacks and Perception checks in the area of a gust of wind.
+
+The force of the gust automatically extinguishes candles, torches, and similar unprotected flames. It causes protected flames, such as those in lanterns, to dance wildly and has a 50% chance to extinguish those lights.
+
+In addition to the effects noted, a gust of wind can do anything that a sudden blast of wind would be expected to do. It can create a stinging spray of sand or dust, fan a large fire, overturn delicate awnings or hangings, heel over a small boat, and blow gases or vapors to the edge of its range.
+
+Gust of wind can be made permanent with a permanency spell.", target: "line-shaped gust of severe wind emanating out from you to the extreme of the range", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: sixty_feet.id, magic_school_id: evocation.id, duration: "1 round", time: 1, unit_of_time: "round", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp72.id, subschool_id: air.id)
+  SpellComponent.create!(spell_id: sp72.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp72.id, component_id: somatic.id, item: nil)
+  # gust_of_wind_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp72.id, spell_level: 2)
+  # gust_of_wind_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp72.id, spell_level: 2)
+  # gust_of_wind_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp72.id, spell_level: 2)
+  gust_of_wind_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp72.id, spell_level: 2)
+
+sp73 = Spell.create!(name: "Slipstream", description: "You create a low-cresting wave of water that carries the target along the surface of water or the ground. When moving across level ground, the target’s speed increases by 10 feet.
+
+If going downhill, speed increases by 20 feet instead, but slipstream provides no movement bonus when going uphill.
+
+While swimming, the slipstream increases the target’s swim speed by 20 feet-if the target does not have a swim speed, this spell grants a swim speed of 20 ft.", target: "creature touched", saving_throw: "Reflex", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "10 minutes/level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp73.id, subschool_id: creation.id)
+  SpellSubschool.create!(spell_id: sp73.id, subschool_id: water.id)
+  SpellComponent.create!(spell_id: sp73.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp73.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp73.id, component_id: material.id, item: 'a few drops of oil and water')
+  SpellComponent.create!(spell_id: sp73.id, component_id: divine_focus.id, item: 'a few drops of oil and water')
+  # slipstream_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp73.id, spell_level: 2)
+  # slipstream_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp73.id, spell_level: 2)
+  # slipstream_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp73.id, spell_level: 2)
+  slipstream_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp73.id, spell_level: 2)
+
+sp74 = Spell.create!(name: "Augury", description: "An augury can tell you whether a particular action will bring good or bad results for you in the immediate future.
+
+The base chance for receiving a meaningful reply is 70% + 1% per caster level, to a maximum of 90%; this roll is made secretly. A question may be so straightforward that a successful result is automatic, or so vague as to have no chance of success. If the augury succeeds, you get one of four results:
+
+Weal (if the action will probably bring good results).
+Woe (for bad results).
+Weal and woe (for both).
+Nothing (for actions that don’t have especially good or bad results).
+If the spell fails, you get the “nothing” result. A cleric who gets the “nothing” result has no way to tell whether it was the consequence of a failed or successful augury.
+
+The augury can see into the future only about half an hour, so anything that might happen after that does not affect the result. Thus, the result might not take into account the long-term consequences of a contemplated action. All auguries cast by the same person about the same topic use the same die result as the first casting.", target: "you", saving_throw: "none", spell_resistance: false, action_id: one_minute.id, spell_range_id: personal.id, magic_school_id: divination.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp74.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp74.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp74.id, component_id: material.id, item: 'incense worth at least 25 gp')
+  SpellComponent.create!(spell_id: sp74.id, component_id: focus.id, item: 'a set of marked sticks or bones worth at least 25 gp')
+  augury_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp74.id, spell_level: 2)
+  # augury_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp74.id, spell_level: 2)
+  # augury_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp74.id, spell_level: 2)
+  augury_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp74.id, spell_level: 2)
+
+sp75 = Spell.create!(name: "Endure Elements", description: "A creature protected by endure elements suffers no harm from being in a hot or cold environment. It can exist comfortably in conditions between -50 and 140 degrees Fahrenheit (-45 and 60 degrees Celsius) without having to make Fortitude saves. The creature’s equipment is likewise protected.
+
+Endure elements doesn’t provide any protection from fire or cold damage, nor does it protect against other environmental hazards such as smoke, lack of air, and so forth.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: abjuration.id, duration: "24 hours", time: 24, unit_of_time: "hour", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp75.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp75.id, component_id: somatic.id, item: nil)
+  # endure_elements_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp75.id, spell_level: 1)
+  endure_elements_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_paladin = KlassSpell.create!(klass_id: paladin.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp75.id, spell_level: 1)
+  # endure_elements_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp75.id, spell_level: 1)
+  endure_elements_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp75.id, spell_level: 1)
+  endure_elements_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp75.id, spell_level: 1)
+
+sp76 = Spell.create!(name: "Alter Self", description: "When you cast this spell, you can assume the form of any Small or Medium creature of the humanoid type. If the form you assume has any of the following abilities, you gain the listed ability: darkvision 60 feet, low-light vision, scent, and swim 30 feet.
+
+Small creature: If the form you take is that of a Small humanoid, you gain a +2 size bonus to your Dexterity.
+
+Medium creature: If the form you take is that of a Medium humanoid, you gain a +2 size bonus to your Strength.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp76.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp76.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp76.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp76.id, component_id: material.id, item: 'a piece of the creature whose form you plan to assume')
+  # alter_self_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp76.id, spell_level: 2)
+  alter_self_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp76.id, spell_level: 2)
+  # alter_self_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp76.id, spell_level: 2)
+  # alter_self_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp76.id, spell_level: 2)
+  # alter_self_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp76.id, spell_level: 2)
+  alter_self_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp76.id, spell_level: 2)
+  alter_self_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp76.id, spell_level: 2)
+
+sp77 = Spell.create!(name: "Air Bubble", description: "Air bubble creates a small pocket of breathable air that surrounds the touched creature’s head or the touched object. The air bubble allows the creature touched to breathe underwater or in similar airless environments, or protects the object touched from water damage. A firearm within an air bubble can be loaded—assuming the black powder comes from a powder horn, a cartridge, or some other airtight protective device—and fired. When shooting such a firearm underwater, the shot still takes the standard –2 penalty on attack rolls for every 5 feet of water the bullet passes through, in addition to normal penalties due to range. If a firearm within the air bubble explodes, the explosion occurs normally.", target: "one creature or one object no larger than a Large two-handed weapon", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp77.id, subschool_id: creation.id)
+  SpellComponent.create!(spell_id: sp77.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp77.id, component_id: material.id, item: 'a small bladder filled with air')
+  SpellComponent.create!(spell_id: sp77.id, component_id: divine_focus.id, item: 'a small bladder filled with air')
+  air_bubble_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp77.id, spell_level: 1)
+  # air_bubble_driud = KlassSpell.create!(klass_id: driud.id, spell_id: sp77.id, spell_level: 1)
+  # air_bubble_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp77.id, spell_level: 1)
+  # air_bubble_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp77.id, spell_level: 1)
+  air_bubble_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp77.id, spell_level: 1)
+  air_bubble_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp77.id, spell_level: 1)
+
+sp78 = Spell.create!(name: "Enhance Water", description: "This spell transforms water into an alcoholic beverage, typically ale, beer, mead, or wine. The alcohol is of middling quality but perfectly drinkable. The spell also serves to remove poisons, diseases, minerals, and other toxins from the water as it transforms. The more contaminants that exist in the water, the darker the ale or the more full-bodied the wine becomes. The beverage’s alcohol content is not affected by the presence or absence of contaminants.
+
+This spell does not work on unholy water, potions, or other liquids with magical power.", target: "1 pint of water/level", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp78.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp78.id, component_id: somatic.id, item: nil)
+  enhance_water_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp78.id, spell_level: 1)
+  enhance_water_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp78.id, spell_level: 1)
+  # enhance_water_paladin = KlassSpell.create!(klass_id: paladin.id, spell_id: sp78.id, spell_level: 1)
+
+sp79 = Spell.create!(name: "Fabricate Disguise", description: "You change outfits or create a disguise out of materials you are wearing or carrying (potentially including a disguise kit). The spell can’t alter your body or change the structure of objects, but can style wigs, apply makeup or piercings, and otherwise make use of tools to make superficial changes. In an instant, you have a non-magical disguise or clothing change. Attempt a Disguise check to determine the effectiveness of the disguise.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp79.id, component_id: somatic.id, item: nil)
+  # fabricate_disguise_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp79.id, spell_level: 1)
+  # fabricate_disguise_antipaladin = KlassSpell.create!(klass_id: antipaladin.id, spell_id: sp79.id, spell_level: 1)
+  fabricate_disguise_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp79.id, spell_level: 1)
+  # fabricate_disguise_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp79.id, spell_level: 1)
+  # fabricate_disguise_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp79.id, spell_level: 1)
+  fabricate_disguise_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp79.id, spell_level: 1)
+  fabricate_disguise_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp79.id, spell_level: 1)
+
+sp80 = Spell.create!(name: "Charm Monster", description: "This spell functions like charm person, except that the effect is not restricted by creature type or size.", target: "one living creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: enchantment.id, duration: "1 day/level", time: 1, unit_of_time: "day", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp80.id, subschool_id: charm.id)
+  SpellSubschool.create!(spell_id: sp80.id, subschool_id: mind_affecting.id)
+  SpellComponent.create!(spell_id: sp80.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp80.id, component_id: somatic.id, item: nil)
+  charm_monster_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp80.id, spell_level: 3)
+  charm_monster_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp80.id, spell_level: 4)
+  charm_monster_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp80.id, spell_level: 4)
+  charm_monster_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp80.id, spell_level: 4)
+
+sp81 = Spell.create!(name: "Gentle Repose", description: "You preserve the remains of a dead creature so that they do not decay. Doing so effectively extends the time limit on raising that creature from the dead (see raise dead). Days spent under the influence of this spell don’t count against the time limit. Additionally, this spell makes transporting a slain (and thus decaying) comrade less unpleasant.
+
+The spell also works on severed body parts and the like.", target: "corpse touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: necromancy.id, duration: "1 day/level", time: 1, unit_of_time: "day", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp81.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp81.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp81.id, component_id: material.id, item: 'salt and a copper piece for each of the corpse’s eyes')
+  SpellComponent.create!(spell_id: sp81.id, component_id: divine_focus.id, item: 'salt and a copper piece for each of the corpse’s eyes')
+  gentle_repose_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp81.id, spell_level: 2)
+  # gentle_repose_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp81.id, spell_level: 2)
+  gentle_repose_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp81.id, spell_level: 2)
+
+sp82 = Spell.create!(name: "Vitriolic Mist", description: "This functions as fire shield, except it wreathes you in yellow or green acidic mist instead of hot or cold flames. The spell deals acid damage to attackers and protects you against acid damage. This spell does not shed light.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: evocation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp82.id, subschool_id: acid.id)
+  SpellComponent.create!(spell_id: sp82.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp82.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp82.id, component_id: material.id, item: 'a piece of lemon rind')
+  # vitriolic_mist_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp82.id, spell_level: 4)
+  # vitriolic_mist_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp82.id, spell_level: 4)
+  vitriolic_mist_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp82.id, spell_level: 4)
+  vitriolic_mist_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp82.id, spell_level: 4)
+
+sp83 = Spell.create!(name: "Fire Shield", description: "This spell wreathes you in flame and causes damage to each creature that attacks you in melee. The flames also protect you from either cold-based or fire-based attacks, depending on if you choose cool or warm flames for your fire shield.
+
+Any creature striking you with its body or a hand-held weapon deals normal damage, but at the same time the attacker takes 1d6 points of damage + 1 point per caster level (maximum +15). This damage is either cold damage (if you choose a chill shield) or fire damage (if you choose a warm shield). If the attacker has spell resistance, it applies to this effect. Creatures wielding melee weapons with reach are not subject to this damage if they attack you.
+
+When casting this spell, you appear to immolate yourself, but the flames are thin and wispy, increasing the light level within 10 feet by one step, up to normal light. The color of the flames is blue or green if the chill shield is cast, violet or red if the warm shield is employed. The special powers of each version are as follows.
+
+Chill Shield: The flames are cool to the touch. You take only half damage from fire-based attacks. If such an attack allows a Reflex save for half damage, you take no damage on a successful saving throw.
+
+Warm Shield: The flames are warm to the touch. You take only half damage from cold-based attacks. If such an attack allows a Reflex save for half damage, you take no damage on a successful saving throw.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: evocation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp83.id, subschool_id: fire.id)
+  SpellSubschool.create!(spell_id: sp83.id, subschool_id: cold.id)
+  SpellComponent.create!(spell_id: sp83.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp83.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp83.id, component_id: material.id, item: 'phosphorus for the warm shield; a firefly or glowworm for the chill shield')
+  # fire_shield_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp83.id, spell_level: 4)
+  # fire_shield_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp83.id, spell_level: 4)
+  # fire_shield_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp83.id, spell_level: 4)
+  fire_shield_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp83.id, spell_level: 4)
+  fire_shield_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp83.id, spell_level: 4)
+
+sp84 = Spell.create!(name: "Minor Creation", description: "You create a non-magical, unattended object of nonliving vegetable matter. The volume of the item created cannot exceed 1 cubic foot per caster level. You must succeed on an appropriate Craft skill check to make a complex item.
+
+Attempting to use any created object as a material component causes the spell to fail.", target: "unattended, non-magical object of nonliving plant matter, up to 1 cu. ft./level", saving_throw: "none", spell_resistance: false, action_id: one_minute.id, spell_range_id: zero_feet.id, magic_school_id: conjuration.id, duration: "1 hour/level", time: 1, unit_of_time: "hour", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp84.id, subschool_id: creation.id)
+  SpellComponent.create!(spell_id: sp84.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp84.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp84.id, component_id: material.id, item: 'a tiny piece of matter of the same sort of item you plan to create with minor creation')
+  minor_creation_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp84.id, spell_level: 4)
+  minor_creation_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp84.id, spell_level: 3)
+  minor_creation_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp84.id, spell_level: 4)
+
+sp85 = Spell.create!(name: "Major Creation", description: "This spell functions like minor creation, except that you can also create an object of mineral nature: stone, crystal, metal, or the like. The duration of the created item varies with its relative hardness and rarity, as indicated on the following table.
+
+Hardness and Rarity Examples	Duration
+Vegetable matter	2 hr./level
+Stone, crystal, base metals	1 hr./level
+Precious metals	20 min./level
+Gems	10 min./level
+Rare metal*	1 round/level", target: "unattended, non-magical object, up to 1 cu. ft./level", saving_throw: "none", spell_resistance: false, action_id: ten.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "varies", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp85.id, subschool_id: creation.id)
+  SpellComponent.create!(spell_id: sp85.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp85.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp85.id, component_id: material.id, item: 'a tiny piece of matter of the same sort of item you plan to create with minor creation')
+  major_creation_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp85.id, spell_level: 5)
+  major_creation_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp85.id, spell_level: 4)
+  major_creation_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp85.id, spell_level: 5)
+
+sp86 = Spell.create!(name: "Acid Fog", description: "Acid fog creates a billowing mass of misty vapors like the solid fog spell. In addition to slowing down creatures and obscuring sight, this spell’s vapors are highly acidic. Each round on your turn, starting when you cast the spell, the fog deals 2d6 points of acid damage to each creature and object within it.", target: "fog spreads in 20-ft. radius, 20 ft. high", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp86.id, subschool_id: creation.id)
+  SpellComponent.create!(spell_id: sp86.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp86.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp86.id, component_id: material.id, item: 'powdered peas and an animal hoof')
+  # acid_fog_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp86.id, spell_level: 6)
+  acid_fog_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp86.id, spell_level: 6)
+  acid_fog_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp86.id, spell_level: 6)
+
+sp87 = Spell.create!(name: "Solid Fog", description: "This spell functions like fog cloud, but in addition to obscuring sight, the solid fog is so thick that it impedes movement. Creatures moving through a solid fog move at half their normal speed and take a -2 penalty on all melee attack and melee damage rolls. The vapors prevent effective ranged weapon attacks (except for magic rays and the like). A creature or object that falls into solid fog is slowed so that each 10 feet of vapor that it passes through reduces the falling damage by 1d6. A creature cannot take a 5-foot-step while in solid fog. Solid fog, and effects that work like solid fog, do not stack with each other in terms of slowed movement and attack penalties.
+
+Unlike normal fog, only a severe wind (31+ mph) disperses these vapors, and it does so in 1 round.
+
+Solid fog can be made permanent with a permanency spell. A permanent solid fog dispersed by wind reforms in 10 minutes.", target: "fog spreads in 20-ft. radius", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: conjuration.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp87.id, subschool_id: creation.id)
+  SpellComponent.create!(spell_id: sp87.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp87.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp87.id, component_id: material.id, item: 'powdered peas and an animal hoof')
+  # solid_fog_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp87.id, spell_level: 4)
+  # solid_fog_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp87.id, spell_level: 4)
+  solid_fog_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp87.id, spell_level: 4)
+  solid_fog_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp87.id, spell_level: 4)
+  solid_fog_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp87.id, spell_level: 4)
+
+sp88 = Spell.create!(name: "Fog Cloud", description: "A bank of fog billows out from the point you designate. The fog obscures all sight, including darkvision, beyond 5 feet. A creature within 5 feet has concealment (attacks have a 20% miss chance). Creatures farther away have total concealment (50% miss chance, and the attacker can’t use sight to locate the target).
+
+A moderate wind (11+ mph) disperses the fog in 4 rounds; a strong wind (21+ mph) disperses the fog in 1 round.
+
+The spell does not function underwater.", target: "fog spreads in 20-ft. radius", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: conjuration.id, duration: "10 minutes/level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp88.id, subschool_id: creation.id)
+  SpellComponent.create!(spell_id: sp88.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp88.id, component_id: somatic.id, item: nil)
+  # fog_cloud_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp88.id, spell_level: 2)
+  # fog_cloud_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp88.id, spell_level: 2)
+  # fog_cloud_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp88.id, spell_level: 2)
+  fog_cloud_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp88.id, spell_level: 2)
+  fog_cloud_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp88.id, spell_level: 2)
+  fog_cloud_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp88.id, spell_level: 2)
+
+sp89 = Spell.create!(name: "Caustic Eruption", description: "Acid erupts from your space in all directions, causing 1d6 points of damage per caster level (maximum 20d6) to creatures and unattended objects in the area. On your turn in each of the next 2 rounds, creatures and objects that failed their saves against the initial burst take an additional 1d6 points of acid damage per 2 caster levels (maximum 10d6) unless the acid is neutralized, dispelled, or washed away.", target: "30-ft.-radius burst", saving_throw: "Reflex", spell_resistance: false, action_id: standard.id, spell_range_id: thirty_feet.id, magic_school_id: conjuration.id, duration: "instantaneous and 2 rounds", time: 2, unit_of_time: "round", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp89.id, subschool_id: creation.id)
+  SpellSubschool.create!(spell_id: sp89.id, subschool_id: acid.id)
+  SpellComponent.create!(spell_id: sp89.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp89.id, component_id: somatic.id, item: nil)
+  caustic_eruption_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp89.id, spell_level: 7)
+
+sp90 = Spell.create!(name: "Horrid Wilting", description: "This spell evaporates moisture from the body of each subject living creature, causing flesh to wither and crack and crumble to dust. This deals 1d6 points of damage per caster level (maximum 20d6). This spell is especially devastating to water elementals and plant creatures, which instead take 1d8 points of damage per caster level (maximum 20d8).", target: "living creatures, no two of which can be more than 60 ft. apart", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: long.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp90.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp90.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp90.id, component_id: material.id, item: 'a bit of sponge')
+  SpellComponent.create!(spell_id: sp90.id, component_id: divine_focus.id, item: 'a bit of sponge')
+  horrid_wilting_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp90.id, spell_level: 8)
+  # horrid_wilting_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp90.id, spell_level: 8)
+  horrid_wilting_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp90.id, spell_level: 8)
+
+sp91 = Spell.create!(name: "Wail of the Banshee", description: "When you cast this spell, you emit a terrible, soul-chilling scream that possibly kills creatures that hear it (except for yourself). The spell affects up to one creature per caster level, inflicting 10 points of damage per caster level. Creatures closest to the point of origin are affected first.", target: "one living creature/level within a 40-ft.-radius spread", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp91.id, subschool_id: death.id)
+  SpellSubschool.create!(spell_id: sp91.id, subschool_id: sonic.id)
+  SpellComponent.create!(spell_id: sp91.id, component_id: verbal.id, item: nil)
+  # wail_of_the_banshee_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp91.id, spell_level: 9)
+  wail_of_the_banshee_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp91.id, spell_level: 9)
+  wail_of_the_banshee_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp91.id, spell_level: 9)
+
+sp92 = Spell.create!(name: "Arcane Mark", description: "This spell allows you to inscribe your personal rune or mark, which can consist of no more than six characters. The writing can be visible or invisible. An arcane mark spell enables you to etch the rune upon any substance without harm to the material upon which it is placed. If an invisible mark is made, a detect magic spell causes it to glow and be visible, though not necessarily understandable.
+
+See invisibility, true seeing, a gem of seeing, or a robe of eyes likewise allows the user to see an invisible arcane mark. A read magic spell reveals the words, if any. The mark cannot be dispelled, but it can be removed by the caster or by an erase spell.
+
+If an arcane mark is placed on a living being, the effect gradually fades in about a month.
+
+Arcane mark must be cast on an object prior to casting instant summons on the same object (see that spell description for details).", target: "one personal rune or mark, all of which must fit within 1 sq. ft.", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: universal.id, duration: "permanent", time: 1000000, unit_of_time: "year", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp92.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp92.id, component_id: somatic.id, item: nil)
+  # arcane_mark_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp92.id, spell_level: 0)
+  # arcane_mark_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp92.id, spell_level: 0)
+  # arcane_mark_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp92.id, spell_level: 0)
+  arcane_mark_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp92.id, spell_level: 0)
+  arcane_mark_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp92.id, spell_level: 0)
+  arcane_mark_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp92.id, spell_level: 0)
+
+sp93 = Spell.create!(name: "Bleed", description: "You cause a living creature that is below 0 hit points but stabilized to resume dying. Upon casting this spell, you target a living creature that has -1 or fewer hit points. That creature begins dying, taking 1 point of damage per round. The creature can be stabilized later normally. This spell causes a creature that is dying to take 1 point of damage.", target: "one living creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp93.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp93.id, component_id: somatic.id, item: nil)
+  bleed_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp93.id, spell_level: 0)
+  # bleed_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp93.id, spell_level: 0)
+  # bleed_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp93.id, spell_level: 0)
+  # bleed_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp93.id, spell_level: 0)
+  bleed_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp93.id, spell_level: 0)
+  bleed_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp93.id, spell_level: 0)
+
+sp94 = Spell.create!(name: "Daze", description: "This spell clouds the mind of a humanoid creature with 4 or fewer Hit Dice so that it takes no actions. Humanoids of 5 or more HD are not affected. A dazed subject is not stunned, so attackers get no special advantage against it. After a creature has been dazed by this spell, it is immune to the effects of this spell for 1 minute.", target: "one humanoid creature of 4 HD or less", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: enchantment.id, duration: "1 round", time: 1, unit_of_time: "round", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp94.id, subschool_id: compulsion.id)
+  SpellSubschool.create!(spell_id: sp94.id, subschool_id: mind_affecting.id)
+  SpellComponent.create!(spell_id: sp94.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp94.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp94.id, component_id: material.id, item: 'a pinch of wool or similar substance')
+  daze_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp94.id, spell_level: 0)
+  # daze_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp94.id, spell_level: 0)
+  # daze_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp94.id, spell_level: 0)
+  # daze_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp94.id, spell_level: 0)
+  # daze_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp94.id, spell_level: 0)
+  daze_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp94.id, spell_level: 0)
+  daze_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp94.id, spell_level: 0)
+  daze_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp94.id, spell_level: 0)
+
+sp95 = Spell.create!(name: "Detect Poison", description: "You determine whether a creature, object, or area has been poisoned or is poisonous. You can determine the exact type of poison with a DC 20 Wisdom check. A character with the Craft (alchemy) skill may try a DC 20 Craft (alchemy) check if the Wisdom check fails, or may try the Craft (alchemy) check prior to the Wisdom check. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.", target: "one creature, one object, or a 5-ft. cube", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: divination.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp95.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp95.id, component_id: somatic.id, item: nil)
+  # detect_poison_antipaladin = KlassSpell.create!(klass_id: antipaladin.id, spell_id: sp95.id, spell_level: 1)
+  # detect_poison_paladin = KlassSpell.create!(klass_id: paladin.id, spell_id: sp95.id, spell_level: 1)
+  # detect_poison_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp95.id, spell_level: 1)
+  detect_poison_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp95.id, spell_level: 0)
+  # detect_poison_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp95.id, spell_level: 0)
+  # detect_poison_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp95.id, spell_level: 0)
+  # detect_poison_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp95.id, spell_level: 0)
+  # detect_poison_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp95.id, spell_level: 0)
+  detect_poison_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp95.id, spell_level: 0)
+  detect_poison_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp95.id, spell_level: 0)
+
+sp96 = Spell.create!(name: "Guidance", description: "This spell imbues the subject with a touch of divine guidance.
+
+The creature gets a +1 competence bonus on a single attack roll, saving throw, or skill check. It must choose to use the bonus before making the roll to which it applies.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: divination.id, duration: "1 minute or until discharged", time: 1, unit_of_time: "minute", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp96.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp96.id, component_id: somatic.id, item: nil)
+  guidance_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp96.id, spell_level: 0)
+  # guidance_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp96.id, spell_level: 0)
+  # guidance_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp96.id, spell_level: 0)
+  guidance_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp96.id, spell_level: 0)
+  guidance_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp96.id, spell_level: 0)
+
+sp97 = Spell.create!(name: "Putrefy Food and Drink", description: "This spell causes otherwise edible food to rot and spoil instantly, and water and other liquids to become brackish and undrinkable. Holy water and similar food and drink of significance are spoiled by putrefy food and drink, but the spell has no effect on creatures of any type, nor upon unholy water. Water weighs about 8 pounds per gallon. One cubic foot of water contains roughly 8 gallons and weighs about 60 pounds.
+
+Although potions and elixirs are unaffected by the normal use of the spell, you can instead choose to target a single such object with this spell, destroying it if it fails a Saving Throw.", target: "1 cu. ft./level of food and water or one potion", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: ten_feet.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp97.id, subschool_id: poison.id)
+  SpellComponent.create!(spell_id: sp97.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp97.id, component_id: somatic.id, item: nil)
+  putrefy_food_and_drink_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp97.id, spell_level: 0)
+
+sp98 = Spell.create!(name: "Spark", description: "You can make an unattended Fine flammable object catch on fire. This works as if you were using flint and steel except that you can use spark in any sort of weather and it takes much less time to actually ignite an object. NOTE: verbal OR somatic component", target: "one Fine object", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp98.id, subschool_id: fire.id)
+  SpellComponent.create!(spell_id: sp98.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp98.id, component_id: somatic.id, item: nil)
+  spark_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp98.id, spell_level: 0)
+  spark_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp98.id, spell_level: 0)
+  # spark_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp98.id, spell_level: 0)
+  # spark_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp98.id, spell_level: 0)
+  spark_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp98.id, spell_level: 0)
+  spark_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp98.id, spell_level: 0)
+
+sp99 = Spell.create!(name: "Stabilize", description: "Upon casting this spell, you target a living creature that has –1 or fewer hit points. That creature is automatically stabilized and does not lose any further hit points. If the creature later takes damage, it continues dying normally.", target: "one living creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp99.id, subschool_id: healing.id)
+  SpellComponent.create!(spell_id: sp99.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp99.id, component_id: somatic.id, item: nil)
+  stabilize_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp99.id, spell_level: 0)
+  # stabilize_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp99.id, spell_level: 0)
+  # stabilize_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp99.id, spell_level: 0)
+  # stabilize_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp99.id, spell_level: 0)
+  stabilize_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp99.id, spell_level: 0)
+
+sp100 = Spell.create!(name: "Magic Missile", description: "A missile of magical energy darts forth from your fingertip and strikes its target, dealing 1d4+1 points of force damage.
+
+The missile strikes unerringly, even if the target is in melee combat, so long as it has less than total cover or total concealment. Specific parts of a creature can’t be singled out. Objects are not damaged by the spell.
+
+For every two caster levels beyond 1st, you gain an additional missile – two at 3rd level, three at 5th, four at 7th, and the maximum of five missiles at 9th level or higher. If you shoot multiple missiles, you can have them strike a single creature or several creatures. A single missile can strike only one creature. You must designate targets before you check for spell resistance or roll damage.", target: "up to five creatures, no two of which can be more than 15 ft. apart", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: medium.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp100.id, subschool_id: force.id)
+  SpellComponent.create!(spell_id: sp100.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp100.id, component_id: somatic.id, item: nil)
+  # magic_missile_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp100.id, spell_level: 1)
+  # magic_missile_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp100.id, spell_level: 1)
+  # magic_missile_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp100.id, spell_level: 1)
+  magic_missile_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp100.id, spell_level: 1)
+
+sp101 = Spell.create!(name: "Touch of Fatigue", description: "You channel negative energy through your touch, fatiguing the target. You must succeed on a touch attack to strike a target. The subject is immediately fatigued for the spell’s duration.
+
+This spell has no effect on a creature that is already fatigued. Unlike with normal fatigue, the effect ends as soon as the spell’s duration expires.", target: "creature touched", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: necromancy.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp101.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp101.id, component_id: somatic.id, item: nil)
+  # touch_of_fatigue_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp101.id, spell_level: 0)
+  touch_of_fatigue_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp101.id, spell_level: 0)
+  touch_of_fatigue_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp101.id, spell_level: 0)
+
+sp102 = Spell.create!(name: "Burning Hands", description: "A cone of searing flame shoots from your fingertips. Any creature in the area of the flames takes 1d4 points of fire damage per caster level (maximum 5d4).
+
+Flammable materials burn if the flames touch them. A character can extinguish burning items as a full-round action.", target: "cone-shaped burst", saving_throw: "Reflex", spell_resistance: true, action_id: standard.id, spell_range_id: fifteen_feet.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp102.id, subschool_id: fire.id)
+  SpellComponent.create!(spell_id: sp102.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp102.id, component_id: somatic.id, item: nil)
+  # burning_hands_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp102.id, spell_level: 1)
+  # burning_hands_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp102.id, spell_level: 1)
+  # burning_hands_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp102.id, spell_level: 1)
+  burning_hands_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp102.id, spell_level: 1)
+  burning_hands_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp102.id, spell_level: 1)
+
+sp103 = Spell.create!(name: "Mage Armor", description: "An invisible but tangible field of force surrounds the subject of a mage armor spell, providing a +4 armor bonus to AC.
+
+Unlike mundane armor, mage armor entails no armor check penalty, arcane spell failure chance, or speed reduction. Since mage armor is made of force, incorporeal creatures can’t bypass it the way they do normal armor.", target: "creature touched", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "1 hour/level", time: 1, unit_of_time: "hour", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp103.id, subschool_id: creation.id)
+  SpellSubschool.create!(spell_id: sp103.id, subschool_id: force.id)
+  SpellComponent.create!(spell_id: sp103.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp103.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp103.id, component_id: material.id, item: 'a piece of curled leather')
+  # mage_armor_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp103.id, spell_level: 1)
+  # mage_armor_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp103.id, spell_level: 1)
+  mage_armor_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp103.id, spell_level: 1)
+  mage_armor_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp103.id, spell_level: 1)
+  mage_armor_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp103.id, spell_level: 1)
+
+sp104 = Spell.create!(name: "Snowball", description: "You throw a ball of elemental ice and snow at a single target as a ranged touch attack. The snowball deals 1d6 points of cold damage per caster level you have (maximum 5d6).", target: "one ball of ice and snow", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp104.id, subschool_id: cold.id)
+  SpellSubschool.create!(spell_id: sp104.id, subschool_id: water.id)
+  SpellComponent.create!(spell_id: sp104.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp104.id, component_id: somatic.id, item: nil)
+  # snowball_bloodrager = KlassSpell.create!(klass_id: bloodrager, spell_id: sp104.id, spell_level: 1)
+  # snowball_druid = KlassSpell.create!(klass_id: druid, spell_id: sp104.id, spell_level: 1)
+  # snowball_magus = KlassSpell.create!(klass_id: magus, spell_id: sp104.id, spell_level: 1)
+  snowball_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp104.id, spell_level: 1)
+  snowball_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp104.id, spell_level: 1)
+
+sp105 = Spell.create!(name: "Acid Splash", description: "You fire a small orb of acid at the target. You must succeed on a ranged touch attack to hit your target. The orb deals 1d3 points of acid damage. This acid disappears after 1 round.", target: "one missile of acid", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp105.id, subschool_id: creation.id)
+  SpellSubschool.create!(spell_id: sp105.id, subschool_id: acid.id)
+  SpellComponent.create!(spell_id: sp105.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp105.id, component_id: somatic.id, item: nil)
+  # acid_splash_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp105.id, spell_level: 0)
+  # acid_splash_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp105.id, spell_level: 0)
+  acid_splash_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp105.id, spell_level: 0)
+  acid_splash_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp105.id, spell_level: 0)
+
+sp106 = Spell.create!(name: "Comprehend Languages", description: "You can understand the spoken words of creatures or read otherwise incomprehensible written messages. The ability to read does not necessarily impart insight into the material, merely its literal meaning. The spell enables you to understand or read an unknown language, not speak or write it.
+
+Written material can be read at the rate of one page (250 words) per minute. Magical writing cannot be read, though the spell reveals that it is magical. This spell can be foiled by certain warding magic (such as the secret page and illusory script spells). It does not decipher codes or reveal messages concealed in otherwise normal text.
+
+Comprehend languages can be made permanent with a permanency spell.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: divination.id, duration: "10 minutes/level", time: 10, unit_of_time: "minutes", increase_per_level: 10, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp106.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp106.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp106.id, component_id: material.id, item: 'pinch of soot and salt')
+  SpellComponent.create!(spell_id: sp106.id, component_id: divine_focus.id, item: nil)
+  # comprehend_languages_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp106.id, spell_level: 1)
+  comprehend_languages_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp106.id, spell_level: 1)
+  comprehend_languages_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp106.id, spell_level: 1)
+  # comprehend_languages_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp106.id, spell_level: 1)
+  # comprehend_languages_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp106.id, spell_level: 1)
+  # comprehend_languages_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp106.id, spell_level: 1)
+  comprehend_languages_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp106.id, spell_level: 1)
+  comprehend_languages_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp106.id, spell_level: 1)
+
+sp107 = Spell.create!(name: "Deathwatch", description: "Using the powers of necromancy, you can determine the condition of creatures near death within the spell’s range. You instantly know whether each creature within the area is dead, fragile (alive and wounded, with 3 or fewer hit points left), fighting off death (alive with 4 or more hit points), healthy, undead, or neither alive nor dead (such as a construct). Deathwatch sees through any spell or ability that allows creatures to feign death.", target: "cone-shaped emanation", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: thirty_feet.id, magic_school_id: necromancy.id, duration: "10 minutes/level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp107.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp107.id, component_id: somatic.id, item: nil)
+  deathwatch_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp107.id, spell_level: 1)
+
+sp108 = Spell.create!(name: "Lay of the Land", description: "In a flash of recognition, you learn about the geography of your surroundings within a radius of 1 mile per 2 caster levels (minimum 1 mile). This instant familiarity grants you an insight bonus equal to your caster level (maximum +5) on Knowledge (geography) checks and Survival checks to avoid getting lost so long as you remain in the affected area.
+
+Additionally, for the duration of the spell you can make Knowledge (geography) checks regarding the affected area as though you were trained in that skill.", target: "you", saving_throw: "none", spell_resistance: true, action_id: one_minute.id, spell_range_id: personal.id, magic_school_id: divination.id, duration: "1 day", time: 1, unit_of_time: "day", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp108.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp108.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp108.id, component_id: material.id, item: 'a piece of soil from the land to be memorized')
+  lay_of_the_land_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp108.id, spell_level: 2)
+  lay_of_the_land_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp108.id, spell_level: 2)
+  # lay_of_the_land_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp108.id, spell_level: 2)
+  # lay_of_the_land_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp108.id, spell_level: 2)
+  lay_of_the_land_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp108.id, spell_level: 2)
+
+sp109 = Spell.create!(name: "Kiss of the First World", description: "This spell infuses a living creature with a surge of positive energy, filling the target with the raw energies of life. The exact effects of this spell vary, depending on the nature of the creature touched. Constructs are immune to the effects of this spell.
+
+Living Creature: A living creature gains a 20-foot increase to his base land speed and a +2 insight bonus on all Charisma-based skill checks. In addition, the creature gains fast healing 2. Fire, acid, and negative energy cause this fast healing to stop functioning on the round following the attack.
+Undead Creature: An undead creature targeted by this spell is staggered for the duration of this spell. It does not gain the benefits of any channel resistance it might normally enjoy, and the save DCs for any of its special attacks (but not spell-like abilities or spells) are reduced by 2.", target: "living or undead creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp109.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp109.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp109.id, component_id: material.id, item: 'diamond dust worth 100 gp')
+  kiss_of_the_first_world_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp109.id, spell_level: 4)
+  # kiss_of_the_first_world_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp109.id, spell_level: 4)
+
+sp110 = Spell.create!(name: "Mass Cure Light Wounds", description: "You channel positive energy to cure 1d8 points of damage + 1 point per caster level (maximum +25) on each selected creature. Like other cure spells, mass cure light wounds deals damage to undead in its area rather than curing them. Each affected undead may attempt a Will save for half damage.", target: "one creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp110.id, subschool_id: healing.id)
+  SpellComponent.create!(spell_id: sp110.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp110.id, component_id: somatic.id, item: nil)
+  mass_cure_light_wounds_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp110.id, spell_level: 5)
+  mass_cure_light_wounds_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp110.id, spell_level: 5)
+  # mass_cure_light_wounds_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp110.id, spell_level: 6)
+  # mass_cure_light_wounds_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp110.id, spell_level: 5)
+  # mass_cure_light_wounds_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp110.id, spell_level: 5)
+  mass_cure_light_wounds_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp110.id, spell_level: 6)
+
+sp111 = Spell.create!(name: "Music of the Spheres", description: "The music of the spheres is the harmonic constant that plays under and through all of reality. It is this constant song, this otherworldly music, that keeps the laws of reality constant and the connections between the planes of existence strong.
+
+With this spell, one can amplify the underlying music of the spheres in the spell’s area of effect to infuse yourself and all creatures within 20 feet of you, friend and foe alike. All creatures that begin their turn within the area of this spell’s effect gain fast healing 5, resistance 10 to all energy types, and a +3 sacred bonus on all saving throws against poison and disease. Any creature that enters the area of effect does not gain the benefits of the music of the spheres until it begins its turn in that area. You must maintain concentration on the amplification of the music or the effects immediately end, but you can move around to prevent enemies from gaining the benefits of this spell.", target: "20-ft.-radius spherical emanation, centered on you", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: twenty_feet.id, magic_school_id: conjuration.id, duration: "concentration, up to 1 round per level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: true)
+  SpellSubschool.create!(spell_id: sp111.id, subschool_id: healing.id)
+  SpellSubschool.create!(spell_id: sp111.id, subschool_id: sonic.id)
+  SpellComponent.create!(spell_id: sp111.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp111.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp111.id, component_id: material.id, item: 'a stick of incense treated with special balms')
+  music_of_the_spheres_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp111.id, spell_level: 5)
+  music_of_the_spheres_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp111.id, spell_level: 6)
+
+sp112 = Spell.create!(name: "Mass Cure Moderate Wounds", description: "This spell functions like mass cure light wounds, except that it cures 2d8 points of damage + 1 point per caster level (maximum +30).", target: "one creature/level, no two of which can be mor ethan 30 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp112.id, subschool_id: healing.id)
+  SpellComponent.create!(spell_id: sp112.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp112.id, component_id: somatic.id, item: nil)
+  mass_cure_moderate_wounds_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp112.id, spell_level: 6)
+  mass_cure_moderate_wounds_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp112.id, spell_level: 6)
+  # mass_cure_moderate_wounds_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp112.id, spell_level: 7)
+  # mass_cure_moderate_wounds_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp112.id, spell_level: 6)
+  # mass_cure_moderate_wounds_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp112.id, spell_level: 6)
+  mass_cure_moderate_wounds_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp112.id, spell_level: 7)
+
+sp113 = Spell.create!(name: "Jolt", description: "You cause a spark of electricity to strike the target with a successful ranged touch attack. The spell deals 1d3 points of electricity damage.", target: "spark of electricity", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp113.id, subschool_id: electricity.id)
+  SpellComponent.create!(spell_id: sp113.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp113.id, component_id: somatic.id, item: nil)
+  jolt_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp113.id, spell_level: 0)
+
+sp114 = Spell.create!(name: "True Strike", description: "You gain temporary, intuitive insight into the immediate future during your next attack. Your next single attack roll (if it is made before the end of the next round) gains a +20 insight bonus. Additionally, you are not affected by the miss chance that applies to attackers trying to strike a concealed target.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: divination.id, duration: "see text", time: 1, unit_of_time: "round", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp114.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp114.id, component_id: focus.id, item: 'small wooden replica of an archery target')
+  # true_strike_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp114.id, spell_level: 1)
+  # true_strike_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp114.id, spell_level: 1)
+  # true_strike_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp114.id, spell_level: 1)
+  # true_strike_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp114.id, spell_level: 1)
+  # true_strike_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp114.id, spell_level: 1)
+  true_strike_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp114.id, spell_level: 1)
+
+sp115 = Spell.create!(name: "Floating Disk", description: "You create a slightly concave, circular plane of force that follows you about and carries loads for you. The disk is 3 feet in diameter and 1 inch deep at its center. It can hold 100 pounds of weight per caster level. If used to transport a liquid, its capacity is 2 gallons. The disk floats approximately 3 feet above the ground at all times and remains level. It floats along horizontally within spell range and will accompany you at a rate of no more than your normal speed each round. If not otherwise directed, it maintains a constant interval of 5 feet between itself and you. The disk winks out of existence when the spell duration expires. The disk also winks out if you move beyond its range or try to take the disk more than 3 feet away from the surface beneath it. When the disk winks out, whatever it was supporting falls to the surface beneath it.", target: "3-ft.-diameter disk of force", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "1 hour/level", time: 1, unit_of_time: "hour", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp115.id, subschool_id: force.id)
+  SpellComponent.create!(spell_id: sp115.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp115.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp115.id, component_id: material.id, item: 'a drop of mercury')
+  # floating_disk_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp115.id, spell_level: 1)
+  # floating_disk_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp115.id, spell_level: 1)
+  floating_disk_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp115.id, spell_level: 1)
+
+sp116 = Spell.create!(name: "Touch of Combustion", description: "Your successful melee touch attack causes the target to ignite in a violent burst of flame, dealing 1d6 points of fire damage. If it fails its saving throw, the target also catches on fire. If the target catches fire, on the first round thereafter, creatures adjacent to it (including you) must each succeed at a Reflex save or take 1d4 points of fire damage.", target: "creature or object touched", saving_throw: "Reflex", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp116.id, subschool_id: fire.id)
+  SpellComponent.create!(spell_id: sp116.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp116.id, component_id: somatic.id, item: nil)
+  # touch_of_combustion_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp116.id, spell_level: 1)
+  # touch_of_combustion_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp116.id, spell_level: 1)
+  # touch_of_combustion_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp116.id, spell_level: 1)
+  # touch_of_combustion_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp116.id, spell_level: 1)
+  # touch_of_combustion_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp116.id, spell_level: 1)
+  touch_of_combustion_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp116.id, spell_level: 1)
+  touch_of_combustion_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp116.id, spell_level: 1)
+
+sp117 = Spell.create!(name: "Endothermic Touch", description: "The target is staggered and moves at half its normal speed (round down to the next 5-foot increment), but it can hold its breath for twice as long as normal.", target: "one living creature that has the dragon type or the reptilian subtype", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp117.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp117.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp117.id, component_id: material.id, item: 'a small bit of snakeskin')
+  SpellComponent.create!(spell_id: sp117.id, component_id: divine_focus.id, item: nil)
+# endothermic_touch_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp117.id, spell_level: 1)
+# endothermic_touch_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp117.id, spell_level: 1)
+endothermic_touch_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp117.id, spell_level: 1)
+endothermic_touch_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp117.id, spell_level: 1)
+
+sp118 = Spell.create!(name: "Stone Call", description: "A rain of dirt, gravel, and small pebbles fills the area, dealing 2d6 points of bludgeoning damage to every creature in the area. This damage only occurs once, when the spell is cast.
+
+For the remaining duration of the spell, this debris covers the ground, making the entire area difficult terrain. At the end of the duration, the rocks disappear, leaving no aftereffects (other than the damage dealt).", target: "cylinder (40-ft. radius, 20 ft. high)", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp118.id, subschool_id: creation.id)
+  SpellSubschool.create!(spell_id: sp118.id, subschool_id: earth.id)
+  SpellComponent.create!(spell_id: sp118.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp118.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp118.id, component_id: divine_focus.id, item: nil)
+  # stone_call_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp118.id, spell_level: 2)
+  # stone_call_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp118.id, spell_level: 2)
+  # stone_call_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp118.id, spell_level: 2)
+  # stone_call_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp118.id, spell_level: 2)
+  stone_call_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp118.id, spell_level: 2)
+
+sp119 = Spell.create!(name: "Sonic Scream", description: "Up to three times during this spell’s duration, you can emit a cone of powerful sound as a standard action. The first cone deals 4d4 points of sonic damage to every creature in the area. The second deals 2d4 points of sonic damage to every creature in the area. The third deals 1d4 points of sonic damage to every creature in the area. A successful Reflex save against a cone halves that cone’s damage. After the third cone of sound, the spell ends. Until you use all three cones, you cannot use your voice for any magic-related purpose (bardic performance, verbal spellcasting, and so on), and cannot speak at any volume lower than a shout.", target: "cone-shaped burst", saving_throw: "Reflex", spell_resistance: true, action_id: standard.id, spell_range_id: fifteen_feet.id, magic_school_id: evocation.id, duration: "1 round/level or until discharged", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp119.id, subschool_id: sonic.id)
+  SpellComponent.create!(spell_id: sp119.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp119.id, component_id: somatic.id, item: nil)
+  sonic_scream_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp119.id, spell_level: 2)
+  # sonic_scream_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp119.id, spell_level: 2)
+  # sonic_scream_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp119.id, spell_level: 2)
+  # sonic_scream_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp119.id, spell_level: 2)
+  sonic_scream_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp119.id, spell_level: 2)
+
+sp120 = Spell.create!(name: "Admonishing Ray", description: "You blast your enemies with rays of nonlethal force. You may fire one ray, plus one additional ray for every four levels you possess beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and deals 4d6 points of nonlethal damage. This is a force effect. The rays may be fired at the same or different targets, but all rays must be fired simultaneously and aimed at targets within 30 feet of each other. The rays hit about as hard as a punch from a strong adult human, and can knock away unattended objects weighing up to 10 pounds if that amount of force could normally do so.", target: "one or more rays", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp120.id, subschool_id: force.id)
+  SpellComponent.create!(spell_id: sp120.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp120.id, component_id: somatic.id, item: nil)
+  admonishing_ray_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp120.id, spell_level: 2)
+  admonishing_ray_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp120.id, spell_level: 2)
+
+sp121 = Spell.create!(name: "Twisted Futures", description: "By rearranging the threads of fate, you disrupt fortunate outcomes for other creatures. A creature affected by this spell is unable to benefit from effects that grant the ability to roll multiple times and take the higher result (like the swashbuckler’s charmed life ability) or to choose the die result in lieu of rolling (like the wizard’s prescience school power or the cyclops’s flash of insight ability). This doesn’t affect abilities that force a creature to take the lower of two rolls, such as ill omen or a pugwampi’s unluck aura. A cyclops can’t use its flash of insight ability to save against this spell.", target: "one creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: divination.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp121.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp121.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp121.id, component_id: material.id, item: 'a small die with the faces scratched off')
+  twisted_futures_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp121.id, spell_level: 1)
+  twisted_futures_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp121.id, spell_level: 2)
+  # twisted_futures_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp121.id, spell_level: 1)
+  # twisted_futures_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp121.id, spell_level: 1)
+  twisted_futures_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp121.id, spell_level: 2)
+  twisted_futures_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp121.id, spell_level: 1)
+
+sp122 = Spell.create!(name: "Twisted Space", description: "You distort the space around a creature, twisting the path of its melee attacks unpredictably, but always toward a nearby creature that the target threatens. Until the start of your next turn, melee attacks made by the target creature affect a random target instead of their intended target.", target: "one creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 round", time: 1, unit_of_time: "round", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp122.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp122.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp122.id, component_id: material.id, item: 'a length of wire bent into a circle')
+  # twisted_space_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp122.id, spell_level: 2)
+  # twisted_space_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp122.id, spell_level: 2)
+  twisted_space_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp122.id, spell_level: 2)
+  twisted_space_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp122.id, spell_level: 2)
+
+sp123 = Spell.create!(name: "Make Whole", description: "This spell functions as mending, except that it repairs 1d6 points of damage per level when cast on an object or construct creature (maximum 5d6).
+
+Make whole can fix destroyed magic items (at 0 hit points or less), and restores the magic properties of the item if your caster level is at least twice that of the item. Items with charges (such as wands) and single-use items (such as potions and scrolls) cannot be repaired in this way. When make whole is used on a construct creature, the spell bypasses any immunity to magic as if the spell did not allow spell resistance.", target: "one object of up to 10 cu. ft./level or one construct creature of any size", saving_throw: "Will", spell_resistance: true, action_id: ten.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp123.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp123.id, component_id: somatic.id, item: nil)
+  make_whole_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp123.id, spell_level: 2)
+  # make_whole_occultist = KlassSpell.create!(klass_id: occultist.id, spell_id: sp123.id, spell_level: 2)
+  # make_whole_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp123.id, spell_level: 2)
+  make_whole_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp123.id, spell_level: 2)
+
+sp124 = Spell.create!(name: "Blink", description: "You “blink” quickly back and forth between the Material Plane and the Ethereal Plane and look as though you’re winking in and out of reality at random. Blink has several effects, as follows.
+
+Physical attacks against you have a 50% miss chance, and the Blind-Fight feat doesn’t help opponents, since you’re ethereal and not merely invisible. If the attack is capable of striking ethereal creatures, the miss chance is only 20% (for concealment).
+
+If the attacker can see invisible creatures, the miss chance is also only 20%. (For an attacker who can both see and strike ethereal creatures, there is no miss chance.) Likewise, your own attacks have a 20% miss chance, since you sometimes go ethereal just as you are about to strike.
+
+Any individually targeted spell has a 50% chance to fail against you while you’re blinking unless your attacker can target invisible, ethereal creatures. Your own spells have a 20% chance to activate just as you go ethereal, in which case they typically do not affect the Material Plane (but they might affect targets on the Ethereal Plane).
+
+While blinking, you take only half damage from area attacks (but full damage from those that extend onto the Ethereal Plane). Although you are only partially visible, you are not considered invisible and targets retain their Dexterity bonus to AC against your attacks. You do receive a +2 bonus on attack rolls made against enemies that cannot see invisible creatures.
+
+You take only half damage from falling, since you fall only while you are material.
+
+While blinking, you can step through (but not see through) solid objects. For each 5 feet of solid material you walk through, there is a 50% chance that you become material. If this occurs, you are shunted off to the nearest open space and take 1d6 points of damage per 5 feet so traveled.
+
+Since you spend about half your time on the Ethereal Plane, you can see and even attack ethereal creatures. You interact with ethereal creatures roughly the same way you interact with material ones.
+
+An ethereal creature is invisible, incorporeal, and capable of moving in any direction, even up or down. As an incorporeal creature, you can move through solid objects, including living creatures.
+
+An ethereal creature can see and hear the Material Plane, but everything looks gray and insubstantial. Sight and hearing on the Material Plane are limited to 60 feet.
+
+Force effects and abjurations affect you normally. Their effects extend onto the Ethereal Plane from the Material Plane, but not vice versa. An ethereal creature can’t attack material creatures, and spells you cast while ethereal affect only other ethereal things. Certain material creatures or objects have attacks or effects that work on the Ethereal Plane. Treat other ethereal creatures and objects as material.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp124.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp124.id, component_id: somatic.id, item: nil)
+  blink_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp124.id, spell_level: 3)
+  # blink_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp124.id, spell_level: 3)
+  # blink_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp124.id, spell_level: 3)
+  blink_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp124.id, spell_level: 3)
+
+sp125 = Spell.create!(name: "Control Water", description: "This spell has two different applications, both of which control water in different ways. The first version of this spell causes water in the area to swiftly evaporate or to sink into the ground below, lowering the water’s depth. The second version causes the water to surge and rise, increasing its overall depth and possibly flooding nearby areas.
+
+Lower Water: This causes water or similar liquid to reduce its depth by as much as 2 feet per caster level (to a minimum depth of 1 inch). The water is lowered within a squarish depression whose sides are up to caster level x 10 feet long. In extremely large and deep bodies of water, such as a deep ocean, the spell creates a whirlpool that sweeps ships and similar craft downward, putting them at risk and rendering them unable to leave by normal movement for the duration of the spell. When cast on water elementals and other water-based creatures, this spell acts as a slow spell (Will negates). The spell has no effect on other creatures.
+
+Raise Water: This causes water or similar liquid to rise in height, just as the lower water version causes it to lower. Boats raised in this way slide down the sides of the hump that the spell creates. If the area affected by the spell includes riverbanks, a beach, or other land nearby, the water can spill over onto dry land.
+
+With either version of this spell, you may reduce one horizontal dimension by half and double the other horizontal dimension to change the overall area of effect.", target: "water in a volume of 10 ft./level by 10 ft./level by 2 ft./level", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: long.id, magic_school_id: transmutation.id, duration: "10 minutes/level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp125.id, subschool_id: water.id)
+  SpellComponent.create!(spell_id: sp125.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp125.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp125.id, component_id: material.id, item: 'a pinch of dust for lower water or a drop of water for raise water')
+  SpellComponent.create!(spell_id: sp125.id, component_id: divine_focus.id, item: nil)
+  control_water_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp125.id, spell_level: 4)
+  # control_water_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp125.id, spell_level: 4)
+  # control_water_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp125.id, spell_level: 4)
+  control_water_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp125.id, spell_level: 6)
+
+sp126 = Spell.create!(name: "Spider Climb", description: "The subject can climb and travel on vertical surfaces or even traverse ceilings as well as a spider does. The affected creature must have its hands free to climb in this manner. The subject gains a climb speed of 20 feet and a +8 racial bonus on Climb skill checks; furthermore, it need not make Climb checks to traverse a vertical or horizontal surface (even upside down). A spider climbing creature retains its Dexterity bonus to Armor Class (if any) while climbing, and opponents get no special bonus to their attacks against it. It cannot, however, use the run action while climbing.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "10 minutes/level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp126.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp126.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp126.id, component_id: material.id, item: 'a live spider')
+  # spider_climb_alchemist = KlassSpell.create!(klass_id: alchemist.id, spell_id: sp126.id, spell_level: 2)
+  # spider_climb_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp126.id, spell_level: 2)
+  # spider_climb_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp126.id, spell_level: 2)
+  # spider_climb_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp126.id, spell_level: 2)
+  # spider_climb_medium = KlassSpell.create!(klass_id: medium.id, spell_id: sp126.id, spell_level: 2)
+  # spider_climb_occultist = KlassSpell.create!(klass_id: occultist.id, spell_id: sp126.id, spell_level: 2)
+  # spider_climb_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp126.id, spell_level: 2)
+  spider_climb_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp126.id, spell_level: 2)
+  spider_climb_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp126.id, spell_level: 2)
+
+sp127 = Spell.create!(name: "Magic Aura", description: "You alter an item’s aura so that it registers to detect spells (and spells with similar capabilities) as though it were non-magical, or a magic item of a kind you specify, or the subject of a spell you specify. If the object bearing magic aura has identify cast on it or is similarly examined, the examiner recognizes that the aura is false and detects the object’s actual qualities if he succeeds on a Will save. Otherwise, he believes the aura and no amount of testing reveals what the true magic is.
+
+If the targeted item’s own aura is exceptionally powerful (if it is an artifact, for instance), magic aura doesn’t work.
+
+Note: A magic weapon, shield, or suit of armor must be a masterwork item, so a sword of average make, for example, looks suspicious if it has a magical aura.", target: "one touched object weighing up to 5 lbs./level", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: illusion.id, duration: "1 day/level", time: 1, unit_of_time: "day", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp127.id, subschool_id: glamer.id)
+  SpellComponent.create!(spell_id: sp127.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp127.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp127.id, component_id: focus.id, item: 'a small square of silk that must be passed over the object that receives the aura')
+  magic_aura_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp127.id, spell_level: 1)
+  # magic_aura_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp127.id, spell_level: 1)
+  magic_aura_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp127.id, spell_level: 1)
+
+sp128 = Spell.create!(name: "Detect Evil", description: "You can sense the presence of evil. The amount of information revealed depends on how long you study a particular area or subject.
+
+1st Round: Presence or absence of evil.
+
+2nd Round: Number of evil auras (creatures, objects, or spells) in the area and the power of the most potent evil aura present.
+
+If you are of good alignment, and the strongest evil aura’s power is overwhelming (see below), and the HD or level of the aura’s source is at least twice your character level, you are stunned for 1 round and the spell ends.
+
+3rd Round: The power and location of each aura. If an aura is outside your line of sight, then you discern its direction but not its exact location.
+
+
+Aura Power
+An evil aura’s power depends on the type of evil creature or object that you’re detecting and its HD, caster level, or (in the case of a cleric) class level; see the table below. If an aura falls into more than one strength category, the spell indicates the stronger of the two.
+
+Creature/Object	Aura Power
+None	Faint	Moderate	Strong	Overwhelming
+Aligned creature(1) (HD)	4 or lower	5-10	11-25	26-50	51 or higher
+Aligned Undead (HD)	—	2 or lower	3-8	9-20	21 or higher
+Aligned Outsider (HD)	—	1 or lower	2-4	5-10	11 or higher
+Cleric or paladin of an aligned deity(2) (class levels)	—	1	2-4	5-10	11 or higher
+Aligned magic item or spell (caster level)	5 or lower	6-10	11-15	16-20	21 or higher
+(1) Except for Undead and Outsider, which have their own entries on the table.
+
+(2) Some characters who are not clerics may radiate an aura of equivalent power. The class description will indicate whether this applies.
+
+Lingering Aura: An evil aura lingers after its original source dissipates (in the case of a spell) or is destroyed (in the case of a creature or magic item). If detect evil is cast and directed at such a location, the spell indicates an aura strength of dim (even weaker than a faint aura). How long the aura lingers at this dim level depends on its original power:
+
+Original Strength	Duration of Lingering Aura
+Faint	1d6 rounds
+Moderate	1d6 minutes
+Strong	1d6x10 minutes
+Overwhelming	1d6 days
+Animals, traps, poisons, and other potential perils are not evil, and as such this spell does not detect them. Creatures with actively evil intents count as evil creatures for the purpose of this spell.
+
+Each round, you can turn to detect evil in a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.", target: "cone-shaped emanation", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: sixty_feet.id, magic_school_id: divination.id, duration: "concentration, up to 10 min./ level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: true)
+  SpellComponent.create!(spell_id: sp128.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp128.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp128.id, component_id: divine_focus.id, item: nil)
+  detect_evil_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp128.id, spell_level: 1)
+  # detect_evil_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp128.id, spell_level: 1)
+  # detect_evil_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp128.id, spell_level: 1)
+
+sp129 = Spell.create!(name: "Faerie Fire", description: "A pale glow surrounds and outlines the subjects. Outlined subjects shed light as candles. Creatures outlined by faerie fire take a -20 penalty on all Stealth checks. Outlined creatures do not benefit from the concealment normally provided by darkness (though a 2nd-level or higher magical darkness effect functions normally), blur, displacement, invisibility, or similar effects. The light is too dim to have any special effect on undead or dark-dwelling creatures vulnerable to light.
+
+The faerie fire can be blue, green, or violet, according to your choice at the time of casting. The faerie fire does not cause any harm to the objects or creatures thus outlined.", target: "creatures and objects within a 5-ft.-radius burst", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: long.id, magic_school_id: evocation.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp129.id, subschool_id: light.id)
+  SpellComponent.create!(spell_id: sp129.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp129.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp129.id, component_id: divine_focus.id, item: nil)
+  # faerie_fire_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp129.id, spell_level: 1)
+
+sp130 = Spell.create!(name: "Entangle", description: "This spell causes tall grass, weeds, and other plants to wrap around creatures in the area of effect or those that enter the area. Creatures that fail their save gain the entangled condition. Creatures that make their save can move as normal, but those that remain in the area must save again at the end of your turn. Creatures that move into the area must save immediately. Those that fail must end their movement and gain the entangled condition. Entangled creatures can attempt to break free as a move action, making a Strength or Escape Artist check. The DC for this check is equal to the DC of the spell. The entire area of effect is considered difficult terrain while the effect lasts.
+
+If the plants in the area are covered in thorns, those in the area take 1 point of damage each time they fail a save against the entangle or fail a check made to break free. Other effects, depending on the local plants, might be possible at GM discretion.", target: "plants in a 40-ft.-radius spread", saving_throw: "Reflex", spell_resistance: false, action_id: standard.id, spell_range_id: long.id, magic_school_id: transmutation.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp130.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp130.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp130.id, component_id: divine_focus.id, item: nil)
+  # entangle_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp130.id, spell_level: 1)
+  # entangle_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp130.id, spell_level: 1)
+  # entangle_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp130.id, spell_level: 1)
+
+sp131 = Spell.create!(name: "Glitterdust", description: "A cloud of golden particles covers everyone and everything in the area, causing creatures to become blinded and visibly outlining invisible things for the duration of the spell. All within the area are covered by the dust, which cannot be removed and continues to sparkle until it fades. Each round at the end of their turn blinded creatures may attempt new saving throws to end the blindness effect.
+
+Any creature covered by the dust takes a -40 penalty on Stealth checks.", target: "creatures and objects within 10-ft.-radius spread", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp131.id, subschool_id: creation.id)
+  SpellComponent.create!(spell_id: sp131.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp131.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp131.id, component_id: material.id, item: 'ground mica')
+  glitterdust_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp131.id, spell_level: 2)
+  # glitterdust_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp131.id, spell_level: 2)
+  # glitterdust_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp131.id, spell_level: 2)
+  glitterdust_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp131.id, spell_level: 2)
+  glitterdust_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp131.id, spell_level: 2)
+  glitterdust_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp131.id, spell_level: 2)
+
+sp132 = Spell.create!(name: "Deep Slumber", description: "This spell functions like sleep, except that it affects 10 HD of targets.", target: "one or more living creatures within a 10-ft.-radius burst", saving_throw: "Will", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: enchantment.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp132.id, subschool_id: compulsion.id)
+  SpellSubschool.create!(spell_id: sp132.id, subschool_id: mind_affecting.id)
+  SpellComponent.create!(spell_id: sp132.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp132.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp132.id, component_id: material.id, item: 'fine sand, rose petals, or a live cricket')
+  deep_slumber_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp132.id, spell_level: 3)
+  # deep_slumber_mesmerist = KlassSpell.create!(klass_id: mesmerist.id, spell_id: sp132.id, spell_level: 3)
+  # deep_slumber_occultist = KlassSpell.create!(klass_id: occultist.id, spell_id: sp132.id, spell_level: 3)
+  # deep_slumber_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp132.id, spell_level: 3)
+  # deep_slumber_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp132.id, spell_level: 3)
+  deep_slumber_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp132.id, spell_level: 3)
+  deep_slumber_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp132.id, spell_level: 3)
+
+sp133 = Spell.create!(name: "Hold Person", description: "The subject becomes paralyzed and freezes in place. It is aware and breathes normally but cannot take any actions, even speech. Each round on its turn, the subject may attempt a new saving throw to end the effect. This is a full-round action that does not provoke attacks of opportunity. A winged creature who is paralyzed cannot flap its wings and falls. A swimmer can’t swim and may drown.", target: "one humanoid creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: medium.id, magic_school_id: enchantment.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp133.id, subschool_id: compulsion.id)
+  SpellSubschool.create!(spell_id: sp133.id, subschool_id: mind_affecting.id)
+  SpellComponent.create!(spell_id: sp133.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp133.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp133.id, component_id: focus.id, item: 'a small, straight piece of iron')
+  SpellComponent.create!(spell_id: sp133.id, component_id: divine_focus.id, item: nil)
+  # hold_person_antipaladin = KlassSpell.create!(klass_id: antipaladin.id, spell_id: sp133.id, spell_level: 2)
+  hold_person_bard = KlassSpell.create!(klass_id: bard.id, spell_id: sp133.id, spell_level: 2)
+  # hold_person_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp133.id, spell_level: 3)
+  hold_person_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp133.id, spell_level: 2)
+  # hold_person_inquisitor = KlassSpell.create!(klass_id: inquisitor.id, spell_id: sp133.id, spell_level: 2)
+  # hold_person_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp133.id, spell_level: 2)
+  hold_person_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp133.id, spell_level: 3)
+  # hold_person_medium = KlassSpell.create!(klass_id: medium.id, spell_id: sp133.id, spell_level: 2)
+  # hold_person_mesmerist = KlassSpell.create!(klass_id: mesmerist.id, spell_id: sp133.id, spell_level: 3)
+  # hold_person_occultist = KlassSpell.create!(klass_id: occultist.id, spell_id: sp133.id, spell_level: 2)
+  # hold_person_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp133.id, spell_level: 2)
+  hold_person_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp133.id, spell_level: 2)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
   # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
   # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
   # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
   # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
   # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
-
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
-
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
-
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
-
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
-
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
-
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: , spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
@@ -2365,7 +3588,7 @@ unchained_rogue_vine_leshy = FavoredKlassBonus.create!(klass_id: unchained_rogue
 # <-*-*-----*-*-*- Character!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-persephone = Character.create!(user_id: admin.id, name: "Persephone", strength: 5, dexterity: 15, constitution: 12, intelligence: 17, wisdom: 4, charisma: 15, race_id: changeling.id, skillset_id: dmc.id, alignment: 'chaotic neutral')
+persephone = Character.create!(user_id: admin.id, name: "Persephone", strength: 5, dexterity: 15, constitution: 12, intelligence: 17, wisdom: 4, charisma: 15, race_id: changeling.id, skillset_id: dmc.id, alignment: 'chaotic neutral', campaign_id: current_campaign.id)
 # +1 to Int from Tome of Clear Thought
 
 CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: witch_changeling.id)
@@ -2376,7 +3599,7 @@ CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil,
 CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: witch_changeling.id)
 CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: witch_changeling.id)
 
-sly = Character.create!(user_id: admin.id, name: "Sylvester", strength: 8, dexterity: 16, constitution: 16, intelligence: 8, wisdom: 13, charisma: 18, race_id: grippli.id, skillset_id: dmc.id)
+sly = Character.create!(user_id: admin.id, name: "Sly", full_name: 'Slyvester Ruby', strength: 8, dexterity: 16, constitution: 16, intelligence: 8, wisdom: 13, charisma: 18, race_id: grippli.id, skillset_id: dmc.id, campaign_id: current_campaign.id)
 
 sly1 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: fate_weaver_human.id)
   CharacterKlassOption.create!(character_klass_id: sly1.id, feature_option_id: chaotic2.id)
@@ -2387,7 +3610,7 @@ sly4 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp
 sly5 = CharacterKlass.create!(character_id: sly.id, klass_id: fate_weaver.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: fate_weaver_human.id)
   CharacterKlassOption.create!(character_klass_id: sly5.id, feature_option_id: chaotic1.id)
 
-nettie = Character.create!(user_id: admin.id, name: "Nettie", strength: 14, dexterity: 14, constitution: 13, intelligence: 18, wisdom: 14, charisma: 14, race_id: vine_leshy.id, skillset_id: dmc.id)
+nettie = Character.create!(user_id: admin.id, name: "Nettie", full_name: 'Apple Nettlekiss', strength: 14, dexterity: 14, constitution: 13, intelligence: 18, wisdom: 14, charisma: 14, race_id: vine_leshy.id, skillset_id: dmc.id, campaign_id: current_campaign.id)
 
 nettie1 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
 nettie2 = CharacterKlass.create!(character_id: nettie.id, klass_id: bard.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
@@ -2415,48 +3638,108 @@ CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, ski
 CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: unc_spel.id, ranks: 3)
 CharacterSkillsetSkill.create!(character_id: nettie.id, skillset_id: dmc.id, skill_id: stea.id, ranks: 6)
 
-merg = Character.create!(user_id: admin.id, name: "Merg", strength: 15, dexterity: 14, constitution: 15, intelligence: 13, wisdom: 13, charisma: 13, race_id: orc.id, skillset_id: dmc.id)
+merg = Character.create!(user_id: admin.id, name: "Merg", strength: 15, dexterity: 14, constitution: 15, intelligence: 13, wisdom: 13, charisma: 13, race_id: orc.id, skillset_id: dmc.id, campaign_id: current_campaign.id)
 # +1 to Dexterity, Manual of Quickness of Action
 
-merg1 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: one_skill_point.id)
-merg2 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: one_skill_point.id)
-merg3 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: one_skill_point.id)
-merg4 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: nil, feat_id: nil, ability_score_improvement: 'dexterity', level: 4, favored_klass_bonus_id: one_skill_point.id)
-merg5 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: one_skill_point.id)
-merg6 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: one_skill_point.id)
-merg7 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: one_skill_point.id)
+merg1 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: 12, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: one_skill_point.id)
+merg2 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: one_skill_point.id)
+merg3 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: one_skill_point.id)
+merg4 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: 7, feat_id: nil, ability_score_improvement: 'dexterity', level: 4, favored_klass_bonus_id: one_skill_point.id)
+merg5 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: one_skill_point.id)
+merg6 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: one_skill_point.id)
+merg7 = CharacterKlass.create!(character_id: merg.id, klass_id: unchained_barbarian.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: one_skill_point.id)
 
-cedrick = Character.create!(user_id: admin.id, name: "Cedrick", strength: 17, dexterity: 14, constitution: 12, intelligence: 10, wisdom: 17, charisma: 10, race_id: grippli.id, skillset_id: dmc.id)
+CharacterSkillsetSkill.create!(character_id: merg.id, skillset_id: dmc.id, skill_id: acro.id, ranks: 4)
+CharacterSkillsetSkill.create!(character_id: merg.id, skillset_id: dmc.id, skill_id: hand.id, ranks: 5)
+CharacterSkillsetSkill.create!(character_id: merg.id, skillset_id: dmc.id, skill_id: inti.id, ranks: 7)
+CharacterSkillsetSkill.create!(character_id: merg.id, skillset_id: dmc.id, skill_id: inve.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: merg.id, skillset_id: dmc.id, skill_id: ling.id, ranks: 5)
+CharacterSkillsetSkill.create!(character_id: merg.id, skillset_id: dmc.id, skill_id: unc_natu.id, ranks: 1)
+CharacterSkillsetSkill.create!(character_id: merg.id, skillset_id: dmc.id, skill_id: perc.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: merg.id, skillset_id: dmc.id, skill_id: sens.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: merg.id, skillset_id: dmc.id, skill_id: surv.id, ranks: 5)
 
-cedrick1 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: hp_up.id)
-cedrick2 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: hp_up.id)
-cedrick3 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: hp_up.id)
-cedrick4 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: 'strength', level: 4, favored_klass_bonus_id: one_skill_point.id)
-cedrick5 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: one_skill_point.id)
-cedrick6 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
-cedrick7 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
 
-maddox = Character.create!(user_id: admin.id, name: "Maddox", strength: 9, dexterity: 16, constitution: 14, intelligence: 18, wisdom: 11, charisma: 17, race_id: samsaran.id, skillset_id: dmc.id)
+cedrick = Character.create!(user_id: admin.id, name: "Cedrick", full_name: "Cedrick Ren 'Renny' Briarwert VII, Prince of Indiaster", strength: 17, dexterity: 14, constitution: 12, intelligence: 10, wisdom: 17, charisma: 10, race_id: grippli.id, skillset_id: dmc.id, campaign_id: current_campaign.id)
+
+cedrick1 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: hp_up.id)
+cedrick2 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: hp_up.id)
+cedrick3 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: hp_up.id)
+cedrick4 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: 7, feat_id: nil, ability_score_improvement: 'strength', level: 4, favored_klass_bonus_id: one_skill_point.id)
+cedrick5 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: one_skill_point.id)
+cedrick6 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
+cedrick7 = CharacterKlass.create!(character_id: cedrick.id, klass_id: shifter.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
+
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: acro.id, ranks: 1)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: bluf.id, ranks: 4)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: dipl.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: unc_fine.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: hand.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: heal.id, ranks: 1)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: inti.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: inve.id, ranks: 5)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: ling.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: unc_natu.id, ranks: 1)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: perc.id, ranks: 4)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: stea.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: surv.id, ranks: 1)
+
+
+maddox = Character.create!(user_id: admin.id, name: "Maddox", full_name: 'Maddox Magpie', strength: 9, dexterity: 16, constitution: 14, intelligence: 18, wisdom: 11, charisma: 17, race_id: samsaran.id, skillset_id: dmc.id, campaign_id: current_campaign.id)
 # +1 to Charisma, Tome of Leadership and Influence
 
 maddox1 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
-maddox2 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
-maddox3 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
-maddox4 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 4, favored_klass_bonus_id: nil)
-maddox5 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: nil)
-maddox6 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
-maddox7 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
+maddox2 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+maddox3 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
+maddox4 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 4, favored_klass_bonus_id: nil)
+maddox5 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: nil)
+maddox6 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
+maddox7 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
 
-robby = Character.create!(user_id: admin.id, name: 'Robby', strength: 13, dexterity: 16, constitution: 10, intelligence: 9, wisdom: 13, charisma: 17, race_id: kitsune.id, skillset_id: dmc.id)
+CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: acro.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: heal.id, ranks: 5)
+CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: inve.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: ling.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: unc_natu.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: perc.id, ranks: 5)
+CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: unc_reli.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: unc_spel.id, ranks: 6)
+CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: surv.id, ranks: 3)
+
+robby = Character.create!(user_id: admin.id, name: 'Robby', full_name: 'Sir Robby Redfurred', strength: 13, dexterity: 16, constitution: 10, intelligence: 9, wisdom: 13, charisma: 17, race_id: kitsune.id, skillset_id: dmc.id, campaign_id: current_campaign.id)
 # +1 to Strength, Manual of Gainful Exercise
 
 robby1 = CharacterKlass.create!(character_id: robby.id, klass_id: swashbuckler.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
-robby2 = CharacterKlass.create!(character_id: robby.id, klass_id: swashbuckler.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
-robby3 = CharacterKlass.create!(character_id: robby.id, klass_id: swashbuckler.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
-robby4 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 10, feat_id: nil, ability_score_improvement: 'intelligence', level: 4, favored_klass_bonus_id: nil)
-robby5 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: nil)
-robby6 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
-robby7 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
+robby2 = CharacterKlass.create!(character_id: robby.id, klass_id: swashbuckler.id, hp: 9, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+robby3 = CharacterKlass.create!(character_id: robby.id, klass_id: swashbuckler.id, hp: 8, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
+robby4 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 6, feat_id: nil, ability_score_improvement: 'intelligence', level: 4, favored_klass_bonus_id: nil)
+robby5 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: nil)
+robby6 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
+robby7 = CharacterKlass.create!(character_id: robby.id, klass_id: unchained_rogue.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
+
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: acro.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: bluf.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: clim.id, ranks: 4)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: dipl.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: disg.id, ranks: 2)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: unc_fine.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: hand.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: heal.id, ranks: 1)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: inti.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: ling.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: perc.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: sens.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: stea.id, ranks: 3)
+CharacterSkillsetSkill.create!(character_id: robby.id, skillset_id: dmc.id, skill_id: swim.id, ranks: 3)
+
+festus = Character.create!(user_id: admin.id, name: 'Festus', full_name: nil, strength: 16, dexterity: 16, constitution: 16, intelligence: 16, wisdom: 16, charisma: 16, race_id: half_elf.id, any_bonus: 'Strength', skillset_id: dmc.id, campaign_id: current_campaign.id)
+
+festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, hp: 10, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
+festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, hp: nil, feat_id: nil, ability_score_improvement: 'strength', level: 4, favored_klass_bonus_id: nil)
+festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: nil)
+festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Known Spells!-*-*-*-----*-*->
@@ -2478,7 +3761,33 @@ KnownSpell.create!(klass_spell_id: charm_person_bard.id, character_id: nettie.id
 KnownSpell.create!(klass_spell_id: message_bard.id, character_id: nettie.id, klass_id: bard.id)
 KnownSpell.create!(klass_spell_id: identify_bard.id, character_id: nettie.id, klass_id: bard.id)
 
+KnownSpell.create!(klass_spell_id: dancing_lights_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: detect_magic_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: mage_hand_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: mending_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: prestidigitation_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: read_magic_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: spark_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: open_close_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: jolt_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: magic_missile_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: identify_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: mage_armor_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: true_strike_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: ear_piercing_scream_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: floating_disk_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: touch_of_combustion_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: endothermic_touch_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: lay_of_the_land_bard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: stone_call_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: sonic_scream_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: admonishing_ray_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: twisted_futures_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: twisted_space_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: make_whole_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
 KnownSpell.create!(klass_spell_id: lightning_bolt_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: haste_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
+KnownSpell.create!(klass_spell_id: dispel_magic_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Prepared Spells!-*-*-*-----*-*->
@@ -2490,3 +3799,115 @@ PreparedSpell.create!(klass_spell_id: detect_magic_witch.id, character_id: perse
 PreparedSpell.create!(klass_spell_id: mending_witch.id, character_id: persephone.id, spell_level: 0, cast: false, klass_id: witch.id)
 PreparedSpell.create!(klass_spell_id: message_witch.id, character_id: persephone.id, spell_level: 0, cast: false, klass_id: witch.id)
 PreparedSpell.create!(klass_spell_id: light_witch.id, character_id: persephone.id, spell_level: 0, cast: false, klass_id: witch.id)
+
+
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Magic Items!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+# //////////
+# LIMIT FREQUENCY IS FOR HOW OFTEN THE ITEM CAN BE USED FOR ITS LIMIT COUNTER
+# IE. CAN BE USED ONCE A ROUND, TWICE A DAY, etc.
+# syntax: USE UPPERCASED STRING FOR ROUND/DAY/WEEK/MINUTE ETC.
+
+potion_of_cure_light_wounds = MagicItem.create!(name: 'Potion of Cure Light Wounds', description: 'The imbiber of this potion is affected by the cure light wounds spell.', slot: 'potion', aura: 'faint conjuration', caster_level: 1, price_in_gp: 50, weight: 0, activatable: true, expendable: true, group: 'Potion')
+  potion_of_cure_light_wounds_feature1 = Feature.create!(name: nil, action_id: standard.id)
+    MagicItemFeature.create!(magic_item_id: potion_of_cure_light_wounds.id, feature_id: potion_of_cure_light_wounds_feature1.id)
+    potion_of_cure_light_wounds_feature1_usage = FeatureUsage.create!(feature_id: potion_of_cure_light_wounds_feature1.id, limit: 1, destroy_after_use: true, limit_frequency: 'Round')
+      FeatureUsageSpellOption.create!(feature_usage_id: potion_of_cure_light_wounds_feature1_usage.id, spell_id: sp17.id, castable: false, cost: 1)
+
+potion_of_cure_moderate_wounds = MagicItem.create!(name: 'Potion of Cure Moderate Wounds', description: 'The imbiber of this potion is affected by the cure moderate wounds spell.', slot: 'potion', aura: 'faint conjuration', caster_level: 3, price_in_gp: 300, weight: 0, activatable: true, expendable: true, group: 'Potion')
+  potion_of_cure_moderate_wounds_feature1 = Feature.create!(name: nil, action_id: standard.id)
+    MagicItemFeature.create!(magic_item_id: potion_of_cure_moderate_wounds.id, feature_id: potion_of_cure_moderate_wounds_feature1.id)
+    potion_of_cure_moderate_wounds_feature1_usage = FeatureUsage.create!(feature_id: potion_of_cure_moderate_wounds_feature1.id, limit: 1, destroy_after_use: true, limit_frequency: 'Round')
+      FeatureUsageSpellOption.create!(feature_usage_id: potion_of_cure_moderate_wounds_feature1_usage.id, spell_id: sp45.id, castable: false, cost: 1)
+
+quick_runners_shirt = MagicItem.create!(name: "Quick Runner's Shirt", description: 'This shirt is made of light, gossamer-thin fabric embroidered with arrangements of winged feet.
+
+Once per day as a swift action, the wearer can take an additional move action to move and then immediately end his turn, losing any unspent actions.
+
+A character must wear this shirt continuously for 24 hours before he can activate this ability.', slot: 'chest', aura: 'faint transmutation', caster_level: 5, price_in_gp: 1000, weight: 0, activatable: true, expendable: false, group: 'Wondrous Item')
+  quick_runners_shirt_feature1 = Feature.create!(name: nil, action_id: swift.id)
+    MagicItemFeature.create!(magic_item_id: quick_runners_shirt.id, feature_id: quick_runners_shirt_feature1.id)
+    quick_runners_shirt_feature1_usage = FeatureUsage.create!(feature_id: quick_runners_shirt_feature1.id, limit: 1, destroy_after_use: false, limit_frequency: 'Day')
+
+pirates_eye_patch = MagicItem.create!(name: "Pirate's Eye Patch", description: 'This black silk eye patch is adorned by a skull and crossbones worked in silver thread.
+
+The wearer of this patch gains a +2 competence bonus on Swim and Climb checks. In addition, once per day, the wearer of this eye patch can gain the effects of either touch of the sea or expeditious retreat on command (wearer’s choice).', slot: 'eye', aura: 'faint transmutation', caster_level: 2, price_in_gp: 2600, weight: 0, activatable: true, expendable: false, group: 'Wondrous Item')
+#   pirates_eye_patch_touch_of_the_sea = MagicItemSpellReference.create!(magic_item_id: pirates_eye_patch.id, spell_id: sp70.id, castable: true)
+#   pirates_eye_patch_expeditious_retreat = MagicItemSpellReference.create!(magic_item_id: pirates_eye_patch.id, spell_id: sp52.id, castable: true)
+  pirates_eye_patch_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: pirates_eye_patch.id, feature_id: pirates_eye_patch_feature1.id)
+    pirates_eye_patch_feature1_usage = FeatureUsage.create!(feature_id: pirates_eye_patch_feature1.id, limit: 1, destroy_after_use: false, limit_frequency: 'Day')
+      FeatureUsageSpellOption.create!(feature_usage_id: pirates_eye_patch_feature1_usage.id, spell_id: sp70.id, castable: true, cost: 1)
+      FeatureUsageSpellOption.create!(feature_usage_id: pirates_eye_patch_feature1_usage.id, spell_id: sp52.id, castable: true, cost: 1)
+  pirates_eye_patch_feature2 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: pirates_eye_patch.id, feature_id: pirates_eye_patch_feature2.id)
+    FeatureSkillBonus.create!(feature_id: pirates_eye_patch_feature2.id, skill_id: swim.id, bonus: 2, bonus_type: 'competence', duration: 'permanent')
+  pirates_eye_patch_feature3 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: pirates_eye_patch.id, feature_id: pirates_eye_patch_feature3.id)
+    FeatureSkillBonus.create!(feature_id: pirates_eye_patch_feature3.id, skill_id: clim.id, bonus: 2, bonus_type: 'competence', duration: 'permanent')
+
+boots_of_elvenkind = MagicItem.create!(name: 'Boots of Elvenkind', description: 'These soft boots are partially made out of living leaves and other natural materials.
+
+They enable the wearer to move nimbly about in virtually any surroundings, granting a +5 competence bonus on Acrobatics checks.', slot: 'feet', aura: 'faint transmutation', caster_level: 5, price_in_gp: 2500, weight: 1, activatable: false, expendable: false, group: 'Wondrous Item')
+  boots_of_elvenkind_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: boots_of_elvenkind.id, feature_id: boots_of_elvenkind_feature1.id)
+    FeatureSkillBonus.create!(feature_id: boots_of_elvenkind_feature1.id, skill_id: acro.id, bonus: 5, bonus_type: 'competence', duration: 'permanent')
+#
+bag_of_holding_I = MagicItem.create!(name: 'Bag of Holding I', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
+
+The bag can hold up to 250 lbs, with a volume of up to 30 cubic feet.
+
+If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
+
+If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 2500, weight: 15, activatable: true, expendable: false, group: 'Wondrous Item')
+  bag_of_holding_I_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: bag_of_holding_I.id, feature_id: bag_of_holding_I_feature1.id)
+    FeatureContainer.create!(feature_id: bag_of_holding_I_feature1.id, weight: 250, volume_cubic_feet: 30)
+#
+# bag_of_holding_II = MagicItem.create!(name: 'Bag of Holding II', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
+#
+# The bag can hold up to 500 lbs, with a volume of up to 70 cubic feet.
+#
+# If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
+#
+# If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 5000, weight: 25, activatable: true, expendable: false, group: 'Wondrous Item')
+#
+# bag_of_holding_III = MagicItem.create!(name: 'Bag of Holding III', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
+#
+# The bag can hold up to 1000 lbs, with a volume of up to 150 cubic feet.
+#
+# If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
+#
+# If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 7400, weight: 35, activatable: true, expendable: false, group: 'Wondrous Item')
+#
+# bag_of_holding_IV = MagicItem.create!(name: 'Bag of Holding IV', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
+#
+# The bag can hold up to 1500 lbs, with a volume of up to 250 cubic feet.
+#
+# If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
+#
+# If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 10000, weight: 60, activatable: true, expendable: false, group: 'Wondrous Item')
+#
+# mask_of_the_rabbit_prince = MagicItem.create!(name: 'Mask of the Rabbit Prince', description: 'This colorful mask covers the top half of the wearer’s face and depicts the countenance of a resolute rabbit complete with large, floppy felt ears. Despite its apparently fragile construction, the mask is as tough as iron (hardness 10). The mask of the rabbit prince imparts reckless bravado, granting the wearer a +2 morale bonus on initiative checks and on saving throws against fear effects. In addition, the wearer always counts as having a running start when attempting Acrobatics checks to jump.', slot: 'head', aura: 'faint tranmutation', caster_level: 3, price_in_gp: 6000, weight: 0.5, activatable: false, expendable: true, group: 'Wondrous Item')
+#
+# staff_of_size_alteration = MagicItem.create!(name: 'Staff of Size Alteration', description: 'This staff of dark wood is stouter and sturdier than most magical staves, with a gnarled and twisted knot of wood at the top end. It allows use of the following spells:
+#
+# enlarge person (1 charge)
+# reduce person (1 charge)
+# shrink item (2 charges)
+# mass enlarge person (3 charges)
+# mass reduce person (3 charges)', slot: 'none', aura: 'moderate transmutation', caster_level: 8, price_in_gp: 26150, weight: 5, activatable: false, expendable: false, group: 'Staff')
+#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp67.id)
+#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp68.id)
+#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp64.id)
+#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp65.id)
+#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp66.id)
+
+# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: '', aura: '', caster_level: 1, price_in_gp: 0, weight: 0, activatable: false, expendable: false, group: '')
+#   IDENTIFIER_SPELL = MagicItemSpellReference.create!(magic_item_id: IDENTIFIER.id, spell_id: )
+#   IDENTIFIER_FEATUREVAR = MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, action_id: , name: nil)
+#     IDENTIFIER_FEATUREVAR_usage = MagicItemFeatureUsage.create!(magic_item_feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency)
+#       MagicItemFeatureUsageSpellOption.create!(magic_item_feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, magic_item_spell_reference_id: IDENTIFIER_SPELL.id)

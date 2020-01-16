@@ -35,6 +35,18 @@ Rails.application.routes.draw do
       post 'spellcasting', to: 'effects#spellcasting'
       delete 'rest', to: 'char_edits#clear_all'
       patch 'cast_spells', to: 'cast_spells#rollback'
+      get 'item_search', to: 'items#index'
+      post 'character_items', to: 'items#create'
+      delete 'character_magic_items/:id', to: 'items#magic_destroy'
+      patch 'character_magic_items/:id', to: 'items#usage_update'
+      patch 'character_magic_items_discovered/:id', to: 'items#discovered'
+      patch 'character_magic_items_known/:id', to: 'items#known'
+      patch 'character_magic_items_equip/:id', to: 'items#equip'
+      patch 'character_magic_items_trade/:id', to: 'items#trade'
+      get 'campaign_containers/:id', to: 'items#shared_containers'
+      post 'container_storage/:id', to: 'items#store'
+      delete 'container_withdraw/:id', to: 'items#withdraw'
+      get 'container/:id', to: 'items#container_contents'
     end
   end
 end

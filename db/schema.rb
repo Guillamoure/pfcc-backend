@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_23_002433) do
+ActiveRecord::Schema.define(version: 2020_01_14_220602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string "name"
+    t.string "date"
+    t.integer "dm_id"
   end
 
   create_table "cast_spells", force: :cascade do |t|
@@ -40,6 +46,26 @@ ActiveRecord::Schema.define(version: 2019_12_23_002433) do
     t.string "ability_score_improvement"
     t.integer "level"
     t.integer "favored_klass_bonus_id"
+  end
+
+  create_table "character_magic_item_containers", force: :cascade do |t|
+    t.integer "character_magic_item_id"
+    t.integer "container_id"
+  end
+
+  create_table "character_magic_item_feature_usages", force: :cascade do |t|
+    t.integer "character_magic_item_id"
+    t.integer "feature_usage_id"
+    t.integer "current_usage"
+  end
+
+  create_table "character_magic_items", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "magic_item_id"
+    t.string "false_desc"
+    t.boolean "discovered", default: false
+    t.boolean "known", default: false
+    t.boolean "equipped", default: false
   end
 
   create_table "character_skillset_skills", force: :cascade do |t|
@@ -78,6 +104,8 @@ ActiveRecord::Schema.define(version: 2019_12_23_002433) do
     t.integer "non_lethal_damage", default: 0
     t.integer "temp_hp", default: 0
     t.boolean "is_done_preparing_spells", default: false
+    t.string "full_name"
+    t.integer "campaign_id"
   end
 
   create_table "class_skillset_skills", force: :cascade do |t|
@@ -90,6 +118,10 @@ ActiveRecord::Schema.define(version: 2019_12_23_002433) do
     t.string "name"
     t.string "description"
     t.string "abbreviation"
+  end
+
+  create_table "containers", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "durations", force: :cascade do |t|
@@ -114,6 +146,12 @@ ActiveRecord::Schema.define(version: 2019_12_23_002433) do
     t.integer "level"
   end
 
+  create_table "feature_containers", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "weight"
+    t.integer "volume_cubic_feet"
+  end
+
   create_table "feature_levels", force: :cascade do |t|
     t.integer "klass_feature_id"
     t.integer "level"
@@ -131,6 +169,33 @@ ActiveRecord::Schema.define(version: 2019_12_23_002433) do
     t.string "description"
     t.integer "klass_feature_id"
     t.integer "level_available"
+  end
+
+  create_table "feature_skill_bonus", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "skill_id"
+    t.integer "bonus"
+    t.string "bonus_type"
+    t.string "duration"
+  end
+
+  create_table "feature_usage_spell_options", force: :cascade do |t|
+    t.integer "feature_usage_id"
+    t.integer "spell_id"
+    t.integer "cost", default: 1
+    t.boolean "castable", default: true
+  end
+
+  create_table "feature_usages", force: :cascade do |t|
+    t.integer "feature_id"
+    t.boolean "destroy_after_use", default: false
+    t.integer "limit"
+    t.string "limit_frequency"
+  end
+
+  create_table "features", force: :cascade do |t|
+    t.integer "action_id"
+    t.string "name"
   end
 
   create_table "klass_features", force: :cascade do |t|
@@ -164,6 +229,24 @@ ActiveRecord::Schema.define(version: 2019_12_23_002433) do
     t.integer "klass_spell_id"
     t.integer "character_id"
     t.integer "klass_id"
+  end
+
+  create_table "magic_item_features", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "magic_item_id"
+  end
+
+  create_table "magic_items", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "slot"
+    t.string "aura"
+    t.integer "caster_level"
+    t.float "price_in_gp"
+    t.float "weight"
+    t.boolean "activatable"
+    t.boolean "expendable"
+    t.string "group"
   end
 
   create_table "magic_schools", force: :cascade do |t|
@@ -266,6 +349,11 @@ ActiveRecord::Schema.define(version: 2019_12_23_002433) do
     t.integer "klass_level"
     t.integer "spells"
     t.integer "klass_id"
+  end
+
+  create_table "stored_character_magic_items", force: :cascade do |t|
+    t.integer "character_magic_item_id"
+    t.integer "container_id"
   end
 
   create_table "subschools", force: :cascade do |t|
