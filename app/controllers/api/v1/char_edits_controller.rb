@@ -157,6 +157,20 @@ class Api::V1::CharEditsController < ApplicationController
     @char.cast_spells.destroy_all
     @char.prepared_spells.destroy_all
     @char.update(is_done_preparing_spells: false)
+    # reset all day frequency limited magic items
+    @char.character_magic_items.each do |cmi|
+      cmi.magic_item.features.each do |f|
+        if f.usage.limit_frequency === 'Day'
+          @char.character_magic_item_feature_usages.each do |fu|
+            if fu.feature_usage_id == f.usage.id
+              fu.update(current_usage: 0)
+            end
+          end
+        end
+
+      end
+    end
+
     # serialize
     render json: { character: CharacterSerializer.new(@char) }, status: 201
   end

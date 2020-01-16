@@ -2,8 +2,8 @@ class CampaignSerializer < ActiveModel::Serializer
   attributes :id, :name, :date, :characters
 
   def characters
-    self.object.characters.map do |ck|
-      ck
+    self.object.characters.map do |ch|
+      CharacterCampaignSerializer.new(ch)
     end
   end
 

@@ -10,6 +10,7 @@ class CreateMagicItems < ActiveRecord::Migration[5.2]
       t.float :weight
       t.boolean :activatable
       t.boolean :expendable
+      t.string :group
     end
   end
 end

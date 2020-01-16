@@ -357,7 +357,7 @@ Role: The Fate Weaver has a wide array of options, but they may not always be co
 
 Alignment: Any Chaotic")
 
-wizard = Klass.create!(name: "Wizard", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/e0/cc/47/e0cc47ea55051b8221c15cfc208f3a20.png", description: "Beyond the veil of the mundane hide the secrets of absolute power. The works of beings beyond mortals, the legends of realms where gods and spirits tread, the lore of creations both wondrous and terrible—such mysteries call to those with the ambition and the intellect to rise above the common folk to grasp true might. Such is the path of the wizard. These shrewd magic-users seek, collect, and covet esoteric knowledge, drawing on cultic arts to work wonders beyond the abilities of mere mortals. While some might choose a particular field of magical study and become masters of such powers, others embrace versatility, reveling in the unbounded wonders of all magic. In either case, wizards prove a cunning and potent lot, capable of smiting their foes, empowering their allies, and shaping the world to their every desire.
+wizard = Klass.create!(name: "Wizard", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/e0/cc/47/e0cc47ea55051b8221c15cfc208f3a20.png", description: "Beyond the veil of the mundane hide the secrets of absolute power. The works of beings beyond mortals, the legends of realms where gods and spirits tread, the lore of creations both Wondrous Item and terrible—such mysteries call to those with the ambition and the intellect to rise above the common folk to grasp true might. Such is the path of the wizard. These shrewd magic-users seek, collect, and covet esoteric knowledge, drawing on cultic arts to work wonders beyond the abilities of mere mortals. While some might choose a particular field of magical study and become masters of such powers, others embrace versatility, reveling in the unbounded wonders of all magic. In either case, wizards prove a cunning and potent lot, capable of smiting their foes, empowering their allies, and shaping the world to their every desire.
 
 Role: While universalist wizards might study to prepare themselves for any manner of danger, specialist wizards research schools of magic that make them exceptionally skilled within a specific focus. Yet no matter their specialty, all wizards are masters of the impossible and can aid their allies in overcoming any danger.
 
@@ -3806,44 +3806,108 @@ PreparedSpell.create!(klass_spell_id: light_witch.id, character_id: persephone.i
 # <-*-*-----*-*-*- Magic Items!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-potion_of_cure_light_wounds = MagicItem.create!(name: 'Potion of Cure Light Wounds', description: 'cure light wounds', slot: 'potion', aura: 'faint conjuration', caster_level: 1, price_in_gp: 50, weight: 0, activatable: true, expendable: true)
-  MagicItemSpellReference.create!(magic_item_id: potion_of_cure_light_wounds.id, spell_id: sp17.id)
-potion_of_cure_moderate_wounds = MagicItem.create!(name: 'Potion of Cure Moderate Wounds', description: 'cure moderate wounds', slot: 'potion', aura: 'faint conjuration', caster_level: 3, price_in_gp: 150, weight: 0, activatable: true, expendable: true)
-  MagicItemSpellReference.create!(magic_item_id: potion_of_cure_moderate_wounds.id, spell_id: sp45.id)
+# //////////
+# LIMIT FREQUENCY IS FOR HOW OFTEN THE ITEM CAN BE USED FOR ITS LIMIT COUNTER
+# IE. CAN BE USED ONCE A ROUND, TWICE A DAY, etc.
+# syntax: USE UPPERCASED STRING FOR ROUND/DAY/WEEK/MINUTE ETC.
+
+potion_of_cure_light_wounds = MagicItem.create!(name: 'Potion of Cure Light Wounds', description: 'The imbiber of this potion is affected by the cure light wounds spell.', slot: 'potion', aura: 'faint conjuration', caster_level: 1, price_in_gp: 50, weight: 0, activatable: true, expendable: true, group: 'Potion')
+  potion_of_cure_light_wounds_feature1 = Feature.create!(name: nil, action_id: standard.id)
+    MagicItemFeature.create!(magic_item_id: potion_of_cure_light_wounds.id, feature_id: potion_of_cure_light_wounds_feature1.id)
+    potion_of_cure_light_wounds_feature1_usage = FeatureUsage.create!(feature_id: potion_of_cure_light_wounds_feature1.id, limit: 1, destroy_after_use: true, limit_frequency: 'Round')
+      FeatureUsageSpellOption.create!(feature_usage_id: potion_of_cure_light_wounds_feature1_usage.id, spell_id: sp17.id, castable: false, cost: 1)
+
+potion_of_cure_moderate_wounds = MagicItem.create!(name: 'Potion of Cure Moderate Wounds', description: 'The imbiber of this potion is affected by the cure moderate wounds spell.', slot: 'potion', aura: 'faint conjuration', caster_level: 3, price_in_gp: 300, weight: 0, activatable: true, expendable: true, group: 'Potion')
+  potion_of_cure_moderate_wounds_feature1 = Feature.create!(name: nil, action_id: standard.id)
+    MagicItemFeature.create!(magic_item_id: potion_of_cure_moderate_wounds.id, feature_id: potion_of_cure_moderate_wounds_feature1.id)
+    potion_of_cure_moderate_wounds_feature1_usage = FeatureUsage.create!(feature_id: potion_of_cure_moderate_wounds_feature1.id, limit: 1, destroy_after_use: true, limit_frequency: 'Round')
+      FeatureUsageSpellOption.create!(feature_usage_id: potion_of_cure_moderate_wounds_feature1_usage.id, spell_id: sp45.id, castable: false, cost: 1)
+
+quick_runners_shirt = MagicItem.create!(name: "Quick Runner's Shirt", description: 'This shirt is made of light, gossamer-thin fabric embroidered with arrangements of winged feet.
+
+Once per day as a swift action, the wearer can take an additional move action to move and then immediately end his turn, losing any unspent actions.
+
+A character must wear this shirt continuously for 24 hours before he can activate this ability.', slot: 'chest', aura: 'faint transmutation', caster_level: 5, price_in_gp: 1000, weight: 0, activatable: true, expendable: false, group: 'Wondrous Item')
+  quick_runners_shirt_feature1 = Feature.create!(name: nil, action_id: swift.id)
+    MagicItemFeature.create!(magic_item_id: quick_runners_shirt.id, feature_id: quick_runners_shirt_feature1.id)
+    quick_runners_shirt_feature1_usage = FeatureUsage.create!(feature_id: quick_runners_shirt_feature1.id, limit: 1, destroy_after_use: false, limit_frequency: 'Day')
+
 pirates_eye_patch = MagicItem.create!(name: "Pirate's Eye Patch", description: 'This black silk eye patch is adorned by a skull and crossbones worked in silver thread.
 
-The wearer of this patch gains a +2 competence bonus on Swim and Climb checks. In addition, once per day, the wearer of this eye patch can gain the effects of either touch of the sea or expeditious retreat on command (wearer’s choice).', slot: 'eye', aura: 'faint transmutation', caster_level: 2, price_in_gp: 2600, weight: 0, activatable: true, expendable: false)
-  MagicItemSpellReference.create!(magic_item_id: pirates_eye_patch.id, spell_id: sp70.id)
-  MagicItemSpellReference.create!(magic_item_id: pirates_eye_patch.id, spell_id: sp52.id)
+The wearer of this patch gains a +2 competence bonus on Swim and Climb checks. In addition, once per day, the wearer of this eye patch can gain the effects of either touch of the sea or expeditious retreat on command (wearer’s choice).', slot: 'eye', aura: 'faint transmutation', caster_level: 2, price_in_gp: 2600, weight: 0, activatable: true, expendable: false, group: 'Wondrous Item')
+#   pirates_eye_patch_touch_of_the_sea = MagicItemSpellReference.create!(magic_item_id: pirates_eye_patch.id, spell_id: sp70.id, castable: true)
+#   pirates_eye_patch_expeditious_retreat = MagicItemSpellReference.create!(magic_item_id: pirates_eye_patch.id, spell_id: sp52.id, castable: true)
+  pirates_eye_patch_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: pirates_eye_patch.id, feature_id: pirates_eye_patch_feature1.id)
+    pirates_eye_patch_feature1_usage = FeatureUsage.create!(feature_id: pirates_eye_patch_feature1.id, limit: 1, destroy_after_use: false, limit_frequency: 'Day')
+      FeatureUsageSpellOption.create!(feature_usage_id: pirates_eye_patch_feature1_usage.id, spell_id: sp70.id, castable: true, cost: 1)
+      FeatureUsageSpellOption.create!(feature_usage_id: pirates_eye_patch_feature1_usage.id, spell_id: sp52.id, castable: true, cost: 1)
+  pirates_eye_patch_feature2 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: pirates_eye_patch.id, feature_id: pirates_eye_patch_feature2.id)
+    FeatureSkillBonus.create!(feature_id: pirates_eye_patch_feature2.id, skill_id: swim.id, bonus: 2, bonus_type: 'competence', duration: 'permanent')
+  pirates_eye_patch_feature3 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: pirates_eye_patch.id, feature_id: pirates_eye_patch_feature3.id)
+    FeatureSkillBonus.create!(feature_id: pirates_eye_patch_feature3.id, skill_id: clim.id, bonus: 2, bonus_type: 'competence', duration: 'permanent')
+
 boots_of_elvenkind = MagicItem.create!(name: 'Boots of Elvenkind', description: 'These soft boots are partially made out of living leaves and other natural materials.
 
-They enable the wearer to move nimbly about in virtually any surroundings, granting a +5 competence bonus on Acrobatics checks.', slot: 'feet', aura: 'faint transmutation', caster_level: 5, price_in_gp: 2500, weight: 1, activatable: false, expendable: false)
+They enable the wearer to move nimbly about in virtually any surroundings, granting a +5 competence bonus on Acrobatics checks.', slot: 'feet', aura: 'faint transmutation', caster_level: 5, price_in_gp: 2500, weight: 1, activatable: false, expendable: false, group: 'Wondrous Item')
+  boots_of_elvenkind_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: boots_of_elvenkind.id, feature_id: boots_of_elvenkind_feature1.id)
+    FeatureSkillBonus.create!(feature_id: boots_of_elvenkind_feature1.id, skill_id: acro.id, bonus: 5, bonus_type: 'competence', duration: 'permanent')
+#
 bag_of_holding_I = MagicItem.create!(name: 'Bag of Holding I', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
 
 The bag can hold up to 250 lbs, with a volume of up to 30 cubic feet.
 
 If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
 
-If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 2500, weight: 15, activatable: true, expendable: false)
-bag_of_holding_II = MagicItem.create!(name: 'Bag of Holding II', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
+If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 2500, weight: 15, activatable: true, expendable: false, group: 'Wondrous Item')
+  bag_of_holding_I_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: bag_of_holding_I.id, feature_id: bag_of_holding_I_feature1.id)
+    FeatureContainer.create!(feature_id: bag_of_holding_I_feature1.id, weight: 250, volume_cubic_feet: 30)
+#
+# bag_of_holding_II = MagicItem.create!(name: 'Bag of Holding II', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
+#
+# The bag can hold up to 500 lbs, with a volume of up to 70 cubic feet.
+#
+# If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
+#
+# If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 5000, weight: 25, activatable: true, expendable: false, group: 'Wondrous Item')
+#
+# bag_of_holding_III = MagicItem.create!(name: 'Bag of Holding III', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
+#
+# The bag can hold up to 1000 lbs, with a volume of up to 150 cubic feet.
+#
+# If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
+#
+# If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 7400, weight: 35, activatable: true, expendable: false, group: 'Wondrous Item')
+#
+# bag_of_holding_IV = MagicItem.create!(name: 'Bag of Holding IV', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
+#
+# The bag can hold up to 1500 lbs, with a volume of up to 250 cubic feet.
+#
+# If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
+#
+# If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 10000, weight: 60, activatable: true, expendable: false, group: 'Wondrous Item')
+#
+# mask_of_the_rabbit_prince = MagicItem.create!(name: 'Mask of the Rabbit Prince', description: 'This colorful mask covers the top half of the wearer’s face and depicts the countenance of a resolute rabbit complete with large, floppy felt ears. Despite its apparently fragile construction, the mask is as tough as iron (hardness 10). The mask of the rabbit prince imparts reckless bravado, granting the wearer a +2 morale bonus on initiative checks and on saving throws against fear effects. In addition, the wearer always counts as having a running start when attempting Acrobatics checks to jump.', slot: 'head', aura: 'faint tranmutation', caster_level: 3, price_in_gp: 6000, weight: 0.5, activatable: false, expendable: true, group: 'Wondrous Item')
+#
+# staff_of_size_alteration = MagicItem.create!(name: 'Staff of Size Alteration', description: 'This staff of dark wood is stouter and sturdier than most magical staves, with a gnarled and twisted knot of wood at the top end. It allows use of the following spells:
+#
+# enlarge person (1 charge)
+# reduce person (1 charge)
+# shrink item (2 charges)
+# mass enlarge person (3 charges)
+# mass reduce person (3 charges)', slot: 'none', aura: 'moderate transmutation', caster_level: 8, price_in_gp: 26150, weight: 5, activatable: false, expendable: false, group: 'Staff')
+#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp67.id)
+#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp68.id)
+#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp64.id)
+#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp65.id)
+#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp66.id)
 
-The bag can hold up to 500 lbs, with a volume of up to 70 cubic feet.
-
-If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
-
-If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 5000, weight: 25, activatable: true, expendable: false)
-bag_of_holding_III = MagicItem.create!(name: 'Bag of Holding III', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
-
-The bag can hold up to 1000 lbs, with a volume of up to 150 cubic feet.
-
-If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
-
-If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 7400, weight: 35, activatable: true, expendable: false)
-bag_of_holding_IV = MagicItem.create!(name: 'Bag of Holding IV', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
-
-The bag can hold up to 1500 lbs, with a volume of up to 250 cubic feet.
-
-If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
-
-If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 10000, weight: 60, activatable: true, expendable: false)
-mask_of_the_rabbit_prince = MagicItem.create!(name: 'Mask of the Rabbit Prince', description: 'This colorful mask covers the top half of the wearer’s face and depicts the countenance of a resolute rabbit complete with large, floppy felt ears. Despite its apparently fragile construction, the mask is as tough as iron (hardness 10). The mask of the rabbit prince imparts reckless bravado, granting the wearer a +2 morale bonus on initiative checks and on saving throws against fear effects. In addition, the wearer always counts as having a running start when attempting Acrobatics checks to jump.', slot: 'head', aura: 'faint tranmutation', caster_level: 3, price_in_gp: 6000, weight: 0.5, activatable: false, expendable: true)
+# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: '', aura: '', caster_level: 1, price_in_gp: 0, weight: 0, activatable: false, expendable: false, group: '')
+#   IDENTIFIER_SPELL = MagicItemSpellReference.create!(magic_item_id: IDENTIFIER.id, spell_id: )
+#   IDENTIFIER_FEATUREVAR = MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, action_id: , name: nil)
+#     IDENTIFIER_FEATUREVAR_usage = MagicItemFeatureUsage.create!(magic_item_feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency)
+#       MagicItemFeatureUsageSpellOption.create!(magic_item_feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, magic_item_spell_reference_id: IDENTIFIER_SPELL.id)
