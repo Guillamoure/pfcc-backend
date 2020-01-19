@@ -3814,13 +3814,13 @@ PreparedSpell.create!(klass_spell_id: light_witch.id, character_id: persephone.i
 potion_of_cure_light_wounds = MagicItem.create!(name: 'Potion of Cure Light Wounds', description: 'The imbiber of this potion is affected by the cure light wounds spell.', slot: 'potion', aura: 'faint conjuration', caster_level: 1, price_in_gp: 50, weight: 0, activatable: true, expendable: true, group: 'Potion')
   potion_of_cure_light_wounds_feature1 = Feature.create!(name: nil, action_id: standard.id)
     MagicItemFeature.create!(magic_item_id: potion_of_cure_light_wounds.id, feature_id: potion_of_cure_light_wounds_feature1.id)
-    potion_of_cure_light_wounds_feature1_usage = FeatureUsage.create!(feature_id: potion_of_cure_light_wounds_feature1.id, limit: 1, destroy_after_use: true, limit_frequency: 'Round')
+    potion_of_cure_light_wounds_feature1_usage = FeatureUsage.create!(feature_id: potion_of_cure_light_wounds_feature1.id, limit: 1, destroy_after_use: true, limit_frequency: 'Round', adjustable: false)
       FeatureUsageSpellOption.create!(feature_usage_id: potion_of_cure_light_wounds_feature1_usage.id, spell_id: sp17.id, castable: false, cost: 1)
 
 potion_of_cure_moderate_wounds = MagicItem.create!(name: 'Potion of Cure Moderate Wounds', description: 'The imbiber of this potion is affected by the cure moderate wounds spell.', slot: 'potion', aura: 'faint conjuration', caster_level: 3, price_in_gp: 300, weight: 0, activatable: true, expendable: true, group: 'Potion')
   potion_of_cure_moderate_wounds_feature1 = Feature.create!(name: nil, action_id: standard.id)
     MagicItemFeature.create!(magic_item_id: potion_of_cure_moderate_wounds.id, feature_id: potion_of_cure_moderate_wounds_feature1.id)
-    potion_of_cure_moderate_wounds_feature1_usage = FeatureUsage.create!(feature_id: potion_of_cure_moderate_wounds_feature1.id, limit: 1, destroy_after_use: true, limit_frequency: 'Round')
+    potion_of_cure_moderate_wounds_feature1_usage = FeatureUsage.create!(feature_id: potion_of_cure_moderate_wounds_feature1.id, limit: 1, destroy_after_use: true, limit_frequency: 'Round', adjustable: false)
       FeatureUsageSpellOption.create!(feature_usage_id: potion_of_cure_moderate_wounds_feature1_usage.id, spell_id: sp45.id, castable: false, cost: 1)
 
 quick_runners_shirt = MagicItem.create!(name: "Quick Runner's Shirt", description: 'This shirt is made of light, gossamer-thin fabric embroidered with arrangements of winged feet.
@@ -3830,7 +3830,7 @@ Once per day as a swift action, the wearer can take an additional move action to
 A character must wear this shirt continuously for 24 hours before he can activate this ability.', slot: 'chest', aura: 'faint transmutation', caster_level: 5, price_in_gp: 1000, weight: 0, activatable: true, expendable: false, group: 'Wondrous Item')
   quick_runners_shirt_feature1 = Feature.create!(name: nil, action_id: swift.id)
     MagicItemFeature.create!(magic_item_id: quick_runners_shirt.id, feature_id: quick_runners_shirt_feature1.id)
-    quick_runners_shirt_feature1_usage = FeatureUsage.create!(feature_id: quick_runners_shirt_feature1.id, limit: 1, destroy_after_use: false, limit_frequency: 'Day')
+    quick_runners_shirt_feature1_usage = FeatureUsage.create!(feature_id: quick_runners_shirt_feature1.id, limit: 1, destroy_after_use: false, limit_frequency: 'Day', adjustable: false)
 
 pirates_eye_patch = MagicItem.create!(name: "Pirate's Eye Patch", description: 'This black silk eye patch is adorned by a skull and crossbones worked in silver thread.
 
@@ -3839,7 +3839,7 @@ The wearer of this patch gains a +2 competence bonus on Swim and Climb checks. I
 #   pirates_eye_patch_expeditious_retreat = MagicItemSpellReference.create!(magic_item_id: pirates_eye_patch.id, spell_id: sp52.id, castable: true)
   pirates_eye_patch_feature1 = Feature.create!(name: nil)
     MagicItemFeature.create!(magic_item_id: pirates_eye_patch.id, feature_id: pirates_eye_patch_feature1.id)
-    pirates_eye_patch_feature1_usage = FeatureUsage.create!(feature_id: pirates_eye_patch_feature1.id, limit: 1, destroy_after_use: false, limit_frequency: 'Day')
+    pirates_eye_patch_feature1_usage = FeatureUsage.create!(feature_id: pirates_eye_patch_feature1.id, limit: 1, destroy_after_use: false, limit_frequency: 'Day', adjustable: false)
       FeatureUsageSpellOption.create!(feature_usage_id: pirates_eye_patch_feature1_usage.id, spell_id: sp70.id, castable: true, cost: 1)
       FeatureUsageSpellOption.create!(feature_usage_id: pirates_eye_patch_feature1_usage.id, spell_id: sp52.id, castable: true, cost: 1)
   pirates_eye_patch_feature2 = Feature.create!(name: nil)
@@ -3866,48 +3866,79 @@ If a bag of holding is placed within a portable hole, a rift to the Astral Plane
   bag_of_holding_I_feature1 = Feature.create!(name: nil)
     MagicItemFeature.create!(magic_item_id: bag_of_holding_I.id, feature_id: bag_of_holding_I_feature1.id)
     FeatureContainer.create!(feature_id: bag_of_holding_I_feature1.id, weight: 250, volume_cubic_feet: 30)
-#
-# bag_of_holding_II = MagicItem.create!(name: 'Bag of Holding II', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
-#
-# The bag can hold up to 500 lbs, with a volume of up to 70 cubic feet.
-#
-# If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
-#
-# If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 5000, weight: 25, activatable: true, expendable: false, group: 'Wondrous Item')
-#
-# bag_of_holding_III = MagicItem.create!(name: 'Bag of Holding III', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
-#
-# The bag can hold up to 1000 lbs, with a volume of up to 150 cubic feet.
-#
-# If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
-#
-# If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 7400, weight: 35, activatable: true, expendable: false, group: 'Wondrous Item')
-#
-# bag_of_holding_IV = MagicItem.create!(name: 'Bag of Holding IV', description: 'The bag of holding opens into a nondimensional space: its inside is larger than its outside dimensions.
-#
-# The bag can hold up to 1500 lbs, with a volume of up to 250 cubic feet.
-#
-# If a bag of holding is overloaded, or if sharp objects pierce it (from inside or outside), the bag immediately ruptures and is ruined, and all contents are lost forever. If a bag of holding is turned inside out, all of its contents spill out, unharmed, but the bag must be put right before it can be used again. If living creatures are placed within the bag, they can survive for up to 10 minutes, after which time they suffocate. Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action. Magic items placed inside the bag do not offer any benefit to the character carrying the bag.
-#
-# If a bag of holding is placed within a portable hole, a rift to the Astral Plane is torn in the space: bag and hole alike are sucked into the void and forever lost. If a portable hole is placed within a bag of holding, it opens a gate to the Astral Plane: the hole, the bag, and any creatures within a 10-foot radius are drawn there, destroying the portable hole and bag of holding in the process.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 10000, weight: 60, activatable: true, expendable: false, group: 'Wondrous Item')
-#
-# mask_of_the_rabbit_prince = MagicItem.create!(name: 'Mask of the Rabbit Prince', description: 'This colorful mask covers the top half of the wearer’s face and depicts the countenance of a resolute rabbit complete with large, floppy felt ears. Despite its apparently fragile construction, the mask is as tough as iron (hardness 10). The mask of the rabbit prince imparts reckless bravado, granting the wearer a +2 morale bonus on initiative checks and on saving throws against fear effects. In addition, the wearer always counts as having a running start when attempting Acrobatics checks to jump.', slot: 'head', aura: 'faint tranmutation', caster_level: 3, price_in_gp: 6000, weight: 0.5, activatable: false, expendable: true, group: 'Wondrous Item')
-#
-# staff_of_size_alteration = MagicItem.create!(name: 'Staff of Size Alteration', description: 'This staff of dark wood is stouter and sturdier than most magical staves, with a gnarled and twisted knot of wood at the top end. It allows use of the following spells:
-#
-# enlarge person (1 charge)
-# reduce person (1 charge)
-# shrink item (2 charges)
-# mass enlarge person (3 charges)
-# mass reduce person (3 charges)', slot: 'none', aura: 'moderate transmutation', caster_level: 8, price_in_gp: 26150, weight: 5, activatable: false, expendable: false, group: 'Staff')
-#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp67.id)
-#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp68.id)
-#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp64.id)
-#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp65.id)
-#   MagicItemSpellReference.create!(magic_item_id: staff_of_size_alteration.id, spell_id: sp66.id)
+
+mask_of_the_rabbit_prince = MagicItem.create!(name: 'Mask of the Rabbit Prince', description: 'This colorful mask covers the top half of the wearer’s face and depicts the countenance of a resolute rabbit complete with large, floppy felt ears. Despite its apparently fragile construction, the mask is as tough as iron (hardness 10). The mask of the rabbit prince imparts reckless bravado, granting the wearer a +2 morale bonus on initiative checks and on saving throws against fear effects. In addition, the wearer always counts as having a running start when attempting Acrobatics checks to jump.', slot: 'head', aura: 'faint tranmutation', caster_level: 3, price_in_gp: 6000, weight: 0.5, activatable: false, expendable: true, group: 'Wondrous Item')
+  mask_of_the_rabbit_prince_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: mask_of_the_rabbit_prince.id, feature_id: mask_of_the_rabbit_prince_feature1.id)
+    FeatureStatBonus.create!(feature_id: mask_of_the_rabbit_prince_feature1.id, statistic: 'Initiative', bonus: 2, bonus_type: 'morale', duration: 'permanent')
+  mask_of_the_rabbit_prince_feature2 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: mask_of_the_rabbit_prince.id, feature_id: mask_of_the_rabbit_prince_feature2.id)
+    mask_of_the_rabbit_prince_feature2_stat = FeatureStatBonus.create!(feature_id: mask_of_the_rabbit_prince_feature2.id, statistic: 'Save', bonus: 2, bonus_type: 'morale', duration: 'permanent')
+      FeatureStatBonusCondition.create!(feature_stat_bonus_id: mask_of_the_rabbit_prince_feature2_stat.id, condition: 'fear effects')
+  mask_of_the_rabbit_prince_feature3 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: mask_of_the_rabbit_prince.id, feature_id: mask_of_the_rabbit_prince_feature3.id)
+    FeatureSkillNote.create!(feature_id: mask_of_the_rabbit_prince_feature3.id, skill_id: acro.id, note: 'counts as having a running start when attempting Acrobatics checks to jump')
+
+staff_of_size_alteration = MagicItem.create!(name: 'Staff of Size Alteration', description: 'This staff of dark wood is stouter and sturdier than most magical staves, with a gnarled and twisted knot of wood at the top end. It allows use of the following spells:
+
+enlarge person (1 charge)
+reduce person (1 charge)
+shrink item (2 charges)
+mass enlarge person (3 charges)
+mass reduce person (3 charges)', slot: 'none', aura: 'moderate transmutation', caster_level: 8, price_in_gp: 26150, weight: 5, activatable: false, expendable: false, group: 'Staff')
+  staff_of_size_alteration_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: staff_of_size_alteration.id, feature_id: staff_of_size_alteration_feature1.id)
+    staff_of_size_alteration_feature1_usage = FeatureUsage.create!(feature_id: staff_of_size_alteration_feature1.id, limit: 10, destroy_after_use: false, limit_frequency: 'Forever', adjustable: true)
+      FeatureUsageSpellOption.create!(feature_usage_id: staff_of_size_alteration_feature1_usage.id, spell_id: sp67.id, castable: true, cost: 3)
+      FeatureUsageSpellOption.create!(feature_usage_id: staff_of_size_alteration_feature1_usage.id, spell_id: sp68.id, castable: true, cost: 3)
+      FeatureUsageSpellOption.create!(feature_usage_id: staff_of_size_alteration_feature1_usage.id, spell_id: sp64.id, castable: true, cost: 1)
+      FeatureUsageSpellOption.create!(feature_usage_id: staff_of_size_alteration_feature1_usage.id, spell_id: sp65.id, castable: true, cost: 1)
+      FeatureUsageSpellOption.create!(feature_usage_id: staff_of_size_alteration_feature1_usage.id, spell_id: sp66.id, castable: true, cost: 2)
+
+slippers_of_spider_climbing = MagicItem.create!(name: 'Slippers of Spider Climbing', description: 'When worn, a pair of these slippers enables movement on vertical surfaces or even upside down along ceilings, leaving the wearer’s hands free. Her climb speed is 20 feet. Severely slippery surfaces—icy, oiled, or greased surfaces—make these slippers useless. The slippers can be used for 10 minutes per day, split up as the wearer chooses (minimum 1 minute per use).', slot: 'feet', aura: 'faint transmutation', caster_level: 4, price_in_gp: 4800, weight: 0.5, activatable: true, expendable: false, group: 'Wondrous Item')
+  slippers_of_spider_climbing_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: slippers_of_spider_climbing.id, feature_id: slippers_of_spider_climbing_feature1.id)
+    FeatureUsage.create!(feature_id: slippers_of_spider_climbing_feature1.id, limit: 10, unit: 'minute', destroy_after_use: false, limit_frequency: 'Day', adjustable: true, toggleable: true)
+    FeatureMovement.create!(feature_id: slippers_of_spider_climbing_feature1.id, movement: 'Climb', feet: 20)
+# can only use 10 minutes a day, 1 minute at a time
+# gives 20 ft of climb
 
 # IDENTIFIER = MagicItem.create!(name: '', description: '', slot: '', aura: '', caster_level: 1, price_in_gp: 0, weight: 0, activatable: false, expendable: false, group: '')
-#   IDENTIFIER_SPELL = MagicItemSpellReference.create!(magic_item_id: IDENTIFIER.id, spell_id: )
-#   IDENTIFIER_FEATUREVAR = MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, action_id: , name: nil)
-#     IDENTIFIER_FEATUREVAR_usage = MagicItemFeatureUsage.create!(magic_item_feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency)
-#       MagicItemFeatureUsageSpellOption.create!(magic_item_feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, magic_item_spell_reference_id: IDENTIFIER_SPELL.id)
+#   IDENTIFIER_FEATUREVAR = Feature.create!(name: nil, action_id:)
+#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_FEATUREVAR.id)
+#     IDENTIFIER_FEATUREVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency: )
+#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, spell_id: SPELL.id, castable: true, cost: 1)
+#       FeatureStatBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: '')
+#         FeatureStatBonusCondtion.create!(feature_stat_bonus_id: .id, condition: '')
+#       FeatureSkillBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, bonus: 0, bonus_type: '', duration: '')
+#       FeatureSkillNote.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, note: '')
+
+# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: '', aura: '', caster_level: 1, price_in_gp: 0, weight: 0, activatable: false, expendable: false, group: '')
+#   IDENTIFIER_FEATUREVAR = Feature.create!(name: nil, action_id:)
+#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_FEATUREVAR.id)
+#     IDENTIFIER_FEATUREVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency: )
+#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, spell_id: SPELL.id, castable: true, cost: 1)
+#       FeatureStatBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: '')
+#         FeatureStatBonusCondtion.create!(feature_stat_bonus_id: .id, condition: '')
+#       FeatureSkillBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, bonus: 0, bonus_type: '', duration: '')
+#       FeatureSkillNote.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, note: '')
+
+# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: '', aura: '', caster_level: 1, price_in_gp: 0, weight: 0, activatable: false, expendable: false, group: '')
+#   IDENTIFIER_FEATUREVAR = Feature.create!(name: nil, action_id:)
+#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_FEATUREVAR.id)
+#     IDENTIFIER_FEATUREVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency: )
+#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, spell_id: SPELL.id, castable: true, cost: 1)
+#       FeatureStatBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: '')
+#         FeatureStatBonusCondtion.create!(feature_stat_bonus_id: .id, condition: '')
+#       FeatureSkillBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, bonus: 0, bonus_type: '', duration: '')
+#       FeatureSkillNote.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, note: '')
+
+# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: '', aura: '', caster_level: 1, price_in_gp: 0, weight: 0, activatable: false, expendable: false, group: '')
+#   IDENTIFIER_FEATUREVAR = Feature.create!(name: nil, action_id:)
+#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_FEATUREVAR.id)
+#     IDENTIFIER_FEATUREVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency: )
+#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, spell_id: SPELL.id, castable: true, cost: 1)
+#       FeatureStatBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: '')
+#         FeatureStatBonusCondtion.create!(feature_stat_bonus_id: .id, condition: '')
+#       FeatureSkillBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, bonus: 0, bonus_type: '', duration: '')
+#       FeatureSkillNote.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, note: '')

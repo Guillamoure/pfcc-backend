@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_14_220602) do
+ActiveRecord::Schema.define(version: 2020_01_18_191533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,6 +158,14 @@ ActiveRecord::Schema.define(version: 2020_01_14_220602) do
     t.string "table_description"
   end
 
+  create_table "feature_movements", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "movement"
+    t.integer "feet"
+    t.boolean "bonus", default: false
+    t.boolean "penalty", default: false
+  end
+
   create_table "feature_option_actions", force: :cascade do |t|
     t.integer "feature_option_id"
     t.integer "action_id"
@@ -179,6 +187,31 @@ ActiveRecord::Schema.define(version: 2020_01_14_220602) do
     t.string "duration"
   end
 
+  create_table "feature_skill_notes", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "skill_id"
+    t.string "note"
+  end
+
+  create_table "feature_stat_bonus", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "statistic"
+    t.integer "bonus"
+    t.string "bonus_type"
+    t.string "duration"
+  end
+
+  create_table "feature_stat_bonus_conditions", force: :cascade do |t|
+    t.integer "feature_stat_bonus_id"
+    t.string "condition"
+  end
+
+  create_table "feature_stat_notes", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "statistic"
+    t.string "note"
+  end
+
   create_table "feature_usage_spell_options", force: :cascade do |t|
     t.integer "feature_usage_id"
     t.integer "spell_id"
@@ -191,6 +224,9 @@ ActiveRecord::Schema.define(version: 2020_01_14_220602) do
     t.boolean "destroy_after_use", default: false
     t.integer "limit"
     t.string "limit_frequency"
+    t.string "unit"
+    t.boolean "adjustable", default: false
+    t.boolean "toggleable", default: false
   end
 
   create_table "features", force: :cascade do |t|

@@ -5,5 +5,10 @@ class Feature < ApplicationRecord
   has_many :feature_usage_spell_options, through: :usage
   has_many :spells, through: :feature_usage_spell_options
   has_one :skill_bonus, class_name: 'FeatureSkillBonus'
+  has_one :stat_bonus, class_name: 'FeatureStatBonus'
+  has_one :skill_note, class_name: 'FeatureSkillNote'
+  has_one :stat_note, class_name: 'FeatureStatNote'
+  has_one :movement, class_name: 'FeatureMovement'
   has_one :feature_container
+
 end

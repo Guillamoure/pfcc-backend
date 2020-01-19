@@ -6,7 +6,7 @@ class CharacterMagicItemSerializer < ActiveModel::Serializer
   end
 
   def container
-    if self.object.character_magic_item_container
+    if self.object.class != CharacterMagicItemSerializer && self.object.character_magic_item_container
       self.object.character_magic_item_container.container
     end
   end

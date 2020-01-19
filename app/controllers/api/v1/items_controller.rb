@@ -51,7 +51,6 @@ class Api::V1::ItemsController < ApplicationController
 
       if !container.empty?
         @container = Container.create!()
-        byebug
         @character_magic_item_container = CharacterMagicItemContainer.create!(container_id: @container.id, character_magic_item_id: @character_item.id)
       end
 
@@ -144,6 +143,18 @@ class Api::V1::ItemsController < ApplicationController
     end
 
     render json: contents
+  end
+
+  def destroy
+    @cmi = CharacterMagicItem.find(params[:id])
+    @cmi.destroy
+    @character = Character.find(@cmi.character_id)
+    render json: { character: CharacterSerializer.new(@character) }, status: 200
+  end
+
+  def cmi_show
+    @cmi = CharacterMagicItem.find(params[:id])
+    render json: CharacterMagicItemSerializer.new(@cmi), status: 200
   end
 
 end
