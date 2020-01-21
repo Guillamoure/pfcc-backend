@@ -40,6 +40,11 @@ class Api::V1::ItemsController < ApplicationController
       if !usages.empty?
         @magic_item.features.each do |f|
           if f.usage
+            if f.usage.options
+              f.usage.options.each do |o|
+                CharacterMagicItemFeatureUsageOption.create!(character_magic_item_id: @character_item.id, feature_usage_option_id: o.id)
+              end
+            end
             CharacterMagicItemFeatureUsage.create!(character_magic_item_id: @character_item.id, feature_usage_id: f.usage.id)
           end
         end
@@ -51,7 +56,6 @@ class Api::V1::ItemsController < ApplicationController
 
       if !container.empty?
         @container = Container.create!()
-        byebug
         @character_magic_item_container = CharacterMagicItemContainer.create!(container_id: @container.id, character_magic_item_id: @character_item.id)
       end
 
@@ -144,6 +148,36 @@ class Api::V1::ItemsController < ApplicationController
     end
 
     render json: contents
+  end
+
+  def destroy
+    @cmi = CharacterMagicItem.find(params[:id])
+    @cmi.destroy
+    @character = Character.find(@cmi.character_id)
+    render json: { character: CharacterSerializer.new(@character) }, status: 200
+  end
+
+  def cmi_show
+    @cmi = CharacterMagicItem.find(params[:id])
+    render json: CharacterMagicItemSerializer.new(@cmi), status: 200
+  end
+
+  def feature_option
+    @cmifuo = CharacterMagicItemFeatureUsageOption.find(params[:id])
+    @fuo = @cmifuo.feature_usage_option
+
+    @cmifuo.update(current_usage: @cmifuo.current_usage + @fuo.cost)
+    
+    @usage = @fuo.feature_usage
+    @cmifu = CharacterMagicItemFeatureUsage.find_by(character_magic_item_id: @cmifuo.character_magic_item.id, feature_usage_id: @usage.id)
+    amount = @cmifu.current_usage || 0
+    @cmifu.update(current_usage: amount + @fuo.cost)
+    if @cmifu.current_usage >= @usage.limit && @cmifu.character_magic_item.magic_item.expendable
+      @cmifu.character_magic_item.destroy
+    end
+
+    @character = Character.find(@cmifu.character_magic_item.character.id)
+    render json: { character: CharacterSerializer.new(@character) }, status: 200
   end
 
 end

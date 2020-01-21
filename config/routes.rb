@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       patch 'cast_spells', to: 'cast_spells#rollback'
       get 'item_search', to: 'items#index'
       post 'character_items', to: 'items#create'
+      get 'character_magic_items/:id', to: 'items#cmi_show'
       delete 'character_magic_items/:id', to: 'items#magic_destroy'
       patch 'character_magic_items/:id', to: 'items#usage_update'
       patch 'character_magic_items_discovered/:id', to: 'items#discovered'
@@ -47,6 +48,8 @@ Rails.application.routes.draw do
       post 'container_storage/:id', to: 'items#store'
       delete 'container_withdraw/:id', to: 'items#withdraw'
       get 'container/:id', to: 'items#container_contents'
+      delete 'character_magic_item/:id', to: 'items#destroy'
+      patch 'character_magic_item_feature_usage_options/:id', to: 'items#feature_option'
     end
   end
 end
