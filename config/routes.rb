@@ -50,6 +50,8 @@ Rails.application.routes.draw do
       get 'container/:id', to: 'items#container_contents'
       delete 'character_magic_item/:id', to: 'items#destroy'
       patch 'character_magic_item_feature_usage_options/:id', to: 'items#feature_option'
+      post 'notes', to: 'notes#create'
+      patch 'notes/:id', to: 'notes#update'
     end
   end
 end

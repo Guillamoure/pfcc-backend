@@ -15,6 +15,7 @@ class Character < ApplicationRecord
   has_many :known_spells, dependent: :destroy
   has_many :cast_spells, dependent: :destroy
   has_many :character_magic_items, dependent: :destroy
+  has_many :notes, dependent: :destroy
   has_many :magic_items, through: :character_magic_items
   has_many :character_magic_item_feature_usages, through: :character_magic_items
   has_many :character_magic_item_feature_usage_options, through: :character_magic_items
