@@ -3845,9 +3845,9 @@ The wearer of this patch gains a +2 competence bonus on Swim and Climb checks. I
   pirates_eye_patch_feature2 = Feature.create!(name: nil)
     MagicItemFeature.create!(magic_item_id: pirates_eye_patch.id, feature_id: pirates_eye_patch_feature2.id)
     FeatureSkillBonus.create!(feature_id: pirates_eye_patch_feature2.id, skill_id: swim.id, bonus: 2, bonus_type: 'competence', duration: 'permanent')
-  pirates_eye_patch_feature3 = Feature.create!(name: nil)
-    MagicItemFeature.create!(magic_item_id: pirates_eye_patch.id, feature_id: pirates_eye_patch_feature3.id)
-    FeatureSkillBonus.create!(feature_id: pirates_eye_patch_feature3.id, skill_id: clim.id, bonus: 2, bonus_type: 'competence', duration: 'permanent')
+    FeatureSkillBonus.create!(feature_id: pirates_eye_patch_feature2.id, skill_id: clim.id, bonus: 2, bonus_type: 'competence', duration: 'permanent')
+  # pirates_eye_patch_feature3 = Feature.create!(name: nil)
+  #   MagicItemFeature.create!(magic_item_id: pirates_eye_patch.id, feature_id: pirates_eye_patch_feature3.id)
 
 boots_of_elvenkind = MagicItem.create!(name: 'Boots of Elvenkind', description: 'These soft boots are partially made out of living leaves and other natural materials.
 
@@ -3867,17 +3867,20 @@ If a bag of holding is placed within a portable hole, a rift to the Astral Plane
     MagicItemFeature.create!(magic_item_id: bag_of_holding_I.id, feature_id: bag_of_holding_I_feature1.id)
     FeatureContainer.create!(feature_id: bag_of_holding_I_feature1.id, weight: 250, volume_cubic_feet: 30)
 
+handy_haversack = MagicItem.create!(name: 'Handy Haversack', description: 'A backpack of this sort appears to be well made, well used, and quite ordinary. It has two side pouches, each of which appears large enough to hold about a quart of material. In fact, each is like a bag of holding and can actually hold material of as much as 2 cubic feet in volume or 20 pounds in weight. The large central portion of the pack can contain up to 8 cubic feet or 80 pounds of material. Even when so filled, the backpack always weighs only 5 pounds.
+
+While such storage is useful enough, the pack has an even greater power. When the wearer reaches into it for a specific item, that item is always on top. Thus, no digging around and fumbling is ever necessary to find what a haversack contains. Retrieving any specific item from a haversack is a move action, but it does not provoke the attacks of opportunity that retrieving a stored item usually does.', slot: 'none', aura: 'moderate conjuration', caster_level: 9, price_in_gp: 2000, weight: 5, activatable: true, expendable: false, group: 'Wondrous Item')
+  handy_haversack_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: handy_haversack.id, feature_id: handy_haversack_feature1.id)
+    FeatureContainer.create!(feature_id: handy_haversack_feature1.id, weight: 120, volume_cubic_feet: 12)
+
 mask_of_the_rabbit_prince = MagicItem.create!(name: 'Mask of the Rabbit Prince', description: 'This colorful mask covers the top half of the wearer’s face and depicts the countenance of a resolute rabbit complete with large, floppy felt ears. Despite its apparently fragile construction, the mask is as tough as iron (hardness 10). The mask of the rabbit prince imparts reckless bravado, granting the wearer a +2 morale bonus on initiative checks and on saving throws against fear effects. In addition, the wearer always counts as having a running start when attempting Acrobatics checks to jump.', slot: 'head', aura: 'faint tranmutation', caster_level: 3, price_in_gp: 6000, weight: 0.5, activatable: false, expendable: true, group: 'Wondrous Item')
   mask_of_the_rabbit_prince_feature1 = Feature.create!(name: nil)
     MagicItemFeature.create!(magic_item_id: mask_of_the_rabbit_prince.id, feature_id: mask_of_the_rabbit_prince_feature1.id)
     FeatureStatBonus.create!(feature_id: mask_of_the_rabbit_prince_feature1.id, statistic: 'Initiative', bonus: 2, bonus_type: 'morale', duration: 'permanent')
-  mask_of_the_rabbit_prince_feature2 = Feature.create!(name: nil)
-    MagicItemFeature.create!(magic_item_id: mask_of_the_rabbit_prince.id, feature_id: mask_of_the_rabbit_prince_feature2.id)
-    mask_of_the_rabbit_prince_feature2_stat = FeatureStatBonus.create!(feature_id: mask_of_the_rabbit_prince_feature2.id, statistic: 'Save', bonus: 2, bonus_type: 'morale', duration: 'permanent')
-      FeatureStatBonusCondition.create!(feature_stat_bonus_id: mask_of_the_rabbit_prince_feature2_stat.id, condition: 'fear effects')
-  mask_of_the_rabbit_prince_feature3 = Feature.create!(name: nil)
-    MagicItemFeature.create!(magic_item_id: mask_of_the_rabbit_prince.id, feature_id: mask_of_the_rabbit_prince_feature3.id)
-    FeatureSkillNote.create!(feature_id: mask_of_the_rabbit_prince_feature3.id, skill_id: acro.id, note: 'counts as having a running start when attempting Acrobatics checks to jump')
+    mask_of_the_rabbit_prince_feature1_stat1 = FeatureStatBonus.create!(feature_id: mask_of_the_rabbit_prince_feature1.id, statistic: 'Save', bonus: 2, bonus_type: 'morale', duration: 'permanent')
+      FeatureStatBonusCondition.create!(feature_stat_bonus_id: mask_of_the_rabbit_prince_feature1_stat1.id, condition: 'fear effects')
+    FeatureSkillNote.create!(feature_id: mask_of_the_rabbit_prince_feature1.id, skill_id: acro.id, note: 'counts as having a running start when attempting Acrobatics checks to jump')
 
 staff_of_size_alteration = MagicItem.create!(name: 'Staff of Size Alteration', description: 'This staff of dark wood is stouter and sturdier than most magical staves, with a gnarled and twisted knot of wood at the top end. It allows use of the following spells:
 
@@ -3900,45 +3903,149 @@ slippers_of_spider_climbing = MagicItem.create!(name: 'Slippers of Spider Climbi
     MagicItemFeature.create!(magic_item_id: slippers_of_spider_climbing.id, feature_id: slippers_of_spider_climbing_feature1.id)
     FeatureUsage.create!(feature_id: slippers_of_spider_climbing_feature1.id, limit: 10, unit: 'minute', destroy_after_use: false, limit_frequency: 'Day', adjustable: true, toggleable: true)
     FeatureMovement.create!(feature_id: slippers_of_spider_climbing_feature1.id, movement: 'Climb', feet: 20)
-# can only use 10 minutes a day, 1 minute at a time
-# gives 20 ft of climb
 
-# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: '', aura: '', caster_level: 1, price_in_gp: 0, weight: 0, activatable: false, expendable: false, group: '')
-#   IDENTIFIER_FEATUREVAR = Feature.create!(name: nil, action_id:)
-#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_FEATUREVAR.id)
-#     IDENTIFIER_FEATUREVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency: )
-#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, spell_id: SPELL.id, castable: true, cost: 1)
-#       FeatureStatBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: '')
-#         FeatureStatBonusCondtion.create!(feature_stat_bonus_id: .id, condition: '')
-#       FeatureSkillBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, bonus: 0, bonus_type: '', duration: '')
-#       FeatureSkillNote.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, note: '')
+necklace_of_fireballs_III = MagicItem.create!(name: 'Necklace of Fireballs III', description: 'This item appears to be a string or cluster of spherical beads, sometimes with the ends tied together to form a necklace.
 
-# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: '', aura: '', caster_level: 1, price_in_gp: 0, weight: 0, activatable: false, expendable: false, group: '')
-#   IDENTIFIER_FEATUREVAR = Feature.create!(name: nil, action_id:)
-#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_FEATUREVAR.id)
-#     IDENTIFIER_FEATUREVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency: )
-#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, spell_id: SPELL.id, castable: true, cost: 1)
-#       FeatureStatBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: '')
-#         FeatureStatBonusCondtion.create!(feature_stat_bonus_id: .id, condition: '')
-#       FeatureSkillBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, bonus: 0, bonus_type: '', duration: '')
-#       FeatureSkillNote.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, note: '')
+(It does not count as an item worn around the neck for the purpose of determining which of a character’s worn magic items is effective.) If a character holds it, however, all can see the strand as it really is—a golden chain from which hang a number of golden spheres. The spheres are detachable by the wearer (and only by the wearer), who can easily hurl one of them up to 70 feet. When a sphere arrives at the end of its trajectory, it detonates as a fireball spell (Reflex DC 14 half).
 
-# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: '', aura: '', caster_level: 1, price_in_gp: 0, weight: 0, activatable: false, expendable: false, group: '')
-#   IDENTIFIER_FEATUREVAR = Feature.create!(name: nil, action_id:)
-#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_FEATUREVAR.id)
-#     IDENTIFIER_FEATUREVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency: )
-#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, spell_id: SPELL.id, castable: true, cost: 1)
-#       FeatureStatBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: '')
-#         FeatureStatBonusCondtion.create!(feature_stat_bonus_id: .id, condition: '')
-#       FeatureSkillBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, bonus: 0, bonus_type: '', duration: '')
-#       FeatureSkillNote.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, note: '')
+Spheres come in different strengths, ranging from those that deal 2d6 points of fire damage to those that deal 10d6. The market price of a sphere is 150 gp for each die of damage it deals.
 
-# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: '', aura: '', caster_level: 1, price_in_gp: 0, weight: 0, activatable: false, expendable: false, group: '')
-#   IDENTIFIER_FEATUREVAR = Feature.create!(name: nil, action_id:)
-#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_FEATUREVAR.id)
-#     IDENTIFIER_FEATUREVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_FEATUREVAR.id, limit: 1000, destroy_after_use: false, limit_frequency: )
-#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_FEATUREVAR_usage.id, spell_id: SPELL.id, castable: true, cost: 1)
-#       FeatureStatBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: '')
-#         FeatureStatBonusCondtion.create!(feature_stat_bonus_id: .id, condition: '')
-#       FeatureSkillBonus.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, bonus: 0, bonus_type: '', duration: '')
-#       FeatureSkillNote.create!(feature_id: IDENTIFIER_FEATUREVAR.id, skill_id: SKILL.id, note: '')
+Type III has 7 beads on it: 4 beads that deal 3d6 points of fire damage, 2 beads that deal 5d6 points of fire damage, and 1 bead that deals 7d6 points of fire damage.
+
+Each necklace of fireballs contains a combination of spheres of various strengths. Some traditional combinations, designated types I through VII, are detailed above.
+
+If the necklace is being worn or carried by a character who fails her saving throw against a magical fire attack, the item must make a saving throw as well (with a save bonus of +7). If the necklace fails to save, all its remaining spheres detonate simultaneously, often with regrettable consequences for the wearer.', slot: 'neck', aura: 'moderate evocation', caster_level: 10, price_in_gp: 4350, weight: 1, activatable: false, expendable: true, group: 'Wondrous Item')
+  necklace_of_fireballs_III_feature1 = Feature.create!(name: nil, action_id: standard.id)
+    MagicItemFeature.create!(magic_item_id: necklace_of_fireballs_III.id, feature_id: necklace_of_fireballs_III_feature1.id)
+    necklace_of_fireballs_III_feature1_usage = FeatureUsage.create!(feature_id: necklace_of_fireballs_III_feature1.id, limit: 7, unit: 'bead', destroy_after_use: false, limit_frequency: 'Forever', adjustable: false, toggleable: true)
+      FeatureUsageOption.create!(feature_usage_id: necklace_of_fireballs_III_feature1_usage.id, detail: '3d6 fire damage', cost: 1, amount: 4, destroy_after_use: true)
+      FeatureUsageOption.create!(feature_usage_id: necklace_of_fireballs_III_feature1_usage.id, detail: '5d6 fire damage', cost: 1, amount: 2, destroy_after_use: true)
+      FeatureUsageOption.create!(feature_usage_id: necklace_of_fireballs_III_feature1_usage.id, detail: '7d6 fire damage', cost: 1, amount: 1, destroy_after_use: true)
+      FeatureUsageSpellOption.create!(feature_usage_id: necklace_of_fireballs_III_feature1_usage.id, spell_id: sp69.id, castable: false, cost: 1)
+
+pint_of_eek = MagicItem.create!(name: 'Pint of Eek', description: 'After consuming, you immediately breath out a blast of sonic energy in a 30 ft line. All affected creatures take 3d6 sonic damage, or half that if they succeed at a DC 15 Reflex save.', slot: 'none', aura: 'moderate evocation', caster_level: 7, price_in_gp: 1000, weight: 0, activatable: true, expendable: true, group: 'Wondrous Item')
+  pint_of_eek_feature1 = Feature.create!(name: nil, action_id: standard.id)
+    MagicItemFeature.create!(magic_item_id: pint_of_eek.id, feature_id: pint_of_eek_feature1.id)
+    pint_of_eek_feature1_usage = FeatureUsage.create!(feature_id: pint_of_eek_feature1.id, limit: 1, destroy_after_use: true, limit_frequency: 'Round', adjustable: false)
+
+monster_almanac = MagicItem.create!(name: 'Monster Almanac', description: 'This sketchbook has up to 100 pages full of scribbled notes and hasty sketches about monsters. When the user focuses on a particular page, the text and pictures start moving, revealing more details about the creature.
+
+The user must spend 10 minutes researching a particular type of monster to get any benefit from the almanac. If the user is trained in the appropriate Knowledge skill to identify a monster, he gets a +2 circumstance bonus on his check. He can attempt a Knowledge check to identify a creature despite being untrained in the appropriate skill (but without the +2 bonus) as long as the check’s DC is no higher than 15.', slot: 'none', aura: 'faint divination', caster_level: 3, price_in_gp: 4000, weight: 0.5, activatable: true, expendable: false, group: 'Wondrous Item')
+  monster_almanac_feature1 = Feature.create!(name: nil, action_id: ten.id)
+    MagicItemFeature.create!(magic_item_id: monster_almanac.id, feature_id: monster_almanac_feature1.id)
+
+astralabe = MagicItem.create!(name: 'Astralabe', description: 'An astralabe is essentially an extraplanar compass: a device that explorers of the planes can use to orient themselves in realms without shared cardinal directions or physical laws.
+
+The device creates an abstraction of north, east, south, and west, as well as up, down, in, out, back, forward, past, future, and a variety of other directions that can prove helpful in navigating the planes. Despite diverse cosmetic differences, astralabes share a uniform internal design and, by and large, give consistent, shared directions. As such, many—if not most— planar cartographers utilize astralabes when creating maps, allowing travelers to navigate lands without magnetic poles or with malleable terrains as though there were one consistent north. The device keeps a constant orientation, but it does not adjust or circumvent hazards or show particular paths. Any creature not on the Material Plane who employs an astralabe while attempting a Knowledge, Survival, or similar skill check to navigate gains a +4 bonus on that check.
+
+Additionally, an astralabe can aid a traveler in preparing to travel to another plane. The device can read emanations from portals, gates, and other connections between the planes and display them upon its surface. These displays can be interpreted with a successful Knowledge (planes) check. A user must typically succeed at a DC 25 Knowledge (planes) check to correctly read an astralabe, though demiplanes and stranger realms might require a higher DC or yield inconclusive results. Those who succeed learn the name of the plane beyond the portal, though not the portal’s exact location upon that plane—it doesn’t reveal tiers, layers, or subrealms, in the case of planes divided into multiple parts. Those who fail the check are unable to tell what plane lies beyond.
+
+Those who fail the check by 10 or more incorrectly identify what plane lies beyond, with the details of this misinformation determined by the GM.
+
+Astralabes generally don’t function on the Material Plane, shutting down and emanating an aura of only faint divination.
+
+However, should one be brought within 20 feet of a portal or similar passage to another plane, it becomes active for as long as it remains nearby. An astralabe operates continuously while on any plane other than the Material Plane.', slot: 'none', aura: 'moderate divination', caster_level: 8, price_in_gp: 16000, weight: 3, activatable: false, expendable: false, group: 'Wondrous Item')
+
+#
+elixir_of_fire_breath = MagicItem.create!(name: 'Elixir of Fire Breath', description: 'This strange bubbling elixir bestows upon the drinker the ability to spit gouts of flame. He can breathe fire up to three times, each time dealing 4d6 points of fire damage to a single target up to 25 feet away. The victim can attempt a DC 13 Reflex save for half damage. Unused blasts of fire dissipate 1 hour after the liquid is consumed.', slot: 'none', aura: 'moderate evocation', caster_level: 11, price_in_gp: 1100, weight: 0, activatable: true, expendable: true, group: 'Wondrous Item')
+  elixir_of_fire_breath_feature1 = Feature.create!(name: nil, action_id: standard.id)
+    MagicItemFeature.create!(magic_item_id: elixir_of_fire_breath.id, feature_id: elixir_of_fire_breath_feature1.id)
+    elixir_of_fire_breath_feature1_usage = FeatureUsage.create!(feature_id: elixir_of_fire_breath_feature1.id, limit: 1, limit_frequency: 'Round', destroy_after_use: true, adjustable: false)
+#
+blind_mans_cask = MagicItem.create!(name: "Blind Man's Cask", description: 'This black and red ceramic pot is about 5 ft tall, and does not change wieght if the only thing within it is alcohol. There is an an accompanying rubber gummy mouth guard. If the mouth guard is within 20 ft of the cask, anyone with the mouth guard in their mouth can drink from the cask as if the liquid inside was teleporting. Any liquid can be consumed this way, but the connection is lost if more than half of the container is filled with a non-liquid substance.', slot: 'none', aura: 'faint conjuration', caster_level: 5, price_in_gp: 1500, weight: 20, activatable: false, expendable: false, group: 'Wondrous Item')
+#
+jabberjaw_gem = MagicItem.create!(name: 'Jabberjaw Gem', description: "When a gem is held, your spokemon language (heard and mouthed) appear as if you were speaking the gem's associated language. Whoever is wielding the gem or touching the wielder can hear the actual language spoken. If you hold multiple gems, your language is an amalgam of all the gems. For listeners who know all of the languages spoken, they must make a DC 15 Linguistics check to comprehend the speaker. For each language a listener doesn't know, increase the DC by 5.", slot: 'none', aura: 'faint transmutation', caster_level: 1, price_in_gp: 600, weight: 0, activatable: false, expendable: false, group: 'Wondrous Item')
+  jabberjaw_gem_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: jabberjaw_gem.id, feature_id: jabberjaw_gem_feature1.id)
+#     jabberjaw_gem_feature1_usage = FeatureUsage.create!(feature_id: jabberjaw_gem_feature1.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false)
+#       FeatureUsageSpellOption.create!(feature_usage_id: jabberjaw_gem_feature1_usage.id, spell_id: , cost: 1, castable: true)
+#       FeatureUsageOption.create!(feature_usage_id: jabberjaw_gem_feature1_usage.id, detail: '', cost: 1, amount: 1, destroy_after_use: false)
+#     FeatureSkillBonus.create!(feature_id: jabberjaw_gem_feature1.id, skill_id: , bonus: 0, bonus_type: '', duration: 'temporary')
+#     FeatureSkillNote.create!(feature_id: jabberjaw_gem_feature1.id, skill_id: , note: '')
+#     jabberjaw_gem_feature1_stat1 = FeatureStatBonus.create!(feature_id: jabberjaw_gem_feature1.id, statistic: '', bonus: 0, bonus_type: '', duration: 'temporary')
+#       FeatureStateBonusCondition.create!(feature_stat_bonus_id: jabberjaw_gem_feature1_stat1.id, condition: '')
+#     FeatureStatNote.create!(feature_id: jabberjaw_gem_featureVAR.id, statistic: '', note: '')
+#
+origami_boat = MagicItem.create!(name: 'Origami Boat', description: 'If this makes contact with water, it gradually (over the course of 5 minutes) increase its size until it becomes a row boat with a space of 20 ft by 10 ft in the same shape as the paper. After 2 hours, the boat gradually (over the course of 10 minutes) shrinks back to its smaller form. This transmation resets after 12 hours.', slot: 'none', aura: 'faint transmutation', caster_level: 12, price_in_gp: 400, weight: 0, activatable: false, expendable: false, group: 'Wondrous Item')
+  origami_boat_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: origami_boat.id, feature_id: origami_boat_feature1.id)
+#     origami_boat_feature1_usage = FeatureUsage.create!(feature_id: origami_boat_feature1.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false)
+#       FeatureUsageSpellOption.create!(feature_usage_id: origami_boat_feature1_usage.id, spell_id: , cost: 1, castable: true)
+#       FeatureUsageOption.create!(feature_usage_id: origami_boat_feature1_usage.id, detail: '', cost: 1, amount: 1, destroy_after_use: false)
+#     FeatureSkillBonus.create!(feature_id: origami_boat_feature1.id, skill_id: , bonus: 0, bonus_type: '', duration: 'temporary')
+#     FeatureSkillNote.create!(feature_id: origami_boat_feature1.id, skill_id: , note: '')
+#     origami_boat_feature1_stat1 = FeatureStatBonus.create!(feature_id: origami_boat_feature1.id, statistic: '', bonus: 0, bonus_type: '', duration: 'temporary')
+#       FeatureStateBonusCondition.create!(feature_stat_bonus_id: origami_boat_feature1_stat1.id, condition: '')
+#     FeatureStatNote.create!(feature_id: origami_boat_featureVAR.id, statistic: '', note: '')
+#
+brass_griffin_cloak = MagicItem.create!(name: 'Brass Griffin Cloak', description: 'While wearing this cloak, if the wearer is damaged by fire damage, they are not affected by it; the cloak draws the energy towards it. Once the clock has absorbed 50 damage this way, the cloak bruns up and is destroyed, and any excess damage is dealt to the wearer. Once a day, as a move action, you may be affected by the spell endure elements. The duration of this effect is 1 hour.', slot: 'shoulders', aura: 'faint transmutation', caster_level: 3, price_in_gp: 2500, weight: 5, activatable: false, expendable: false, group: 'Wondrous Item')
+  brass_griffin_cloak_feature1 = Feature.create!(name: nil, action_id: move.id)
+    MagicItemFeature.create!(magic_item_id: brass_griffin_cloak.id, feature_id: brass_griffin_cloak_feature1.id)
+    brass_griffin_cloak_feature1_usage = FeatureUsage.create!(feature_id: brass_griffin_cloak_feature1.id, limit: 1, limit_frequency: 'Day', destroy_after_use: false, unit: '', adjustable: false, toggleable: false)
+      FeatureUsageSpellOption.create!(feature_usage_id: brass_griffin_cloak_feature1_usage.id, spell_id: sp75.id, cost: 1, castable: false)
+#       FeatureUsageOption.create!(feature_usage_id: brass_griffin_cloak_feature1_usage.id, detail: '', cost: 1, amount: 1, destroy_after_use: false)
+#     FeatureSkillBonus.create!(feature_id: brass_griffin_cloak_feature1.id, skill_id: , bonus: 0, bonus_type: '', duration: 'temporary')
+#     FeatureSkillNote.create!(feature_id: brass_griffin_cloak_feature1.id, skill_id: , note: '')
+#     brass_griffin_cloak_feature1_stat1 = FeatureStatBonus.create!(feature_id: brass_griffin_cloak_feature1.id, statistic: '', bonus: 0, bonus_type: '', duration: 'temporary')
+#       FeatureStateBonusCondition.create!(feature_stat_bonus_id: brass_griffin_cloak_feature1_stat1.id, condition: '')
+#     FeatureStatNote.create!(feature_id: brass_griffin_cloak_feature1.id, statistic: '', note: '')
+#
+# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: 'none', aura: '', caster_level: 0, price_in_gp: 0, weight: 0.0, activatable: false, expendable: false, group: 'Wondrous Item')
+#   IDENTIFIER_featureVAR = Feature.create!(name: nil, action_id:)
+#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_featureVAR.id)
+#     IDENTIFIER_featureVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_featureVAR.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false)
+#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, spell_id: , cost: 1, castable: true)
+#       FeatureUsageOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, detail: '', cost: 1, amount: 1, destroy_after_use: false)
+#     FeatureSkillBonus.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , bonus: 0, bonus_type: '', duration: 'temporary')
+#     FeatureSkillNote.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , note: '')
+#     IDENTIFIER_featureVAR_stat1 = FeatureStatBonus.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: 'temporary')
+#       FeatureStateBonusCondition.create!(feature_stat_bonus_id: IDENTIFIER_featureVAR_stat1.id, condition: '')
+#     FeatureStatNote.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', note: '')
+#
+# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: 'none', aura: '', caster_level: 0, price_in_gp: 0, weight: 0.0, activatable: false, expendable: false, group: 'Wondrous Item')
+#   IDENTIFIER_featureVAR = Feature.create!(name: nil, action_id:)
+#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_featureVAR.id)
+#     IDENTIFIER_featureVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_featureVAR.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false)
+#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, spell_id: , cost: 1, castable: true)
+#       FeatureUsageOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, detail: '', cost: 1, amount: 1, destroy_after_use: false)
+#     FeatureSkillBonus.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , bonus: 0, bonus_type: '', duration: 'temporary')
+#     FeatureSkillNote.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , note: '')
+#     IDENTIFIER_featureVAR_stat1 = FeatureStatBonus.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: 'temporary')
+#       FeatureStateBonusCondition.create!(feature_stat_bonus_id: IDENTIFIER_featureVAR_stat1.id, condition: '')
+#     FeatureStatNote.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', note: '')
+#
+# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: 'none', aura: '', caster_level: 0, price_in_gp: 0, weight: 0.0, activatable: false, expendable: false, group: 'Wondrous Item')
+#   IDENTIFIER_featureVAR = Feature.create!(name: nil, action_id:)
+#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_featureVAR.id)
+#     IDENTIFIER_featureVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_featureVAR.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false)
+#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, spell_id: , cost: 1, castable: true)
+#       FeatureUsageOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, detail: '', cost: 1, amount: 1, destroy_after_use: false)
+#     FeatureSkillBonus.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , bonus: 0, bonus_type: '', duration: 'temporary')
+#     FeatureSkillNote.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , note: '')
+#     IDENTIFIER_featureVAR_stat1 = FeatureStatBonus.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: 'temporary')
+#       FeatureStateBonusCondition.create!(feature_stat_bonus_id: IDENTIFIER_featureVAR_stat1.id, condition: '')
+#     FeatureStatNote.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', note: '')
+#
+# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: 'none', aura: '', caster_level: 0, price_in_gp: 0, weight: 0.0, activatable: false, expendable: false, group: 'Wondrous Item')
+#   IDENTIFIER_featureVAR = Feature.create!(name: nil, action_id:)
+#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_featureVAR.id)
+#     IDENTIFIER_featureVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_featureVAR.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false)
+#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, spell_id: , cost: 1, castable: true)
+#       FeatureUsageOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, detail: '', cost: 1, amount: 1, destroy_after_use: false)
+#     FeatureSkillBonus.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , bonus: 0, bonus_type: '', duration: 'temporary')
+#     FeatureSkillNote.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , note: '')
+#     IDENTIFIER_featureVAR_stat1 = FeatureStatBonus.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: 'temporary')
+#       FeatureStateBonusCondition.create!(feature_stat_bonus_id: IDENTIFIER_featureVAR_stat1.id, condition: '')
+#     FeatureStatNote.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', note: '')
+#
+# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: 'none', aura: '', caster_level: 0, price_in_gp: 0, weight: 0.0, activatable: false, expendable: false, group: 'Wondrous Item')
+#   IDENTIFIER_featureVAR = Feature.create!(name: nil, action_id:)
+#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_featureVAR.id)
+#     IDENTIFIER_featureVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_featureVAR.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false)
+#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, spell_id: , cost: 1, castable: true)
+#       FeatureUsageOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, detail: '', cost: 1, amount: 1, destroy_after_use: false)
+#     FeatureSkillBonus.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , bonus: 0, bonus_type: '', duration: 'temporary')
+#     FeatureSkillNote.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , note: '')
+#     IDENTIFIER_featureVAR_stat1 = FeatureStatBonus.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: 'temporary')
+#       FeatureStateBonusCondition.create!(feature_stat_bonus_id: IDENTIFIER_featureVAR_stat1.id, condition: '')
+#     FeatureStatNote.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', note: '')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_191533) do
+ActiveRecord::Schema.define(version: 2020_01_20_162532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,10 +53,16 @@ ActiveRecord::Schema.define(version: 2020_01_18_191533) do
     t.integer "container_id"
   end
 
+  create_table "character_magic_item_feature_usage_options", force: :cascade do |t|
+    t.integer "character_magic_item_id"
+    t.integer "feature_usage_option_id"
+    t.integer "current_usage", default: 0
+  end
+
   create_table "character_magic_item_feature_usages", force: :cascade do |t|
     t.integer "character_magic_item_id"
     t.integer "feature_usage_id"
-    t.integer "current_usage"
+    t.integer "current_usage", default: 0
   end
 
   create_table "character_magic_items", force: :cascade do |t|
@@ -210,6 +216,14 @@ ActiveRecord::Schema.define(version: 2020_01_18_191533) do
     t.integer "feature_id"
     t.string "statistic"
     t.string "note"
+  end
+
+  create_table "feature_usage_options", force: :cascade do |t|
+    t.integer "feature_usage_id"
+    t.string "detail"
+    t.integer "cost"
+    t.integer "amount"
+    t.boolean "destroy_after_use", default: false
   end
 
   create_table "feature_usage_spell_options", force: :cascade do |t|

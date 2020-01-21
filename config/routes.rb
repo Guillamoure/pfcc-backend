@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       delete 'container_withdraw/:id', to: 'items#withdraw'
       get 'container/:id', to: 'items#container_contents'
       delete 'character_magic_item/:id', to: 'items#destroy'
+      patch 'character_magic_item_feature_usage_options/:id', to: 'items#feature_option'
     end
   end
 end

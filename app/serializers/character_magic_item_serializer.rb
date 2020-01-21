@@ -1,5 +1,5 @@
 class CharacterMagicItemSerializer < ActiveModel::Serializer
-  attributes :id, :magic_item, :discovered, :character_magic_item_feature_usages, :known, :equipped, :false_desc, :stored_character_magic_item, :character, :container
+  attributes :id, :magic_item, :discovered, :character_magic_item_feature_usages, :known, :equipped, :false_desc, :stored_character_magic_item, :character, :container, :character_magic_item_feature_usage_options
 
   def magic_item
     MagicItemSerializer.new(self.object.magic_item)
