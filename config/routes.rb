@@ -52,6 +52,8 @@ Rails.application.routes.draw do
       patch 'character_magic_item_feature_usage_options/:id', to: 'items#feature_option'
       post 'notes', to: 'notes#create'
       patch 'notes/:id', to: 'notes#update'
+      delete 'notes/:id', to: 'notes#destroy'
+      patch 'campaigns/:id', to: 'campaigns#date_change'
     end
   end
 end
