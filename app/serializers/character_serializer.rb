@@ -11,6 +11,7 @@ class CharacterSerializer < ActiveModel::Serializer
   has_many :cast_spells
   has_many :known_spells
   has_many :prepared_spells
+  belongs_to :campaign
 
   def uniq_klasses
     self.object.klasses.uniq.map do |kl|

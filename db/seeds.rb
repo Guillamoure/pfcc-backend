@@ -1646,7 +1646,7 @@ scott = User.create!(username: "scott", password: "password", admin: false, skil
 # <-*-*-----*-*-*- Campaigns!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-current_campaign = Campaign.create!(name: 'Ask Questions Second', date: 'Demoncrest, Autumn Festival 5th, 5th Age, 1241', dm_id: admin.id)
+current_campaign = Campaign.create!(name: 'Ask Questions Second', weekday: 'Demoncrest', month: 'Autumn Festival', day: 5, age: 5, year: 1241, dm_id: admin.id)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Class Skillset Skills!-*-*-*-----*-*->

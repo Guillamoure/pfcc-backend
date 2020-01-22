@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_21_024704) do
+ActiveRecord::Schema.define(version: 2020_01_21_144741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,12 @@ ActiveRecord::Schema.define(version: 2020_01_21_024704) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "name"
-    t.string "date"
     t.integer "dm_id"
+    t.string "weekday"
+    t.string "month"
+    t.integer "day"
+    t.integer "age"
+    t.integer "year"
   end
 
   create_table "cast_spells", force: :cascade do |t|
@@ -307,7 +311,11 @@ ActiveRecord::Schema.define(version: 2020_01_21_024704) do
   create_table "notes", force: :cascade do |t|
     t.integer "character_id"
     t.string "title"
-    t.string "date"
+    t.string "weekday"
+    t.string "month"
+    t.integer "day"
+    t.integer "age"
+    t.integer "year"
     t.string "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

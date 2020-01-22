@@ -3,7 +3,11 @@ class CreateNotes < ActiveRecord::Migration[5.2]
     create_table :notes do |t|
       t.integer :character_id
       t.string :title
-      t.string :date
+      t.string :weekday
+      t.string :month
+      t.integer :day
+      t.integer :age
+      t.integer :year
       t.string :details
 
       t.timestamps
