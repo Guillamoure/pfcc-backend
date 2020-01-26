@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_21_144741) do
+ActiveRecord::Schema.define(version: 2020_01_24_193932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_144741) do
     t.boolean "is_done_preparing_spells", default: false
     t.string "full_name"
     t.integer "campaign_id"
+    t.integer "max_hp", default: 0
   end
 
   create_table "class_skillset_skills", force: :cascade do |t|
@@ -160,6 +161,12 @@ ActiveRecord::Schema.define(version: 2020_01_21_144741) do
     t.integer "feature_id"
     t.integer "weight"
     t.integer "volume_cubic_feet"
+  end
+
+  create_table "feature_languages", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "language"
+    t.string "note"
   end
 
   create_table "feature_levels", force: :cascade do |t|
@@ -245,6 +252,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_144741) do
     t.string "unit"
     t.boolean "adjustable", default: false
     t.boolean "toggleable", default: false
+    t.boolean "wieldable", default: false
   end
 
   create_table "features", force: :cascade do |t|
@@ -321,6 +329,13 @@ ActiveRecord::Schema.define(version: 2020_01_21_144741) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "prepared_amounts", force: :cascade do |t|
+    t.integer "spell_level"
+    t.integer "klass_level"
+    t.integer "spells"
+    t.integer "klass_id"
+  end
+
   create_table "prepared_spells", force: :cascade do |t|
     t.integer "klass_spell_id"
     t.integer "character_id"
@@ -392,6 +407,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_144741) do
     t.boolean "infinite_zero_level", default: false
     t.boolean "bonus_spells", default: true
     t.integer "klass_spell_list_id"
+    t.boolean "prepared_amount", default: false
   end
 
   create_table "spells", force: :cascade do |t|

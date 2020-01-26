@@ -54,6 +54,7 @@ Rails.application.routes.draw do
       patch 'notes/:id', to: 'notes#update'
       delete 'notes/:id', to: 'notes#destroy'
       patch 'campaigns/:id', to: 'campaigns#date_change'
+      patch 'character_max_hp/:id', to: 'char_edits#set_max_hp'
     end
   end
 end
