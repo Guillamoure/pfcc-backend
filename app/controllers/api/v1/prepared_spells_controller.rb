@@ -23,6 +23,12 @@ class Api::V1::PreparedSpellsController < ApplicationController
         render json: {error: "Could not prepare spell"}, status: 401
       end
     end
+
+    if params[:is_done_preparing_spells]
+      @char = Character.find(params[:character_id])
+      @char.update(is_done_preparing_spells: true)
+    end
+
     render json: @prepared_spells, status: 201
   end
 

@@ -7,6 +7,7 @@ class Klass < ApplicationRecord
   has_many :skills, through: :class_skillset_skills
 
   has_many :spells_per_days
+  has_many :prepared_amounts
 
   has_many :klass_spells
   has_many :spells, through: :klass_spells

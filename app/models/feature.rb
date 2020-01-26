@@ -9,6 +9,7 @@ class Feature < ApplicationRecord
   has_many :skill_notes, class_name: 'FeatureSkillNote'
   has_many :stat_notes, class_name: 'FeatureStatNote'
   has_many :movements, class_name: 'FeatureMovement'
+  has_many :languages, class_name: 'FeatureLanguage'
   has_one :feature_container
 
 end

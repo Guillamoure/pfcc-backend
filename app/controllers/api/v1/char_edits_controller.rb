@@ -120,7 +120,7 @@ class Api::V1::CharEditsController < ApplicationController
           else
             @character.update(temp_hp: difference)
           end
-        elsif params[:character][:lethality] == "nonLethal"
+        elsif params[:char_edit][:lethality] == "nonLethal"
           @character.update(non_lethal_damage: @character.non_lethal_damage + amount)
         end
       when "heal"
@@ -144,6 +144,13 @@ class Api::V1::CharEditsController < ApplicationController
     else
       render json: { error: "Could not update" }, status: 401
     end
+  end
+
+  def set_max_hp
+    @char = Character.find(params[:id])
+    @char.update(max_hp: params[:max_hp])
+    render json: { character: CharacterSerializer.new(@char) }, status: 201
+
   end
 
   def clear_all
