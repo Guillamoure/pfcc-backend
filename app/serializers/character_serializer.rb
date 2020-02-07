@@ -13,6 +13,8 @@ class CharacterSerializer < ActiveModel::Serializer
   has_many :prepared_spells
   belongs_to :campaign
 
+  has_many :character_weapons
+
   def uniq_klasses
     self.object.klasses.uniq.map do |kl|
       KlassSerializer.new(kl)
@@ -21,7 +23,6 @@ class CharacterSerializer < ActiveModel::Serializer
 
   def character_klasses
     self.object.character_klasses.map do |ck|
-      print "hey"
       CharacterKlassSerializer.new(ck)
     end
   end
