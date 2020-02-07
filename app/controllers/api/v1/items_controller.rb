@@ -67,20 +67,44 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
-  def discovered
+  def mi_discovered
     @character_item = CharacterMagicItem.find(params[:id])
     @character_item.update(discovered: true)
     render json: { character: CharacterSerializer.new(@character_item.character) }, status: 202
   end
 
-  def equip
-    @character_item = CharacterMagicItem.find(params[:id])
-    @character_item.update(equipped: !@character_item.equipped)
+  def w_discovered
+    @character_item = CharacterWeapon.find(params[:id])
+    @character_item.update(discovered: true)
     render json: { character: CharacterSerializer.new(@character_item.character) }, status: 202
   end
 
-  def trade
+  def mi_equip
     @character_item = CharacterMagicItem.find(params[:id])
+    @character_item.update(equipped: !@character_item.equipped)
+    # REFACTOR; THE FRONT END DOESN'T NEED ANY DATA, JUST A STATUS CODE
+    render json: { character: CharacterSerializer.new(@character_item.character) }, status: 202
+  end
+
+  def w_equip
+    @character_item = CharacterWeapon.find(params[:id])
+    @character_item.update(equipped: !@character_item.equipped)
+    # REFACTOR; THE FRONT END DOESN'T NEED ANY DATA, JUST A STATUS CODE
+    render json: { character: CharacterSerializer.new(@character_item.character) }, status: 202
+  end
+
+  def mi_trade
+    @character_item = CharacterMagicItem.find(params[:id])
+
+    old_owner_id = @character_item.character_id
+    @character = Character.find(old_owner_id)
+
+    @character_item.update(character_id: params[:new_owner_id], equipped: false, discovered: false)
+    render json: { character: CharacterSerializer.new(@character) }, status: 202
+  end
+
+  def w_trade
+    @character_item = CharacterWeapon.find(params[:id])
 
     old_owner_id = @character_item.character_id
     @character = Character.find(old_owner_id)
@@ -110,6 +134,13 @@ class Api::V1::ItemsController < ApplicationController
     @cmi = CharacterMagicItem.find(params[:id])
     @cmi.destroy
     @character = Character.find(@cmi.character_id)
+    render json: { character: CharacterSerializer.new(@character) }, status: 202
+  end
+
+  def weapon_destroy
+    @cw = CharacterWeapon.find(params[:id])
+    @cw.destroy
+    @character = Character.find(@cw.character_id)
     render json: { character: CharacterSerializer.new(@character) }, status: 202
   end
 
@@ -150,12 +181,6 @@ class Api::V1::ItemsController < ApplicationController
     render json: contents
   end
 
-  def destroy
-    @cmi = CharacterMagicItem.find(params[:id])
-    @cmi.destroy
-    @character = Character.find(@cmi.character_id)
-    render json: { character: CharacterSerializer.new(@character) }, status: 200
-  end
 
   def cmi_show
     @cmi = CharacterMagicItem.find(params[:id])
@@ -167,7 +192,7 @@ class Api::V1::ItemsController < ApplicationController
     @fuo = @cmifuo.feature_usage_option
 
     @cmifuo.update(current_usage: @cmifuo.current_usage + @fuo.cost)
-    
+
     @usage = @fuo.feature_usage
     @cmifu = CharacterMagicItemFeatureUsage.find_by(character_magic_item_id: @cmifuo.character_magic_item.id, feature_usage_id: @usage.id)
     amount = @cmifu.current_usage || 0

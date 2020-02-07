@@ -11,5 +11,6 @@ class Feature < ApplicationRecord
   has_many :movements, class_name: 'FeatureMovement'
   has_many :languages, class_name: 'FeatureLanguage'
   has_one :feature_container
+  has_one :loading, class_name: 'FeatureLoading'
 
 end

@@ -259,6 +259,33 @@ RacialTrait.create!(name: "Bonus Feat", race_id: human.id, description: "Humans 
 RacialTrait.create!(name: "Skilled", race_id: human.id, description: "Humans gain an additional skill rank at first level and one additional rank whenever they gain a level.")
 # RacialTrait.create!(name: "", race_id: , description: "")
 
+tiefling = Race.create!(name: 'Tiefling', speed: 30, size: 'Medium', img_url: 'https://vignette.wikia.nocookie.net/thelostfrontier/images/b/b7/Female_nephilim.jpg', description: 'Simultaneously more and less than mortal, tieflings are the offspring of humans and fiends. With otherworldly blood and traits to match, tieflings are often shunned and despised out of reactionary fear. Most tieflings never know their fiendish sire, as the coupling that produced their curse occurred generations earlier. The taint is long-lasting and persistent, often manifesting at birth or sometimes later in life, as a powerful, though often unwanted, boon. Despite their fiendish appearance and netherworld origins, tieflings have a human’s capacity of choosing their fate, and while many embrace their dark heritage and side with fiendish powers, others reject their darker predilections. Though the power of their blood calls nearly every tiefling to fury, destruction, and wrath, even the spawn of a succubus can become a saint and the grandchild of a pit fiend an unsuspecting hero.
+
+Physical Description: No two tieflings look alike; the fiendish blood running through their veins manifests inconsistently, granting them an array of fiendish traits. One tiefling might appear as a human with small horns, a barbed tail, and oddly colored eyes, while another might manifest a mouth of fangs, tiny wings, and claws, and yet another might possess the perpetual smell of blood, foul incenses, and brimstone. Typically, these qualities hearken back in some way to the manner of fiend that spawned the tiefling’s bloodline, but even then the admixture of human and fiendish blood is rarely ruled by sane, mortal laws, and the vast flexibility it produces in tieflings is a thing of wonder, running the gamut from oddly beautiful to utterly terrible.
+
+Society: Tieflings on the Material Plane rarely create their own settlements and holdings. Instead, they live on the fringes of the land where they were born or choose to settle. Most societies view tieflings as aberrations or curses, but in cultures where there are frequent interactions with summoned fiends, and especially where the worship of demons, devils, or other evil outsiders is legal or obligatory, tieflings might be much more populous and accepted, even cherished as blessings of their fiendish overlords. Tieflings seldom see another of their own kind, and thus they usually simply adopt the culture and mannerisms of their human parents. On other planes, tieflings form enclaves of their own kind. But often such enclaves are less than harmonious—the diversity of tiefling forms and philosophies is an inherent source of conflict between members of the race, and cliques and factions constantly form in an ever-shifting hierarchy where only the most opportunistic or devious gain advantage. Only those of common bloodlines or those who manage to divorce their worldview from the inherently selfish, devious, and evil nature of their birth manage to find true acceptance, camaraderie, and common ground among others of their kind.
+
+Relations: Tieflings face a significant amount of prejudice from most other races, who view them as fiend-spawn, seeds of evil, monsters, and lingering curses placed upon the world. Far too often, civilized races shun or marginalize them, while more monstrous ones simply fear and reject them unless forced or cowed into acceptance. But half-elves, half-orcs, fetchlings and—most oddly—aasimars tend to view them as kindred spirits who are too often rejected or who don’t fit into most societies by virtue of their birth. The widespread assumption that tieflings are innately evil—ill-founded though it may be—prevents many from easily fitting into most cultures on the Material Plane except in exceedingly cosmopolitan or planar-influenced nations.
+
+Alignment and Religion: Despite their fiendish heritage and the insidious influence of prejudice, tieflings can be of any alignment. Many of them fall prey to the dark desires that haunt their psyches, and give in to the seduction of the whispering evil within, yet others steadfastly reject their origins and actively fight against evil lures and the negative assumptions they face from others by performing acts of good. Most, however, strive to simply find their own way in the world, though they tend to adopt a very amoral, neutral view when they do. Though many creatures just assume that tieflings worship devils and demons, their religious views are as varied as their physical forms. Individual tieflings worship all manner of deities, but they are just as likely to shun religion all together. Those who give in to the dark whispers that haunt the psyche of all tieflings serve all manner of powerful fiends.
+
+Adventurers: Tieflings rarely integrate into the mortal societies they call home. Drawn to the adventuring life as a method of escape, they hope to make a better life for themselves, to prove their freedom from their blood’s taint, or to punish a world that fears and rejects them. Tieflings make skilled rogues, powerful wizards and magi, and especially puissant sorcerers as their potent blood empowers them. Those who succumb to the evil within often become powerful clerics of fiendish powers.
+
+Male Names: Baru, Dellisar, Maldrek, Molos, Sarvin, Shoremoth, Temerith, Voren, Zoren.
+
+Female Names: Allizsah, Indranna, Kasidra, Kilarra, Mellisan, Mordren, Nisha.')
+
+RaceAbilityScoreModifier.create!(race_id: tiefling.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: tiefling.id, ability_score: "Intelligence", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: tiefling.id, ability_score: "Charisma", bonus: -2)
+
+RacialTrait.create!(name: 'Type', race_id: tiefling.id, description: 'Tieflings are outsiders with the native subtype.')
+RacialTrait.create!(name: 'Languages', race_id: tiefling.id, description: 'Tieflings begin play speaking Common and either Abyssal or Infernal. Tieflings with high intelligence scores can choose from the following: Abyssal, Draconic, Dwarven, Elven, Gnome, Goblin, Halfling, Infernal, and Orc.')
+RacialTrait.create!(name: 'Fiendish Resistance', race_id: tiefling.id, description: 'Tieflings have cold resistance 5, electricity resistance 5, and fire resistance 5.')
+RacialTrait.create!(name: 'Skilled', race_id: tiefling.id, description: 'Tieflings gain a +2 racial bonus on Bluff and Stealth checks.')
+RacialTrait.create!(name: 'Spell-like Ability', race_id: tiefling.id, description: 'Tieflings can use darkness once per day as a spell-like ability. The caster level for this ability equals the tiefling’s class level.')
+RacialTrait.create!(name: 'Darkvision', race_id: tiefling.id, description: 'Tieflings can see perfectly in the dark for up to 60 feet.')
+RacialTrait.create!(name: 'Fiendish Sorcery', race_id: tiefling.id, description: 'Tiefling sorcerers with the Abyssal or Infernal bloodlines treat their Charisma score as 2 points higher for all sorcerer class abilities.')
 
 
 # /////////////////////////////////////////
@@ -376,7 +403,11 @@ Role: More than capable of upholding the honor of their deities in battle, cleri
 
 Alignment: A cleric’s alignment must be within one step of her deity’s, along either the law/chaos axis or the good/evil axis.')
 
-# Klass.create!(name: "", hit_die: , skill_ranks: , fortitude: , reflex: , will: , img_url: "", description: "")
+alchemist = Klass.create!(name: "Alchemist", hit_die: 8, skill_ranks: 4, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/62/89/42/628942741fe62cefa1e3291428e6d8ff.png", description: "Whether secreted away in a smoky basement laboratory or gleefully experimenting in a well-respected school of magic, the alchemist is often regarded as being just as unstable, unpredictable, and dangerous as the concoctions he brews. While some creators of alchemical items content themselves with sedentary lives as merchants, providing tindertwigs and smokesticks, the true alchemist answers a deeper calling. Rather than cast magic like a spellcaster, the alchemist captures his own magic potential within liquids and extracts he creates, infusing his chemicals with virulent power to grant him impressive skill with poisons, explosives, and all manner of self-transformative magic.
+
+Role: The alchemist’s reputation is not softened by his exuberance (some would say dangerous recklessness) in perfecting his magical extracts and potion-like creations, infusing these substances with magic siphoned from his aura and using his own body as experimental stock. Nor is it mollified by the alchemist’s almost gleeful passion for building explosive bombs and discovering strange new poisons and methods for their use. These traits, while making him a liability and risk for most civilized organizations and institutions of higher learning, seem to fit quite well with most adventuring groups.
+
+Alignment: Any.")
 # Klass.create!(name: "", hit_die: , skill_ranks: , fortitude: , reflex: , will: , img_url: "", description: "")
 # Klass.create!(name: "", hit_die: , skill_ranks: , fortitude: , reflex: , will: , img_url: "", description: "")
 
@@ -1165,6 +1196,18 @@ brawler13 = KlassFeature.create!(klass_id: brawler.id, name: "Awesome Blow", des
 brawler14 = KlassFeature.create!(klass_id: brawler.id, name: "Improved Awesome Blow", description: "At 20th level, the brawler can use her awesome blow ability as an attack rather than as a standard action. She may use it on creatures of any size. If the maneuver roll is a natural 20, the brawler can immediately attempt to confirm the critical by rolling another combat maneuver check with all the same modifiers as the one just rolled; if the confirmation roll is successful, the attack deals double damage, and the damage from hitting an obstacle (if any) is also doubled.")
   FeatureLevel.create!(klass_feature_id: brawler14.id, level: 20, table_description: "Improved Awesome Blow")
 
+alchemist1 = KlassFeature.create!(klass_id: alchemist.id, name: "Weapon and Armor Proficiency", description: "Alchemists are proficient with all simple weapons and bombs. They are also proficient with light armor, but not with shields.")
+  FeatureLevel.create!(klass_feature_id: alchemist1.id, level: 1, table_description: "")
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+
 # IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
   # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
 
@@ -1751,6 +1794,208 @@ SkillsetSkill.create!(skillset_id: dmc.id, skill_id: unc_spel.id)
 SkillsetSkill.create!(skillset_id: dmc.id, skill_id: stea.id)
 SkillsetSkill.create!(skillset_id: dmc.id, skill_id: surv.id)
 SkillsetSkill.create!(skillset_id: dmc.id, skill_id: swim.id)
+
+
+# //////////////////////////////////////////////////
+# <-*-*-----*-*-*- Weapon Group!-*-*-*-----*-*->
+# //////////////////////////////////////////////////
+
+axes = WeaponGroup.create!(name: 'Axes')
+close = WeaponGroup.create!(name: 'Close')
+crossbows = WeaponGroup.create!(name: 'Crossbows')
+double_group = WeaponGroup.create!(name: 'Double')
+flails = WeaponGroup.create!(name: 'Flails')
+hammers = WeaponGroup.create!(name: 'Hammers')
+light_blades = WeaponGroup.create!(name: 'Light Blades')
+monk_group = WeaponGroup.create!(name: 'Monk')
+spears = WeaponGroup.create!(name: 'Spears')
+thrown = WeaponGroup.create!(name: 'Thrown')
+tribal = WeaponGroup.create!(name: 'Tribal')
+
+# //////////////////////////////////////////////////
+# <-*-*-----*-*-*- Weapon Qualities!-*-*-*-----*-*->
+# //////////////////////////////////////////////////
+
+brace = WeaponQuality.create!(name: 'brace', description: 'If you use a readied action to set a brace weapon against a charge, you deal double damage on a successful hit against a charging creature.')
+double_quality = WeaponQuality.create!(name: 'double', description: 'You can use a double weapon to fight as if fighting with two weapons, but if you do, you incur all the normal attack penalties associated with fighting with two weapons, just as if you were using a one-handed weapon and a light weapon. You can choose to wield one end of a double weapon two-handed, but it cannot be used as a double weapon when wielded in this way—only one end of the weapon can be used in any given round.')
+monk_quality = WeaponQuality.create!(name: 'monk', description: 'A monk weapon can be used by a monk to perform a flurry of blows.')
+nonlethal = WeaponQuality.create!(name: 'nonlethal', description: 'These weapons deal nonlethal damage.')
+reach = WeaponQuality.create!(name: 'reach', description: 'You use a reach weapon to strike opponents 10 feet away, but you can’t use it against an adjacent foe.')
+trip = WeaponQuality.create!(name: 'trip', description: 'You can use a trip weapon to make trip attacks. If you are tripped during your own trip attempt, you can drop the weapon to avoid being tripped.')
+
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Weapons!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+unarmed = Weapon.create!(name: 'Unarmed', category: 'Unarmed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 0, num_of_dice: 1, damage_dice: 3, range: 0, thrown: false, weight: 0, damage_type: 'Bludgeoning', description: 'An unarmed strike is always considered a light weapon. Therefore, you can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with an unarmed strike. Unarmed strikes do not count as natural weapons. The damage from an unarmed strike is considered weapon damage for the purposes of effects that give you a bonus on weapon damage rolls.
+
+A monk or any character with the Improved Unarmed Strike feat can deal lethal or nonlethal damage with unarmed strikes, at his discretion.')
+  WeaponWeaponQuality.create!(weapon_id: unarmed.id, weapon_quality_id: nonlethal.id)
+  WeaponWeaponGroup.create!(weapon_id: unarmed.id, weapon_group_id: close.id)
+
+gauntlet = Weapon.create!(name: 'Gauntlet', category: 'Unarmed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 3, range: 0, thrown: false, weight: 1, damage_type: 'Bludgeoning', description: 'This metal glove lets you deal lethal damage rather than nonlethal damage with unarmed strikes. A strike with a gauntlet is otherwise considered an unarmed attack. Your opponent cannot use a disarm action to disarm you of gauntlets.
+
+The cost and weight given are for a single gauntlet. Medium and heavy armors (except breastplate) come with gauntlets.')
+  WeaponWeaponGroup.create!(weapon_id: gauntlet.id, weapon_group_id: close.id)
+
+dagger = Weapon.create!(name: 'Dagger', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 4, range: 10, thrown: true, weight: 1, damage_type: 'Piercing or Slashing', critical_range: 19, description: 'A dagger has a blade that is about 1 foot in length.
+
+You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body.')
+  WeaponWeaponGroup.create!(weapon_id: dagger.id, weapon_group_id: light_blades.id)
+  WeaponWeaponGroup.create!(weapon_id: dagger.id, weapon_group_id: thrown.id)
+  WeaponWeaponGroup.create!(weapon_id: dagger.id, weapon_group_id: tribal.id)
+
+punching_dagger = Weapon.create!(name: 'Punching Dagger', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 4, critical: 3, range: 0, thrown: false, weight: 1, damage_type: 'Piercing', description: 'A punching dagger’s blade is attached to a horizontal handle that projects out from the fist when held.')
+  WeaponWeaponGroup.create!(weapon_id: punching_dagger.id, weapon_group_id: close.id)
+
+spiked_gauntlet = Weapon.create!(name: 'Spiked Gauntlet', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 4, range: 10, thrown: false, weight: 1, damage_type: 'Piercing', description: 'An attack with a spiked gauntlet is considered an armed attack. Your opponent cannot use a disarm action to disarm you of spiked gauntlets.
+
+Note: The cost and weight given are for a single gauntlet.')
+  WeaponWeaponGroup.create!(weapon_id: spiked_gauntlet.id, weapon_group_id: close.id)
+
+light_mace = Weapon.create!(name: 'Light Mace', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 4, damage_type: 'Bludegoning', description: 'A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft.')
+  WeaponWeaponGroup.create!(weapon_id: light_mace.id, weapon_group_id: hammers.id)
+
+sickle = Weapon.create!(name: 'Sickle', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 6, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 2, damage_type: 'Slashing', description: '')
+  WeaponWeaponQuality.create!(weapon_id: sickle.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: sickle.id, weapon_group_id: light_blades.id)
+
+club = Weapon.create!(name: 'Club', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 10, thrown: true, weight: 3, damage_type: 'Bludgeoning', description: 'This weapon is usually just a shaped piece of wood, sometimes with a few nails or studs embedded in it.')
+  WeaponWeaponGroup.create!(weapon_id: club.id, weapon_group_id: hammers.id)
+  WeaponWeaponGroup.create!(weapon_id: club.id, weapon_group_id: tribal.id)
+
+heavy_mace = Weapon.create!(name: 'Heavy Mace', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 12, num_of_dice: 1, damage_dice: 8, range: 0, thrown: false, weight: 8, damage_type: 'Bludegoning', description: 'A heavy mace has a larger head and a longer handle than a normal (light) mace.')
+  WeaponWeaponGroup.create!(weapon_id: heavy_mace.id, weapon_group_id: hammers.id)
+
+morningstar = Weapon.create!(name: 'Morningstar', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 8, range: 0, thrown: false, weight: 6, damage_type: 'Blugeoning and Piercing', description: 'A morningstar is a spiked metal ball, affixed to the top of a long handle.')
+  WeaponWeaponGroup.create!(weapon_id: morningstar.id, weapon_group_id: flails.id)
+
+shortspear = Weapon.create!(name: 'Shortspear', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 6, range: 20, thrown: true, weight: 3, damage_type: 'Piercing', description: 'A shortspear is about 3 feet in length, making it a suitable thrown weapon.')
+  WeaponWeaponGroup.create!(weapon_id: shortspear.id, weapon_group_id: spears.id)
+  WeaponWeaponGroup.create!(weapon_id: shortspear.id, weapon_group_id: thrown.id)
+  WeaponWeaponGroup.create!(weapon_id: shortspear.id, weapon_group_id: tribal.id)
+
+longspear = Weapon.create!(name: 'Longspear', category: 'Two-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 8, critical: 3, range: 0, thrown: false, weight: 9, damage_type: 'Piercing', description: 'A longspear is about 8 feet in length.')
+  WeaponWeaponQuality.create!(weapon_id: longspear.id, weapon_quality_id: brace.id)
+  WeaponWeaponQuality.create!(weapon_id: longspear.id, weapon_quality_id: reach.id)
+  WeaponWeaponGroup.create!(weapon_id: longspear.id, weapon_group_id: spears.id)
+
+quarterstaff = Weapon.create!(name: 'Quarterstaff', category: 'Two-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 4, damage_type: 'Bludgeoning', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 6, double_damage_type: 'Bludgeoning', description: 'A quarterstaff is a simple piece of wood, about 5 feet in length.')
+  WeaponWeaponQuality.create!(weapon_id: quarterstaff.id, weapon_quality_id: monk_quality.id)
+  WeaponWeaponQuality.create!(weapon_id: quarterstaff.id, weapon_quality_id: double_quality.id)
+  WeaponWeaponGroup.create!(weapon_id: quarterstaff.id, weapon_group_id: double_group.id)
+  WeaponWeaponGroup.create!(weapon_id: quarterstaff.id, weapon_group_id: monk_group.id)
+
+spear = Weapon.create!(name: 'Spear', category: 'Two-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 8, range: 20, critical: 3, thrown: true, weight: 6, damage_type: 'Piercing', description: 'A spear is 5 feet in length and can be thrown.')
+  WeaponWeaponQuality.create!(weapon_id: spear.id, weapon_quality_id: brace.id)
+  WeaponWeaponGroup.create!(weapon_id: spear.id, weapon_group_id: spears.id)
+  WeaponWeaponGroup.create!(weapon_id: spear.id, weapon_group_id: tribal.id)
+  WeaponWeaponGroup.create!(weapon_id: spear.id, weapon_group_id: thrown.id)
+
+blowgun = Weapon.create!(name: 'Blowgun', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 2, num_of_dice: 1, damage_dice: 2, range: 20, thrown: false, weight: 1, damage_type: 'Piercing', description: 'Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired.', ammunition_type: 'blowgun')
+  WeaponWeaponGroup.create!(weapon_id: blowgun.id, weapon_group_id: thrown.id)
+
+heavy_crossbow = Weapon.create!(name: 'Heavy Crossbow', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 50, num_of_dice: 1, damage_dice: 10, range: 120, critical_range: 19, thrown: false, weight: 8, damage_type: 'Piercing', description: 'Load: Loading a heavy crossbow is a full-round action that provokes attacks of opportunity.
+
+You draw a heavy crossbow back by turning a small winch. Normally, operating a heavy crossbow requires two hands. However, you can shoot, but not load, a heavy crossbow with one hand at a –4 penalty on attack rolls. You can shoot a heavy crossbow with each hand, but you take a penalty on attack rolls as if attacking with two one-handed weapons. This penalty is cumulative with the penalty for one-handed firing.', ammunition_type: 'crossbow')
+  WeaponWeaponGroup.create!(weapon_id: heavy_crossbow.id, weapon_group_id: crossbows.id)
+  heavy_crossbow_feature1 = Feature.create!(name: 'Load', action_id: full_round.id, attack_of_opportunity: true)
+    WeaponFeature.create!(weapon_id: heavy_crossbow.id, feature_id: heavy_crossbow_feature1.id)
+    FeatureLoading.create(feature_id: heavy_crossbow_feature1.id, capacity: 1, must_reload_after_use: true)
+
+light_crossbow = Weapon.create!(name: 'Light Crossbow', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 35, num_of_dice: 1, damage_dice: 8, range: 80, critical_range: 19, thrown: false, weight: 4, damage_type: 'Piercing', description: 'Load: Loading a light crossbow is a move action that provokes attacks of opportunity.
+
+You draw a light crossbow back by pulling a lever. Normally, operating a light crossbow requires two hands. However, you can shoot, but not load, a light crossbow with one hand at a –2 penalty on attack rolls. You can shoot a light crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons. This penalty is cumulative with the penalty for one-handed firing.', ammunition_type: 'crossbow')
+  WeaponWeaponQuality.create!(weapon_id: light_crossbow.id, weapon_quality_id: crossbows.id)
+  light_crossbow_feature1 = Feature.create!(name: 'Load', action_id: move.id, attack_of_opportunity: true)
+    WeaponFeature.create!(weapon_id: light_crossbow.id, feature_id: light_crossbow_feature1.id)
+    FeatureLoading.create(feature_id: light_crossbow_feature1.id, capacity: 1, must_reload_after_use: true)
+
+dart = Weapon.create!(name: 'Dart', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.5, num_of_dice: 1, damage_dice: 4, range: 20, thrown: true, weight: 0.5, damage_type: 'Piercing', description: 'Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first. They can be distinguished from javelins by fletching (i.e., feathers on the tail) and a shaft that is shorter and/or more flexible, and from arrows by the fact that they are not of the right length to use with a normal bow.')
+  WeaponWeaponGroup.create!(weapon_id: dart.id, weapon_group_id: thrown.id)
+
+javelin = Weapon.create!(name: 'Javelin', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 1, num_of_dice: 1, damage_dice: 6, range: 30, thrown: true, weight: 2, damage_type: 'Piercing', description: 'A javelin is a thin throwing spear.
+
+Since a javelin is not designed for melee, you are treated as non-proficient with it and take a –4 penalty on attack rolls if you use a javelin as a melee weapon.')
+  WeaponWeaponGroup.create!(weapon_id: javelin.id, weapon_group_id: spears.id)
+  WeaponWeaponGroup.create!(weapon_id: javelin.id, weapon_group_id: thrown.id)
+
+sling = Weapon.create!(name: 'Sling', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0, num_of_dice: 1, damage_dice: 4, range: 50, thrown: true, weight: 1, damage_type: 'Bludgeoning', description: 'A sling is little more than a leather cup attached to a pair of strings.
+
+Your Strength modifier applies to damage rolls when you use a sling, just as it does for thrown weapons. You can fire, but not load, a sling with one hand.
+
+Loading a sling is a move action that requires two hands and provokes attacks of opportunity.
+
+You can hurl ordinary stones with a sling, but stones are not as dense or as round as bullets. Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a –1 penalty on attack rolls.', ammunition_type: 'sling')
+  WeaponWeaponGroup.create!(weapon_id: sling.id, weapon_group_id: thrown.id)
+  sling_feature1 = Feature.create!(name: 'Load', action_id: move.id, attack_of_opportunity: true)
+    WeaponFeature.create!(weapon_id: sling.id, feature_id: sling_feature1.id)
+    FeatureLoading.create(feature_id: sling_feature1.id, capacity: 1, must_reload_after_use: true)
+
+crossbow_bolt = Weapon.create!(name: 'Crossbow Bolt', category: 'Ammunition', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.1, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.1, damage_type: '', description: 'Bolts come in a case or quiver that holds 10 bolts.
+
+A crossbow bolt used as a melee weapon is treated as a light improvised weapon (–4 penalty on attack rolls) and deals damage as a dagger of its size (crit ×2).', ammunition: true, ammunition_type: 'crossbow')
+
+sling_bullet = Weapon.create!(name: 'Sling Bullet', category: 'Ammunition', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.01, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.5, damage_type: '', description: 'Bullets come in a leather pouch that holds 10 bullets.', ammunition: true, ammunition_type: 'sling')
+
+blowgun_dart = Weapon.create!(name: 'Blowgun Dart', category: 'Ammunition', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.05, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.1, damage_type: '', description: 'These light darts have tiny grooves behind the tips.
+
+A character can apply poison to a blowgun dart without risk of poisoning himself.', ammunition: true, ammunition_type: 'blowgun')
+
+throwing_axe = Weapon.create!(name: 'Throwing Axe', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 6, range: 10, thrown: true, weight: 2, damage_type: 'Slashing', description: 'This is a small axe balanced for throwing.')
+  WeaponWeaponGroup.create!(weapon_id: throwing_axe.id, weapon_group_id: axes.id)
+  WeaponWeaponGroup.create!(weapon_id: throwing_axe.id, weapon_group_id: thrown.id)
+  WeaponWeaponGroup.create!(weapon_id: throwing_axe.id, weapon_group_id: tribal.id)
+
+light_hammer = Weapon.create!(name: 'Light Hammer', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 4, range: 20, thrown: true, weight: 2, damage_type: 'Bludgeoning', description: 'A lighter version of a warhammer, this weapon usually has a sleek metal head with one striking surface.')
+  WeaponWeaponGroup.create!(weapon_id: light_hammer.id, weapon_group_id: hammers.id)
+  WeaponWeaponGroup.create!(weapon_id: light_hammer.id, weapon_group_id: thrown.id)
+
+handaxe = Weapon.create!(name: 'Handaxe', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 6, num_of_dice: 1, damage_dice: 6, critical: 3, range: 0, thrown: false, weight: 3, damage_type: 'Slashing', description: 'This one-handed axe is short (roughly 1 foot long) and designed for use with one hand. Unlike throwing axes, it is not well balanced for a graceful tumbling motion, and is instead heavier at its head. Tomahawks, war hatchets, and other such names usually refer to hand axes.')
+  WeaponWeaponGroup.create!(weapon_id: handaxe.id, weapon_group_id: axes.id)
+  WeaponWeaponGroup.create!(weapon_id: handaxe.id, weapon_group_id: tribal.id)
+
+kukri = Weapon.create!(name: 'Kukri', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 4, range: 0, critical_range: 18, thrown: false, weight: 2, damage_type: 'Slashing', description: 'A kukri is a curved blade, about 1 foot in length.')
+  WeaponWeaponGroup.create!(weapon_id: kukri.id, weapon_group_id: light_blades.id)
+
+light_pick = Weapon.create!(name: 'Light Pick', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 4, num_of_dice: 1, damage_dice: 6, critical: 4, range: 0, thrown: false, weight: 3, damage_type: 'Piercing', description: 'This weapon, adapted from the pickaxe tool, has a head with a slightly curved, armorpiercing spike and a hammerlike counterweight.')
+  WeaponWeaponGroup.create!(weapon_id: light_pick.id, weapon_group_id: axes.id)
+
+sap = Weapon.create!(name: 'Sap', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 2, damage_type: 'Bludgeoning', description: 'This weapon consists of a soft wrapping around a hard, dense core, typically a leather sheath around a lead rod. The head is wider than the handle and designed to spread out the force of the blow, making it less likely to draw blood or break bones.')
+  WeaponWeaponQuality.create!(weapon_id: sap.id, weapon_quality_id: nonlethal.id)
+  WeaponWeaponGroup.create!(weapon_id: sap.id, weapon_group_id: close.id)
+
+starknife = Weapon.create!(name: 'Starknife', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 24, num_of_dice: 1, damage_dice: 4, critical: 3, range: 20, thrown: true, weight: 3, damage_type: 'Piercing', description: 'From a central metal ring, four tapering metal blades extend from this weapon like points on a compass rose. By gripping the crossbar that runs through the weapon’s open middle, a wielder can strike with it as a deadly melee weapon. Alternatively, by gripping it by the outer rim, a starknife’s light, aerodynamic design allows it to be thrown short distances in a manner similar to a chakram.')
+  WeaponWeaponGroup.create!(weapon_id: starknife.id, weapon_group_id: light_blades.id)
+  WeaponWeaponGroup.create!(weapon_id: starknife.id, weapon_group_id: thrown.id)
+
+shortsword = Weapon.create!(name: 'Shortsword', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 6, critical_range: 19, range: 0, thrown: false, weight: 2, damage_type: 'Piercing', description: 'Short swords are some of the most common weapons found in any martial society, and thus designs are extremely varied, depending on the region and creator. Most are around 2 feet in length. Their blades can be curved or straight, single- or double-edged, and wide or narrow. Hilts may be ornate or simple, with crossguards, basket hilts, or no guard at all. Such weapons are often used on their own, but can also be paired as a matched set, or used in conjunction with a dagger or longer sword.')
+  WeaponWeaponGroup.create!(weapon_id: shortsword.id, weapon_group_id: light_blades.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
 
 
 # /////////////////////////////////////////
@@ -3832,7 +4077,7 @@ CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, sk
 CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: surv.id, ranks: 1)
 
 
-maddox = Character.create!(user_id: admin.id, name: "Maddox", full_name: 'Maddox Magpie', strength: 9, dexterity: 16, constitution: 14, intelligence: 18, wisdom: 11, charisma: 17, race_id: samsaran.id, skillset_id: dmc.id, campaign_id: current_campaign.id)
+maddox = Character.create!(user_id: admin.id, name: "Maddox", full_name: 'Maddox Magpie', strength: 9, dexterity: 16, constitution: 14, intelligence: 18, wisdom: 11, charisma: 17, race_id: samsaran.id, skillset_id: dmc.id, campaign_id: current_campaign.id, is_done_preparing_spells: true)
 # +1 to Charisma, Tome of Leadership and Influence
 
 maddox1 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
@@ -3888,6 +4133,10 @@ festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, 
 festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: nil)
 festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
 
+grackle = Character.create!(user_id: admin.id, name: 'Grackle', full_name: nil, strength: 10, dexterity: 14, constitution: 10, intelligence: 14, wisdom: 11, charisma: 9, race_id: tiefling.id, skillset_id: dmc.id, campaign_id: current_campaign.id)
+
+grackle1 = CharacterKlass.create!(character_id: grackle.id, klass_id: alchemist.id, hp: 8, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Known Spells!-*-*-*-----*-*->
 # /////////////////////////////////////////
@@ -3937,6 +4186,12 @@ KnownSpell.create!(klass_spell_id: haste_wizard.id, character_id: maddox.id, kla
 KnownSpell.create!(klass_spell_id: dispel_magic_wizard.id, character_id: maddox.id, klass_id: arcanist.id)
 
 # /////////////////////////////////////////
+# <-*-*-----*-*-*- Cast Spells!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+CastSpell.create!(character_id: maddox.id, klass_id: arcanist.id, spell_level: 1)
+
+# /////////////////////////////////////////
 # <-*-*-----*-*-*- Prepared Spells!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
@@ -3947,6 +4202,23 @@ PreparedSpell.create!(klass_spell_id: mending_witch.id, character_id: persephone
 PreparedSpell.create!(klass_spell_id: message_witch.id, character_id: persephone.id, spell_level: 0, cast: false, klass_id: witch.id)
 PreparedSpell.create!(klass_spell_id: light_witch.id, character_id: persephone.id, spell_level: 0, cast: false, klass_id: witch.id)
 
+PreparedSpell.create!(klass_spell_id: detect_magic_wizard.id, character_id: maddox.id, spell_level: 0, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: read_magic_wizard.id, character_id: maddox.id, spell_level: 0, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: dancing_lights_wizard.id, character_id: maddox.id, spell_level: 0, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: prestidigitation_wizard.id, character_id: maddox.id, spell_level: 0, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: open_close_wizard.id, character_id: maddox.id, spell_level: 0, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: spark_wizard.id, character_id: maddox.id, spell_level: 0, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: mage_hand_wizard.id, character_id: maddox.id, spell_level: 0, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: magic_missile_wizard.id, character_id: maddox.id, spell_level: 1, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: ear_piercing_scream_wizard.id, character_id: maddox.id, spell_level: 1, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: endothermic_touch_wizard.id, character_id: maddox.id, spell_level: 1, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: mage_armor_wizard.id, character_id: maddox.id, spell_level: 1, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: touch_of_combustion_wizard.id, character_id: maddox.id, spell_level: 1, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: sonic_scream_wizard.id, character_id: maddox.id, spell_level: 2, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: admonishing_ray_wizard.id, character_id: maddox.id, spell_level: 2, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: twisted_futures_wizard.id, character_id: maddox.id, spell_level: 2, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: haste_wizard.id, character_id: maddox.id, spell_level: 3, cast: false, klass_id: arcanist.id)
+PreparedSpell.create!(klass_spell_id: lightning_bolt_wizard.id, character_id: maddox.id, spell_level: 3, cast: false, klass_id: arcanist.id)
 
 
 # /////////////////////////////////////////
@@ -4048,7 +4320,7 @@ mass reduce person (3 charges)', slot: 'none', aura: 'moderate transmutation', c
 slippers_of_spider_climbing = MagicItem.create!(name: 'Slippers of Spider Climbing', description: 'When worn, a pair of these slippers enables movement on vertical surfaces or even upside down along ceilings, leaving the wearer’s hands free. Her climb speed is 20 feet. Severely slippery surfaces—icy, oiled, or greased surfaces—make these slippers useless. The slippers can be used for 10 minutes per day, split up as the wearer chooses (minimum 1 minute per use).', slot: 'feet', aura: 'faint transmutation', caster_level: 4, price_in_gp: 4800, weight: 0.5, activatable: true, expendable: false, group: 'Wondrous Item')
   slippers_of_spider_climbing_feature1 = Feature.create!(name: nil)
     MagicItemFeature.create!(magic_item_id: slippers_of_spider_climbing.id, feature_id: slippers_of_spider_climbing_feature1.id)
-    FeatureUsage.create!(feature_id: slippers_of_spider_climbing_feature1.id, limit: 10, unit: 'minute', destroy_after_use: false, limit_frequency: 'Day', adjustable: true, toggleable: true)
+    slippers_of_spider_climbing_feature1_usage = FeatureUsage.create!(feature_id: slippers_of_spider_climbing_feature1.id, limit: 10, unit: 'minute', destroy_after_use: false, limit_frequency: 'Day', adjustable: true, toggleable: true)
     FeatureMovement.create!(feature_id: slippers_of_spider_climbing_feature1.id, movement: 'Climb', feet: 20)
 
 necklace_of_fireballs_III = MagicItem.create!(name: 'Necklace of Fireballs III', description: 'This item appears to be a string or cluster of spherical beads, sometimes with the ends tied together to form a necklace.
@@ -4106,7 +4378,30 @@ jabberjaw_gem_halfling = MagicItem.create!(name: 'Jabberjaw Gem (Halfling)', des
     MagicItemFeature.create!(magic_item_id: jabberjaw_gem_halfling.id, feature_id: jabberjaw_gem_halfling_feature1.id)
     jabberjaw_gem_halfling_feature1_usage = FeatureUsage.create!(feature_id: jabberjaw_gem_halfling_feature1.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false, wieldable: true)
     FeatureLanguage.create!(feature_id: jabberjaw_gem_halfling_feature1.id, language: 'Halfling', note: 'cannot understand')
-
+#
+jabberjaw_gem_abyssal = MagicItem.create!(name: 'Jabberjaw Gem (Halfling)', description: "When a gem is held, your spokemon language (heard and mouthed) appear as if you were speaking the gem's associated language. Whoever is wielding the gem or touching the wielder can hear the actual language spoken. If you hold multiple gems, your language is an amalgam of all the gems. For listeners who know all of the languages spoken, they must make a DC 15 Linguistics check to comprehend the speaker. For each language a listener doesn't know, increase the DC by 5.", slot: 'none', aura: 'faint transmutation', caster_level: 1, price_in_gp: 600, weight: 0, activatable: false, expendable: false, group: 'Wondrous Item')
+  jabberjaw_gem_abyssal_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: jabberjaw_gem_abyssal.id, feature_id: jabberjaw_gem_abyssal_feature1.id)
+    jabberjaw_gem_abyssal_feature1_usage = FeatureUsage.create!(feature_id: jabberjaw_gem_abyssal_feature1.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false, wieldable: true)
+    FeatureLanguage.create!(feature_id: jabberjaw_gem_abyssal_feature1.id, language: 'Abyssal', note: 'cannot understand')
+#
+jabberjaw_gem_dwarven = MagicItem.create!(name: 'Jabberjaw Gem (Halfling)', description: "When a gem is held, your spokemon language (heard and mouthed) appear as if you were speaking the gem's associated language. Whoever is wielding the gem or touching the wielder can hear the actual language spoken. If you hold multiple gems, your language is an amalgam of all the gems. For listeners who know all of the languages spoken, they must make a DC 15 Linguistics check to comprehend the speaker. For each language a listener doesn't know, increase the DC by 5.", slot: 'none', aura: 'faint transmutation', caster_level: 1, price_in_gp: 600, weight: 0, activatable: false, expendable: false, group: 'Wondrous Item')
+  jabberjaw_gem_dwarven_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: jabberjaw_gem_dwarven.id, feature_id: jabberjaw_gem_dwarven_feature1.id)
+    jabberjaw_gem_dwarven_feature1_usage = FeatureUsage.create!(feature_id: jabberjaw_gem_dwarven_feature1.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false, wieldable: true)
+    FeatureLanguage.create!(feature_id: jabberjaw_gem_dwarven_feature1.id, language: 'Dwarven', note: 'cannot understand')
+#
+jabberjaw_gem_sylvan = MagicItem.create!(name: 'Jabberjaw Gem (Halfling)', description: "When a gem is held, your spokemon language (heard and mouthed) appear as if you were speaking the gem's associated language. Whoever is wielding the gem or touching the wielder can hear the actual language spoken. If you hold multiple gems, your language is an amalgam of all the gems. For listeners who know all of the languages spoken, they must make a DC 15 Linguistics check to comprehend the speaker. For each language a listener doesn't know, increase the DC by 5.", slot: 'none', aura: 'faint transmutation', caster_level: 1, price_in_gp: 600, weight: 0, activatable: false, expendable: false, group: 'Wondrous Item')
+  jabberjaw_gem_sylvan_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: jabberjaw_gem_sylvan.id, feature_id: jabberjaw_gem_sylvan_feature1.id)
+    jabberjaw_gem_sylvan_feature1_usage = FeatureUsage.create!(feature_id: jabberjaw_gem_sylvan_feature1.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false, wieldable: true)
+    FeatureLanguage.create!(feature_id: jabberjaw_gem_sylvan_feature1.id, language: 'Sylvan', note: 'cannot understand')
+#
+jabberjaw_gem_undercommon = MagicItem.create!(name: 'Jabberjaw Gem (Halfling)', description: "When a gem is held, your spokemon language (heard and mouthed) appear as if you were speaking the gem's associated language. Whoever is wielding the gem or touching the wielder can hear the actual language spoken. If you hold multiple gems, your language is an amalgam of all the gems. For listeners who know all of the languages spoken, they must make a DC 15 Linguistics check to comprehend the speaker. For each language a listener doesn't know, increase the DC by 5.", slot: 'none', aura: 'faint transmutation', caster_level: 1, price_in_gp: 600, weight: 0, activatable: false, expendable: false, group: 'Wondrous Item')
+  jabberjaw_gem_undercommon_feature1 = Feature.create!(name: nil)
+    MagicItemFeature.create!(magic_item_id: jabberjaw_gem_undercommon.id, feature_id: jabberjaw_gem_undercommon_feature1.id)
+    jabberjaw_gem_undercommon_feature1_usage = FeatureUsage.create!(feature_id: jabberjaw_gem_undercommon_feature1.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false, wieldable: true)
+    FeatureLanguage.create!(feature_id: jabberjaw_gem_undercommon_feature1.id, language: 'Undercommon', note: 'cannot understand')
 #
 origami_boat = MagicItem.create!(name: 'Origami Boat', description: 'If this makes contact with water, it gradually (over the course of 5 minutes) increase its size until it becomes a row boat with a space of 20 ft by 10 ft in the same shape as the paper. After 2 hours, the boat gradually (over the course of 10 minutes) shrinks back to its smaller form. This transmation resets after 12 hours.', slot: 'none', aura: 'faint transmutation', caster_level: 12, price_in_gp: 400, weight: 0, activatable: false, expendable: false, group: 'Wondrous Item')
   origami_boat_feature1 = Feature.create!(name: nil)
@@ -4156,29 +4451,6 @@ brass_griffin_cloak = MagicItem.create!(name: 'Brass Griffin Cloak', description
 #       FeatureStateBonusCondition.create!(feature_stat_bonus_id: IDENTIFIER_featureVAR_stat1.id, condition: '')
 #     FeatureStatNote.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', note: '')
 #
-# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: 'none', aura: '', caster_level: 0, price_in_gp: 0, weight: 0.0, activatable: false, expendable: false, group: 'Wondrous Item')
-#   IDENTIFIER_featureVAR = Feature.create!(name: nil, action_id:)
-#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_featureVAR.id)
-#     IDENTIFIER_featureVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_featureVAR.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false)
-#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, spell_id: , cost: 1, castable: true)
-#       FeatureUsageOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, detail: '', cost: 1, amount: 1, destroy_after_use: false)
-#     FeatureSkillBonus.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , bonus: 0, bonus_type: '', duration: 'temporary')
-#     FeatureSkillNote.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , note: '')
-#     IDENTIFIER_featureVAR_stat1 = FeatureStatBonus.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: 'temporary')
-#       FeatureStateBonusCondition.create!(feature_stat_bonus_id: IDENTIFIER_featureVAR_stat1.id, condition: '')
-#     FeatureStatNote.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', note: '')
-#
-# IDENTIFIER = MagicItem.create!(name: '', description: '', slot: 'none', aura: '', caster_level: 0, price_in_gp: 0, weight: 0.0, activatable: false, expendable: false, group: 'Wondrous Item')
-#   IDENTIFIER_featureVAR = Feature.create!(name: nil, action_id:)
-#     MagicItemFeature.create!(magic_item_id: IDENTIFIER.id, feature_id: IDENTIFIER_featureVAR.id)
-#     IDENTIFIER_featureVAR_usage = FeatureUsage.create!(feature_id: IDENTIFIER_featureVAR.id, limit: 1000, limit_frequency: 'Round', destroy_after_use: false, unit: '', adjustable: false, toggleable: false)
-#       FeatureUsageSpellOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, spell_id: , cost: 1, castable: true)
-#       FeatureUsageOption.create!(feature_usage_id: IDENTIFIER_featureVAR_usage.id, detail: '', cost: 1, amount: 1, destroy_after_use: false)
-#     FeatureSkillBonus.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , bonus: 0, bonus_type: '', duration: 'temporary')
-#     FeatureSkillNote.create!(feature_id: IDENTIFIER_featureVAR.id, skill_id: , note: '')
-#     IDENTIFIER_featureVAR_stat1 = FeatureStatBonus.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', bonus: 0, bonus_type: '', duration: 'temporary')
-#       FeatureStateBonusCondition.create!(feature_stat_bonus_id: IDENTIFIER_featureVAR_stat1.id, condition: '')
-#     FeatureStatNote.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', note: '')
 #
 # IDENTIFIER = MagicItem.create!(name: '', description: '', slot: 'none', aura: '', caster_level: 0, price_in_gp: 0, weight: 0.0, activatable: false, expendable: false, group: 'Wondrous Item')
 #   IDENTIFIER_featureVAR = Feature.create!(name: nil, action_id:)
@@ -4192,3 +4464,64 @@ brass_griffin_cloak = MagicItem.create!(name: 'Brass Griffin Cloak', description
 #       FeatureStateBonusCondition.create!(feature_stat_bonus_id: IDENTIFIER_featureVAR_stat1.id, condition: '')
 #     FeatureStatNote.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', note: '')
 #     FeatureLanguage.create!(feature_id: IDENTIFIER_featureVAR.id, language: '', note: '')
+
+
+# //////////////////////////////////////////////////////
+# <-*-*-----*-*-*- Character Weapons!-*-*-*-----*-*->
+# //////////////////////////////////////////////////////
+
+cw1 = CharacterWeapon.create!(character_id: grackle.id, weapon_id: dagger.id, masterwork: true, description: 'beautiful piece of work', name: 'Ancient Cutlass', discovered: false, known: true, equipped: false)
+
+# //////////////////////////////////////////////////////
+# <-*-*-----*-*-*- Character Magic Items!-*-*-*-----*-*->
+# //////////////////////////////////////////////////////
+
+cmi1 = CharacterMagicItem.create!(character_id: maddox.id, magic_item_id: staff_of_size_alteration.id, false_desc: '', discovered: true, known: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi1.id, feature_usage_id: staff_of_size_alteration_feature1_usage.id)
+#
+# cmi2 = CharacterMagicItem.create!(character_id: maddox.id, magic_item_id: necklace_of_fireballs_III.id, false_desc: '', discovered: true, known: true)
+# CharacterMagicItemFeatureUsageOption.create!(character_magic_item_id: cmi2.id, feature_usage_id: necklace_of_fireballs_III_feature1_usage.id)
+
+cmi3 = CharacterMagicItem.create!(character_id: maddox.id, magic_item_id: handy_haversack.id, false_desc: '', discovered: true, known: true)
+container1 = Container.create!()
+CharacterMagicItemContainer.create!(character_magic_item_id: cmi3.id, container_id: container1.id)
+
+cmi4 = CharacterMagicItem.create!(character_id: maddox.id, magic_item_id: monster_almanac.id, false_desc: '', discovered: true, known: true)
+
+cmi5 = CharacterMagicItem.create!(character_id: maddox.id, magic_item_id: astralabe.id, false_desc: '', discovered: true, known: true)
+
+cmi6 = CharacterMagicItem.create!(character_id: merg.id, magic_item_id: elixir_of_fire_breath.id, false_desc: '', discovered: true, known: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi6.id, feature_usage_id: elixir_of_fire_breath_feature1_usage.id)
+
+cmi7 = CharacterMagicItem.create!(character_id: merg.id, magic_item_id: blind_mans_cask.id, false_desc: '', discovered: true, known: true)
+
+cmi8 = CharacterMagicItem.create!(character_id: maddox.id, magic_item_id: pirates_eye_patch.id, false_desc: '', discovered: true, known: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi8.id, feature_usage_id: pirates_eye_patch_feature1_usage.id)
+
+cmi9 = CharacterMagicItem.create!(character_id: robby.id, magic_item_id: quick_runners_shirt.id, false_desc: '', discovered: true, known: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi9.id, feature_usage_id: quick_runners_shirt_feature1_usage.id)
+
+cmi10 = CharacterMagicItem.create!(character_id: robby.id, magic_item_id: origami_boat.id, false_desc: '', discovered: true, known: true)
+
+cmi11 = CharacterMagicItem.create!(character_id: robby.id, magic_item_id: brass_griffin_cloak.id, false_desc: '', discovered: true, known: true)
+
+cmi12 = CharacterMagicItem.create!(character_id: robby.id, magic_item_id: jabberjaw_gem_halfling.id, false_desc: '', discovered: true, known: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi12.id, feature_usage_id: jabberjaw_gem_halfling_feature1_usage.id)
+
+cmi13 = CharacterMagicItem.create!(character_id: robby.id, magic_item_id: jabberjaw_gem_abyssal.id, false_desc: '', discovered: true, known: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi13.id, feature_usage_id: jabberjaw_gem_abyssal_feature1_usage.id)
+
+cmi14 = CharacterMagicItem.create!(character_id: robby.id, magic_item_id: jabberjaw_gem_dwarven.id, false_desc: '', discovered: true, known: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi14.id, feature_usage_id: jabberjaw_gem_dwarven_feature1_usage.id)
+
+cmi15 = CharacterMagicItem.create!(character_id: robby.id, magic_item_id: jabberjaw_gem_sylvan.id, false_desc: '', discovered: true, known: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi15.id, feature_usage_id: jabberjaw_gem_sylvan_feature1_usage.id)
+
+cmi16 = CharacterMagicItem.create!(character_id: robby.id, magic_item_id: jabberjaw_gem_undercommon.id, false_desc: '', discovered: true, known: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi16.id, feature_usage_id: jabberjaw_gem_undercommon_feature1_usage.id)
+
+cmi17 = CharacterMagicItem.create!(character_id: cedrick.id, magic_item_id: slippers_of_spider_climbing.id, false_desc: '', discovered: true, known: true, equipped: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi17.id, feature_usage_id: slippers_of_spider_climbing_feature1_usage.id)
+
+cmi18 = CharacterMagicItem.create!(character_id: cedrick.id, magic_item_id: pint_of_eek.id, false_desc: '', discovered: true, known: true)
+CharacterMagicItemFeatureUsage.create!(character_magic_item_id: cmi18.id, feature_usage_id: pint_of_eek_feature1_usage.id)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_24_193932) do
+ActiveRecord::Schema.define(version: 2020_02_04_192600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(version: 2020_01_24_193932) do
     t.integer "skillset_id"
     t.integer "skill_id"
     t.integer "ranks"
+  end
+
+  create_table "character_weapons", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "weapon_id"
+    t.boolean "masterwork", default: false
+    t.string "name"
+    t.string "description"
+    t.boolean "discovered", default: false
+    t.boolean "known", default: true
+    t.boolean "equipped", default: false
   end
 
   create_table "characters", force: :cascade do |t|
@@ -175,6 +186,12 @@ ActiveRecord::Schema.define(version: 2020_01_24_193932) do
     t.string "table_description"
   end
 
+  create_table "feature_loadings", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "capacity"
+    t.boolean "must_reload_after_use"
+  end
+
   create_table "feature_movements", force: :cascade do |t|
     t.integer "feature_id"
     t.string "movement"
@@ -258,6 +275,7 @@ ActiveRecord::Schema.define(version: 2020_01_24_193932) do
   create_table "features", force: :cascade do |t|
     t.integer "action_id"
     t.string "name"
+    t.boolean "attack_of_opportunity", default: false
   end
 
   create_table "klass_features", force: :cascade do |t|
@@ -453,6 +471,53 @@ ActiveRecord::Schema.define(version: 2020_01_24_193932) do
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
     t.integer "skillset_id"
+  end
+
+  create_table "weapon_features", force: :cascade do |t|
+    t.integer "weapon_id"
+    t.integer "feature_id"
+  end
+
+  create_table "weapon_groups", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "weapon_qualities", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+  end
+
+  create_table "weapon_weapon_groups", force: :cascade do |t|
+    t.integer "weapon_id"
+    t.integer "weapon_group_id"
+  end
+
+  create_table "weapon_weapon_qualities", force: :cascade do |t|
+    t.integer "weapon_id"
+    t.integer "weapon_quality_id"
+  end
+
+  create_table "weapons", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.string "proficiency"
+    t.string "weapon_type"
+    t.float "price_in_gp"
+    t.integer "damage_dice"
+    t.integer "num_of_dice"
+    t.integer "critical", default: 2
+    t.integer "critical_range", default: 20
+    t.integer "range"
+    t.integer "thrown"
+    t.float "weight"
+    t.string "damage_type"
+    t.string "description"
+    t.boolean "double_weapon"
+    t.integer "double_num_of_dice", default: 0
+    t.integer "double_damage_dice", default: 0
+    t.string "double_damage_type"
+    t.boolean "ammunition", default: false
+    t.string "ammunition_type"
   end
 
 end
