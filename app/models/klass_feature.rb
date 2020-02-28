@@ -5,6 +5,8 @@ class KlassFeature < ApplicationRecord
   has_many :feature_options
   has_many :feature_actions
   has_many :actions, through: :feature_actions
+  has_many :klass_feature_features
+  has_many :features, through: :klass_feature_features
 
   validates :name, presence: true
   validates :description, presence: true

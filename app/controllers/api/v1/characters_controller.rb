@@ -1,9 +1,12 @@
 class Api::V1::CharactersController < ApplicationController
 
   def index
-    @user = User.find( request.headers['User'])
-    @characters = @user.characters
-    render json: @characters, status: 200
+    @user = User.find(request.headers['User'])
+    characters = []
+    @user.characters.each do |ch|
+      characters << MinimalCharacterSerializer.new(ch)
+    end
+    render json: characters
   end
 
   def show

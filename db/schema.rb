@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_04_192600) do
+ActiveRecord::Schema.define(version: 2020_02_19_154701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_02_04_192600) do
     t.integer "skillset_id"
     t.integer "skill_id"
     t.integer "ranks"
+    t.string "detail"
   end
 
   create_table "character_weapons", force: :cascade do |t|
@@ -219,12 +220,14 @@ ActiveRecord::Schema.define(version: 2020_02_04_192600) do
     t.integer "bonus"
     t.string "bonus_type"
     t.string "duration"
+    t.string "custom"
   end
 
   create_table "feature_skill_notes", force: :cascade do |t|
     t.integer "feature_id"
     t.integer "skill_id"
     t.string "note"
+    t.string "custom"
   end
 
   create_table "feature_stat_bonus", force: :cascade do |t|
@@ -276,6 +279,15 @@ ActiveRecord::Schema.define(version: 2020_02_04_192600) do
     t.integer "action_id"
     t.string "name"
     t.boolean "attack_of_opportunity", default: false
+  end
+
+  create_table "ideas", force: :cascade do |t|
+    t.string "content"
+  end
+
+  create_table "klass_feature_features", force: :cascade do |t|
+    t.integer "klass_feature_id"
+    t.integer "feature_id"
   end
 
   create_table "klass_features", force: :cascade do |t|
@@ -387,6 +399,7 @@ ActiveRecord::Schema.define(version: 2020_02_04_192600) do
     t.string "ability_score"
     t.string "description"
     t.boolean "untrained", default: true
+    t.boolean "customizable", default: false
   end
 
   create_table "skillset_skills", force: :cascade do |t|
@@ -426,6 +439,7 @@ ActiveRecord::Schema.define(version: 2020_02_04_192600) do
     t.boolean "bonus_spells", default: true
     t.integer "klass_spell_list_id"
     t.boolean "prepared_amount", default: false
+    t.boolean "alchemy", default: false
   end
 
   create_table "spells", force: :cascade do |t|

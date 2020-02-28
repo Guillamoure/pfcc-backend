@@ -1,5 +1,5 @@
 class KlassFeatureSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :klass_id, :spellcasting, :feature_levels, :feature_options, :actions
+  attributes :id, :name, :description, :klass_id, :spellcasting, :feature_levels, :feature_options, :actions, :features
 
   belongs_to :klass
   has_one :spellcasting
@@ -8,6 +8,12 @@ class KlassFeatureSerializer < ActiveModel::Serializer
   def feature_options
     self.object.feature_options.map do |fo|
       FeatureOptionSerializer.new(fo)
+    end
+  end
+
+  def features
+    self.object.features.map do |f|
+      FeatureSerializer.new(f)
     end
   end
 
