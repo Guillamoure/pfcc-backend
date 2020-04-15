@@ -52,7 +52,6 @@ Rails.application.routes.draw do
       post 'notes', to: 'notes#create'
       patch 'notes/:id', to: 'notes#update'
       delete 'notes/:id', to: 'notes#destroy'
-      patch 'campaigns/:id', to: 'campaigns#date_change'
       patch 'character_max_hp/:id', to: 'char_edits#set_max_hp'
       patch 'character_weapons_discovered/:id', to: 'items#w_discovered'
       patch 'character_weapons_equip/:id', to: 'items#w_equip'
@@ -60,6 +59,10 @@ Rails.application.routes.draw do
       patch 'character_weapons_trade/:id', to: 'items#w_trade'
 
       get 'ideas/:id', to: 'ideas#index'
+
+      get 'campaigns/new', to: 'campaigns#new'
+      patch 'campaigns/:id', to: 'campaigns#date_change'
+      post 'campaigns/new', to: 'campaigns#create'
     end
   end
 end

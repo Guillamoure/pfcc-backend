@@ -1,4 +1,6 @@
 class Klass < ApplicationRecord
+  belongs_to :source
+  
   has_many :klass_features, dependent: :destroy
   has_many :feature_options, through: :klass_features
   has_many :character_klasses, dependent: :destroy

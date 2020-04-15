@@ -10,13 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_154701) do
+ActiveRecord::Schema.define(version: 2020_04_14_032229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "calendars", force: :cascade do |t|
+    t.string "name"
+    t.boolean "leap_year", default: false
+  end
+
+  create_table "campaign_klasses", force: :cascade do |t|
+    t.integer "campaign_id"
+    t.integer "klass_id"
+  end
+
+  create_table "campaign_races", force: :cascade do |t|
+    t.integer "campaign_id"
+    t.integer "race_id"
+  end
+
+  create_table "campaign_random_month_days", force: :cascade do |t|
+    t.integer "campaign_id"
+    t.integer "month_id"
+    t.integer "num_of_days"
+    t.integer "year"
+    t.integer "age"
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -27,6 +50,12 @@ ActiveRecord::Schema.define(version: 2020_02_19_154701) do
     t.integer "day"
     t.integer "age"
     t.integer "year"
+    t.integer "calendar_id"
+    t.string "theme"
+    t.string "setting"
+    t.integer "starting_level"
+    t.integer "skillset_id"
+    t.string "custom_notes"
   end
 
   create_table "cast_spells", force: :cascade do |t|
@@ -147,6 +176,12 @@ ActiveRecord::Schema.define(version: 2020_02_19_154701) do
     t.string "name"
   end
 
+  create_table "days", force: :cascade do |t|
+    t.string "name"
+    t.integer "place"
+    t.integer "calendar_id"
+  end
+
   create_table "durations", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -161,6 +196,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_154701) do
     t.string "description"
     t.integer "klass_id"
     t.integer "race_id"
+    t.integer "source_id"
   end
 
   create_table "feature_actions", force: :cascade do |t|
@@ -315,6 +351,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_154701) do
     t.float "reflex"
     t.float "will"
     t.string "img_url"
+    t.integer "source_id"
   end
 
   create_table "known_spells", force: :cascade do |t|
@@ -339,11 +376,22 @@ ActiveRecord::Schema.define(version: 2020_02_19_154701) do
     t.boolean "activatable"
     t.boolean "expendable"
     t.string "group"
+    t.integer "source_id"
   end
 
   create_table "magic_schools", force: :cascade do |t|
     t.string "name"
     t.string "description"
+  end
+
+  create_table "months", force: :cascade do |t|
+    t.string "name"
+    t.integer "num_of_days"
+    t.integer "place"
+    t.boolean "random_num_of_days", default: false
+    t.string "season"
+    t.boolean "leap_month", default: false
+    t.integer "calendar_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -386,12 +434,15 @@ ActiveRecord::Schema.define(version: 2020_02_19_154701) do
     t.string "size"
     t.string "description"
     t.string "img_url"
+    t.integer "source_id"
+    t.string "prevalence"
   end
 
   create_table "racial_traits", force: :cascade do |t|
     t.string "name"
     t.integer "race_id"
     t.string "description"
+    t.integer "source_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -409,6 +460,12 @@ ActiveRecord::Schema.define(version: 2020_02_19_154701) do
 
   create_table "skillsets", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.string "title"
+    t.string "abbreviation"
+    t.string "code"
   end
 
   create_table "spell_components", force: :cascade do |t|
@@ -457,6 +514,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_154701) do
     t.boolean "dismissible"
     t.boolean "concentration"
     t.integer "spell_range_id"
+    t.integer "source_id"
   end
 
   create_table "spells_per_days", force: :cascade do |t|
@@ -532,6 +590,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_154701) do
     t.string "double_damage_type"
     t.boolean "ammunition", default: false
     t.string "ammunition_type"
+    t.integer "source_id"
   end
 
 end
