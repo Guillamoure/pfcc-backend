@@ -6,6 +6,9 @@ class Race < ApplicationRecord
   has_many :characters, dependent: :destroy
   has_many :favored_klass_bonuses, class_name: 'FavoredKlassBonus'
 
+  has_many :campaign_races, dependent: :destroy
+  has_many :campaigns, through: :campaign_races
+
   validates :name, uniqueness: { case_sensitive: false }
   validates :description, presence: true
   validates :size, presence: true

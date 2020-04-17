@@ -2258,7 +2258,7 @@ oum_calendar = Calendar.create!(name: "Oum Calendar", leap_year: false)
 # <-*-*-----*-*-*- Campaigns!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-current_campaign = Campaign.create!(name: 'Ask Questions Second', weekday: 'Everglow', month: 'Autumn Festival', day: 7, age: 5, year: 1241, dm_id: admin.id, skillset_id: dmc.id, theme: "", setting: "", custom_notes: "", calendar_id: oum_calendar.id)
+current_campaign = Campaign.create!(name: 'Ask Questions Second', current_weekday: 'Everglow', current_month: 'Autumn Festival', current_day: 7, current_age: "5th Age", current_year: 1241, dm_id: admin.id, skillset_id: dmc.id, theme: "", setting: "", custom_notes: "", calendar_id: oum_calendar.id, starting_level: 1)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Class Skillset Skills!-*-*-*-----*-*->
