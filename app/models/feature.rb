@@ -12,5 +12,6 @@ class Feature < ApplicationRecord
   has_many :languages, class_name: 'FeatureLanguage'
   has_one :feature_container
   has_one :loading, class_name: 'FeatureLoading'
+  has_many :weapon_proficiencies, class_name: 'FeatureWeaponProficiency'
 
 end

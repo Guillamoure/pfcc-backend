@@ -1,5 +1,5 @@
 class CharacterSerializer < ActiveModel::Serializer
-  attributes :id, :name, :alignment, :deity, :homeland, :gender, :age, :height, :weight, :hair, :eyes, :user_id, :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, :description, :background, :any_bonus, :character_skillset_skills, :lethal_damage, :non_lethal_damage, :temp_hp, :uniq_klasses, :character_klasses, :full_name, :character_magic_items, :character_magic_item_feature_usages, :allies, :campaign, :character_magic_item_feature_usage_options, :notes, :is_done_preparing_spells, :max_hp
+  attributes :id, :name, :alignment, :deity, :homeland, :gender, :age, :height, :weight, :hair, :eyes, :user_id, :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, :description, :background, :any_bonus, :character_skillset_skills, :lethal_damage, :non_lethal_damage, :temp_hp, :uniq_klasses, :character_klasses, :full_name, :character_magic_items, :character_magic_item_feature_usages, :allies, :campaign, :character_magic_item_feature_usage_options, :notes, :is_done_preparing_spells, :max_hp, :applicable_klass_features, :class_obj
 
   belongs_to :user
   # has_many :character_klasses
@@ -30,6 +30,12 @@ class CharacterSerializer < ActiveModel::Serializer
   def character_magic_items
     self.object.character_magic_items.map do |mi|
       CharacterMagicItemSerializer.new(mi)
+    end
+  end
+
+  def applicable_klass_features
+    self.object.applicable_klass_features.map do |akf|
+      KlassFeatureSerializer.new(akf)
     end
   end
 end

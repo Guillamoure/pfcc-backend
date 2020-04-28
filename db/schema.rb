@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_023451) do
+ActiveRecord::Schema.define(version: 2020_04_24_005131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -314,6 +314,13 @@ ActiveRecord::Schema.define(version: 2020_04_17_023451) do
     t.boolean "adjustable", default: false
     t.boolean "toggleable", default: false
     t.boolean "wieldable", default: false
+  end
+
+  create_table "feature_weapon_proficiencies", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "proficiency_group"
+    t.integer "weapon_id"
+    t.boolean "additive", default: true
   end
 
   create_table "features", force: :cascade do |t|

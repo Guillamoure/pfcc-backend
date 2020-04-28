@@ -1195,6 +1195,10 @@ unchained_rogue13 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Ma
 
 unchained_barbarian1 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Weapon and Armor Proficiency", description: "A barbarian is proficient with all simple and martial weapons, light armor, medium armor, and shields (except tower shields).")
   FeatureLevel.create!(klass_feature_id: unchained_barbarian1.id, level: 1, table_description: "none")
+  unchained_barbarian1_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: unchained_barbarian1.id, feature_id: unchained_barbarian1_feature.id)
+    FeatureWeaponProficiency.create!(feature_id: unchained_barbarian1_feature.id, proficiency_group: "Simple")
+    FeatureWeaponProficiency.create!(feature_id: unchained_barbarian1_feature.id, proficiency_group: "Martial")
 
 unchained_barbarian2 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Fast Movement", description: "A barbarian’s base speed is faster than the norm for her race by 10 feet. This benefit applies only when she is wearing no armor, light armor, or medium armor, and not carrying a heavy load. Apply this bonus before modifying the barbarian’s speed because of any load carried or armor worn. This bonus stacks with any other bonuses to the barbarian’s base speed.")
   FeatureLevel.create!(klass_feature_id: unchained_barbarian2.id, level: 1, table_description: "Fast Movement")
@@ -2003,6 +2007,7 @@ monk_group = WeaponGroup.create!(name: 'Monk')
 spears = WeaponGroup.create!(name: 'Spears')
 thrown = WeaponGroup.create!(name: 'Thrown')
 tribal = WeaponGroup.create!(name: 'Tribal')
+heavy_blades = WeaponGroup.create!(name: 'Heavy Blades')
 
 # //////////////////////////////////////////////////
 # <-*-*-----*-*-*- Weapon Qualities!-*-*-*-----*-*->
@@ -2014,6 +2019,8 @@ monk_quality = WeaponQuality.create!(name: 'monk', description: 'A monk weapon c
 nonlethal = WeaponQuality.create!(name: 'nonlethal', description: 'These weapons deal nonlethal damage.')
 reach = WeaponQuality.create!(name: 'reach', description: 'You use a reach weapon to strike opponents 10 feet away, but you can’t use it against an adjacent foe.')
 trip = WeaponQuality.create!(name: 'trip', description: 'You can use a trip weapon to make trip attacks. If you are tripped during your own trip attempt, you can drop the weapon to avoid being tripped.')
+disarm = WeaponQuality.create!(name: 'disarm', description: 'When you use a disarm weapon, you get a +2 bonus on Combat Maneuver Checks to disarm an enemy.')
+finesse = WeaponQuality.create!(name: 'Finesse', description: 'You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a rapier sized for you, even though it isn’t a light weapon.')
 
 
 # /////////////////////////////////////////
@@ -2165,29 +2172,46 @@ starknife = Weapon.create!(name: 'Starknife', category: 'Light', proficiency: 'M
 shortsword = Weapon.create!(name: 'Shortsword', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 6, critical_range: 19, range: 0, thrown: false, weight: 2, damage_type: 'Piercing', description: 'Short swords are some of the most common weapons found in any martial society, and thus designs are extremely varied, depending on the region and creator. Most are around 2 feet in length. Their blades can be curved or straight, single- or double-edged, and wide or narrow. Hilts may be ornate or simple, with crossguards, basket hilts, or no guard at all. Such weapons are often used on their own, but can also be paired as a matched set, or used in conjunction with a dagger or longer sword.')
   WeaponWeaponGroup.create!(weapon_id: shortsword.id, weapon_group_id: light_blades.id)
 
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
+battleaxe = Weapon.create!(name: 'Battleaxe', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 8, critical: 3, range: 0, thrown: false, weight: 6, damage_type: 'Slashing', source_id: core_rulebook.id , description: 'The handle of this axe is long enough that you can wield it one-handed or two-handed. The head may have one blade or two, with blade shapes ranging from half-moons to squared edges like narrower versions of woodcutting axes. The wooden haft may be protected and strengthened with metal bands called langets.')
+  WeaponWeaponGroup.create!(weapon_id: battleaxe.id, weapon_group_id: axes.id)
+
+light_flail = Weapon.create!(name: 'Light Flail', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 5, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'A light flail consists of a weighted striking end connected to a handle by a sturdy chain. Though often imagined as a ball, sometimes spiked like the head of a morningstar, the head of a light flail can actually take many different shapes, such as short bars. Military flails are sturdier evolutions of agricultural flails, which are used for threshing – beating stacks of grains to separate the useful grains from their husks.')
+  WeaponWeaponQuality.create!(weapon_id: light_flail.id, weapon_quality_id: disarm.id)
+  WeaponWeaponQuality.create!(weapon_id: light_flail.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: light_flail.id, weapon_group_id: flails.id)
+
+longsword = Weapon.create!(name: 'Longsword', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 4, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This sword is about 3½ feet in length.')
+  WeaponWeaponGroup.create!(weapon_id: longsword.id, weapon_group_id: heavy_blades.id)
+
+heavy_pick = Weapon.create!(name: 'Heavy Pick', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 6, critical: 4, critical_range: 20, range: 0, thrown: false, weight: 6, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'This variant of the light pick has a longer handle and can be used with one or two hands. It is a common, inexpensive weapon for mounted soldiers since it can be used effectively from horseback.')
+  WeaponWeaponGroup.create!(weapon_id: heavy_pick.id, weapon_group_id: axes.id)
+
+rapier = Weapon.create!(name: 'Rapier', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 20, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 18, range: 0, thrown: false, weight: 2, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a rapier sized for you, even though it isn’t a light weapon.
+
+You can’t wield a rapier in two hands in order to apply 1-1/2 times your Strength bonus to damage.')
+  WeaponWeaponQuality.create!(weapon_id: rapier.id, weapon_quality_id: finesse.id)
+  WeaponWeaponGroup.create!(weapon_id: rapier.id, weapon_group_id: light_blades.id)
+
+scimitar = Weapon.create!(name: 'Scimitar', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 18, range: 0, thrown: false, weight: 4, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This curved sword is shorter than a longsword and longer than a shortsword. Only the outer edge is sharp, and the back is flat, giving the blade a triangular cross-section.')
+  WeaponWeaponGroup.create!(weapon_id: scimitar.id, weapon_group_id: heavy_blades.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
   # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
   # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
 
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
   # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
   # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
 
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
   # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
   # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
 
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
   # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
   # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
 
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
-  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
-  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
 
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 1, damage_type: '', description: '')
-  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
-  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
 
 
 # /////////////////////////////////////////
@@ -5328,3 +5352,14 @@ Idea.create!(content: "Psychopomp")
 # Idea.create!(content: "")
 # Idea.create!(content: "")
 # Idea.create!(content: "")
+
+
+# ///////////////////////////////////////
+# <-*-*-----*-*-*- Testing!-*-*-*-----*-*->
+# ///////////////////////////////////////
+
+barb = Character.create!(user_id: admin.id, name: "Test", strength: 14, dexterity: 11, constitution: 12, intelligence: 11, wisdom: 9, charisma: 10, race_id: human.id, skillset_id: dmc.id, alignment: 'chaotic neutral', campaign_id: current_campaign.id)
+
+CharacterKlass.create!(character_id: barb.id, klass_id: unchained_barbarian.id, hp: 12, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+
+CharacterWeapon.create!(character_id: barb.id, weapon_id: dagger.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: false)
