@@ -88,7 +88,13 @@ class Api::V1::ItemsController < ApplicationController
 
   def w_equip
     @character_item = CharacterWeapon.find(params[:id])
-    @character_item.update(equipped: !@character_item.equipped)
+    @character_item.character.character_weapons.each do |cw|
+      if !(params[:equipped] == "Primary" && cw.equipped === "Off") && !(params[:equipped]== "Off" && cw.equipped == "Primary")
+        cw.update(equipped: "")
+      end
+    end
+
+    @character_item.update(equipped: params[:equipped])
     # REFACTOR; THE FRONT END DOESN'T NEED ANY DATA, JUST A STATUS CODE
     render json: { character: CharacterSerializer.new(@character_item.character) }, status: 202
   end

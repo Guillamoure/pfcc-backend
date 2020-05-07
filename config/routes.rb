@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       resources :prepared_spells
       resources :cast_spells
 
+      get '/new_characters/:id', to: 'characters#new_show'
+
       post '/signup', to: 'users#create'
       post '/login', to: 'users#login'
       get '/profile', to: 'users#profile'

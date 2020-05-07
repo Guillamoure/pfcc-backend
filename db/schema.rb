@@ -10,13 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_005131) do
+ActiveRecord::Schema.define(version: 2020_05_06_225449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "armors", force: :cascade do |t|
+    t.string "name"
+    t.string "proficiency"
+    t.float "price_in_gp"
+    t.integer "bonus"
+    t.string "bonus_type"
+    t.integer "max_dex_bonus"
+    t.integer "armor_check_penalty"
+    t.integer "arcane_spell_failure"
+    t.integer "spell_30"
+    t.integer "spell_20"
+    t.float "weight"
+    t.integer "source_id"
+    t.string "description"
+    t.string "don"
+    t.string "don_hastily"
+    t.string "remove"
+    t.boolean "extra", default: false
+    t.boolean "weapon", default: false
+    t.boolean "bonus_price_in_gp", default: false
+    t.integer "damage_dice"
+    t.integer "num_of_dice"
+    t.integer "critical", default: 2
+    t.integer "critical_range", default: 20
+    t.string "weapon_proficiency"
+    t.string "weapon_category"
   end
 
   create_table "calendars", force: :cascade do |t|
@@ -67,6 +95,18 @@ ActiveRecord::Schema.define(version: 2020_04_24_005131) do
     t.integer "character_id"
     t.integer "klass_id"
     t.integer "spell_level"
+  end
+
+  create_table "character_armors", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "armor_id"
+    t.boolean "masterwork", default: false
+    t.string "name"
+    t.string "description"
+    t.boolean "discovered", default: false
+    t.boolean "known", default: true
+    t.boolean "equipped", default: false
+    t.integer "extra_armor_id"
   end
 
   create_table "character_klass_options", force: :cascade do |t|
@@ -128,7 +168,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_005131) do
     t.string "description"
     t.boolean "discovered", default: false
     t.boolean "known", default: true
-    t.boolean "equipped", default: false
+    t.string "equipped"
   end
 
   create_table "characters", force: :cascade do |t|

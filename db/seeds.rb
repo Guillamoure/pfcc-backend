@@ -2457,6 +2457,26 @@ A crossbow bolt used as a melee weapon is treated as a light improvised weapon (
 
 
 # /////////////////////////////////////////
+# <-*-*-----*-*-*- Armors!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+padded = Armor.create!(name: 'Padded', proficiency: 'Light', price_in_gp: 5, bonus: 1, bonus_type: 'Armor', max_dex_bonus: 8, armor_check_penalty: 0, arcane_spell_failure: 5, spell_30: 30, spell_20: 20, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 10, source_id: core_rulebook.id, description: 'More than simple clothing, padded armor combines heavy, quilted cloth and layers of densely packed stuffing to create a cheap and basic protection. It is typically worn by those not intending to face lethal combat or those who wish their maneuverability to be impacted as little as possible.')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+armor_spikes = Armor.create!(name: 'Armor Spikes', proficiency: '', price_in_gp: 50, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 10, source_id: core_rulebook.id, description: 'Armor spikes deal extra piercing damage (see “spiked armor” on Table: Weapons) on a successful grapple attack. The spikes count as a martial weapon. If you are not proficient with them, you take a –4 penalty on grapple checks when you try to use them. You can also make a regular melee attack (or off-hand attack) with the spikes, and they count as a light weapon in this case. (You can’t also make an attack with armor spikes if you have already made an attack with another off-hand weapon, and vice versa.) An enhancement bonus to a suit of armor does not improve the spikes’ effectiveness, but the spikes can be made into magic weapons in their own right.', extra: true, bonus_price_in_gp: true)
+
+# /////////////////////////////////////////
 # <-*-*-----*-*-*- Users!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
@@ -5605,3 +5625,8 @@ barb = Character.create!(user_id: admin.id, name: "Test", strength: 14, dexterit
 CharacterKlass.create!(character_id: barb.id, klass_id: unchained_barbarian.id, hp: 12, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
 
 CharacterWeapon.create!(character_id: barb.id, weapon_id: dagger.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: false)
+
+CharacterWeapon.create!(character_id: barb.id, weapon_id: sai.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: false)
+
+ca1 = CharacterArmor.create!(character_id: barb.id, armor_id: padded.id, description: "")
+CharacterArmor.create!(character_id: barb.id, armor_id: armor_spikes.id, description: "", extra_armor_id: ca1.id)

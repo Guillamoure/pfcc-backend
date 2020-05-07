@@ -23,6 +23,8 @@ class Character < ApplicationRecord
 
   has_many :character_weapons, dependent: :destroy
   has_many :weapons, through: :character_weapons
+  has_many :character_armors, dependent: :destroy
+  has_many :armors, through: :character_armors
 
 
 
@@ -52,8 +54,22 @@ class Character < ApplicationRecord
       end
 
     end
-    
+
+    classes.each_with_index do |cl, i|
+      klass = Klass.find(cl[:klass_id])
+      spd = klass.spells_per_days
+      selected_spd = spd.select {|s| s.klass_level == cl[:level]}
+      classes[i][:spellsPerDay] = []
+      selected_spd.each do |s|
+        classes[i][:spellsPerDay].push({spellLevel: s[:spell_level], spd: s[:spells]})
+      end
+    end
+
     classes
+  end
+
+  def uniq_klasses
+    self.klasses.uniq
   end
 
 end
