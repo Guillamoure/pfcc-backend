@@ -36,7 +36,13 @@ class Api::V1::CharactersController < ApplicationController
           :races, :skillset, :klasses, :characters, :calendar
         ],
         skillset: [:skills],
-        character_weapons: [:weapon],
+        character_weapons: [
+          weapon: [:weapon_qualities, :weapon_groups, :source, {
+            features: [
+              :action, {usage: :options}, :feature_container, :loading, :weapon_proficiencies, :languages, :movements, :stat_bonuses, :stat_notes, :skill_bonuses, :skill_notes, :spells, :feature_usage_spell_options
+            ]
+          }]
+        ],
         character_armors: [:armor],
         known_spells: [
           :klass_spell, {spell: [

@@ -1,3 +1,7 @@
 class CharacterWeaponSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :weapon, :masterwork, :discovered, :known, :equipped
+  attributes :id, :name, :description, :masterwork, :discovered, :known, :equipped, :weapon
+
+  def weapon
+    WeaponSerializer.new(self.object.weapon)
+  end
 end
