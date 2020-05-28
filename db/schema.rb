@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_225449) do
+ActiveRecord::Schema.define(version: 2020_05_25_172454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,6 +169,10 @@ ActiveRecord::Schema.define(version: 2020_05_06_225449) do
     t.boolean "discovered", default: false
     t.boolean "known", default: true
     t.string "equipped"
+    t.integer "magazine"
+    t.integer "ammunition_amount"
+    t.integer "character_weapon_ammunition_id"
+    t.boolean "improvised_ammunition", default: false
   end
 
   create_table "characters", force: :cascade do |t|
@@ -250,6 +254,13 @@ ActiveRecord::Schema.define(version: 2020_05_06_225449) do
     t.integer "level"
   end
 
+  create_table "feature_armor_proficiencies", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "proficiency_group"
+    t.integer "armor_id"
+    t.boolean "additive", default: true
+  end
+
   create_table "feature_containers", force: :cascade do |t|
     t.integer "feature_id"
     t.integer "weight"
@@ -272,6 +283,9 @@ ActiveRecord::Schema.define(version: 2020_05_06_225449) do
     t.integer "feature_id"
     t.integer "capacity"
     t.boolean "must_reload_after_use"
+    t.boolean "wrong_ammo"
+    t.integer "wrong_ammo_attack_penalty"
+    t.integer "wrong_ammo_size_decrease_steps"
   end
 
   create_table "feature_movements", force: :cascade do |t|
@@ -604,6 +618,12 @@ ActiveRecord::Schema.define(version: 2020_05_06_225449) do
 
   create_table "weapon_groups", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "weapon_hands", force: :cascade do |t|
+    t.integer "weapon_id"
+    t.string "hands"
+    t.integer "bonus"
   end
 
   create_table "weapon_qualities", force: :cascade do |t|

@@ -59,6 +59,10 @@ Rails.application.routes.draw do
       patch 'character_weapons_equip/:id', to: 'items#w_equip'
       delete 'character_weapons/:id', to: 'items#weapon_destroy'
       patch 'character_weapons_trade/:id', to: 'items#w_trade'
+      patch 'character_weapons_ammo/:id', to: 'items#w_ammo'
+      patch 'character_weapons_update_ammo/:id', to: 'items#w_update_ammo'
+      patch 'character_armors_discovered/:id', to: 'items#a_discovered'
+      patch 'character_armors_equip/:id', to: 'items#a_equip'
       get 'actions', to: 'actions#index'
 
       get 'ideas/:id', to: 'ideas#index'

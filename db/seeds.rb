@@ -150,6 +150,576 @@ SkillsetSkill.create!(skillset_id: dmc.id, skill_id: survival.id)
 SkillsetSkill.create!(skillset_id: dmc.id, skill_id: swim.id)
 
 
+# //////////////////////////////////////////////////
+# <-*-*-----*-*-*- Weapon Group!-*-*-*-----*-*->
+# //////////////////////////////////////////////////
+
+axes = WeaponGroup.create!(name: 'Axes')
+close = WeaponGroup.create!(name: 'Close')
+crossbows = WeaponGroup.create!(name: 'Crossbows')
+double_group = WeaponGroup.create!(name: 'Double')
+flails = WeaponGroup.create!(name: 'Flails')
+hammers = WeaponGroup.create!(name: 'Hammers')
+light_blades = WeaponGroup.create!(name: 'Light Blades')
+monk_group = WeaponGroup.create!(name: 'Monk')
+spears = WeaponGroup.create!(name: 'Spears')
+thrown = WeaponGroup.create!(name: 'Thrown')
+tribal = WeaponGroup.create!(name: 'Tribal')
+heavy_blades = WeaponGroup.create!(name: 'Heavy Blades')
+polearms = WeaponGroup.create!(name: 'Polearms')
+bows = WeaponGroup.create!(name: 'Bows')
+
+# //////////////////////////////////////////////////
+# <-*-*-----*-*-*- Weapon Qualities!-*-*-*-----*-*->
+# //////////////////////////////////////////////////
+
+brace = WeaponQuality.create!(name: 'brace', description: 'If you use a readied action to set a brace weapon against a charge, you deal double damage on a successful hit against a charging creature.')
+double_quality = WeaponQuality.create!(name: 'double', description: 'You can use a double weapon to fight as if fighting with two weapons, but if you do, you incur all the normal attack penalties associated with fighting with two weapons, just as if you were using a one-handed weapon and a light weapon. You can choose to wield one end of a double weapon two-handed, but it cannot be used as a double weapon when wielded in this way—only one end of the weapon can be used in any given round.')
+monk_quality = WeaponQuality.create!(name: 'monk', description: 'A monk weapon can be used by a monk to perform a flurry of blows.')
+nonlethal = WeaponQuality.create!(name: 'nonlethal', description: 'These weapons deal nonlethal damage.')
+reach = WeaponQuality.create!(name: 'reach', description: 'You use a reach weapon to strike opponents 10 feet away, but you can’t use it against an adjacent foe.')
+trip = WeaponQuality.create!(name: 'trip', description: 'You can use a trip weapon to make trip attacks. If you are tripped during your own trip attempt, you can drop the weapon to avoid being tripped.')
+disarm = WeaponQuality.create!(name: 'disarm', description: 'When you use a disarm weapon, you get a +2 bonus on Combat Maneuver Checks to disarm an enemy.')
+finesse = WeaponQuality.create!(name: 'Finesse', description: 'You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a rapier sized for you, even though it isn’t a light weapon.')
+
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Weapons!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+unarmed = Weapon.create!(name: 'Unarmed', category: 'Unarmed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 0, num_of_dice: 1, damage_dice: 3, range: 0, thrown: false, weight: 0, damage_type: 'Bludgeoning', description: 'An unarmed strike is always considered a light weapon. Therefore, you can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with an unarmed strike. Unarmed strikes do not count as natural weapons. The damage from an unarmed strike is considered weapon damage for the purposes of effects that give you a bonus on weapon damage rolls.
+
+A monk or any character with the Improved Unarmed Strike feat can deal lethal or nonlethal damage with unarmed strikes, at his discretion.', source_id: core_rulebook.id)
+  WeaponWeaponQuality.create!(weapon_id: unarmed.id, weapon_quality_id: nonlethal.id)
+  WeaponWeaponGroup.create!(weapon_id: unarmed.id, weapon_group_id: close.id)
+
+gauntlet = Weapon.create!(name: 'Gauntlet', category: 'Unarmed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 3, range: 0, thrown: false, weight: 1, damage_type: 'Bludgeoning', description: 'This metal glove lets you deal lethal damage rather than nonlethal damage with unarmed strikes. A strike with a gauntlet is otherwise considered an unarmed attack. Your opponent cannot use a disarm action to disarm you of gauntlets.
+
+The cost and weight given are for a single gauntlet. Medium and heavy armors (except breastplate) come with gauntlets.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: gauntlet.id, weapon_group_id: close.id)
+
+dagger = Weapon.create!(name: 'Dagger', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 4, range: 10, thrown: true, weight: 1, damage_type: 'Piercing or Slashing', critical_range: 19, description: 'A dagger has a blade that is about 1 foot in length.
+
+You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: dagger.id, weapon_group_id: light_blades.id)
+  WeaponWeaponGroup.create!(weapon_id: dagger.id, weapon_group_id: thrown.id)
+  WeaponWeaponGroup.create!(weapon_id: dagger.id, weapon_group_id: tribal.id)
+
+punching_dagger = Weapon.create!(name: 'Punching Dagger', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 4, critical: 3, range: 0, thrown: false, weight: 1, damage_type: 'Piercing', description: 'A punching dagger’s blade is attached to a horizontal handle that projects out from the fist when held.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: punching_dagger.id, weapon_group_id: close.id)
+
+spiked_gauntlet = Weapon.create!(name: 'Spiked Gauntlet', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 4, range: 10, thrown: false, weight: 1, damage_type: 'Piercing', description: 'An attack with a spiked gauntlet is considered an armed attack. Your opponent cannot use a disarm action to disarm you of spiked gauntlets.
+
+Note: The cost and weight given are for a single gauntlet.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: spiked_gauntlet.id, weapon_group_id: close.id)
+
+light_mace = Weapon.create!(name: 'Light Mace', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 4, damage_type: 'Bludgeoning', description: 'A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: light_mace.id, weapon_group_id: hammers.id)
+
+sickle = Weapon.create!(name: 'Sickle', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 6, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 2, damage_type: 'Slashing', description: '', source_id: core_rulebook.id)
+  WeaponWeaponQuality.create!(weapon_id: sickle.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: sickle.id, weapon_group_id: light_blades.id)
+
+club = Weapon.create!(name: 'Club', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 10, thrown: true, weight: 3, damage_type: 'Bludgeoning', description: 'This weapon is usually just a shaped piece of wood, sometimes with a few nails or studs embedded in it.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: club.id, weapon_group_id: hammers.id)
+  WeaponWeaponGroup.create!(weapon_id: club.id, weapon_group_id: tribal.id)
+
+heavy_mace = Weapon.create!(name: 'Heavy Mace', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 12, num_of_dice: 1, damage_dice: 8, range: 0, thrown: false, weight: 8, damage_type: 'Bludgeoning', description: 'A heavy mace has a larger head and a longer handle than a normal (light) mace.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: heavy_mace.id, weapon_group_id: hammers.id)
+
+morningstar = Weapon.create!(name: 'Morningstar', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 8, range: 0, thrown: false, weight: 6, damage_type: 'Blugeoning and Piercing', description: 'A morningstar is a spiked metal ball, affixed to the top of a long handle.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: morningstar.id, weapon_group_id: flails.id)
+
+shortspear = Weapon.create!(name: 'Shortspear', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 6, range: 20, thrown: true, weight: 3, damage_type: 'Piercing', description: 'A shortspear is about 3 feet in length, making it a suitable thrown weapon.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: shortspear.id, weapon_group_id: spears.id)
+  WeaponWeaponGroup.create!(weapon_id: shortspear.id, weapon_group_id: thrown.id)
+  WeaponWeaponGroup.create!(weapon_id: shortspear.id, weapon_group_id: tribal.id)
+
+longspear = Weapon.create!(name: 'Longspear', category: 'Two-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 8, critical: 3, range: 0, thrown: false, weight: 9, damage_type: 'Piercing', description: 'A longspear is about 8 feet in length.', source_id: core_rulebook.id)
+  WeaponWeaponQuality.create!(weapon_id: longspear.id, weapon_quality_id: brace.id)
+  WeaponWeaponQuality.create!(weapon_id: longspear.id, weapon_quality_id: reach.id)
+  WeaponWeaponGroup.create!(weapon_id: longspear.id, weapon_group_id: spears.id)
+
+quarterstaff = Weapon.create!(name: 'Quarterstaff', category: 'Two-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 4, damage_type: 'Bludgeoning', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 6, double_damage_type: 'Bludgeoning', description: 'A quarterstaff is a simple piece of wood, about 5 feet in length.', source_id: core_rulebook.id)
+  WeaponWeaponQuality.create!(weapon_id: quarterstaff.id, weapon_quality_id: monk_quality.id)
+  WeaponWeaponQuality.create!(weapon_id: quarterstaff.id, weapon_quality_id: double_quality.id)
+  WeaponWeaponGroup.create!(weapon_id: quarterstaff.id, weapon_group_id: double_group.id)
+  WeaponWeaponGroup.create!(weapon_id: quarterstaff.id, weapon_group_id: monk_group.id)
+
+spear = Weapon.create!(name: 'Spear', category: 'Two-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 8, range: 20, critical: 3, thrown: true, weight: 6, damage_type: 'Piercing', description: 'A spear is 5 feet in length and can be thrown.', source_id: core_rulebook.id)
+  WeaponWeaponQuality.create!(weapon_id: spear.id, weapon_quality_id: brace.id)
+  WeaponWeaponGroup.create!(weapon_id: spear.id, weapon_group_id: spears.id)
+  WeaponWeaponGroup.create!(weapon_id: spear.id, weapon_group_id: tribal.id)
+  WeaponWeaponGroup.create!(weapon_id: spear.id, weapon_group_id: thrown.id)
+
+blowgun = Weapon.create!(name: 'Blowgun', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 2, num_of_dice: 1, damage_dice: 2, range: 20, thrown: false, weight: 1, damage_type: 'Piercing', description: 'Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired.', ammunition_type: 'blowgun', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: blowgun.id, weapon_group_id: thrown.id)
+  WeaponHand.create!(weapon_id: blowgun.id, hands: "Two")
+
+heavy_crossbow = Weapon.create!(name: 'Heavy Crossbow', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 50, num_of_dice: 1, damage_dice: 10, range: 120, critical_range: 19, thrown: false, weight: 8, damage_type: 'Piercing', description: 'Load: Loading a heavy crossbow is a full-round action that provokes attacks of opportunity.
+
+You draw a heavy crossbow back by turning a small winch. Normally, operating a heavy crossbow requires two hands. However, you can shoot, but not load, a heavy crossbow with one hand at a –4 penalty on attack rolls. You can shoot a heavy crossbow with each hand, but you take a penalty on attack rolls as if attacking with two one-handed weapons. This penalty is cumulative with the penalty for one-handed firing.', ammunition_type: 'crossbow', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: heavy_crossbow.id, weapon_group_id: crossbows.id)
+  heavy_crossbow_feature1 = Feature.create!(name: 'Load', action_id: full_round.id, attack_of_opportunity: true)
+    WeaponFeature.create!(weapon_id: heavy_crossbow.id, feature_id: heavy_crossbow_feature1.id)
+    FeatureLoading.create(feature_id: heavy_crossbow_feature1.id, capacity: 1, must_reload_after_use: true)
+  WeaponHand.create!(weapon_id: heavy_crossbow.id, hands: "Two")
+  WeaponHand.create!(weapon_id: heavy_crossbow.id, hands: "One", bonus: -4)
+
+light_crossbow = Weapon.create!(name: 'Light Crossbow', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 35, num_of_dice: 1, damage_dice: 8, range: 80, critical_range: 19, thrown: false, weight: 4, damage_type: 'Piercing', description: 'Load: Loading a light crossbow is a move action that provokes attacks of opportunity.
+
+You draw a light crossbow back by pulling a lever. Normally, operating a light crossbow requires two hands. However, you can shoot, but not load, a light crossbow with one hand at a –2 penalty on attack rolls. You can shoot a light crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons. This penalty is cumulative with the penalty for one-handed firing.', ammunition_type: 'crossbow', source_id: core_rulebook.id)
+  WeaponWeaponQuality.create!(weapon_id: light_crossbow.id, weapon_quality_id: crossbows.id)
+  light_crossbow_feature1 = Feature.create!(name: 'Load', action_id: move.id, attack_of_opportunity: true)
+    WeaponFeature.create!(weapon_id: light_crossbow.id, feature_id: light_crossbow_feature1.id)
+    FeatureLoading.create(feature_id: light_crossbow_feature1.id, capacity: 1, must_reload_after_use: true)
+  WeaponHand.create!(weapon_id: light_crossbow.id, hands: "Two")
+  WeaponHand.create!(weapon_id: light_crossbow.id, hands: "One", bonus: -2)
+
+dart = Weapon.create!(name: 'Dart', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.5, num_of_dice: 1, damage_dice: 4, range: 20, thrown: true, weight: 0.5, damage_type: 'Piercing', description: 'Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first. They can be distinguished from javelins by fletching (i.e., feathers on the tail) and a shaft that is shorter and/or more flexible, and from arrows by the fact that they are not of the right length to use with a normal bow.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: dart.id, weapon_group_id: thrown.id)
+  WeaponHand.create!(weapon_id: dart.id, hands: "One")
+
+javelin = Weapon.create!(name: 'Javelin', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 1, num_of_dice: 1, damage_dice: 6, range: 30, thrown: true, weight: 2, damage_type: 'Piercing', description: 'A javelin is a thin throwing spear.
+
+Since a javelin is not designed for melee, you are treated as non-proficient with it and take a –4 penalty on attack rolls if you use a javelin as a melee weapon.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: javelin.id, weapon_group_id: spears.id)
+  WeaponWeaponGroup.create!(weapon_id: javelin.id, weapon_group_id: thrown.id)
+  WeaponHand.create!(weapon_id: javelin.id, hands: "One")
+
+sling = Weapon.create!(name: 'Sling', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0, num_of_dice: 1, damage_dice: 4, range: 50, thrown: true, weight: 1, damage_type: 'Bludgeoning', description: 'A sling is little more than a leather cup attached to a pair of strings.
+
+Your Strength modifier applies to damage rolls when you use a sling, just as it does for thrown weapons. You can fire, but not load, a sling with one hand.
+
+Loading a sling is a move action that requires two hands and provokes attacks of opportunity.
+
+You can hurl ordinary stones with a sling, but stones are not as dense or as round as bullets. Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a –1 penalty on attack rolls.', ammunition_type: 'sling', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: sling.id, weapon_group_id: thrown.id)
+  sling_feature1 = Feature.create!(name: 'Load', action_id: move.id, attack_of_opportunity: true)
+    WeaponFeature.create!(weapon_id: sling.id, feature_id: sling_feature1.id)
+    FeatureLoading.create(feature_id: sling_feature1.id, capacity: 1, must_reload_after_use: true, wrong_ammo: true, wrong_ammo_attack_penalty: -1, wrong_ammo_size_decrease_steps: 1)
+  WeaponHand.create!(weapon_id: sling.id, hands: "One")
+
+
+crossbow_bolt = Weapon.create!(name: 'Crossbow Bolt', category: 'Ammunition', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.1, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.1, damage_type: '', description: 'Bolts come in a case or quiver that holds 10 bolts.
+
+A crossbow bolt used as a melee weapon is treated as a light improvised weapon (–4 penalty on attack rolls) and deals damage as a dagger of its size (crit ×2).', ammunition: true, ammunition_type: 'crossbow', source_id: core_rulebook.id)
+
+sling_bullet = Weapon.create!(name: 'Sling Bullet', category: 'Ammunition', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.01, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.5, damage_type: '', description: 'Bullets come in a leather pouch that holds 10 bullets.', ammunition: true, ammunition_type: 'sling', source_id: core_rulebook.id)
+
+blowgun_dart = Weapon.create!(name: 'Blowgun Dart', category: 'Ammunition', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.05, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.1, damage_type: '', description: 'These light darts have tiny grooves behind the tips.
+
+A character can apply poison to a blowgun dart without risk of poisoning himself.', ammunition: true, ammunition_type: 'blowgun', source_id: core_rulebook.id)
+
+throwing_axe = Weapon.create!(name: 'Throwing Axe', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 6, range: 10, thrown: true, weight: 2, damage_type: 'Slashing', description: 'This is a small axe balanced for throwing.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: throwing_axe.id, weapon_group_id: axes.id)
+  WeaponWeaponGroup.create!(weapon_id: throwing_axe.id, weapon_group_id: thrown.id)
+  WeaponWeaponGroup.create!(weapon_id: throwing_axe.id, weapon_group_id: tribal.id)
+
+light_hammer = Weapon.create!(name: 'Light Hammer', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 4, range: 20, thrown: true, weight: 2, damage_type: 'Bludgeoning', description: 'A lighter version of a warhammer, this weapon usually has a sleek metal head with one striking surface.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: light_hammer.id, weapon_group_id: hammers.id)
+  WeaponWeaponGroup.create!(weapon_id: light_hammer.id, weapon_group_id: thrown.id)
+
+handaxe = Weapon.create!(name: 'Handaxe', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 6, num_of_dice: 1, damage_dice: 6, critical: 3, range: 0, thrown: false, weight: 3, damage_type: 'Slashing', description: 'This one-handed axe is short (roughly 1 foot long) and designed for use with one hand. Unlike throwing axes, it is not well balanced for a graceful tumbling motion, and is instead heavier at its head. Tomahawks, war hatchets, and other such names usually refer to hand axes.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: handaxe.id, weapon_group_id: axes.id)
+  WeaponWeaponGroup.create!(weapon_id: handaxe.id, weapon_group_id: tribal.id)
+
+kukri = Weapon.create!(name: 'Kukri', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 4, range: 0, critical_range: 18, thrown: false, weight: 2, damage_type: 'Slashing', description: 'A kukri is a curved blade, about 1 foot in length.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: kukri.id, weapon_group_id: light_blades.id)
+
+light_pick = Weapon.create!(name: 'Light Pick', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 4, num_of_dice: 1, damage_dice: 6, critical: 4, range: 0, thrown: false, weight: 3, damage_type: 'Piercing', description: 'This weapon, adapted from the pickaxe tool, has a head with a slightly curved, armorpiercing spike and a hammerlike counterweight.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: light_pick.id, weapon_group_id: axes.id)
+
+sap = Weapon.create!(name: 'Sap', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 2, damage_type: 'Bludgeoning', description: 'This weapon consists of a soft wrapping around a hard, dense core, typically a leather sheath around a lead rod. The head is wider than the handle and designed to spread out the force of the blow, making it less likely to draw blood or break bones.', source_id: core_rulebook.id)
+  WeaponWeaponQuality.create!(weapon_id: sap.id, weapon_quality_id: nonlethal.id)
+  WeaponWeaponGroup.create!(weapon_id: sap.id, weapon_group_id: close.id)
+
+starknife = Weapon.create!(name: 'Starknife', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 24, num_of_dice: 1, damage_dice: 4, critical: 3, range: 20, thrown: true, weight: 3, damage_type: 'Piercing', description: 'From a central metal ring, four tapering metal blades extend from this weapon like points on a compass rose. By gripping the crossbar that runs through the weapon’s open middle, a wielder can strike with it as a deadly melee weapon. Alternatively, by gripping it by the outer rim, a starknife’s light, aerodynamic design allows it to be thrown short distances in a manner similar to a chakram.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: starknife.id, weapon_group_id: light_blades.id)
+  WeaponWeaponGroup.create!(weapon_id: starknife.id, weapon_group_id: thrown.id)
+
+shortsword = Weapon.create!(name: 'Shortsword', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 6, critical_range: 19, range: 0, thrown: false, weight: 2, damage_type: 'Piercing', description: 'Short swords are some of the most common weapons found in any martial society, and thus designs are extremely varied, depending on the region and creator. Most are around 2 feet in length. Their blades can be curved or straight, single- or double-edged, and wide or narrow. Hilts may be ornate or simple, with crossguards, basket hilts, or no guard at all. Such weapons are often used on their own, but can also be paired as a matched set, or used in conjunction with a dagger or longer sword.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: shortsword.id, weapon_group_id: light_blades.id)
+
+battleaxe = Weapon.create!(name: 'Battleaxe', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 8, critical: 3, range: 0, thrown: false, weight: 6, damage_type: 'Slashing', description: 'The handle of this axe is long enough that you can wield it one-handed or two-handed. The head may have one blade or two, with blade shapes ranging from half-moons to squared edges like narrower versions of woodcutting axes. The wooden haft may be protected and strengthened with metal bands called langets.', source_id: core_rulebook.id)
+  WeaponWeaponGroup.create!(weapon_id: battleaxe.id, weapon_group_id: axes.id)
+
+light_flail = Weapon.create!(name: 'Light Flail', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 5, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'A light flail consists of a weighted striking end connected to a handle by a sturdy chain. Though often imagined as a ball, sometimes spiked like the head of a morningstar, the head of a light flail can actually take many different shapes, such as short bars. Military flails are sturdier evolutions of agricultural flails, which are used for threshing – beating stacks of grains to separate the useful grains from their husks.')
+  WeaponWeaponQuality.create!(weapon_id: light_flail.id, weapon_quality_id: disarm.id)
+  WeaponWeaponQuality.create!(weapon_id: light_flail.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: light_flail.id, weapon_group_id: flails.id)
+
+longsword = Weapon.create!(name: 'Longsword', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 4, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This sword is about 3½ feet in length.')
+  WeaponWeaponGroup.create!(weapon_id: longsword.id, weapon_group_id: heavy_blades.id)
+
+heavy_pick = Weapon.create!(name: 'Heavy Pick', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 6, critical: 4, critical_range: 20, range: 0, thrown: false, weight: 6, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'This variant of the light pick has a longer handle and can be used with one or two hands. It is a common, inexpensive weapon for mounted soldiers since it can be used effectively from horseback.')
+  WeaponWeaponGroup.create!(weapon_id: heavy_pick.id, weapon_group_id: axes.id)
+
+rapier = Weapon.create!(name: 'Rapier', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 20, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 18, range: 0, thrown: false, weight: 2, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a rapier sized for you, even though it isn’t a light weapon.
+
+You can’t wield a rapier in two hands in order to apply 1-1/2 times your Strength bonus to damage.')
+  WeaponWeaponQuality.create!(weapon_id: rapier.id, weapon_quality_id: finesse.id)
+  WeaponWeaponGroup.create!(weapon_id: rapier.id, weapon_group_id: light_blades.id)
+  WeaponHand.create!(weapon_id: rapier.id, hands: "One")
+
+scimitar = Weapon.create!(name: 'Scimitar', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 18, range: 0, thrown: false, weight: 4, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This curved sword is shorter than a longsword and longer than a shortsword. Only the outer edge is sharp, and the back is flat, giving the blade a triangular cross-section.')
+  WeaponWeaponGroup.create!(weapon_id: scimitar.id, weapon_group_id: heavy_blades.id)
+
+trident = Weapon.create!(name: 'Trident', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 20, range: 10, thrown: true, weight: 4, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A trident has three metal prongs at the end of a 4-foot-long shaft.')
+  WeaponWeaponQuality.create!(weapon_id: trident.id, weapon_quality_id: brace.id)
+  WeaponWeaponGroup.create!(weapon_id: trident.id, weapon_group_id: spears.id)
+  WeaponWeaponGroup.create!(weapon_id: trident.id, weapon_group_id: thrown.id)
+
+warhammer = Weapon.create!(name: 'Warhammer', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 12, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 5, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'This weapon consists of a wooden haft and a heavy, metal head. The head may be single (like a carpenter’s hammer) or double (like a sledgehammer). The haft is long enough that you may wield it one- or two-handed. Though heavy and relatively slow to wield, warhammers are capable of delivering immense blows, crushing armor and flesh alike.')
+  WeaponWeaponGroup.create!(weapon_id: warhammer.id, weapon_group_id: hammers.id)
+
+falchion = Weapon.create!(name: 'Falchion', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 75, num_of_dice: 2, damage_dice: 4, critical: 2, critical_range: 18, range: 0, thrown: false, weight: 8, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This sword has one curved, sharp edge like a scimitar, with the back edge unsharpened and either flat or slightly curved. Its weight is greater toward the end, making it better for chopping rather than stabbing.')
+  WeaponWeaponGroup.create!(weapon_id: falchion.id, weapon_group_id: heavy_blades.id)
+
+heavy_flail = Weapon.create!(name: 'Heavy Flail', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 10, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 10, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'Similar to a light flail, a heavy flail has a larger metal ball and a longer handle.')
+  WeaponWeaponQuality.create!(weapon_id: heavy_flail.id, weapon_quality_id: disarm.id)
+  WeaponWeaponQuality.create!(weapon_id: heavy_flail.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: heavy_flail.id, weapon_group_id: flails.id)
+
+glaive = Weapon.create!(name: 'Glaive', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 10, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 10, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A glaive is composed of a simple blade mounted on the end of a pole about 7 feet in length.')
+  WeaponWeaponQuality.create!(weapon_id: glaive.id, weapon_quality_id: reach.id)
+  WeaponWeaponGroup.create!(weapon_id: glaive.id, weapon_group_id: polearms.id)
+
+greataxe = Weapon.create!(name: 'Greataxe', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 20, num_of_dice: 1, damage_dice: 12, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 12, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This two-handed battle axe is heavy enough that you can’t wield it with one hand. The head may have one blade or two, and may be “bearded” (meaning hooked or trailing at the bottom) to increase cleaving power and help pull down enemy shields. The haft is usually 3 to 4 feet long.')
+  WeaponWeaponGroup.create!(weapon_id: greataxe.id, weapon_group_id: axes.id)
+
+great_club = Weapon.create!(name: 'Great Club', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 10, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 8, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'This larger, bulkier version of the common club is heavy enough that you can’t wield it with one hand. It may be ornate and carved, reinforced with metal, or a simple branch from a tree. Like simple clubs, greatclubs have many names, such as cudgels, bludgeons, shillelaghs, and more.')
+  WeaponWeaponGroup.create!(weapon_id: great_club.id, weapon_group_id: hammers.id)
+  WeaponWeaponGroup.create!(weapon_id: great_club.id, weapon_group_id: tribal.id)
+
+greatsword = Weapon.create!(name: 'Greatsword', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 50, num_of_dice: 2, damage_dice: 6, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 8, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This immense two-handed sword is about 5 feet in length. A greatsword may have a dulled lower blade that can be gripped.')
+  WeaponWeaponGroup.create!(weapon_id: greatsword.id, weapon_group_id: heavy_blades.id)
+
+guisarme = Weapon.create!(name: 'Guisarme', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 9, num_of_dice: 2, damage_dice: 4, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A guisarme is an 8-foot-long shaft with a blade and a hook mounted at the tip.')
+  WeaponWeaponQuality.create!(weapon_id: guisarme.id, weapon_quality_id: reach.id)
+  WeaponWeaponQuality.create!(weapon_id: guisarme.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: guisarme.id, weapon_group_id: polearms.id)
+
+halberd = Weapon.create!(name: 'Halberd', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 10, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 12, damage_type: 'Piercing or Slashing', source_id: core_rulebook.id, description: 'A halberd is similar to a 5-foot-long spear, but it also has a small, axe-like head mounted near the tip.')
+  WeaponWeaponQuality.create!(weapon_id: halberd.id, weapon_quality_id: brace.id)
+  WeaponWeaponQuality.create!(weapon_id: halberd.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: halberd.id, weapon_group_id: polearms.id)
+
+lance = Weapon.create!(name: 'Lance', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 10, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A lance deals double damage when used from the back of a charging mount. While mounted, you can wield a lance with one hand.')
+  WeaponWeaponQuality.create!(weapon_id: lance.id, weapon_quality_id: reach.id)
+  WeaponWeaponGroup.create!(weapon_id: lance.id, weapon_group_id: spears.id)
+
+ranseur = Weapon.create!(name: 'Ranseur', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 2, damage_dice: 4, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 12, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'Similar in appearance to a trident, a ranseur has a single spear at its tip, flanked by a pair of short, curving blades.')
+  WeaponWeaponQuality.create!(weapon_id: ranseur.id, weapon_quality_id: disarm.id)
+  WeaponWeaponQuality.create!(weapon_id: ranseur.id, weapon_quality_id: reach.id)
+  WeaponWeaponGroup.create!(weapon_id: ranseur.id, weapon_group_id: polearms.id)
+
+scythe = Weapon.create!(name: 'Scythe', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 18, num_of_dice: 2, damage_dice: 4, critical: 4, critical_range: 20, range: 0, thrown: false, weight: 10, damage_type: 'Piercing or Slashing', source_id: core_rulebook.id, description: 'This weapon consists of a long wooden shaft with protruding handles and a sharp curved blade set at a right angle. Derived from a farm tool used to mow down crops, a scythe requires two hands to use, and is unwieldy but capable of inflicting grievous wounds. Its connotations as a symbol of death make it an intimidating weapon.')
+  WeaponWeaponQuality.create!(weapon_id: scythe.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: scythe.id, weapon_group_id: heavy_blades.id)
+
+longbow = Weapon.create!(name: 'Longbow', category: 'Ranged', proficiency: 'Martial', weapon_type: 'Range', price_in_gp: 75, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 100, thrown: false, weight: 3, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'At almost 5 feet in height, a longbow is made up of one solid piece of carefully curved wood.
+
+You need two hands to use a bow, regardless of its size. A longbow can’t be used while mounted. If you have a penalty for low Strength, apply it to damage rolls when you use a longbow. You can apply your Strength modifier to damage rolls when you use a composite longbow, but not a regular longbow. A longbow fires arrows.', ammunition_type: 'bow')
+  WeaponWeaponGroup.create!(weapon_id: longbow.id, weapon_group_id: bows.id)
+  WeaponHand.create!(weapon_id: longbow.id, hands: "Two")
+
+compositve_longbow = Weapon.create!(name: 'Composite Longbow', category: 'Ranged', proficiency: 'Martial', weapon_type: 'Range', price_in_gp: 100, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 110, thrown: false, weight: 3, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'You need at least two hands to use a bow, regardless of its size. You can use a composite longbow while mounted.
+
+All composite bows are made with a particular Strength rating (that is, each requires a minimum Strength modifier to use with proficiency). If your Strength bonus is less than the strength rating of the composite bow, you can’t effectively use it, so you take a –2 penalty on attacks with it. The default composite longbow requires a Strength modifier of +0 or higher to use with proficiency. A composite longbow can be made with a high strength rating to take advantage of an above-average Strength score; this feature allows you to add your Strength bonus to damage, up to the maximum bonus indicated for the bow. Each point of Strength bonus granted by the bow adds 100 gp to its cost. If you have a penalty for low Strength, apply it to damage rolls when you use a composite longbow.
+
+For purposes of Weapon Proficiency and similar feats, a composite longbow is treated as if it were a longbow.', ammunition_type: 'bow')
+  WeaponWeaponGroup.create!(weapon_id: compositve_longbow.id, weapon_group_id: bows.id)
+  WeaponHand.create!(weapon_id: compositve_longbow.id, hands: "Two")
+
+shortbow = Weapon.create!(name: 'Shortbow', category: 'Ranged', proficiency: 'Martial', weapon_type: 'Range', price_in_gp: 30, num_of_dice: 1, damage_dice: 6, critical: 3, critical_range: 20, range: 60, thrown: false, weight: 2, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A shortbow is made up of one piece of wood, about 3 feet in length.
+
+You need two hands to use a bow, regardless of its size. You can use a shortbow while mounted. If you have a penalty for low Strength, apply it to damage rolls when you use a shortbow. If you have a bonus for high Strength, you can apply it to damage rolls when you use a composite shortbow, but not a regular shortbow. A shortbow fires arrows.', ammunition_type: 'bow')
+  WeaponWeaponGroup.create!(weapon_id: shortbow.id, weapon_group_id: bows.id)
+  WeaponHand.create!(weapon_id: shortbow.id, hands: "Two")
+
+compositve_shortbow = Weapon.create!(name: 'Composite Shortbow', category: 'Ranged', proficiency: 'Martial', weapon_type: 'Range', price_in_gp: 75, num_of_dice: 1, damage_dice: 6, critical: 3, critical_range: 20, range: 70, thrown: false, weight: 2, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'You need at least two hands to use a bow, regardless of its size. You can use a composite shortbow while mounted.
+
+All composite bows are made with a particular Strength rating (that is, each requires a minimum Strength modifier to use with proficiency). If your Strength bonus is lower than the strength rating of the composite bow, you can’t effectively use it, so you take a –2 penalty on attacks with it. The default composite shortbow requires a Strength modifier of +0 or higher to use with proficiency. A composite shortbow can be made with a high strength rating to take advantage of an above-average Strength score; this feature allows you to add your Strength bonus to damage, up to the maximum bonus indicated for the bow. Each point of Strength bonus granted by the bow adds 75 gp to its cost. If you have a penalty for low Strength, apply it to damage rolls when you use a composite shortbow.
+
+For purposes of Weapon Proficiency, Weapon Focus, and similar feats, a composite shortbow is treated as if it were a shortbow.', ammunition_type: 'bow')
+  WeaponWeaponGroup.create!(weapon_id: compositve_shortbow.id, weapon_group_id: bows.id)
+  WeaponHand.create!(weapon_id: compositve_shortbow.id, hands: "Two")
+
+arrow = Weapon.create!(name: 'Arrow', category: 'Ammunition', proficiency: 'Martial', weapon_type: 'Range', price_in_gp: 0.05, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.15, damage_type: '', description: 'A standard (common) arrow used as a melee weapon is treated as a light improvised weapon (–4 penalty on attack rolls) and deals damage as a dagger of its size (critical multiplier ×2). Unless indicated otherwise, arrows come in a leather quiver that holds 20 arrows.', ammunition: true, ammunition_type: 'bow', source_id: core_rulebook.id)
+
+kama = Weapon.create!(name: 'Kama', category: 'Light', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 2, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'Similar to a sickle—and in some regions still used to reap grain—a kama is a short, curved blade attached to a simple handle, usually made of wood. It is sometimes also referred to as a kai, and is frequently used in pairs by martial artists.')
+  WeaponWeaponQuality.create!(weapon_id: kama.id, weapon_quality_id: monk_quality.id)
+  WeaponWeaponQuality.create!(weapon_id: kama.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: kama.id, weapon_group_id: light_blades.id)
+  WeaponWeaponGroup.create!(weapon_id: kama.id, weapon_group_id: monk_group.id)
+
+nunchaku = Weapon.create!(name: 'Nunchaku', category: 'Light', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 2, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'A nunchaku is made up of two wooden or metal bars connected by a small length of rope or chain.')
+  WeaponWeaponQuality.create!(weapon_id: nunchaku.id, weapon_quality_id: monk_quality.id)
+  WeaponWeaponQuality.create!(weapon_id: nunchaku.id, weapon_quality_id: disarm.id)
+  WeaponWeaponGroup.create!(weapon_id: nunchaku.id, weapon_group_id: flails.id)
+  WeaponWeaponGroup.create!(weapon_id: nunchaku.id, weapon_group_id: monk_group.id)
+
+sai = Weapon.create!(name: 'Sai', category: 'Light', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 4, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A sai is a metal spike flanked by a pair of prongs used to trap an enemy’s weapon. Though pointed, a sai is not usually used for stabbing. Instead, it is used primarily to bludgeon foes, punching with the hilt, or else to catch and disarm weapons between its tines. Sais are often wielded in pairs.
+
+When wielding a sai, you get a +2 bonus on combat maneuver checks to sunder an enemy’s weapon.')
+  WeaponWeaponQuality.create!(weapon_id: sai.id, weapon_quality_id: monk_quality.id)
+  WeaponWeaponGroup.create!(weapon_id: sai.id, weapon_group_id: disarm.id)
+  WeaponWeaponGroup.create!(weapon_id: sai.id, weapon_group_id: monk_group.id)
+
+siangham = Weapon.create!(name: 'Siangham', category: 'Light', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 3, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'This weapon is a handheld shaft fitted with a pointed tip for stabbing foes. It resembles a (much sturdier) arrow with a grip designed for melee combat.')
+  WeaponWeaponQuality.create!(weapon_id: siangham.id, weapon_quality_id: monk_quality.id)
+  WeaponWeaponGroup.create!(weapon_id: siangham.id, weapon_group_id: monk_group.id)
+
+bastard_sword = Weapon.create!(name: 'Bastard Sword', category: 'One-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 35, num_of_dice: 1, damage_dice: 10, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 6, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A bastard sword is about 4 feet in length, making it too large to use in one hand without special training; thus, it is an exotic weapon. A character can use a bastard sword two-handed as a martial weapon.')
+  WeaponWeaponGroup.create!(weapon_id: bastard_sword.id, weapon_group_id: heavy_blades.id)
+
+dwarven_waraxe = Weapon.create!(name: 'Dwarven Waraxe', category: 'One-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 30, num_of_dice: 1, damage_dice: 10, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 8, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A dwarven waraxe has a large, ornate head mounted to a thick handle, making it too large to use in one hand without special training.
+
+Due to its size, a dwarven waraxe is an exotic weapon. A Medium character can use a dwarven waraxe two-handed as a martial weapon, or a Large creature can use it one-handed in the same way.
+
+A dwarf treats a dwarven waraxe as a martial weapon even when using it in one hand.')
+  WeaponWeaponGroup.create!(weapon_id: dwarven_waraxe.id, weapon_group_id: axes.id)
+
+whip = Weapon.create!(name: 'Whip', category: 'One-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 3, critical: 2, critical_range: 20, range: 15, thrown: false, weight: 2, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A whip deals no damage to any creature with an armor bonus of +1 or higher or a natural armor bonus of +3 or higher. The whip is treated as a melee weapon with 15-foot reach, though you don’t threaten the area into which you can make an attack. In addition, unlike most other weapons with reach, you can use it against foes anywhere within your reach (including adjacent foes).
+
+Using a whip provokes an attack of opportunity, just as if you had used a ranged weapon.
+
+You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a whip sized for you, even though it isn’t a light weapon. Wielding a whip in two hands does not add 1-1/2 times your Strength modifier to damage rolls as with other weapons (UE update).')
+  WeaponWeaponQuality.create!(weapon_id: whip.id, weapon_quality_id: disarm.id)
+  WeaponWeaponQuality.create!(weapon_id: whip.id, weapon_quality_id: nonlethal.id)
+  WeaponWeaponQuality.create!(weapon_id: whip.id, weapon_quality_id: reach.id)
+  WeaponWeaponQuality.create!(weapon_id: whip.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: whip.id, weapon_group_id: flails.id)
+
+orc_double_axe = Weapon.create!(name: 'Orc Double Axe', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 60, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 15, damage_type: 'Slashing', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 8, double_damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A cruel weapon with blades placed at opposite ends of a long haft, an orc double axe is a double weapon. Though invented by and traditionally associated with orcs, the double axe can be crafted and wielded by other races as well, though many disdain it for its extreme weight and clumsiness. Because of the blades at either end of the axe, the wielder must hold an orc double axe in the middle of its haft, and utilize a weaving, slashing fighting style more akin to that of a quarterstaff than to that of a greataxe or battleaxe.')
+  WeaponWeaponQuality.create!(weapon_id: orc_double_axe.id, weapon_quality_id: double_quality.id)
+  WeaponWeaponGroup.create!(weapon_id: orc_double_axe.id, weapon_group_id: axes.id)
+  WeaponWeaponGroup.create!(weapon_id: orc_double_axe.id, weapon_group_id: double_group.id)
+
+spiked_chain = Weapon.create!(name: 'Spiked Chain', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 25, num_of_dice: 2, damage_dice: 4, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 10, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A spiked chain is about 4 feet in length, covered in wicked barbs.
+
+You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a spiked chain sized for you, even though it isn’t a light weapon.')
+  WeaponWeaponQuality.create!(weapon_id: spiked_chain.id, weapon_quality_id: disarm.id)
+  WeaponWeaponQuality.create!(weapon_id: spiked_chain.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: spiked_chain.id, weapon_group_id: flails.id)
+
+elven_curve_blade = Weapon.create!(name: 'Elven Curve Blade', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 80, num_of_dice: 1, damage_dice: 10, critical: 2, critical_range: 18, range: 0, thrown: false, weight: 7, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'Essentially a longer version of a scimitar, but with a thinner blade, the elven curve blade is exceptionally rare.
+
+You receive a +2 circumstance bonus to your Combat Maneuver Defense whenever a foe attempts to sunder your elven curve blade due to its flexible metal.
+
+You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with an elven curve blade sized for you, even though it isn’t a light weapon.')
+  WeaponWeaponGroup.create!(weapon_id: elven_curve_blade.id, weapon_group_id: heavy_blades.id)
+
+dire_flail = Weapon.create!(name: 'Dire Flail', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 90, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 10, damage_type: 'Bludgeoning', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 8, double_damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'A dire flail consists of two spheres of spiked iron dangling from chains at opposite ends of a long haft. This weapon excels at short but powerful strikes, and is typically swung in a constant churning motion. The wielder of a dire flail must have great strength, both to use the weapon effectively and to keep from tiring out.')
+  WeaponWeaponQuality.create!(weapon_id: dire_flail.id, weapon_quality_id: double_quality.id)
+  WeaponWeaponQuality.create!(weapon_id: dire_flail.id, weapon_quality_id: flails.id)
+  WeaponWeaponGroup.create!(weapon_id: dire_flail.id, weapon_group_id: disarm.id)
+  WeaponWeaponGroup.create!(weapon_id: dire_flail.id, weapon_group_id: double_group.id)
+  WeaponWeaponGroup.create!(weapon_id: dire_flail.id, weapon_group_id: trip.id)
+
+gnome_hooked_hammer = Weapon.create!(name: 'Gnome Hooked Hammer', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 20, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 6, damage_type: 'Bludgeoning', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 6, double_damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A gnome hooked hammer is a double weapon—an ingenious tool with a hammer head at one end of its haft and a long, curved pick at the other.
+
+The hammer’s blunt head is a bludgeoning weapon that deals 1d6 points of damage (crit ×3). Its hook is a piercing weapon that deals 1d4 points of damage (crit ×4). You can use either head as the primary weapon.
+
+Gnomes treat hooked hammers as martial weapons.')
+  WeaponWeaponQuality.create!(weapon_id: gnome_hooked_hammer.id, weapon_quality_id: double_quality.id)
+  WeaponWeaponQuality.create!(weapon_id: gnome_hooked_hammer.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: gnome_hooked_hammer.id, weapon_group_id: double_group.id)
+
+two_bladed_sword = Weapon.create!(name: 'Two-Bladed Sword', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 100, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 10, damage_type: 'Slashing', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 8, double_damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A two-bladed sword is a double weapon—twin blades extend from either side of a central, short haft, allowing the wielder to attack with graceful but deadly flourishes.')
+  WeaponWeaponQuality.create!(weapon_id: two_bladed_sword.id, weapon_quality_id: double_quality.id)
+  WeaponWeaponGroup.create!(weapon_id: two_bladed_sword.id, weapon_group_id: double_group.id)
+  WeaponWeaponGroup.create!(weapon_id: two_bladed_sword.id, weapon_group_id: heavy_blades.id)
+
+dwarven_urgrosh = Weapon.create!(name: 'Dwarven Urgrosh', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 50, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 12, damage_type: 'Slashing', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 6, double_damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A dwarven urgrosh is a double weapon—an axe head and a spear point on opposite ends of a long haft. The urgrosh’s axe head is a slashing weapon that deals 1d8 points of damage. Its spear head is a piercing weapon that deals 1d6 points of damage. You can use either head as the primary weapon. The other becomes the off-hand weapon. If you use an urgrosh against a charging character, the spear head is the part of the weapon that deals damage.
+
+Dwarves treat dwarven urgroshes as martial weapons.')
+  WeaponWeaponQuality.create!(weapon_id: dwarven_urgrosh.id, weapon_quality_id: double_quality.id)
+  WeaponWeaponQuality.create!(weapon_id: dwarven_urgrosh.id, weapon_quality_id: brace.id)
+  WeaponWeaponGroup.create!(weapon_id: dwarven_urgrosh.id, weapon_group_id: double_group.id)
+
+bolas = Weapon.create!(name: 'Bolas', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 5, num_of_dice: 1, damage_dice: 4, critical: 2, critical_range: 20, range: 10, thrown: true, weight: 2, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'A bolas is a pair of wooden, stone, or metal weights connected by a thin rope or cord.
+
+You can whirl and throw this weapon to make a ranged trip attack against an opponent. You can’t be tripped during your own trip attempt when using a bolas.')
+  WeaponWeaponQuality.create!(weapon_id: bolas.id, weapon_quality_id: nonlethal.id)
+  WeaponWeaponQuality.create!(weapon_id: bolas.id, weapon_quality_id: trip.id)
+  WeaponWeaponGroup.create!(weapon_id: bolas.id, weapon_group_id: thrown.id)
+  WeaponHand.create!(weapon_id: bolas.id, hands: "One")
+
+hand_crossbow = Weapon.create!(name: 'Hand Crossbow', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 100, num_of_dice: 1, damage_dice: 4, critical: 2, critical_range: 19, range: 30, thrown: false, weight: 2, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'You can draw a hand crossbow back by hand.
+
+Loading a hand crossbow is a move action that provokes attacks of opportunity.
+
+You can shoot, but not load, a hand crossbow with one hand at no penalty. You can shoot a hand crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons.', ammunition_type: 'crossbow')
+  WeaponWeaponGroup.create!(weapon_id: hand_crossbow.id, weapon_group_id: crossbows.id)
+  hand_crossbow_feature1 = Feature.create!(name: 'Load', action_id: move.id, attack_of_opportunity: true)
+    WeaponFeature.create!(weapon_id: hand_crossbow.id, feature_id: hand_crossbow_feature1.id)
+    FeatureLoading.create(feature_id: hand_crossbow_feature1.id, capacity: 1, must_reload_after_use: true)
+  WeaponHand.create!(weapon_id: hand_crossbow.id, hands: "One")
+  WeaponHand.create!(weapon_id: hand_crossbow.id, hands: "Two")
+
+
+repeating_heavy_crossbow = Weapon.create!(name: 'Repeating Heavy Crossbow', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 400, num_of_dice: 1, damage_dice: 10, critical: 2, critical_range: 19, range: 120, thrown: false, weight: 12, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'The repeating heavy crossbow holds 5 repeating crossbow bolts.
+
+As long as it holds bolts, you can reload it by pulling the reloading lever (a free action). Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.
+
+You can fire a repeating crossbow with one hand or fire a repeating crossbow in each hand in the same manner as you would a normal crossbow of the same size. However, you must fire the weapon with two hands in order to use the reloading lever, and you must use two hands to load a new case of bolts.', ammunition_type: 'repeating crossbow')
+  WeaponWeaponGroup.create!(weapon_id: repeating_heavy_crossbow.id, weapon_group_id: crossbows.id)
+  repeating_heavy_crossbow_feature1 = Feature.create!(name: 'Load', action_id: full_round.id, attack_of_opportunity: true)
+    WeaponFeature.create!(weapon_id: repeating_heavy_crossbow.id, feature_id: repeating_heavy_crossbow_feature1.id)
+    FeatureLoading.create(feature_id: repeating_heavy_crossbow_feature1.id, capacity: 5, must_reload_after_use: true)
+  WeaponHand.create!(weapon_id: repeating_heavy_crossbow.id, hands: "One")
+  WeaponHand.create!(weapon_id: repeating_heavy_crossbow.id, hands: "Two")
+
+repeating_light_crossbow = Weapon.create!(name: 'Repeating Heavy Crossbow', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 250, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 19, range: 80, thrown: false, weight: 6, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'This weapon functions identically to a repeating light crossbow, except that its damage, critical, and range values are equivalent to those of a light crossbow instead of a heavy crossbow. Its significantly lighter construction and pull make it both more portable and more useful to those who rely on stealth or speed.
+
+As long as it holds bolts, you can reload it by pulling the reloading lever (a free action). Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.
+
+You can fire a repeating crossbow with one hand or fire a repeating crossbow in each hand in the same manner as you would a normal crossbow of the same size. However, you must fire the weapon with two hands in order to use the reloading lever, and you must use two hands to load a new case of bolts.', ammunition_type: 'repeating crossbow')
+  WeaponWeaponGroup.create!(weapon_id: repeating_light_crossbow.id, weapon_group_id: crossbows.id)
+  repeating_light_crossbow_feature1 = Feature.create!(name: 'Load', action_id: full_round.id, attack_of_opportunity: true)
+    WeaponFeature.create!(weapon_id: repeating_light_crossbow.id, feature_id: repeating_light_crossbow_feature1.id)
+    FeatureLoading.create(feature_id: repeating_light_crossbow_feature1.id, capacity: 5, must_reload_after_use: true)
+  WeaponHand.create!(weapon_id: repeating_light_crossbow.id, hands: "One")
+  WeaponHand.create!(weapon_id: repeating_light_crossbow.id, hands: "Two")
+
+net = Weapon.create!(name: 'Net', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 20, num_of_dice: 0, damage_dice: 0, critical: 0, critical_range: 0, range: 10, thrown: true, weight: 6, damage_type: '', source_id: core_rulebook.id, description: 'When you throw a net, you make a ranged touch attack against your target. A net’s maximum range is 10 feet. If you hit, the target is entangled.
+
+If you control the trailing rope by succeeding on an opposed Strength check while holding it, the entangled creature can move only within the limits that the rope allows. If the entangled creature attempts to cast a spell, it must make a concentration check with a DC of 15 + the spell’s level or be unable to cast the spell.
+
+An entangled creature can escape with a DC 20 Escape Artist check (a full-round action). The net has 5 hit points and can be burst with a DC 25 Strength check (also a full-round action). A net is useful only against creatures within one size category of you.
+
+A net must be folded to be thrown effectively. The first time you throw your net in a fight, you make a normal ranged touch attack roll. After the net is unfolded, you take a –4 penalty on attack rolls with it. It takes 2 rounds for a proficient user to fold a net and twice that long for a non-proficient one to do so.')
+  WeaponWeaponGroup.create!(weapon_id: net.id, weapon_group_id: thrown.id)
+  WeaponHand.create!(weapon_id: net.id, hands: "One")
+
+halfling_sling_staff = Weapon.create!(name: 'Halfling Sling Staff', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 20, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 80, thrown: false, weight: 3, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'Made from a specially designed sling attached to a short club, a halfling sling staff can be used by a proficient wielder to devastating effect.
+
+Your Strength modifier applies to damage rolls when you use a halfling sling staff just as it does for thrown weapons. You can fire, but not load, a halfling sling staff with one hand. You can hurl ordinary stones with a halfling sling staff, but stones are not as dense or as round as bullets. Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a –1 penalty on attack rolls. A halfling sling staff can be used as a simple weapon that deals bludgeoning damage equal to that of a club of its size.
+
+Loading a halfling sling staff is a move action that requires two hands and provokes attacks of opportunity.
+
+Halflings treat halfling sling staves as martial weapons.', ammunition_type: 'sling')
+  WeaponWeaponGroup.create!(weapon_id: halfling_sling_staff.id, weapon_group_id: thrown.id)
+  halfling_sling_staff_feature1 = Feature.create!(name: 'Load', action_id: move.id, attack_of_opportunity: true)
+    WeaponFeature.create!(weapon_id: halfling_sling_staff.id, feature_id: halfling_sling_staff_feature1.id)
+    FeatureLoading.create(feature_id: halfling_sling_staff_feature1.id, capacity: 1, must_reload_after_use: true, wrong_ammo: true, wrong_ammo_attack_penalty: -1, wrong_ammo_size_decrease_steps: 1)
+  WeaponHand.create!(weapon_id: halfling_sling_staff.id, hands: "One")
+
+repeating_crossbow_bolt = Weapon.create!(name: 'Repeating Crossbow Bolt', category: 'Ammunition', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 0.2, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.2, damage_type: '', description: 'Repeating crossbow bolts come in a case that holds 5 bolts.
+
+A crossbow bolt used as a melee weapon is treated as a light improvised weapon (–4 penalty on attack rolls) and deals damage as a dagger of its size (crit ×2).', ammunition: true, ammunition_type: 'repeating crossbow', source_id: core_rulebook.id)
+
+shuriken = Weapon.create!(name: 'Shuriken', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 0.2, num_of_dice: 1, damage_dice: 2, critical: 2, critical_range: 20, range: 10, thrown: true, weight: 0.1, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A shuriken is a small piece of metal with sharpened edges, designed for throwing.
+
+A shuriken can’t be used as a melee weapon.
+
+Although they are thrown weapons, shuriken are treated as ammunition for the purposes of drawing them and crafting masterwork or otherwise special versions of them, and of what happens to them after they are thrown.', ammunition: true, ammunition_type: "Shuriken")
+  WeaponWeaponQuality.create!(weapon_id: shuriken.id, weapon_quality_id: monk_quality.id)
+  WeaponWeaponGroup.create!(weapon_id: shuriken.id, weapon_group_id: thrown.id)
+  WeaponWeaponGroup.create!(weapon_id: shuriken.id, weapon_group_id: monk_group.id)
+  WeaponHand.create!(weapon_id: shuriken.id, hands: "One")
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+
+# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
+  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
+  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+
+
+
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Armors!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+padded = Armor.create!(name: 'Padded', proficiency: 'Light', price_in_gp: 5, bonus: 1, bonus_type: 'Armor', max_dex_bonus: 8, armor_check_penalty: 0, arcane_spell_failure: 5, spell_30: 30, spell_20: 20, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 10, source_id: core_rulebook.id, description: 'More than simple clothing, padded armor combines heavy, quilted cloth and layers of densely packed stuffing to create a cheap and basic protection. It is typically worn by those not intending to face lethal combat or those who wish their maneuverability to be impacted as little as possible.')
+
+leather = Armor.create!(name: 'Leather', proficiency: 'Light', price_in_gp: 10, bonus: 2, bonus_type: 'Armor', max_dex_bonus: 6, armor_check_penalty: 0, arcane_spell_failure: 10, spell_30: 30, spell_20: 20, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 15, source_id: core_rulebook.id, description: 'Leather armor is made up of multiple overlapping pieces of leather, boiled to increase their natural toughness and then deliberately stitched together. Although not as sturdy as metal armor, the flexibility it allows wearers makes it among the most widely used types of armor.')
+
+studded_leather = Armor.create!(name: 'Studded Leather', proficiency: 'Light', price_in_gp: 25, bonus: 3, bonus_type: 'Armor', max_dex_bonus: 5, armor_check_penalty: -1, arcane_spell_failure: 15, spell_30: 30, spell_20: 20, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 20, source_id: core_rulebook.id, description: 'An improved form of leather armor, studded leather armor is covered with dozens of metal protuberances. While these rounded studs offer little defense individually, in the numbers they are arrayed in upon such armor, they help catch lethal edges and channel them away from vital spots. The rigidity caused by the additional metal does, however, result in less mobility than is afforded by a suit of normal leather armor.')
+
+chain_shirt = Armor.create!(name: 'Chain Shirt', proficiency: 'Light', price_in_gp: 100, bonus: 4, bonus_type: 'Armor', max_dex_bonus: 4, armor_check_penalty: -2, arcane_spell_failure: 20, spell_30: 30, spell_20: 20, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 25, source_id: core_rulebook.id, description: 'Covering the torso, this shirt is made up of thousands of interlocking metal rings.')
+
+hide = Armor.create!(name: 'Hide', proficiency: 'Medium', price_in_gp: 15, bonus: 4, bonus_type: 'Armor', max_dex_bonus: 4, armor_check_penalty: -3, arcane_spell_failure: 20, spell_30: 20, spell_20: 15, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 25, source_id: core_rulebook.id, description: 'Hide armor is made from the tanned skin of particularly thick-hided beasts, stitched with either multiple overlapping layers of crude leather or exterior pieces of leather stuffed with padding or fur. Damage to the armor is typically repaired by restitching gashes or adding new pieces of hide, giving the most heavily used suits a distinctively patchwork quality.')
+
+scale_mail = Armor.create!(name: 'Scale Mail', proficiency: 'Medium', price_in_gp: 50, bonus: 5, bonus_type: 'Armor', max_dex_bonus: 3, armor_check_penalty: -4, arcane_spell_failure: 25, spell_30: 20, spell_20: 15, don: "4 minutes", don_hastily: "1 minute", remove: "1 minute", weight: 30, source_id: core_rulebook.id, description: 'Scale mail is made up of dozens of small, overlapping metal plates. Similar to both splint mail and banded mail, scalemail has a flexible arrangement of scales in an attempt to avoid hindering the wearer’s mobility, but at the expense of omitting additional protective layers of armor. A suit of scale mail includes gauntlets.')
+
+breastplate = Armor.create!(name: 'Breastplate', proficiency: 'Medium', price_in_gp: 200, bonus: 6, bonus_type: 'Armor', max_dex_bonus: 3, armor_check_penalty: -4, arcane_spell_failure: 25, spell_30: 20, spell_20: 15, don: "4 minutes", don_hastily: "1 minute", remove: "1 minute", weight: 30, source_id: core_rulebook.id, description: 'A breastplate protects a wearer’s torso with a single piece of sculpted metal, similar to the core piece of a suit of full plate. Despite its sturdiness, its inflexibility and open back make it inferior to complete suits of metal armor, but still an improvement over most non-metal armors.')
+
+chainmail = Armor.create!(name: 'Chainmail', proficiency: 'Medium', price_in_gp: 150, bonus: 6, bonus_type: 'Armor', max_dex_bonus: 2, armor_check_penalty: -5, arcane_spell_failure: 30, spell_30: 20, spell_20: 15, don: "4 minutes", don_hastily: "1 minute", remove: "1 minute", weight: 40, source_id: core_rulebook.id, description: 'Unlike a chain shirt, which covers only the chest, chainmail protects the wearer with a complete mesh of chain links that cover the torso and arms, and extends below the waist. Multiple interconnected pieces offer additional protection over vital areas. The suit includes gauntlets.')
+
+banded_mail = Armor.create!(name: 'Banded Mail', proficiency: 'Heavy', price_in_gp: 250, bonus: 7, bonus_type: 'Armor', max_dex_bonus: 1, armor_check_penalty: -6, arcane_spell_failure: 35, spell_30: 20, spell_20: 15, don: "4 minutes", don_hastily: "1 minute", remove: "1 minute", weight: 35, source_id: core_rulebook.id, description: 'Banded mail is made up of overlapping strips of metal, fastened to a sturdy backing of leather and chain. The size of the metal plates, interconnected metal bands, and layers of underlying armor make it a more significant defense than similar armors, like scale mail or splint mail.')
+
+splint_mail = Armor.create!(name: 'Splint Mail', proficiency: 'Heavy', price_in_gp: 200, bonus: 7, bonus_type: 'Armor', max_dex_bonus: 0, armor_check_penalty: -7, arcane_spell_failure: 40, spell_30: 20, spell_20: 15, don: "4 minutes", don_hastily: "1 minute", remove: "1 minute", weight: 45, source_id: core_rulebook.id, description: 'Splint mail is made up of overlapping layers of metal strips attached to a backing of leather or sturdy fabric. These splints are of greater size and durability than those that compose a suit of scale mail, improving the protection they afford the wearer, but at the cost of flexibility. A suit of splint mail includes gauntlets.')
+
+half_plate = Armor.create!(name: 'Half-Plate', proficiency: 'Heavy', price_in_gp: 600, bonus: 8, bonus_type: 'Armor', max_dex_bonus: 0, armor_check_penalty: -7, arcane_spell_failure: 40, spell_30: 20, spell_20: 15, don: "4 minutes, with help", don_hastily: "4 minutes", remove: "1d4+1 minutes", weight: 50, source_id: core_rulebook.id, description: 'Half-plate armor combines elements of full plate and chainmail, incorporating several sizable plates of sculpted metal with an underlying mesh of chain links. While this suit protects vital areas with several layers of armor, it is not sculpted to a single individual’s frame, reducing its wearer’s mobility even more than a suit of full plate. Half-plate armor includes gauntlets and a helm.')
+
+full_plate = Armor.create!(name: 'Full Plate', proficiency: 'Heavy', price_in_gp: 1500, bonus: 9, bonus_type: 'Armor', max_dex_bonus: 1, armor_check_penalty: -6, arcane_spell_failure: 35, spell_30: 20, spell_20: 15, don: "4 minutes, with help", don_hastily: "4 minutes", remove: "1d4+1 minutes", weight: 50, source_id: core_rulebook.id, description: 'This metal suit comprises multiple pieces of interconnected and overlaying metal plates, incorporating the benefits of numerous types of lesser armor. A complete suit of full plate (or platemail, as it is often called) includes gauntlets, heavy leather boots, a visored helmet, and a thick layer of padding that is worn underneath the armor. Each suit of full plate must be individually fitted to its owner by a master armorsmith, although a captured suit can be resized to fit a new owner at a cost of 200 to 800 (2d4 100) gold pieces.')
+
+buckler = Armor.create!(name: 'Buckler', proficiency: 'Shield', price_in_gp: 5, bonus: 1, bonus_type: 'Shield', max_dex_bonus: nil, armor_check_penalty: -1, arcane_spell_failure: 5, spell_30: nil, spell_20: nil, don: "1 move action", don_hastily: nil, remove: "1 move action", weight: 5, source_id: core_rulebook.id, description: 'This small metal shield is worn strapped to your forearm. You can use a bow or crossbow without penalty while carrying it. You can also use your shield arm to wield a weapon (whether you are using an offhand weapon or using your off hand to help wield a two-handed weapon), but you take a –1 penalty on attack rolls while doing so. This penalty stacks with those that may apply for fighting with your off hand and for fighting with two weapons. In any case, if you use a weapon in your off hand, you lose the buckler’s Armor Class bonus until your next turn. You can cast a spell with somatic components using your shield arm, but you lose the buckler’s Armor Class bonus until your next turn. You can’t make a shield bash with a buckler.')
+
+light_steel_shield = Armor.create!(name: 'Light Steel Shield', proficiency: 'Shield', price_in_gp: 9, bonus: 1, bonus_type: 'Shield', max_dex_bonus: nil, armor_check_penalty: -1, arcane_spell_failure: 5, spell_30: nil, spell_20: nil, don: "1 move action", don_hastily: nil, remove: "1 move action", weight: 6, source_id: core_rulebook.id, description: 'You can bash an opponent with a light shield. See “shield, light” on Table: Weapons for the damage dealt by a shield bash. Used this way, a light shield is a martial bludgeoning weapon. For the purpose of penalties on attack rolls, treat a light shield as a light weapon. If you use your shield as a weapon, you lose its Armor Class bonus until your next turn. An enhancement bonus on a shield does not improve the effectiveness of a shield bash made with it, but the shield can be made into a magic weapon in its own right.', damage_dice: 3, num_of_dice: 1, weapon_proficiency: "Martial", weapon_category: "Light")
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+
+tower_shield = Armor.create!(name: 'Tower Shield', proficiency: 'Shield', price_in_gp: 30, bonus: 4, bonus_type: 'Shield', max_dex_bonus: 2, armor_check_penalty: -10, arcane_spell_failure: 50, spell_30: nil, spell_20: nil, don: "1 move action", don_hastily: nil, remove: "1 move action", weight: 45, source_id: core_rulebook.id, description: 'In most situations, a tower shield provides the indicated shield bonus to your Armor Class. As a standard action, however, you can use a tower shield to grant you total cover until the beginning of your next turn. When using a tower shield in this way, you must choose one edge of your space. That edge is treated as a solid wall for attacks targeting you only. You gain total cover for attacks that pass through this edge and no cover for attacks that do not pass through this edge (see Combat). The shield does not, however, provide cover against targeted spells; a spellcaster can cast a spell on you by targeting the shield you are holding. You cannot bash with a tower shield, nor can you use your shield hand for anything else.
+
+When employing a tower shield in combat, you take a –2 penalty on attack rolls because of the shield’s encumbrance.')
+
+puts "Tower Shield Created!"
+
+armor_spikes = Armor.create!(name: 'Armor Spikes', proficiency: '', price_in_gp: 50, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 10, source_id: core_rulebook.id, description: 'Armor spikes deal extra piercing damage (see “spiked armor” on Table: Weapons) on a successful grapple attack. The spikes count as a martial weapon. If you are not proficient with them, you take a –4 penalty on grapple checks when you try to use them. You can also make a regular melee attack (or off-hand attack) with the spikes, and they count as a light weapon in this case. (You can’t also make an attack with armor spikes if you have already made an attack with another off-hand weapon, and vice versa.) An enhancement bonus to a suit of armor does not improve the spikes’ effectiveness, but the spikes can be made into magic weapons in their own right.', extra: true, bonus_price_in_gp: true)
+
+# /////////////////////////////////////////
+# <-*-*-----*-*-*- Users!-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+admin = User.create!(username: "jack", password: "ey", admin: true, skillset_id: dmc.id)
+cole = User.create!(username: "cole", password: "password", admin: false, skillset_id: dmc.id)
+jeff = User.create!(username: "jeff", password: "password", admin: false, skillset_id: dmc.id)
+michael = User.create!(username: "michael", password: "password", admin: false, skillset_id: dmc.id)
+clare = User.create!(username: "clare", password: "password", admin: false, skillset_id: dmc.id)
+iggy = User.create!(username: "iggy", password: "password", admin: false, skillset_id: dmc.id)
+jenn = User.create!(username: "jenn", password: "password", admin: false, skillset_id: dmc.id)
+sarah = User.create!(username: "sarah", password: "password", admin: false, skillset_id: dmc.id)
+scott = User.create!(username: "scott", password: "password", admin: false, skillset_id: dmc.id)
+
+
+
+
+
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Races!-*-*-*-----*-*->
 # /////////////////////////////////////////
@@ -1199,6 +1769,10 @@ unchained_barbarian1 = KlassFeature.create!(klass_id: unchained_barbarian.id, na
     KlassFeatureFeature.create!(klass_feature_id: unchained_barbarian1.id, feature_id: unchained_barbarian1_feature.id)
     FeatureWeaponProficiency.create!(feature_id: unchained_barbarian1_feature.id, proficiency_group: "Simple")
     FeatureWeaponProficiency.create!(feature_id: unchained_barbarian1_feature.id, proficiency_group: "Martial")
+    FeatureArmorProficiency.create!(feature_id: unchained_barbarian1_feature.id, proficiency_group: "Light")
+    FeatureArmorProficiency.create!(feature_id: unchained_barbarian1_feature.id, proficiency_group: "Medium")
+    FeatureArmorProficiency.create!(feature_id: unchained_barbarian1_feature.id, proficiency_group: "Shield")
+    FeatureArmorProficiency.create!(feature_id: unchained_barbarian1_feature.id, armor_id: tower_shield.id, additive: false)
 
 unchained_barbarian2 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Fast Movement", description: "A barbarian’s base speed is faster than the norm for her race by 10 feet. This benefit applies only when she is wearing no armor, light armor, or medium armor, and not carrying a heavy load. Apply this bonus before modifying the barbarian’s speed because of any load carried or armor worn. This bonus stacks with any other bonuses to the barbarian’s base speed.")
   FeatureLevel.create!(klass_feature_id: unchained_barbarian2.id, level: 1, table_description: "Fast Movement")
@@ -1992,508 +2566,7 @@ PreparedAmount.create!(spell_level: 9, klass_level: 19, spells: 2, klass_id: arc
 PreparedAmount.create!(spell_level: 9, klass_level: 20, spells: 3, klass_id: arcanist.id)
 
 
-# //////////////////////////////////////////////////
-# <-*-*-----*-*-*- Weapon Group!-*-*-*-----*-*->
-# //////////////////////////////////////////////////
 
-axes = WeaponGroup.create!(name: 'Axes')
-close = WeaponGroup.create!(name: 'Close')
-crossbows = WeaponGroup.create!(name: 'Crossbows')
-double_group = WeaponGroup.create!(name: 'Double')
-flails = WeaponGroup.create!(name: 'Flails')
-hammers = WeaponGroup.create!(name: 'Hammers')
-light_blades = WeaponGroup.create!(name: 'Light Blades')
-monk_group = WeaponGroup.create!(name: 'Monk')
-spears = WeaponGroup.create!(name: 'Spears')
-thrown = WeaponGroup.create!(name: 'Thrown')
-tribal = WeaponGroup.create!(name: 'Tribal')
-heavy_blades = WeaponGroup.create!(name: 'Heavy Blades')
-polearms = WeaponGroup.create!(name: 'Polearms')
-bows = WeaponGroup.create!(name: 'Bows')
-
-# //////////////////////////////////////////////////
-# <-*-*-----*-*-*- Weapon Qualities!-*-*-*-----*-*->
-# //////////////////////////////////////////////////
-
-brace = WeaponQuality.create!(name: 'brace', description: 'If you use a readied action to set a brace weapon against a charge, you deal double damage on a successful hit against a charging creature.')
-double_quality = WeaponQuality.create!(name: 'double', description: 'You can use a double weapon to fight as if fighting with two weapons, but if you do, you incur all the normal attack penalties associated with fighting with two weapons, just as if you were using a one-handed weapon and a light weapon. You can choose to wield one end of a double weapon two-handed, but it cannot be used as a double weapon when wielded in this way—only one end of the weapon can be used in any given round.')
-monk_quality = WeaponQuality.create!(name: 'monk', description: 'A monk weapon can be used by a monk to perform a flurry of blows.')
-nonlethal = WeaponQuality.create!(name: 'nonlethal', description: 'These weapons deal nonlethal damage.')
-reach = WeaponQuality.create!(name: 'reach', description: 'You use a reach weapon to strike opponents 10 feet away, but you can’t use it against an adjacent foe.')
-trip = WeaponQuality.create!(name: 'trip', description: 'You can use a trip weapon to make trip attacks. If you are tripped during your own trip attempt, you can drop the weapon to avoid being tripped.')
-disarm = WeaponQuality.create!(name: 'disarm', description: 'When you use a disarm weapon, you get a +2 bonus on Combat Maneuver Checks to disarm an enemy.')
-finesse = WeaponQuality.create!(name: 'Finesse', description: 'You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a rapier sized for you, even though it isn’t a light weapon.')
-
-
-# /////////////////////////////////////////
-# <-*-*-----*-*-*- Weapons!-*-*-*-----*-*->
-# /////////////////////////////////////////
-
-unarmed = Weapon.create!(name: 'Unarmed', category: 'Unarmed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 0, num_of_dice: 1, damage_dice: 3, range: 0, thrown: false, weight: 0, damage_type: 'Bludgeoning', description: 'An unarmed strike is always considered a light weapon. Therefore, you can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with an unarmed strike. Unarmed strikes do not count as natural weapons. The damage from an unarmed strike is considered weapon damage for the purposes of effects that give you a bonus on weapon damage rolls.
-
-A monk or any character with the Improved Unarmed Strike feat can deal lethal or nonlethal damage with unarmed strikes, at his discretion.', source_id: core_rulebook.id)
-  WeaponWeaponQuality.create!(weapon_id: unarmed.id, weapon_quality_id: nonlethal.id)
-  WeaponWeaponGroup.create!(weapon_id: unarmed.id, weapon_group_id: close.id)
-
-gauntlet = Weapon.create!(name: 'Gauntlet', category: 'Unarmed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 3, range: 0, thrown: false, weight: 1, damage_type: 'Bludgeoning', description: 'This metal glove lets you deal lethal damage rather than nonlethal damage with unarmed strikes. A strike with a gauntlet is otherwise considered an unarmed attack. Your opponent cannot use a disarm action to disarm you of gauntlets.
-
-The cost and weight given are for a single gauntlet. Medium and heavy armors (except breastplate) come with gauntlets.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: gauntlet.id, weapon_group_id: close.id)
-
-dagger = Weapon.create!(name: 'Dagger', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 4, range: 10, thrown: true, weight: 1, damage_type: 'Piercing or Slashing', critical_range: 19, description: 'A dagger has a blade that is about 1 foot in length.
-
-You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: dagger.id, weapon_group_id: light_blades.id)
-  WeaponWeaponGroup.create!(weapon_id: dagger.id, weapon_group_id: thrown.id)
-  WeaponWeaponGroup.create!(weapon_id: dagger.id, weapon_group_id: tribal.id)
-
-punching_dagger = Weapon.create!(name: 'Punching Dagger', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 4, critical: 3, range: 0, thrown: false, weight: 1, damage_type: 'Piercing', description: 'A punching dagger’s blade is attached to a horizontal handle that projects out from the fist when held.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: punching_dagger.id, weapon_group_id: close.id)
-
-spiked_gauntlet = Weapon.create!(name: 'Spiked Gauntlet', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 4, range: 10, thrown: false, weight: 1, damage_type: 'Piercing', description: 'An attack with a spiked gauntlet is considered an armed attack. Your opponent cannot use a disarm action to disarm you of spiked gauntlets.
-
-Note: The cost and weight given are for a single gauntlet.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: spiked_gauntlet.id, weapon_group_id: close.id)
-
-light_mace = Weapon.create!(name: 'Light Mace', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 4, damage_type: 'Bludgeoning', description: 'A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: light_mace.id, weapon_group_id: hammers.id)
-
-sickle = Weapon.create!(name: 'Sickle', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 6, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 2, damage_type: 'Slashing', description: '', source_id: core_rulebook.id)
-  WeaponWeaponQuality.create!(weapon_id: sickle.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: sickle.id, weapon_group_id: light_blades.id)
-
-club = Weapon.create!(name: 'Club', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 10, thrown: true, weight: 3, damage_type: 'Bludgeoning', description: 'This weapon is usually just a shaped piece of wood, sometimes with a few nails or studs embedded in it.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: club.id, weapon_group_id: hammers.id)
-  WeaponWeaponGroup.create!(weapon_id: club.id, weapon_group_id: tribal.id)
-
-heavy_mace = Weapon.create!(name: 'Heavy Mace', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 12, num_of_dice: 1, damage_dice: 8, range: 0, thrown: false, weight: 8, damage_type: 'Bludgeoning', description: 'A heavy mace has a larger head and a longer handle than a normal (light) mace.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: heavy_mace.id, weapon_group_id: hammers.id)
-
-morningstar = Weapon.create!(name: 'Morningstar', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 8, range: 0, thrown: false, weight: 6, damage_type: 'Blugeoning and Piercing', description: 'A morningstar is a spiked metal ball, affixed to the top of a long handle.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: morningstar.id, weapon_group_id: flails.id)
-
-shortspear = Weapon.create!(name: 'Shortspear', category: 'One-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 6, range: 20, thrown: true, weight: 3, damage_type: 'Piercing', description: 'A shortspear is about 3 feet in length, making it a suitable thrown weapon.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: shortspear.id, weapon_group_id: spears.id)
-  WeaponWeaponGroup.create!(weapon_id: shortspear.id, weapon_group_id: thrown.id)
-  WeaponWeaponGroup.create!(weapon_id: shortspear.id, weapon_group_id: tribal.id)
-
-longspear = Weapon.create!(name: 'Longspear', category: 'Two-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 8, critical: 3, range: 0, thrown: false, weight: 9, damage_type: 'Piercing', description: 'A longspear is about 8 feet in length.', source_id: core_rulebook.id)
-  WeaponWeaponQuality.create!(weapon_id: longspear.id, weapon_quality_id: brace.id)
-  WeaponWeaponQuality.create!(weapon_id: longspear.id, weapon_quality_id: reach.id)
-  WeaponWeaponGroup.create!(weapon_id: longspear.id, weapon_group_id: spears.id)
-
-quarterstaff = Weapon.create!(name: 'Quarterstaff', category: 'Two-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 4, damage_type: 'Bludgeoning', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 6, double_damage_type: 'Bludgeoning', description: 'A quarterstaff is a simple piece of wood, about 5 feet in length.', source_id: core_rulebook.id)
-  WeaponWeaponQuality.create!(weapon_id: quarterstaff.id, weapon_quality_id: monk_quality.id)
-  WeaponWeaponQuality.create!(weapon_id: quarterstaff.id, weapon_quality_id: double_quality.id)
-  WeaponWeaponGroup.create!(weapon_id: quarterstaff.id, weapon_group_id: double_group.id)
-  WeaponWeaponGroup.create!(weapon_id: quarterstaff.id, weapon_group_id: monk_group.id)
-
-spear = Weapon.create!(name: 'Spear', category: 'Two-Handed', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 8, range: 20, critical: 3, thrown: true, weight: 6, damage_type: 'Piercing', description: 'A spear is 5 feet in length and can be thrown.', source_id: core_rulebook.id)
-  WeaponWeaponQuality.create!(weapon_id: spear.id, weapon_quality_id: brace.id)
-  WeaponWeaponGroup.create!(weapon_id: spear.id, weapon_group_id: spears.id)
-  WeaponWeaponGroup.create!(weapon_id: spear.id, weapon_group_id: tribal.id)
-  WeaponWeaponGroup.create!(weapon_id: spear.id, weapon_group_id: thrown.id)
-
-blowgun = Weapon.create!(name: 'Blowgun', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 2, num_of_dice: 1, damage_dice: 2, range: 20, thrown: false, weight: 1, damage_type: 'Piercing', description: 'Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired.', ammunition_type: 'blowgun', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: blowgun.id, weapon_group_id: thrown.id)
-
-heavy_crossbow = Weapon.create!(name: 'Heavy Crossbow', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 50, num_of_dice: 1, damage_dice: 10, range: 120, critical_range: 19, thrown: false, weight: 8, damage_type: 'Piercing', description: 'Load: Loading a heavy crossbow is a full-round action that provokes attacks of opportunity.
-
-You draw a heavy crossbow back by turning a small winch. Normally, operating a heavy crossbow requires two hands. However, you can shoot, but not load, a heavy crossbow with one hand at a –4 penalty on attack rolls. You can shoot a heavy crossbow with each hand, but you take a penalty on attack rolls as if attacking with two one-handed weapons. This penalty is cumulative with the penalty for one-handed firing.', ammunition_type: 'crossbow', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: heavy_crossbow.id, weapon_group_id: crossbows.id)
-  heavy_crossbow_feature1 = Feature.create!(name: 'Load', action_id: full_round.id, attack_of_opportunity: true)
-    WeaponFeature.create!(weapon_id: heavy_crossbow.id, feature_id: heavy_crossbow_feature1.id)
-    FeatureLoading.create(feature_id: heavy_crossbow_feature1.id, capacity: 1, must_reload_after_use: true)
-
-light_crossbow = Weapon.create!(name: 'Light Crossbow', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 35, num_of_dice: 1, damage_dice: 8, range: 80, critical_range: 19, thrown: false, weight: 4, damage_type: 'Piercing', description: 'Load: Loading a light crossbow is a move action that provokes attacks of opportunity.
-
-You draw a light crossbow back by pulling a lever. Normally, operating a light crossbow requires two hands. However, you can shoot, but not load, a light crossbow with one hand at a –2 penalty on attack rolls. You can shoot a light crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons. This penalty is cumulative with the penalty for one-handed firing.', ammunition_type: 'crossbow', source_id: core_rulebook.id)
-  WeaponWeaponQuality.create!(weapon_id: light_crossbow.id, weapon_quality_id: crossbows.id)
-  light_crossbow_feature1 = Feature.create!(name: 'Load', action_id: move.id, attack_of_opportunity: true)
-    WeaponFeature.create!(weapon_id: light_crossbow.id, feature_id: light_crossbow_feature1.id)
-    FeatureLoading.create(feature_id: light_crossbow_feature1.id, capacity: 1, must_reload_after_use: true)
-
-dart = Weapon.create!(name: 'Dart', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.5, num_of_dice: 1, damage_dice: 4, range: 20, thrown: true, weight: 0.5, damage_type: 'Piercing', description: 'Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first. They can be distinguished from javelins by fletching (i.e., feathers on the tail) and a shaft that is shorter and/or more flexible, and from arrows by the fact that they are not of the right length to use with a normal bow.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: dart.id, weapon_group_id: thrown.id)
-
-javelin = Weapon.create!(name: 'Javelin', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 1, num_of_dice: 1, damage_dice: 6, range: 30, thrown: true, weight: 2, damage_type: 'Piercing', description: 'A javelin is a thin throwing spear.
-
-Since a javelin is not designed for melee, you are treated as non-proficient with it and take a –4 penalty on attack rolls if you use a javelin as a melee weapon.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: javelin.id, weapon_group_id: spears.id)
-  WeaponWeaponGroup.create!(weapon_id: javelin.id, weapon_group_id: thrown.id)
-
-sling = Weapon.create!(name: 'Sling', category: 'Ranged', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0, num_of_dice: 1, damage_dice: 4, range: 50, thrown: true, weight: 1, damage_type: 'Bludgeoning', description: 'A sling is little more than a leather cup attached to a pair of strings.
-
-Your Strength modifier applies to damage rolls when you use a sling, just as it does for thrown weapons. You can fire, but not load, a sling with one hand.
-
-Loading a sling is a move action that requires two hands and provokes attacks of opportunity.
-
-You can hurl ordinary stones with a sling, but stones are not as dense or as round as bullets. Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a –1 penalty on attack rolls.', ammunition_type: 'sling', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: sling.id, weapon_group_id: thrown.id)
-  sling_feature1 = Feature.create!(name: 'Load', action_id: move.id, attack_of_opportunity: true)
-    WeaponFeature.create!(weapon_id: sling.id, feature_id: sling_feature1.id)
-    FeatureLoading.create(feature_id: sling_feature1.id, capacity: 1, must_reload_after_use: true)
-
-crossbow_bolt = Weapon.create!(name: 'Crossbow Bolt', category: 'Ammunition', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.1, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.1, damage_type: '', description: 'Bolts come in a case or quiver that holds 10 bolts.
-
-A crossbow bolt used as a melee weapon is treated as a light improvised weapon (–4 penalty on attack rolls) and deals damage as a dagger of its size (crit ×2).', ammunition: true, ammunition_type: 'crossbow', source_id: core_rulebook.id)
-
-sling_bullet = Weapon.create!(name: 'Sling Bullet', category: 'Ammunition', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.01, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.5, damage_type: '', description: 'Bullets come in a leather pouch that holds 10 bullets.', ammunition: true, ammunition_type: 'sling', source_id: core_rulebook.id)
-
-blowgun_dart = Weapon.create!(name: 'Blowgun Dart', category: 'Ammunition', proficiency: 'Simple', weapon_type: 'Range', price_in_gp: 0.05, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.1, damage_type: '', description: 'These light darts have tiny grooves behind the tips.
-
-A character can apply poison to a blowgun dart without risk of poisoning himself.', ammunition: true, ammunition_type: 'blowgun', source_id: core_rulebook.id)
-
-throwing_axe = Weapon.create!(name: 'Throwing Axe', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 6, range: 10, thrown: true, weight: 2, damage_type: 'Slashing', description: 'This is a small axe balanced for throwing.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: throwing_axe.id, weapon_group_id: axes.id)
-  WeaponWeaponGroup.create!(weapon_id: throwing_axe.id, weapon_group_id: thrown.id)
-  WeaponWeaponGroup.create!(weapon_id: throwing_axe.id, weapon_group_id: tribal.id)
-
-light_hammer = Weapon.create!(name: 'Light Hammer', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 4, range: 20, thrown: true, weight: 2, damage_type: 'Bludgeoning', description: 'A lighter version of a warhammer, this weapon usually has a sleek metal head with one striking surface.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: light_hammer.id, weapon_group_id: hammers.id)
-  WeaponWeaponGroup.create!(weapon_id: light_hammer.id, weapon_group_id: thrown.id)
-
-handaxe = Weapon.create!(name: 'Handaxe', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 6, num_of_dice: 1, damage_dice: 6, critical: 3, range: 0, thrown: false, weight: 3, damage_type: 'Slashing', description: 'This one-handed axe is short (roughly 1 foot long) and designed for use with one hand. Unlike throwing axes, it is not well balanced for a graceful tumbling motion, and is instead heavier at its head. Tomahawks, war hatchets, and other such names usually refer to hand axes.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: handaxe.id, weapon_group_id: axes.id)
-  WeaponWeaponGroup.create!(weapon_id: handaxe.id, weapon_group_id: tribal.id)
-
-kukri = Weapon.create!(name: 'Kukri', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 4, range: 0, critical_range: 18, thrown: false, weight: 2, damage_type: 'Slashing', description: 'A kukri is a curved blade, about 1 foot in length.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: kukri.id, weapon_group_id: light_blades.id)
-
-light_pick = Weapon.create!(name: 'Light Pick', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 4, num_of_dice: 1, damage_dice: 6, critical: 4, range: 0, thrown: false, weight: 3, damage_type: 'Piercing', description: 'This weapon, adapted from the pickaxe tool, has a head with a slightly curved, armorpiercing spike and a hammerlike counterweight.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: light_pick.id, weapon_group_id: axes.id)
-
-sap = Weapon.create!(name: 'Sap', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 6, range: 0, thrown: false, weight: 2, damage_type: 'Bludgeoning', description: 'This weapon consists of a soft wrapping around a hard, dense core, typically a leather sheath around a lead rod. The head is wider than the handle and designed to spread out the force of the blow, making it less likely to draw blood or break bones.', source_id: core_rulebook.id)
-  WeaponWeaponQuality.create!(weapon_id: sap.id, weapon_quality_id: nonlethal.id)
-  WeaponWeaponGroup.create!(weapon_id: sap.id, weapon_group_id: close.id)
-
-starknife = Weapon.create!(name: 'Starknife', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 24, num_of_dice: 1, damage_dice: 4, critical: 3, range: 20, thrown: true, weight: 3, damage_type: 'Piercing', description: 'From a central metal ring, four tapering metal blades extend from this weapon like points on a compass rose. By gripping the crossbar that runs through the weapon’s open middle, a wielder can strike with it as a deadly melee weapon. Alternatively, by gripping it by the outer rim, a starknife’s light, aerodynamic design allows it to be thrown short distances in a manner similar to a chakram.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: starknife.id, weapon_group_id: light_blades.id)
-  WeaponWeaponGroup.create!(weapon_id: starknife.id, weapon_group_id: thrown.id)
-
-shortsword = Weapon.create!(name: 'Shortsword', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 6, critical_range: 19, range: 0, thrown: false, weight: 2, damage_type: 'Piercing', description: 'Short swords are some of the most common weapons found in any martial society, and thus designs are extremely varied, depending on the region and creator. Most are around 2 feet in length. Their blades can be curved or straight, single- or double-edged, and wide or narrow. Hilts may be ornate or simple, with crossguards, basket hilts, or no guard at all. Such weapons are often used on their own, but can also be paired as a matched set, or used in conjunction with a dagger or longer sword.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: shortsword.id, weapon_group_id: light_blades.id)
-
-battleaxe = Weapon.create!(name: 'Battleaxe', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 8, critical: 3, range: 0, thrown: false, weight: 6, damage_type: 'Slashing', description: 'The handle of this axe is long enough that you can wield it one-handed or two-handed. The head may have one blade or two, with blade shapes ranging from half-moons to squared edges like narrower versions of woodcutting axes. The wooden haft may be protected and strengthened with metal bands called langets.', source_id: core_rulebook.id)
-  WeaponWeaponGroup.create!(weapon_id: battleaxe.id, weapon_group_id: axes.id)
-
-light_flail = Weapon.create!(name: 'Light Flail', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 5, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'A light flail consists of a weighted striking end connected to a handle by a sturdy chain. Though often imagined as a ball, sometimes spiked like the head of a morningstar, the head of a light flail can actually take many different shapes, such as short bars. Military flails are sturdier evolutions of agricultural flails, which are used for threshing – beating stacks of grains to separate the useful grains from their husks.')
-  WeaponWeaponQuality.create!(weapon_id: light_flail.id, weapon_quality_id: disarm.id)
-  WeaponWeaponQuality.create!(weapon_id: light_flail.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: light_flail.id, weapon_group_id: flails.id)
-
-longsword = Weapon.create!(name: 'Longsword', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 4, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This sword is about 3½ feet in length.')
-  WeaponWeaponGroup.create!(weapon_id: longsword.id, weapon_group_id: heavy_blades.id)
-
-heavy_pick = Weapon.create!(name: 'Heavy Pick', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 6, critical: 4, critical_range: 20, range: 0, thrown: false, weight: 6, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'This variant of the light pick has a longer handle and can be used with one or two hands. It is a common, inexpensive weapon for mounted soldiers since it can be used effectively from horseback.')
-  WeaponWeaponGroup.create!(weapon_id: heavy_pick.id, weapon_group_id: axes.id)
-
-rapier = Weapon.create!(name: 'Rapier', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 20, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 18, range: 0, thrown: false, weight: 2, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a rapier sized for you, even though it isn’t a light weapon.
-
-You can’t wield a rapier in two hands in order to apply 1-1/2 times your Strength bonus to damage.')
-  WeaponWeaponQuality.create!(weapon_id: rapier.id, weapon_quality_id: finesse.id)
-  WeaponWeaponGroup.create!(weapon_id: rapier.id, weapon_group_id: light_blades.id)
-
-scimitar = Weapon.create!(name: 'Scimitar', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 18, range: 0, thrown: false, weight: 4, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This curved sword is shorter than a longsword and longer than a shortsword. Only the outer edge is sharp, and the back is flat, giving the blade a triangular cross-section.')
-  WeaponWeaponGroup.create!(weapon_id: scimitar.id, weapon_group_id: heavy_blades.id)
-
-trident = Weapon.create!(name: 'Trident', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 20, range: 10, thrown: true, weight: 4, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A trident has three metal prongs at the end of a 4-foot-long shaft.')
-  WeaponWeaponQuality.create!(weapon_id: trident.id, weapon_quality_id: brace.id)
-  WeaponWeaponGroup.create!(weapon_id: trident.id, weapon_group_id: spears.id)
-  WeaponWeaponGroup.create!(weapon_id: trident.id, weapon_group_id: thrown.id)
-
-warhammer = Weapon.create!(name: 'Warhammer', category: 'One-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 12, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 5, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'This weapon consists of a wooden haft and a heavy, metal head. The head may be single (like a carpenter’s hammer) or double (like a sledgehammer). The haft is long enough that you may wield it one- or two-handed. Though heavy and relatively slow to wield, warhammers are capable of delivering immense blows, crushing armor and flesh alike.')
-  WeaponWeaponGroup.create!(weapon_id: warhammer.id, weapon_group_id: hammers.id)
-
-falchion = Weapon.create!(name: 'Falchion', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 75, num_of_dice: 2, damage_dice: 4, critical: 2, critical_range: 18, range: 0, thrown: false, weight: 8, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This sword has one curved, sharp edge like a scimitar, with the back edge unsharpened and either flat or slightly curved. Its weight is greater toward the end, making it better for chopping rather than stabbing.')
-  WeaponWeaponGroup.create!(weapon_id: falchion.id, weapon_group_id: heavy_blades.id)
-
-heavy_flail = Weapon.create!(name: 'Heavy Flail', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 10, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 10, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'Similar to a light flail, a heavy flail has a larger metal ball and a longer handle.')
-  WeaponWeaponQuality.create!(weapon_id: heavy_flail.id, weapon_quality_id: disarm.id)
-  WeaponWeaponQuality.create!(weapon_id: heavy_flail.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: heavy_flail.id, weapon_group_id: flails.id)
-
-glaive = Weapon.create!(name: 'Glaive', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 8, num_of_dice: 1, damage_dice: 10, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 10, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A glaive is composed of a simple blade mounted on the end of a pole about 7 feet in length.')
-  WeaponWeaponQuality.create!(weapon_id: glaive.id, weapon_quality_id: reach.id)
-  WeaponWeaponGroup.create!(weapon_id: glaive.id, weapon_group_id: polearms.id)
-
-greataxe = Weapon.create!(name: 'Greataxe', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 20, num_of_dice: 1, damage_dice: 12, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 12, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This two-handed battle axe is heavy enough that you can’t wield it with one hand. The head may have one blade or two, and may be “bearded” (meaning hooked or trailing at the bottom) to increase cleaving power and help pull down enemy shields. The haft is usually 3 to 4 feet long.')
-  WeaponWeaponGroup.create!(weapon_id: greataxe.id, weapon_group_id: axes.id)
-
-great_club = Weapon.create!(name: 'Great Club', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 10, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 8, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'This larger, bulkier version of the common club is heavy enough that you can’t wield it with one hand. It may be ornate and carved, reinforced with metal, or a simple branch from a tree. Like simple clubs, greatclubs have many names, such as cudgels, bludgeons, shillelaghs, and more.')
-  WeaponWeaponGroup.create!(weapon_id: great_club.id, weapon_group_id: hammers.id)
-  WeaponWeaponGroup.create!(weapon_id: great_club.id, weapon_group_id: tribal.id)
-
-greatsword = Weapon.create!(name: 'Greatsword', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 50, num_of_dice: 2, damage_dice: 6, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 8, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'This immense two-handed sword is about 5 feet in length. A greatsword may have a dulled lower blade that can be gripped.')
-  WeaponWeaponGroup.create!(weapon_id: greatsword.id, weapon_group_id: heavy_blades.id)
-
-guisarme = Weapon.create!(name: 'Guisarme', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 9, num_of_dice: 2, damage_dice: 4, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A guisarme is an 8-foot-long shaft with a blade and a hook mounted at the tip.')
-  WeaponWeaponQuality.create!(weapon_id: guisarme.id, weapon_quality_id: reach.id)
-  WeaponWeaponQuality.create!(weapon_id: guisarme.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: guisarme.id, weapon_group_id: polearms.id)
-
-halberd = Weapon.create!(name: 'Halberd', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 10, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 12, damage_type: 'Piercing or Slashing', source_id: core_rulebook.id, description: 'A halberd is similar to a 5-foot-long spear, but it also has a small, axe-like head mounted near the tip.')
-  WeaponWeaponQuality.create!(weapon_id: halberd.id, weapon_quality_id: brace.id)
-  WeaponWeaponQuality.create!(weapon_id: halberd.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: halberd.id, weapon_group_id: polearms.id)
-
-lance = Weapon.create!(name: 'Lance', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 10, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A lance deals double damage when used from the back of a charging mount. While mounted, you can wield a lance with one hand.')
-  WeaponWeaponQuality.create!(weapon_id: lance.id, weapon_quality_id: reach.id)
-  WeaponWeaponGroup.create!(weapon_id: lance.id, weapon_group_id: spears.id)
-
-ranseur = Weapon.create!(name: 'Ranseur', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 10, num_of_dice: 2, damage_dice: 4, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 12, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'Similar in appearance to a trident, a ranseur has a single spear at its tip, flanked by a pair of short, curving blades.')
-  WeaponWeaponQuality.create!(weapon_id: ranseur.id, weapon_quality_id: disarm.id)
-  WeaponWeaponQuality.create!(weapon_id: ranseur.id, weapon_quality_id: reach.id)
-  WeaponWeaponGroup.create!(weapon_id: ranseur.id, weapon_group_id: polearms.id)
-
-scythe = Weapon.create!(name: 'Scythe', category: 'Two-Handed', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 18, num_of_dice: 2, damage_dice: 4, critical: 4, critical_range: 20, range: 0, thrown: false, weight: 10, damage_type: 'Piercing or Slashing', source_id: core_rulebook.id, description: 'This weapon consists of a long wooden shaft with protruding handles and a sharp curved blade set at a right angle. Derived from a farm tool used to mow down crops, a scythe requires two hands to use, and is unwieldy but capable of inflicting grievous wounds. Its connotations as a symbol of death make it an intimidating weapon.')
-  WeaponWeaponQuality.create!(weapon_id: scythe.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: scythe.id, weapon_group_id: heavy_blades.id)
-
-longbow = Weapon.create!(name: 'Longbow', category: 'Ranged', proficiency: 'Martial', weapon_type: 'Range', price_in_gp: 75, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 100, thrown: false, weight: 3, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'At almost 5 feet in height, a longbow is made up of one solid piece of carefully curved wood.
-
-You need two hands to use a bow, regardless of its size. A longbow can’t be used while mounted. If you have a penalty for low Strength, apply it to damage rolls when you use a longbow. You can apply your Strength modifier to damage rolls when you use a composite longbow, but not a regular longbow. A longbow fires arrows.', ammunition_type: 'bow')
-  WeaponWeaponGroup.create!(weapon_id: longbow.id, weapon_group_id: bows.id)
-
-compositve_longbow = Weapon.create!(name: 'Composite Longbow', category: 'Ranged', proficiency: 'Martial', weapon_type: 'Range', price_in_gp: 100, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 110, thrown: false, weight: 3, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'You need at least two hands to use a bow, regardless of its size. You can use a composite longbow while mounted.
-
-All composite bows are made with a particular Strength rating (that is, each requires a minimum Strength modifier to use with proficiency). If your Strength bonus is less than the strength rating of the composite bow, you can’t effectively use it, so you take a –2 penalty on attacks with it. The default composite longbow requires a Strength modifier of +0 or higher to use with proficiency. A composite longbow can be made with a high strength rating to take advantage of an above-average Strength score; this feature allows you to add your Strength bonus to damage, up to the maximum bonus indicated for the bow. Each point of Strength bonus granted by the bow adds 100 gp to its cost. If you have a penalty for low Strength, apply it to damage rolls when you use a composite longbow.
-
-For purposes of Weapon Proficiency and similar feats, a composite longbow is treated as if it were a longbow.', ammunition_type: 'bow')
-  WeaponWeaponGroup.create!(weapon_id: compositve_longbow.id, weapon_group_id: bows.id)
-
-shortbow = Weapon.create!(name: 'Shortbow', category: 'Ranged', proficiency: 'Martial', weapon_type: 'Range', price_in_gp: 30, num_of_dice: 1, damage_dice: 6, critical: 3, critical_range: 20, range: 60, thrown: false, weight: 2, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A shortbow is made up of one piece of wood, about 3 feet in length.
-
-You need two hands to use a bow, regardless of its size. You can use a shortbow while mounted. If you have a penalty for low Strength, apply it to damage rolls when you use a shortbow. If you have a bonus for high Strength, you can apply it to damage rolls when you use a composite shortbow, but not a regular shortbow. A shortbow fires arrows.', ammunition_type: 'bow')
-  WeaponWeaponGroup.create!(weapon_id: shortbow.id, weapon_group_id: bows.id)
-
-compositve_shortbow = Weapon.create!(name: 'Composite Shortbow', category: 'Ranged', proficiency: 'Martial', weapon_type: 'Range', price_in_gp: 75, num_of_dice: 1, damage_dice: 6, critical: 3, critical_range: 20, range: 70, thrown: false, weight: 2, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'You need at least two hands to use a bow, regardless of its size. You can use a composite shortbow while mounted.
-
-All composite bows are made with a particular Strength rating (that is, each requires a minimum Strength modifier to use with proficiency). If your Strength bonus is lower than the strength rating of the composite bow, you can’t effectively use it, so you take a –2 penalty on attacks with it. The default composite shortbow requires a Strength modifier of +0 or higher to use with proficiency. A composite shortbow can be made with a high strength rating to take advantage of an above-average Strength score; this feature allows you to add your Strength bonus to damage, up to the maximum bonus indicated for the bow. Each point of Strength bonus granted by the bow adds 75 gp to its cost. If you have a penalty for low Strength, apply it to damage rolls when you use a composite shortbow.
-
-For purposes of Weapon Proficiency, Weapon Focus, and similar feats, a composite shortbow is treated as if it were a shortbow.', ammunition_type: 'bow')
-  WeaponWeaponGroup.create!(weapon_id: compositve_shortbow.id, weapon_group_id: bows.id)
-
-arrow = Weapon.create!(name: 'Arrow', category: 'Ammunition', proficiency: 'Martial', weapon_type: 'Range', price_in_gp: 0.05, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.15, damage_type: '', description: 'A standard (common) arrow used as a melee weapon is treated as a light improvised weapon (–4 penalty on attack rolls) and deals damage as a dagger of its size (critical multiplier ×2). Unless indicated otherwise, arrows come in a leather quiver that holds 20 arrows.', ammunition: true, ammunition_type: 'bow', source_id: core_rulebook.id)
-
-kama = Weapon.create!(name: 'Kama', category: 'Light', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 2, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'Similar to a sickle—and in some regions still used to reap grain—a kama is a short, curved blade attached to a simple handle, usually made of wood. It is sometimes also referred to as a kai, and is frequently used in pairs by martial artists.')
-  WeaponWeaponQuality.create!(weapon_id: kama.id, weapon_quality_id: monk_quality.id)
-  WeaponWeaponQuality.create!(weapon_id: kama.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: kama.id, weapon_group_id: light_blades.id)
-  WeaponWeaponGroup.create!(weapon_id: kama.id, weapon_group_id: monk_group.id)
-
-nunchaku = Weapon.create!(name: 'Nunchaku', category: 'Light', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 2, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'A nunchaku is made up of two wooden or metal bars connected by a small length of rope or chain.')
-  WeaponWeaponQuality.create!(weapon_id: nunchaku.id, weapon_quality_id: monk_quality.id)
-  WeaponWeaponQuality.create!(weapon_id: nunchaku.id, weapon_quality_id: disarm.id)
-  WeaponWeaponGroup.create!(weapon_id: nunchaku.id, weapon_group_id: flails.id)
-  WeaponWeaponGroup.create!(weapon_id: nunchaku.id, weapon_group_id: monk_group.id)
-
-sai = Weapon.create!(name: 'Sai', category: 'Light', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 4, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A sai is a metal spike flanked by a pair of prongs used to trap an enemy’s weapon. Though pointed, a sai is not usually used for stabbing. Instead, it is used primarily to bludgeon foes, punching with the hilt, or else to catch and disarm weapons between its tines. Sais are often wielded in pairs.
-
-When wielding a sai, you get a +2 bonus on combat maneuver checks to sunder an enemy’s weapon.')
-  WeaponWeaponQuality.create!(weapon_id: sai.id, weapon_quality_id: monk_quality.id)
-  WeaponWeaponGroup.create!(weapon_id: sai.id, weapon_group_id: disarm.id)
-  WeaponWeaponGroup.create!(weapon_id: sai.id, weapon_group_id: monk_group.id)
-
-siangham = Weapon.create!(name: 'Siangham', category: 'Light', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 3, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'This weapon is a handheld shaft fitted with a pointed tip for stabbing foes. It resembles a (much sturdier) arrow with a grip designed for melee combat.')
-  WeaponWeaponQuality.create!(weapon_id: siangham.id, weapon_quality_id: monk_quality.id)
-  WeaponWeaponGroup.create!(weapon_id: siangham.id, weapon_group_id: monk_group.id)
-
-bastard_sword = Weapon.create!(name: 'Bastard Sword', category: 'One-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 35, num_of_dice: 1, damage_dice: 10, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 6, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A bastard sword is about 4 feet in length, making it too large to use in one hand without special training; thus, it is an exotic weapon. A character can use a bastard sword two-handed as a martial weapon.')
-  WeaponWeaponGroup.create!(weapon_id: bastard_sword.id, weapon_group_id: heavy_blades.id)
-
-dwarven_waraxe = Weapon.create!(name: 'Dwarven Waraxe', category: 'One-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 30, num_of_dice: 1, damage_dice: 10, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 8, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A dwarven waraxe has a large, ornate head mounted to a thick handle, making it too large to use in one hand without special training.
-
-Due to its size, a dwarven waraxe is an exotic weapon. A Medium character can use a dwarven waraxe two-handed as a martial weapon, or a Large creature can use it one-handed in the same way.
-
-A dwarf treats a dwarven waraxe as a martial weapon even when using it in one hand.')
-  WeaponWeaponGroup.create!(weapon_id: dwarven_waraxe.id, weapon_group_id: axes.id)
-
-whip = Weapon.create!(name: 'Whip', category: 'One-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 1, num_of_dice: 1, damage_dice: 3, critical: 2, critical_range: 20, range: 15, thrown: false, weight: 2, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A whip deals no damage to any creature with an armor bonus of +1 or higher or a natural armor bonus of +3 or higher. The whip is treated as a melee weapon with 15-foot reach, though you don’t threaten the area into which you can make an attack. In addition, unlike most other weapons with reach, you can use it against foes anywhere within your reach (including adjacent foes).
-
-Using a whip provokes an attack of opportunity, just as if you had used a ranged weapon.
-
-You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a whip sized for you, even though it isn’t a light weapon. Wielding a whip in two hands does not add 1-1/2 times your Strength modifier to damage rolls as with other weapons (UE update).')
-  WeaponWeaponQuality.create!(weapon_id: whip.id, weapon_quality_id: disarm.id)
-  WeaponWeaponQuality.create!(weapon_id: whip.id, weapon_quality_id: nonlethal.id)
-  WeaponWeaponQuality.create!(weapon_id: whip.id, weapon_quality_id: reach.id)
-  WeaponWeaponQuality.create!(weapon_id: whip.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: whip.id, weapon_group_id: flails.id)
-
-orc_double_axe = Weapon.create!(name: 'Orc Double Axe', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 60, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 15, damage_type: 'Slashing', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 8, double_damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A cruel weapon with blades placed at opposite ends of a long haft, an orc double axe is a double weapon. Though invented by and traditionally associated with orcs, the double axe can be crafted and wielded by other races as well, though many disdain it for its extreme weight and clumsiness. Because of the blades at either end of the axe, the wielder must hold an orc double axe in the middle of its haft, and utilize a weaving, slashing fighting style more akin to that of a quarterstaff than to that of a greataxe or battleaxe.')
-  WeaponWeaponQuality.create!(weapon_id: orc_double_axe.id, weapon_quality_id: double_quality.id)
-  WeaponWeaponGroup.create!(weapon_id: orc_double_axe.id, weapon_group_id: axes.id)
-  WeaponWeaponGroup.create!(weapon_id: orc_double_axe.id, weapon_group_id: double_group.id)
-
-spiked_chain = Weapon.create!(name: 'Spiked Chain', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 25, num_of_dice: 2, damage_dice: 4, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 10, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A spiked chain is about 4 feet in length, covered in wicked barbs.
-
-You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a spiked chain sized for you, even though it isn’t a light weapon.')
-  WeaponWeaponQuality.create!(weapon_id: spiked_chain.id, weapon_quality_id: disarm.id)
-  WeaponWeaponQuality.create!(weapon_id: spiked_chain.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: spiked_chain.id, weapon_group_id: flails.id)
-
-elven_curve_blade = Weapon.create!(name: 'Elven Curve Blade', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 80, num_of_dice: 1, damage_dice: 10, critical: 2, critical_range: 18, range: 0, thrown: false, weight: 7, damage_type: 'Slashing', source_id: core_rulebook.id, description: 'Essentially a longer version of a scimitar, but with a thinner blade, the elven curve blade is exceptionally rare.
-
-You receive a +2 circumstance bonus to your Combat Maneuver Defense whenever a foe attempts to sunder your elven curve blade due to its flexible metal.
-
-You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with an elven curve blade sized for you, even though it isn’t a light weapon.')
-  WeaponWeaponGroup.create!(weapon_id: elven_curve_blade.id, weapon_group_id: heavy_blades.id)
-
-dire_flail = Weapon.create!(name: 'Dire Flail', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 90, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 10, damage_type: 'Bludgeoning', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 8, double_damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'A dire flail consists of two spheres of spiked iron dangling from chains at opposite ends of a long haft. This weapon excels at short but powerful strikes, and is typically swung in a constant churning motion. The wielder of a dire flail must have great strength, both to use the weapon effectively and to keep from tiring out.')
-  WeaponWeaponQuality.create!(weapon_id: dire_flail.id, weapon_quality_id: double_quality.id)
-  WeaponWeaponQuality.create!(weapon_id: dire_flail.id, weapon_quality_id: flails.id)
-  WeaponWeaponGroup.create!(weapon_id: dire_flail.id, weapon_group_id: disarm.id)
-  WeaponWeaponGroup.create!(weapon_id: dire_flail.id, weapon_group_id: double_group.id)
-  WeaponWeaponGroup.create!(weapon_id: dire_flail.id, weapon_group_id: trip.id)
-
-gnome_hooked_hammer = Weapon.create!(name: 'Gnome Hooked Hammer', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 20, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 6, damage_type: 'Bludgeoning', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 6, double_damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A gnome hooked hammer is a double weapon—an ingenious tool with a hammer head at one end of its haft and a long, curved pick at the other.
-
-The hammer’s blunt head is a bludgeoning weapon that deals 1d6 points of damage (crit ×3). Its hook is a piercing weapon that deals 1d4 points of damage (crit ×4). You can use either head as the primary weapon.
-
-Gnomes treat hooked hammers as martial weapons.')
-  WeaponWeaponQuality.create!(weapon_id: gnome_hooked_hammer.id, weapon_quality_id: double_quality.id)
-  WeaponWeaponQuality.create!(weapon_id: gnome_hooked_hammer.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: gnome_hooked_hammer.id, weapon_group_id: double_group.id)
-
-two_bladed_sword = Weapon.create!(name: 'Two-Bladed Sword', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 100, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 19, range: 0, thrown: false, weight: 10, damage_type: 'Slashing', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 8, double_damage_type: 'Slashing', source_id: core_rulebook.id, description: 'A two-bladed sword is a double weapon—twin blades extend from either side of a central, short haft, allowing the wielder to attack with graceful but deadly flourishes.')
-  WeaponWeaponQuality.create!(weapon_id: two_bladed_sword.id, weapon_quality_id: double_quality.id)
-  WeaponWeaponGroup.create!(weapon_id: two_bladed_sword.id, weapon_group_id: double_group.id)
-  WeaponWeaponGroup.create!(weapon_id: two_bladed_sword.id, weapon_group_id: heavy_blades.id)
-
-dwarven_urgrosh = Weapon.create!(name: 'Dwarven Urgrosh', category: 'Two-Handed', proficiency: 'Exotic', weapon_type: 'Melee', price_in_gp: 50, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 0, thrown: false, weight: 12, damage_type: 'Slashing', double_weapon: true, double_num_of_dice: 1, double_damage_dice: 6, double_damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A dwarven urgrosh is a double weapon—an axe head and a spear point on opposite ends of a long haft. The urgrosh’s axe head is a slashing weapon that deals 1d8 points of damage. Its spear head is a piercing weapon that deals 1d6 points of damage. You can use either head as the primary weapon. The other becomes the off-hand weapon. If you use an urgrosh against a charging character, the spear head is the part of the weapon that deals damage.
-
-Dwarves treat dwarven urgroshes as martial weapons.')
-  WeaponWeaponQuality.create!(weapon_id: dwarven_urgrosh.id, weapon_quality_id: double_quality.id)
-  WeaponWeaponQuality.create!(weapon_id: dwarven_urgrosh.id, weapon_quality_id: brace.id)
-  WeaponWeaponGroup.create!(weapon_id: dwarven_urgrosh.id, weapon_group_id: double_group.id)
-
-bolas = Weapon.create!(name: 'Bolas', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 5, num_of_dice: 1, damage_dice: 4, critical: 2, critical_range: 20, range: 10, thrown: true, weight: 2, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'A bolas is a pair of wooden, stone, or metal weights connected by a thin rope or cord.
-
-You can whirl and throw this weapon to make a ranged trip attack against an opponent. You can’t be tripped during your own trip attempt when using a bolas.')
-  WeaponWeaponQuality.create!(weapon_id: bolas.id, weapon_quality_id: nonlethal.id)
-  WeaponWeaponQuality.create!(weapon_id: bolas.id, weapon_quality_id: trip.id)
-  WeaponWeaponGroup.create!(weapon_id: bolas.id, weapon_group_id: thrown.id)
-
-hand_crossbow = Weapon.create!(name: 'Hand Crossbow', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 100, num_of_dice: 1, damage_dice: 4, critical: 2, critical_range: 19, range: 30, thrown: false, weight: 2, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'You can draw a hand crossbow back by hand.
-
-Loading a hand crossbow is a move action that provokes attacks of opportunity.
-
-You can shoot, but not load, a hand crossbow with one hand at no penalty. You can shoot a hand crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons.', ammunition_type: 'crossbow')
-  WeaponWeaponGroup.create!(weapon_id: hand_crossbow.id, weapon_group_id: crossbows.id)
-  hand_crossbow_feature1 = Feature.create!(name: 'Load', action_id: move.id, attack_of_opportunity: true)
-    WeaponFeature.create!(weapon_id: hand_crossbow.id, feature_id: hand_crossbow_feature1.id)
-    FeatureLoading.create(feature_id: hand_crossbow_feature1.id, capacity: 1, must_reload_after_use: true)
-
-repeating_heavy_crossbow = Weapon.create!(name: 'Repeating Heavy Crossbow', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 400, num_of_dice: 1, damage_dice: 10, critical: 2, critical_range: 19, range: 120, thrown: false, weight: 12, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'The repeating heavy crossbow holds 5 repeating crossbow bolts.
-
-As long as it holds bolts, you can reload it by pulling the reloading lever (a free action). Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.
-
-You can fire a repeating crossbow with one hand or fire a repeating crossbow in each hand in the same manner as you would a normal crossbow of the same size. However, you must fire the weapon with two hands in order to use the reloading lever, and you must use two hands to load a new case of bolts.', ammunition_type: 'repeating crossbow')
-  WeaponWeaponGroup.create!(weapon_id: repeating_heavy_crossbow.id, weapon_group_id: crossbows.id)
-  repeating_heavy_crossbow_feature1 = Feature.create!(name: 'Load', action_id: full_round.id, attack_of_opportunity: true)
-    WeaponFeature.create!(weapon_id: repeating_heavy_crossbow.id, feature_id: repeating_heavy_crossbow_feature1.id)
-    FeatureLoading.create(feature_id: repeating_heavy_crossbow_feature1.id, capacity: 5, must_reload_after_use: true)
-
-repeating_light_crossbow = Weapon.create!(name: 'Repeating Heavy Crossbow', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 250, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 19, range: 80, thrown: false, weight: 6, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'This weapon functions identically to a repeating light crossbow, except that its damage, critical, and range values are equivalent to those of a light crossbow instead of a heavy crossbow. Its significantly lighter construction and pull make it both more portable and more useful to those who rely on stealth or speed.
-
-As long as it holds bolts, you can reload it by pulling the reloading lever (a free action). Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.
-
-You can fire a repeating crossbow with one hand or fire a repeating crossbow in each hand in the same manner as you would a normal crossbow of the same size. However, you must fire the weapon with two hands in order to use the reloading lever, and you must use two hands to load a new case of bolts.', ammunition_type: 'repeating crossbow')
-  WeaponWeaponGroup.create!(weapon_id: repeating_light_crossbow.id, weapon_group_id: crossbows.id)
-  repeating_light_crossbow_feature1 = Feature.create!(name: 'Load', action_id: full_round.id, attack_of_opportunity: true)
-    WeaponFeature.create!(weapon_id: repeating_light_crossbow.id, feature_id: repeating_light_crossbow_feature1.id)
-    FeatureLoading.create(feature_id: repeating_light_crossbow_feature1.id, capacity: 5, must_reload_after_use: true)
-
-net = Weapon.create!(name: 'Net', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 20, num_of_dice: 0, damage_dice: 0, critical: 0, critical_range: 0, range: 10, thrown: true, weight: 6, damage_type: '', source_id: core_rulebook.id, description: 'When you throw a net, you make a ranged touch attack against your target. A net’s maximum range is 10 feet. If you hit, the target is entangled.
-
-If you control the trailing rope by succeeding on an opposed Strength check while holding it, the entangled creature can move only within the limits that the rope allows. If the entangled creature attempts to cast a spell, it must make a concentration check with a DC of 15 + the spell’s level or be unable to cast the spell.
-
-An entangled creature can escape with a DC 20 Escape Artist check (a full-round action). The net has 5 hit points and can be burst with a DC 25 Strength check (also a full-round action). A net is useful only against creatures within one size category of you.
-
-A net must be folded to be thrown effectively. The first time you throw your net in a fight, you make a normal ranged touch attack roll. After the net is unfolded, you take a –4 penalty on attack rolls with it. It takes 2 rounds for a proficient user to fold a net and twice that long for a non-proficient one to do so.')
-  WeaponWeaponGroup.create!(weapon_id: net.id, weapon_group_id: thrown.id)
-
-halfling_sling_staff = Weapon.create!(name: 'Halfling Sling Staff', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 20, num_of_dice: 1, damage_dice: 8, critical: 3, critical_range: 20, range: 80, thrown: false, weight: 3, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'Made from a specially designed sling attached to a short club, a halfling sling staff can be used by a proficient wielder to devastating effect.
-
-Your Strength modifier applies to damage rolls when you use a halfling sling staff just as it does for thrown weapons. You can fire, but not load, a halfling sling staff with one hand. You can hurl ordinary stones with a halfling sling staff, but stones are not as dense or as round as bullets. Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a –1 penalty on attack rolls. A halfling sling staff can be used as a simple weapon that deals bludgeoning damage equal to that of a club of its size.
-
-Loading a halfling sling staff is a move action that requires two hands and provokes attacks of opportunity.
-
-Halflings treat halfling sling staves as martial weapons.', ammunition_type: 'sling')
-  WeaponWeaponGroup.create!(weapon_id: halfling_sling_staff.id, weapon_group_id: thrown.id)
-  halfling_sling_staff_feature1 = Feature.create!(name: 'Load', action_id: move.id, attack_of_opportunity: true)
-    WeaponFeature.create!(weapon_id: halfling_sling_staff.id, feature_id: halfling_sling_staff_feature1.id)
-    FeatureLoading.create(feature_id: halfling_sling_staff_feature1.id, capacity: 1, must_reload_after_use: true)
-
-repeating_crossbow_bolt = Weapon.create!(name: 'Repeating Crossbow Bolt', category: 'Ammunition', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 0.2, num_of_dice: 0, damage_dice: 0, range: 0, thrown: false, weight: 0.2, damage_type: '', description: 'Repeating crossbow bolts come in a case that holds 5 bolts.
-
-A crossbow bolt used as a melee weapon is treated as a light improvised weapon (–4 penalty on attack rolls) and deals damage as a dagger of its size (crit ×2).', ammunition: true, ammunition_type: 'repeating crossbow', source_id: core_rulebook.id)
-
-shuriken = Weapon.create!(name: 'Shuriken', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 0.2, num_of_dice: 1, damage_dice: 2, critical: 2, critical_range: 20, range: 10, thrown: true, weight: 0.1, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'A shuriken is a small piece of metal with sharpened edges, designed for throwing.
-
-A shuriken can’t be used as a melee weapon.
-
-Although they are thrown weapons, shuriken are treated as ammunition for the purposes of drawing them and crafting masterwork or otherwise special versions of them, and of what happens to them after they are thrown.')
-  WeaponWeaponQuality.create!(weapon_id: shuriken.id, weapon_quality_id: monk_quality.id)
-  WeaponWeaponGroup.create!(weapon_id: shuriken.id, weapon_group_id: thrown.id)
-  WeaponWeaponGroup.create!(weapon_id: shuriken.id, weapon_group_id: monk_group.id)
-
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
-  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
-  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
-
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
-  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
-  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
-
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
-  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
-  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
-
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
-  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
-  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
-
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
-  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
-  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
-
-
-
-
-# /////////////////////////////////////////
-# <-*-*-----*-*-*- Armors!-*-*-*-----*-*->
-# /////////////////////////////////////////
-
-padded = Armor.create!(name: 'Padded', proficiency: 'Light', price_in_gp: 5, bonus: 1, bonus_type: 'Armor', max_dex_bonus: 8, armor_check_penalty: 0, arcane_spell_failure: 5, spell_30: 30, spell_20: 20, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 10, source_id: core_rulebook.id, description: 'More than simple clothing, padded armor combines heavy, quilted cloth and layers of densely packed stuffing to create a cheap and basic protection. It is typically worn by those not intending to face lethal combat or those who wish their maneuverability to be impacted as little as possible.')
-
-# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
-
-# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
-
-# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
-
-# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
-
-# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
-
-# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
-
-armor_spikes = Armor.create!(name: 'Armor Spikes', proficiency: '', price_in_gp: 50, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 10, source_id: core_rulebook.id, description: 'Armor spikes deal extra piercing damage (see “spiked armor” on Table: Weapons) on a successful grapple attack. The spikes count as a martial weapon. If you are not proficient with them, you take a –4 penalty on grapple checks when you try to use them. You can also make a regular melee attack (or off-hand attack) with the spikes, and they count as a light weapon in this case. (You can’t also make an attack with armor spikes if you have already made an attack with another off-hand weapon, and vice versa.) An enhancement bonus to a suit of armor does not improve the spikes’ effectiveness, but the spikes can be made into magic weapons in their own right.', extra: true, bonus_price_in_gp: true)
-
-# /////////////////////////////////////////
-# <-*-*-----*-*-*- Users!-*-*-*-----*-*->
-# /////////////////////////////////////////
-
-admin = User.create!(username: "jack", password: "ey", admin: true, skillset_id: dmc.id)
-cole = User.create!(username: "cole", password: "password", admin: false, skillset_id: dmc.id)
-jeff = User.create!(username: "jeff", password: "password", admin: false, skillset_id: dmc.id)
-michael = User.create!(username: "michael", password: "password", admin: false, skillset_id: dmc.id)
-clare = User.create!(username: "clare", password: "password", admin: false, skillset_id: dmc.id)
-iggy = User.create!(username: "iggy", password: "password", admin: false, skillset_id: dmc.id)
-jenn = User.create!(username: "jenn", password: "password", admin: false, skillset_id: dmc.id)
-sarah = User.create!(username: "sarah", password: "password", admin: false, skillset_id: dmc.id)
-scott = User.create!(username: "scott", password: "password", admin: false, skillset_id: dmc.id)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Calendar!-*-*-*-----*-*->
@@ -5625,7 +5698,7 @@ Idea.create!(content: "Psychopomp")
 # <-*-*-----*-*-*- Testing!-*-*-*-----*-*->
 # ///////////////////////////////////////
 
-barb = Character.create!(user_id: admin.id, name: "Test", strength: 14, dexterity: 11, constitution: 12, intelligence: 11, wisdom: 9, charisma: 10, race_id: human.id, skillset_id: dmc.id, alignment: 'chaotic neutral', campaign_id: current_campaign.id)
+barb = Character.create!(user_id: admin.id, name: "Test", strength: 16, dexterity: 13, constitution: 14, intelligence: 12, wisdom: 8, charisma: 10, race_id: human.id, skillset_id: dmc.id, alignment: 'chaotic neutral', campaign_id: current_campaign.id)
 
 CharacterKlass.create!(character_id: barb.id, klass_id: unchained_barbarian.id, hp: 12, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
 
@@ -5646,6 +5719,22 @@ CharacterWeapon.create!(character_id: barb.id, weapon_id: sling.id, masterwork: 
 CharacterWeapon.create!(character_id: barb.id, weapon_id: light_crossbow.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
 CharacterWeapon.create!(character_id: barb.id, weapon_id: warhammer.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+
+CharacterWeapon.create!(character_id: barb.id, weapon_id: shortsword.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+
+CharacterWeapon.create!(character_id: barb.id, weapon_id: crossbow_bolt.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "", ammunition_amount: 20)
+
+CharacterWeapon.create!(character_id: barb.id, weapon_id: sling_bullet.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "", ammunition_amount: 30)
+
+CharacterWeapon.create!(character_id: barb.id, weapon_id: club.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+
+CharacterWeapon.create!(character_id: barb.id, weapon_id: trident.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+
+CharacterWeapon.create!(character_id: barb.id, weapon_id: bastard_sword.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+
+CharacterWeapon.create!(character_id: barb.id, weapon_id: halfling_sling_staff.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+
+CharacterWeapon.create!(character_id: barb.id, weapon_id: shuriken.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "", ammunition_amount: 12)
 
 ca1 = CharacterArmor.create!(character_id: barb.id, armor_id: padded.id, description: "")
 CharacterArmor.create!(character_id: barb.id, armor_id: armor_spikes.id, description: "", extra_armor_id: ca1.id)

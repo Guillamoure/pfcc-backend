@@ -13,5 +13,6 @@ class Feature < ApplicationRecord
   has_one :feature_container
   has_one :loading, class_name: 'FeatureLoading'
   has_many :weapon_proficiencies, class_name: 'FeatureWeaponProficiency'
+  has_many :armor_proficiencies, class_name: 'FeatureArmorProficiency'
 
 end

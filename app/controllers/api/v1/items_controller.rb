@@ -79,6 +79,12 @@ class Api::V1::ItemsController < ApplicationController
     render json: { character: CharacterSerializer.new(@character_item.character) }, status: 202
   end
 
+  def a_discovered
+    @character_item = CharacterArmor.find(params[:id])
+    @character_item.update(discovered: true)
+    render json: { message: "Updated CharacterArmor with id of #{@character_item.id} by changing the discovered attribute to true"}, status: 200
+  end
+
   def mi_equip
     @character_item = CharacterMagicItem.find(params[:id])
     @character_item.update(equipped: !@character_item.equipped)
@@ -99,6 +105,18 @@ class Api::V1::ItemsController < ApplicationController
     render json: { character: CharacterSerializer.new(@character_item.character) }, status: 202
   end
 
+  def a_equip
+    @character_item = CharacterArmor.find(params[:id])
+    @character_item.character.character_armors.each do |ca|
+      if (params[:equipped] && ca.armor.proficiency == @character_item.armor.proficiency && ca.equipped)
+        ca.update(equipped: false)
+      end
+    end
+
+    @character_item.update(equipped: params[:equipped])
+    render json: { message: "Updated CharacterArmor with id of #{@character_item.id} by changing the equipped attribute to #{params[:equipped]}"}, status: 200
+  end
+
   def mi_trade
     @character_item = CharacterMagicItem.find(params[:id])
 
@@ -117,6 +135,31 @@ class Api::V1::ItemsController < ApplicationController
 
     @character_item.update(character_id: params[:new_owner_id], equipped: false, discovered: false)
     render json: { character: CharacterSerializer.new(@character) }, status: 202
+  end
+
+  def w_ammo
+    @character_item = CharacterWeapon.find(params[:id])
+
+    if params[:ammo_id] == 0
+      @character_item.update(character_weapon_ammunition_id: params[:ammo_id], magazine: 0, improvised_ammunition: true)
+    else
+      @character_item.update(character_weapon_ammunition_id: params[:ammo_id], magazine: 0, improvised_ammunition: false)
+    end
+
+    render json: { message: "Updated CharacterWeapon with id of #{@character_item.id} by changing the character_weapon_ammunition_id to #{params[:ammo_id]}"}, status: 200
+  end
+
+  def w_update_ammo
+    @character_item = CharacterWeapon.find(params[:id])
+
+    @character_item.update(magazine: params[:magazine])
+
+    if params[:ammunition_amount] && !@character_item.improvised_ammunition
+      @ammo = CharacterWeapon.find(@character_item.character_weapon_ammunition_id)
+      @ammo.update(ammunition_amount: params[:ammunition_amount])
+    end
+
+    render json: { message: "Updated CharacterWeapon with id of #{@character_item.id} by changing the magazine amount to #{params[:magazine]}"}, status: 200
   end
 
   def known

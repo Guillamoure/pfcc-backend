@@ -37,7 +37,7 @@ class Api::V1::CharactersController < ApplicationController
         ],
         skillset: [:skills],
         character_weapons: [
-          weapon: [:weapon_qualities, :weapon_groups, :source, {
+          weapon: [:weapon_qualities, :weapon_groups, :source, :weapon_hands, {
             features: [
               :action, {usage: :options}, :feature_container, :loading, :weapon_proficiencies, :languages, :movements, :stat_bonuses, :stat_notes, :skill_bonuses, :skill_notes, :spells, :feature_usage_spell_options
             ]
@@ -53,6 +53,11 @@ class Api::V1::CharactersController < ApplicationController
       },
       :character_klasses, :character_skillset_skills, :character_magic_item_feature_usages, :notes, :campaign, :cast_spells
     ).find(params[:id])
+
+    if (!@character.character_weapons.find {|cw| cw.weapon.name == "Unarmed"})
+      unarmed = Weapon.find_by(name: "Unarmed")
+      CharacterWeapon.create!(character_id: @character.id, weapon_id: unarmed.id, discovered: true, known: true, name: "", description: "")
+    end
 
     puts "\n\n\n"
     puts "SERIALIZER"
