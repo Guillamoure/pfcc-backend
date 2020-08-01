@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_172454) do
+ActiveRecord::Schema.define(version: 2020_08_01_021057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,6 +261,14 @@ ActiveRecord::Schema.define(version: 2020_05_25_172454) do
     t.boolean "additive", default: true
   end
 
+  create_table "feature_conditions", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "unless_wearing"
+    t.string "unless_load"
+    t.boolean "affected_by_temporary_stat_bonus"
+    t.string "if_affected_by_condition"
+  end
+
   create_table "feature_containers", force: :cascade do |t|
     t.integer "feature_id"
     t.integer "weight"
@@ -331,6 +339,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_172454) do
     t.integer "bonus"
     t.string "bonus_type"
     t.string "duration"
+    t.string "specific_statistic"
+    t.string "bonus_multiplier"
   end
 
   create_table "feature_stat_bonus_conditions", force: :cascade do |t|
@@ -368,6 +378,11 @@ ActiveRecord::Schema.define(version: 2020_05_25_172454) do
     t.boolean "adjustable", default: false
     t.boolean "toggleable", default: false
     t.boolean "wieldable", default: false
+    t.integer "base_limit"
+    t.string "base_limit_modifier"
+    t.integer "limit_increase_per_level"
+    t.integer "toggle_off_action_id"
+    t.string "expend_frequency"
   end
 
   create_table "feature_weapon_proficiencies", force: :cascade do |t|

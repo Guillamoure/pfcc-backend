@@ -1783,6 +1783,19 @@ While in a rage, a barbarian gains a +2 bonus on melee attack rolls, melee damag
 
 A barbarian can end her rage as a free action, and is fatigued for 1 minute after a rage ends. A barbarian can’t enter a new rage while fatigued or exhausted, but can otherwise enter a rage multiple times per day. If a barbarian falls unconscious, her rage immediately ends.")
   FeatureLevel.create!(klass_feature_id: unchained_barbarian3.id, level: 1, table_description: "Rage")
+  unchained_barbarian_feature_3 = Feature.create!(name: nil, action_id: free.id)
+    KlassFeatureFeature.create!(klass_feature: unchained_barbarian3, feature_id: unchained_barbarian_feature_3.id)
+    FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Attack', bonus: 2, bonus_type: 'untyped', duration: 'temporary', specific_statistic: 'melee')
+    FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Damage', bonus: 2, bonus_type: 'untyped', duration: 'temporary', specific_statistic: 'melee')
+    FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Damage', bonus: 2, bonus_type: 'untyped', duration: 'temporary', specific_statistic: 'thrown')
+    FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Will', bonus: 2, bonus_type: 'untyped', duration: 'temporary')
+    FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Armor Class', bonus: 2, bonus_type: 'untyped', duration: 'temporary')
+    FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Hit Points', bonus: 2, bonus_type: 'temporary', duration: 'temporary', bonus_multiplier: 'level')
+    FeatureUsage.create!(feature_id: unchained_barbarian_feature_3.id, limit_frequency: 'Round', unit: 'rounds', adjustable: true, toggleable: true, base_limit: 4, base_limit_modifier: 'constitution', limit_increase_per_level: 2, toggle_off_action_id: free.id, expend_frequency: 'Round')
+    FeatureCondition.create!(feature_id: unchained_barbarian_feature_3.id, affected_by_temporary_stat_bonus: false)
+    FeatureCondition.create!(feature_id: unchained_barbarian_feature_3.id, if_affected_by_condition: 'fatigued')
+    FeatureCondition.create!(feature_id: unchained_barbarian_feature_3.id, if_affected_by_condition: 'exhausted')
+
 
 unchained_barbarian4 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Rage Powers", description: "As a barbarian gains levels, she learns to use her rage in new ways. At 2nd level and every 2 levels thereafter, the barbarian gains a rage power. A barbarian gains the benefits of rage powers only while raging. Some of these powers are always active during a rage, and others require the barbarian to take an action to use them. Unless otherwise noted, a barbarian cannot select an individual power more than once.
 
