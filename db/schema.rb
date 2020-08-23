@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_021057) do
+ActiveRecord::Schema.define(version: 2020_08_23_013744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,13 @@ ActiveRecord::Schema.define(version: 2020_08_01_021057) do
     t.boolean "known", default: true
     t.boolean "equipped", default: false
     t.integer "extra_armor_id"
+  end
+
+  create_table "character_klass_feature_usages", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "klass_feature_id"
+    t.integer "feature_usage_id"
+    t.integer "current_usage", default: 0
   end
 
   create_table "character_klass_options", force: :cascade do |t|
@@ -254,6 +261,13 @@ ActiveRecord::Schema.define(version: 2020_08_01_021057) do
     t.integer "level"
   end
 
+  create_table "feature_applications", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "calculate_before"
+    t.string "calculate_after"
+    t.boolean "affects_allies"
+  end
+
   create_table "feature_armor_proficiencies", force: :cascade do |t|
     t.integer "feature_id"
     t.string "proficiency_group"
@@ -302,6 +316,7 @@ ActiveRecord::Schema.define(version: 2020_08_01_021057) do
     t.integer "feet"
     t.boolean "bonus", default: false
     t.boolean "penalty", default: false
+    t.boolean "permanent", default: false
   end
 
   create_table "feature_option_actions", force: :cascade do |t|
@@ -341,6 +356,7 @@ ActiveRecord::Schema.define(version: 2020_08_01_021057) do
     t.string "duration"
     t.string "specific_statistic"
     t.string "bonus_multiplier"
+    t.boolean "bonus_multiplier_based_on_feature_level", default: false
   end
 
   create_table "feature_stat_bonus_conditions", force: :cascade do |t|
@@ -352,6 +368,11 @@ ActiveRecord::Schema.define(version: 2020_08_01_021057) do
     t.integer "feature_id"
     t.string "statistic"
     t.string "note"
+  end
+
+  create_table "feature_status_conditions", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "condition"
   end
 
   create_table "feature_usage_options", force: :cascade do |t|
@@ -396,6 +417,7 @@ ActiveRecord::Schema.define(version: 2020_08_01_021057) do
     t.integer "action_id"
     t.string "name"
     t.boolean "attack_of_opportunity", default: false
+    t.boolean "after", default: false
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -532,6 +554,7 @@ ActiveRecord::Schema.define(version: 2020_08_01_021057) do
     t.string "description"
     t.boolean "untrained", default: true
     t.boolean "customizable", default: false
+    t.boolean "knowledge", default: false
   end
 
   create_table "skillset_skills", force: :cascade do |t|

@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       patch 'character_armors_discovered/:id', to: 'items#a_discovered'
       patch 'character_armors_equip/:id', to: 'items#a_equip'
       get 'actions', to: 'actions#index'
+      patch 'character_klass_feature_usages', to: 'klass_features#usage_update'
 
       get 'ideas/:id', to: 'ideas#index'
 

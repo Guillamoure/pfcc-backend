@@ -53,16 +53,16 @@ fly = Skill.create!(name: "Fly", ability_score: "Dexterity", untrained: true, de
 handle_animal = Skill.create!(name: "Handle Animal", ability_score: "Charisma", untrained: false, description: "")
 heal = Skill.create!(name: "Heal", ability_score: "Wisdom", untrained: true, description: "")
 intimidate = Skill.create!(name: "Intimidate", ability_score: "Charisma", untrained: true, description: "")
-knowledge_arcana = Skill.create!(name: "Knowledge (arcana)", ability_score: "Intelligence", untrained: false, description: "")
-knowledge_dungeoneering = Skill.create!(name: "Knowledge (dungeoneering)", ability_score: "Intelligence", untrained: false, description: "")
-knowledge_engineering = Skill.create!(name: "Knowledge (engineering)", ability_score: "Intelligence", untrained: false, description: "")
-knowledge_geography = Skill.create!(name: "Knowledge (geography)", ability_score: "Intelligence", untrained: false, description: "")
-knowledge_history = Skill.create!(name: "Knowledge (history)", ability_score: "Intelligence", untrained: false, description: "")
-knowledge_local = Skill.create!(name: "Knowledge (local)", ability_score: "Intelligence", untrained: false, description: "")
-knowledge_nature = Skill.create!(name: "Knowledge (nature)", ability_score: "Intelligence", untrained: false, description: "")
-knowledge_nobility = Skill.create!(name: "Knowledge (nobility)", ability_score: "Intelligence", untrained: false, description: "")
-knowledge_planes = Skill.create!(name: "Knowledge (planes)", ability_score: "Intelligence", untrained: false, description: "")
-knowledge_religion = Skill.create!(name: "Knowledge (religion)", ability_score: "Intelligence", untrained: false, description: "")
+knowledge_arcana = Skill.create!(name: "Knowledge (arcana)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
+knowledge_dungeoneering = Skill.create!(name: "Knowledge (dungeoneering)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
+knowledge_engineering = Skill.create!(name: "Knowledge (engineering)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
+knowledge_geography = Skill.create!(name: "Knowledge (geography)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
+knowledge_history = Skill.create!(name: "Knowledge (history)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
+knowledge_local = Skill.create!(name: "Knowledge (local)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
+knowledge_nature = Skill.create!(name: "Knowledge (nature)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
+knowledge_nobility = Skill.create!(name: "Knowledge (nobility)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
+knowledge_planes = Skill.create!(name: "Knowledge (planes)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
+knowledge_religion = Skill.create!(name: "Knowledge (religion)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
 linguistics = Skill.create!(name: "Linguistics", ability_score: "Intelligence", untrained: false, description: "")
 perception = Skill.create!(name: "Perception", ability_score: "Wisdom", untrained: true, description: "")
 perform = Skill.create!(name: "Perform", ability_score: "Charisma", untrained: true, description: "", customizable: true)
@@ -78,12 +78,14 @@ use_magic_device = Skill.create!(name: "Use Magic Device", ability_score: "Chari
 # rand = Skill.create!(name: "", ability_score: "", untrained: true, description: "")
 
 finesse_unchained = Skill.create!(name: "Finesse", ability_score: "Dexterity", untrained: true, description: "")
-nature_unchained = Skill.create!(name: "Nature", ability_score: "Intelligence", untrained: true, description: "")
+nature_unchained = Skill.create!(name: "Nature", ability_score: "Intelligence", untrained: true, description: "", knowledge: true)
 investigation = Skill.create!(name: "Investigation", ability_score: "Intelligence", untrained: true, description: "")
-religion_unchained = Skill.create!(name: "Religion", ability_score: "Intelligence", untrained: true, description: "")
-society_unchained = Skill.create!(name: "Society", ability_score: "Intelligence", untrained: true, description: "")
-spellcraft_unchained = Skill.create!(name: "Spellcraft", ability_score: "Intelligence", untrained: true, description: "")
+religion_unchained = Skill.create!(name: "Religion", ability_score: "Intelligence", untrained: true, description: "", knowledge: true)
+society_unchained = Skill.create!(name: "Society", ability_score: "Intelligence", untrained: true, description: "", knowledge: true)
+spellcraft_unchained = Skill.create!(name: "Spellcraft", ability_score: "Intelligence", untrained: true, description: "", knowledge: true)
 # rand = Skill.create!(name: "", ability_score: "", untrained: true, description: "")
+
+puts "Skills Created!"
 
 # /////////////////////////////////////////////////
 # <-*-*-----*-*-*- Skillset Skills!-*-*-*-----*-*->
@@ -642,7 +644,7 @@ Although they are thrown weapons, shuriken are treated as ammunition for the pur
   # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
 
 
-
+puts "Weapons Created!!"
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Armors!-*-*-*-----*-*->
@@ -698,9 +700,10 @@ tower_shield = Armor.create!(name: 'Tower Shield', proficiency: 'Shield', price_
 
 When employing a tower shield in combat, you take a –2 penalty on attack rolls because of the shield’s encumbrance.')
 
-puts "Tower Shield Created!"
 
 armor_spikes = Armor.create!(name: 'Armor Spikes', proficiency: '', price_in_gp: 50, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 10, source_id: core_rulebook.id, description: 'Armor spikes deal extra piercing damage (see “spiked armor” on Table: Weapons) on a successful grapple attack. The spikes count as a martial weapon. If you are not proficient with them, you take a –4 penalty on grapple checks when you try to use them. You can also make a regular melee attack (or off-hand attack) with the spikes, and they count as a light weapon in this case. (You can’t also make an attack with armor spikes if you have already made an attack with another off-hand weapon, and vice versa.) An enhancement bonus to a suit of armor does not improve the spikes’ effectiveness, but the spikes can be made into magic weapons in their own right.', extra: true, bonus_price_in_gp: true)
+
+puts "Armor Created!"
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Users!-*-*-*-----*-*->
@@ -750,6 +753,8 @@ RacialTrait.create!(name: "Spell-like Ability", race_id: aasimar.id, description
 RacialTrait.create!(name: "Darkvision", race_id: aasimar.id, description: "Darkvision: Aasimar have darkvision 60 ft. (they can see perfectly in the dark up to 60 feet.)")
 # RacialTrait.create!(name: "", race_id: , description: "")
 
+print "Aasimar created! \r"
+
 kitsune = Race.create!(name: "Kitsune", speed: 30, size: "Medium", img_url: "https://db4sgowjqfwig.cloudfront.net/assets/254331/Kitsune.jpg", source_id: advanced_race_guide.id, description: "Kitsune, or fox folk, are vulpine shapeshifters known for their love of both trickery and art. Kitsune possess two forms: that of an attractive human of slender build with salient eyes, and their true form of an anthropomorphic fox. Despite an irrepressible penchant for deception, kitsune prize loyalty and make true companions. They delight in the arts, particularly riddles and storytelling, and settle in ancestral clans, taking their wisdom from both the living and spirits.
 
 Quick-witted and nimble, kitsune make excellent bards and rogues. It is not uncommon for one to pursue sorcery, while those few born with white fur and pale eyes usually become oracles.
@@ -780,6 +785,8 @@ RacialTrait.create!(name: "Natural Weapons", race_id: kitsune.id, description: "
 RacialTrait.create!(name: "Low-Light Vision", race_id: kitsune.id, description: "Kitsune can see twice as far as humans in conditions of dim light.")
 # RacialTrait.create!(name: "", race_id: , description: "")
 
+print "Kitsune created! \r"
+
 grippli = Race.create!(name: "Grippli", speed: 30, size: "Small", img_url: "https://i.pinimg.com/originals/d2/a7/e8/d2a7e8b34c06bf381e08f3eadfda781d.png", source_id: advanced_race_guide.id, description: "Gripplis stand just over 2 feet tall and have mottled green-and-brown skin. Most gripplis are primitive hunter gatherers, living on large insects and fish found near their treetop homes, and are unconcerned about events outside their swamps. The rare grippli who leaves the safety of the swamp tends to be a ranger or alchemist seeking to trade for metals and gems.")
 
 RaceAbilityScoreModifier.create!(race_id: grippli.id, ability_score: "Dexterity", bonus: 2)
@@ -793,6 +800,8 @@ RacialTrait.create!(name: "Swamp Stride", race_id: grippli.id, description: "A g
 RacialTrait.create!(name: "Weapon Familiarity", race_id: grippli.id, description: "Gripplis are proficient with nets.")
 RacialTrait.create!(name: "Darkvision", race_id: grippli.id, description: "Gripplis can see perfectly in the dark up to 60 feet.")
 # RacialTrait.create!(name: "", race_id: , description: "")
+
+print "Grippli created! \r"
 
 orc = Race.create!(name: "Orc", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/55/3a/df/553adf14108659b44c5e67642ce9cf5b.jpg", source_id: advanced_race_guide.id, description: "Orcs are aggressive, callous, and domineering. Bullies by nature, they respect strength and power as the highest virtues. On an almost instinctive level, orcs believe they are entitled to anything they want unless someone stronger can stop them from seizing it. They rarely exert themselves off the battlefield except when forced to do so; this attitude stems not just from laziness but also from an ingrained belief that work should trickle down through the pecking order until it falls upon the shoulders of the weak. They take slaves from other races, orc men brutalize orc women, and both abuse children and elders, on the grounds that anyone too feeble to fight back deserves little more than a life of suffering. Surrounded at all times by bitter enemies, orcs cultivate an attitude of indifference to pain, vicious tempers, and a fierce willingness to commit unspeakable acts of vengeance against anyone who dares to defy them.
 
@@ -826,6 +835,8 @@ RacialTrait.create!(name: "Darkvision", race_id: orc.id, description: "Orcs can 
 RacialTrait.create!(name: "Light Sensitivity", race_id: orc.id, description: "Orcs are dazzled in areas of bright sunlight or within the radius of a daylight spell.")
 # RacialTrait.create!(name: "", race_id: , description: "")
 
+print "Orc created! \r"
+
 changeling = Race.create!(name: "Changeling", speed: 30, size: "Medium", img_url: "https://pathfinderwiki.com/mediawiki/images/7/7d/Siova_Stormhilt.jpg", source_id: advanced_race_guide.id, description: "Changelings are the offspring of hags and their lovers taken through magic or madness. Dropped off on doorsteps of prospective foster parents, changelings are raised by strangers. Typically tall, slender, dark haired, and attractive, changelings otherwise resemble their fathers’ race. They are always female, and their mismatched colored eyes and abnormally pale skin hint at their true heritage. At puberty, changelings receive “the call,” a hypnotic spiritual voice that beckons them to travel and discover their true origins. Changelings who ignore this call choose their own destiny; those who heed it discover their “mother” and may come into great power by transforming into hags themselves.")
 
 RaceAbilityScoreModifier.create!(race_id: changeling.id, ability_score: "Wisdom", bonus: 2)
@@ -840,6 +851,8 @@ RacialTrait.create!(name: "Green Widow", race_id: changeling.id, description: "(
 RacialTrait.create!(name: "Hulking Changeling", race_id: changeling.id, description: "(Annis Hag): The changeling gains a +1 racial bonus on melee damage.")
 RacialTrait.create!(name: "Sea Lungs", race_id: changeling.id, description: "(Sea Hag): The changeling may hold her breath for a number of rounds equal to three times her Constitution before she risks drowning.")
 # RacialTrait.create!(name: "", race_id: , description: "")
+
+print "Changeling created! \r"
 
 samsaran = Race.create!(name: "Samsaran", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/9c/ed/eb/9cedeb9c454258b301f8912c0f229801.png", source_id: advanced_race_guide.id, description: "Mysterious humanoids with pale blue flesh and transparent blood like the waters of a trickling brook, samsarans are ancient creatures even in their youth. A samsaran’s life is not a linear progression from birth to death, but rather a circle of birth to death to rebirth. Whenever a samsaran dies, it reincarnates anew as a young samsaran to live a new life. Her past memories remain vague and indistinct—and each new incarnation is as different a creature and personality as a child is to a parent. Samsarans appear similar to humans, with dark hair and solid white eyes with no pupils or irises. Skin tones are generally shades of light blue.
 
@@ -869,6 +882,8 @@ RacialTrait.create!(name: "Shards of the Past", race_id: samsaran.id, descriptio
 RacialTrait.create!(name: "Low-Light Vision", race_id: samsaran.id, description: "Samsarans can see twice as far as humans in conditions of dim light.")
 RacialTrait.create!(name: "Samsaran Magic", race_id: samsaran.id, description: "Samsarans with a Charisma score of 11 or higher gain the following spell-like abilities: 1/day—comprehend languages, deathwatch, and stabilize. The caster level for these effects is equal to the samsaran’s level.")
 # RacialTrait.create!(name: "", race_id: , description: "")
+
+print "Samsaran created! \r"
 
 half_elf = Race.create!(name: "Half-elf", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/9e/a7/89/9ea7895e06d5bfc3dfafbc857a658783.png", source_id: core_rulebook.id, description: "Elves have long drawn the covetous gazes of other races. Their generous lifespans, magical affinity, and inherent grace each contribute to the admiration or bitter envy of their neighbors. Of all their traits, however, none so entrance their human associates as their beauty. Since the two races first came into contact with each other, humans have held up elves as models of physical perfection, seeing in these fair folk idealized versions of themselves. For their part, many elves find humans attractive despite their comparatively barbaric ways, and are drawn to the passion and impetuosity with which members of the younger race play out their brief lives.
 
@@ -902,6 +917,8 @@ RacialTrait.create!(name: "Low-Light Vision", race_id: half_elf.id, description:
 RacialTrait.create!(name: "Elf Blood", race_id: half_elf.id, description: "Half-elves count as both elves and humans for any effect related to race.")
 RacialTrait.create!(name: "Multitalented", race_id: half_elf.id, description: "Half-elves choose two favored classes at first level and gain +1 hit point or +1 skill point whenever they take a level in either one of those classes.")
 # RacialTrait.create!(name: "", race_id: , description: "")
+
+print "Half-Elf created! \r"
 
 vine_leshy = Race.create!(name: "Vine Leshy", speed: 20, size: "Small", img_url: "https://i.pinimg.com/originals/95/2f/4a/952f4a813b92fdde2da083dc934c36b3.png", source_id: ultimate_wilderness.id, description: "Vine leshys are born by ritual, called forth when a druid channels a nature spirit into a plant’s form. The nature spirit that answers the call for a vine leshy creation ritual is always one that has keenly felt the influence of mortal beings. Compared to other leshys, vine leshys have an easier time relating to non-plant creatures and a deeper sense of curiosity about the wonders of the natural world beyond those plants closely related to them, as well as a fascination with the societies of humans and other creatures.
 
@@ -939,6 +956,8 @@ RacialTrait.create!(name: "Unassuming Foliage", race_id: vine_leshy.id, descript
 RacialTrait.create!(name: "Climber", race_id: vine_leshy.id, description: "Vine leshys gain a +2 racial bonus on Climb checks.")
 # RacialTrait.create!(name: "", race_id: , description: "")
 
+print "Vine Leshy created! \r"
+
 human = Race.create!(name: 'Human', speed: 30, size: 'Medium', img_url: 'https://i.pinimg.com/474x/d1/a3/7d/d1a37d1463e284fe516ccd48ba0d46af.jpg', source_id: core_rulebook.id, description: 'Humans possess exceptional drive and a great capacity to endure and expand, and as such are currently the dominant race in the world. Their empires and nations are vast, sprawling things, and the citizens of these societies carve names for themselves with the strength of their sword arms and the power of their spells. Humanity is best characterized by its tumultuousness and diversity, and human cultures run the gamut from savage but honorable tribes to decadent, devil-worshiping noble families in the most cosmopolitan cities. Humans’ curiosity and ambition often triumph over their predilection for a sedentary lifestyle, and many leave their homes to explore the innumerable forgotten corners of the world or lead mighty armies to conquer their neighbors, simply because they can.
 
 Human society is a strange amalgam of nostalgia and futurism, being enamored of past glories and wistfully remembered “golden ages,” yet at the same time quick to discard tradition and history and strike off into new ventures. Relics of the past are kept as prized antiques and museum pieces, as humans love to collect things—not only inanimate relics but also living creatures—to display for their amusement or to serve by their side. Other races suggest this behavior is due to a deep-rooted urge to dominate and assert power in the human psyche, an urge to take, till, or tame the wild things and places of the world. Those with a more charitable view believe humans are simply collectors of experiences, and the things they take and keep, whether living, dead, or never alive, are just tokens to remind themselves of the places they have gone, the things they have seen, and the deeds they have accomplished. Their present and future value is just a bonus; their real value is as an ongoing reminder of the inevitable progress of humanity.
@@ -968,6 +987,8 @@ RacialTrait.create!(name: "Bonus Feat", race_id: human.id, description: "Humans 
 RacialTrait.create!(name: "Skilled", race_id: human.id, description: "Humans gain an additional skill rank at first level and one additional rank whenever they gain a level.")
 # RacialTrait.create!(name: "", race_id: , description: "")
 
+print "Human created! \r"
+
 tiefling = Race.create!(name: 'Tiefling', speed: 30, size: 'Medium', img_url: 'https://vignette.wikia.nocookie.net/thelostfrontier/images/b/b7/Female_nephilim.jpg', source_id: advanced_race_guide.id, description: 'Simultaneously more and less than mortal, tieflings are the offspring of humans and fiends. With otherworldly blood and traits to match, tieflings are often shunned and despised out of reactionary fear. Most tieflings never know their fiendish sire, as the coupling that produced their curse occurred generations earlier. The taint is long-lasting and persistent, often manifesting at birth or sometimes later in life, as a powerful, though often unwanted, boon. Despite their fiendish appearance and netherworld origins, tieflings have a human’s capacity of choosing their fate, and while many embrace their dark heritage and side with fiendish powers, others reject their darker predilections. Though the power of their blood calls nearly every tiefling to fury, destruction, and wrath, even the spawn of a succubus can become a saint and the grandchild of a pit fiend an unsuspecting hero.
 
 Physical Description: No two tieflings look alike; the fiendish blood running through their veins manifests inconsistently, granting them an array of fiendish traits. One tiefling might appear as a human with small horns, a barbed tail, and oddly colored eyes, while another might manifest a mouth of fangs, tiny wings, and claws, and yet another might possess the perpetual smell of blood, foul incenses, and brimstone. Typically, these qualities hearken back in some way to the manner of fiend that spawned the tiefling’s bloodline, but even then the admixture of human and fiendish blood is rarely ruled by sane, mortal laws, and the vast flexibility it produces in tieflings is a thing of wonder, running the gamut from oddly beautiful to utterly terrible.
@@ -996,6 +1017,8 @@ RacialTrait.create!(name: 'Spell-like Ability', race_id: tiefling.id, descriptio
 RacialTrait.create!(name: 'Darkvision', race_id: tiefling.id, description: 'Tieflings can see perfectly in the dark for up to 60 feet.')
 RacialTrait.create!(name: 'Fiendish Sorcery', race_id: tiefling.id, description: 'Tiefling sorcerers with the Abyssal or Infernal bloodlines treat their Charisma score as 2 points higher for all sorcerer class abilities.')
 
+print "Tiefling created! \r"
+
 wyvaran = Race.create!(name: "Wyvaran", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/15/be/b6/15beb63f1d370f3a850533238965aa4e.png", source_id: bestiary_4.id, description: "These creatures are the result of magical draconic experiments at crossbreeding wyverns and kobolds. Wyvarans are fiercely territorial creatures loyal to their kin and tribe, and allow no interlopers into their lands without good reason or proper tribute. Each defends its personal property, and seeks revenge on any who dare steal from it. Most evil and neutral wyvarans primarily concern themselves with expanding their territory and wealth.
 
 Many civilized races dismiss wyvarans as fast, dumb, selfish brutes. However, a creature who respects the wyvarans’ rules about their property finds that they make steadfast and loyal allies. Adventuring wyvarans often view their companions as clutchmates, and are willing to take great risks to protect them.")
@@ -1018,6 +1041,10 @@ RacialTrait.create!(name: "Low-Light Vision", race_id: wyvaran.id, description: 
 # RacialTrait.create!(name: "", race_id: , description: "")
 # RacialTrait.create!(name: "", race_id: , description: "")
 # RacialTrait.create!(name: "", race_id: , description: "")
+
+print "Wyvaran created! \r"
+
+puts "Ancestries Created!"
 
 
 # /////////////////////////////////////////
@@ -1159,6 +1186,8 @@ In addition to the spells gained by oracles as they gain levels, each oracle als
 
 Upon reaching 4th level, and at every even-numbered oracle level after that (6th, 8th, and so on), an oracle can choose to learn a new spell in place of one she already knows. In effect, the oracle loses the old spell in exchange for the new one. The new spell’s level must be the same as that of the spell being exchanged. An oracle may swap only a single spell at any given level, and must choose whether or not to swap the spell at the same time that she gains new spells known for the level. She cannot swap any cure or inflict spells, nor can she swap any spells gained from her mystery. Unlike a cleric, an oracle need not prepare her spells in advance. She can cast any spell she knows at any time, assuming she has not yet used up her spells per day for that spell level. Oracles do not need to provide a divine focus to cast spells that list divine focus (DF) as part of the components.")
 
+print "Oracle features created! \r"
+
 witch1 = KlassFeature.create!(klass_id: witch.id, name: "Weapon and Armor Proficiency", description: "Witches are proficient with all simple weapons. They are not proficient with any type of armor or shield. Armor interferes with a witch’s gestures, which can cause her spells with somatic components to fail.")
     FeatureLevel.create!(klass_feature_id: witch1.id, level: 1, table_description: "none")
 
@@ -1188,6 +1217,9 @@ witch3 = KlassFeature.create!(klass_id: witch.id, name: "Hex", description: "Wit
     FeatureLevel.create!(klass_feature_id: witch3.id, level: 16, table_description: "Hex")
     FeatureLevel.create!(klass_feature_id: witch3.id, level: 18, table_description: "Hex")
     FeatureLevel.create!(klass_feature_id: witch3.id, level: 20, table_description: "Hex")
+
+print "Witch features created! \r"
+
 
 
   fate_weaver1 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Chaotic Nature", description: "A Fate Weaver is initially a victim of chaos, but over time, she learns to become not only an agent, but a master of chaos. If she is damaged by a lawful creature’s unarmed attack, a lawfully aligned or axiomatic weapon, or a spell with a lawful descriptor, she takes additional damage equal to her Hit Dice.
@@ -1307,6 +1339,9 @@ witch3 = KlassFeature.create!(klass_id: witch.id, name: "Hex", description: "Wit
     FeatureLevel.create!(klass_feature_id: fate_weaver6.id, level: 11, table_description: "Destiny Maker")
     FeatureLevel.create!(klass_feature_id: fate_weaver6.id, level: 17, table_description: "Destiny Maker")
 
+print "Fate Weaver features created! \r"
+
+
 bard1 = KlassFeature.create!(klass_id: bard.id, name: "Weapon and Armor Proficiency", description: "A bard is proficient with all simple weapons, plus the longsword, rapier, sap, shortsword, shortbow, and whip. Bards are also proficient with light armor and shields (except tower shields). A bard can cast bard spells while wearing light armor and using a shield without incurring the normal arcane spell failure chance. Like any other arcane spellcaster, a bard wearing medium or heavy armor incurs a chance of arcane spell failure if the spell in question has a somatic component. A multiclass bard still incurs the normal arcane spell failure chance for arcane spells received from other classes.")
   FeatureLevel.create!(klass_feature_id: bard1.id, level: 1, table_description: "none")
 
@@ -1413,6 +1448,9 @@ bard20 = KlassFeature.create!(klass_id: bard.id, name: "Lore Master", descriptio
 bard21 = KlassFeature.create!(klass_id: bard.id, name: "Jack-of-all-trades", description: "At 10th level, the bard can use any skill, even if the skill normally requires him to be trained. At 16th level, the bard considers all skills to be class skills. At 19th level, the bard can take 10 on any skill check, even if it is not normally allowed.")
   FeatureLevel.create!(klass_feature_id: bard21.id, level: 10, table_description: "Jack-of-all-trades")
 
+print "Bard features created! \r"
+
+
 arcanist1 = KlassFeature.create!(klass_id: arcanist.id, name: "Weapon and Armor Proficiencies", description: "Arcanists are proficient with all simple weapons. They are not proficient with any type of armor or shield. Armor interferes with an arcanist’s gestures, which can cause her spells with somatic components to fail (see Arcane Spells and Armor).")
   FeatureLevel.create!(klass_feature_id: arcanist1.id, level: 1, table_description: "none")
 
@@ -1461,6 +1499,9 @@ arcanist6 = KlassFeature.create!(klass_id: arcanist.id, name: 'Greater Exploits'
 
 arcanist7 = KlassFeature.create!(klass_id: arcanist.id, name: 'Magical Supremacy', description: 'At 20th level, the arcanist learns how to convert her arcane reservoir into spells and back again. She can cast any spell she has prepared by expending a number of points from her arcane reservoir equal to 1 + the level of the spell to be cast instead of expending a spell slot. When she casts a spell in this fashion, she treats her caster level as 2 higher than normal, and the DCs of any saving throws associated with the spell increase by 2. She cannot further expend points from her arcane reservoir to enhance a spell cast in this way.')
   FeatureLevel.create!(klass_feature_id: arcanist7.id, level: 20, table_description: 'Magical Supremacy')
+
+print "Arcanist features created! \r"
+
 
 
 vigilante1 = KlassFeature.create!(klass_id: vigilante.id, name: "Weapon and Armor Proficiency", description: "Vigilantes are proficient with all simple and martial weapons, light armor, medium armor, and shields (except tower shields).")
@@ -1537,6 +1578,9 @@ This ability is in addition to the effects of startling appearance and frighteni
 
 vigilante11 = KlassFeature.create!(klass_id: vigilante.id, name: "Vengeance Strike", description: "At 20th level, a vigilante can study a target to strike more viciously. He can spend up to 5 standard actions, which all must be in consecutive rounds. On the following round, he can make a vengeance strike against the studied creature. The target must remain unaware of the vigilante’s presence (or not see him as a threat) until the attack. For each round spent studying the target, the vigilante grants himself one of the following benefits on his vengeance strike: gain a +4 circumstance bonus on the attack roll, deal an additional 3d6 points of precision damage if he hits, or treat the attack roll as if it were 2 higher for the purposes of determining whether the attack hit or threatens a critical hit (to maximum effective roll of 20). Each round of study can be spent in a different way or the same way (they stack with each other), but each round of study must be allocated before the attack roll is made. If the vigilante is an avenger, he automatically confirms any critical hits threatened by his vengeance strike. If the vigilante is a stalker and would normally be able to add a special effect from a vigilante talent with an asterisk (*) to this attack, he can instead add two special effects to his vengeance strike.")
   FeatureLevel.create!(klass_feature_id: vigilante11.id, level: 20, table_description: "Vengeance Strike")
+
+print "Vigilante features created! \r"
+
 
 shifter1 = KlassFeature.create!(klass_id: shifter.id, name: "Weapon and Armor Proficiency", description: "A Chimera Weapon Shifter is not proficient with Simple Weapons or Martial Weapons. She is proficient with the natural attacks (claw, bite, and so forth) from the shifter claws class feature and forms she assumes with Shifter Aspect and Major Form.
 
@@ -1622,6 +1666,9 @@ Additionally, by spending 1 Chimera Point, as an immediate action, she can shift
 ")
   FeatureLevel.create!(klass_feature_id: shifter12.id, level: 17, table_description: "Multi Form")
 
+print "Shifter features created! \r"
+
+
 swashbuckler1 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Weapon and Armor Proficiency", description: "Swashbucklers are proficient with all simple and martial weapons, as well as light armor and bucklers.")
   FeatureLevel.create!(klass_feature_id: swashbuckler1.id, level: 1, table_description: "none")
 
@@ -1670,6 +1717,9 @@ swashbuckler7 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Swashbuck
 
 swashbuckler8 = KlassFeature.create!(klass_id: swashbuckler.id, name: "Swashbuckler Weapon Mastery", description: "At 20th level, when a swashbuckler threatens a critical hit with a light or one-handed piercing melee weapon, that critical is automatically confirmed. Furthermore, the critical modifiers of such weapons increase by 1 (×2 becomes ×3, and so on).")
   FeatureLevel.create!(klass_feature_id: swashbuckler8.id, level: 20, table_description: "Swashbuckler Weapon Mastery")
+
+print "Swashbuckler features created! \r"
+
 
 unchained_rogue1 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Weapon and Armor Proficiency", description: "Rogues are proficient with all simple weapons, plus the hand crossbow, rapier, sap, short sword, and shortbow. They are proficient with light armor, but not with shields.")
   FeatureLevel.create!(klass_feature_id: unchained_rogue1.id, level: 1, table_description: "none")
@@ -1760,6 +1810,9 @@ If a character already has uncanny dodge from another class, the levels from the
 unchained_rogue12 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Advanced Talents", description: "At 10th level and every 2 levels thereafter, a rogue can choose one of the following advanced talents in place of a rogue talent.")
   FeatureLevel.create!(klass_feature_id: unchained_rogue12.id, level: 10, table_description: "Advanced Talents")
 
+print "Unchained Rogue features created! \r"
+
+
 unchained_rogue13 = KlassFeature.create!(klass_id: unchained_rogue.id, name: "Master Strike", description: "At 20th level, an rogue becomes incredibly deadly when dealing sneak attack damage. Each time the rogue deals sneak attack damage, she can choose one of the following three effects: the target can be put to sleep for 1d4 hours, paralyzed for 2d6 rounds, or slain. Regardless of the effect chosen, the target can attempt a Fortitude save to negate the additional effect. The DC of this save is equal to 10 + 1/2 the rogue’s level + the rogue’s Dexterity modifier. Once a creature has been the target of a master strike, regardless of whether or not the save is successful, that creature is immune to that rogue’s master strike for 24 hours. Creatures that are immune to sneak attack damage are also immune to this ability.")
   FeatureLevel.create!(klass_feature_id: unchained_rogue13.id, level: 20, table_description: "Master Strike")
 
@@ -1776,6 +1829,12 @@ unchained_barbarian1 = KlassFeature.create!(klass_id: unchained_barbarian.id, na
 
 unchained_barbarian2 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Fast Movement", description: "A barbarian’s base speed is faster than the norm for her race by 10 feet. This benefit applies only when she is wearing no armor, light armor, or medium armor, and not carrying a heavy load. Apply this bonus before modifying the barbarian’s speed because of any load carried or armor worn. This bonus stacks with any other bonuses to the barbarian’s base speed.")
   FeatureLevel.create!(klass_feature_id: unchained_barbarian2.id, level: 1, table_description: "Fast Movement")
+  unchained_barbarian2_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: unchained_barbarian2.id, feature_id: unchained_barbarian2_feature.id)
+    FeatureMovement.create!(feature_id: unchained_barbarian2_feature.id, movement: "Base", feet: 10, bonus: true, permanent: true)
+    FeatureCondition.create!(feature_id: unchained_barbarian2_feature.id, unless_wearing: "Heavy", unless_load: "Heavy")
+    FeatureApplication.create!(feature_id: unchained_barbarian2_feature.id, calculate_before: "load")
+    FeatureApplication.create!(feature_id: unchained_barbarian2_feature.id, calculate_before: "armor")
 
 unchained_barbarian3 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Rage", description: "A barbarian can call upon inner reserves of strength and ferocity, granting her additional combat prowess. At 1st level, a barbarian can rage for a number of rounds per day equal to 4 + her Constitution modifier. For each level after 1st she possesses, the barbarian can rage for 2 additional rounds per day. Temporary increases to Constitution, such as that gained from bear’s endurance, do not increase the total number of rounds that a barbarian can rage per day. A barbarian can enter a rage as a free action. The total number of rounds of rage per day is renewed after resting for 8 hours, although these hours need not be consecutive.
 
@@ -1784,17 +1843,20 @@ While in a rage, a barbarian gains a +2 bonus on melee attack rolls, melee damag
 A barbarian can end her rage as a free action, and is fatigued for 1 minute after a rage ends. A barbarian can’t enter a new rage while fatigued or exhausted, but can otherwise enter a rage multiple times per day. If a barbarian falls unconscious, her rage immediately ends.")
   FeatureLevel.create!(klass_feature_id: unchained_barbarian3.id, level: 1, table_description: "Rage")
   unchained_barbarian_feature_3 = Feature.create!(name: nil, action_id: free.id)
-    KlassFeatureFeature.create!(klass_feature: unchained_barbarian3, feature_id: unchained_barbarian_feature_3.id)
+    KlassFeatureFeature.create!(klass_feature_id: unchained_barbarian3.id, feature_id: unchained_barbarian_feature_3.id)
     FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Attack', bonus: 2, bonus_type: 'untyped', duration: 'temporary', specific_statistic: 'melee')
     FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Damage', bonus: 2, bonus_type: 'untyped', duration: 'temporary', specific_statistic: 'melee')
     FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Damage', bonus: 2, bonus_type: 'untyped', duration: 'temporary', specific_statistic: 'thrown')
     FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Will', bonus: 2, bonus_type: 'untyped', duration: 'temporary')
     FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Armor Class', bonus: 2, bonus_type: 'untyped', duration: 'temporary')
-    FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Hit Points', bonus: 2, bonus_type: 'temporary', duration: 'temporary', bonus_multiplier: 'level')
-    FeatureUsage.create!(feature_id: unchained_barbarian_feature_3.id, limit_frequency: 'Round', unit: 'rounds', adjustable: true, toggleable: true, base_limit: 4, base_limit_modifier: 'constitution', limit_increase_per_level: 2, toggle_off_action_id: free.id, expend_frequency: 'Round')
+    FeatureStatBonus.create!(feature_id: unchained_barbarian_feature_3.id, statistic: 'Hit Points', bonus: 2, bonus_type: 'temporary', duration: 'temporary', bonus_multiplier: 'level', bonus_multiplier_based_on_feature_level: true)
+    FeatureUsage.create!(feature_id: unchained_barbarian_feature_3.id, limit_frequency: 'Day', unit: 'round', adjustable: true, toggleable: true, base_limit: 4, base_limit_modifier: 'constitution', limit_increase_per_level: 2, toggle_off_action_id: free.id, expend_frequency: 'Round')
     FeatureCondition.create!(feature_id: unchained_barbarian_feature_3.id, affected_by_temporary_stat_bonus: false)
     FeatureCondition.create!(feature_id: unchained_barbarian_feature_3.id, if_affected_by_condition: 'fatigued')
     FeatureCondition.create!(feature_id: unchained_barbarian_feature_3.id, if_affected_by_condition: 'exhausted')
+  unchained_barbarian_feature_3_after = Feature.create!(name: nil, after: true)
+    KlassFeatureFeature.create!(feature_id: unchained_barbarian_feature_3_after.id, klass_feature_id: unchained_barbarian3.id)
+    FeatureStatusCondition.create!(feature_id: unchained_barbarian_feature_3_after.id, condition: "Fatigued")
 
 
 unchained_barbarian4 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Rage Powers", description: "As a barbarian gains levels, she learns to use her rage in new ways. At 2nd level and every 2 levels thereafter, the barbarian gains a rage power. A barbarian gains the benefits of rage powers only while raging. Some of these powers are always active during a rage, and others require the barbarian to take an action to use them. Unless otherwise noted, a barbarian cannot select an individual power more than once.
@@ -1847,6 +1909,9 @@ unchained_barbarian11 = KlassFeature.create!(klass_id: unchained_barbarian.id, n
 
 unchained_barbarian12 = KlassFeature.create!(klass_id: unchained_barbarian.id, name: "Mighty Rage", description: "At 20th level, a barbarian’s bonus on melee attack rolls, melee damage rolls, thrown weapon damage rolls, and Will saves while raging increases to +4. In addition, the amount of temporary hit points gained when entering a rage increases to 4 per Hit Die.")
   FeatureLevel.create!(klass_feature_id: unchained_barbarian12.id, level: 20, table_description: "Mighty Rage")
+
+print "Unchained Barbarian features created! \r"
+
 
 brawler1 = KlassFeature.create!(klass_id: brawler.id, name: "Weapon and Armor Proficiency", description: "A brawler is proficient with all simple weapons plus the handaxe, short sword, and weapons from the close fighter weapon group. She is proficient with light armor and shields (except tower shields).")
   FeatureLevel.create!(klass_feature_id: brawler1.id, level: 1, table_description: "none")
@@ -1949,6 +2014,9 @@ brawler13 = KlassFeature.create!(klass_id: brawler.id, name: "Awesome Blow", des
 brawler14 = KlassFeature.create!(klass_id: brawler.id, name: "Improved Awesome Blow", description: "At 20th level, the brawler can use her awesome blow ability as an attack rather than as a standard action. She may use it on creatures of any size. If the maneuver roll is a natural 20, the brawler can immediately attempt to confirm the critical by rolling another combat maneuver check with all the same modifiers as the one just rolled; if the confirmation roll is successful, the attack deals double damage, and the damage from hitting an obstacle (if any) is also doubled.")
   FeatureLevel.create!(klass_feature_id: brawler14.id, level: 20, table_description: "Improved Awesome Blow")
 
+print "Brawler features created! \r"
+
+
 alchemist1 = KlassFeature.create!(klass_id: alchemist.id, name: "Weapon and Armor Proficiency", description: "Alchemists are proficient with all simple weapons and bombs. They are also proficient with light armor, but not with shields.")
   FeatureLevel.create!(klass_feature_id: alchemist1.id, level: 1, table_description: "")
 
@@ -2006,6 +2074,9 @@ alchemist7 = KlassFeature.create!(klass_id: alchemist.id, name: "Discovery", des
   FeatureLevel.create!(klass_feature_id: alchemist7.id, level: 16, table_description: "Discovery")
   FeatureLevel.create!(klass_feature_id: alchemist7.id, level: 18, table_description: "Discovery")
 
+print "Alchemist features created! \r"
+
+
 # IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
   # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
 
@@ -2056,6 +2127,8 @@ Spellcasting.create!(klass_feature_id: arcanist2.id, ability_score: "Intelligenc
 
 Spellcasting.create!(klass_feature_id: alchemist2.id, ability_score: "Intelligence", prepared: true, limited: true, expendable: true, infinite_zero_level: false, bonus_spells: true, klass_spell_list_id: alchemist.id, alchemy: true)
 
+
+puts "Classes Created!"
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells Per Day!-*-*-*-----*-*->
@@ -3089,6 +3162,8 @@ sp10 = Spell.create!(name: "Mage Hand", description: "You point your finger at a
   # mage_hand_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp10.id, spell_level: 0)
   # mage_hand_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp10.id, spell_level: 0)
 
+print "10 Spells Created \r"
+
 sp11 = Spell.create!(name: "Suggestion", description: "You influence the actions of the target creature by suggesting a course of activity (limited to a sentence or two). The suggestion must be worded in such a manner as to make the activity sound reasonable. Asking the creature to do some obviously harmful act automatically negates the effect of the spell.
 
 The suggested course of activity can continue for the entire duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do. You can instead specify conditions that will trigger a special activity during the duration. If the condition is not met before the spell duration expires, the activity is not performed.
@@ -3226,6 +3301,8 @@ Dancing lights can be made permanent with a permanency spell.", target: "Up to f
   # dancing_lights_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp20.id, spell_level: 0)
   # dancing_lights_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp20.id, spell_level: 0)
   # dancing_lights_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp20.id, spell_level: 0)
+
+print "20 Spells Created \r"
 
 sp21 = Spell.create!(name: "Resistance", description: "You imbue the subject with magical energy that protects it from harm, granting it a +1 resistance bonus on saves.
 
@@ -3370,6 +3447,8 @@ sp30 = Spell.create!(name: "Shadow Trap", description: "You pin the target’s s
   # shadow_trap_occultist = KlassSpell.create!(klass_id: occultist.id, spell_id: sp30.id, spell_level: 1)
   # shadow_trap_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp30.id, spell_level: 1)
   # shadow_trap_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp30.id, spell_level: 1)
+
+print "30 Spells Created \r"
 
 sp31 = Spell.create!(name: "Arcane Disruption", description: "This spell makes it difficult for the subject to cast arcane spells, use spell-like abilities, and use some abilities granted by arcane spellcasting classes. The subject must succeed at a concentration check (DC = 10 + 1/2 its caster level) in order to cast an arcane spell, use any spell-like ability (even those that come from a divine source), use arcane spell completion or spell trigger magic items, or use any of the following class features that come from an arcane spellcasting class: arcane school powers, arcanist exploits, bardic performances, magus arcana, or witch hexes. Spells, spell-like abilities, or class features that take a free, swift, or immediate action aren’t affected by this spell, nor are mythic spells or mythic powers.
 
@@ -3535,6 +3614,8 @@ The subject can attempt a Fortitude saving throw each round to reduce the damage
   # trial_of_fire_and_acid_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp40.id, spell_level: 3)
   # trial_of_fire_and_acid_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp40.id, spell_level: 3)
 
+print "40 Spells Created \r"
+
 sp41 = Spell.create!(name: "Unerring Weapon", description: "This spell causes a weapon to veer closer to vital areas, improving the result of a critical threat. This transmutation grants a +2 bonus on attack rolls to confirm critical hits plus 1 additional bonus point per four caster levels (maximum total bonus +7). If the spell is cast on projectiles, the effect ends on a specific projectile whenever that projectile is used to make an attack, regardless of whether the attack hits. For this spell, shuriken are considered projectiles.", target: "one weapon or 20 projectiles, all of which must be together at the time of casting", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: sp41.id, component_id: verbal.id, item: nil)
   SpellComponent.create!(spell_id: sp41.id, component_id: somatic.id, item: nil)
@@ -3656,6 +3737,8 @@ sp50 = Spell.create!(name: "Ray of Enfeeblement", description: "A coruscating ra
   ray_of_enfeeblement_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp50.id, spell_level: 1)
   # ray_of_enfeeblement_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp50.id, spell_level: 1)
   # ray_of_enfeeblement_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp50.id, spell_level: 1)
+
+print "50 Spells Created \r"
 
 sp51 = Spell.create!(name: "Ear-Piercing Scream", description: "You unleash a powerful scream, inaudible to all but a single target. The target is dazed for 1 round and takes 1d6 points of sonic damage per two caster levels (maximum 5d6). A successful save negates the daze effect and halves the damage.", target: "one creature", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp51.id, subschool_id: sonic.id)
@@ -3785,6 +3868,8 @@ Magic fang can be made permanent with a permanency spell.", target: "living crea
   magic_fang_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp60.id, spell_level: 1)
   # magic_fang_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp60.id, spell_level: 1)
   # magic_fang_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp60.id, spell_level: 1)
+
+print "60 Spells Created \r"
 
 sp61 = Spell.create!(name: "Greater Magic Fang", description: "This spell functions like magic fang, except that the enhancement bonus on attack and damage rolls is +1 per four caster levels (maximum +5). This bonus does not allow a natural weapon or unarmed strike to bypass damage reduction aside from magic.
 
@@ -3924,6 +4009,8 @@ sp70 = Spell.create!(name: "Touch of the Sea", description: "You cause webs to g
   # touch_of_the_sea_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp70.id, spell_level: 1)
   # touch_of_the_sea_druid = KlassSpell.create!(klass_id: druid.id, spell_id: sp70.id, spell_level: 1)
   touch_of_the_sea_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp70.id, spell_level: 1)
+
+print "70 Spells Created \r"
 
 sp71 = Spell.create!(name: "Hydraulic Push", description: "You call forth a quick blast of water that knocks over and soaks one creature or square. You can use this blast of water to make a bull rush against any one creature or object. Your CMB for this bull rush is equal to your caster level plus your Intelligence, Wisdom, or Charisma modifier, whichever is highest. This bull rush does not provoke an attack of opportunity. Hydraulic push extinguishes any normal fires on a creature, object, or in a single 5-foot square which it is targeted against. Magical fires are unaffected.", target: "one creature or object", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp71.id, subschool_id: water.id)
@@ -4072,6 +4159,8 @@ sp80 = Spell.create!(name: "Charm Monster", description: "This spell functions l
   charm_monster_unchained_summoner = KlassSpell.create!(klass_id: unchained_summoner.id, spell_id: sp80.id, spell_level: 4)
   charm_monster_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp80.id, spell_level: 4)
 
+print "80 Spells Created \r"
+
 sp81 = Spell.create!(name: "Gentle Repose", description: "You preserve the remains of a dead creature so that they do not decay. Doing so effectively extends the time limit on raising that creature from the dead (see raise dead). Days spent under the influence of this spell don’t count against the time limit. Additionally, this spell makes transporting a slain (and thus decaying) comrade less unpleasant.
 
 The spell also works on severed body parts and the like.", target: "corpse touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: necromancy.id, duration: "1 day/level", time: 1, unit_of_time: "day", increase_per_level: 1, dismissible: false, concentration: false)
@@ -4195,6 +4284,8 @@ sp90 = Spell.create!(name: "Horrid Wilting", description: "This spell evaporates
   # horrid_wilting_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp90.id, spell_level: 8)
   horrid_wilting_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp90.id, spell_level: 8)
 
+print "90 Spells Created \r"
+
 sp91 = Spell.create!(name: "Wail of the Banshee", description: "When you cast this spell, you emit a terrible, soul-chilling scream that possibly kills creatures that hear it (except for yourself). The spell affects up to one creature per caster level, inflicting 10 points of damage per caster level. Creatures closest to the point of origin are affected first.", target: "one living creature/level within a 40-ft.-radius spread", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp91.id, subschool_id: death.id)
   SpellSubschool.create!(spell_id: sp91.id, subschool_id: sonic.id)
@@ -4311,6 +4402,8 @@ For every two caster levels beyond 1st, you gain an additional missile – two a
   # magic_missile_psychic = KlassSpell.create!(klass_id: psychic.id, spell_id: sp100.id, spell_level: 1)
   magic_missile_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp100.id, spell_level: 1)
 
+print "100 Spells Created \r"
+
 sp101 = Spell.create!(name: "Touch of Fatigue", description: "You channel negative energy through your touch, fatiguing the target. You must succeed on a touch attack to strike a target. The subject is immediately fatigued for the spell’s duration.
 
 This spell has no effect on a creature that is already fatigued. Unlike with normal fatigue, the effect ends as soon as the spell’s duration expires.", target: "creature touched", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: necromancy.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
@@ -4423,6 +4516,8 @@ sp110 = Spell.create!(name: "Mass Cure Light Wounds", description: "You channel 
   # mass_cure_light_wounds_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp110.id, spell_level: 5)
   mass_cure_light_wounds_witch = KlassSpell.create!(klass_id: witch.id, spell_id: sp110.id, spell_level: 6)
 
+print "110 Spells Created \r"
+
 sp111 = Spell.create!(name: "Music of the Spheres", description: "The music of the spheres is the harmonic constant that plays under and through all of reality. It is this constant song, this otherworldly music, that keeps the laws of reality constant and the connections between the planes of existence strong.
 
 With this spell, one can amplify the underlying music of the spheres in the spell’s area of effect to infuse yourself and all creatures within 20 feet of you, friend and foe alike. All creatures that begin their turn within the area of this spell’s effect gain fast healing 5, resistance 10 to all energy types, and a +3 sacred bonus on all saving throws against poison and disease. Any creature that enters the area of effect does not gain the benefits of the music of the spheres until it begins its turn in that area. You must maintain concentration on the amplification of the music or the effects immediately end, but you can move around to prevent enemies from gaining the benefits of this spell.", target: "20-ft.-radius spherical emanation, centered on you", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: twenty_feet.id, magic_school_id: conjuration.id, duration: "concentration, up to 1 round per level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: true)
@@ -4522,6 +4617,8 @@ sp120 = Spell.create!(name: "Admonishing Ray", description: "You blast your enem
   SpellComponent.create!(spell_id: sp120.id, component_id: somatic.id, item: nil)
   admonishing_ray_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp120.id, spell_level: 2)
   admonishing_ray_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp120.id, spell_level: 2)
+
+print "120 Spells Created \r"
 
 sp121 = Spell.create!(name: "Twisted Futures", description: "By rearranging the threads of fate, you disrupt fortunate outcomes for other creatures. A creature affected by this spell is unable to benefit from effects that grant the ability to roll multiple times and take the higher result (like the swashbuckler’s charmed life ability) or to choose the die result in lieu of rolling (like the wizard’s prescience school power or the cyclops’s flash of insight ability). This doesn’t affect abilities that force a creature to take the lower of two rolls, such as ill omen or a pugwampi’s unluck aura. A cyclops can’t use its flash of insight ability to save against this spell.", target: "one creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: divination.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: sp121.id, component_id: verbal.id, item: nil)
@@ -4686,6 +4783,8 @@ If the plants in the area are covered in thorns, those in the area take 1 point 
   # entangle_ranger = KlassSpell.create!(klass_id: ranger.id, spell_id: sp130.id, spell_level: 1)
   # entangle_shaman = KlassSpell.create!(klass_id: shaman.id, spell_id: sp130.id, spell_level: 1)
 
+print "130 Spells Created \r"
+
 sp131 = Spell.create!(name: "Glitterdust", description: "A cloud of golden particles covers everyone and everything in the area, causing creatures to become blinded and visibly outlining invisible things for the duration of the spell. All within the area are covered by the dust, which cannot be removed and continues to sparkle until it fades. Each round at the end of their turn blinded creatures may attempt new saving throws to end the blindness effect.
 
 Any creature covered by the dust takes a -40 penalty on Stealth checks.", target: "creatures and objects within 10-ft.-radius spread", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
@@ -4823,6 +4922,8 @@ Torso: You gain a +6 competence bonus on Fortitude saving throws and concentrati
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
   # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
   # var = KlassSpell.create!(klass_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+puts "Spells Created!"
 
 # ////////////////////////////////////////////////////
 # <-*-*-----*-*-*- Favored Klass Bonus!-*-*-*-----*-*->
@@ -5358,6 +5459,8 @@ The wearer can use both gloves in the same round using two-weapon fighting or mu
 #       FeatureStateBonusCondition.create!(feature_stat_bonus_id: IDENTIFIER_featureVAR_stat1.id, condition: '')
 #     FeatureStatNote.create!(feature_id: IDENTIFIER_featureVAR.id, statistic: '', note: '')
 #     FeatureLanguage.create!(feature_id: IDENTIFIER_featureVAR.id, language: '', note: '')
+
+puts "Magic Items Created!"
 
 
 # //////////////////////////////////////////////////////

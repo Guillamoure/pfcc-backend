@@ -177,6 +177,12 @@ class Api::V1::CharEditsController < ApplicationController
 
       end
     end
+    # reset all day frequency limited class features
+    @char.character_klass_feature_usages.each do |ckfu|
+      if ckfu.feature_usage.limit_frequency == "Day"
+        ckfu.update(current_usage: 0)
+      end
+    end
 
     # serialize
     render json: { character: CharacterSerializer.new(@char) }, status: 201

@@ -15,5 +15,7 @@ class Feature < ApplicationRecord
   has_many :weapon_proficiencies, class_name: 'FeatureWeaponProficiency'
   has_many :armor_proficiencies, class_name: 'FeatureArmorProficiency'
   has_many :conditions, class_name: 'FeatureCondition'
+  has_many :applications, class_name: 'FeatureApplication'
+  has_many :status_conditions, class_name: 'FeatureStatusCondition'
 
 end
