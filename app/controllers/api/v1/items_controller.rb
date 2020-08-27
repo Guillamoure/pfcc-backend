@@ -108,7 +108,7 @@ class Api::V1::ItemsController < ApplicationController
   def a_equip
     @character_item = CharacterArmor.find(params[:id])
     @character_item.character.character_armors.each do |ca|
-      if (params[:equipped] && ca.armor.proficiency == @character_item.armor.proficiency && ca.equipped)
+      if ca.equipped
         ca.update(equipped: false)
       end
     end

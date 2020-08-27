@@ -1344,6 +1344,18 @@ print "Fate Weaver features created! \r"
 
 bard1 = KlassFeature.create!(klass_id: bard.id, name: "Weapon and Armor Proficiency", description: "A bard is proficient with all simple weapons, plus the longsword, rapier, sap, shortsword, shortbow, and whip. Bards are also proficient with light armor and shields (except tower shields). A bard can cast bard spells while wearing light armor and using a shield without incurring the normal arcane spell failure chance. Like any other arcane spellcaster, a bard wearing medium or heavy armor incurs a chance of arcane spell failure if the spell in question has a somatic component. A multiclass bard still incurs the normal arcane spell failure chance for arcane spells received from other classes.")
   FeatureLevel.create!(klass_feature_id: bard1.id, level: 1, table_description: "none")
+  bard1_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: bard1.id, feature_id: bard1_feature.id)
+    FeatureWeaponProficiency.create!(feature_id: bard1_feature.id, proficiency_group: "Simple")
+    FeatureWeaponProficiency.create!(feature_id: bard1_feature.id, weapon_id: longsword.id, additive: true)
+    FeatureWeaponProficiency.create!(feature_id: bard1_feature.id, weapon_id: rapier.id, additive: true)
+    FeatureWeaponProficiency.create!(feature_id: bard1_feature.id, weapon_id: sap.id, additive: true)
+    FeatureWeaponProficiency.create!(feature_id: bard1_feature.id, weapon_id: shortsword.id, additive: true)
+    FeatureWeaponProficiency.create!(feature_id: bard1_feature.id, weapon_id: shortbow.id, additive: true)
+    FeatureWeaponProficiency.create!(feature_id: bard1_feature.id, weapon_id: whip.id, additive: true)
+    FeatureArmorProficiency.create!(feature_id: bard1_feature.id, proficiency_group: "Light")
+    FeatureArmorProficiency.create!(feature_id: bard1_feature.id, proficiency_group: "Shield")
+    FeatureArmorProficiency.create!(feature_id: bard1_feature.id, armor_id: tower_shield.id, additive: false)
 
 bard2 = KlassFeature.create!(klass_id: bard.id, name: "Spells", description: "A bard casts arcane spells drawn from the bard spell list. He can cast any spell he knows without preparing it ahead of time. Every bard spell has a verbal component (singing, reciting, or music). To learn or cast a spell, a bard must have a Charisma score equal to at least 10 + the spell level. The Difficulty Class (DC) for a saving throw against a bard’s spell is 10 + the spell level + the bard’s Charisma modifier.
 
@@ -1360,6 +1372,9 @@ Cantrips: Bard’s learn a number of cantrips, or 0-level spells, as noted on Ta
 
 bard3 = KlassFeature.create!(klass_id: bard.id, name: "Bardic Knowledge", description: "A bard adds half his class level (minimum 1) to all Knowledge skill checks and may make all Knowledge skill checks untrained.")
   FeatureLevel.create!(klass_feature_id: bard3.id, level: 1, table_description: "Bardic Knowledge")
+  bard3_feature = Feature.create!()
+    KlassFeatureFeature.create!(feature_id: bard3_feature.id, klass_feature_id: bard3.id)
+    FeatureSkillBonus.create!(feature_id: bard3_feature.id, skill_id: nil, bonus: 0.5, bonus_type: "untyped", duration: "permanent", specific_statistic: "Knowledge", bonus_multiplier: "level", round_down: true, minimum_bonus: 1, bonus_multiplier_based_on_feature_level: true)
 
 bard4 = KlassFeature.create!(klass_id: bard.id, name: "Bardic Performance", description: "A bard is trained to use the Perform skill to create magical effects on those around him, including himself if desired. He can use this ability for a number of rounds per day equal to 4 + his Charisma modifier. At each level after 1st a bard can use bardic performance for 2 additional rounds per day. Each round, the bard can produce any one of the types of bardic performance that he has mastered, as indicated by his level.
 
@@ -1373,12 +1388,25 @@ If a bardic performance has audible components, the targets must be able to hear
 
 If a bardic performance has a visual component, the targets must have line of sight to the bard for the performance to have any effect. A blind bard has a 50% chance to fail when attempting to use a bardic performance with a visual component. If he fails this check, the attempt still counts against his daily limit. Blind creatures are immune to bardic performances with visual components.")
   FeatureLevel.create!(klass_feature_id: bard4.id, level: 1, table_description: "Bardic Performance")
+  bard4_feature = Feature.create!(action_id: standard.id)
+    KlassFeatureFeature.create!(feature_id: bard4_feature.id, klass_feature_id: bard4.id)
+    bard4_feature_usage = FeatureUsage.create!(feature_id: bard4_feature.id, limit_frequency: "Day", unit: "rounds", adjustable: true, toggleable: true, base_limit: 4, base_limit_modifier: "charisma", limit_increase_per_level: 2, toggle_off_action_id: free.id, expend_frequency: "Round", maintain_action_id: free.id)
+    FeatureAlternateAction.create!(feature_id: bard4_feature.id, level: 7, action_id: move.id)
+    FeatureAlternateAction.create!(feature_id: bard4_feature.id, level: 13, action_id: swift.id)
 
 bard5 = KlassFeature.create!(klass_id: bard.id, name: "Countersong", description: "At 1st level, a bard learns to counter magic effects that depend on sound (but not spells that have verbal components.) Each round of the countersong he makes a Perform (keyboard, percussion, wind, string, or sing) skill check. Any creature within 30 feet of the bard (including the bard himself) that is affected by a sonic or language-dependent magical attack may use the bard’s Perform check result in place of its saving throw if, after the saving throw is rolled, the Perform check result proves to be higher. If a creature within range of the countersong is already under the effect of a non-instantaneous sonic or language-dependent magical attack, it gains another saving throw against the effect each round it hears the countersong, but it must use the bard’s Perform skill check result for the save. Countersong does not work on effects that don’t allow saves. Countersong relies on audible components.")
   FeatureLevel.create!(klass_feature_id: bard5.id, level: 1, table_description: "Countersong")
+  bard5_feature = Feature.create!()
+    KlassFeatureFeature.create!(feature_id: bard5_feature.id, klass_feature_id: bard5.id)
+    bard5_feature_usage = FeatureUsage.create!(feature_id: bard5_feature.id)
+    FeatureUsageFeatureOption.create!(base_feature_usage_id: bard4_feature_usage.id, option_feature_usage_id: bard5_feature_usage.id, option_name: "Bardic Performance", cost: 1)
 
 bard6 = KlassFeature.create!(klass_id: bard.id, name: "Distraction", description: "At 1st level, a bard can use his performance to counter magic effects that depend on sight. Each round of the Distraction, he makes a Perform (act, comedy, dance, or oratory) skill check. Any creature within 30 feet of the bard (including the bard himself) that is affected by an illusion (pattern) or illusion (figment) magical attack may use the bard’s Perform check result in place of its saving throw if, after the saving throw is rolled, the Perform check result proves to be higher. If a creature within range of the Distraction is already under the effect of a non-instantaneous illusion (pattern) or illusion (figment) magical attack, it gains another saving throw against the effect each round it sees the Distraction, but it must use the bard’s Perform check result for the save. Distraction does not work on effects that don’t allow saves. Distraction relies on visual components.")
   FeatureLevel.create!(klass_feature_id: bard6.id, level: 1, table_description: "Distraction")
+  bard6_feature = Feature.create!()
+    KlassFeatureFeature.create!(feature_id: bard6_feature.id, klass_feature_id: bard6.id)
+    bard6_feature_usage = FeatureUsage.create!(feature_id: bard6_feature.id)
+    FeatureUsageFeatureOption.create!(base_feature_usage_id: bard4_feature_usage.id, option_feature_usage_id: bard6_feature_usage.id, option_name: "Bardic Performance", cost: 1)
 
 bard7 = KlassFeature.create!(klass_id: bard.id, name: "Fascinate", description: "At 1st level, a bard can use his performance to cause one or more creatures to become fascinated with him. Each creature to be fascinated must be within 90 feet, able to see and hear the bard, and capable of paying attention to him. The bard must also be able to see the creatures affected. The Distraction of a nearby combat or other dangers prevents the ability from working. For every three levels a bard has attained beyond 1st, he can target one additional creature with this ability.
 
@@ -1386,12 +1414,34 @@ Each creature within range receives a Will save (DC 10 + 1/2 the bard’s level 
 
 Fascinate is an enchantment (compulsion), mind-affecting ability. Fascinate relies on audible and visual components in order to function.")
   FeatureLevel.create!(klass_feature_id: bard7.id, level: 1, table_description: "Fascinate")
+  bard7_feature = Feature.create!()
+    KlassFeatureFeature.create!(feature_id: bard7_feature.id, klass_feature_id: bard7.id)
+    bard7_feature_usage = FeatureUsage.create!(feature_id: bard7_feature.id)
+    FeatureUsageFeatureOption.create!(base_feature_usage_id: bard4_feature_usage.id, option_feature_usage_id: bard7_feature_usage.id, option_name: "Bardic Performance", cost: 1)
+    FeatureSavingThrow.create!(feature_id: bard7_feature.id, base: 10, ability_score_modiifer: "charisma", level_modifier: 0.5, saving_throw: "will", bonus_multiplier_based_on_feature_level: true)
 
 bard8 = KlassFeature.create!(klass_id: bard.id, name: "Inspire Courage", description: "A 1st level bard can use his performance to inspire courage in his allies (including himself), bolstering them against fear and improving their combat abilities. To be affected, an ally must be able to perceive the bard’s performance. An affected ally receives a +1 morale bonus on saving throws against charm and fear effects and a +1 competence bonus on attack and weapon damage rolls. At 5th level, and every six bard levels thereafter, this bonus increases by +1, to a maximum of +4 at 17th level. Inspire courage is a mind-affecting ability. inspire courage can use audible or visual components. The bard must choose which component to use when starting his performance.")
   FeatureLevel.create!(klass_feature_id: bard8.id, level: 1, table_description: "Inspire Courage +1")
   FeatureLevel.create!(klass_feature_id: bard8.id, level: 5, table_description: "Inspire Courage +2")
   FeatureLevel.create!(klass_feature_id: bard8.id, level: 11, table_description: "Inspire Courage +3")
   FeatureLevel.create!(klass_feature_id: bard8.id, level: 17, table_description: "Inspire Courage +4")
+  bard8_feature = Feature.create!()
+    KlassFeatureFeature.create!(feature_id: bard8_feature.id, klass_feature_id: bard8.id)
+    bard8_feature_usage = FeatureUsage.create!(feature_id: bard8_feature.id)
+    FeatureUsageFeatureOption.create!(base_feature_usage_id: bard4_feature_usage.id, option_feature_usage_id: bard8_feature_usage.id, option_name: "Bardic Performance", cost: 1)
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Saving Throw", bonus: 1, bonus_type: "morale", duration: "temporary", applicable_level: 1, statistic_details: "charm and fear effects")
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Attack", bonus: 1, bonus_type: "competence", duration: "temporary", applicable_level: 1)
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Damage", bonus: 1, bonus_type: "competence", duration: "temporary", specific_statistic: "weapon", applicable_level: 1)
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Saving Throw", bonus: 2, bonus_type: "morale", duration: "temporary", applicable_level: 5, statistic_details: "charm and fear effects")
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Attack", bonus: 2, bonus_type: "competence", duration: "temporary", applicable_level: 5)
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Damage", bonus: 2, bonus_type: "competence", duration: "temporary", specific_statistic: "weapon", applicable_level: 5)
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Saving Throw", bonus: 3, bonus_type: "morale", duration: "temporary", applicable_level: 11, statistic_details: "charm and fear effects")
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Attack", bonus: 3, bonus_type: "competence", duration: "temporary", applicable_level: 11)
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Damage", bonus: 3, bonus_type: "competence", duration: "temporary", specific_statistic: "weapon", applicable_level: 11)
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Saving Throw", bonus: 4, bonus_type: "morale", duration: "temporary", applicable_level: 17, statistic_details: "charm and fear effects")
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Attack", bonus: 4, bonus_type: "competence", duration: "temporary", applicable_level: 17)
+    FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Damage", bonus: 4, bonus_type: "competence", duration: "temporary", specific_statistic: "weapon", applicable_level: 17)
+    FeatureApplication.create!(feature_id: bard8_feature.id, affects_allies: true)
 
 bard9 = KlassFeature.create!(klass_id: bard.id, name: "Inspire Competence", description: "A bard of 3rd level or higher can use his performance to help an ally succeed at a task. The ally must be within 30 feet and able to see and hear the bard. The ally gets a +2 competence bonus on skill checks with a particular skill as long as she continues to hear the bard’s performance. This bonus increases by +1 for every four levels the bard has attained beyond 3rd (+3 at 7th, +4 at 11th, +5 at 15th, and +6 at 19th).
 
@@ -1401,6 +1451,7 @@ Certain uses of this ability are infeasible, such as Stealth, and may be disallo
   FeatureLevel.create!(klass_feature_id: bard9.id, level: 11, table_description: "Inspire Competence +4")
   FeatureLevel.create!(klass_feature_id: bard9.id, level: 15, table_description: "Inspire Competence +5")
   FeatureLevel.create!(klass_feature_id: bard9.id, level: 19, table_description: "Inspire Competence +6")
+
 
 bard10 = KlassFeature.create!(klass_id: bard.id, name: "Suggestion", description: "A bard of 6th level or higher can use his performance to make a suggestion (as per the spell) to a creature that he has already fascinated (see above). Using this ability does not disrupt the fascinate effect, but it does require a standard action to activate (in addition to the free action to continue the fascinate effect). A bard can use this ability more than once against an individual creature during an individual performance.
 
@@ -1854,7 +1905,7 @@ A barbarian can end her rage as a free action, and is fatigued for 1 minute afte
     FeatureCondition.create!(feature_id: unchained_barbarian_feature_3.id, affected_by_temporary_stat_bonus: false)
     FeatureCondition.create!(feature_id: unchained_barbarian_feature_3.id, if_affected_by_condition: 'fatigued')
     FeatureCondition.create!(feature_id: unchained_barbarian_feature_3.id, if_affected_by_condition: 'exhausted')
-  unchained_barbarian_feature_3_after = Feature.create!(name: nil, after: true)
+  unchained_barbarian_feature_3_after = Feature.create!(name: "Fatigued (Rage)", after: true)
     KlassFeatureFeature.create!(feature_id: unchained_barbarian_feature_3_after.id, klass_feature_id: unchained_barbarian3.id)
     FeatureStatusCondition.create!(feature_id: unchained_barbarian_feature_3_after.id, condition: "Fatigued")
 
@@ -5814,43 +5865,50 @@ Idea.create!(content: "Psychopomp")
 # <-*-*-----*-*-*- Testing!-*-*-*-----*-*->
 # ///////////////////////////////////////
 
-barb = Character.create!(user_id: admin.id, name: "Test", strength: 16, dexterity: 13, constitution: 14, intelligence: 12, wisdom: 8, charisma: 10, race_id: human.id, skillset_id: dmc.id, alignment: 'chaotic neutral', campaign_id: current_campaign.id)
+test_character = Character.create!(user_id: admin.id, name: "Test", strength: 11, dexterity: 15, constitution: 13, intelligence: 8, wisdom: 10, charisma: 16, race_id: human.id, skillset_id: dmc.id, alignment: 'chaotic neutral', campaign_id: current_campaign.id)
 
-CharacterKlass.create!(character_id: barb.id, klass_id: unchained_barbarian.id, hp: 12, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+CharacterKlass.create!(character_id: test_character.id, klass_id: bard.id, hp: 12, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: dagger.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: dagger.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: sai.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: rapier.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: quarterstaff.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: quarterstaff.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: greatsword.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: greatsword.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: orc_double_axe.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: whip.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: longbow.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: longbow.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: sling.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: sling.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: light_crossbow.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: light_crossbow.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: warhammer.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: sap.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: shortsword.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: shortsword.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: crossbow_bolt.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "", ammunition_amount: 20)
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: crossbow_bolt.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "", ammunition_amount: 20)
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: sling_bullet.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "", ammunition_amount: 30)
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: sling_bullet.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "", ammunition_amount: 30)
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: club.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: club.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: trident.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: longsword.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: bastard_sword.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: shortbow.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: halfling_sling_staff.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: halfling_sling_staff.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
-CharacterWeapon.create!(character_id: barb.id, weapon_id: shuriken.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "", ammunition_amount: 12)
+CharacterWeapon.create!(character_id: test_character.id, weapon_id: shuriken.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "", ammunition_amount: 12)
 
-ca1 = CharacterArmor.create!(character_id: barb.id, armor_id: padded.id, description: "")
-CharacterArmor.create!(character_id: barb.id, armor_id: armor_spikes.id, description: "", extra_armor_id: ca1.id)
+CharacterArmor.create!(character_id: test_character.id, armor_id: padded.id, description: "", discovered: true, known: true)
+CharacterArmor.create!(character_id: test_character.id, armor_id: chainmail.id, description: "", discovered: true, known: true)
+CharacterArmor.create!(character_id: test_character.id, armor_id: full_plate.id, description: "", discovered: true, known: true)
+
+CharacterSkillsetSkill.create!(character_id: test_character.id, skillset_id: dmc.id, skill_id: acrobatics.id, ranks: 1)
+CharacterSkillsetSkill.create!(character_id: test_character.id, skillset_id: dmc.id, skill_id: climb.id, ranks: 1)
+CharacterSkillsetSkill.create!(character_id: test_character.id, skillset_id: dmc.id, skill_id: finesse_unchained.id, ranks: 1)
+CharacterSkillsetSkill.create!(character_id: test_character.id, skillset_id: dmc.id, skill_id: diplomacy.id, ranks: 1)
+CharacterSkillsetSkill.create!(character_id: test_character.id, skillset_id: dmc.id, skill_id: religion_unchained.id, ranks: 1)

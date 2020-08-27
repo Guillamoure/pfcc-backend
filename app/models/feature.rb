@@ -17,5 +17,7 @@ class Feature < ApplicationRecord
   has_many :conditions, class_name: 'FeatureCondition'
   has_many :applications, class_name: 'FeatureApplication'
   has_many :status_conditions, class_name: 'FeatureStatusCondition'
+  has_many :alternate_actions, class_name: 'FeatureAlternateAction'
+  has_many :saving_throws, class_name: 'FeatureSavingThrow'
 
 end

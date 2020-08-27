@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_013744) do
+ActiveRecord::Schema.define(version: 2020_08_27_035957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,6 +261,12 @@ ActiveRecord::Schema.define(version: 2020_08_23_013744) do
     t.integer "level"
   end
 
+  create_table "feature_alternate_actions", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "level"
+    t.integer "action_id"
+  end
+
   create_table "feature_applications", force: :cascade do |t|
     t.integer "feature_id"
     t.string "calculate_before"
@@ -332,13 +338,27 @@ ActiveRecord::Schema.define(version: 2020_08_23_013744) do
     t.integer "level_available"
   end
 
+  create_table "feature_saving_throws", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "base"
+    t.string "ability_score_modiifer"
+    t.float "level_modifier"
+    t.string "saving_throw"
+    t.boolean "bonus_multiplier_based_on_feature_level", default: false
+  end
+
   create_table "feature_skill_bonus", force: :cascade do |t|
     t.integer "feature_id"
     t.integer "skill_id"
-    t.integer "bonus"
     t.string "bonus_type"
     t.string "duration"
     t.string "custom"
+    t.string "specific_statistic"
+    t.string "bonus_multiplier"
+    t.boolean "round_down"
+    t.integer "minimum_bonus"
+    t.boolean "bonus_multiplier_based_on_feature_level", default: false
+    t.float "bonus"
   end
 
   create_table "feature_skill_notes", force: :cascade do |t|
@@ -356,6 +376,8 @@ ActiveRecord::Schema.define(version: 2020_08_23_013744) do
     t.string "duration"
     t.string "specific_statistic"
     t.string "bonus_multiplier"
+    t.integer "applicable_level"
+    t.string "statistic_details"
     t.boolean "bonus_multiplier_based_on_feature_level", default: false
   end
 
@@ -373,6 +395,13 @@ ActiveRecord::Schema.define(version: 2020_08_23_013744) do
   create_table "feature_status_conditions", force: :cascade do |t|
     t.integer "feature_id"
     t.string "condition"
+  end
+
+  create_table "feature_usage_feature_options", force: :cascade do |t|
+    t.integer "base_feature_usage_id"
+    t.integer "option_feature_usage_id"
+    t.string "option_name"
+    t.integer "cost"
   end
 
   create_table "feature_usage_options", force: :cascade do |t|
@@ -404,6 +433,7 @@ ActiveRecord::Schema.define(version: 2020_08_23_013744) do
     t.integer "limit_increase_per_level"
     t.integer "toggle_off_action_id"
     t.string "expend_frequency"
+    t.integer "maintain_action_id"
   end
 
   create_table "feature_weapon_proficiencies", force: :cascade do |t|
