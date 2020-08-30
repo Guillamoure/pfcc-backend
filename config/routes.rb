@@ -71,6 +71,10 @@ Rails.application.routes.draw do
       get 'campaigns/new', to: 'campaigns#new'
       patch 'campaigns/:id', to: 'campaigns#date_change'
       post 'campaigns/new', to: 'campaigns#create'
+
     end
   end
+
+  mount ActionCable.server => '/cable'
+  
 end

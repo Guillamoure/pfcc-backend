@@ -53,3 +53,5 @@ gem "jwt", "~> 2.2"
 gem "faker", "~> 1.9"
 
 gem "fast_jsonapi"
+
+gem "uuid"
