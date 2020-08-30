@@ -15,29 +15,29 @@ class FeatureUsage < ApplicationRecord
   has_many :usage_bases, through: :feature_usage_bases, source: :base_feature_usage
 
   def all_feature_usage_options
-    self.feature_usage_options.map do |fuo|
+    options = self.feature_usage_options.map do |fuo|
       source = {featureId: fuo.option_feature_usage.feature.id}
       if !!KlassFeatureFeature.find_by(feature_id: source[:featureId])
-        source[:sourceId] = KlassFeatureFeature.find_by(feature_id: 11).klass_feature_id
+        source[:sourceId] = KlassFeatureFeature.find_by(feature_id: source[:featureId]).klass_feature_id
         source[:source] = "applicable_klass_features"
       end
-      return {
-        id: fuo.id, base_feature_usage_id: fuo.base_feature_usage_id, option_feature_usage_id: fuo.option_feature_usage_id, option_name: fuo.option_name, cost: fuo.cost, optionSource: source
-      }
+      {id: fuo.id, base_feature_usage_id: fuo.base_feature_usage_id, option_feature_usage_id: fuo.option_feature_usage_id, option_name: fuo.option_name, cost: fuo.cost, optionSource: source}
     end
+    return options
+
   end
 
-  def all_feature_usage_bases
-    self.feature_usage_bases.map do |fuo|
+  def feature_usage_base
+    bases = self.feature_usage_bases.map do |fuo|
       source = {featureId: fuo.base_feature_usage.feature.id}
       if !!KlassFeatureFeature.find_by(feature_id: source[:featureId])
         source[:sourceId] = KlassFeatureFeature.find_by(feature_id: source[:featureId]).klass_feature_id
         source[:source] = "applicable_klass_features"
       end
-      return {
-        id: fuo.id, base_feature_usage_id: fuo.base_feature_usage_id, option_feature_usage_id: fuo.option_feature_usage_id, option_name: fuo.option_name, cost: fuo.cost, baseSource: source
-      }
+      {id: fuo.id, base_feature_usage_id: fuo.base_feature_usage_id, option_feature_usage_id: fuo.option_feature_usage_id, option_name: fuo.option_name, cost: fuo.cost, baseSource: source}
     end
+    return bases.first
+
   end
 
 
