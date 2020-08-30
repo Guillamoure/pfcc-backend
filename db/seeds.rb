@@ -1418,7 +1418,7 @@ Fascinate is an enchantment (compulsion), mind-affecting ability. Fascinate reli
     KlassFeatureFeature.create!(feature_id: bard7_feature.id, klass_feature_id: bard7.id)
     bard7_feature_usage = FeatureUsage.create!(feature_id: bard7_feature.id)
     FeatureUsageFeatureOption.create!(base_feature_usage_id: bard4_feature_usage.id, option_feature_usage_id: bard7_feature_usage.id, option_name: "Bardic Performance", cost: 1)
-    FeatureSavingThrow.create!(feature_id: bard7_feature.id, base: 10, ability_score_modiifer: "charisma", level_modifier: 0.5, saving_throw: "will", bonus_multiplier_based_on_feature_level: true)
+    FeatureSavingThrow.create!(feature_id: bard7_feature.id, base: 10, ability_score_modifier: "charisma", level_modifier: 0.5, saving_throw: "will", bonus_multiplier_based_on_feature_level: true)
 
 bard8 = KlassFeature.create!(klass_id: bard.id, name: "Inspire Courage", description: "A 1st level bard can use his performance to inspire courage in his allies (including himself), bolstering them against fear and improving their combat abilities. To be affected, an ally must be able to perceive the bard’s performance. An affected ally receives a +1 morale bonus on saving throws against charm and fear effects and a +1 competence bonus on attack and weapon damage rolls. At 5th level, and every six bard levels thereafter, this bonus increases by +1, to a maximum of +4 at 17th level. Inspire courage is a mind-affecting ability. inspire courage can use audible or visual components. The bard must choose which component to use when starting his performance.")
   FeatureLevel.create!(klass_feature_id: bard8.id, level: 1, table_description: "Inspire Courage +1")
