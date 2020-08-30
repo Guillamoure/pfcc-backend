@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_035957) do
+ActiveRecord::Schema.define(version: 2020_08_30_204717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_08_27_035957) do
     t.integer "current_day"
     t.integer "current_year"
     t.string "current_age"
+    t.string "websocket_code"
   end
 
   create_table "cast_spells", force: :cascade do |t|
