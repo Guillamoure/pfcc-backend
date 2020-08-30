@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       resources :prepared_spells
       resources :cast_spells
 
+      get '/new_characters/:id', to: 'characters#new_show'
+
       post '/signup', to: 'users#create'
       post '/login', to: 'users#login'
       get '/profile', to: 'users#profile'
@@ -52,14 +54,23 @@ Rails.application.routes.draw do
       post 'notes', to: 'notes#create'
       patch 'notes/:id', to: 'notes#update'
       delete 'notes/:id', to: 'notes#destroy'
-      patch 'campaigns/:id', to: 'campaigns#date_change'
       patch 'character_max_hp/:id', to: 'char_edits#set_max_hp'
       patch 'character_weapons_discovered/:id', to: 'items#w_discovered'
       patch 'character_weapons_equip/:id', to: 'items#w_equip'
       delete 'character_weapons/:id', to: 'items#weapon_destroy'
       patch 'character_weapons_trade/:id', to: 'items#w_trade'
+      patch 'character_weapons_ammo/:id', to: 'items#w_ammo'
+      patch 'character_weapons_update_ammo/:id', to: 'items#w_update_ammo'
+      patch 'character_armors_discovered/:id', to: 'items#a_discovered'
+      patch 'character_armors_equip/:id', to: 'items#a_equip'
+      get 'actions', to: 'actions#index'
+      patch 'character_klass_feature_usages', to: 'klass_features#usage_update'
 
       get 'ideas/:id', to: 'ideas#index'
+
+      get 'campaigns/new', to: 'campaigns#new'
+      patch 'campaigns/:id', to: 'campaigns#date_change'
+      post 'campaigns/new', to: 'campaigns#create'
     end
   end
 end

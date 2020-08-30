@@ -8,6 +8,8 @@ class KlassFeature < ApplicationRecord
   has_many :klass_feature_features
   has_many :features, through: :klass_feature_features
 
+  has_many :character_klass_feature_usages
+
   validates :name, presence: true
   validates :description, presence: true
   # validate :correct_level_range

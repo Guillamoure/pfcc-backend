@@ -32,4 +32,13 @@ class Api::V1::KlassFeaturesController < ApplicationController
     render json: id, status: 201
   end
 
+  def usage_update
+    @ckfu = CharacterKlassFeatureUsage.find_or_create_by(character_id: params[:character_id], klass_feature_id: params[:klass_feature_id], feature_usage_id: params[:feature_usage_id])
+    puts params
+
+    @ckfu.update(current_usage: params[:current_usage])
+
+    render json: @ckfu, status: 200
+  end
+
 end

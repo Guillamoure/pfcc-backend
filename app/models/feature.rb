@@ -12,5 +12,12 @@ class Feature < ApplicationRecord
   has_many :languages, class_name: 'FeatureLanguage'
   has_one :feature_container
   has_one :loading, class_name: 'FeatureLoading'
+  has_many :weapon_proficiencies, class_name: 'FeatureWeaponProficiency'
+  has_many :armor_proficiencies, class_name: 'FeatureArmorProficiency'
+  has_many :conditions, class_name: 'FeatureCondition'
+  has_many :applications, class_name: 'FeatureApplication'
+  has_many :status_conditions, class_name: 'FeatureStatusCondition'
+  has_many :alternate_actions, class_name: 'FeatureAlternateAction'
+  has_many :saving_throws, class_name: 'FeatureSavingThrow'
 
 end
