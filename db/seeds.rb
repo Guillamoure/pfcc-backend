@@ -2761,6 +2761,8 @@ oum_calendar = Calendar.create!(name: "Oum Calendar", leap_year: false)
 
 current_campaign = Campaign.create!(name: 'Ask Questions Second', current_weekday: 'Everglow', current_month: 'Autumn Festival', current_day: 7, current_age: "5th Age", current_year: 1241, dm_id: admin.id, skillset_id: dmc.id, theme: "", setting: "", custom_notes: "", calendar_id: oum_calendar.id, starting_level: 1, websocket_code: UUID.new.generate)
 
+test_campaign = Campaign.create!(name: "Testing 123 Testing", calendar_id: oum_calendar.id, dm_id: admin.id, skillset_id: dmc.id, starting_level: 1, websocket_code: UUID.new.generate)
+
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Class Skillset Skills!-*-*-*-----*-*->
 # /////////////////////////////////////////
@@ -5867,7 +5869,7 @@ Idea.create!(content: "Psychopomp")
 
 test_character = Character.create!(user_id: admin.id, name: "Test", strength: 11, dexterity: 15, constitution: 13, intelligence: 8, wisdom: 10, charisma: 16, race_id: human.id, skillset_id: dmc.id, alignment: 'chaotic neutral', campaign_id: current_campaign.id)
 
-CharacterKlass.create!(character_id: test_character.id, klass_id: bard.id, hp: 12, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+CharacterKlass.create!(character_id: test_character.id, klass_id: bard.id, hp: 8, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
 
 CharacterWeapon.create!(character_id: test_character.id, weapon_id: dagger.id, masterwork: false, description: '', name: '', discovered: true, known: true, equipped: "")
 
@@ -5912,3 +5914,8 @@ CharacterSkillsetSkill.create!(character_id: test_character.id, skillset_id: dmc
 CharacterSkillsetSkill.create!(character_id: test_character.id, skillset_id: dmc.id, skill_id: finesse_unchained.id, ranks: 1)
 CharacterSkillsetSkill.create!(character_id: test_character.id, skillset_id: dmc.id, skill_id: diplomacy.id, ranks: 1)
 CharacterSkillsetSkill.create!(character_id: test_character.id, skillset_id: dmc.id, skill_id: religion_unchained.id, ranks: 1)
+
+
+test_character_2 = Character.create!(user_id: admin.id, name: "Another Option", strength: 16, dexterity: 13, constitution: 14, intelligence: 8, wisdom: 10, charisma: 11, race_id: human.id, skillset_id: dmc.id, alignment: 'chaotic neutral', campaign_id: current_campaign.id)
+
+CharacterKlass.create!(character_id: test_character_2.id, klass_id: unchained_barbarian.id, hp: 12, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)

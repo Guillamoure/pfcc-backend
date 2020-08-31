@@ -5,9 +5,9 @@ class CampaignsChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    print("-----")
-    print(params)
-    print("-----")
+    puts("-----")
+    puts(params)
+    puts("-----")
     CampaignsChannel.broadcast_to("Campaign-#{params[:campaign_code]}", {data: data})
   end
 
