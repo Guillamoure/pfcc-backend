@@ -1441,7 +1441,7 @@ bard8 = KlassFeature.create!(klass_id: bard.id, name: "Inspire Courage", descrip
     FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Saving Throw", bonus: 4, bonus_type: "morale", duration: "temporary", applicable_level: 17, statistic_details: "charm and fear effects")
     FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Attack", bonus: 4, bonus_type: "competence", duration: "temporary", applicable_level: 17)
     FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Damage", bonus: 4, bonus_type: "competence", duration: "temporary", specific_statistic: "weapon", applicable_level: 17)
-    FeatureApplication.create!(feature_id: bard8_feature.id, affects_allies: true)
+    FeatureApplication.create!(feature_id: bard8_feature.id, affects_allies: true, toggleable: true)
 
 bard9 = KlassFeature.create!(klass_id: bard.id, name: "Inspire Competence", description: "A bard of 3rd level or higher can use his performance to help an ally succeed at a task. The ally must be within 30 feet and able to see and hear the bard. The ally gets a +2 competence bonus on skill checks with a particular skill as long as she continues to hear the bard’s performance. This bonus increases by +1 for every four levels the bard has attained beyond 3rd (+3 at 7th, +4 at 11th, +5 at 15th, and +6 at 19th).
 
@@ -3791,6 +3791,8 @@ sp50 = Spell.create!(name: "Ray of Enfeeblement", description: "A coruscating ra
   # ray_of_enfeeblement_bloodrager = KlassSpell.create!(klass_id: bloodrager.id, spell_id: sp50.id, spell_level: 1)
   # ray_of_enfeeblement_magus = KlassSpell.create!(klass_id: magus.id, spell_id: sp50.id, spell_level: 1)
 
+# rays count as weapons when it comes to bonuses that only apply to weapons damage (i.e., bard's inspire courage)
+
 print "50 Spells Created \r"
 
 sp51 = Spell.create!(name: "Ear-Piercing Scream", description: "You unleash a powerful scream, inaudible to all but a single target. The target is dazed for 1 round and takes 1d6 points of sonic damage per two caster levels (maximum 5d6). A successful save negates the daze effect and halves the damage.", target: "one creature", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
@@ -4670,6 +4672,9 @@ sp120 = Spell.create!(name: "Admonishing Ray", description: "You blast your enem
   SpellComponent.create!(spell_id: sp120.id, component_id: somatic.id, item: nil)
   admonishing_ray_cleric = KlassSpell.create!(klass_id: cleric.id, spell_id: sp120.id, spell_level: 2)
   admonishing_ray_wizard = KlassSpell.create!(klass_id: wizard.id, spell_id: sp120.id, spell_level: 2)
+
+  # rays count as weapons when it comes to bonuses that only apply to weapons damage (i.e., bard's inspire courage)
+
 
 print "120 Spells Created \r"
 
