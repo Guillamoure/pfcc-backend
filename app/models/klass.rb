@@ -8,12 +8,12 @@ class Klass < ApplicationRecord
   has_many :class_skillset_skills, dependent: :destroy
   has_many :skills, through: :class_skillset_skills
 
-  has_many :spells_per_days
-  has_many :prepared_amounts
+  # has_many :spells_per_days
+  # has_many :prepared_amounts
 
-  has_many :klass_spells
-  has_many :spells, through: :klass_spells
-  has_many :cast_spells, dependent: :destroy
+  # has_many :klass_spells
+  # has_many :spells, through: :klass_spells
+  # has_many :cast_spells, dependent: :destroy
   has_many :favored_klass_bonuses, class_name: 'FavoredKlassBonus'
 
   has_many :campaign_klasses, dependent: :destroy

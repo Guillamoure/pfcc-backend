@@ -11,9 +11,9 @@ class Character < ApplicationRecord
   has_many :klasses, through: :character_klasses
   has_many :klass_features, through: :klasses
 
-  has_many :prepared_spells, dependent: :destroy
-  has_many :known_spells, dependent: :destroy
-  has_many :cast_spells, dependent: :destroy
+  # has_many :prepared_spells, dependent: :destroy
+  # has_many :known_spells, dependent: :destroy
+  # has_many :cast_spells, dependent: :destroy
   has_many :notes, dependent: :destroy
 
   has_many :character_magic_items, dependent: :destroy
@@ -58,12 +58,12 @@ class Character < ApplicationRecord
 
     classes.each_with_index do |cl, i|
       klass = Klass.find(cl[:klass_id])
-      spd = klass.spells_per_days
-      selected_spd = spd.select {|s| s.klass_level == cl[:level]}
-      classes[i][:spellsPerDay] = []
-      selected_spd.each do |s|
-        classes[i][:spellsPerDay].push({spellLevel: s[:spell_level], spd: s[:spells]})
-      end
+      # spd = klass.spells_per_days
+      # selected_spd = spd.select {|s| s.klass_level == cl[:level]}
+      # classes[i][:spellsPerDay] = []
+      # selected_spd.each do |s|
+        # classes[i][:spellsPerDay].push({spellLevel: s[:spell_level], spd: s[:spells]})
+      # end
     end
 
     classes

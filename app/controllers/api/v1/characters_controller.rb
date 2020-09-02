@@ -20,9 +20,9 @@ class Api::V1::CharactersController < ApplicationController
         ],
         klasses: [
           {klass_features: [
-            :feature_levels, :feature_options, :features, :spellcasting, :actions
+            :feature_levels, :feature_options, :actions, :features
           ]},
-          :class_skillset_skills, :skills, :spells_per_days, :favored_klass_bonuses, :prepared_amounts
+          :class_skillset_skills, :skills, :favored_klass_bonuses
         ],
         character_magic_items: [
           {magic_item: [
@@ -44,14 +44,14 @@ class Api::V1::CharactersController < ApplicationController
           }]
         ],
         character_armors: [:armor],
-        known_spells: [
-          :klass_spell, {spell: [
-            :subschools, {spell_components: [:component]}, :magic_school, {klass_spells: [:klass, :spell]}, :spell_range, :action
-          ]}
-        ],
-        prepared_spells: [:subschools, :klass, :magic_school, :spell_range, :action, :spell]
+        # known_spells: [
+        #   :klass_spell, {spell: [
+        #     :subschools, {spell_components: [:component]}, :magic_school, {klass_spells: [:klass, :spell]}, :spell_range, :action
+        #   ]}
+        # ],
+        # prepared_spells: [:subschools, :klass, :magic_school, :spell_range, :action, :spell]
       },
-      :character_klasses, :character_skillset_skills, :character_magic_item_feature_usages, :notes, :campaign, :cast_spells, :character_klass_feature_usages
+      :character_klasses, :character_skillset_skills, :character_magic_item_feature_usages, :notes, :campaign, :character_klass_feature_usages
     ).find(params[:id])
 
     if (!@character.character_weapons.find {|cw| cw.weapon.name == "Unarmed"})

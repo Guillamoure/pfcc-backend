@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_032816) do
+ActiveRecord::Schema.define(version: 2020_09_02_014446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -370,6 +370,22 @@ ActiveRecord::Schema.define(version: 2020_09_01_032816) do
     t.string "custom"
   end
 
+  create_table "feature_spellcastings", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "ability_score"
+    t.boolean "prepare_spells"
+    t.boolean "expend_prepared_spells"
+    t.boolean "infinite_zero_level"
+    t.boolean "known_spell_list"
+    t.boolean "apply_metamagic_when_preparing"
+    t.boolean "apply_metamagic_when_casting"
+    t.string "type_of_magic"
+    t.boolean "considered_spellcasting", default: true
+    t.integer "caster_level_penalty"
+    t.integer "spells_list_id"
+    t.integer "secondary_spells_list_id"
+  end
+
   create_table "feature_stat_bonus", force: :cascade do |t|
     t.integer "feature_id"
     t.string "statistic"
@@ -469,12 +485,6 @@ ActiveRecord::Schema.define(version: 2020_09_01_032816) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "klass_spells", force: :cascade do |t|
-    t.integer "klass_id"
-    t.integer "spell_id"
-    t.integer "spell_level"
-  end
-
   create_table "klasses", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -493,6 +503,13 @@ ActiveRecord::Schema.define(version: 2020_09_01_032816) do
     t.integer "klass_spell_id"
     t.integer "character_id"
     t.integer "klass_id"
+  end
+
+  create_table "known_spells_per_levels", force: :cascade do |t|
+    t.integer "feature_spellcasting_id"
+    t.integer "klass_level"
+    t.integer "spells"
+    t.integer "spell_level"
   end
 
   create_table "magic_item_features", force: :cascade do |t|
@@ -653,11 +670,21 @@ ActiveRecord::Schema.define(version: 2020_09_01_032816) do
     t.integer "source_id"
   end
 
-  create_table "spells_per_days", force: :cascade do |t|
+  create_table "spells_list_spells", force: :cascade do |t|
+    t.integer "spells_list_id"
+    t.integer "spell_id"
     t.integer "spell_level"
+  end
+
+  create_table "spells_lists", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "spells_per_day_per_levels", force: :cascade do |t|
+    t.integer "feature_spellcasting_id"
     t.integer "klass_level"
     t.integer "spells"
-    t.integer "klass_id"
+    t.integer "spell_level"
   end
 
   create_table "stored_character_magic_items", force: :cascade do |t|

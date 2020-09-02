@@ -10,9 +10,9 @@ class CharacterSerializer < ActiveModel::Serializer
   belongs_to :race
   # belongs_to :skillset
   # # has_many :character_skillset_skills
-  has_many :cast_spells
-  has_many :known_spells
-  has_many :prepared_spells
+  # has_many :cast_spells
+  # has_many :known_spells
+  # has_many :prepared_spells
   belongs_to :campaign
   #
   has_many :character_weapons

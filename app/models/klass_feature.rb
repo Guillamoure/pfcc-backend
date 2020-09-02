@@ -1,6 +1,6 @@
 class KlassFeature < ApplicationRecord
   belongs_to :klass
-  has_one :spellcasting
+  # has_one :spellcasting
   has_many :feature_levels
   has_many :feature_options
   has_many :feature_actions

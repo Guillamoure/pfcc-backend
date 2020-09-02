@@ -19,5 +19,6 @@ class Feature < ApplicationRecord
   has_many :status_conditions, class_name: 'FeatureStatusCondition'
   has_many :alternate_actions, class_name: 'FeatureAlternateAction'
   has_many :saving_throws, class_name: 'FeatureSavingThrow'
+  has_one :spellcasting, class_name: 'FeatureSpellcasting'
 
 end
