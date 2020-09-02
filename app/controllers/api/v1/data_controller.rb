@@ -2,9 +2,9 @@ class Api::V1::DataController < ApplicationController
   def all
     @classes = Klass.includes(
       {klass_features: [
-        :feature_levels, :feature_options, :features, :spellcasting, :actions
+        :feature_levels, :feature_options, :features, :actions
       ]},
-      :class_skillset_skills, :skills, :spells_per_days, :favored_klass_bonuses, :prepared_amounts
+      :class_skillset_skills, :skills, :favored_klass_bonuses
     ).all
     @races = Race.includes(
       :racial_traits, :race_ability_score_modifiers, :favored_klass_bonuses, :source

@@ -1445,6 +1445,7 @@ bard8 = KlassFeature.create!(klass_id: bard.id, name: "Inspire Courage", descrip
     FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Saving Throw", bonus: 4, bonus_type: "morale", duration: "temporary", applicable_level: 17, statistic_details: "charm and fear effects")
     FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Attack", bonus: 4, bonus_type: "competence", duration: "temporary", applicable_level: 17)
     FeatureStatBonus.create!(feature_id: bard8_feature.id, statistic: "Damage", bonus: 4, bonus_type: "competence", duration: "temporary", specific_statistic: "weapon", applicable_level: 17)
+    FeatureApplication.create!(feature_id: bard8_feature.id, affects_allies: true, toggleable: true)
     # rays count as weapons when it comes to bonuses that only apply to weapons damage (i.e., bard's inspire courage)
 
 bard9 = KlassFeature.create!(klass_id: bard.id, name: "Inspire Competence", description: "A bard of 3rd level or higher can use his performance to help an ally succeed at a task. The ally must be within 30 feet and able to see and hear the bard. The ally gets a +2 competence bonus on skill checks with a particular skill as long as she continues to hear the bard’s performance. This bonus increases by +1 for every four levels the bard has attained beyond 3rd (+3 at 7th, +4 at 11th, +5 at 15th, and +6 at 19th).
