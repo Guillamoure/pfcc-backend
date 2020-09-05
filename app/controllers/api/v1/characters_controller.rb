@@ -51,7 +51,7 @@ class Api::V1::CharactersController < ApplicationController
         ],
         # prepared_spells: [:subschools, :klass, :magic_school, :spell_range, :action, :spell]
       },
-      :character_klasses, :character_skillset_skills, :character_magic_item_feature_usages, :notes, :campaign, :character_klass_feature_usages
+      :character_klasses, :character_skillset_skills, :character_magic_item_feature_usages, :notes, :campaign, :character_klass_feature_usages, :klass_specializations
     ).find(params[:id])
 
     if (!@character.character_weapons.find {|cw| cw.weapon.name == "Unarmed"})

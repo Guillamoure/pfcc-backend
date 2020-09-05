@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_235923) do
+ActiveRecord::Schema.define(version: 2020_09_05_030543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,11 @@ ActiveRecord::Schema.define(version: 2020_09_02_235923) do
   create_table "character_klass_options", force: :cascade do |t|
     t.integer "character_klass_id"
     t.integer "feature_option_id"
+  end
+
+  create_table "character_klass_specializations", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "klass_feature_klass_specialization_id"
   end
 
   create_table "character_klasses", force: :cascade do |t|
@@ -483,12 +488,38 @@ ActiveRecord::Schema.define(version: 2020_09_02_235923) do
     t.integer "feature_id"
   end
 
+  create_table "klass_feature_klass_specializations", force: :cascade do |t|
+    t.integer "klass_feature_id"
+    t.integer "klass_specialization_id"
+  end
+
   create_table "klass_features", force: :cascade do |t|
     t.integer "klass_id"
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "specialization"
+    t.integer "choice_amount", default: 0
+    t.boolean "options"
+    t.integer "base_klass_feature_id"
+  end
+
+  create_table "klass_specialization_feature_features", force: :cascade do |t|
+    t.string "klass_specialization_feature_id"
+    t.string "feature_id"
+  end
+
+  create_table "klass_specialization_features", force: :cascade do |t|
+    t.integer "klass_specialization_id"
+    t.string "name"
+    t.string "description"
+    t.integer "level"
+  end
+
+  create_table "klass_specializations", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
   end
 
   create_table "klasses", force: :cascade do |t|
@@ -619,6 +650,12 @@ ActiveRecord::Schema.define(version: 2020_09_02_235923) do
     t.string "title"
     t.string "abbreviation"
     t.string "code"
+  end
+
+  create_table "specialization_levels", force: :cascade do |t|
+    t.integer "klass_specialization_id"
+    t.integer "level"
+    t.string "table_description"
   end
 
   create_table "spell_components", force: :cascade do |t|
