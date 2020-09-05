@@ -1506,6 +1506,77 @@ bard21 = KlassFeature.create!(klass_id: bard.id, name: "Jack-of-all-trades", des
 
 print "Bard features created! \r"
 
+cleric1 = KlassFeature.create!(klass_id: cleric.id, name: "Weapon and Armor Proficiencies", description: "Clerics are proficient with all simple weapons, light armor, medium armor, and shields (except tower shields). Clerics are also proficient with the favored weapon of their deities.")
+  FeatureLevel.create!(klass_feature_id: cleric1.id, level: 1, table_description: "none")
+  cleric1_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: cleric1.id, feature_id: cleric1_feature.id)
+    FeatureWeaponProficiency.create!(feature_id: cleric1_feature.id, proficiency_group: "Simple")
+    FeatureWeaponProficiency.create!(feature_id: cleric1_feature.id, player_choice: true, additive: true)
+    FeatureArmorProficiency.create!(feature_id: cleric1_feature.id, proficiency_group: "Light")
+    FeatureArmorProficiency.create!(feature_id: cleric1_feature.id, proficiency_group: "Medium")
+    FeatureArmorProficiency.create!(feature_id: cleric1_feature.id, proficiency_group: "Shield")
+    FeatureArmorProficiency.create!(feature_id: cleric1_feature.id, armor_id: tower_shield.id, additive: false)
+
+cleric2 = KlassFeature.create!(klass_id: cleric.id, name: "Aura", description: "A cleric of a chaotic, evil, good, or lawful deity has a particularly powerful aura corresponding to the deity’s alignment (see detect evil for details).")
+  FeatureLevel.create!(klass_feature_id: cleric2.id, level: 1, table_description: "Aura")
+  cleric2_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: cleric2.id, feature_id: cleric2_feature.id)
+    FeatureDisplayDescription.create!(feature_id: cleric2_feature.id, title: "Aura", description: "Faint", access_alignment: true, applicable_level: 1)
+    FeatureDisplayDescription.create!(feature_id: cleric2_feature.id, title: "Aura", description: "Moderate", access_alignment: true, applicable_level: 2)
+    FeatureDisplayDescription.create!(feature_id: cleric2_feature.id, title: "Aura", description: "Strong", access_alignment: true, applicable_level: 5)
+    FeatureDisplayDescription.create!(feature_id: cleric2_feature.id, title: "Aura", description: "Overwhelming", access_alignment: true, applicable_level: 11)
+
+cleric3 = KlassFeature.create!(klass_id: cleric.id, name: "Channel Energy", description: "Regardless of alignment, any cleric can release a wave of energy by channeling the power of her faith through her holy (or unholy) symbol. This energy can be used to cause or heal damage, depending on the type of energy channeled and the creatures targeted.
+
+A good cleric (or a neutral cleric who worships a good deity) channels positive energy and can choose to deal damage to undead creatures or to heal living creatures. An evil cleric (or a neutral cleric who worships an evil deity) channels negative energy and can choose to deal damage to living creatures or to heal undead creatures. A neutral cleric of a neutral deity (or one who is not devoted to a particular deity) must choose whether she channels positive or negative energy. Once this choice is made, it cannot be reversed. This decision also determines whether the cleric can cast spontaneous cure or inflict spells (see spontaneous casting).
+
+Channeling energy causes a burst that affects all creatures of one type (either undead or living) in a 30-foot radius centered on the cleric. The amount of damage dealt or healed is equal to 1d6 points of damage plus 1d6 points of damage for every two cleric levels beyond 1st (2d6 at 3rd, 3d6 at 5th, and so on). Creatures that take damage from channeled energy receive a Will save to halve the damage. The DC of this save is equal to 10 + 1/2 the cleric’s level + the cleric’s Charisma modifier. Creatures healed by channel energy cannot exceed their maximum hit point total—all excess healing is lost. A cleric may channel energy a number of times per day equal to 3 + her Charisma modifier. This is a standard action that does not provoke an attack of opportunity. A cleric can choose whether or not to include herself in this effect.
+
+A cleric must be able to present her holy symbol to use this ability.")
+  FeatureLevel.create!(klass_feature_id: cleric3.id, level: 1, table_description: "Channel Energy 1d6")
+  FeatureLevel.create!(klass_feature_id: cleric3.id, level: 3, table_description: "Channel Energy 2d6")
+  FeatureLevel.create!(klass_feature_id: cleric3.id, level: 5, table_description: "Channel Energy 3d6")
+  FeatureLevel.create!(klass_feature_id: cleric3.id, level: 7, table_description: "Channel Energy 4d6")
+  FeatureLevel.create!(klass_feature_id: cleric3.id, level: 9, table_description: "Channel Energy 5d6")
+  FeatureLevel.create!(klass_feature_id: cleric3.id, level: 11, table_description: "Channel Energy 6d6")
+  FeatureLevel.create!(klass_feature_id: cleric3.id, level: 13, table_description: "Channel Energy 7d6")
+  FeatureLevel.create!(klass_feature_id: cleric3.id, level: 15, table_description: "Channel Energy 8d6")
+  FeatureLevel.create!(klass_feature_id: cleric3.id, level: 17, table_description: "Channel Energy 9d6")
+  FeatureLevel.create!(klass_feature_id: cleric3.id, level: 19, table_description: "Channel Energy 10d6")
+  cleric3_feature = Feature.create!(action_id: standard.id)
+    KlassFeatureFeature.create!(klass_feature_id: cleric3.id, feature_id: cleric3_feature.id)
+    FeatureUsage.create!(feature_id: cleric3_feature.id, limit_frequency: "Day", adjustable: true, base_limit: 3, base_limit_modifier: "charisma")
+    FeatureSavingThrow.create!(feature_id: cleric3_feature.id, base: 10, ability_score_modifier: "charisma", level_modifier: 0.5, saving_throw: "will", bonus_multiplier_based_on_feature_level: true)
+    FeatureDamage.create!(feature_id: cleric3_feature.id, num_of_dice: 1, damage_dice: 6, applicable_level: 1)
+    FeatureDamage.create!(feature_id: cleric3_feature.id, num_of_dice: 2, damage_dice: 6, applicable_level: 3)
+    FeatureDamage.create!(feature_id: cleric3_feature.id, num_of_dice: 3, damage_dice: 6, applicable_level: 5)
+    FeatureDamage.create!(feature_id: cleric3_feature.id, num_of_dice: 4, damage_dice: 6, applicable_level: 7)
+    FeatureDamage.create!(feature_id: cleric3_feature.id, num_of_dice: 5, damage_dice: 6, applicable_level: 9)
+    FeatureDamage.create!(feature_id: cleric3_feature.id, num_of_dice: 6, damage_dice: 6, applicable_level: 11)
+    FeatureDamage.create!(feature_id: cleric3_feature.id, num_of_dice: 7, damage_dice: 6, applicable_level: 13)
+    FeatureDamage.create!(feature_id: cleric3_feature.id, num_of_dice: 8, damage_dice: 6, applicable_level: 15)
+    FeatureDamage.create!(feature_id: cleric3_feature.id, num_of_dice: 9, damage_dice: 6, applicable_level: 17)
+    FeatureDamage.create!(feature_id: cleric3_feature.id, num_of_dice: 10, damage_dice: 6, applicable_level: 19)
+    FeatureCharacterChoice.create!(feature_id: cleric3_feature.id, sub_feature: "damage", column: "damage_type", option: "positive")
+    FeatureCharacterChoice.create!(feature_id: cleric3_feature.id, sub_feature: "damage", column: "damage_type", option: "negative")
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  # IDENTIFIER_feature = Feature.create!()
+  #   KlassFeatureFeature.create!(klass_feature_id: IDENTIFIER.id, feature_id: IDENTIFIER_feature.id)
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  # IDENTIFIER_feature = Feature.create!()
+  #   KlassFeatureFeature.create!(klass_feature_id: IDENTIFIER.id, feature_id: IDENTIFIER_feature.id)
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  # IDENTIFIER_feature = Feature.create!()
+  #   KlassFeatureFeature.create!(klass_feature_id: IDENTIFIER.id, feature_id: IDENTIFIER_feature.id)
+
+print "Cleric features created! \r"
+
 
 arcanist1 = KlassFeature.create!(klass_id: arcanist.id, name: "Weapon and Armor Proficiencies", description: "Arcanists are proficient with all simple weapons. They are not proficient with any type of armor or shield. Armor interferes with an arcanist’s gestures, which can cause her spells with somatic components to fail (see Arcane Spells and Armor).")
   FeatureLevel.create!(klass_feature_id: arcanist1.id, level: 1, table_description: "none")

@@ -20,5 +20,8 @@ class Feature < ApplicationRecord
   has_many :alternate_actions, class_name: 'FeatureAlternateAction'
   has_many :saving_throws, class_name: 'FeatureSavingThrow'
   has_one :spellcasting, class_name: 'FeatureSpellcasting'
+  has_many :display_descriptions, class_name: 'FeatureDisplayDescription'
+  has_many :damages, class_name: 'FeatureDamage'
+  has_many :character_choices, class_name: 'FeatureCharacterChoice'
 
 end

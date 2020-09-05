@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_05_030543) do
+ActiveRecord::Schema.define(version: 2020_09_05_191326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -294,6 +294,15 @@ ActiveRecord::Schema.define(version: 2020_09_05_030543) do
     t.boolean "additive", default: true
   end
 
+  create_table "feature_character_choices", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "sub_feature"
+    t.string "column"
+    t.string "option"
+    t.boolean "can_change", default: true
+    t.integer "num_of_choices", default: 1
+  end
+
   create_table "feature_conditions", force: :cascade do |t|
     t.integer "feature_id"
     t.string "unless_wearing"
@@ -306,6 +315,22 @@ ActiveRecord::Schema.define(version: 2020_09_05_030543) do
     t.integer "feature_id"
     t.integer "weight"
     t.integer "volume_cubic_feet"
+  end
+
+  create_table "feature_damages", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "num_of_dice"
+    t.integer "damage_dice"
+    t.string "damage_type"
+    t.integer "applicable_level"
+  end
+
+  create_table "feature_display_descriptions", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "title"
+    t.string "description"
+    t.boolean "access_alignment"
+    t.integer "applicable_level"
   end
 
   create_table "feature_languages", force: :cascade do |t|
@@ -470,6 +495,7 @@ ActiveRecord::Schema.define(version: 2020_09_05_030543) do
     t.string "proficiency_group"
     t.integer "weapon_id"
     t.boolean "additive", default: true
+    t.boolean "player_choice"
   end
 
   create_table "features", force: :cascade do |t|
