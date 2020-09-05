@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_014446) do
+ActiveRecord::Schema.define(version: 2020_09_02_235923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,12 @@ ActiveRecord::Schema.define(version: 2020_09_02_014446) do
     t.string "ability_score_improvement"
     t.integer "level"
     t.integer "favored_klass_bonus_id"
+  end
+
+  create_table "character_known_spells", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "spell_list_spell_id"
+    t.integer "feature_spellcasting_id"
   end
 
   create_table "character_magic_item_containers", force: :cascade do |t|
@@ -382,8 +388,8 @@ ActiveRecord::Schema.define(version: 2020_09_02_014446) do
     t.string "type_of_magic"
     t.boolean "considered_spellcasting", default: true
     t.integer "caster_level_penalty"
-    t.integer "spells_list_id"
-    t.integer "secondary_spells_list_id"
+    t.integer "spell_list_id"
+    t.integer "secondary_spell_list_id"
   end
 
   create_table "feature_stat_bonus", force: :cascade do |t|
@@ -497,12 +503,6 @@ ActiveRecord::Schema.define(version: 2020_09_02_014446) do
     t.float "will"
     t.string "img_url"
     t.integer "source_id"
-  end
-
-  create_table "known_spells", force: :cascade do |t|
-    t.integer "klass_spell_id"
-    t.integer "character_id"
-    t.integer "klass_id"
   end
 
   create_table "known_spells_per_levels", force: :cascade do |t|
@@ -627,6 +627,16 @@ ActiveRecord::Schema.define(version: 2020_09_02_014446) do
     t.string "item"
   end
 
+  create_table "spell_list_spells", force: :cascade do |t|
+    t.integer "spell_list_id"
+    t.integer "spell_id"
+    t.integer "spell_level"
+  end
+
+  create_table "spell_lists", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "spell_ranges", force: :cascade do |t|
     t.string "name"
     t.integer "feet"
@@ -668,16 +678,6 @@ ActiveRecord::Schema.define(version: 2020_09_02_014446) do
     t.boolean "concentration"
     t.integer "spell_range_id"
     t.integer "source_id"
-  end
-
-  create_table "spells_list_spells", force: :cascade do |t|
-    t.integer "spells_list_id"
-    t.integer "spell_id"
-    t.integer "spell_level"
-  end
-
-  create_table "spells_lists", force: :cascade do |t|
-    t.string "name"
   end
 
   create_table "spells_per_day_per_levels", force: :cascade do |t|

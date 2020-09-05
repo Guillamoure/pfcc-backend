@@ -1,0 +1,3 @@
+class SpellList < ApplicationRecord
+
+end

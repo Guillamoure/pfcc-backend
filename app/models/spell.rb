@@ -2,8 +2,8 @@ class Spell < ApplicationRecord
   has_many :spell_components
   has_many :components, through: :spell_components
 
-  has_many :klass_spells
-  has_many :klasses, through: :klass_spells
+  has_many :spell_list_spells
+  has_many :spell_lists, through: :spell_list_spells
 
   has_many :spell_subschools
   has_many :subschools, through: :spell_subschools

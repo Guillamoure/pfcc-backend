@@ -12,8 +12,8 @@ class CreateFeatureSpellcasting < ActiveRecord::Migration[5.2]
       t.string :type_of_magic
       t.boolean :considered_spellcasting, default: true
       t.integer :caster_level_penalty
-      t.integer :spells_list_id
-      t.integer :secondary_spells_list_id, default: nil
+      t.integer :spell_list_id
+      t.integer :secondary_spell_list_id, default: nil
     end
   end
 end

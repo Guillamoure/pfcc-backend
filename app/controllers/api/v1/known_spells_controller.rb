@@ -8,4 +8,8 @@ class Api::V1::KnownSpellsController < ApplicationController
     render json: @spells, status: 201
   end
 
+  def create
+    byebug
+  end
+
 end

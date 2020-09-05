@@ -44,11 +44,11 @@ class Api::V1::CharactersController < ApplicationController
           }]
         ],
         character_armors: [:armor],
-        # known_spells: [
-        #   :klass_spell, {spell: [
-        #     :subschools, {spell_components: [:component]}, :magic_school, {klass_spells: [:klass, :spell]}, :spell_range, :action
-        #   ]}
-        # ],
+        character_known_spells: [
+          :spell_list_spell, {spell: [
+            :subschools, {spell_components: [:component]}, :magic_school, :spell_range, :action
+          ]}
+        ],
         # prepared_spells: [:subschools, :klass, :magic_school, :spell_range, :action, :spell]
       },
       :character_klasses, :character_skillset_skills, :character_magic_item_feature_usages, :notes, :campaign, :character_klass_feature_usages
