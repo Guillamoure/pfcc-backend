@@ -2,7 +2,7 @@ class Api::V1::DataController < ApplicationController
   def all
     @classes = Klass.includes(
       {klass_features: [
-        :feature_levels, :feature_options, :features, :actions
+        :feature_levels, :features, :actions
       ]},
       :class_skillset_skills, :skills, :favored_klass_bonuses
     ).all

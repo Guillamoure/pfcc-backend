@@ -1,4 +1,4 @@
 class CastSpell < ApplicationRecord
   belongs_to :character
-  belongs_to :klass
+  belongs_to :feature_spellcasting
 end

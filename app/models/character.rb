@@ -15,7 +15,7 @@ class Character < ApplicationRecord
 
   # has_many :prepared_spells, dependent: :destroy
   has_many :character_known_spells, dependent: :destroy
-  # has_many :cast_spells, dependent: :destroy
+  has_many :cast_spells, dependent: :destroy
   has_many :notes, dependent: :destroy
 
   has_many :character_magic_items, dependent: :destroy

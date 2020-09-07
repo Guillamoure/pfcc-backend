@@ -6,11 +6,11 @@ class KlassFeatureSerializer < ActiveModel::Serializer
   # has_many :feature_options
   has_many :options
 
-  def feature_options
-    self.object.feature_options.map do |fo|
-      FeatureOptionSerializer.new(fo)
-    end
-  end
+  # def feature_options
+  #   self.object.feature_options.map do |fo|
+  #     FeatureOptionSerializer.new(fo)
+  #   end
+  # end
 
   def features
     self.object.features.map do |f|

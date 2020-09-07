@@ -24,4 +24,7 @@ class Feature < ApplicationRecord
   has_many :damages, class_name: 'FeatureDamage'
   has_many :character_choices, class_name: 'FeatureCharacterChoice'
 
+  has_one :klass_feature_feature
+  has_one :klass_feature, through: :klass_feature_feature
+
 end
