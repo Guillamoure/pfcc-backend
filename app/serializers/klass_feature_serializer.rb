@@ -1,5 +1,5 @@
 class KlassFeatureSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :klass_id, :feature_levels, :actions, :features, :base_klass_feature, :options
+  attributes :id, :name, :description, :klass_id, :feature_levels, :actions, :features, :base_klass_feature, :options, :associated_spells
 
   # belongs_to :klass
   # has_one :spellcasting

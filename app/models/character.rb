@@ -13,7 +13,7 @@ class Character < ApplicationRecord
   has_many :character_klass_specializations
   has_many :klass_specializations, through: :character_klass_specializations
 
-  # has_many :prepared_spells, dependent: :destroy
+  has_many :prepared_spells, dependent: :destroy
   has_many :character_known_spells, dependent: :destroy
   has_many :cast_spells, dependent: :destroy
   has_many :notes, dependent: :destroy

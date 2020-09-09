@@ -1,5 +1,7 @@
 class PreparedSpellSerializer < ActiveModel::Serializer
-  attributes :id, :klass_spell_id, :character_id, :spell_level, :spell, :action, :spell_range, :magic_school, :klass, :cast, :subschools
+  attributes :id, :feature_spellcasting_id, :character_id, :spell_list_spell, :spell_level, :cast, :spell
 
-  # belongs_to :spell, through: :klass_spell
+  def spell
+    SpellSerializer.new(self.object.spell)
+  end
 end

@@ -12,7 +12,7 @@ class CharacterSerializer < ActiveModel::Serializer
   # # has_many :character_skillset_skills
   has_many :cast_spells
   has_many :character_known_spells
-  # has_many :prepared_spells
+  has_many :prepared_spells
   belongs_to :campaign
   #
   has_many :character_weapons

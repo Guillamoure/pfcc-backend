@@ -49,7 +49,9 @@ class Api::V1::CharactersController < ApplicationController
             :subschools, {spell_components: [:component]}, :magic_school, :spell_range, :action
           ]}
         ],
-        # prepared_spells: [:subschools, :klass, :magic_school, :spell_range, :action, :spell]
+        prepared_spells: {spell: [
+          :subschools, {spell_components: [:component]}, :magic_school, :spell_range, :action
+        ]}
       },
       :character_klasses, :character_skillset_skills, :character_magic_item_feature_usages, :notes, :campaign, :character_klass_feature_usages, :klass_specializations, :cast_spells
     ).find(params[:id])
