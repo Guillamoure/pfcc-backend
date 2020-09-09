@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       post 'spellcasting', to: 'effects#spellcasting'
       delete 'rest', to: 'char_edits#clear_all'
       patch 'cast_spells', to: 'cast_spells#rollback'
+      patch 'cast_spells/toggle_cast/:id', to: 'cast_spells#toggle_cast'
       get 'item_search', to: 'items#index'
       post 'character_items', to: 'items#create'
       get 'character_magic_items/:id', to: 'items#cmi_show'
@@ -76,5 +77,5 @@ Rails.application.routes.draw do
   end
 
   mount ActionCable.server => '/cable'
-  
+
 end

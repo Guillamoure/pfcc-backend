@@ -1539,7 +1539,7 @@ Chaotic, Evil, Good, and Lawful Spells A cleric can’t cast spells of an alignm
   cleric_spell_list = SpellList.create!(name: "Cleric Spells List")
   cleric3_feature = Feature.create!()
     KlassFeatureFeature.create!(feature_id: cleric3_feature.id, klass_feature_id: cleric3.id)
-    cleric_spellcasting = FeatureSpellcasting.create!(feature_id: cleric3_feature.id, ability_score: "wisdom", prepare_spells: true, expend_prepared_spells: true, infinite_zero_level: false, known_spell_list: false, apply_metamagic_when_casting: false, apply_metamagic_when_preparing: true, type_of_magic: "Divine", caster_level_penalty: 0, spell_list_id: cleric_spell_list.id)
+    cleric_spellcasting = FeatureSpellcasting.create!(feature_id: cleric3_feature.id, ability_score: "wisdom", prepare_spells: true, expend_prepared_spells: true, infinite_zero_level: true, known_spell_list: false, apply_metamagic_when_casting: false, apply_metamagic_when_preparing: true, type_of_magic: "Divine", caster_level_penalty: 0, spell_list_id: cleric_spell_list.id)
 
 cleric4 = KlassFeature.create!(klass_id: cleric.id, name: "Channel Energy", description: "Regardless of alignment, any cleric can release a wave of energy by channeling the power of her faith through her holy (or unholy) symbol. This energy can be used to cause or heal damage, depending on the type of energy channeled and the creatures targeted.
 
