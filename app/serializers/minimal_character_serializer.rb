@@ -1,5 +1,5 @@
 class MinimalCharacterSerializer < ActiveModel::Serializer
-  attributes :id, :name, :race, :user_id, :uniq_klasses, :character_klasses,  :campaign
+  attributes :id, :name, :race, :user_id, :uniq_klasses, :campaign, :class_obj
 
   belongs_to :race
   belongs_to :campaign
@@ -10,10 +10,10 @@ class MinimalCharacterSerializer < ActiveModel::Serializer
     end
   end
 
-  def character_klasses
-    self.object.character_klasses.map do |ck|
-      CharacterKlassSerializer.new(ck)
-    end
-  end
+  # def character_klasses
+  #   self.object.character_klasses.map do |ck|
+  #     CharacterKlassSerializer.new(ck)
+  #   end
+  # end
 
 end

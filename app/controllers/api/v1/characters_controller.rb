@@ -4,7 +4,14 @@ class Api::V1::CharactersController < ApplicationController
     @user = User.find(request.headers['User'])
     characters = []
     @user.characters.each do |ch|
-      characters << MinimalCharacterSerializer.new(ch)
+      minimal_character_hash = {
+        id: ch.id,
+        name: ch.name,
+        race: ch.race,
+        class_obj: ch.class_obj,
+        uniq_klasses: ch.uniq_klasses
+      }
+      characters.push(minimal_character_hash)
     end
     render json: characters
   end
@@ -80,6 +87,10 @@ class Api::V1::CharactersController < ApplicationController
   def new_show
     @character = Character.find(params[:id])
     render json: NewCharacterSerializer.new(@character)
+  end
+
+  def character_cards
+    @characters = Character
   end
 
   private
