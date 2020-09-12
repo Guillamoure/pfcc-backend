@@ -322,7 +322,13 @@ ActiveRecord::Schema.define(version: 2020_09_08_012730) do
     t.integer "num_of_dice"
     t.integer "damage_dice"
     t.string "damage_type"
+    t.integer "num_of_dice_increase"
+    t.integer "damage_dice_increase"
     t.integer "applicable_level"
+    t.integer "base_limit"
+    t.string "base_limit_modifier"
+    t.float "limit_increase_per_level"
+    t.integer "mimimum_base_limit"
   end
 
   create_table "feature_display_descriptions", force: :cascade do |t|
