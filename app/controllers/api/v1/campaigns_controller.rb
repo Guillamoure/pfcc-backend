@@ -62,9 +62,19 @@ class Api::V1::CampaignsController < ApplicationController
     render json: @campaign, status: 202
   end
 
+  def show
+    @campaign = Campaign.find(params[:id])
+    render json: CampaignSerializer.new(@campaign)
+  end
+
+  def calendar_data
+    @calendar = Calendar.includes(:months, :days).find(params[:id])
+    render json: NewCampaignSerializer.new(@calendar)
+  end
+
   private
 
   def campaign_params
-    params.require(:campaign).permit(:weekday, :month, :day, :age, :year)
+    params.require(:campaign).permit(:current_weekday, :current_month, :current_day, :current_age, :current_year)
   end
 end

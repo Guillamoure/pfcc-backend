@@ -70,8 +70,10 @@ Rails.application.routes.draw do
       get 'ideas/:id', to: 'ideas#index'
 
       get 'campaigns/new', to: 'campaigns#new'
+      get 'campaigns/:id', to: 'campaigns#show'
       patch 'campaigns/:id', to: 'campaigns#date_change'
       post 'campaigns/new', to: 'campaigns#create'
+      get 'calendars/:id', to: 'campaigns#calendar_data'
 
     end
   end

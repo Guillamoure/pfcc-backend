@@ -22,13 +22,52 @@ class Api::V1::ItemsController < ApplicationController
         items.push(mi)
       end
     end
+    Weapon.all.each do |weapon|
+      applicable = false
+      if weapon.name.include?(term)
+        applicable = true
+      end
+      if weapon.name.include?(cap)
+        applicable = true
+      end
+      if applicable
+        items.push(weapon)
+      end
+    end
+    Armor.all.each do |arm|
+      applicable = false
+      if arm.name.include?(term)
+        applicable = true
+      end
+      if arm.name.include?(cap)
+        applicable = true
+      end
+      if applicable
+        items.push(arm)
+      end
+    end
     render json: items
   end
 
 
   def create
     character_item = nil
-    @magic_item = MagicItem.find(params[:item][:id])
+    id = params[:item][:id]
+    if params[:item][:weapon_type]
+      @weapon = Weapon.find(id)
+    elsif params[:item][:max_dex_bonus]
+      @armor = Armor.find(id)
+    else
+      @magic_item = MagicItem.find(id)
+    end
+
+    if @weapon
+      @character_item = CharacterWeapon.create!(character_id: params[:character_id], weapon_id: @weapon.id, known: true, description: params[:desc], name: '')
+    end
+
+    if @armor
+      @character_item = CharacterArmor.create!(character_id: params[:character_id], armor_id: @armor.id, known: true, description: params[:desc], name: '')
+    end
 
     if @magic_item
       @character_item = CharacterMagicItem.create!(character_id: params[:character_id], magic_item_id: @magic_item.id, false_desc: params[:desc])

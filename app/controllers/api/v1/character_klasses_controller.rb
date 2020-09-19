@@ -4,7 +4,13 @@ class Api::V1::CharacterKlassesController < ApplicationController
     class_array = []
     counter = 1
     params[:classes].each do |id|
-      @character_klass = CharacterKlass.create(character_id: params[:character_id], klass_id: id, level: counter)
+      klass = Klass.find(id)
+      if CharacterKlass.where(character_id: params[:character_id]).length == 0
+        hp = klass.hit_die
+      else
+        hp = params[:hp]
+      end
+      @character_klass = CharacterKlass.create(character_id: params[:character_id], klass_id: id, level: counter, hp: hp)
       if @character_klass.valid?
         class_array.push(CharacterKlassSerializer.new(@character_klass))
       else

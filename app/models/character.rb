@@ -3,7 +3,7 @@ class Character < ApplicationRecord
   belongs_to :race
   belongs_to :skillset
 
-  belongs_to :campaign
+  belongs_to :campaign, optional: true
   has_many :allies, through: :campaign, source: :characters
 
   has_many :character_skillset_skills, dependent: :destroy
