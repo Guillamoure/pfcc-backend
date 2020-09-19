@@ -23,6 +23,7 @@ class Feature < ApplicationRecord
   has_many :display_descriptions, class_name: 'FeatureDisplayDescription'
   has_many :damages, class_name: 'FeatureDamage'
   has_many :character_choices, class_name: 'FeatureCharacterChoice'
+  has_many :steps, class_name: 'FeatureStep'
 
   has_one :klass_feature_feature
   has_one :klass_feature, through: :klass_feature_feature

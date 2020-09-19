@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       patch '/ability', to: 'char_edits#ability'
       patch '/hp', to: 'char_edits#hp'
       patch '/hp_changes', to: 'char_edits#hp_changes'
+      post 'character_choice', to: 'char_edits#character_choice'
       patch 'users/active_skillset', to: 'users#update_skillset'
       post 'class_skillset_skills', to: 'class_skillset_skills#create'
       patch 'class_skillset_skills', to: 'class_skillset_skills#update'

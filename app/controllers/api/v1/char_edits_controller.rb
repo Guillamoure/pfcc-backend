@@ -188,4 +188,12 @@ class Api::V1::CharEditsController < ApplicationController
     render json: { character: CharacterSerializer.new(@char) }, status: 201
   end
 
+  def character_choice
+    # this will not work for a feature_character_choice with multiple options
+    byebug
+    # @choice = CharacterChoice.find_or_create_by(character_id: params[:character_id], feature_character_choice_id: params[:feature_character_choice_id])
+    # @choice.update(choice: params[:choice])
+    render json: @choice
+  end
+
 end

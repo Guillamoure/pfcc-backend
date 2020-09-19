@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_012730) do
+ActiveRecord::Schema.define(version: 2020_09_19_042221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,12 @@ ActiveRecord::Schema.define(version: 2020_09_08_012730) do
     t.boolean "known", default: true
     t.boolean "equipped", default: false
     t.integer "extra_armor_id"
+  end
+
+  create_table "character_choices", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "feature_character_choice_id"
+    t.string "choice"
   end
 
   create_table "character_klass_feature_usages", force: :cascade do |t|
@@ -325,6 +331,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_012730) do
     t.integer "num_of_dice_increase"
     t.integer "damage_dice_increase"
     t.integer "applicable_level"
+    t.integer "applicable_step"
     t.integer "base_limit"
     t.string "base_limit_modifier"
     t.float "limit_increase_per_level"
@@ -455,6 +462,13 @@ ActiveRecord::Schema.define(version: 2020_09_08_012730) do
   create_table "feature_status_conditions", force: :cascade do |t|
     t.integer "feature_id"
     t.string "condition"
+  end
+
+  create_table "feature_steps", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "applicable_level"
+    t.integer "step"
+    t.string "sub_feature"
   end
 
   create_table "feature_usage_feature_options", force: :cascade do |t|

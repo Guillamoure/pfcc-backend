@@ -12,6 +12,7 @@ class Character < ApplicationRecord
   has_many :klass_features, through: :klasses
   has_many :character_klass_specializations
   has_many :klass_specializations, through: :character_klass_specializations
+  has_many :character_choices
 
   has_many :prepared_spells, dependent: :destroy
   has_many :character_known_spells, dependent: :destroy
