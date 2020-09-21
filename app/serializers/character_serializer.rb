@@ -21,7 +21,22 @@ class CharacterSerializer < ActiveModel::Serializer
   #
   def uniq_klasses
     self.object.klasses.uniq.map do |kl|
-      KlassSerializer.new(kl)
+      # KlassSerializer.new(kl)
+      {
+        id: kl[:id],
+        name: kl[:name],
+        description: kl[:description],
+        hit_die: kl[:hit_die],
+        skill_ranks: kl[:skill_ranks],
+        fortitude: kl[:fortitude],
+        reflex: kl[:reflex],
+        will: kl[:will],
+        source: kl.source,
+        klass_features: kl.klass_features,
+        class_skillset_skills: kl.class_skillset_skills,
+        skills: kl.skills
+      }
+      # :favored_klass_bonuses
     end
   end
   #

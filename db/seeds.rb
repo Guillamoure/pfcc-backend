@@ -1516,6 +1516,7 @@ cleric1 = KlassFeature.create!(klass_id: cleric.id, name: "Weapon and Armor Prof
     FeatureArmorProficiency.create!(feature_id: cleric1_feature.id, proficiency_group: "Medium")
     FeatureArmorProficiency.create!(feature_id: cleric1_feature.id, proficiency_group: "Shield")
     FeatureArmorProficiency.create!(feature_id: cleric1_feature.id, armor_id: tower_shield.id, additive: false)
+    FeatureCharacterChoice.create!(feature_id: cleric1_feature.id, sub_feature: "weapon_proficiencies", column: "weapon_id")
 
 cleric2 = KlassFeature.create!(klass_id: cleric.id, name: "Aura", description: "A cleric of a chaotic, evil, good, or lawful deity has a particularly powerful aura corresponding to the deity’s alignment (see detect evil for details).")
   FeatureLevel.create!(klass_feature_id: cleric2.id, level: 1, table_description: "Aura")
@@ -1584,6 +1585,57 @@ A cleric must be able to present her holy symbol to use this ability.")
     FeatureStep.create!(feature_id: cleric4_feature.id, applicable_level: 19, step: 10, sub_feature: "damage")
     FeatureCharacterChoice.create!(feature_id: cleric4_feature.id, sub_feature: "damage", column: "damage_type", option: "positive")
     FeatureCharacterChoice.create!(feature_id: cleric4_feature.id, sub_feature: "damage", column: "damage_type", option: "negative")
+
+cleric5 = KlassFeature.create!(klass_id: cleric.id, name: "Domains", description: "A cleric’s deity influences her alignment, what magic she can perform, her values, and how others see her. A cleric chooses two domains from among those belonging to her deity. A cleric can select an alignment domain (Chaos, Evil, Good, or Law) only if her alignment matches that domain. If a cleric is not devoted to a particular deity, she still selects two domains to represent her spiritual inclinations and abilities (subject to GM approval). The restriction on alignment domains still applies.
+
+Each domain grants a number of domain powers, dependent upon the level of the cleric, as well as a number of bonus spells. A cleric gains one domain spell slot for each level of cleric spell she can cast, from 1st on up. Each day, a cleric can prepare one of the spells from her two domains in that slot. If a domain spell is not on the cleric spell list, a cleric can prepare it only in her domain spell slot. Domain spells cannot be used to cast spells spontaneously.
+
+In addition, a cleric gains the listed powers from both of her domains, if she is of a high enough level. Unless otherwise noted, activating a domain power is a standard action.", specialization: true, choice_amount: 2)
+  FeatureLevel.create!(klass_feature_id: cleric5.id, level: 1, table_description: "Domains")
+  cleric5_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: cleric5.id, feature_id: cleric5_feature.id)
+    FeatureBonusSpellSlot.create!(feature_id: cleric5_feature.id, list_of_available_spells: "klass specialization", sub_feature: "castable_spells")
+
+  air_domain = KlassSpecialization.create!(name: "Air Domain", description: "You can manipulate lightning, mist, and wind, traffic with air creatures, and are resistant to electricity damage.")
+    KlassFeatureKlassSpecialization.create!(klass_feature_id: cleric5.id, klass_specialization_id: air_domain.id)
+    air_domain1 = KlassSpecializationFeature.create!(klass_specialization_id: air_domain.id, name: "Lightning Arc", description: "As a standard action, you can unleash an arc of electricity targeting any foe within 30 feet as a ranged touch attack. This arc of electricity deals 1d6 points of electricity damage + 1 point for every two cleric levels you possess. You can use this ability a number of times per day equal to 3 + your Wisdom modifier.", level: 1)
+      air_domain1_feature = Feature.create!(action_id: standard.id)
+        KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: air_domain1.id, feature_id: air_domain1_feature.id)
+        FeatureUsage.create!(feature_id: air_domain1_feature.id, limit_frequency: "Day", adjustable: true, base_limit: 3, base_limit_modifier: "charisma")
+        FeatureDamage.create!(feature_id: air_domain1_feature.id, num_of_dice: 1, damage_dice: 6, damage_type: "electricity", base_mod: 0, mod_increase_per_level: 0.5)
+        FeatureAttack.create!(feature_id: air_domain1_feature.id, attack_type: "range", armor_class: "touch")
+
+
+cleric6 = KlassFeature.create!(klass_id: cleric.id, name: "Spontaneous Casting", description: "A good cleric (or a neutral cleric of a good deity) can channel stored spell energy into healing spells that she did not prepare ahead of time. The cleric can “lose” any prepared spell that is not an orison or domain spell in order to cast any cure spell of the same spell level or lower (a cure spell is any spell with “cure” in its name).
+
+An evil cleric (or a neutral cleric of an evil deity) can’t convert prepared spells to cure spells but can convert them to inflict spells (an inflict spell is one with “inflict” in its name).
+
+A cleric who is neither good nor evil and whose deity is neither good nor evil can convert spells to either cure spells or inflict spells (player’s choice). Once the player makes this choice, it cannot be reversed. This choice also determines whether the cleric channels positive or negative energy (see channel energy).")
+  FeatureLevel.create!(klass_feature_id: cleric6.id, level: 1, table_description: "Spontaneous Casting")
+  cleric6_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: cleric6.id, feature_id: cleric6_feature.id)
+    FeatureCharacterChoice.create!(feature_id: cleric6_feature.id, sub_feature: "spontaneous_casting", option: "cure")
+    FeatureCharacterChoice.create!(feature_id: cleric6_feature.id, sub_feature: "spontaneous_casting", option: "inflict")
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  # IDENTIFIER_feature = Feature.create!()
+  #   KlassFeatureFeature.create!(klass_feature_id: IDENTIFIER.id, feature_id: IDENTIFIER_feature.id)
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  # IDENTIFIER_feature = Feature.create!()
+  #   KlassFeatureFeature.create!(klass_feature_id: IDENTIFIER.id, feature_id: IDENTIFIER_feature.id)
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  # IDENTIFIER_feature = Feature.create!()
+  #   KlassFeatureFeature.create!(klass_feature_id: IDENTIFIER.id, feature_id: IDENTIFIER_feature.id)
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  # IDENTIFIER_feature = Feature.create!()
+  #   KlassFeatureFeature.create!(klass_feature_id: IDENTIFIER.id, feature_id: IDENTIFIER_feature.id)
 
 # IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
   # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
@@ -3639,6 +3691,9 @@ sp17 = Spell.create!(name: "Cure Light Wounds", description: "When laying your h
   # cure_light_wounds_ranger = SpellListSpell.create!(spell_list_id: ranger.id, spell_id: sp17.id, spell_level: 2)
   # cure_light_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp17.id, spell_level: 1)
 
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp17.id, keyword: "cure", spell_level: 1, player_choice: true)
+
+
 sp18 = Spell.create!(name: "Feather Fall", description: "The affected creatures or objects fall slowly. Feather fall instantly changes the rate at which the targets fall to a mere 60 feet per round (equivalent to the end of a fall from a few feet), and the subjects take no damage upon landing while the spell is in effect. When the spell duration expires, a normal rate of falling resumes.
 
 The spell affects one or more Medium or smaller creatures (including gear and carried objects up to each creature’s maximum load) or objects, or the equivalent in larger creatures: a Large creature or object counts as two Medium creatures or objects, a Huge creature or object counts as four Medium creatures or objects, and so forth.
@@ -4025,6 +4080,9 @@ Since undead are powered by negative energy, this spell cures such a creature of
   # inflict_light_wounds_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor.id, spell_id: sp43.id, spell_level: 1)
   # inflict_light_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp43.id, spell_level: 1)
 
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp43.id, keyword: "inflict", spell_level: 1, player_choice: true)
+
+
 sp44 = Spell.create!(name: "Inflict Moderate Wounds", description: "This spell functions like inflict light wounds, except that you deal 2d8 points of damage + 1 point per caster level (maximum +10).", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "round", increase_per_level: 0, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: sp44.id, component_id: verbal.id, item: nil)
   SpellComponent.create!(spell_id: sp44.id, component_id: somatic.id, item: nil)
@@ -4033,6 +4091,9 @@ sp44 = Spell.create!(name: "Inflict Moderate Wounds", description: "This spell f
   # inflict_moderate_wounds_antipaladin = SpellListSpell.create!(spell_list_id: antipaladin.id, spell_id: sp44.id, spell_level: 3)
   # inflict_moderate_wounds_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor.id, spell_id: sp44.id, spell_level: 2)
   # inflict_moderate_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp44.id, spell_level: 2)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp44.id, keyword: "inflict", spell_level: 2, player_choice: true)
+
 
 sp45 = Spell.create!(name: "Cure Moderate Wounds", description: "This spell functions like cure light wounds, except that it cures 2d8 points of damage + 1 point per caster level (maximum +10).", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp45.id, subschool_id: healing.id)
@@ -4047,6 +4108,9 @@ sp45 = Spell.create!(name: "Cure Moderate Wounds", description: "This spell func
   # cure_moderate_wounds_paladin = SpellListSpell.create!(spell_list_id: paladin.id, spell_id: sp45.id, spell_level: 2)
   # cure_moderate_wounds_ranger = SpellListSpell.create!(spell_list_id: ranger.id, spell_id: sp45.id, spell_level: 3)
   # cure_moderate_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp45.id, spell_level: 2)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp45.id, keyword: "cure", spell_level: 2, player_choice: true)
+
 
 sp46 = Spell.create!(name: "See Invisibility", description: "You can see any objects or beings that are invisible within your range of vision, as well as any that are ethereal, as if they were normally visible. Such creatures are visible to you as translucent shapes, allowing you easily to discern the difference between visible, invisible, and ethereal creatures.
 
@@ -4896,6 +4960,8 @@ sp110 = Spell.create!(name: "Mass Cure Light Wounds", description: "You channel 
   # mass_cure_light_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp110.id, spell_level: 5)
   # mass_cure_light_wounds_witch = SpellListSpell.create!(spell_list_id: witch.id, spell_id: sp110.id, spell_level: 6)
 
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp110.id, keyword: "cure", spell_level: 5, player_choice: true)
+
 print "110 Spells Created \r"
 
 sp111 = Spell.create!(name: "Music of the Spheres", description: "The music of the spheres is the harmonic constant that plays under and through all of reality. It is this constant song, this otherworldly music, that keeps the laws of reality constant and the connections between the planes of existence strong.
@@ -4919,6 +4985,8 @@ sp112 = Spell.create!(name: "Mass Cure Moderate Wounds", description: "This spel
   # mass_cure_moderate_wounds_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor.id, spell_id: sp112.id, spell_level: 6)
   # mass_cure_moderate_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp112.id, spell_level: 6)
   # mass_cure_moderate_wounds_witch = SpellListSpell.create!(spell_list_id: witch.id, spell_id: sp112.id, spell_level: 7)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp112.id, keyword: "cure", spell_level: 6, player_choice: true)
 
 sp113 = Spell.create!(name: "Jolt", description: "You cause a spark of electricity to strike the target with a successful ranged touch attack. The spell deals 1d3 points of electricity damage.", target: "spark of electricity", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp113.id, subschool_id: electricity.id)
@@ -5249,17 +5317,118 @@ Torso: You gain a +6 competence bonus on Fortitude saving throws and concentrati
   # channel_vigor_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor.id, spell_id: sp136.id, spell_level: 3)
   # channel_vigor_magus = SpellListSpell.create!(spell_list_id: magus.id, spell_id: sp136.id, spell_level: 3)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+sp137 = Spell.create!(name: "Cure Serious Wounds", description: "This spell functions like cure light wounds, except that it cures 3d8 points of damage + 1 point per caster level (maximum +15).", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 1, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp137.id, subschool_id: healing.id)
+  SpellComponent.create!(spell_id: sp137.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp137.id, component_id: somatic.id, item: nil)
+  # cure_serious_wounds_alchemist = SpellListSpell.create!(spell_list_id: alchemist.id, spell_id: sp137.id, spell_level: 3)
+  cure_serious_wounds_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp137.id, spell_level: 3)
+  cure_serious_wounds_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp137.id, spell_level: 3)
+  # cure_serious_wounds_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp137.id, spell_level: 4)
+  # cure_serious_wounds_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor.id, spell_id: sp137.id, spell_level: 3)
+  # cure_serious_wounds_paladin = SpellListSpell.create!(spell_list_id: paladin.id, spell_id: sp137.id, spell_level: 4)
+  # cure_serious_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp137.id, spell_level: 3)
+  # cure_serious_wounds_ranger = SpellListSpell.create!(spell_list_id: ranger.id, spell_id: sp137.id, spell_level: 4)
+  # cure_serious_wounds_witch = SpellListSpell.create!(spell_list_id: witch.id, spell_id: sp137.id, spell_level: 4)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp137.id, keyword: "cure", spell_level: 3, player_choice: true)
+
+sp138 = Spell.create!(name: "Cure Critical Wounds", description: "This spell functions like cure light wounds, except that it cures 4d8 points of damage + 1 point per caster level (maximum +20).", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 1, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp138.id, subschool_id: healing.id)
+  SpellComponent.create!(spell_id: sp138.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp138.id, component_id: somatic.id, item: nil)
+  # cure_critical_wounds_alchemist = SpellListSpell.create!(spell_list_id: alchemist.id, spell_id: sp138.id, spell_level: 4)
+  cure_critical_wounds_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp138.id, spell_level: 4)
+  cure_critical_wounds_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp138.id, spell_level: 4)
+  # cure_critical_wounds_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp138.id, spell_level: 5)
+  # cure_critical_wounds_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor.id, spell_id: sp138.id, spell_level: 4)
+  # cure_critical_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp138.id, spell_level: 4)
+  # cure_critical_wounds_witch = SpellListSpell.create!(spell_list_id: witch.id, spell_id: sp138.id, spell_level: 5)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp138.id, keyword: "cure", spell_level: 4, player_choice: true)
+
+sp139 = Spell.create!(name: "Mass Cure Serious Wounds", description: "This spell functions like mass cure light wounds, except that it cures 3d8 points of damage + 1 point per caster level (maximum +35).", target: "one creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 1, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp139.id, subschool_id: healing.id)
+  SpellComponent.create!(spell_id: sp139.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp139.id, component_id: somatic.id, item: nil)
+  mass_cure_serious_wounds_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp139.id, spell_level: 7)
+  # mass_cure_serious_wounds_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp139.id, spell_level: 8)
+  # mass_cure_serious_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp139.id, spell_level: 7)
+  # mass_cure_serious_wounds_witch = SpellListSpell.create!(spell_list_id: witch.id, spell_id: sp139.id, spell_level: 8)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp139.id, keyword: "cure", spell_level: 7, player_choice: true)
+
+sp140 = Spell.create!(name: "Mass Cure Critical Wounds", description: "This spell functions like mass cure light wounds, except that it cures 4d8 points of damage + 1 point per caster level (maximum +40).", target: "one creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp140.id, subschool_id: healing.id)
+  SpellComponent.create!(spell_id: sp140.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp140.id, component_id: somatic.id, item: nil)
+  mass_cure_serious_wounds_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp140.id, spell_level: 8)
+  # mass_cure_serious_wounds_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp140.id, spell_level: 9)
+  # mass_cure_serious_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp140.id, spell_level: 8)
+  # mass_cure_serious_wounds_witch = SpellListSpell.create!(spell_list_id: witch.id, spell_id: sp140.id, spell_level: 9)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp140.id, keyword: "cure", spell_level: 8, player_choice: true)
+
+sp141 = Spell.create!(name: "Inflict Serious Wounds", description: "This spell functions like inflict light wounds, except that you deal 3d8 points of damage + 1 point per caster level (maximum +15).", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp141.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp141.id, component_id: somatic.id, item: nil)
+  # inflict_serious_wounds_antipaladin = SpellListSpell.create!(spell_list_id: antipaladin_spell_list.id, spell_id: sp141.id, spell_level: 4)
+  inflict_serious_wounds_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp141.id, spell_level: 3)
+  # inflict_serious_wounds_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp141.id, spell_level: 3)
+  # inflict_serious_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp141.id, spell_level: 3)
+  # inflict_serious_wounds_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp141.id, spell_level: 4)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp141.id, keyword: "inflict", spell_level: 3, player_choice: true)
+
+sp142 = Spell.create!(name: "Inflict Critical Wounds", description: "This spell functions like inflict light wounds, except that you deal 4d8 points of damage + 1 point per caster level (maximum +20).", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp142.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp142.id, component_id: somatic.id, item: nil)
+  inflict_critical_wounds_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp142.id, spell_level: 4)
+  # inflict_critical_wounds_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp142.id, spell_level: 4)
+  # inflict_critical_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp142.id, spell_level: 4)
+  # inflict_critical_wounds_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp142.id, spell_level: 5)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp142.id, keyword: "inflict", spell_level: 4, player_choice: true)
+
+sp143 = Spell.create!(name: "Mass Inflict Light Wounds", description: "Negative energy spreads out in all directions from the point of origin, dealing 1d8 points of damage + 1 point per caster level (maximum +25) to nearby living enemies.
+
+Like other inflict spells, mass inflict light wounds cures undead in its area rather than damaging them. A cleric capable of spontaneously casting inflict spells can also spontaneously cast mass inflict spells.", target: "one creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp143.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp143.id, component_id: somatic.id, item: nil)
+  mass_inflict_light_wounds_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp143.id, spell_level: 5)
+  # mass_inflict_light_wounds_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp143.id, spell_level: 5)
+  # mass_inflict_light_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp143.id, spell_level: 5)
+  # mass_inflict_light_wounds_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp143.id, spell_level: 6)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp143.id, keyword: "inflict", spell_level: 5, player_choice: true)
+
+sp144 = Spell.create!(name: "Mass Inflict Moderate Wounds", description: "This spell functions like mass inflict light wounds, except that it deals 2d8 points of damage + 1 point per caster level (maximum +30).", target: "one creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp144.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp144.id, component_id: somatic.id, item: nil)
+  mass_inflict_moderate_wounds_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp144.id, spell_level: 6)
+  # mass_inflict_moderate_wounds_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp144.id, spell_level: 6)
+  # mass_inflict_moderate_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp144.id, spell_level: 6)
+  # mass_inflict_moderate_wounds_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp144.id, spell_level: 7)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp144.id, keyword: "inflict", spell_level: 6, player_choice: true)
+
+sp145 = Spell.create!(name: "Mass Inflict Serious Wounds", description: "This spell functions like mass inflict light wounds, except that it deals 3d8 points of damage + 1 point per caster level (maximum +35).", target: "one creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp145.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp145.id, component_id: somatic.id, item: nil)
+  mass_inflict_serious_wounds_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp145.id, spell_level: 7)
+  # mass_inflict_serious_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp145.id, spell_level: 7)
+  # mass_inflict_serious_wounds_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp145.id, spell_level: 8)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp145.id, keyword: "inflict", spell_level: 7, player_choice: true)
+
+sp146 = Spell.create!(name: "Mass Inflict Critical Wounds", description: "This spell functions like mass inflict light wounds, except that it deals 4d8 points of damage + 1 point per caster level (maximum +40).", target: "one creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp146.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp146.id, component_id: somatic.id, item: nil)
+  mass_inflict_critical_wounds_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp146.id, spell_level: 8)
+  # mass_inflict_critical_wounds_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp146.id, spell_level: 8)
+  # mass_inflict_critical_wounds_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp146.id, spell_level: 9)
+
+  FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp146.id, keyword: "inflict", spell_level: 8, player_choice: true)
 
 #IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )

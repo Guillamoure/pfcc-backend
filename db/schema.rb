@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_19_042221) do
+ActiveRecord::Schema.define(version: 2020_09_21_170734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2020_09_19_042221) do
 
   create_table "character_choices", force: :cascade do |t|
     t.integer "character_id"
-    t.integer "feature_character_choice_id"
+    t.integer "feature_id"
     t.string "choice"
   end
 
@@ -300,6 +300,18 @@ ActiveRecord::Schema.define(version: 2020_09_19_042221) do
     t.boolean "additive", default: true
   end
 
+  create_table "feature_attacks", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "attack_type"
+    t.string "armor_class"
+  end
+
+  create_table "feature_bonus_spell_slots", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "list_of_available_spells"
+    t.string "sub_feature"
+  end
+
   create_table "feature_character_choices", force: :cascade do |t|
     t.integer "feature_id"
     t.string "sub_feature"
@@ -328,14 +340,12 @@ ActiveRecord::Schema.define(version: 2020_09_19_042221) do
     t.integer "num_of_dice"
     t.integer "damage_dice"
     t.string "damage_type"
-    t.integer "num_of_dice_increase"
-    t.integer "damage_dice_increase"
     t.integer "applicable_level"
     t.integer "applicable_step"
-    t.integer "base_limit"
-    t.string "base_limit_modifier"
-    t.float "limit_increase_per_level"
-    t.integer "mimimum_base_limit"
+    t.integer "base_mod"
+    t.string "base_mod_modifier"
+    t.float "mod_increase_per_level"
+    t.integer "mimimum_base_mod"
   end
 
   create_table "feature_display_descriptions", force: :cascade do |t|
@@ -433,6 +443,14 @@ ActiveRecord::Schema.define(version: 2020_09_19_042221) do
     t.integer "caster_level_penalty"
     t.integer "spell_list_id"
     t.integer "secondary_spell_list_id"
+  end
+
+  create_table "feature_spontaneous_castings", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "spell_id"
+    t.string "keyword"
+    t.integer "spell_level"
+    t.boolean "player_choice"
   end
 
   create_table "feature_stat_bonus", force: :cascade do |t|
@@ -557,8 +575,8 @@ ActiveRecord::Schema.define(version: 2020_09_19_042221) do
   end
 
   create_table "klass_specialization_feature_features", force: :cascade do |t|
-    t.string "klass_specialization_feature_id"
-    t.string "feature_id"
+    t.integer "klass_specialization_feature_id"
+    t.integer "feature_id"
   end
 
   create_table "klass_specialization_features", force: :cascade do |t|

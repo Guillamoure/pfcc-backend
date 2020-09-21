@@ -49,6 +49,14 @@ class Api::V1::ItemsController < ApplicationController
     render json: items
   end
 
+  def weapon_index
+    weapons = []
+    Weapon.all.each do |weapon|
+      weapons.push(WeaponSerializer.new(weapon))
+    end
+    render json: weapons
+  end
+
 
   def create
     character_item = nil

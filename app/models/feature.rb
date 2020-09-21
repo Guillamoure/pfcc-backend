@@ -24,6 +24,9 @@ class Feature < ApplicationRecord
   has_many :damages, class_name: 'FeatureDamage'
   has_many :character_choices, class_name: 'FeatureCharacterChoice'
   has_many :steps, class_name: 'FeatureStep'
+  has_one :bonus_spell_slot, class_name: 'FeatureBonusSpellSlot'
+  has_many :spontaneous_castings, class_name: 'FeatureSpontaneousCasting'
+  has_one :attack, class_name: 'FeatureAttack'
 
   has_one :klass_feature_feature
   has_one :klass_feature, through: :klass_feature_feature

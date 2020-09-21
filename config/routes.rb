@@ -24,22 +24,27 @@ Rails.application.routes.draw do
       get '/profile', to: 'users#profile'
       get '/auth', to: 'users#auth'
       get '/data', to: 'data#all'
+
       patch '/background', to: 'char_edits#background'
       patch '/character', to: 'char_edits#character'
       patch '/ability', to: 'char_edits#ability'
       patch '/hp', to: 'char_edits#hp'
       patch '/hp_changes', to: 'char_edits#hp_changes'
       post 'character_choice', to: 'char_edits#character_choice'
+      patch 'character_max_hp/:id', to: 'char_edits#set_max_hp'
+      delete 'rest', to: 'char_edits#clear_all'
+
       patch 'users/active_skillset', to: 'users#update_skillset'
       post 'class_skillset_skills', to: 'class_skillset_skills#create'
       patch 'class_skillset_skills', to: 'class_skillset_skills#update'
       post 'character_skillset_skills', to: 'character_skillset_skills#ranks'
       post 'spells_per_day', to: 'klasses#spells'
       post 'spellcasting', to: 'effects#spellcasting'
-      delete 'rest', to: 'char_edits#clear_all'
       patch 'cast_spells', to: 'cast_spells#rollback'
       patch 'cast_spells/toggle_cast/:id', to: 'cast_spells#toggle_cast'
+
       get 'item_search', to: 'items#index'
+      get 'weapons', to: 'items#weapon_index'
       post 'character_items', to: 'items#create'
       get 'character_magic_items/:id', to: 'items#cmi_show'
       delete 'character_magic_items/:id', to: 'items#magic_destroy'
@@ -53,10 +58,6 @@ Rails.application.routes.draw do
       delete 'container_withdraw/:id', to: 'items#withdraw'
       get 'container/:id', to: 'items#container_contents'
       patch 'character_magic_item_feature_usage_options/:id', to: 'items#feature_option'
-      post 'notes', to: 'notes#create'
-      patch 'notes/:id', to: 'notes#update'
-      delete 'notes/:id', to: 'notes#destroy'
-      patch 'character_max_hp/:id', to: 'char_edits#set_max_hp'
       patch 'character_weapons_discovered/:id', to: 'items#w_discovered'
       patch 'character_weapons_equip/:id', to: 'items#w_equip'
       delete 'character_weapons/:id', to: 'items#weapon_destroy'
@@ -65,10 +66,16 @@ Rails.application.routes.draw do
       patch 'character_weapons_update_ammo/:id', to: 'items#w_update_ammo'
       patch 'character_armors_discovered/:id', to: 'items#a_discovered'
       patch 'character_armors_equip/:id', to: 'items#a_equip'
+
+      post 'notes', to: 'notes#create'
+      patch 'notes/:id', to: 'notes#update'
+      delete 'notes/:id', to: 'notes#destroy'
+
+      get 'ideas/:id', to: 'ideas#index'
+
       get 'actions', to: 'actions#index'
       patch 'character_klass_feature_usages', to: 'klass_features#usage_update'
 
-      get 'ideas/:id', to: 'ideas#index'
 
       get 'campaigns/new', to: 'campaigns#new'
       get 'campaigns/:id', to: 'campaigns#show'

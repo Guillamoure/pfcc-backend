@@ -14,6 +14,11 @@ class KlassFeature < ApplicationRecord
   belongs_to :base_klass_feature, optional: true
   has_many :options, class_name: "KlassFeature", foreign_key: "base_klass_feature_id"
 
+  has_many :klass_feature_klass_specializations
+  has_many :klass_specializations, through: :klass_feature_klass_specializations
+
+
+
   validates :name, presence: true
   validates :description, presence: true
   # validate :correct_level_range
