@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_170734) do
+ActiveRecord::Schema.define(version: 2020_09_21_234056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -310,6 +310,15 @@ ActiveRecord::Schema.define(version: 2020_09_21_170734) do
     t.integer "feature_id"
     t.string "list_of_available_spells"
     t.string "sub_feature"
+  end
+
+  create_table "feature_castable_spells", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "spell_id"
+    t.boolean "effective_level_based_on_feature_level"
+    t.boolean "added_to_known_spells"
+    t.integer "applicable_spell_level"
+    t.boolean "bonus_spell_slot_option"
   end
 
   create_table "feature_character_choices", force: :cascade do |t|

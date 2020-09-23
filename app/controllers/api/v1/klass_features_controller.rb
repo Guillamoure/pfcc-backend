@@ -41,4 +41,29 @@ class Api::V1::KlassFeaturesController < ApplicationController
     render json: @ckfu, status: 200
   end
 
+  def klass_specializations
+    @klass_feature = KlassFeature.find(params[:klass_id])
+    @specializations = []
+    @klass_feature.klass_specializations.each do |kspec|
+      @specializations.push(KlassSpecializationSerializer.new(kspec))
+    end
+    render json: @specializations, status: 200
+  end
+
+  def create_character_klass_specialization
+    if params[:id]
+      @char_kspec = CharacterKlassSpecialization.find(params[:id])
+      @char_kspec.update(klass_feature_klass_specialization_id: params[:klass_feature_klass_specialization_id])
+    else
+      @char_kspec = CharacterKlassSpecialization.create(character_id: params[:character_id], klass_feature_klass_specialization_id: params[:klass_feature_klass_specialization_id])
+    end
+    render json: @char_kspec, status: 201
+  end
+
+  def delete_character_klass_specialization
+    @char_kspec = CharacterKlassSpecialization.find(params[:id])
+    @char_kspec.destroy()
+    render json: @char_kspec, status: 200
+  end
+
 end

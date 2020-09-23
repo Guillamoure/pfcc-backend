@@ -75,6 +75,9 @@ Rails.application.routes.draw do
 
       get 'actions', to: 'actions#index'
       patch 'character_klass_feature_usages', to: 'klass_features#usage_update'
+      get 'klass_specializations', to: 'klass_features#klass_specializations'
+      post 'character_klass_specializations', to: 'klass_features#create_character_klass_specialization'
+      delete 'character_klass_specializations/:id', to: 'klass_features#delete_character_klass_specialization'
 
 
       get 'campaigns/new', to: 'campaigns#new'

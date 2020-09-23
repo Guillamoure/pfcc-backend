@@ -1604,6 +1604,20 @@ In addition, a cleric gains the listed powers from both of her domains, if she i
         FeatureUsage.create!(feature_id: air_domain1_feature.id, limit_frequency: "Day", adjustable: true, base_limit: 3, base_limit_modifier: "charisma")
         FeatureDamage.create!(feature_id: air_domain1_feature.id, num_of_dice: 1, damage_dice: 6, damage_type: "electricity", base_mod: 0, mod_increase_per_level: 0.5)
         FeatureAttack.create!(feature_id: air_domain1_feature.id, attack_type: "range", armor_class: "touch")
+    air_domain2 = KlassSpecializationFeature.create!(klass_specialization_id: air_domain.id, name: "Electricity Resistance", description: "At 6th level, you gain resist electricity 10. This resistance increases to 20 at 12th level. At 20th level, you gain immunity to electricity.", level: 6)
+    air_domain3 = KlassSpecializationFeature.create!(klass_specialization_id: air_domain.id, name: "Domain Spells", description: "1st—obscuring mist, 2nd—wind wall, 3rd—gaseous form, 4th—air walk, 5th—control winds, 6th—chain lightning, 7th—elemental body IV (air only), 8th—whirlwind, 9th—elemental swarm (air spell only).", level: 1)
+      air_domain3_feature = Feature.create!()
+        KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: air_domain3.id, feature_id: air_domain3_feature.id)
+
+  animal_domain = KlassSpecialization.create!(name: "Animal Domain", description: "You can speak with and befriend animals with ease. In addition, you treat Knowledge (nature) as a class skill.")
+    KlassFeatureKlassSpecialization.create!(klass_feature_id: cleric5.id, klass_specialization_id: animal_domain.id)
+    animal_domain1 = KlassSpecializationFeature.create!(klass_specialization_id: animal_domain.id, name: "Base", description: "", level: 1)
+    animal_domain2 = KlassSpecializationFeature.create!(klass_specialization_id: animal_domain.id, name: "Speak with Animals", description: "You can speak with animals, as per the spell, for a number of rounds per day equal to 3 + your cleric level.", level: 1)
+    animal_domain3 = KlassSpecializationFeature.create!(klass_specialization_id: animal_domain.id, name: "Animal Companion", description: "At 4th level, you gain the service of an animal companion. Your effective druid level for this animal companion is equal to your cleric level – 3. (Druids who take this ability through their nature bond class feature use their druid level – 3 to determine the abilities of their animal companions).", level: 4)
+    animal_domain4 = KlassSpecializationFeature.create!(klass_specialization_id: animal_domain.id, name: "Domain Spells", description: "1st—calm animals, 2nd—hold animal, 3rd—dominate animal, 4th—summon nature’s ally IV (animals only), 5th—beast shape III (animals only), 6th—antilife shell, 7th—animal shapes, 8th—summon nature’s ally VIII (animals only), 9th—shapechange.", level: 1)
+      animal_domain4_feature = Feature.create!()
+        KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: animal_domain4.id, feature_id: animal_domain4_feature.id)
+
 
 
 cleric6 = KlassFeature.create!(klass_id: cleric.id, name: "Spontaneous Casting", description: "A good cleric (or a neutral cleric of a good deity) can channel stored spell energy into healing spells that she did not prepare ahead of time. The cleric can “lose” any prepared spell that is not an orison or domain spell in order to cast any cure spell of the same spell level or lower (a cure spell is any spell with “cure” in its name).
@@ -3381,6 +3395,7 @@ twenty_feet = SpellRange.create!(name: "20 ft", feet: 20, increase_per_level: 0,
 thirty_feet = SpellRange.create!(name: "30 ft", feet: 30, increase_per_level: 0, description: "30 ft")
 sixty_feet = SpellRange.create!(name: "60 ft", feet: 60, increase_per_level: 0, description: "60 ft")
 one_hundred_twenty_feet = SpellRange.create!(name: "120 ft", feet: 120, increase_per_level: 0, description: "120 ft")
+forty_feet_per_level = SpellRange.create!(name: "40 ft./level", feet: 40, increase_per_level: 40, description: "40 ft./level")
 
 
 # /////////////////////////////////////////
@@ -3429,6 +3444,7 @@ cold = Subschool.create!(name: 'Cold', description: 'Cold effects deal damage by
 death = Subschool.create!(name: 'Death', description: 'Spells with the death descriptor directly attack a creature’s life force to cause immediate death, or to draw on the power of a dead or dying creature. The death ward spell protects against death effects, and some creature types are immune to death effects.')
 poison = Subschool.create!(name: 'Poison', description: 'Poison effects use poison, venom, drugs, or similar toxic substances to disrupt and damage living creatures through chemical reactions. Technically, acids and poisons are both chemical reactions, but for the purpose of this game, they are categorized as different effects, with acids dealing hit point damage and poisons causing ability damage, ability drain, bleeding, confusion, convulsions, nausea, paralysis, reduced healing, suffocation, unconsciousness, or death. Creatures with resistance to poison (such as dwarves) apply that resistance to their saving throws and the effects of poison spells. Creatures with immunity are immune to poisonous aspects of poison spells, but not necessarily all effects of the spell (for example, a spell that creates a pit full of liquid poison could still trap or drown a poison-immune creature).')
 earth = Subschool.create!(name: 'Earth', description: 'Spells that manipulate earth or conjure creatures from earth-dominant planes or with the earth subtype should have the earth descriptor.')
+emotion = Subschool.create!(name: 'Emotion', description: 'Spells with this descriptor create emotions or manipulate the target’s existing emotions. Most emotion spells are enchantments, except for fear spells, which are usually necromancy.')
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells!-*-*-*-----*-*->
@@ -4356,6 +4372,8 @@ This spell does not function underwater.", target: "cloud spreads in 20-ft. radi
   # obscuring_mist_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp63.id, spell_level: 1)
   # obscuring_mist_magus = SpellListSpell.create!(spell_list_id: magus.id, spell_id: sp63.id, spell_level: 1)
   # obscuring_mist_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp63.id, spell_level: 1)
+
+  FeatureCastableSpell.create!(feature_id: air_domain3_feature.id, spell_id: sp63.id, added_to_known_spells: false, applicable_spell_level: 1, bonus_spell_slot_option: true)
 
 sp64 = Spell.create!(name: "Enlarge Person", description: "This spell causes instant growth of a humanoid creature, doubling its height and multiplying its weight by 8. This increase changes the creature’s size category to the next larger one. The target gains a +2 size bonus to Strength, a -2 size penalty to Dexterity (to a minimum of 1), and a -1 penalty on attack rolls and AC due to its increased size.
 
@@ -5369,6 +5387,8 @@ sp140 = Spell.create!(name: "Mass Cure Critical Wounds", description: "This spel
 
   FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp140.id, keyword: "cure", spell_level: 8, player_choice: true)
 
+  print "140 Spells Created \r"
+
 sp141 = Spell.create!(name: "Inflict Serious Wounds", description: "This spell functions like inflict light wounds, except that you deal 3d8 points of damage + 1 point per caster level (maximum +15).", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: sp141.id, component_id: verbal.id, item: nil)
   SpellComponent.create!(spell_id: sp141.id, component_id: somatic.id, item: nil)
@@ -5429,6 +5449,429 @@ sp146 = Spell.create!(name: "Mass Inflict Critical Wounds", description: "This s
   # mass_inflict_critical_wounds_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp146.id, spell_level: 9)
 
   FeatureSpontaneousCasting.create!(feature_id: cleric6_feature.id, spell_id: sp146.id, keyword: "inflict", spell_level: 8, player_choice: true)
+
+sp147 = Spell.create!(name: "Wind Wall", description: "An invisible vertical curtain of wind appears. It is 2 feet thick and of considerable strength. It is a roaring blast sufficient to blow away any bird smaller than an eagle, or tear papers and similar materials from unsuspecting hands. (A Reflex save allows a creature to maintain its grasp on an object.) Tiny and Small flying creatures cannot pass through the barrier. Loose materials and cloth garments fly upward when caught in a wind wall. Arrows and bolts are deflected upward and miss, while any other normal ranged weapon passing through the wall has a 30% miss chance. (A giant-thrown boulder, a siege engine projectile, and other massive ranged weapons are not affected.) Gases, most gaseous breath weapons, and creatures in gaseous form cannot pass through the wall (although it is no barrier to incorporeal creatures).
+
+While the wall must be vertical, you can shape it in any continuous path along the ground that you like. It is possible to create cylindrical or square wind walls to enclose specific points.", target: "wall up to 10 ft./level long and 5 ft./level high (S)", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: medium.id, magic_school_id: evocation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp147.id, subschool_id: air.id)
+  SpellComponent.create!(spell_id: sp147.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp147.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp147.id, component_id: material.id, item: "a tiny feather and an exotic fan")
+  SpellComponent.create!(spell_id: sp147.id, component_id: divine_focus.id, item: nil)
+  # wind_wall_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager_spell_list.id, spell_id: sp147.id, spell_level: 3)
+  wind_wall_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp147.id, spell_level: 3)
+  # wind_wall_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp147.id, spell_level: 3)
+  # wind_wall_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp147.id, spell_level: 3)
+  # wind_wall_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp147.id, spell_level: 2)
+  # wind_wall_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp147.id, spell_level: 3)
+  # wind_wall_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp147.id, spell_level: 3)
+  # wind_wall_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp147.id, spell_level: 3)
+
+  FeatureCastableSpell.create!(feature_id: air_domain3_feature.id, spell_id: sp147.id, added_to_known_spells: false, applicable_spell_level: 2, bonus_spell_slot_option: true)
+
+sp148 = Spell.create!(name: "Gaseous Form", description: "The subject and all its gear become insubstantial, misty, and translucent. Its material armor (including natural armor) becomes worthless, though its size, Dexterity, deflection bonuses, and armor bonuses from force effects still apply. The subject gains DR 10/magic and becomes immune to poison, sneak attacks, and critical hits. It can’t attack or cast spells with verbal, somatic, material, or focus components while in gaseous form. This does not rule out the use of certain spells that the subject may have prepared using the feats Silent Spell, Still Spell, and Eschew Materials. The subject also loses supernatural abilities while in gaseous form. If it has a touch spell ready to use, that spell is discharged harmlessly when the gaseous form spell takes effect.
+
+A gaseous creature can’t run, but it can fly at a speed of 10 feet and automatically succeeds on all Fly skill checks. It can pass through small holes or narrow openings, even mere cracks, with all it was wearing or holding in its hands, as long as the spell persists. The creature is subject to the effects of wind, and it can’t enter water or other liquid. It also can’t manipulate objects or activate items, even those carried along with its gaseous form. Continuously active items remain active, though in some cases their effects may be moot.", target: "willing corporeal creature touched", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "2 min./level (D)", time: 2, unit_of_time: "minutes", increase_per_level: 2, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp148.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp148.id, component_id: material.id, item: "a bit of gauze and a wisp of smoke")
+  SpellComponent.create!(spell_id: sp148.id, component_id: divine_focus.id, item: nil)
+  # gaseous_form_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp148.id, spell_level: 3)
+  gaseous_form_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp148.id, spell_level: 3)
+  # gaseous_form_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp148.id, spell_level: 3)
+  # gaseous_form_medium = SpellListSpell.create!(spell_list_id: medium_spell_list.id, spell_id: sp148.id, spell_level: 3)
+  # gaseous_form_occultist = SpellListSpell.create!(spell_list_id: occultist_spell_list.id, spell_id: sp148.id, spell_level: 3)
+  # gaseous_form_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp148.id, spell_level: 3)
+  # gaseous_form_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp148.id, spell_level: 3)
+  # gaseous_form_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist_spell_list.id, spell_id: sp148.id, spell_level: 3)
+
+  FeatureCastableSpell.create!(feature_id: air_domain3_feature.id, spell_id: sp148.id, added_to_known_spells: false, applicable_spell_level: 3, bonus_spell_slot_option: true)
+
+sp149 = Spell.create!(name: "Air Walk", description: "The subject can tread on air as if walking on solid ground. Moving upward is similar to walking up a hill. The maximum upward or downward angle possible is 45 degrees, at a rate equal to half the air walker’s normal speed.
+
+A strong wind (21+ miles per hour) can push the subject along or hold it back. At the end of a creature’s turn each round, the wind blows the air walker 5 feet for each 5 miles per hour of wind speed. The creature may be subject to additional penalties in exceptionally strong or turbulent winds, such as loss of control over movement or physical damage from being buffeted about.
+
+Should the spell duration expire while the subject is still aloft, the magic fails slowly. The subject floats downward 60 feet per round for 1d6 rounds. If it reaches the ground in that amount of time, it lands safely. If not, it falls the rest of the distance, taking 1d6 points of damage per 10 feet of fall. Since dispelling a spell effectively ends it, the subject also descends in this way if the air walk spell is dispelled, but not if it is negated by an antimagic field.
+
+You can cast air walk on a specially trained mount so it can be ridden through the air. You can train a mount to move with the aid of air walk (counts as a trick; see Handle Animal skill) with 1 week of work and a DC 25 Handle Animal check.", target: "creature (Gargantuan or smaller) touched", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp149.id, subschool_id: air.id)
+  SpellComponent.create!(spell_id: sp149.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp149.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp149.id, component_id: divine_focus.id, item: nil)
+  # air_walk_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp149.id, spell_level: 4)
+  air_walk_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp149.id, spell_level: 4)
+  # air_walk_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp149.id, spell_level: 4)
+
+  FeatureCastableSpell.create!(feature_id: air_domain3_feature.id, spell_id: sp149.id, added_to_known_spells: false, applicable_spell_level: 4, bonus_spell_slot_option: true)
+
+sp150 = Spell.create!(name: "Control Winds", description: "You alter wind force in the area surrounding you. You can make the wind blow in a certain direction or manner, increase its strength, or decrease its strength. The new wind direction and strength persist until the spell ends or until you choose to alter your handiwork, which requires concentration. You may create an “eye” of calm air up to 80 feet in diameter at the center of the area if you so desire, and you may choose to limit the area to any cylindrical area less than your full limit.
+
+Wind Direction: You may choose one of four basic wind patterns to function over the spell’s area.
+
+A downdraft blows from the center outward in equal strength in all directions.
+An updraft blows from the outer edges in toward the center in equal strength from all directions, veering upward before impinging on the eye in the center.
+Rotation causes the winds to circle the center in clockwise or counterclockwise fashion.
+A blast simply causes the winds to blow in one direction across the entire area from one side to the other.
+Wind Strength: For every three caster levels, you can increase or decrease wind strength by one level. Each round on your turn, a creature in the wind must make a Fortitude save or suffer the effect of being in the windy area. See Environment for more details.
+
+Strong winds (21+ mph) make sailing difficult.
+
+A severe wind (31+ mph) causes minor ship and building damage.
+
+A windstorm (51+ mph) drives most flying creatures from the skies, uproots small trees, knocks down light wooden structures, tears off roofs, and endangers ships.
+
+Hurricane force winds (75+ mph) destroy wooden buildings, uproot large trees, and cause most ships to founder.
+
+A tornado (175+ mph) destroys all nonfortified buildings and often uproots large trees.", target: "40 ft./level radius cylinder 40 ft. high", saving_throw: "Fortitude", spell_resistance: false, action_id: standard.id, spell_range_id: forty_feet_per_level.id, magic_school_id: transmutation.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp150.id, subschool_id: air.id)
+  SpellComponent.create!(spell_id: sp150.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp150.id, component_id: somatic.id, item: nil)
+  # control_winds_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp150.id, spell_level: 5)
+  # control_winds_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp150.id, spell_level: 5)
+
+  FeatureCastableSpell.create!(feature_id: air_domain3_feature.id, spell_id: sp150.id, added_to_known_spells: false, applicable_spell_level: 5, bonus_spell_slot_option: true)
+
+  print "150 Spells Created \r"
+
+sp151 = Spell.create!(name: "Chain Lightning", description: "This spell creates an electrical discharge that begins as a single stroke commencing from your fingertips. Unlike lightning bolt, chain lightning strikes one object or creature initially, then arcs to other targets.
+
+The bolt deals 1d6 points of electricity damage per caster level (maximum 20d6) to the primary target. After it strikes, lightning can arc to a number of secondary targets equal to your caster level (maximum 20). The secondary bolts each strike one target and deal as much damage as the primary bolt.
+
+Each target can attempt a Reflex saving throw for half damage. The Reflex DC to halve the damage of the secondary bolts is 2 lower than the DC to halve the damage of the primary bolt. You choose secondary targets as you like, but they must all be within 30 feet of the primary target, and no target can be struck more than once. You can choose to affect fewer secondary targets than the maximum.", target: "one primary target, plus one secondary target/level (each of which must be within 30 ft. of the primary target)", saving_throw: "Reflex", spell_resistance: true, action_id: standard.id, spell_range_id: long.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp151.id, subschool_id: electricity.id)
+  SpellComponent.create!(spell_id: sp151.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp151.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp151.id, component_id: focus.id, item: "a bit of fur; a piece of amber, glass or a crystal rod; plus one silver pin per caster level")
+  # chain_lightning_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp151.id, spell_level: 6)
+  # chain_lightning_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp151.id, spell_level: 6)
+  # chain_lightning_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp151.id, spell_level: 7)
+
+  FeatureCastableSpell.create!(feature_id: air_domain3_feature.id, spell_id: sp151.id, added_to_known_spells: false, applicable_spell_level: 6, bonus_spell_slot_option: true)
+
+sp152 = Spell.create!(name: "Elemental Body I", description: "When you cast this spell, you can assume the form of a Small air elemental, Small earth elemental, Small fire elemental, or Small water elemental. The abilities you gain depend upon the type of elemental into which you change. Elemental abilities based on size, such as burn, vortex, and whirlwind, use the size of the elemental you transform into to determine their effect.
+
+Air elemental: If the form you take is that of a Small air elemental, you gain a +2 size bonus to your Dexterity and a +2 natural armor bonus. You also gain fly 60 feet (perfect), darkvision 60 feet, and the ability to create a whirlwind.
+Earth elemental: If the form you take is that of a Small earth elemental, you gain a +2 size bonus to your Strength and a +4 natural armor bonus. You also gain darkvision 60 feet and the ability to earth glide.
+Fire elemental: If the form you take is that of a Small fire elemental, you gain a +2 size bonus to your Dexterity and a +2 natural armor bonus. You gain darkvision 60 feet, resist fire 20, vulnerability to cold, and the burn ability.
+Water elemental: If the form you take is that of a Small water elemental, you gain a +2 size bonus to your Constitution and a +4 natural armor bonus. You also gain swim 60 feet, darkvision 60 feet, the ability to create a vortex, and the ability to breathe water.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 min/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp152.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp152.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp152.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp152.id, component_id: material.id, item: "the element you plan to assume")
+  # elemenal_body_I_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp152.id, spell_level: 4)
+  # elemenal_body_I_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager_spell_list.id, spell_id: sp152.id, spell_level: 4)
+  # elemenal_body_I_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp152.id, spell_level: 4)
+  # elemenal_body_I_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp152.id, spell_level: 4)
+
+sp153 = Spell.create!(name: "Elemental Body II", description: "This spell functions as elemental body I, except that it also allows you to assume the form of a Medium air elemental, Medium earth elemental, Medium fire elemental, or Medium water elemental. The abilities you gain depend upon the elemental.
+
+Air elemental: As elemental body I except that you gain a +4 size bonus to your Dexterity and a +3 natural armor bonus.
+Earth elemental: As elemental body I except that you gain a +4 size bonus to your Strength and a +5 natural armor bonus.
+Fire elemental: As elemental body I except that you gain a +4 size bonus to your Dexterity and a +3 natural armor bonus.
+Water elemental: As elemental body I except that you gain a +4 size bonus to your Constitution and a +5 natural armor bonus.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 min/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp153.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp153.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp153.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp153.id, component_id: material.id, item: "the element you plan to assume")
+  # elemenal_body_II_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp153.id, spell_level: 5)
+  # elemenal_body_II_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp153.id, spell_level: 5)
+  # elemenal_body_II_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp153.id, spell_level: 5)
+
+sp154 = Spell.create!(name: "Elemental Body III", description: "This spell functions as elemental body II, except that it also allows you to assume the form of a Large air elemental, large earth elemental, large fire elemental, or large water elemental. The abilities you gain depend upon the type of elemental into which you change. You are also immune to bleed damage, critical hits, and sneak attacks while in elemental form.
+
+Air elemental: As elemental body I except that you gain a +2 size bonus to your Strength, +4 size bonus to your Dexterity, and a +4 natural armor bonus.
+Earth elemental: As elemental body I except that you gain a +6 size bonus to your Strength, a -2 penalty on your Dexterity, a +2 size bonus to your Constitution, and a +6 natural armor bonus.
+Fire elemental: As elemental body I except that you gain a +4 size bonus to your Dexterity, a +2 size bonus to your Constitution, and a +4 natural armor bonus.
+Water elemental: As elemental body I except that you gain a +2 size bonus to your Strength, a -2 penalty on your Dexterity, a +6 size bonus to your Constitution, and a +6 natural armor bonus.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 min/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp154.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp154.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp154.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp154.id, component_id: material.id, item: "the element you plan to assume")
+  # elemenal_body_III_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp154.id, spell_level: 6)
+  # elemenal_body_III_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp154.id, spell_level: 6)
+  # elemenal_body_III_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp154.id, spell_level: 6)
+
+sp155 = Spell.create!(name: "Elemental Body IV", description: "This spell functions as elemental body III, except that it also allows you to assume the form of a Huge air elemental, Huge earth elemental, Huge fire elemental, or Huge water elemental. The abilities you gain depend upon the type of elemental into which you change. You are also immune to bleed damage, critical hits, and sneak attacks while in elemental form and gain DR 5/—.
+
+Air elemental: As elemental body I except that you gain a +4 size bonus to your Strength, +6 size bonus to your Dexterity, and a +4 natural armor bonus. You also gain fly 120 feet (perfect).
+Earth elemental: As elemental body I except that you gain a +8 size bonus to your Strength, a -2 penalty on your Dexterity, a +4 size bonus to your Constitution, and a +6 natural armor bonus.
+Fire elemental: As elemental body I except that you gain a +6 size bonus to your Dexterity, a +4 size bonus to your Constitution, and a +4 natural armor bonus.
+Water elemental: As elemental body I except that you gain a +4 size bonus to your Strength, a -2 penalty on your Dexterity, a +8 size bonus to your Constitution, and a +6 natural armor bonus. You also gain swim 120 feet.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 min/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp155.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp155.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp155.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp155.id, component_id: material.id, item: "the element you plan to assume")
+  # elemenal_body_IV_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp155.id, spell_level: 7)
+
+  FeatureCastableSpell.create!(feature_id: air_domain3_feature.id, spell_id: sp155.id, added_to_known_spells: false, applicable_spell_level: 7, bonus_spell_slot_option: true)
+
+sp156 = Spell.create!(name: "Whirlwind", description: "This spell creates a powerful cyclone of raging wind that moves through the air, along the ground, or over water at a speed of 60 feet per round. You can concentrate on controlling the cyclone’s every movement or specify a simple program. Directing the cyclone’s movement or changing its programmed movement is a standard action for you. The cyclone always moves during your turn. If the cyclone exceeds the spell’s range, it moves in a random, uncontrolled fashion for 1d3 rounds and then dissipates. (You can’t regain control of the cyclone, even if it comes back within range.)
+
+Any Large or smaller creature that comes in contact with the spell effect must succeed on a Reflex save or take 3d6 points of damage. A Medium or smaller creature that fails its first save must succeed on a second one or be picked up bodily by the cyclone and held suspended in its powerful winds, taking 1d8 points of damage each round on your turn with no save allowed. You may direct the cyclone to eject any carried creatures whenever you wish, depositing the hapless souls wherever the cyclone happens to be when they are released.", target: "cyclone 10 ft. wide at base, 30 ft. wide at top, and 30 ft. tall", saving_throw: "Reflex", spell_resistance: true, action_id: standard.id, spell_range_id: long.id, magic_school_id: evocation.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp156.id, subschool_id: air.id)
+  SpellComponent.create!(spell_id: sp156.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp156.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp156.id, component_id: divine_focus.id, item: nil)
+  # whirlwind_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp156.id, spell_level: 8)
+  # whirlwind_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp156.id, spell_level: 8)
+
+  FeatureCastableSpell.create!(feature_id: air_domain3_feature.id, spell_id: sp156.id, added_to_known_spells: false, applicable_spell_level: 8, bonus_spell_slot_option: true)
+
+sp157 = Spell.create!(name: "Elemental Swarm", description: "This spell opens a portal to an Elemental Plane and summons elementals from it. A druid can choose any plane (Air, Earth, Fire, or Water); a cleric opens a portal to the plane matching his domain.
+
+When the spell is complete, 2d4 Large elementals appear. Ten minutes later, 1d4 Huge elementals appear. Ten minutes after that, one greater elemental appears. Each elemental has maximum hit points per HD. Once these creatures appear, they serve you for the duration of the spell.
+
+The elementals obey you explicitly and never attack you, even if someone else manages to gain control over them. You do not need to concentrate to maintain control over the elementals. You can dismiss them singly or in groups at any time.
+
+When you use a summoning spell to summon an air, earth, fire, or water creature, it is a spell of that type.", target: "two or more summoned creatures, no two of which can be more than 30 ft. apart", saving_throw: "none", spell_resistance: false, action_id: ten.id, spell_range_id: medium.id, magic_school_id: conjuration.id, duration: "10 min./level (D)", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp157.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp157.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp157.id, component_id: somatic.id, item: nil)
+  # elemental_swarm_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp157.id, spell_level: 9)
+  # elemental_swarm_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp157.id, spell_level: 9)
+  # elemental_swarm_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp157.id, spell_level: 9)
+
+  FeatureCastableSpell.create!(feature_id: air_domain3_feature.id, spell_id: sp157.id, added_to_known_spells: false, applicable_spell_level: 9, bonus_spell_slot_option: true)
+
+sp158 = Spell.create!(name: "Calm Animals", description: "This spell soothes and quiets animals, rendering them docile and harmless. Only ordinary animals (those with Intelligence scores of 1 or 2) can be affected by this spell. All the subjects must be of the same kind, and no two may be more than 30 feet apart. The maximum number of HD of animals you can affect is equal to 2d4 + caster level.
+
+The affected creatures remain where they are and do not attack or flee. They are not helpless and defend themselves normally if attacked. Any threat breaks the spell on the threatened creatures.", target: "animals within 30 ft. of each other", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: enchantment.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp158.id, subschool_id: compulsion.id)
+  SpellSubschool.create!(spell_id: sp158.id, subschool_id: emotion.id)
+  SpellSubschool.create!(spell_id: sp158.id, subschool_id: mind_affecting.id)
+  SpellComponent.create!(spell_id: sp158.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp158.id, component_id: somatic.id, item: nil)
+  # calm_animals_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp158.id, spell_level: 1)
+  # calm_animals_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp158.id, spell_level: 1)
+  # calm_animals_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp158.id, spell_level: 1)
+  # calm_animals_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp158.id, spell_level: 1)
+
+  FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp158.id, added_to_known_spells: false, applicable_spell_level: 1, bonus_spell_slot_option: true)
+
+sp159 = Spell.create!(name: "Hold Animal", description: "This spell functions like hold person, except that it affects an animal instead of a humanoid.", target: "one animal", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: medium.id, magic_school_id: enchantment.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp159.id, subschool_id: compulsion.id)
+  SpellSubschool.create!(spell_id: sp159.id, subschool_id: mind_affecting.id)
+  SpellComponent.create!(spell_id: sp159.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp159.id, component_id: somatic.id, item: nil)
+  # hold_animal_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp159.id, spell_level: 2)
+  # hold_animal_mesmerist = SpellListSpell.create!(spell_list_id: mesmerist_spell_list.id, spell_id: sp159.id, spell_level: 2)
+  # hold_animal_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp159.id, spell_level: 2)
+  # hold_animal_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp159.id, spell_level: 2)
+
+  FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp159.id, added_to_known_spells: false, applicable_spell_level: 2, bonus_spell_slot_option: true)
+
+sp160 = Spell.create!(name: "Dominate Animal", description: "This spell allows you to enchant the targeted animal and direct it with simple commands such as “Attack,” “Run,” and “Fetch.” Suicidal or self-destructive commands (including an order to attack a creature two or more size categories larger than the dominated animal) are simply ignored.
+
+Dominate animal establishes a mental link between you and the subject creature. The animal can be directed by silent mental command as long as it remains in range. You need not see the creature to control it. You do not receive direct sensory input from the creature, but you know what it is experiencing. Because you are directing the animal with your own intelligence, it may be able to undertake actions normally beyond its own comprehension. You need not concentrate exclusively on controlling the creature unless you are trying to direct it to do something it normally couldn’t do. Changing your instructions or giving a dominated creature a new command is the equivalent of redirecting a spell, so it is a move action.", target: "one animal", saving_throw: "Will", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: enchantment.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp160.id, subschool_id: compulsion.id)
+  SpellSubschool.create!(spell_id: sp160.id, subschool_id: mind_affecting.id)
+  SpellComponent.create!(spell_id: sp160.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp160.id, component_id: somatic.id, item: nil)
+  # dominate_animal_druid = SpellListSpell.create!(spell_list_id: druid_spell_list, spell_id: sp160.id, spell_level: 3)
+  # dominate_animal_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list, spell_id: sp160.id, spell_level: 3)
+
+  FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp160.id, added_to_known_spells: false, applicable_spell_level: 3, bonus_spell_slot_option: true)
+
+  print "160 Spells Created \r"
+
+sp161 = Spell.create!(name: "Summon Nature's Ally I", description: "This spell summons to your side a natural creature (typically an animal, fey, magical beast, outsider with the elemental subtype, or a giant). The summoned ally appears where you designate and acts immediately, on your turn. It attacks your opponents to the best of its ability. If you can communicate with the creature, you can direct it not to attack, to attack particular enemies, or to perform other actions as you command.
+
+A summoned monster cannot summon or otherwise conjure another creature, nor can it use any teleportation or planar travel abilities. Creatures cannot be summoned into an environment that cannot support them. Creatures summoned using this spell cannot use spells or spell-like abilities that duplicate spells that have expensive material components (such as wish).
+
+The spell conjures one of the creatures from the 1st Level list on Table: Nature’s Ally. You choose which kind of creature to summon, and you can change that choice each time you cast the spell. All the creatures on the table are neutral unless otherwise noted.
+
+When you use a summoning spell to summon a creature with an alignment or elemental subtype, it is a spell of that type. All creatures summoned with this spell without alignment subtypes have an alignment that matches yours, regardless of their usual alignment. Summoning these creatures makes the summoning spell’s type match your alignment.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp161.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp161.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp161.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp161.id, component_id: divine_focus.id, item: nil)
+  # summon_natures_ally_I_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp161.id, spell_level: 1)
+  # summon_natures_ally_I_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp161.id, spell_level: 1)
+  # summon_natures_ally_I_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp161.id, spell_level: 1)
+
+sp162 = Spell.create!(name: "Summon Nature's Ally II", description: "This spell functions as summon nature’s ally I, except that you summon one 2nd-level creature or 1d3 1st-level creatures of the same kind.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp162.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp162.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp162.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp162.id, component_id: divine_focus.id, item: nil)
+  # summon_natures_ally_II_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp162.id, spell_level: 2)
+  # summon_natures_ally_II_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp162.id, spell_level: 2)
+  # summon_natures_ally_II_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp162.id, spell_level: 2)
+
+sp163 = Spell.create!(name: "Summon Nature's Ally III", description: "This spell functions like summon nature’s ally I, except that you can summon one 3rd-level creature, 1d3 2nd-level creatures of the same kind, or 1d4+1 1st-level creatures of the same kind.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp163.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp163.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp163.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp163.id, component_id: divine_focus.id, item: nil)
+  # summon_natures_ally_III_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp163.id, spell_level: 3)
+  # summon_natures_ally_III_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp163.id, spell_level: 3)
+  # summon_natures_ally_III_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp163.id, spell_level: 3)
+
+sp164 = Spell.create!(name: "Summon Nature's Ally IV", description: "This spell functions like summon nature’s ally I, except that you can summon one 4th-level creature, 1d3 3rd-level creatures of the same kind, or 1d4+1 lower-level creatures of the same kind.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp164.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp164.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp164.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp164.id, component_id: divine_focus.id, item: nil)
+  # summon_natures_ally_IV_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp164.id, spell_level: 4)
+  # summon_natures_ally_IV_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp164.id, spell_level: 4)
+  # summon_natures_ally_IV_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp164.id, spell_level: 4)
+
+  FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp164.id, added_to_known_spells: false, applicable_spell_level: 4, bonus_spell_slot_option: true)
+
+sp165 = Spell.create!(name: "Summon Nature's Ally V", description: "This spell functions like summon nature’s ally I, except that you can summon one 5th-level creature, 1d3 4th-level creatures of the same kind, or 1d4+1 lower-level creatures of the same kind.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp165.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp165.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp165.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp165.id, component_id: divine_focus.id, item: nil)
+  # summon_natures_ally_V_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp165.id, spell_level: 5)
+  # summon_natures_ally_V_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp165.id, spell_level: 5)
+
+sp166 = Spell.create!(name: "Summon Nature's Ally VI", description: "This spell functions like summon nature’s ally I, except that you can summon one 6th-level creature, 1d3 5th-level creatures of the same kind, or 1d4+1 lower-level creatures of the same kind.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp166.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp166.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp166.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp166.id, component_id: divine_focus.id, item: nil)
+  # summon_natures_ally_VI_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp166.id, spell_level: 6)
+  # summon_natures_ally_VI_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp166.id, spell_level: 6)
+
+sp167 = Spell.create!(name: "Summon Nature's Ally VII", description: "This spell functions like summon nature’s ally I, except that you can summon one 7th-level creature, 1d3 6th-level creatures of the same kind, or 1d4+1 lower-level creatures of the same kind.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp167.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp167.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp167.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp167.id, component_id: divine_focus.id, item: nil)
+  # summon_natures_ally_VII_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp167.id, spell_level: 7)
+  # summon_natures_ally_VII_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp167.id, spell_level: 7)
+
+sp168 = Spell.create!(name: "Summon Nature's Ally VIII", description: "This spell functions like summon nature’s ally I, except that you can summon one 8th-level creature, 1d3 7th-level creatures of the same kind, or 1d4+1 lower-level creatures of the same kind.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp168.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp168.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp168.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp168.id, component_id: divine_focus.id, item: nil)
+  # summon_natures_ally_VIII_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp168.id, spell_level: 8)
+  # summon_natures_ally_VIII_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp168.id, spell_level: 8)
+
+  FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp168.id, added_to_known_spells: false, applicable_spell_level: 8, bonus_spell_slot_option: true)
+
+sp169 = Spell.create!(name: "Summon Nature's Ally IX", description: "This spell functions like summon nature’s ally I, except that you can summon one 9th-level creature, 1d3 8th-level creatures of the same kind, or 1d4+1 lower-level creatures of the same kind.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level (D)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp169.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp169.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp169.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp169.id, component_id: divine_focus.id, item: nil)
+  # summon_natures_ally_IX_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp169.id, spell_level: 9)
+  # summon_natures_ally_IX_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp169.id, spell_level: 9)
+
+sp170 = Spell.create!(name: "Beast Shape I", description: "When you cast this spell, you can assume the form of any Small or Medium creature of the animal type. If the form you assume has any of the following abilities, you gain the listed ability: climb 30 feet, fly 30 feet (average maneuverability), swim 30 feet, darkvision 60 feet, low-light vision, and scent.
+
+Small animal: If the form you take is that of a Small animal, you gain a +2 size bonus to your Dexterity and a +1 natural armor bonus.
+
+Medium animal: If the form you take is that of a Medium animal, you gain a +2 size bonus to your Strength and a +2 natural armor bonus.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 min./level (D)", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp170.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp170.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp170.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp170.id, component_id: material.id, item: "a piece of the creature whose form you plan to assume")
+  # beast_shape_I_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp170.id, spell_level: 3)
+  # beast_shape_I_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager_spell_list.id, spell_id: sp170.id, spell_level: 3)
+  # beast_shape_I_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp170.id, spell_level: 3)
+  # beast_shape_I_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp170.id, spell_level: 3)
+
+  print "170 Spells Created \r"
+
+sp171 = Spell.create!(name: "Beast Shape II", description: "This spell functions as beast shape I, except that it also allows you to assume the form of a Tiny or Large creature of the animal type. If the form you assume has any of the following abilities, you gain the listed ability: climb 60 feet, fly 60 feet (good maneuverability), swim 60 feet, darkvision 60 feet, low-light vision, scent, grab, pounce, and trip.
+
+Tiny animal: If the form you take is that of a Tiny animal, you gain a +4 size bonus to your Dexterity, a -2 penalty to your Strength, and a +1 natural armor bonus.
+
+Large animal: If the form you take is that of a Large animal, you gain a +4 size bonus to your Strength, a -2 penalty to your Dexterity, and a +4 natural armor bonus.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 min./level (D)", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp171.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp171.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp171.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp171.id, component_id: material.id, item: "a piece of the creature whose form you plan to assume")
+  # beast_shape_II_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp171.id, spell_level: 4)
+  # beast_shape_II_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager_spell_list.id, spell_id: sp171.id, spell_level: 4)
+  # beast_shape_II_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp171.id, spell_level: 4)
+  # beast_shape_II_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp171.id, spell_level: 4)
+
+sp172 = Spell.create!(name: "Beast Shape III", description: "This spell functions as beast shape II, except that it also allows you to assume the form of a Diminutive or Huge creature of the animal type. This spell also allows you to take on the form of a Small or Medium creature of the magical beast type. If the form you assume has any of the following abilities, you gain the listed ability: burrow 30 feet, climb 90 feet, fly 90 feet (good maneuverability), swim 90 feet, blindsense 30 feet, darkvision 60 feet, low-light vision, scent, constrict, ferocity, grab, jet, poison, pounce, rake, trample, trip, and web.
+
+Diminutive animal: If the form you take is that of a Diminutive animal, you gain a +6 size bonus to your Dexterity, a -4 penalty to your Strength, and a +1 natural armor bonus.
+
+Huge animal: If the form you take is that of a Huge animal, you gain a +6 size bonus to your Strength, a -4 penalty to your Dexterity, and a +6 natural armor bonus.
+
+Small magical beast: If the form you take is that of a Small magical beast, you gain a +4 size bonus to your Dexterity, and a +2 natural armor bonus.
+
+Medium magical beast: If the form you take is that of a Medium magical beast, you gain a +4 size bonus to your Strength, and a +4 natural armor bonus.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 min./level (D)", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp172.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp172.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp172.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp172.id, component_id: material.id, item: "a piece of the creature whose form you plan to assume")
+  # beast_shape_III_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp172.id, spell_level: 5)
+  # beast_shape_III_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp172.id, spell_level: 5)
+  # beast_shape_III_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp172.id, spell_level: 5)
+
+  FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp172.id, added_to_known_spells: false, applicable_spell_level: 5, bonus_spell_slot_option: true)
+
+sp173 = Spell.create!(name: "Beast Shape IV", description: "This spell functions as beast shape III except that it also allows you to assume the form of a Tiny or Large creature of the magical beast type. If the form you assume has any of the following abilities, you gain the listed ability: burrow 60 feet, climb 90 feet, fly 120 feet (good maneuverability), swim 120 feet, blindsense 60 feet, darkvision 90 feet, low-light vision, scent, tremorsense 60 feet, breath weapon, constrict, ferocity, grab, jet, poison, pounce, rake, rend, roar, spikes, trample, trip, and web. If the creature has immunity or resistance to any elements, you gain resistance 20 to those elements. If the creature has vulnerability to an element, you gain that vulnerability.
+
+Tiny magical beast: If the form you take is that of a Tiny magical beast, you gain a -2 penalty to your Strength, a +8 size bonus to your Dexterity, and a +3 natural armor bonus.
+
+Large magical beast: If the form you take is that of a Large magical beast, you gain a +6 size bonus to your Strength, a -2 penalty on your Dexterity, a +2 size bonus to your Constitution, and a +6 natural armor bonus.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 min./level (D)", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp173.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp173.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp173.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp173.id, component_id: material.id, item: "a piece of the creature whose form you plan to assume")
+  # beast_shape_IV_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp173.id, spell_level: 5)
+  # beast_shape_IV_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp173.id, spell_level: 5)
+  # beast_shape_IV_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp173.id, spell_level: 5)
+
+sp174 = Spell.create!(name: "Antilife Shell", description: "You bring into being a mobile, hemispherical energy field that prevents the entrance of most types of living creatures.
+
+The effect hedges out animals, aberrations, dragons, fey, giants, humanoids, magical beasts, monstrous humanoids, oozes, plants, and vermin, but not constructs, elementals, outsiders, or undead.
+
+This spell may be used only defensively, not aggressively. Forcing an abjuration barrier against creatures that the spell keeps at bay collapses the barrier.", target: "10-ft.-radius emanation, centered on you", saving_throw: "none", spell_resistance: true, action_id: full_round.id, spell_range_id: ten_feet.id, magic_school_id: abjuration.id, duration: "1 min./level (D)", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp174.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp174.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp174.id, component_id: divine_focus.id, item: nil)
+  antilife_shell_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp174.id, spell_level: 6)
+  # antilife_shell_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp174.id, spell_level: 6)
+  # antilife_shell_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp174.id, spell_level: 6)
+
+  FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp174.id, added_to_known_spells: false, applicable_spell_level: 6, bonus_spell_slot_option: true)
+
+sp175 = Spell.create!(name: "Animal Shapes", description: "As beast shape III, except you change the form of up to one willing creature per caster level into an animal of your choice; the spell has no effect on unwilling creatures. All creatures must take the same kind of animal form. Recipients remain in the animal form until the spell expires or until you dismiss it for all recipients. In addition, an individual subject may choose to resume its normal form as a full-round action; doing so ends the spell for that subject alone.", target: "up to one willing creature per level, all within 30 ft. of each other", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 hour/level (D)", time: 1, unit_of_time: "hour", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp175.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp175.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp175.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp175.id, component_id: divine_focus.id, item: nil)
+  # animal_shapes_druid = SpellListSpell.create!(spell_list_id: druid_spell_list, spell_id: sp175.id, spell_level: 8)
+  # animal_shapes_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list, spell_id: sp175.id, spell_level: 8)
+
+  FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp175.id, added_to_known_spells: false, applicable_spell_level: 7, bonus_spell_slot_option: true)
+
+sp176 = Spell.create!(name: "Shapchange", description: "This spell allows you to take the form of a wide variety of creatures. This spell can function as alter self, beast shape IV, elemental body IV, form of the dragon III, giant form II, and plant shape III depending on what form you take. You can change form once each round as a free action. The change takes place either immediately before your regular action or immediately after it, but not during the action.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "10 min./level (D)", time: 10, unit_of_time: "min", increase_per_level: 10, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp176.id, subschool_id: polymorph.id)
+  SpellComponent.create!(spell_id: sp176.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp176.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp176.id, component_id: focus.id, item: "jade circlet worth 1500 gp")
+  # animal_shapes_druid = SpellListSpell.create!(spell_list_id: druid_spell_list, spell_id: sp176.id, spell_level: 9)
+  # animal_shapes_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list, spell_id: sp176.id, spell_level: 9)
+
+  FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp176.id, added_to_known_spells: false, applicable_spell_level: 9, bonus_spell_slot_option: true)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
 #IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
