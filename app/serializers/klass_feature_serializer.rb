@@ -12,11 +12,11 @@ class KlassFeatureSerializer < ActiveModel::Serializer
   #   end
   # end
 
-  def klass_specializations
-    self.object.klass_specializations.map do |ks|
-      KlassSpecializationSerializer.new(ks)
-    end
-  end
+  # def klass_specializations
+  #   self.object.klass_specializations.map do |ks|
+  #     KlassSpecializationSerializer.new(ks)
+  #   end
+  # end
 
   def features
     self.object.features.map do |f|

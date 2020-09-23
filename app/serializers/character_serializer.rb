@@ -39,7 +39,22 @@ class CharacterSerializer < ActiveModel::Serializer
       # :favored_klass_bonuses
     end
   end
-  #
+
+  def klass_specializations
+    self.object.character_klass_specializations.map do |cks|
+      kspec_features = cks.klass_specialization.klass_specialization_features.map do |ksf|
+        KlassSpecializationFeatureSerializer.new(ksf)
+      end
+      {
+        id: cks.klass_specialization.id,
+        name: cks.klass_specialization.name,
+        klass_feature: cks.klass_feature,
+        klass_specialization_features: kspec_features,
+        character_klass_specialization_id: cks.id
+      }
+    end
+  end
+
   def character_klasses
     self.object.character_klasses.map do |ck|
       CharacterKlassSerializer.new(ck)
