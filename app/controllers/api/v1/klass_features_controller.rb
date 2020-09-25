@@ -41,6 +41,15 @@ class Api::V1::KlassFeaturesController < ApplicationController
     render json: @ckfu, status: 200
   end
 
+  def klass_specialization_usage_update
+    @cksfu = CharacterKlassSpecializationFeatureUsage.find_or_create_by(character_id: params[:character_id], klass_specialization_feature_id: params[:klass_specialization_feature_id], feature_usage_id: params[:feature_usage_id])
+    puts params
+
+    @cksfu.update(current_usage: params[:current_usage])
+
+    render json: @cksfu, status: 200
+  end
+
   def klass_specializations
     @klass_feature = KlassFeature.find(params[:klass_id])
     @specializations = []
@@ -57,7 +66,17 @@ class Api::V1::KlassFeaturesController < ApplicationController
     else
       @char_kspec = CharacterKlassSpecialization.create(character_id: params[:character_id], klass_feature_klass_specialization_id: params[:klass_feature_klass_specialization_id])
     end
-    render json: @char_kspec, status: 201
+    kspec_features = @char_kspec.klass_specialization.klass_specialization_features.map do |ksf|
+      KlassSpecializationFeatureSerializer.new(ksf)
+    end
+    @serialized_char_kspec = {
+      id: @char_kspec.klass_specialization.id,
+      name: @char_kspec.klass_specialization.name,
+      klass_feature: @char_kspec.klass_feature,
+      klass_specialization_features: kspec_features,
+      character_klass_specialization_id: @char_kspec.id
+    }
+    render json: @serialized_char_kspec, status: 201
   end
 
   def delete_character_klass_specialization
