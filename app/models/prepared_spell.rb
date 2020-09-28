@@ -10,4 +10,15 @@ class PreparedSpell < ApplicationRecord
   has_one :spell_range, through: :spell
   has_one :magic_school, through: :spell
 
+  def alternate_source
+    if self.alternate_source_id && self.alternate_source_ability
+      if self.alternate_source_ability == "klass_specialization_feature"
+        @kspecFeature = KlassSpecializationFeature.find(self.alternate_source_id)
+      end
+      return @kspecFeature
+    else
+      return nil
+    end
+  end
+
 end

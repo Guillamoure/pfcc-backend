@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_010359) do
+ActiveRecord::Schema.define(version: 2020_09_27_173211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -688,6 +688,9 @@ ActiveRecord::Schema.define(version: 2020_09_24_010359) do
     t.boolean "cast", default: false
     t.integer "feature_spellcasting_id"
     t.integer "spell_list_spell_id"
+    t.boolean "bonus_spell", default: false
+    t.integer "alternate_source_id"
+    t.string "alternate_source_ability"
   end
 
   create_table "race_ability_score_modifiers", force: :cascade do |t|

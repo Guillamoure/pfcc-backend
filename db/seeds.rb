@@ -1594,7 +1594,7 @@ In addition, a cleric gains the listed powers from both of her domains, if she i
   FeatureLevel.create!(klass_feature_id: cleric5.id, level: 1, table_description: "Domains")
   cleric5_feature = Feature.create!()
     KlassFeatureFeature.create!(klass_feature_id: cleric5.id, feature_id: cleric5_feature.id)
-    FeatureBonusSpellSlot.create!(feature_id: cleric5_feature.id, list_of_available_spells: "klass specialization", sub_feature: "castable_spells")
+    FeatureBonusSpellSlot.create!(feature_id: cleric5_feature.id, list_of_available_spells: "klass_specializations", sub_feature: "castable_spells")
 
   air_domain = KlassSpecialization.create!(name: "Air Domain", description: "You can manipulate lightning, mist, and wind, traffic with air creatures, and are resistant to electricity damage.")
     KlassFeatureKlassSpecialization.create!(klass_feature_id: cleric5.id, klass_specialization_id: air_domain.id)
