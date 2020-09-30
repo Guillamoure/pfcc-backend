@@ -15,7 +15,7 @@ class Api::V1::PreparedSpellsController < ApplicationController
   end
 
   def create
-      @ps = PreparedSpell.create(spell_list_spell_id: params[:spell_list_spell_id], character_id: params[:character_id], spell_level: params[:spell_level], cast: false, feature_spellcasting_id: params[:feature_spellcasting_id])
+      @ps = PreparedSpell.create(spell_list_spell_id: params[:spell_list_spell_id], character_id: params[:character_id], spell_level: params[:spell_level], cast: false, feature_spellcasting_id: params[:feature_spellcasting_id], direct_spell_id: params[:direct_spell_id], alternate_source_id: params[:alternate_source_id], alternate_source_ability: params[:alternate_source_ability], bonus_spell: params[:bonus_spell])
     # @prepared_spells = params[:spells].map do |sp|
     #   @ps = PreparedSpell.create(klass_spell_id: sp[:known_spell_id], character_id: params[:character_id], spell_level: sp[:level], cast: false, klass_id: sp[:klass])
     #   if @ps

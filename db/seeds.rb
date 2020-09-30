@@ -1612,11 +1612,34 @@ In addition, a cleric gains the listed powers from both of her domains, if she i
   animal_domain = KlassSpecialization.create!(name: "Animal Domain", description: "You can speak with and befriend animals with ease. In addition, you treat Knowledge (nature) as a class skill.")
     KlassFeatureKlassSpecialization.create!(klass_feature_id: cleric5.id, klass_specialization_id: animal_domain.id)
     animal_domain1 = KlassSpecializationFeature.create!(klass_specialization_id: animal_domain.id, name: "Base", description: "", level: 1)
+      animal_domain1_feature = Feature.create!()
+        KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: animal_domain1.id, feature_id: animal_domain1_feature.id)
+        FeatureSkillBonus.create!(feature_id: animal_domain1_feature.id, skill_id: knowledge_nature.id, class_skill: true)
+        FeatureSkillBonus.create!(feature_id: animal_domain1_feature.id, skill_id: nature_unchained.id, class_skill: true)
     animal_domain2 = KlassSpecializationFeature.create!(klass_specialization_id: animal_domain.id, name: "Speak with Animals", description: "You can speak with animals, as per the spell, for a number of rounds per day equal to 3 + your cleric level.", level: 1)
+      animal_domain2_feature = Feature.create!()
+        KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: animal_domain2.id, feature_id: animal_domain2_feature.id)
+        FeatureUsage.create!(feature_id: animal_domain2_feature.id, unit: "rounds", limit_frequency: "Day", adjustable: true, base_limit: 4, limit_increase_per_level: 1)
     animal_domain3 = KlassSpecializationFeature.create!(klass_specialization_id: animal_domain.id, name: "Animal Companion", description: "At 4th level, you gain the service of an animal companion. Your effective druid level for this animal companion is equal to your cleric level – 3. (Druids who take this ability through their nature bond class feature use their druid level – 3 to determine the abilities of their animal companions).", level: 4)
     animal_domain4 = KlassSpecializationFeature.create!(klass_specialization_id: animal_domain.id, name: "Domain Spells", description: "1st—calm animals, 2nd—hold animal, 3rd—dominate animal, 4th—summon nature’s ally IV (animals only), 5th—beast shape III (animals only), 6th—antilife shell, 7th—animal shapes, 8th—summon nature’s ally VIII (animals only), 9th—shapechange.", level: 1)
       animal_domain4_feature = Feature.create!()
         KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: animal_domain4.id, feature_id: animal_domain4_feature.id)
+
+  artifice_domain = KlassSpecialization.create!(name: "Artifice Domain", description: "You can repair damage to objects, animate objects with life, and create objects from nothing.")
+    KlassFeatureKlassSpecialization.create!(klass_feature_id: cleric5.id, klass_specialization_id: artifice_domain.id)
+    artifice_domain1 = KlassSpecializationFeature.create!(klass_specialization_id: artifice_domain.id, name: "Artificer's Touch", description: "You can cast mending at will, using your cleric level as the caster level to repair damaged objects. In addition, you can cause damage to objects and construct creatures by striking them with a melee touch attack. Objects and constructs take 1d6 points of damage +1 for every two cleric levels you possess. This attack bypasses an amount of damage reduction and hardness equal to your cleric level. You can use this ability a number of times per day equal to 3 + your Wisdom modifier.", level: 1)
+      artifice_domain1_feature = Feature.create!()
+        KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: artifice_domain1.id, feature_id: artifice_domain1_feature.id)
+      artifice_domain1_feature2 = Feature.create!(action_id: standard.id)
+        KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: artifice_domain1.id, feature_id: artifice_domain1_feature2.id)
+        FeatureUsage.create!(feature_id: artifice_domain1_feature2.id, limit_frequency: "Day", adjustable: true, base_limit: 3, base_limit_modifier: "wisdom")
+        FeatureDamage.create!(feature_id: artifice_domain1_feature2.id, num_of_dice: 1, damage_dice: 6, base_mod: 0, mod_increase_per_level: 0.5)
+        FeatureAttack.create!(feature_id: artifice_domain1_feature2.id, attack_type: "melee", armor_class: "touch")
+    artifice_domain2 = KlassSpecializationFeature.create!(klass_specialization_id: artifice_domain.id, name: "Dancing Weapons", description: "At 8th level, you can give a weapon touched the dancing special weapon quality for 4 rounds. You can use this ability once per day at 8th level, and an additional time per day for every four levels beyond 8th.", level: 8)
+    artifice_domain3 = KlassSpecializationFeature.create!(klass_specialization_id: artifice_domain.id, name: "Domain Spells", description: "1st—animate rope, 2nd—wood shape, 3rd—stone shape, 4th—minor creation, 5th—fabricate, 6th—major creation, 7th—wall of iron, 8th—statue*, 9th—prismatic sphere.", level: 1)
+      artifice_domain3_feature = Feature.create!()
+        KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: artifice_domain3.id, feature_id: artifice_domain3_feature.id)
+
 
 
 
@@ -3324,6 +3347,17 @@ ClassSkillsetSkill.create!(klass_id: alchemist.id, skillset_id: dmc.id, skill_id
 ClassSkillsetSkill.create!(klass_id: alchemist.id, skillset_id: dmc.id, skill_id: investigation.id)
 ClassSkillsetSkill.create!(klass_id: alchemist.id, skillset_id: dmc.id, skill_id: nature_unchained.id)
 ClassSkillsetSkill.create!(klass_id: alchemist.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id)
+
+ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: diplomacy.id)
+ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: heal.id)
+ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: linguistics.id)
+ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: religion_unchained.id)
+ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: sense_motive.id)
+ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: craft.id)
+ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: profession.id)
+ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: society_unchained.id)
+ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id)
+
 
 
 # ////////////////////////////////////////////////////

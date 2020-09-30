@@ -7,6 +7,7 @@ class CreateFeatureCastableSpells < ActiveRecord::Migration[5.2]
       t.boolean :added_to_known_spells
       t.integer :applicable_spell_level
       t.boolean :bonus_spell_slot_option
+      t.boolean :cast_at_will
     end
   end
 end

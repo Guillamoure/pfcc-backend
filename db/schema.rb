@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_27_173211) do
+ActiveRecord::Schema.define(version: 2020_09_29_024353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -326,6 +326,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_173211) do
     t.boolean "added_to_known_spells"
     t.integer "applicable_spell_level"
     t.boolean "bonus_spell_slot_option"
+    t.boolean "cast_at_will"
   end
 
   create_table "feature_character_choices", force: :cascade do |t|
@@ -436,6 +437,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_173211) do
     t.integer "minimum_bonus"
     t.boolean "bonus_multiplier_based_on_feature_level", default: false
     t.float "bonus"
+    t.boolean "class_skill"
   end
 
   create_table "feature_skill_notes", force: :cascade do |t|
@@ -691,6 +693,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_173211) do
     t.boolean "bonus_spell", default: false
     t.integer "alternate_source_id"
     t.string "alternate_source_ability"
+    t.integer "direct_spell_id"
   end
 
   create_table "race_ability_score_modifiers", force: :cascade do |t|

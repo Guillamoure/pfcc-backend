@@ -24,6 +24,7 @@ immediate = Action.find_or_create_by!(name: "Immediate Action")
 ten = Action.find_or_create_by!(name: "Ten Minutes")
 one_minute = Action.find_or_create_by!(name: "One Minute")
 three_rounds = Action.find_or_create_by!(name: "Three Rounds")
+varies = Action.find_or_create_by!(name: "See Text")
 
 
 # /////////////////////////////////////////
@@ -38,7 +39,15 @@ A cleric who is neither good nor evil and whose deity is neither good nor evil c
 
 air_domain3_feature = KlassSpecializationFeature.find_by!(name: "Domain Spells", description: "1st—obscuring mist, 2nd—wind wall, 3rd—gaseous form, 4th—air walk, 5th—control winds, 6th—chain lightning, 7th—elemental body IV (air only), 8th—whirlwind, 9th—elemental swarm (air spell only).", level: 1).features[0]
 
+animal_domain2_feature = KlassSpecializationFeature.find_by!(name: "Speak with Animals", description: "You can speak with animals, as per the spell, for a number of rounds per day equal to 3 + your cleric level.", level: 1).features[0]
+
 animal_domain4_feature = KlassSpecializationFeature.find_by!(name: "Domain Spells", description: "1st—calm animals, 2nd—hold animal, 3rd—dominate animal, 4th—summon nature’s ally IV (animals only), 5th—beast shape III (animals only), 6th—antilife shell, 7th—animal shapes, 8th—summon nature’s ally VIII (animals only), 9th—shapechange.", level: 1).features[0]
+
+artifice_domain1_feature = KlassSpecializationFeature.find_by!(name: "Artificer's Touch", description: "You can cast mending at will, using your cleric level as the caster level to repair damaged objects. In addition, you can cause damage to objects and construct creatures by striking them with a melee touch attack. Objects and constructs take 1d6 points of damage +1 for every two cleric levels you possess. This attack bypasses an amount of damage reduction and hardness equal to your cleric level. You can use this ability a number of times per day equal to 3 + your Wisdom modifier.", level: 1).features[0]
+
+artifice_domain3_feature = KlassSpecializationFeature.find_by!(name: "Domain Spells", description: "1st—animate rope, 2nd—wood shape, 3rd—stone shape, 4th—minor creation, 5th—fabricate, 6th—major creation, 7th—wall of iron, 8th—statue*, 9th—prismatic sphere.", level: 1)
+
+
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spell List -*-*-*-----*-*->
@@ -238,6 +247,9 @@ sp3 = Spell.create!(name: "Mending", description: "This spell repairs damaged ob
   # mending_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp3.id, spell_level: 0)
   # mending_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp3.id, spell_level: 0)
   # mending_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp3.id, spell_level: 0)
+
+  FeatureCastableSpell.create!(feature_id: artifice_domain1_feature.id, spell_id: sp3.id, effective_level_based_on_feature_level: true, added_to_known_spells: false, applicable_spell_level: 0, bonus_spell_slot_option: false, cast_at_will: true)
+
 
 sp4 = Spell.create!(name: "Message", description: "You can whisper messages and receive whispered replies. Those nearby can hear these messages with a DC 25 Perception check. You point your finger at each creature you want to receive the message. When you whisper, the whispered message is audible to all targeted creatures within range. Magical silence, 1 foot of stone, 1 inch of common metal (or a thin sheet of lead), or 3 feet of wood or dirt blocks the spell. The message does not have to travel in a straight line. It can circumvent a barrier if there is an open path between you and the subject, and the path’s entire length lies within the spell’s range. The creatures that receive the message can whisper a reply that you hear. The spell transmits sound, not meaning; it doesn’t transcend language barriers. To speak a message, you must mouth the words and whisper.", target: "one creature/level", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: transmutation.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp4.id, subschool_id: language_dependent.id)
@@ -1400,6 +1412,8 @@ Attempting to use any created object as a material component causes the spell to
   # minor_creation_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp84.id, spell_level: 3)
   # minor_creation_witch = SpellListSpell.create!(spell_list_id: witch.id, spell_id: sp84.id, spell_level: 4)
 
+  FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp84.id, added_to_known_spells: false, applicable_spell_level: 4, bonus_spell_slot_option: true)
+
 sp85 = Spell.create!(name: "Major Creation", description: "This spell functions like minor creation, except that you can also create an object of mineral nature: stone, crystal, metal, or the like. The duration of the created item varies with its relative hardness and rarity, as indicated on the following table.
 
 Hardness and Rarity Examples	Duration
@@ -1415,6 +1429,8 @@ Rare metal*	1 round/level", target: "unattended, non-magical object, up to 1 cu.
   # major_creation_wizard = SpellListSpell.create!(spell_list_id: wizard.id, spell_id: sp85.id, spell_level: 5)
   # major_creation_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp85.id, spell_level: 4)
   # major_creation_witch = SpellListSpell.create!(spell_list_id: witch.id, spell_id: sp85.id, spell_level: 5)
+
+  FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp85.id, added_to_known_spells: false, applicable_spell_level: 6, bonus_spell_slot_option: true)
 
 sp86 = Spell.create!(name: "Acid Fog", description: "Acid fog creates a billowing mass of misty vapors like the solid fog spell. In addition to slowing down creatures and obscuring sight, this spell’s vapors are highly acidic. Each round on your turn, starting when you cast the spell, the fog deals 2d6 points of acid damage to each creature and object within it.", target: "fog spreads in 20-ft. radius, 20 ft. high", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp86.id, subschool_id: creation.id)
@@ -2391,8 +2407,8 @@ Dominate animal establishes a mental link between you and the subject creature. 
   SpellSubschool.create!(spell_id: sp160.id, subschool_id: mind_affecting.id)
   SpellComponent.create!(spell_id: sp160.id, component_id: verbal.id, item: nil)
   SpellComponent.create!(spell_id: sp160.id, component_id: somatic.id, item: nil)
-  # dominate_animal_druid = SpellListSpell.create!(spell_list_id: druid_spell_list, spell_id: sp160.id, spell_level: 3)
-  # dominate_animal_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list, spell_id: sp160.id, spell_level: 3)
+  # dominate_animal_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp160.id, spell_level: 3)
+  # dominate_animal_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp160.id, spell_level: 3)
 
   FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp160.id, added_to_known_spells: false, applicable_spell_level: 3, bonus_spell_slot_option: true)
 
@@ -2565,8 +2581,8 @@ sp175 = Spell.create!(name: "Animal Shapes", description: "As beast shape III, e
   SpellComponent.create!(spell_id: sp175.id, component_id: verbal.id, item: nil)
   SpellComponent.create!(spell_id: sp175.id, component_id: somatic.id, item: nil)
   SpellComponent.create!(spell_id: sp175.id, component_id: divine_focus.id, item: nil)
-  # animal_shapes_druid = SpellListSpell.create!(spell_list_id: druid_spell_list, spell_id: sp175.id, spell_level: 8)
-  # animal_shapes_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list, spell_id: sp175.id, spell_level: 8)
+  # animal_shapes_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp175.id, spell_level: 8)
+  # animal_shapes_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp175.id, spell_level: 8)
 
   FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp175.id, added_to_known_spells: false, applicable_spell_level: 7, bonus_spell_slot_option: true)
 
@@ -2575,10 +2591,151 @@ sp176 = Spell.create!(name: "Shapechange", description: "This spell allows you t
   SpellComponent.create!(spell_id: sp176.id, component_id: verbal.id, item: nil)
   SpellComponent.create!(spell_id: sp176.id, component_id: somatic.id, item: nil)
   SpellComponent.create!(spell_id: sp176.id, component_id: focus.id, item: "jade circlet worth 1500 gp")
-  # animal_shapes_druid = SpellListSpell.create!(spell_list_id: druid_spell_list, spell_id: sp176.id, spell_level: 9)
-  # animal_shapes_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list, spell_id: sp176.id, spell_level: 9)
+  # animal_shapes_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp176.id, spell_level: 9)
+  # animal_shapes_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp176.id, spell_level: 9)
 
   FeatureCastableSpell.create!(feature_id: animal_domain4_feature.id, spell_id: sp176.id, added_to_known_spells: false, applicable_spell_level: 9, bonus_spell_slot_option: true)
+
+sp177 = Spell.create!(name: "Speak with Animals", description: "You can ask questions of and receive answers from animals, but the spell doesn't make them any more friendly than normal. Wary and cunning animals are likely to be terse and evasive, while the more stupid ones make inane comments. If an animal is friendly towards you, it may do some favor or service for you.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: divination.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp177.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp177.id, component_id: somatic.id, item: nil)
+  speak_with_animals_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp177.id, spell_level: 3)
+  # speak_with_animals_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp177.id, spell_level: 1)
+  # speak_with_animals_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp177.id, spell_level: 2)
+  # speak_with_animals_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp177.id, spell_level: 1)
+
+  FeatureCastableSpell.create!(feature_id: animal_domain2_feature.id, spell_id: sp177.id, effective_level_based_on_feature_level: true, added_to_known_spells: false, applicable_spell_level: 1, bonus_spell_slot_option: false)
+
+sp178 = Spell.create!(name: "Animate Rope", description: "You can animate a nonliving rope-like object. The maximum length assumes a rope with a 1-inch diameter. Reduce the maximum length by 50% for every additional inch of thickness, and increase it by 50% for each reduction of the rope’s diameter by half.
+
+The possible commands are “coil” (form a neat, coiled stack), “coil and knot,” “loop,” “loop and knot,” “tie and knot,” and the opposites of all of the above (“uncoil,” and so forth). You can give one command each round as a move action, as if directing an active spell.
+
+The rope can enwrap only a creature or an object within 1 foot of it – it does not snake outward – so it must be thrown near the intended target. Doing so requires a successful ranged touch attack roll (range increment 10 feet). A typical 1-inch-diameter hemp rope has 2 hit points, AC 10, and requires a DC 23 Strength check to burst it. The rope does not deal damage, but it can be used as a trip line or to cause a single opponent that fails a Reflex saving throw to become entangled. A creature capable of spellcasting that is bound by this spell must make a concentration check with a DC of 15 + the spell’s level to cast a spell. An entangled creature can slip free with a DC 20 Escape Artist check.
+
+The rope itself and any knots tied in it are not magical.
+
+The spell cannot affect objects carried or worn by a creature.", target: "one rope-like object, length up to 50 ft. + 5 ft./level", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: transmutation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp178.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp178.id, component_id: somatic.id, item: nil)
+  animate_rope_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp178.id, spell_level: 1)
+  # animate_rope_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp178.id, spell_level: 1)
+  # animate_rope_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp178.id, spell_level: 1)
+
+  FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp178.id, added_to_known_spells: false, applicable_spell_level: 1, bonus_spell_slot_option: true)
+
+sp179 = Spell.create!(name: "Wood Shape", description: "Wood shape enables you to form one existing piece of wood into any shape that suits your purpose. While it is possible to make crude coffers, doors, and so forth, fine detail isn’t possible. There is a 30% chance that any shape that includes moving parts simply doesn’t work.", target: "one touched piece of wood no larger than 10 cu. ft. + 1 cu. ft./level", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp179.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp179.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp179.id, component_id: divine_focus.id, item: nil)
+  # wood_shape_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp179.id, spell_level: 2)
+  # wood_shape_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp179.id, spell_level: 2)
+
+  FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp179.id, added_to_known_spells: false, applicable_spell_level: 2, bonus_spell_slot_option: true)
+
+sp180 = Spell.create!(name: "Stone Shape", description: "You can form an existing piece of stone into any shape that suits your purpose. While it’s possible to make crude coffers, doors, and so forth with stone shape, fine detail isn’t possible. There is a 30% chance that any shape including moving parts simply doesn’t work.", target: "stone or stone object touched, up to 10 cu. ft. + 1 cu. ft./level", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp180.id, subschool_id: earth.id)
+  SpellComponent.create!(spell_id: sp180.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp180.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp180.id, component_id: material.id, item: "soft clay")
+  SpellComponent.create!(spell_id: sp180.id, component_id: divine_focus.id, item: nil)
+  stone_shape_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp180.id, spell_level: 3)
+  # stone_shape_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp180.id, spell_level: 3)
+  # stone_shape_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp180.id, spell_level: 3)
+  # stone_shape_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp180.id, spell_level: 4)
+
+  FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp180.id, added_to_known_spells: false, applicable_spell_level: 3, bonus_spell_slot_option: true)
+
+  print "180 Spells Created \r"
+
+sp181 = Spell.create!(name: "Fabricate", description: "You convert material of one sort into a product that is of the same material. Creatures or magic items cannot be created or transmuted by the fabricate spell. The quality of items made by this spell is commensurate with the quality of material used as the basis for the new fabrication. If you work with a mineral, the target is reduced to 1 cubic foot per level instead of 10 cubic feet.
+
+You must make an appropriate Craft check to fabricate articles requiring a high degree of craftsmanship.
+
+Casting requires 1 round per 10 cubic feet of material to be affected by the spell.", target: "up to 10 cu. ft./level", saving_throw: "none", spell_resistance: false, action_id: varies.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp181.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp181.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp181.id, component_id: material.id, item: "the original material, which costs the same amount as the raw materials required to craft the item to be created")
+  # fabricate_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp181.id, spell_level: 5)
+
+  FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp181.id, added_to_known_spells: false, applicable_spell_level: 5, bonus_spell_slot_option: true)
+
+sp182 = Spell.create!(name: "Wall of Iron", description: "You cause a flat, vertical iron wall to spring into being. The wall inserts itself into any surrounding nonliving material if its area is sufficient to do so. The wall cannot be conjured so that it occupies the same space as a creature or another object. It must always be a flat plane, though you can shape its edges to fit the available space.
+
+A wall of iron is 1 inch thick per four caster levels. You can double the wall’s area by halving its thickness. Each 5-foot square of the wall has 30 hit points per inch of thickness and hardness 10. A section of wall whose hit points drop to 0 is breached. If a creature tries to break through the wall with a single attack, the DC for the Strength check is 25 + 2 per inch of thickness.
+
+If you desire, the wall can be created vertically resting on a flat surface but not attached to the surface, so that it can be tipped over to fall on and crush creatures beneath it. The wall is 50% likely to tip in either direction if left unpushed. Creatures can push the wall in one direction rather than letting it fall randomly. A creature must make a DC 40 Strength check to push the wall over. Creatures with room to flee the falling wall may do so by making successful Reflex saves. Any Large or smaller creature that fails takes 10d6 points of damage while fleeing from the wall. The wall cannot crush Huge and larger creatures.
+
+Like any iron wall, this wall is subject to rust, perforation, and other natural phenomena. Iron created by this spell is not suitable for use in the creation of other objects and cannot be sold.", target: "iron wall whose area is up to one 5-ft. square/level", saving_throw: "Reflex", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp182.id, subschool_id: creation.id)
+  SpellComponent.create!(spell_id: sp182.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp182.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp182.id, component_id: material.id, item: "a small iron sheet plus gold dust worth 50 gp")
+  # wall_of_iron_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp182.id, spell_level: 6)
+  # wall_of_iron_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp182.id, spell_level: 6)
+  # wall_of_iron_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp182.id, spell_level: 6)
+
+  FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp182.id, added_to_known_spells: false, applicable_spell_level: 7, bonus_spell_slot_option: true)
+
+sp183 = Spell.create!(name: "Statue", description: "A statue spell turns the subject to solid stone, along with any garments and equipment worn or carried. In statue form, the subject gains hardness 8. The subject retains its own hit points. The subject can see, hear, and smell normally, but it does not need to eat or breathe. Feeling is limited to those sensations that can affect the granite-hard substance of the individual’s body. Chipping is equal to a mere scratch, but breaking off one of the statue’s arms constitutes serious damage. The subject of a statue spell can return to its normal state, act, and then return instantly to the statue state (a free action) if it so desires as long as the spell duration is in effect.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: full_round.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 hour/level", time: 1, unit_of_time: "hour", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp183.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp183.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp183.id, component_id: material.id, item: "lime, sand, and a drop of water stirred by an iron spike")
+  # statue_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp183.id, spell_level: 6)
+  # statue_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp183.id, spell_level: 7)
+
+  FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp183.id, added_to_known_spells: false, applicable_spell_level: 8, bonus_spell_slot_option: true)
+
+sp184 = Spell.create!(name: "Prismatic Wall", description: "Prismatic wall creates a vertical, opaque wall- a shimmering, multicolored plane of light that protects you from all forms of attack. The wall flashes with seven colors, each of which has a distinct power and purpose. The wall is immobile, and you can pass through and remain near the wall without harm. Any other creature with less than 8 HD that is within 20 feet of the wall is blinded by the colors for 2d4 rounds if it looks at the wall.
+
+The wall’s maximum proportions are 4 feet wide per caster level and 2 feet high per caster level. A prismatic wall spell cast to materialize in a space occupied by a creature is disrupted, and the spell is wasted.
+
+Each color in the wall has a special effect. The accompanying table shows the seven colors of the wall, the order in which they appear, their effects on creatures trying to attack you or pass through the wall, and the magic needed to negate each color.
+
+The wall can be destroyed, color by color, in consecutive order, by casting the specified spells on the wall; however, the first color must be brought down before the second can be affected, and so on. A rod of cancellation or a mage’s disjunction spell destroys a prismatic wall, but an antimagic field fails to penetrate it. Dispel magic and greater dispel magic can only be used on the wall once all the other colors have been destroyed. Spell Resistance is effective against a prismatic wall, but the caster level check must be repeated for each color present.
+
+Prismatic wall can be made permanent with a permanency spell.
+
+Order	Color	Effect of Color	Negated by
+1st	Red	Stops non-magical ranged weapons.
+Deals 20 points of fire damage (Reflex half).	Cone of cold
+2nd	Orange	Stops magical ranged weapons.
+Deals 40 points of acid damage (Reflex half).	Gust of wind
+3rd	Yellow	Stops poisons, gases, and petrification.
+Deals 80 points of electricity damage (Reflex half).	Disintegrate
+4th	Green	Stops breath weapons.
+Poison (Frequency: 1/rd. for 6 rd.; init. effect: death, sec. effect: 1 Con/rd.; Cure 2 consecutive Fort saves).	Passwall
+5th	Blue	Stops divination and mental attacks.
+Turned to stone (Fortitude negates).	Magic missile
+6th	Indigo	Stops all spells.
+Will save or become insane (as insanity spell).	Daylight
+7th	Violet	Energy field destroys all objects and effects.*
+Creatures sent to another plane (Will negates).	Dispel magic or greater dispel magic
+* The violet effect makes the special effects of the other six colors redundant, but these six effects are included here because certain magic items can create prismatic effects one color at a time, and Spell Resistance might render some colors ineffective (see above).", target: "wall 4 ft./level wide, 2 ft./level high", saving_throw: "see text", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: abjuration.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp184.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp184.id, component_id: somatic.id, item: nil)
+  # prismatic_wall_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp184.id, spell_level: 8)
+
+sp185 = Spell.create!(name: "Prismatic Sphere", description: "This spell functions like prismatic wall, except you conjure up an immobile, opaque globe of shimmering, multicolored light that surrounds you and protects you from all forms of attack. The sphere flashes in all colors of the visible spectrum.
+
+The sphere’s blindness effect on creatures with less than 8 HD lasts 2d4 x 10 minutes.
+
+You can pass into and out of the prismatic sphere and remain near it without harm. When you’re inside it, however, the sphere blocks any attempt to project something through the sphere (including spells). Other creatures that attempt to attack you or pass through suffer the effects of each color, one at a time.
+
+Typically, only the upper hemisphere of the globe exists, since you are at the center of the sphere, so the lower half is usually occluded by the floor surface you are standing on.
+
+The colors of the sphere have the same effects as the colors of a prismatic wall.
+
+Prismatic sphere can be made permanent with a permanency spell.", target: "10-ft.-radius sphere centered on you", saving_throw: "see text", spell_resistance: true, action_id: standard.id, spell_range_id: ten_feet.id, magic_school_id: abjuration.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp185.id, component_id: verbal.id, item: nil)
+  # prismatic_sphere_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp185.id, spell_level: 9)
+
+  FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp185.id, added_to_known_spells: false, applicable_spell_level: 9, bonus_spell_slot_option: true)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
 #IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )

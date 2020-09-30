@@ -8,7 +8,7 @@ class FeatureSerializer < ActiveModel::Serializer
 
   def castable_spells
     self.object.castable_spells.map do |csp|
-      {id: csp.id, effective_level_based_on_feature_level: csp.effective_level_based_on_feature_level, added_to_known_spells: csp.added_to_known_spells, applicable_spell_level: csp.applicable_spell_level, bonus_spell_slot_option: csp.bonus_spell_slot_option, spell: SpellSerializer.new(csp.spell)}
+      {id: csp.id, effective_level_based_on_feature_level: csp.effective_level_based_on_feature_level, added_to_known_spells: csp.added_to_known_spells, applicable_spell_level: csp.applicable_spell_level, bonus_spell_slot_option: csp.bonus_spell_slot_option, cast_at_will: csp.cast_at_will, spell: SpellSerializer.new(csp.spell)}
     end
   end
 
