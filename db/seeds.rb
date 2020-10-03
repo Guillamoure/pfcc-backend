@@ -1640,6 +1640,19 @@ In addition, a cleric gains the listed powers from both of her domains, if she i
       artifice_domain3_feature = Feature.create!()
         KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: artifice_domain3.id, feature_id: artifice_domain3_feature.id)
 
+    chaos_domain = KlassSpecialization.create!(name: "Chaos Domain", description: "our touch infuses life and weapons with chaos, and you revel in all things anarchic.")
+      KlassFeatureKlassSpecialization.create!(klass_feature_id: cleric5.id, klass_specialization_id: chaos_domain.id)
+      chaos_domain1 = KlassSpecializationFeature.create!(klass_specialization_id: chaos_domain.id, name: "Touch of Chaos", description: "You can imbue a target with chaos as a melee touch attack. For the next round, anytime the target rolls a d20, he must roll twice and take the less favorable result. You can use this ability a number of times per day equal to 3 + your Wisdom modifier.", level: 1)
+        chaos_domain1_feature = Feature.create!(action_id: standard.id)
+          KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: chaos_domain1.id, feature_id: chaos_domain1_feature.id)
+          FeatureUsage.create!(feature_id: chaos_domain1_feature.id, limit_frequency: "Day", adjustable: true, base_limit: 3, base_limit_modifier: "wisdom")
+          FeatureApplication.create!(feature_id: chaos_domain1_feature.id, affects_allies: true, affects_enemies: true)
+      chaos_domain2 = KlassSpecializationFeature.create!(klass_specialization_id: chaos_domain.id, name: "Chaos Blade", description: "At 8th level, you can give a weapon touched the anarchic special weapon quality for a number of rounds equal to 1/2 your cleric level. You can use this ability once per day at 8th level, and an additional time per day for every four levels beyond 8th.", level: 8)
+      chaos_domain3 = KlassSpecializationFeature.create!(klass_specialization_id: chaos_domain.id, name: "Domain Spells", description: "1st—protection from law, 2nd—align weapon (chaos only), 3rd—magic circle against law, 4th—chaos hammer, 5th—dispel law, 6th—animate objects, 7th—word of chaos, 8th—cloak of chaos, 9th—summon monster IX (chaos spell only).")
+        chaos_domain3_feature = Feature.create!()
+          KlassSpecializationFeatureFeature.create!(klass_specialization_feature_id: chaos_domain3.id, feature_id: chaos_domain3_feature.id)
+
+
 
 
 

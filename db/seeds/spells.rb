@@ -25,6 +25,7 @@ ten = Action.find_or_create_by!(name: "Ten Minutes")
 one_minute = Action.find_or_create_by!(name: "One Minute")
 three_rounds = Action.find_or_create_by!(name: "Three Rounds")
 varies = Action.find_or_create_by!(name: "See Text")
+thirty_minutes = Action.find_or_create_by!(name: "Thirty Minutes")
 
 
 # /////////////////////////////////////////
@@ -45,7 +46,10 @@ animal_domain4_feature = KlassSpecializationFeature.find_by!(name: "Domain Spell
 
 artifice_domain1_feature = KlassSpecializationFeature.find_by!(name: "Artificer's Touch", description: "You can cast mending at will, using your cleric level as the caster level to repair damaged objects. In addition, you can cause damage to objects and construct creatures by striking them with a melee touch attack. Objects and constructs take 1d6 points of damage +1 for every two cleric levels you possess. This attack bypasses an amount of damage reduction and hardness equal to your cleric level. You can use this ability a number of times per day equal to 3 + your Wisdom modifier.", level: 1).features[0]
 
-artifice_domain3_feature = KlassSpecializationFeature.find_by!(name: "Domain Spells", description: "1st—animate rope, 2nd—wood shape, 3rd—stone shape, 4th—minor creation, 5th—fabricate, 6th—major creation, 7th—wall of iron, 8th—statue*, 9th—prismatic sphere.", level: 1)
+artifice_domain3_feature = KlassSpecializationFeature.find_by!(name: "Domain Spells", description: "1st—animate rope, 2nd—wood shape, 3rd—stone shape, 4th—minor creation, 5th—fabricate, 6th—major creation, 7th—wall of iron, 8th—statue*, 9th—prismatic sphere.", level: 1).features[0]
+
+chaos_domain3_feature = KlassSpecializationFeature.find_by!(name: "Domain Spells", description: "1st—protection from law, 2nd—align weapon (chaos only), 3rd—magic circle against law, 4th—chaos hammer, 5th—dispel law, 6th—animate objects, 7th—word of chaos, 8th—cloak of chaos, 9th—summon monster IX (chaos spell only).").features[0]
+
 
 
 
@@ -130,6 +134,7 @@ thirty_feet = SpellRange.create!(name: "30 ft", feet: 30, increase_per_level: 0,
 sixty_feet = SpellRange.create!(name: "60 ft", feet: 60, increase_per_level: 0, description: "60 ft")
 one_hundred_twenty_feet = SpellRange.create!(name: "120 ft", feet: 120, increase_per_level: 0, description: "120 ft")
 forty_feet_per_level = SpellRange.create!(name: "40 ft./level", feet: 40, increase_per_level: 40, description: "40 ft./level")
+forty_feet = SpellRange.create!(name: "40 ft", feet: 40, increase_per_level: 0, description: "40 ft")
 
 
 # /////////////////////////////////////////
@@ -179,6 +184,10 @@ death = Subschool.create!(name: 'Death', description: 'Spells with the death des
 poison = Subschool.create!(name: 'Poison', description: 'Poison effects use poison, venom, drugs, or similar toxic substances to disrupt and damage living creatures through chemical reactions. Technically, acids and poisons are both chemical reactions, but for the purpose of this game, they are categorized as different effects, with acids dealing hit point damage and poisons causing ability damage, ability drain, bleeding, confusion, convulsions, nausea, paralysis, reduced healing, suffocation, unconsciousness, or death. Creatures with resistance to poison (such as dwarves) apply that resistance to their saving throws and the effects of poison spells. Creatures with immunity are immune to poisonous aspects of poison spells, but not necessarily all effects of the spell (for example, a spell that creates a pit full of liquid poison could still trap or drown a poison-immune creature).')
 earth = Subschool.create!(name: 'Earth', description: 'Spells that manipulate earth or conjure creatures from earth-dominant planes or with the earth subtype should have the earth descriptor.')
 emotion = Subschool.create!(name: 'Emotion', description: 'Spells with this descriptor create emotions or manipulate the target’s existing emotions. Most emotion spells are enchantments, except for fear spells, which are usually necromancy.')
+chaotic = Subschool.create!(name: 'Chaotic', description: "Spells that draw upon the power of true chaos or conjure creatures from chaos-aligned planes or with the chaotic subtype should have the chaos descriptor.")
+good = Subschool.create!(name: 'Good', description: "Spells that draw upon the power of true goodness or conjure creatures from good-aligned planes or with the good subtype should have the good descriptor.")
+calling = Subschool.create!(name: 'Calling', description: "A calling spell transports a creature from another plane to the plane you are on. The spell grants the creature the one-time ability to return to its plane of origin, although the spell may limit the circumstances under which this is possible. Creatures who are called actually die when they are killed; they do not disappear and reform, as do those brought by a summoning spell (see below). The duration of a calling spell is instantaneous, which means that the called creature can’t be dispelled.")
+teleportation = Subschool.create!(name: 'Teleportation', description: "A teleportation spell transports one or more creatures or objects a great distance. The most powerful of these spells can cross planar boundaries. Unlike summoning spells, the transportation is (unless otherwise noted) one-way and not dispellable.")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells!-*-*-*-----*-*->
@@ -2730,6 +2739,564 @@ Prismatic sphere can be made permanent with a permanency spell.", target: "10-ft
   # prismatic_sphere_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp185.id, spell_level: 9)
 
   FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp185.id, added_to_known_spells: false, applicable_spell_level: 9, bonus_spell_slot_option: true)
+
+sp186 = Spell.create!(name: "Protection from Evil", description: "This spell wards a creature from attacks by evil creatures, from mental control, and from summoned creatures. It creates a magical barrier around the subject at a distance of 1 foot. The barrier moves with the subject and has three major effects.
+
+First, the subject gains a +2 deflection bonus to AC and a +2 resistance bonus on saves. Both these bonuses apply against attacks made or effects created by evil creatures.
+
+Second, the subject immediately receives another saving throw (if one was allowed to begin with) against any spells or effects that possess or exercise mental control over the creature (including enchantment [charm] effects and enchantment [compulsion] effects, such as charm person, command, and dominate person). This saving throw is made with a +2 morale bonus, using the same DC as the original effect. If successful, such effects are suppressed for the duration of this spell. The effects resume when the duration of this spell expires. While under the effects of this spell, the target is immune to any new attempts to possess or exercise mental control over the target. This spell does not expel a controlling life force (such as a ghost or spellcaster using magic jar), but it does prevent them from controlling the target. This second effect only functions against spells and effects created by evil creatures or objects, subject to GM discretion.
+
+Third, the spell prevents bodily contact by evil summoned creatures. This causes the natural weapon attacks of such creatures to fail and the creatures to recoil if such attacks require touching the warded creature. Summoned creatures that are not evil are immune to this effect. The protection against contact by summoned creatures ends if the warded creature makes an attack against or tries to force the barrier against the blocked creature. Spell Resistance can allow a creature to overcome this protection and touch the warded creature.", target: "creature touched", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: abjuration.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp186.id, subschool_id: good.id)
+  SpellComponent.create!(spell_id: sp186.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp186.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp186.id, component_id: material.id, item: nil)
+  SpellComponent.create!(spell_id: sp186.id, component_id: divine_focus.id, item: nil)
+  protection_from_evil_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp186.id, spell_level: 1)
+  # protection_from_evil_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp186.id, spell_level: 1)
+  # protection_from_evil_paladin = SpellListSpell.create!(spell_list_id: paladin_spell_list.id, spell_id: sp186.id, spell_level: 1)
+  # protection_from_evil_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp186.id, spell_level: 1)
+  # protection_from_evil_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp186.id, spell_level: 1)
+  # protection_from_evil_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp186.id, spell_level: 1)
+
+sp187 = Spell.create!(name: "Protection from Law", description: "This spell functions like protection from evil, except that the deflection and resistance bonuses apply to attacks made by lawful creatures. The target receives a new saving throw against control by lawful creatures and lawful summoned creatures cannot touch the target.", target: "creature touched", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: abjuration.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp187.id, subschool_id: chaotic.id)
+  SpellComponent.create!(spell_id: sp187.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp187.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp187.id, component_id: material.id, item: nil)
+  SpellComponent.create!(spell_id: sp187.id, component_id: divine_focus.id, item: nil)
+  # protection_from_law_antipaladin = SpellListSpell.create!(spell_list_id: antipaladin_spell_list.id, spell_id: sp187.id, spell_level: 1)
+  protection_from_law_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp187.id, spell_level: 1)
+  # protection_from_law_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp187.id, spell_level: 1)
+  # protection_from_law_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp187.id, spell_level: 1)
+  # protection_from_law_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp187.id, spell_level: 1)
+  # protection_from_law_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp187.id, spell_level: 1)
+
+  FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp187.id, added_to_known_spells: false, applicable_spell_level: 1, bonus_spell_slot_option: true)
+
+sp188 = Spell.create!(name: "Align Weapon", description: "Align weapon makes a weapon chaotic, evil, good, or lawful, as you choose. A weapon that is aligned can bypass the damage reduction of certain creatures. This spell has no effect on a weapon that already has an alignment.
+
+You can’t cast this spell on a natural weapon, such as an unarmed strike. When you make a weapon chaotic, evil, good, or lawful, align weapon is a chaotic, evil, good, or lawful spell, respectively.", target: "weapon touched or 50 projectiles (all of which must be together at the time of casting)", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp188.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp188.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp188.id, component_id: divine_focus.id, item: nil)
+  align_weapon_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp188.id, spell_level: 2)
+  # align_weapon_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp188.id, spell_level: 2)
+
+  FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp188.id, added_to_known_spells: false, applicable_spell_level: 2, bonus_spell_slot_option: true)
+
+sp189 = Spell.create!(name: "Lesser Planar Binding", description: "Casting this spell attempts a dangerous act: to lure a creature from another plane to a specifically prepared trap, which must lie within the spell’s range. The called creature is held in the trap until it agrees to perform one service in return for its freedom.
+
+To create the trap, you must use a magic circle spell, focused inward. The kind of creature to be bound must be known and stated. If you wish to call a specific individual, you must use that individual’s proper name in casting the spell.
+
+The target creature is allowed a Will saving throw. If the saving throw succeeds, the creature resists the spell. If the saving throw fails, the creature is immediately drawn to the trap (Spell Resistance does not keep it from being called). The creature can escape from the trap by successfully pitting its Spell Resistance against your caster level check, by dimensional travel, or with a successful Charisma check (DC 15 + 1/2 your caster level + your Charisma modifier). It can try each method once per day. If it breaks loose, it can flee or attack you. A dimensional anchor cast on the creature prevents its escape via dimensional travel. You can also employ a calling diagram (see magic circle against evil) to make the trap more secure.
+
+If the creature does not break free of the trap, you can keep it bound for as long as you dare. You can attempt to compel the creature to perform a service by describing the service and perhaps offering some sort of reward. You make a Charisma check opposed by the creature’s Charisma check. The check is assigned a bonus of +0 to +6 based on the nature of the service and the reward. If the creature wins the opposed check, it refuses service. New offers, bribes, and the like can be made or the old ones re-offered every 24 hours. This process can be repeated until the creature promises to serve, until it breaks free, or until you decide to get rid of it by means of some other spell. Impossible demands or unreasonable commands are never agreed to. If you ever roll a natural 1 on the Charisma check, the creature breaks free of the spell’s effect and can escape or attack you.
+
+Once the requested service is completed, the creature need only to inform you to be instantly sent back whence it came. The creature might later seek revenge. If you assign some open-ended task that the creature cannot complete through its own actions, the spell remains in effect for a maximum of 1 day per caster level, and the creature gains an immediate chance to break free (with the same chance to resist as when it was trapped). Note that a clever recipient can subvert some instructions.
+
+When you use a calling spell to call an air, chaotic, earth, evil, fire, good, lawful, or water creature, it is a spell of that type.", target: "one elemental or outsider with 6 HD or less", saving_throw: "Will", spell_resistance: true, action_id: ten.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp189.id, subschool_id: calling.id)
+  SpellComponent.create!(spell_id: sp189.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp189.id, component_id: somatic.id, item: nil)
+  # lesser_planar_binding_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp189.id, spell_level: 5)
+  # lesser_planar_binding_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp189.id, spell_level: 5)
+
+sp190 = Spell.create!(name: "Planar Binding", description: "This spell functions like lesser planar binding, except that you may call a single creature of 12 HD or less, or up to three creatures of the same kind whose Hit Dice total no more than 12. Each creature gets a saving throw, makes an independent attempt to escape, and must be individually persuaded to aid you.", target: "up to three elementals or outsiders, totaling no more than 12 HD, no two of which can be more than 30 ft. apart when they appear", saving_throw: "Will", spell_resistance: true, action_id: ten.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp190.id, subschool_id: calling.id)
+  SpellComponent.create!(spell_id: sp190.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp190.id, component_id: somatic.id, item: nil)
+  # planar_binding_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp190.id, spell_level: 6)
+  # planar_binding_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp190.id, spell_level: 6)
+
+print "190 Spells Created \r"
+
+sp191 = Spell.create!(name: "Greater Planar Binding", description: "This spell functions like lesser planar binding, except that you may call a single creature of 18 HD or less, or up to three creatures of the same kind whose Hit Dice total no more than 18. Each creature gets a saving throw, makes an independent attempt to escape, and must be individually persuaded to aid you.", target: "up to three elementals or outsiders, totaling no more than 18 HD, no two of which can be more than 30 ft. apart when they appear", saving_throw: "Will", spell_resistance: true, action_id: ten.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp191.id, subschool_id: calling.id)
+  SpellComponent.create!(spell_id: sp191.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp191.id, component_id: somatic.id, item: nil)
+  # planar_binding_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp191.id, spell_level: 8)
+
+sp192 = Spell.create!(name: "Astral Projection", description: "By freeing your spirit from your physical body, this spell allows you to project an astral body onto another plane altogether. You can bring the astral forms of other willing creatures with you, provided that these subjects are linked in a circle with you at the time of the casting. These fellow travelers are dependent upon you and must accompany you at all times. If something happens to you during the journey, your companions are stranded wherever you left them.
+
+You project your astral self onto the Astral Plane, leaving your physical body behind on the Material Plane in a state of suspended animation. The spell projects an astral copy of you and all you wear or carry onto the Astral Plane. Since the Astral Plane touches upon other planes, you can travel astrally to any of these other planes as you will. To enter one, you leave the Astral Plane, forming a new physical body (and equipment) on the plane of existence you have chosen to enter.
+
+While you are on the Astral Plane, your astral body is connected at all times to your physical body by an incorporeal silver cord. If the cord is broken, you are killed, astrally and physically. Luckily, very few things can destroy a silver cord. When a second body is formed on a different plane, the silver cord remains invisibly attached to the new body. If the second body or the astral form is slain, the cord simply returns to your body where it rests on the Material Plane, thereby reviving it from its state of suspended animation. This is a traumatic affair, however, and you gain two permanent negative levels if your second body or astral form is slain. Although astral projections are able to function on the Astral Plane, their actions affect only creatures existing on the Astral Plane; a physical body must be materialized on other planes.
+
+You and your companions may travel through the Astral Plane indefinitely. Your bodies simply wait behind in a state of suspended animation until you choose to return your spirits to them. The spell lasts until you desire to end it, or until it is terminated by some outside means, such as dispel magic cast upon either the physical body or the astral form, the breaking of the silver cord, or the destruction of your body back on the Material Plane (which kills you).
+
+When this spell ends, your astral body and all of its gear, vanishes.", target: "you plus one additional willing create touched per two caster levels", saving_throw: "none", spell_resistance: true, action_id: thirty_minutes.id, spell_range_id: touch.id, magic_school_id: necromancy.id, duration: "indefinitely", time: 1000, unit_of_time: "days", increase_per_level: 1000, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp192.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp192.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp192.id, component_id: material.id, item: "1000 gp jacinth")
+  astral_projection_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp192.id, spell_level: 9)
+  # astral_projection_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp192.id, spell_level: 9)
+  # astral_projection_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp192.id, spell_level: 9)
+
+sp193 = Spell.create!(name: "Dimension Door", description: "You instantly transfer yourself from your current location to any other spot within range. You always arrive at exactly the spot desired – whether by simply visualizing the area or by stating direction. After using this spell, you can’t take any other actions until your next turn. You can bring along objects as long as their weight doesn’t exceed your maximum load. You may also bring one additional willing Medium or smaller creature (carrying gear or objects up to its maximum load) or its equivalent per three caster levels. A Large creature counts as two Medium creatures, a Huge creature counts as two Large creatures, and so forth. All creatures to be transported must be in contact with one another, and at least one of those creatures must be in contact with you.
+
+If you arrive in a place that is already occupied by a solid body, you and each creature traveling with you take 1d6 points of damage and are shunted to a random open space on a suitable surface within 100 feet of the intended location.
+
+If there is no free space within 100 feet, you and each creature traveling with you take an additional 2d6 points of damage and are shunted to a free space within 1,000 feet. If there is no free space within 1,000 feet, you and each creature traveling with you take an additional 4d6 points of damage and the spell simply fails.", target: "you and touched objects or other touched willing creatures", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: long.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp193.id, subschool_id: teleportation.id)
+  SpellComponent.create!(spell_id: sp193.id, component_id: verbal.id, item: nil)
+  dimension_door_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp193.id, spell_level: 4)
+  # dimension_door_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp193.id, spell_level: 4)
+  # dimension_door_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp193.id, spell_level: 4)
+  # dimension_door_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp193.id, spell_level: 4)
+  # dimension_door_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp193.id, spell_level: 4)
+
+sp194 = Spell.create!(name: "Ethereal Jaunt", description: "You become ethereal, along with your equipment. For the duration of the spell, you are in the Ethereal Plane, which overlaps the Material Plane. When the spell expires, you return to material existence.
+
+An ethereal creature is invisible, insubstantial, and capable of moving in any direction, even up or down, albeit at half normal speed. As an insubstantial creature, you can move through solid objects, including living creatures. An ethereal creature can see and hear on the Material Plane, but everything looks gray and ephemeral. Sight and hearing onto the Material Plane are limited to 60 feet.
+
+Force effects and abjurations affect an ethereal creature normally. Their effects extend onto the Ethereal Plane from the Material Plane, but not vice versa. An ethereal creature can’t attack material creatures, and spells you cast while ethereal affect only other ethereal things. Certain material creatures or objects have attacks or effects that work on the Ethereal Plane.
+
+Treat other ethereal creatures and ethereal objects as if they were material.
+
+If you end the spell and become material while inside a material object (such as a solid wall), you are shunted off to the nearest open space and take 1d6 points of damage per 5 feet that you so travel.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp194.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp194.id, component_id: somatic.id, item: nil)
+  ethereal_jaunt_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp194.id, spell_level: 7)
+  # ethereal_jaunt_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp194.id, spell_level: 7)
+  # ethereal_jaunt_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp194.id, spell_level: 6)
+
+sp195 = Spell.create!(name: "Etherealness", description: "This spell functions like ethereal jaunt, except that you and other willing creatures joined by linked hands (along with their equipment) become ethereal. Besides yourself, you can bring one creature per three caster levels to the Ethereal Plane. Once ethereal, the subjects need not stay together.
+
+When the spell expires, all affected creatures on the Ethereal Plane return to material existence.", target: "you and one other touched creature per three levels", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp195.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp195.id, component_id: somatic.id, item: nil)
+  etherealness_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp195.id, spell_level: 9)
+  # etherealness_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp195.id, spell_level: 9)
+  # etherealness_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp195.id, spell_level: 9)
+
+sp196 = Spell.create!(name: "Gate", description: "Casting a gate spell has two effects.
+
+First, it creates an interdimensional connection between your plane of existence and a plane you specify, allowing travel between those two planes in either direction.
+
+Second, you may then call a particular individual or kind of being through the gate.
+
+The gate itself is a circular hoop or disk from 5 to 20 feet in diameter (caster’s choice) oriented in the direction you desire when it comes into existence (typically vertical and facing you). It is a two-dimensional window looking into the plane you specified when casting the spell, and anyone or anything that moves through is shunted instantly to the other side.
+
+A gate has a front and a back. Creatures moving through the gate from the front are transported to the other plane; creatures moving through it from the back are not.
+
+Planar Travel: As a mode of planar travel, a gate spell functions much like a plane shift spell, except that the gate opens precisely at the point you desire (a creation effect). Deities and other beings who rule a planar realm can prevent a gate from opening in their presence or personal demesnes if they so desire. Travelers need not join hands with you–anyone who chooses to step through the portal is transported. A gate cannot be opened to another point on the same plane; the spell works only for interplanar travel.
+
+You may hold the gate open only for a brief time (no more than 1 round per caster level), and you must concentrate on doing so, or else the interplanar connection is severed.
+
+Calling Creatures: The second effect of the gate spell is to call an extraplanar creature to your aid (a calling effect). By naming a particular being or kind of being as you cast the spell, you cause the gate to open in the immediate vicinity of the desired creature and pull the subject through, willing or unwilling. Deities and unique beings are under no compulsion to come through the gate, although they may choose to do so of their own accord. This use of the spell creates a gate that remains open just long enough to transport the called creatures. This use of the spell has a material cost of 10,000 gp in rare incense and offerings. This cost is in addition to any cost that must be paid to the called creatures.
+
+If you choose to call a kind of creature instead of a known individual, you may call either a single creature or several creatures. In either case, their total HD cannot exceed twice your caster level. In the case of a single creature, you can control it if its HD does not exceed your caster level. A creature with more HD than your caster level can’t be controlled. Deities and unique beings cannot be controlled in any event. An uncontrolled being acts as it pleases, making the calling of such creatures rather dangerous. An uncontrolled being may return to its home plane at any time.
+
+If you choose to exact a longer or more involved form of service from a called creature, you must offer some fair trade in return for that service. The service exacted must be reasonable with respect to the promised favor or reward; see the lesser planar ally spell for appropriate rewards. Some creatures may want their payment in “livestock” rather than in coin, which could involve complications. Immediately upon completion of the service, the being is transported to your vicinity, and you must then and there turn over the promised reward. After this is done, the creature is instantly freed to return to its own plane.
+
+Failure to fulfill the promise to the letter results in your being subjected to service by the creature or by its liege and master, at the very least. At worst, the creature or its kin may attack you.
+
+Note: When you use a calling spell such as gate to call an air, chaotic, earth, evil, fire, good, lawful, or water creature, it becomes a spell of that type.", target: "see text", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: conjuration.id, duration: "instantaneous or concentration (up to 1 round/level)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp196.id, subschool_id: creation.id)
+  SpellSubschool.create!(spell_id: sp196.id, subschool_id: calling.id)
+  SpellComponent.create!(spell_id: sp196.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp196.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp196.id, component_id: material.id, item: "see text")
+  gate_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp196.id, spell_level: 9)
+  # gate_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp196.id, spell_level: 9)
+
+sp197 = Spell.create!(name: "Plane Shift", description: "You move yourself or some other creature to another plane of existence or alternate dimension. If several willing persons link hands in a circle, as many as eight can be affected by the plane shift at the same time. Precise accuracy as to a particular arrival location on the intended plane is nigh impossible. From the Material Plane, you can reach any other plane, though you appear 5 to 500 miles (5d%) from your intended destination. Plane shift transports creatures instantaneously and then ends. The creatures need to find other means if they are to travel back (including casting plane shift again).", target: "creature touched, or up to eight willing creatures joining hands", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp197.id, subschool_id: teleportation.id)
+  SpellComponent.create!(spell_id: sp197.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp197.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp197.id, component_id: focus.id, item: "a forked metal rod attuned to the plane of travel")
+  plane_shift_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp197.id, spell_level: 5)
+  # plane_shift_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp197.id, spell_level: 7)
+  # plane_shift_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp197.id, spell_level: 7)
+  # plane_shift_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp197.id, spell_level: 6)
+  # plane_shift_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp197.id, spell_level: 7)
+
+sp198 = Spell.create!(name: "Shadow Walk", description: "To use the shadow walk spell, you must be in an area of dim light. You and any creature you touch are then transported along a coiling path of shadowstuff to the edge of the Material Plane where it borders the Plane of Shadow. The effect is largely illusory, but the path is quasi-real. You can take more than one creature along with you (subject to your level limit), but all must be touching each other.
+
+In the region of shadow, you move at a rate of 50 miles per hour, moving normally on the borders of the Plane of Shadow but much more rapidly relative to the Material Plane. Thus, you can use this spell to travel rapidly by stepping onto the Plane of Shadow, moving the desired distance, and then stepping back onto the Material Plane.
+
+Because of the blurring of reality between the Plane of Shadow and the Material Plane, you can’t make out details of the terrain or areas you pass over during transit, nor can you predict perfectly where your travel will end. It’s impossible to judge distances accurately, making the spell virtually useless for scouting or spying. Furthermore, when the spell effect ends, you are shunted 1d10 x 100 feet in a random horizontal direction from your desired endpoint. If this would place you within a solid object, you are shunted 1d10 x 1,000 feet in the same direction. If this would still place you within a solid object, you (and any creatures with you) are shunted to the nearest empty space available, but the strain of this activity renders each creature fatigued (no save).
+
+Shadow walk can also be used to travel to other planes that border on the Plane of Shadow, but this usage requires the transit of the Plane of Shadow to arrive at a border with another plane of reality. The transit of the Plane of Shadow requires 1d4 hours.
+
+Any creatures touched by you when shadow walk is cast also make the transition to the borders of the Plane of Shadow.
+
+They may opt to follow you, wander off through the plane, or stumble back into the Material Plane (50% chance for either of the latter results if they are lost or abandoned by you). Creatures unwilling to accompany you into the Plane of Shadow receive a Will saving throw, negating the effect if successful.", target: "up to one touched creature/level", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: illusion.id, duration: "1 hour/level", time: 1, unit_of_time: "hour", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp198.id, subschool_id: shadow.id)
+  SpellComponent.create!(spell_id: sp198.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp198.id, component_id: somatic.id, item: nil)
+  # shadow_walk_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp198.id, spell_level: 6)
+  shadow_walk_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp198.id, spell_level: 5)
+  # shadow_walk_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp198.id, spell_level: 6)
+
+sp199 = Spell.create!(name: "Teleport", description: "This spell instantly transports you to a designated destination, which may be as distant as 100 miles per caster level. Interplanar travel is not possible. You can bring along objects as long as their weight doesn’t exceed your maximum load. You may also bring one additional willing Medium or smaller creature (carrying gear or objects up to its maximum load) or its equivalent per three caster levels. A Large creature counts as two Medium creatures, a Huge creature counts as four Medium creatures, and so forth. All creatures to be transported must be in contact with one another, and at least one of those creatures must be in contact with you. As with all spells where the range is personal and the target is you, you need not make a saving throw, nor is Spell Resistance applicable to you. Only objects held or in use (attended) by another person receive saving throws and Spell Resistance.
+
+You must have some clear idea of the location and layout of the destination. The clearer your mental image, the more likely the teleportation works. Areas of strong physical or magical energy may make teleportation more hazardous or even impossible.
+
+Familiarity	On Target	Off Target	Similar Area	Mishap
+Very familiar	01–97	98–99	100	—
+Studied carefully	01–94	95–97	98–99	100
+Seen casually	01–88	89–94	95–98	99–100
+Viewed once	01–76	77–88	89–96	97–100
+False destination	—	—	81–92	93–100
+To see how well the teleportation works, roll d% and consult the following table. Refer to the following information for definitions of the terms on the table.
+
+Familiarity: “Very familiar” is a place where you have been very often and where you feel at home. “Studied carefully” is a place you know well, either because you can currently physically see it or you’ve been there often. “Seen casually” is a place that you have seen more than once but with which you are not very familiar. “Viewed once” is a place that you have seen once, possibly using magic such as scrying.
+
+“False destination” is a place that does not truly exist or if you are teleporting to an otherwise familiar location that no longer exists as such or has been so completely altered as to no longer be familiar to you. When traveling to a false destination, roll 1d20+80 to obtain results on the table, rather than rolling d%, since there is no real destination for you to hope to arrive at or even be off target from.
+
+On Target: You appear where you want to be.
+
+Off Target: You appear safely a random distance away from the destination in a random direction. Distance off target is d% of the distance that was to be traveled. The direction off target is determined randomly.
+
+Similar Area: You wind up in an area that’s visually or thematically similar to the target area. Generally, you appear in the closest similar place within range. If no such area exists within the spell’s range, the spell simply fails instead.
+
+Mishap: You and anyone else teleporting with you have gotten “scrambled.” You each take 1d10 points of damage, and you reroll on the chart to see where you wind up. For these rerolls, roll 1d20+80. Each time “Mishap” comes up, the characters take more damage and must reroll.", target: "you and touched objects or other touched willing creatures", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp199.id, subschool_id: teleportation.id)
+  SpellComponent.create!(spell_id: sp199.id, component_id: verbal.id, item: nil)
+  # teleport_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp199.id, spell_level: 5)
+  # teleport_occultist = SpellListSpell.create!(spell_list_id: occultist_spell_list.id, spell_id: sp199.id, spell_level: 5)
+  # teleport_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp199.id, spell_level: 5)
+  # teleport_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp199.id, spell_level: 5)
+  # teleport_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist_spell_list.id, spell_id: sp199.id, spell_level: 5)
+  # teleport_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp199.id, spell_level: 5)
+  # teleport_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp199.id, spell_level: 5)
+
+sp200 = Spell.create!(name: "Maze", description: "You banish the subject into an extra-dimensional labyrinth. Each round on its turn, it may attempt a DC 20 Intelligence check to escape the labyrinth as a full-round action. If the subject doesn’t escape, the maze disappears after 10 minutes, freeing the subject.
+
+On escaping or leaving the maze, the subject reappears where it had been when the maze spell was cast. If this location is filled with a solid object, the subject appears in the nearest open space. Spells and abilities that move a creature within a plane, such as teleport and dimension door, do not help a creature escape a maze spell, although a plane shift spell allows it to exit to whatever plane is designated in that spell. Minotaurs are not affected by this spell.", target: "one creature", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "see text", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp200.id, subschool_id: teleportation.id)
+  SpellComponent.create!(spell_id: sp200.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp200.id, component_id: somatic.id, item: nil)
+  # maze_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp200.id, spell_level: 8)
+  # maze_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp200.id, spell_level: 8)
+
+  print "200 Spells Created \r"
+
+sp201 = Spell.create!(name: "Greater Teleport", description: "This spell functions like teleport, except that there is no range limit and there is no chance you arrive off target. In addition, you need not have seen the destination, but in that case you must have at least a reliable description of the place to which you are teleporting. If you attempt to teleport with insufficient information (or with misleading information), you disappear and simply reappear in your original location. Interplanar travel is not possible.", target: "you and touched objects or other touched willing creatures", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp201.id, subschool_id: teleportation.id)
+  SpellComponent.create!(spell_id: sp201.id, component_id: verbal.id, item: nil)
+  # greater_teleport_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp201.id, spell_level: 7)
+  # greater_teleport_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp201.id, spell_level: 7)
+  # greater_teleport_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp201.id, spell_level: 6)
+  # greater_teleport_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp201.id, spell_level: 7)
+
+sp202 = Spell.create!(name: "Teleportation Circle", description: "You create a circle on the floor or other horizontal surface that teleports, as greater teleport, any creature who stands on it to a designated spot. Once you designate the destination for the circle, you can’t change it. The spell fails if you attempt to set the circle to teleport creatures into a solid object, to a place with which you are not familiar and have no clear description, or to another plane.
+
+The circle itself is subtle and nearly impossible to notice. If you intend to keep creatures from activating it accidentally, you need to mark the circle in some way.
+
+Teleportation circle can be made permanent with a permanency spell. A permanent teleportation circle that is disabled becomes inactive for 10 minutes, then can be triggered again as normal.", target: "5-ft.-radius circle that teleports those who activate it", saving_throw: "none", spell_resistance: true, action_id: ten.id, spell_range_id: zero_feet.id, magic_school_id: conjuration.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp202.id, subschool_id: teleportation.id)
+  SpellComponent.create!(spell_id: sp202.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp202.id, component_id: material.id, item: "amber dust to cover circle worth 1000 gp")
+  # teleportation_circle_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp202.id, spell_level: 9)
+  # teleportation_circle_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp202.id, spell_level: 9)
+  # teleportation_circle_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp202.id, spell_level: 9)
+
+sp203 = Spell.create!(name: "Dimensional Anchor", description: "A green ray springs from your hand. You must make a ranged touch attack to hit the target. Any creature or object struck by the ray is covered with a shimmering emerald field that completely blocks extradimensional travel. Forms of movement barred by a dimensional anchor include astral projection, blink, dimension door, ethereal jaunt, etherealness, gate, maze, plane shift, shadow walk, teleport, and similar spell-like abilities. The spell also prevents the use of a gate or teleportation circle for the duration of the spell.
+
+A dimensional anchor does not interfere with the movement of creatures already in ethereal or astral form when the spell is cast, nor does it block extradimensional perception or attack forms. Also, dimensional anchor does not prevent summoned creatures from disappearing at the end of a summoning spell.", target: "ray", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: medium.id, magic_school_id: abjuration.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp203.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp203.id, component_id: somatic.id, item: nil)
+  dimensional_anchor_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp203.id, spell_level: 4)
+  # dimensional_anchor_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp203.id, spell_level: 3)
+  # dimensional_anchor_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp203.id, spell_level: 4)
+  # dimensional_anchor_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp203.id, spell_level: 4)
+
+sp204 = Spell.create!(name: "Magic Circle against Evil", description: "All creatures within the area gain the effects of a protection from evil spell, and evil summoned creatures cannot enter the area either. Creatures in the area, or who later enter the area, receive only one attempt to suppress effects that are controlling them. If successful, such effects are suppressed as long as they remain in the area. Creatures that leave the area and come back are not protected. You must overcome a creature’s Spell Resistance in order to keep it at bay (as in the third function of protection from evil), but the deflection and resistance bonuses and the protection from mental control apply regardless of enemies’ Spell Resistance.
+
+This spell has an alternative version that you may choose when casting it. A magic circle against evil can be focused inward rather than outward. When focused inward, the spell binds a non-good called creature (such as those called by the lesser planar binding, planar binding, and greater planar binding spells) for a maximum of 24 hours per caster level, provided that you cast the spell that calls the creature within 1 round of casting the magic circle. The creature cannot cross the circle’s boundaries. If a creature too large to fit into the spell’s area is the subject of the spell, the spell acts as a normal protection from evil spell for that creature only.
+
+A magic circle leaves much to be desired as a trap. If the circle of powdered silver laid down in the process of spellcasting is broken, the effect immediately ends. The trapped creature can do nothing that disturbs the circle, directly or indirectly, but other creatures can. If the called creature has Spell Resistance, it can test the trap once a day. If you fail to overcome its Spell Resistance, the creature breaks free, destroying the circle. A creature capable of any form of dimensional travel (astral projection, blink, dimension door, etherealness, gate, plane shift, shadow walk, teleport, and similar abilities) can simply leave the circle through such means. You can prevent the creature’s extra-dimensional escape by casting a dimensional anchor spell on it, but you must cast the spell before the creature acts. If you are successful, the anchor effect lasts as long as the magic circle does. The creature cannot reach across the magic circle, but its ranged attacks (ranged weapons, spells, magical abilities, and the like) can. The creature can attack any target it can reach with its ranged attacks except for the circle itself.
+
+You can add a special diagram (a two-dimensional bounded figure with no gaps along its circumference, augmented with various magical sigils) to make the magic circle more secure. Drawing the diagram by hand takes 10 minutes and requires a DC 20 Spellcraft check. You do not know the result of this check. If the check fails, the diagram is ineffective. You can take 10 when drawing the diagram if you are under no particular time pressure to complete the task. This task also takes 10 full minutes. If time is no factor at all, and you devote 3 hours and 20 minutes to the task, you can take 20.
+
+A successful diagram allows you to cast a dimensional anchor spell on the magic circle during the round before casting any summoning spell. The anchor holds any called creatures in the magic circle for 24 hours per caster level. A creature cannot use its Spell Resistance against a magic circle prepared with a diagram, and none of its abilities or attacks can cross the diagram. If the creature tries a Charisma check to break free of the trap (see the lesser planar binding spell), the DC increases by 5. The creature is immediately released if anything disturbs the diagram – even a straw laid across it. The creature itself cannot disturb the diagram either directly or indirectly, as noted above.
+
+This spell is not cumulative with protection from evil and vice versa.", target: "10-ft.-radius emanation from touched creature", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: abjuration.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp204.id, subschool_id: good.id)
+  SpellComponent.create!(spell_id: sp204.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp204.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp204.id, component_id: material.id, item: "a 3-ft.-diameter circle of powdered silver")
+  SpellComponent.create!(spell_id: sp204.id, component_id: divine_focus.id)
+  magic_circle_against_evil_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  # magic_circle_against_evil_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  # magic_circle_against_evil_paladin = SpellListSpell.create!(spell_list_id: paladin_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  # magic_circle_against_evil_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  # magic_circle_against_evil_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  # magic_circle_against_evil_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp204.id, spell_level: 3)
+
+sp205 = Spell.create!(name: "Magic Circle against Law", description: "This spell functions like magic circle against evil, except that it is similar to protection from law instead of protection from evil, and it can imprison a non-chaotic called creature.", target: "10-ft.-radius emanation from touched creature", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: abjuration.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp205.id, subschool_id: chaotic.id)
+  SpellComponent.create!(spell_id: sp205.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp205.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp204.id, component_id: material.id, item: "a 3-ft.-diameter circle of powdered silver")
+  SpellComponent.create!(spell_id: sp204.id, component_id: divine_focus.id)
+  # magic_circle_against_evil_antipaladin = SpellListSpell.create!(spell_list_id: antipaladin_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  magic_circle_against_evil_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  # magic_circle_against_evil_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  # magic_circle_against_evil_paladin = SpellListSpell.create!(spell_list_id: paladin_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  # magic_circle_against_evil_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  # magic_circle_against_evil_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  # magic_circle_against_evil_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp204.id, spell_level: 3)
+
+  FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp205.id, added_to_known_spells: false, applicable_spell_level: 3, bonus_spell_slot_option: true)
+
+sp206 = Spell.create!(name: "Chaos Hammer", description: "You unleash chaotic power to smite your enemies. The power takes the form of a multicolored explosion of leaping, ricocheting energy. Only lawful and neutral (not chaotic) creatures are harmed by the spell.
+
+The spell deals 1d8 points of damage per two caster levels (maximum 5d8) to lawful creatures (or 1d6 points of damage per caster level, maximum 10d6, to lawful outsiders) and slows them for 1d6 rounds (see the slow spell). A successful Will save reduces the damage by half and negates the slow effect.
+
+The spell deals only half damage against creatures who are neither lawful nor chaotic, and they are not slowed. Such a creature can reduce the damage by half again (down to one-quarter) with a successful Will save.", target: "20-ft.-radius burst", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: medium.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp206.id, subschool_id: chaotic.id)
+  SpellComponent.create!(spell_id: sp206.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp206.id, component_id: somatic.id, item: nil)
+  chaos_hammer_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp206.id, spell_level: 4)
+  # chaos_hammer_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp206.id, spell_level: 4)
+
+  FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp206.id, added_to_known_spells: false, applicable_spell_level: 4, bonus_spell_slot_option: true)
+
+sp207 = Spell.create!(name: "Dispel Evil", description: "Shimmering, white holy energy surrounds you. This energy has three effects.
+
+First, you gain a +4 deflection bonus to AC against attacks by evil creatures.
+
+Second, on making a successful melee touch attack against an evil creature from another plane, you can choose to drive that creature back to its home plane. The creature can negate the effects with a successful Will save (Spell Resistance applies). This use discharges and ends the spell.
+
+Third, with a touch you can automatically dispel any one enchantment spell cast by an evil creature or any one evil spell. Spells that can’t be dispelled by dispel magic also can’t be dispelled by dispel evil. Saving throws and Spell Resistance do not apply to this effect. This use discharges and ends the spell.", target: "you and a touched evil creature from another plane, or you and an enchantment or evil spell on a touched creature or object", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: abjuration.id, duration: "1 round/level or until discharged, whichever comes first", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp207.id, subschool_id: good.id)
+  SpellComponent.create!(spell_id: sp207.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp207.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp207.id, component_id: divine_focus.id, item: nil)
+  dispel_evil_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp207.id, spell_level: 5)
+  # dispel_evil_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp207.id, spell_level: 5)
+  # dispel_evil_paladin = SpellListSpell.create!(spell_list_id: paladin_spell_list.id, spell_id: sp207.id, spell_level: 4)
+  # dispel_evil_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp207.id, spell_level: 5)
+
+sp208 = Spell.create!(name: "Dispel Law", description: "This spell functions like dispel evil, except that you are surrounded by flickering, yellow chaotic energy, and the spell affects lawful creatures and spells rather than evil ones.", target: "you and a touched evil creature from another plane, or you and an enchantment or evil spell on a touched creature or object", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: abjuration.id, duration: "1 round/level or until discharged, whichever comes first", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp208.id, subschool_id: chaotic.id)
+  SpellComponent.create!(spell_id: sp208.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp208.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp208.id, component_id: divine_focus.id, item: nil)
+  # dispel_evil_antipaladin = SpellListSpell.create!(spell_list_id: antipaladin_spell_list.id, spell_id: sp208.id, spell_level: 4)
+  dispel_evil_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp208.id, spell_level: 5)
+  # dispel_evil_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp208.id, spell_level: 5)
+  # dispel_evil_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp208.id, spell_level: 5)
+
+  FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp208.id, added_to_known_spells: false, applicable_spell_level: 5, bonus_spell_slot_option: true)
+
+sp209 = Spell.create!(name: "Animate Objects", description: "You imbue inanimate objects with mobility and a semblance of life. Each such animated object then immediately attacks whomever or whatever you initially designate.
+
+An animated object can be of any non-magical material. You may animate one Small or smaller object or a corresponding number of larger objects as follows: A Medium object counts as two Small or smaller objects, a Large object as four, a Huge object as eight, a Gargantuan object as 16, and a Colossal object as 32. You can change the designated target or targets as a move action, as if directing an active spell.
+
+This spell cannot affect objects carried or worn by a creature.
+
+Animated objects can be made permanent with a permanency spell.", target: "one Small object per caster level", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: medium.id, magic_school_id: transmutation.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp209.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp209.id, component_id: somatic.id, item: nil)
+  animate_objects_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp209.id, spell_level: 6)
+  animate_objects_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp209.id, spell_level: 6)
+  # animate_objects_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp209.id, spell_level: 6)
+
+  FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp209.id, added_to_known_spells: false, applicable_spell_level: 6, bonus_spell_slot_option: true)
+
+sp210 = Spell.create!(name: "Word of Chaos", description: "HD	Effect
+Equal to caster level	Deafened
+Up to caster level -1	Stunned, deafened
+Up to caster level -5	Confused, stunned, deafened
+Up to caster level -10	Killed, Confused, stunned, deafened
+Any non-chaotic creature within the area of a word of chaos spell suffers the following ill effects, depending on their HD.
+
+The effects are cumulative and concurrent. A successful Will save reduces or eliminates these effects. Creatures affected by multiple effects make only one save and apply the result to all the effects.
+
+Deafened: The creature is deafened for 1d4 rounds. Save negates.
+
+Stunned: The creature is stunned for 1 round. Save negates.
+
+Confused: The creature is confused for 1d10 minutes. This is a mind-affecting enchantment effect. Save reduces the confused effect to 1 round.
+
+Killed: Living creatures die. Undead creatures are destroyed. Save negates. If the save is successful, the creature instead takes 3d6 points of damage + 1 point per caster level (maximum +25).
+
+Furthermore, if you are on your home plane when you cast this spell, non-chaotic extraplanar creatures within the area are instantly banished back to their home planes. Creatures so banished cannot return for at least 24 hours. This effect takes place regardless of whether the creatures hear the word of chaos or not. The banishment effect allows a Will save (at a -4 penalty) to negate.
+
+Creatures whose HD exceed your caster level are unaffected by word of chaos.", target: "non-chaotic creatures in a 40-ft.-radius spread centered on you", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: forty_feet.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp210.id, subschool_id: chaotic.id)
+  SpellSubschool.create!(spell_id: sp210.id, subschool_id: sonic.id)
+  SpellComponent.create!(spell_id: sp210.id, component_id: verbal.id, item: nil)
+  word_of_chaos_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp210.id, spell_level: 7)
+  # word_of_chaos_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp210.id, spell_level: 6)
+
+  FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp210.id, added_to_known_spells: false, applicable_spell_level: 7, bonus_spell_slot_option: true)
+
+  print "210 Spells Created \r"
+
+sp211 = Spell.create!(name: "Cloak of Chaos", description: "A random pattern of color surrounds the subjects, protecting them from attacks, granting them resistance to spells cast by lawful creatures, and causing lawful creatures that strike the subjects to become confused. This abjuration has four effects.
+
+First, each warded creature gains a +4 deflection bonus to AC and a +4 resistance bonus on saves. Unlike protection from law, the benefit of this spell applies against all attacks, not just against attacks by lawful creatures.
+Second, each warded creature gains spell resistance 25 against lawful spells and spells cast by lawful creatures.
+Third, the abjuration protects from possession and mental influence, just as protection from law does.
+Finally, if a lawful creature succeeds on a melee attack against a warded creature, the offending attacker is confused for 1 round (Will save negates, as with the confusion spell, but against the save DC of cloak of chaos).", target: "one creature/level in a 20-ft.-radius burst centered on you", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: twenty_feet.id, magic_school_id: abjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp211.id, subschool_id: chaotic.id)
+  SpellComponent.create!(spell_id: sp211.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp211.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp211.id, component_id: focus.id, item: "a tiny reliquary worth 500 gp")
+  cloak_of_chaos_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp211.id, spell_level: 8)
+
+  FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp211.id, added_to_known_spells: false, applicable_spell_level: 8, bonus_spell_slot_option: true)
+
+sp212 = Spell.create!(name: "Summon Monster III", description: "This spell functions like summon monster I, except that you can summon one creature from the 3rd-level list, 1d3 creatures of the same kind from the 2nd-level list, or 1d4+1 creatures of the same kind from the 1st-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp212.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp212.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp212.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp212.id, component_id: focus.id, item: "a tiny bag and a small candle")
+  SpellComponent.create!(spell_id: sp212.id, component_id: divine_focus.id, item: nil)
+  # summon_monster_III_antipaladin = SpellListSpell.create!(spell_list_id: antipaladin_spell_list.id, spell_id: sp212.id, spell_level: 3)
+  summon_monster_III_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp212.id, spell_level: 3)
+  summon_monster_III_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp212.id, spell_level: 3)
+  # summon_monster_III_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp212.id, spell_level: 3)
+  # summon_monster_III_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp212.id, spell_level: 3)
+  # summon_monster_III_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist_spell_list.id, spell_id: sp212.id, spell_level: 3)
+  # summon_monster_III_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp212.id, spell_level: 3)
+
+sp213 = Spell.create!(name: "Summon Monster IV", description: "This spell functions like summon monster I, except that you can summon one creature from the 4th-level list, 1d3 creatures of the same kind from the 3rd-level list, or 1d4+1 creatures of the same kind from a lower-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp213.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp213.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp213.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp213.id, component_id: focus.id, item: "a tiny bag and a small candle")
+  SpellComponent.create!(spell_id: sp213.id, component_id: divine_focus.id, item: nil)
+  # summon_monster_IV_antipaladin = SpellListSpell.create!(spell_list_id: antipaladin_spell_list.id, spell_id: sp213.id, spell_level: 4)
+  summon_monster_IV_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp213.id, spell_level: 4)
+  summon_monster_IV_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp213.id, spell_level: 4)
+  # summon_monster_IV_medium = SpellListSpell.create!(spell_list_id: medium_spell_list.id, spell_id: sp213.id, spell_level: 3)
+  # summon_monster_IV_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp213.id, spell_level: 4)
+  # summon_monster_IV_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp213.id, spell_level: 4)
+  # summon_monster_IV_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist_spell_list.id, spell_id: sp213.id, spell_level: 4)
+  # summon_monster_IV_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp213.id, spell_level: 4)
+  # summon_monster_IV_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp213.id, spell_level: 3)
+
+sp214 = Spell.create!(name: "Summon Monster V", description: "This spell functions like summon monster I, except that you can summon one creature from the 5th-level list, 1d3 creatures of the same kind from the 4th-level list, or 1d4+1 creatures of the same kind from a lower-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp214.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp214.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp214.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp214.id, component_id: focus.id, item: "a tiny bag and a small candle")
+  SpellComponent.create!(spell_id: sp214.id, component_id: divine_focus.id, item: nil)
+  summon_monster_V_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp214.id, spell_level: 5)
+  summon_monster_V_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp214.id, spell_level: 5)
+  # summon_monster_V_medium = SpellListSpell.create!(spell_list_id: medium_spell_list.id, spell_id: sp214.id, spell_level: 4)
+  # summon_monster_V_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp214.id, spell_level: 5)
+  # summon_monster_V_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp214.id, spell_level: 5)
+  # summon_monster_V_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist_spell_list.id, spell_id: sp214.id, spell_level: 5)
+  # summon_monster_V_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp214.id, spell_level: 5)
+  # summon_monster_V_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp214.id, spell_level: 4)
+
+sp215 = Spell.create!(name: "Summon Monster VI", description: "This spell functions like summon monster I, except that you can summon one creature from the 6th-level list, 1d3 creatures of the same kind from the 5th-level list, or 1d4+1 creatures of the same kind from a lower-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp215.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp215.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp215.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp215.id, component_id: focus.id, item: "a tiny bag and a small candle")
+  SpellComponent.create!(spell_id: sp215.id, component_id: divine_focus.id, item: nil)
+  summon_monster_VI_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp215.id, spell_level: 6)
+  summon_monster_VI_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp215.id, spell_level: 6)
+  # summon_monster_VI_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp215.id, spell_level: 6)
+  # summon_monster_VI_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp215.id, spell_level: 6)
+  # summon_monster_VI_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist_spell_list.id, spell_id: sp215.id, spell_level: 6)
+  # summon_monster_VI_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp215.id, spell_level: 6)
+  # summon_monster_VI_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp215.id, spell_level: 5)
+
+sp216 = Spell.create!(name: "Summon Monster VII", description: "This spell functions like summon monster I, except that you can summon one creature from the 7th-level list, 1d3 creatures of the same kind from the 6th-level list, or 1d4+1 creatures of the same kind from a lower-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp216.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp216.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp216.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp216.id, component_id: focus.id, item: "a tiny bag and a small candle")
+  SpellComponent.create!(spell_id: sp216.id, component_id: divine_focus.id, item: nil)
+  summon_monster_VII_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp216.id, spell_level: 7)
+  # summon_monster_VII_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp216.id, spell_level: 7)
+  # summon_monster_VII_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp216.id, spell_level: 7)
+  # summon_monster_VII_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp216.id, spell_level: 7)
+  # summon_monster_VII_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp216.id, spell_level: 6)
+
+sp217 = Spell.create!(name: "Summon Monster VIII", description: "This spell functions like summon monster I, except that you can summon one creature from the 8th-level list, 1d3 creatures of the same kind from the 7th-level list, or 1d4+1 creatures of the same kind from a lower-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp217.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp217.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp217.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp217.id, component_id: focus.id, item: "a tiny bag and a small candle")
+  SpellComponent.create!(spell_id: sp217.id, component_id: divine_focus.id, item: nil)
+  summon_monster_VIII_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp217.id, spell_level: 8)
+  # summon_monster_VIII_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp217.id, spell_level: 8)
+  # summon_monster_VIII_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp217.id, spell_level: 8)
+  # summon_monster_VIII_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp217.id, spell_level: 8)
+
+sp218 = Spell.create!(name: "Summon Monster IX", description: "This spell functions like summon monster I, except that you can summon one creature from the 9th-level list, 1d3 creatures of the same kind from the 8th-level list, or 1d4+1 creatures of the same kind from a lower-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp218.id, subschool_id: summoning.id)
+  SpellComponent.create!(spell_id: sp218.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp218.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp218.id, component_id: focus.id, item: "a tiny bag and a small candle")
+  SpellComponent.create!(spell_id: sp218.id, component_id: divine_focus.id, item: nil)
+  summon_monster_IX_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp218.id, spell_level: 9)
+  # summon_monster_IX_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp218.id, spell_level: 9)
+  # summon_monster_IX_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp218.id, spell_level: 9)
+  # summon_monster_IX_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp218.id, spell_level: 9)
+
+  FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp218.id, added_to_known_spells: false, applicable_spell_level: 9, bonus_spell_slot_option: true)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
 #IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
