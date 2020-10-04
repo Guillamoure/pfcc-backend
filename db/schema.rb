@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_233532) do
+ActiveRecord::Schema.define(version: 2020_10_04_183753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -257,6 +257,11 @@ ActiveRecord::Schema.define(version: 2020_10_03_233532) do
     t.string "name"
   end
 
+  create_table "creature_feats", force: :cascade do |t|
+    t.integer "creature_id"
+    t.integer "feat_id"
+  end
+
   create_table "creature_types", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -303,6 +308,30 @@ ActiveRecord::Schema.define(version: 2020_10_03_233532) do
     t.string "description"
     t.integer "klass_id"
     t.integer "race_id"
+    t.integer "source_id"
+  end
+
+  create_table "feat_feat_types", force: :cascade do |t|
+    t.integer "feat_id"
+    t.integer "feat_type_id"
+  end
+
+  create_table "feat_features", force: :cascade do |t|
+    t.integer "feat_id"
+    t.integer "feature_id"
+  end
+
+  create_table "feat_types", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "feats", force: :cascade do |t|
+    t.string "name"
+    t.string "benefit"
+    t.string "special"
+    t.string "normal"
+    t.string "description"
+    t.string "blurb"
     t.integer "source_id"
   end
 

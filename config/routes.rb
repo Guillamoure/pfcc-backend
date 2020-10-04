@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :prepared_spells
       resources :cast_spells
       resources :creatures
+      resources :feats
 
       get '/new_characters/:id', to: 'characters#new_show'
 
