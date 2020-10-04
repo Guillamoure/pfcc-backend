@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_001141) do
+ActiveRecord::Schema.define(version: 2020_10_03_233532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -255,6 +255,32 @@ ActiveRecord::Schema.define(version: 2020_10_03_001141) do
 
   create_table "containers", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "creature_types", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "hit_die"
+    t.integer "skill_ranks"
+    t.float "fortitude"
+    t.float "reflex"
+    t.float "will"
+  end
+
+  create_table "creatures", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.float "challenge_rating"
+    t.string "alignment"
+    t.string "size"
+    t.integer "strength"
+    t.integer "dexterity"
+    t.integer "constitution"
+    t.integer "intelligence"
+    t.integer "wisdom"
+    t.integer "charisma"
+    t.integer "creature_type_id"
+    t.integer "hit_dice"
   end
 
   create_table "days", force: :cascade do |t|

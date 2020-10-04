@@ -1,0 +1,3 @@
+class CreatureType < ApplicationRecord
+
+end
