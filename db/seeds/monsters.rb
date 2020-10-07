@@ -24,6 +24,12 @@ Proficient with its natural weapons only. A noncombative herbivore treats its na
 Proficient with no armor unless trained for war. (See FAQs and Handle Animal Skill.)
 Animals breathe, eat, and sleep.", hit_die: 8, fortitude: 0.5, reflex: 0.5, will: 0.34, skill_ranks: 2)
 
+# /////////////////////////////////////////////////
+# <-*-*-----*-*-*- Natural Attacks -*-*-*-----*-*->
+# /////////////////////////////////////////////////
+
+bite = Weapon.create!(name: "Bite", damage_dice: 6, num_of_dice: 1, attack_type: "Primary", weapon_type: "Melee")
+
 # ///////////////////////////////////////
 # <-*-*-----*-*-*- Feats -*-*-*-----*-*->
 # ///////////////////////////////////////
@@ -36,5 +42,6 @@ weapon_finesse = Feat.find_by!(name: "Weapon Finesse", description: "You are tra
 
 rat = Creature.create!(creature_type_id: animal_type.id, name: "Rat", hit_dice: 1, challenge_rating: 0.25, alignment: "neutral", size: "Tiny", strength: 2, dexterity: 15, constitution: 11, intelligence: 2, wisdom: 13, charisma: 2, description: "Fecund and secretive, rats are omnivorous rodents that particularly thrive in urban areas.")
   CreatureFeat.create!(creature_id: rat.id, feat_id: weapon_finesse.id)
+  CreatureWeapon.create!(creature_id: rat.id, weapon_id: bite.id)
 
 puts "Creatures Created!"

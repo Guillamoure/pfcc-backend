@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_003107) do
+ActiveRecord::Schema.define(version: 2020_10_07_014736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,6 +270,13 @@ ActiveRecord::Schema.define(version: 2020_10_06_003107) do
     t.float "fortitude"
     t.float "reflex"
     t.float "will"
+  end
+
+  create_table "creature_weapons", force: :cascade do |t|
+    t.integer "creature_id"
+    t.integer "weapon_id"
+    t.boolean "masterwork", default: false
+    t.string "name"
   end
 
   create_table "creatures", force: :cascade do |t|
@@ -951,6 +958,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_003107) do
     t.boolean "ammunition", default: false
     t.string "ammunition_type"
     t.integer "source_id"
+    t.string "attack_type"
   end
 
 end
