@@ -3,6 +3,7 @@ class CreateCreatures < ActiveRecord::Migration[5.2]
     create_table :creatures do |t|
       t.string :name
       t.string :description
+      t.string :blurb
       t.float :challenge_rating
       t.string :alignment
       t.string :size

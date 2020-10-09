@@ -282,6 +282,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_014736) do
   create_table "creatures", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.string "blurb"
     t.float "challenge_rating"
     t.string "alignment"
     t.string "size"

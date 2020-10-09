@@ -28,7 +28,8 @@ Animals breathe, eat, and sleep.", hit_die: 8, fortitude: 0.5, reflex: 0.5, will
 # <-*-*-----*-*-*- Natural Attacks -*-*-*-----*-*->
 # /////////////////////////////////////////////////
 
-bite = Weapon.create!(name: "Bite", damage_dice: 6, num_of_dice: 1, attack_type: "Primary", weapon_type: "Melee")
+bite = Weapon.create!(name: "Bite", damage_dice: 6, num_of_dice: 1, category: "Light", attack_type: "Primary", weapon_type: "Melee")
+slam = Weapon.create!(name: "Slam", damage_dice: 4, num_of_dice: 1, category: "Light", attack_type: "Primary", weapon_type: "Melee", damage_type: "Bludgeoning")
 
 # ///////////////////////////////////////
 # <-*-*-----*-*-*- Feats -*-*-*-----*-*->
@@ -40,8 +41,22 @@ weapon_finesse = Feat.find_by!(name: "Weapon Finesse", description: "You are tra
 # <-*-*-----*-*-*- Creature -*-*-*-----*-*->
 # //////////////////////////////////////////
 
-rat = Creature.create!(creature_type_id: animal_type.id, name: "Rat", hit_dice: 1, challenge_rating: 0.25, alignment: "neutral", size: "Tiny", strength: 2, dexterity: 15, constitution: 11, intelligence: 2, wisdom: 13, charisma: 2, description: "Fecund and secretive, rats are omnivorous rodents that particularly thrive in urban areas.")
+rat = Creature.create!(creature_type_id: animal_type.id, name: "Rat", hit_dice: 1, challenge_rating: 0.25, alignment: "neutral", size: "Tiny", strength: 2, dexterity: 15, constitution: 11, intelligence: 2, wisdom: 13, charisma: 2, blurb: nil, description: "Fecund and secretive, rats are omnivorous rodents that particularly thrive in urban areas.")
   CreatureFeat.create!(creature_id: rat.id, feat_id: weapon_finesse.id)
   CreatureWeapon.create!(creature_id: rat.id, weapon_id: bite.id)
+
+dire_rat = Creature.create!(creature_type_id: animal_type.id, name: "Dire Rat", hit_dice: 1, challenge_rating: 0.34, alignment: "neutral", size: "Small", strength: 10, dexterity: 17, constitution: 13, intelligence: 2, wisdom: 13, charisma: 4, blurb: "This filthy rat is the size of a small dog. It has a coat of coarse fur, a long and scabby tail, and two glittering eyes.", description: "Dire rats grow up to 2 feet long and weigh up to 25 pounds. They are common menaces in dungeons and city sewers alike.")
+  CreatureWeapon.create!(creature_id: dire_rat.id, weapon_id: bite.id)
+
+dog = Creature.create!(creature_type_id: animal_type.id, name: "Dog", hit_dice: 1, challenge_rating: 0.34, alignment: "neutral", size: "Small", strength: 13, dexterity: 13, constitution: 15, intelligence: 2, wisdom: 12, charisma: 6, blurb: "This small dog has a rough coat and a hungry look in its dark brown eyes.", description: "The normal dog statistics presented here describe any small dog of about 20–50 pounds in weight. They can also be used for small wild canines such as coyotes, jackals, and feral dogs.
+
+In the wild, dogs are vicious and territorial creatures. Yet even more harrowing than a pack of wild dogs is the rabid dog. Rabies often affects animals like bats, wolverines, and rats, but the transformation of a normally friendly family pet goes through when it becomes rabid makes the dog perhaps the most notorious of the disease’s classic carriers.
+
+A rabid creature can transmit rabies to a victim with a bite. Its CR increases by 1 (or up one step, in the case of a creature whose CR is less than 1).")
+  CreatureWeapon.create!(creature_id: dog.id, weapon_id: bite.id)
+
+dolphin = Creature.create!(creature_type_id: animal_type.id, name: "Dolphin", hit_dice: 2, challenge_rating: 0.5, alignment: "neutral", size: "Medium", strength: 12, dexterity: 15, constitution: 13, intelligence: 2, wisdom: 13, charisma: 6, blurb: "This streamlined, fish-like mammal has sparkling eyes over a smiling mouth filled with hundreds of teeth.", description: "Dolphins are social predators that hunt shallow seas and rivers in large family groups called pods. Sailors are fond of dolphins and frequently tell tales of dolphins saving drowning fishermen or killing sharks with blows from their powerful snouts.")
+  CreatureFeat.create!(creature_id: dolphin.id, feat_id: weapon_finesse.id)
+  CreatureWeapon.create!(creature_id: dolphin.id, weapon_id: slam.id)
 
 puts "Creatures Created!"
