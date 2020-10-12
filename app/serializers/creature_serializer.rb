@@ -1,5 +1,5 @@
 class CreatureSerializer < ActiveModel::Serializer
-  attributes :id, :name, :hit_dice, :description, :challenge_rating, :alignment, :size, :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, :creature_type, :feats, :weapons
+  attributes :id, :name, :hit_dice, :description, :challenge_rating, :alignment, :size, :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, :creature_type, :feats, :weapons, :natural_armor, :environment, :organization, :treasure
 
   def feats
     self.object.feats.map do |f|

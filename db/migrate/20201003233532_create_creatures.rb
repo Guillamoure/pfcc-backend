@@ -15,6 +15,10 @@ class CreateCreatures < ActiveRecord::Migration[5.2]
       t.integer :charisma
       t.integer :creature_type_id
       t.integer :hit_dice
+      t.integer :natural_armor
+      t.string :environment
+      t.string :organization
+      t.string :treasure
     end
   end
 end

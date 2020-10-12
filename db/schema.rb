@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_07_014736) do
+ActiveRecord::Schema.define(version: 2020_10_12_020236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -294,6 +294,10 @@ ActiveRecord::Schema.define(version: 2020_10_07_014736) do
     t.integer "charisma"
     t.integer "creature_type_id"
     t.integer "hit_dice"
+    t.integer "natural_armor"
+    t.string "environment"
+    t.string "organization"
+    t.string "treasure"
   end
 
   create_table "days", force: :cascade do |t|
@@ -310,6 +314,20 @@ ActiveRecord::Schema.define(version: 2020_10_07_014736) do
     t.boolean "concentration"
     t.string "unit"
     t.integer "increase_per_level"
+  end
+
+  create_table "encounter_creatures", force: :cascade do |t|
+    t.integer "encounter_id"
+    t.integer "creature_id"
+    t.integer "count"
+  end
+
+  create_table "encounters", force: :cascade do |t|
+    t.integer "campaign_id"
+    t.string "name"
+    t.string "notes"
+    t.string "location"
+    t.string "description"
   end
 
   create_table "favored_klass_bonuses", force: :cascade do |t|

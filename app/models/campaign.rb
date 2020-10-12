@@ -9,4 +9,6 @@ class Campaign < ApplicationRecord
   has_many :races, through: :campaign_races
   has_many :campaign_klasses, dependent: :destroy
   has_many :klasses, through: :campaign_klasses
+
+  has_many :encounters
 end
