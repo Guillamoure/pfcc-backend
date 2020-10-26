@@ -18,4 +18,10 @@ class Api::V1::EncountersController < ApplicationController
     render json: {response: "Encounter Successful Created"}, status: 201
   end
 
+  def destroy
+    @encounter = Encounter.find_by(params[:id])
+    @encounter.destroy
+    render json: @encounter, status: 200
+  end
+
 end

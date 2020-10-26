@@ -7,4 +7,10 @@ class CampaignSerializer < ActiveModel::Serializer
     end
   end
 
+  def encounters
+    self.object.encounters.map do |e|
+      EncounterSerializer.new(e)
+    end
+  end
+
 end
