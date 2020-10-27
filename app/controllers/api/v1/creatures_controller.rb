@@ -1,11 +1,12 @@
 class Api::V1::CreaturesController < ApplicationController
 
   def index
-    @creatures = Creature.all.map do |creature|
+    @creatures = Creature.all
+    serialized_creatures = @creatures.map do |creature|
       CreatureSerializer.new(creature)
     end
 
-    render json: @creatures
+    render json: serialized_creatures
   end
 
   def show

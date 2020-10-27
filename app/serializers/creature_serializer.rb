@@ -8,8 +8,12 @@ class CreatureSerializer < ActiveModel::Serializer
   end
 
   def weapons
-    s = self.object
-    s.creature_weapons.map do |cw|
+    begin
+      se = self.object.object
+    rescue
+      se = self.object
+    end
+    se.creature_weapons.map do |cw|
       weapon = WeaponSerializer.new(cw.weapon)
       {
         weapon: weapon,

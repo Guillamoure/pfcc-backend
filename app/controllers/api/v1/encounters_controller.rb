@@ -19,7 +19,7 @@ class Api::V1::EncountersController < ApplicationController
   end
 
   def destroy
-    @encounter = Encounter.find_by(params[:id])
+    @encounter = Encounter.find(params[:id])
     @encounter.destroy
     render json: @encounter, status: 200
   end
