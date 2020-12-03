@@ -6,12 +6,16 @@ core_rulebook = Source.create!(title: "Core Rulebook", abbreviation: "CR", code:
 bestiary_1 = Source.create!(title: "Bestiary 1", abbreviation: "B1", code: "PZO1112")
 advanced_players_guide = Source.create!(title: "Advanced Player's Guide", abbreviation: "APG", code: "PZO1115")
 bestiary_2 = Source.create!(title: "Bestiary 2", abbreviation: "B2", code: "PZO1116")
+ultimate_combat = Source.create!(title: "Ultimate Combat", abbreviation: "UC", code: "PZO1118")
 bestiary_3 = Source.create!(title: "Bestiary 3", abbreviation: "B3", code: "PZO1120")
 advanced_race_guide = Source.create!(title: "Advanced Race Guide", abbreviation: "ARG", code: "PZO1121")
 bestiary_4 = Source.create!(title: "Bestiary 4", abbreviation: "B4", code: "PZO1127")
 advanced_class_guide = Source.create!(title: "Advanced Class Guide", abbreviation: "ACG", code: "PZO1129")
+bestiary_5 = Source.create!(title: "Bestiary 5", abbreviation: "B5", code: "PZO1133")
 ultimate_intrigue = Source.create!(title: "Ultimate Intrigue", abbreviation: "UI", code: "PZO1134")
 ultimate_wilderness = Source.create!(title: "Ultimate Wilderness", abbreviation: "UW", code: "PZO1140")
+planar_adventures = Source.create!(title: "Planar Adventures", abbreviation: "PA", code: "PZO1141")
+inner_sea_bestariy = Source.create!(title: "Pathfinder Campaign Setting: Inner Sea Bestiary", abbreviation: "PCB: ISB", code: "PZO9251")
 custom = Source.create!(title: "Custom", abbreviation: "Custom", code: nil)
 
 # /////////////////////////////////////////
@@ -34,6 +38,7 @@ three_rounds = Action.create!(name: "Three Rounds")
 # /////////////////////////////////////////
 cr = Skillset.create!(name: "Core Rulebook")
 dmc = Skillset.create!(name: "DMCustom")
+ravnica_custom = Skillset.create!(name: "Ravnica Custom")
 
 
 # /////////////////////////////////////////
@@ -63,6 +68,7 @@ knowledge_nature = Skill.create!(name: "Knowledge (nature)", ability_score: "Int
 knowledge_nobility = Skill.create!(name: "Knowledge (nobility)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
 knowledge_planes = Skill.create!(name: "Knowledge (planes)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
 knowledge_religion = Skill.create!(name: "Knowledge (religion)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
+knowledge = Skill.create!(name: "Knowledge", ability_score: "Intelligence", untrained: false, description: "", knowledge: true, customizable: true)
 linguistics = Skill.create!(name: "Linguistics", ability_score: "Intelligence", untrained: false, description: "")
 perception = Skill.create!(name: "Perception", ability_score: "Wisdom", untrained: true, description: "")
 perform = Skill.create!(name: "Perform", ability_score: "Charisma", untrained: true, description: "", customizable: true)
@@ -150,6 +156,31 @@ SkillsetSkill.create!(skillset_id: dmc.id, skill_id: spellcraft_unchained.id)
 SkillsetSkill.create!(skillset_id: dmc.id, skill_id: stealth.id)
 SkillsetSkill.create!(skillset_id: dmc.id, skill_id: survival.id)
 SkillsetSkill.create!(skillset_id: dmc.id, skill_id: swim.id)
+
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: acrobatics.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: bluff.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: climb.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: craft.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: diplomacy.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: disguise.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: finesse_unchained.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: handle_animal.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: heal.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: intimidate.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: investigation.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: knowledge.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: linguistics.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: nature_unchained.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: perception.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: perform.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: profession.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: religion_unchained.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: sense_motive.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: society_unchained.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: spellcraft_unchained.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: stealth.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: survival.id)
+SkillsetSkill.create!(skillset_id: ravnica_custom.id, skill_id: swim.id)
 
 
 # //////////////////////////////////////////////////
@@ -663,6 +694,8 @@ studded_leather = Armor.create!(name: 'Studded Leather', proficiency: 'Light', p
 
 chain_shirt = Armor.create!(name: 'Chain Shirt', proficiency: 'Light', price_in_gp: 100, bonus: 4, bonus_type: 'Armor', max_dex_bonus: 4, armor_check_penalty: -2, arcane_spell_failure: 20, spell_30: 30, spell_20: 20, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 25, source_id: core_rulebook.id, description: 'Covering the torso, this shirt is made up of thousands of interlocking metal rings.')
 
+haramaki = Armor.create!(name: 'Haramaki', proficiency: 'Light', price_in_gp: 3, bonus: 1, bonus_type: 'Armor', max_dex_bonus: 99, armor_check_penalty: 0, arcane_spell_failure: 20, spell_30: 30, spell_20: 20, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 1, source_id: ultimate_combat.id, description: 'Also called a belly-warmer, a haramaki is a simple silken sash lined with chainmail or articulated metal plates and tied about the stomach to protect it.')
+
 hide = Armor.create!(name: 'Hide', proficiency: 'Medium', price_in_gp: 15, bonus: 4, bonus_type: 'Armor', max_dex_bonus: 4, armor_check_penalty: -3, arcane_spell_failure: 20, spell_30: 20, spell_20: 15, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 25, source_id: core_rulebook.id, description: 'Hide armor is made from the tanned skin of particularly thick-hided beasts, stitched with either multiple overlapping layers of crude leather or exterior pieces of leather stuffed with padding or fur. Damage to the armor is typically repaired by restitching gashes or adding new pieces of hide, giving the most heavily used suits a distinctively patchwork quality.')
 
 scale_mail = Armor.create!(name: 'Scale Mail', proficiency: 'Medium', price_in_gp: 50, bonus: 5, bonus_type: 'Armor', max_dex_bonus: 3, armor_check_penalty: -4, arcane_spell_failure: 25, spell_30: 20, spell_20: 15, don: "4 minutes", don_hastily: "1 minute", remove: "1 minute", weight: 30, source_id: core_rulebook.id, description: 'Scale mail is made up of dozens of small, overlapping metal plates. Similar to both splint mail and banded mail, scalemail has a flexible arrangement of scales in an attempt to avoid hindering the wearer’s mobility, but at the expense of omitting additional protective layers of armor. A suit of scale mail includes gauntlets.')
@@ -724,6 +757,12 @@ jenn = User.create!(username: "jenn", password: "password", admin: false, skills
 sarah = User.create!(username: "sarah", password: "password", admin: false, skillset_id: dmc.id)
 scott = User.create!(username: "scott", password: "password", admin: false, skillset_id: dmc.id)
 
+clare_voyance = User.create!(username: "clare_voyance", password: "password", admin: false, skillset_id: ravnica_custom.id)
+adam1 = User.create!(username: "Adam1", password: "password", admin: false, skillset_id: ravnica_custom.id)
+bluegdec1 = User.create!(username: "bluegdec1", password: "password", admin: false, skillset_id: ravnica_custom.id)
+just_TDUBB_it = User.create!(username: "just TDUBB it", password: "password", admin: false, skillset_id: ravnica_custom.id)
+nlscott744 = User.create!(username: "nlscott744", password: "password", admin: false, skillset_id: ravnica_custom.id)
+snegerj = User.create!(username: "snegerj", password: "password", admin: false, skillset_id: ravnica_custom.id)
 
 
 
@@ -1049,6 +1088,672 @@ RacialTrait.create!(name: "Low-Light Vision", race_id: wyvaran.id, description: 
 
 print "Wyvaran created! \r"
 
+android = Race.create!(name: "Android", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/7e/3d/da/7e3ddad1b186ec8df9f183f9e609d643.png", source_id: bestiary_5.id, description: "Androids are superficially identical to humans in many ways, and to the uninformed it can be difficult to differentiate the two. In the right light, though, androids’ alien nature is revealed by the metallic sheen in their eyes and the biological, tattoo-like circuitry that riddles their skin. Their bodies are completely artificial, though made of materials that mimic the flexibility, shape, and density of human flesh and bone. Their organs mirror those of humans so well that only by examining the materials and makeup of these systems—which use sheeny oils and polymer alloys rather than blood and marrow—could one guess that their physiology is alien. Androids are roughly the same size as humans; on average, they are 6 feet tall and weigh 200 pounds.
+
+Shamans speak of great forges where androids are “born” from metal wombs and are cut from electrified umbilical cords. Even androids can’t refute or verify such stories, since most who emerge from ruins do so naked and without any memories beyond their initial egress into the wide, unfamiliar world. Their complex design is unlike that of any race known, leading many to suspect that they originated from a distant star system or even another galaxy.
+
+What separates androids from golems and other mindless constructs is that androids are living beings and as such possess souls. Similarly, androids don’t live forever, though barring violence or tragedy their bodies never deteriorate. Rather, an android’s cybernetic mind eventually shuts down and self-restarts after about a century, leaving its body vacant for several weeks as the old soul departs for its final reward in the Great Beyond and a fresh, new soul finds its way into the shell.")
+
+RaceAbilityScoreModifier.create!(race_id: android.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: android.id, ability_score: "Intelligence", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: android.id, ability_score: "Charisma", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: android.id, description: "Androids are humanoids with android subtype.")
+RacialTrait.create!(name: "Languages", race_id: android.id, description: "Androids begin play speaking Common. Androids with high Intelligence can choose any languages they want (except secret languages, such as Druidic).")
+RacialTrait.create!(name: "Alert", race_id: android.id, description: "Androids gain a +2 racial bonus on Perception checks.")
+RacialTrait.create!(name: "Emotionless", race_id: android.id, description: "Androids have problems processing emotions properly, and thus take a –4 penalty on Sense Motive checks.")
+RacialTrait.create!(name: "Exceptional Senses", race_id: android.id, description: "Androids have darkvision and so can see perfectly in the dark to a range of 60 feet and in addition, they possess low-light vision.")
+RacialTrait.create!(name: "Constructed", race_id: android.id, description: "For the purposes of effects targeting creatures by type (such as a ranger’s favored enemy and bane weapons), androids count as both humanoids and constructs. Androids gain a +4 racial bonus on all saving throws against mind-affecting effects, paralysis, poison, and stun effects, are not subject to fatigue or exhaustion, and are immune to disease and sleep effects. Androids can never gain morale bonuses, and are immune to fear effects and all emotion-based effects.")
+RacialTrait.create!(name: "Nanite Surge", race_id: android.id, description: "An android’s body is infused with nanites. Once per day as an immediate action, an android can cause her nanites to surge, granting a bonus equal to 3 + the android’s character level on any one d20 roll; this ability must be activated before the roll is made. When an android uses this power, her circuitry-tattoos glow with light equivalent to that of a torch in illumination for 1 round.")
+
+print "Android created! \r"
+
+ghoran = Race.create!(name: "Ghoran", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/63/7e/e2/637ee236d7a3f0c70d0179e56deec3da.png", source_id: ultimate_wilderness.id, description: "While each ghoran could perpetuate itself via a single immortal seed, the inability to grow or propagate their species ensured that no new ghorans would ever appear. With each death of a ghoran by accident or violence, their race as a whole dwindled. The fact that their “flesh” had come to be regarded as a delicacy only further complicated their role in society, and even though most regions soon made the harvesting and consumption of the newly sentient ghorans illegal, they are still hunted by those who have developed a taste for their succulence.
+
+Physical Description: The typical ghoran stands roughly as tall as a human and occupies a similar silhouette, but that’s where their similarities with humanity end. A ghoran’s “skin” is a complex layer of fibrous vines and rinds with a texture similar to moss-covered bark. Ghoran faces consist of layered petals that flush and flutter at a whim, allowing them to mimic the facial behaviors of their would-be devourers. They do not lack emotion per se, but ghoran “feelings” are primordial and abstract, making them utterly alien to most non-ghorans. A ghoran might laugh, smile, or raise its voice, but their companions seldom understand if these are displays of true emotion or merely more adaptive evolutions designed—like so many other aspects of their physiology—simply to keep them alive.
+
+Ghorans have considerable control over their mass and can shape their bodies however they wish within the basic confines of a humanoid silhouette; this trait often gives them the impression of rustling about, especially when they are frightened or agitated. Ghorans who deal often with humanoids tend to adopt a masculine or a feminine silhouette based on their preference, but gender remains a fluid and somewhat elusive concept to them—an evolutionary adaptation of more import to the comfort of their companions than to ghorans themselves.
+
+A ghoran has a deep cavity within its belly, housing a single seed the size of a balled human fist. Roughly every 20 years, a ghoran’s body becomes decrepit enough to no longer function. The ghoran imprints its abilities and memories into this seed and then plants it in the ground. After 1 to 2 months, a new ghoran body is born from the seed, the consciousness from the original transferring over to the fully grown body and leaving the old body behind as a mindless mass of inert plant matter. In this way, a ghoran’s legacy lives on with every regrowth; while the body regenerates, the inner self and memories of the past endure.
+
+Society: A ghoran’s alien thought processes (to say nothing of the empty holes upon its flower-petal face roughly approximating its eyes and mouth) make it very difficult for other races to understand and empathize with, leading many ghorans to stick to themselves in segregated communities of cosmopolitan and magic-rich city-states or in the deepest wild places of their barren homeland and its neighboring kingdoms. Ghoran architecture consists of round, multifloor greenhouse towers composed of fibrous plant material coated in organic resins that grant it the hardness of stone. The towers have no roofs and several wide, stylized windows, granting the colony of ghorans living within ample access to the essential life-giving rays of the sun. Within, the air is redolent with organic aromas that often induce soporific effects upon non-ghorans, making them pliant to ghoran suggestions and uneager to take aggressive action. When unobserved, ghorans belonging to the same colony sometimes array themselves around the edges of the tower’s internal balconies, swaying in unison to some unheard rhythm and basking in the communal warmth of daylight.
+
+Relations: Ghorans are most comfortable with other intelligent plants (such as treants and vine leshys) and wary around plant-eating creatures (including humans, whom ghorans know created them as a food source). Because their regeneration brings minor personality changes with each incarnation, ghorans have trouble forming long-lasting relationships with races such as elves, dwarves, and gnomes. Ghorans deeply distrust warmongering humanoids such as goblins and gnolls, especially those with pyromaniac tendencies. The ghorans’ relation with humanity is the most complex, for while they admire humans for their capacities and are grateful for their creation, they fear their appetites more, and it is difficult for a ghoran to trust that a human doesn’t simply want to eat it.
+
+Alignment and Religion: Ghorans seldom follow humanoid deities, instead preferring to worship nature itself. Ghorans have no predisposition toward law, chaos, good, or evil, but many struggle to differentiate right from wrong as defined by most societies.
+
+Adventurers: Owing to their delicious nature, ghorans seldom know peace the way that humanoid races do, and many are forced to contend with nature and learn to fight as a means of self-defense against capture and consumption. Many have taken to adventuring lifestyles either to aid friends and companions or out of a darker drive for vengeance. Others join adventuring groups in hopes of accumulating enough power and lore to, perhaps, determine a solution to their race’s central problem of reproduction, though so far no ghoran has solved this essential riddle.
+
+Names: Ghoran naming conventions seem random, as each ghoran is self-named and “born” with a near perfect recollection of every memory from previous incarnations. As a result, ghorans sometimes pick names they found pleasing in other lives or name themselves after people or places they once knew. Others maintain the same name over several incarnations, though minor personality and physical changes from life to life ensure that while the ghoran’s name might remain the same, aspects of the ghoran’s gradual change can often confuse and frustrate longtime friends and allies.")
+
+RaceAbilityScoreModifier.create!(race_id: ghoran.id, ability_score: "Constituion", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: ghoran.id, ability_score: "Charisma", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: ghoran.id, ability_score: "Intelligence", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: ghoran.id, description: "Ghorans have the plant type but lack the immunities to mind-affecting, paralysis, poison, polymorph, sleep, and stunning effects that type usually has. The plant type features immunities that, when granted to a player character race, can be disruptive and overpowered.")
+RacialTrait.create!(name: "Languages", race_id: ghoran.id, description: "Ghorans begin play speaking Common and Sylvan. Ghorans with high Intelligence scores can choose any languages they want (except secret languages such as Druidic).")
+RacialTrait.create!(name: "Defensive Traits", race_id: ghoran.id, description: "Ghorans have tough, rugged skin and so gain a +2 Natural Armor bonus to AC.")
+RacialTrait.create!(name: "Natural Magic", race_id: ghoran.id, description: "Ghorans with a Charisma score of 11 or higher gain the following spell-like abilities: 1/day—detect poison, goodberry (created berries bud from the ghoran’s own body), and purify food and drink. The caster level is equal to the ghoran’s level. The DC for these spells is equal to 10 + the spell’s level + the ghoran’s Charisma bonus.")
+RacialTrait.create!(name: "Seed", race_id: ghoran.id, description: "As a full-round action, a ghoran can expel the seed from an orifice in its abdomen. If planted in fertile ground and left undisturbed for 2d6 days, the seed grows into a healthy duplicate of the original ghoran, save that the duplicate can reallocate all skill ranks upon sprouting. Once a ghoran expels this seed, it gains 1 negative level, and it dies as soon as the duplicate sprouts. This duplicate replaces the previous ghoran character.")
+RacialTrait.create!(name: "Past-Life Knowledge", race_id: ghoran.id, description: "Ghorans have memories encoded in their seeds. They treat all Knowledge skills as class skills.")
+RacialTrait.create!(name: "Light Dependent", race_id: ghoran.id, description: "Ghorans are heavily light dependent and so take 1d4 points of Constitution damage each day they go without exposure to sunlight.")
+RacialTrait.create!(name: "Delicious", race_id: ghoran.id, description: "Ghorans take a –2 penalty on Escape Artist and combat maneuver checks to escape a grapple against a creature that has a bite attack with the grab ability.")
+
+print "Ghoran created! \r"
+
+
+goblin = Race.create!(name: "Goblin", speed: 30, size: "Small", img_url: "https://i.pinimg.com/736x/c3/ff/a3/c3ffa36862446c39ac78d5b841036a7f.jpg", source_id: bestiary_1.id, description: "Goblins are a race of childlike creatures with a destructive and voracious nature that makes them almost universally despised. Weak and cowardly, goblins are frequently manipulated or enslaved by stronger creatures that need destructive, disposable foot soldiers. Those goblins that rely on their own wits to survive live on the fringes of society and feed on refuse and the weaker members of more civilized races. Most other races view them as virulent parasites that have proved impossible to exterminate.
+
+Goblins can eat nearly anything, but prefer a diet of meat and consider the flesh of humans and gnomes a rare and difficult-to-obtain delicacy. While they fear the bigger races, goblins’ short memories and bottomless appetites mean they frequently go to war or execute raids against other races to sate their pernicious urges and fill their vast larders.
+
+Physical Description: Goblins are short, ugly humanoids that stand just over 3 feet tall. Their scrawny bodies are topped with over-sized and usually hairless heads with massive ears and beady red or occasionally yellow eyes. Goblins’ skin tone varies based on the surrounding environment; common skin tones include green, gray, and blue, though black and even pale white goblins have been sighted. Their voracious appetites are served well by their huge mouths filled with jagged teeth.
+
+Society: Violent but fecund, goblins exist in primitive tribal structures with constant shifts in power. Rarely able to sustain their own needs through farming or hunting and gathering, goblin tribes live where food is abundant or near places that they can steal it from. Since they are incapable of building significant fortifications and have been driven out of most easily accessible locations, goblins tend to live in unpleasant and remote locations, and their poor building and planning skills ensure that they dwell primarily in crude caves, ramshackle villages, and abandoned structures. Few goblins are good with tools or skilled at farming, and the rare items of any value that they possess are usually cast-off implements from humans or other civilized cultures. Goblins’ appetites and poor planning lead to small tribes dominated by the strongest warriors. Even the hardiest goblin leaders quickly find out that their survival depends on conducting frequent raids to secure sources of food and kill off the more aggressive youth of the tribe. Both goblin men and women are ugly and vicious, and both sexes are just as likely to rise to positions of power in a tribe. goblin babies are almost completely self-sufficient not long after birth, and such infants are treated almost like pets. Many tribes raise their children communally in cages or pens where adults can largely ignore them. Mortality is high among young goblins, and when the adults fail to feed them or food runs low, youths learn at an early age that cannibalism is sometimes the best means of survival in a goblin tribe.
+
+Relations: Goblins tend to view other beings as sources of food, which makes for poor relations with most civilized races. Goblins often survive on the fringes of human civilization, preying on weak or lost travelers and occasionally raiding small settlements to fuel their voracious appetites. They have a special animosity toward gnomes, and celebrate the capturing or killing of such victims with a feast. Of the most common races, half-orcs are the most tolerant of goblins, sharing a similar ancestry and experiencing the same hatred within many societies. Goblins are mostly unaware of half-orcs‘ sympathy, however, and avoid them because they are larger, meaner, and less flavorful than other humanoids.
+
+Alignment and Religion: Goblins are greedy, capricious, and destructive by nature, and thus most are neutral or chaotic evil.
+
+Adventurers: goblin adventurers are usually curious and inclined to explore the world, though they are often killed off by their own foolish misdeeds or hunted down for their random acts of destruction. Their pernicious nature makes interacting with civilized races almost impossible, so goblins tend to adventure on the fringes of civilization or in the wilds. Adventurous individuals who survive long enough often ride goblin dogs or other exotic mounts, and focus on archery to avoid close confrontation with larger enemies. goblin spellcasters prefer fire magic and bombs over almost all other methods of spreading mayhem.
+
+Chieftain Names: Dogchewer, Firesinger, Gutwad, Hogparts, Horsebiter, Mancooker, Moonslaver, Pokestick, Ripnugget, Stabsnacker, Stumpbumper, Swampstomper, Toechopper
+
+Male Names: Boorgub, Chuffy, Churkus, Drubbus, Gawg, Ghorg, Gogmurch, Irnk, Kavak, Lunthus, Mogmurch, Mogawg, Murch, Nurpus, Pogus, Poog, Ronk, Rotfoot, Unk, Vogun, Zobmaggle, Zord.
+
+Female Names: Aka, Chee, Fevva, Geedra, Goomluga, Gretcha, Hoglob, Janka, Klongy, Luckums, Lupi, Medge, Namby, Olba, Rempy, Reta, Ruxi, Vruta, Yalla, Ziku.")
+
+RaceAbilityScoreModifier.create!(race_id: goblin.id, ability_score: "Dexterity", bonus: 4)
+RaceAbilityScoreModifier.create!(race_id: goblin.id, ability_score: "Strength", bonus: -2)
+RaceAbilityScoreModifier.create!(race_id: goblin.id, ability_score: "Charisma", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: goblin.id, description: "Goblins are humanoids with the goblinoid subtype.")
+RacialTrait.create!(name: "Languages", race_id: goblin.id, description: "Goblins begin play speaking Goblin. Goblins with high Intelligence scores can choose from the following: Common, Draconic, Dwarven, Gnoll, Gnome, Halfling, and Orc.")
+RacialTrait.create!(name: "Skilled", race_id: goblin.id, description: "Goblins gain a +4 racial bonus on Ride and Stealth checks.")
+RacialTrait.create!(name: "Darkvision", race_id: goblin.id, description: "Goblins see perfectly in the dark up to 60 feet.")
+RacialTrait.create!(name: "Fast Movement", race_id: goblin.id, description: "Goblins gain a +10 foot bonus to their base speed (this is already added to their Base Speed above).")
+
+print "Golbin created! \r"
+
+
+tengu = Race.create!(name: "Tengu", speed: 30, size: "Medium", img_url: "https://vignette.wikia.nocookie.net/dead-evil/images/a/af/Mochran_Tull.jpg", source_id: bestiary_1.id, description: "The crow-like tengus are known as a race of scavengers and irrepressible thieves. Covetous creatures predominantly motivated by greed, they are vain and easily won over with flattery. Deceptive, duplicitous, and cunning, tengus seek circumstances in which they can take advantage of the situation, often at the expense of others, including their own kind. They can be highly competitive, but impulsive and rash. Some claim their behavior is innate, while others believe their selfish mannerisms are cultural and developed as a learned adaptation that has enabled their people to endure through centuries of oppression.
+
+Tengus are natural survivalists. For many, only theft and guile have afforded them the temporary luxuries other races take for granted. In the past, both humans and powerful races such as giants sought the bird-folk as slaves and servitors. Many tengus scavenged for survival, scraping for food in the shadows of cities or living as subsistence hunters and gatherers in the wild. Their descendants now struggle to find their place in contemporary society, often competing against negative stereotypes or driven to embrace them, and they rely on thievery and swordplay to get by in a harsh and unforgiving world.
+
+Physical Description: Tengus are avian humanoids whose features strongly resemble crows. They have broad beaks and both their arms and their legs end in powerful talons. Though tengus are unable to fly, iridescent feathers cover their bodies—this plumage is usually black, though occasionally brown or blue-back. Their skin, talons, beaks, and eyes are similarly colored, and most non-tengus have great difficulty telling individuals apart. Tengus who wish to be more easily identified by other humanoids may bleach certain feathers or decorate their beaks with dyes, paint, or tiny glued ornaments. Though they are about the same height as humans, they have slight builds and tend to hunch over. A tengu’s eyes sit slightly back and to the sides of his head, giving him binocular vision with a slightly more panoramic field of view than other humanoids. Like many avians, tengus have hollow bones and reproduce by laying eggs.
+
+Society: Tengus live in close-knit communities in which they keep to themselves. In urban centers, they tend to group in communal slums, while those living in rural areas establish isolated settlements. Overall, they remain secretive about their culture, which is a combination of old traditions laced with newer bits of culture scavenged from the races common in the neighboring regions. Cultural scavenging also extends to language, and regional dialects of Tengu are peppered with terms and colloquialisms from other languages. Unsurprisingly, tengus have a knack for language and pick up new ones quickly.
+
+Most tengu communities tend to follow a tribal structure. Tribal rules remain loose and subjective, and tribe members settle any conflicts through public arbitration (and occasionally personal combat). While every tengu has a voice in her society, in most settlements, tengus still defer to their revered elders for wisdom and advice.
+
+Relations: Few races easily tolerate tengus. Of the most common races, only humans allow them to settle within their cities with any regularity. When this occurs, tengus inevitably form their own ghettos and ramshackle communities, typically in the most wretched neighborhoods. Regardless of their tolerance, most humans maintain as little contact with tengus as possible. Tengus occasionally make friends with halflings and gnomes, but only when they share mutual interests. Conversely, most dwarves have no patience for tengus whatsoever. Other races tend to view tengus in a similar fashion to humans, though many actively discourage them from settling in their realms.
+
+Alignment and Religion: Tengus tend to be neutral, though those who allow their impulsiveness to get the better of them lean toward chaotic neutral. Religious beliefs vary from tribe to tribe; some worship the traditional tengu gods (most of which are aspects of better-known deities), while others take to the worship of human gods or celestial spirits. Tengus can be fickle with regard to their patrons, quickly abandoning religious customs when they cease to provide any tangible benefit. Many embrace polytheism, picking and choosing to uphold the tenets of whatever deities best suit them at the time.
+
+Adventurers: With little at home to leave behind, many tengus turn to a life of adventure seeking fame, fortune, and glory. A common tengu belief portrays a life on the road as a series of experiences and trials that form a path to enlightenment. Some take this to mean a path of spiritual empowerment; others view it as a way to perfect their arts or swordsmanship. Perhaps in spite of the prejudices upheld by outsiders, many tengu adventurers embrace their stereotypes. These individuals seek to succeed by epitomizing tengu racial qualities, and proudly flaunt their heritage. Despite their avian frailty, with their quick reflexes and quicker wits, tengus make excellent rogues and rangers, while those with a strong connection to the spirit world often become oracles. Those disciplined in the practice of martial arts take jobs as mercenaries and bodyguards in order to profit from their talents.
+
+Male Names: Bukka, Chak-Chak, Chuko, Ebonfeather, Highroost, Kraugh, Pezzack, Taicho, Tchoyoitu, Xaikon.
+
+Female Names: Aerieminder, Aikio, Cheetchu, Daba, Gildedhackle, Kankai, Mikacha, Ruk, Zhanyae.")
+
+RaceAbilityScoreModifier.create!(race_id: tengu.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: tengu.id, ability_score: "Wisdom", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: tengu.id, ability_score: "Constitution", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: tengu.id, description: "Tengus are humanoids with the tengu subtype.")
+RacialTrait.create!(name: "Languages", race_id: tengu.id, description: "Tengus begin play speaking Common and Tengu. Tengus with high Intelligence scores can choose any languages they want (except for secret languages, such as Druidic).")
+RacialTrait.create!(name: "Sneaky", race_id: tengu.id, description: "Tengus gain a +2 racial bonus on Perception and Stealth checks.")
+RacialTrait.create!(name: "Gifted Linguist", race_id: tengu.id, description: "Tengus gain a +4 racial bonus on Linguistics checks, and learn 2 languages each time they gain a rank in Linguistics rather than 1 language.")
+RacialTrait.create!(name: "Swordtrained", race_id: tengu.id, description: "Tengus are trained from birth in swordplay, and as a result are automatically proficient with sword-like weapons (including bastard swords, daggers, elven curve blades, falchions, greatswords, kukris, longswords, punching daggers, rapiers, scimitars, short swords, and two-bladed swords).")
+RacialTrait.create!(name: "Natural Weapons", race_id: tengu.id, description: "Tengus have a bite attack that deals 1d3 points of damage.")
+RacialTrait.create!(name: "Low-Light Vision", race_id: tengu.id, description: "Tengus have low-light vision allowing them to see twice as far as humans in conditions of dim light.")
+
+print "Tengu created! \r"
+
+sylph = Race.create!(name: "Sylph", speed: 30, size: "Medium", img_url: "https://vignette.wikia.nocookie.net/the-banished/images/3/33/Sylph.jpg", source_id: bestiary_1.id, description: "Born from the descendants of humans and beings of elemental air such as djinn, sylphs are a shy and reclusive race consumed by intense curiosity. Sylphs spend their lives blending into the crowd, remaining unnoticed as they spy and eavesdrop on the people around them. They call this hobby “listening to the wind,” and for many sylphs it becomes an obsession. Sylphs rely on their capable, calculating intellects and on knowledge gleaned from eavesdropping to deliver them from danger.
+
+Physical Description: Sylphs tend to be pale and thin to the point of appearing delicate, but their skinny bodies are often more resilient than they look. Many sylphs can easily pass for humans with some effort, though the complex blue markings that swirl across their skin reveal their elemental ancestry. Sylphs also bear more subtle signs of their heritage, such as a slight breeze following them wherever they go. These signs become more pronounced as a sylph experiences intense passion or anger, spontaneous gusts of wind tousling the sylph’s hair or hot blusters knocking small items off of shelves.
+
+Society: Sylphs are usually born to human parents, and so are raised according to human customs. Most sylphs dislike the attention they receive growing up in human society, so it’s common for them to leave home soon after coming of age. They rarely abandon civilization altogether, however, preferring instead to find some new city or settlement where they can go unnoticed among (and spy upon) the masses. A sylph who happens upon another sylph unnoticed instantly becomes obsessed with her kin, spying on and learning as much about the other as she possibly can. Only after weighing all the pros and cons and formulating plans for every potential outcome will the sylph introduce herself to the other. Rarely, two sylphs will discover each other’s presence in a community at the same time. What ensues thereafter is a sort of cat-and-mouse game, a convoluted dance in which each sylph spies on the other as both attempt to gain the upper hand. Sylphs who meet this way always become either inseparable friends or intractable enemies.
+
+Relations: Sylphs enjoy prying into the affairs of most other races, but have little taste for actually associating with most of them. Sylphs can relate on some level with elves, who share their tendency toward aloofness, but often spoil any possible relationship by violating the elven sense of privacy. Dwarves distrust sylphs intensely, considering them flighty and unreliable. They form excellent partnerships with halflings, relying on the short folk’s courage and people skills to cover their own shortcomings. Sylphs are amused by the annoyed reactions they provoke in ifrits, and find oreads too boring to give them much attention.
+
+Alignment and Religion: Sylphs have little regard for laws and traditions, for such strictures often prohibit the very things sylphs love—subterfuge and secrecy. This doesn’t mean sylphs are opposed to law, merely that they use the most expedient means available to accomplish their goals, legal or not. Most sylphs are thus neutrally aligned. Sylphs are naturally drawn to mystery cults, and to deities who focus on secrets, travel, or knowledge.
+
+Adventurers: An inborn urge to get to the bottom of things drives many sylphs to the adventuring life. A sylph who runs across the trail of a mystery will never be satisfied until she has uncovered every thread of evidence, followed up on every lead, and found the very heart of the trouble. Such sylphs make plenty of enemies by poking around into other peoples’ affairs, and usually turn to their roguish talents or wizardry to defend themselves.
+
+Male Names: Akaash, Eydan, Hanuun, Siival, Vasaam.
+
+Female Names: Inam, Keeya, Lissi, Nava, Radaya, Tena.")
+
+RaceAbilityScoreModifier.create!(race_id: sylph.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: sylph.id, ability_score: "Intelligence", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: sylph.id, ability_score: "Constitution", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: sylph.id, description: "Sylphs are outsiders with the native subtype.")
+RacialTrait.create!(name: "Languages", race_id: sylph.id, description: "Sylphs begin play speaking Common and Auran. Sylphs with high Intelligence scores can choose from the following: Aquan, Dwarven, Elven, Gnome, Halfling, Ignan, and Terran.")
+RacialTrait.create!(name: "Energy Resistance", race_id: sylph.id, description: "Sylphs have electricity resistance 5.")
+RacialTrait.create!(name: "Spell-Like Ability", race_id: sylph.id, description: "Sylphs can use feather fall 1/day (caster level equals the sylph’s total level).")
+RacialTrait.create!(name: "Darkvision", race_id: sylph.id, description: "Sylphs can see perfectly in the dark up to 60 feet.")
+RacialTrait.create!(name: "Air Affinity", race_id: sylph.id, description: "Sylph sorcerers with the elemental (air) bloodline treat their Charisma score as 2 points higher for all sorcerer spells and class abilities. Sylph spellcasters with the Air domain use their domain powers and spells at +1 caster level.")
+
+print "Sylph created! \r"
+
+ratfolk = Race.create!(name: "Ratfolk", speed: 20, size: "Small", img_url: "https://pbs.twimg.com/media/Dd6tAofV0AA0gVo.jpg", source_id: bestiary_3.id, description: "Ratfolk are small, rodent-like humanoids; originally native to subterranean areas in dry deserts and plains, they are now more often found in nomadic trading caravans. Much like the pack rats they resemble, ratfolk are tinkerers and hoarders by nature, and as a whole are masters of commerce, especially when it comes to acquiring and repairing mechanical or magical devices. Though some are shrewd merchants who carefully navigate the shifting alliances of black markets and bazaars, many ratfolk love their stockpiles of interesting items far more than money, and would rather trade for more such prizes to add to their hoards over mere coins. It’s common to see a successful crew of ratfolk traders rolling out of town with an even larger bundle than they entered with, the whole mess piled precariously high on a cart drawn by giant rats.
+
+Physical Description: Typical ratfolk are average 4 feet tall and weigh 80 pounds. They often wear robes to stay cool in the desert or conceal their forms in cities, as they know other humanoids find their rodent features distasteful. Ratfolk have a strong attraction to shiny jewelry, especially copper, bronze, and gold, and many decorate their ears and tails with small rings made of such metals. They are known to train giant rats (dire rats with the giant creature simple template), which they often use as pack animals and mounts.
+
+Society: Ratfolk are extremely communal, and live in large warrens with plenty of hidden crannies in which to stash their hoards or flee in times of danger, gravitating toward subterranean tunnels or tightly packed tenements in city slums. They feel an intense bond with their large families and kin networks, as well as with ordinary rodents of all sorts, living in chaotic harmony and fighting fiercely to defend each other when threatened. They are quick to use their stockpiles of gear in combat, but prefer to work out differences and settle disputes with mutually beneficial trades.
+
+When a specific ratfolk warren grows overcrowded and the surrounding environment won’t support a larger community, young ratfolk instinctively seek out new places in which to dwell. If a large enough group of ratfolk immigrants all settle down in a new, fertile area, they may create a new warren, often with strong political ties to their original homeland. Otherwise, individual ratfolk are inclined to simply leave home and take up residence elsewhere, or wander on caravan trips that last most of the year, reducing the pressure of overcrowding at home.
+
+Relations: Ratfolk tend to get along quite well with humans, and often develop ratfolk societies dwelling in the sewers, alleys, and shadows of human cities. Ratfolk find dwarves too hidebound and territorial, and often mistake even mild criticisms from dwarves as personal attacks. Ratfolk have no particular feelings about gnomes and halflings, although in areas where those races and ratfolk must compete for resources, clan warfare can become dogma for generations. Ratfolk enjoy the company of elves and half-elves, often seeing them as the calmest and most sane of the civilized humanoid races. Ratfolk are particularly fond of elven music and art, and many ratfolk warrens are decorated with elven art pieces acquired through generations of friendly trade.
+
+Alignment and Religion: Ratfolk individuals are driven by a desire to acquire interesting items and a compulsion to tinker with complex objects. The strong ties of ratfolk communities give them an appreciation for the benefits of an orderly society, even if they are willing to bend those rules when excited about accomplishing their individual goals. Most ratfolk are neutral, and those who take to religion tend to worship deities that represent commerce and family.
+
+Adventurers: Ratfolk are often driven by a desire to seek out new opportunities for trade, both for themselves and for their warrens. Ratfolk adventurers may seek potential markets for their clan’s goods, keep an eye out for sources of new commodities, or just wander about in hopes of unearthing enough treasure to fund less dangerous business ventures. Ratfolk battles are often decided by cunning traps, ambushes, or sabotage of enemy positions, and accordingly young ratfolk heroes often take up classes such as alchemist, gunslinger, and rogue.
+
+Male Names: Agiz, Brihz, Djir, Ninnec, Rerdahl, Rikkan, Skivven, Tamoq.
+
+Female Names: Bessel, Fhar, Jix, Kitch, Kubi, Nehm, Rissi, Thikka.")
+
+RaceAbilityScoreModifier.create!(race_id: ratfolk.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: ratfolk.id, ability_score: "Intelligence", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: ratfolk.id, ability_score: "Strength", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: ratfolk.id, description: "Ratfolk are humanoids with the ratfolk subtype.")
+RacialTrait.create!(name: "Languages", race_id: ratfolk.id, description: "Ratfolk begin play speaking Common. Ratfolk with high Intelligence scores can choose from the following: Aklo, Draconic, Dwarven, Gnoll, Gnome, Goblin, Halfling, Orc, and Undercommon.")
+RacialTrait.create!(name: "Tinker", race_id: ratfolk.id, description: "Ratfolk gain a +2 racial bonus on Craft (alchemy), Perception, and Use Magic Device checks.")
+RacialTrait.create!(name: "Rodent Empathy", race_id: ratfolk.id, description: "Ratfolk gain a +4 racial bonus on Handle Animal checks made to influence rodents.")
+RacialTrait.create!(name: "Swarming", race_id: ratfolk.id, description: "Ratfolk are used to living and fighting communally, and are adept at swarming foes for their own gain and their foes’ detriment. Up to two ratfolk can share the same square at the same time. If two ratfolk in the same square attack the same foe, they are considered to be flanking that foe as if they were in two opposite squares.")
+RacialTrait.create!(name: "Darkvision", race_id: ratfolk.id, description: "Ratfolk can see perfectly in the dark up to 60 feet.")
+
+print "Ratfolk created! \r"
+
+syrinx = Race.create!(name: "Syrinx", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/ff/70/14/ff701427ba3747bbb15bb08a0e58a8da.png", source_id: inner_sea_bestariy.id, description: "Robed in silk and its own regal wings, this humanoid assays its surroundings with the lethal detachment of the owl it resembles.
+
+From lofty monastery-cities entrenched in soaring cliff sides and high mountain valleys, the syrinx seek to bring peace to all lands that fall within sight of their marbled spires. Erudite and aloof, the owl-like scholars embrace art, philosophy, and nebulous faiths, seeking to distance themselves from a history of barbarism and ruin.")
+
+RaceAbilityScoreModifier.create!(race_id: syrinx.id, ability_score: "Wisdom", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: syrinx.id, ability_score: "Dexterity", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: syrinx.id, description: "Syrnix are humanoids with the synrix subtype.")
+RacialTrait.create!(name: "Languages", race_id: syrinx.id, description: "Syrinx begin play speaking Syrinx. Syrinx with high Intelligence scores can choose from the following: Auran, Celestial, Strix, or Infernal.")
+RacialTrait.create!(name: "Flight", race_id: syrinx.id, description: "Syrinx have a fly speed of 60 feet with average maneuverability.")
+RacialTrait.create!(name: "Pride", race_id: syrinx.id, description: "Syrinx receive a +2 racial bonus on saving throws against mind-affecting effects.")
+RacialTrait.create!(name: "Nocturnal", race_id: syrinx.id, description: "Syrinx gain a +2 racial bonus on Perception and Stealth checks at night.")
+RacialTrait.create!(name: "Speak with Avians", race_id: syrinx.id, description: "Syrinx can speak with all birds of the animal creature type and birdlike magical beasts (like phoenixes and thunderbirds).")
+RacialTrait.create!(name: "Low-Light Vision", race_id: syrinx.id, description: "Syrinx can see twice as far as humans in conditions of dim light.")
+RacialTrait.create!(name: "Darkvision", race_id: syrinx.id, description: "Syrinx have darkvision and so can see perfectly in the dark up to 60 feet.")
+
+print "Syrnix created! \r"
+
+ifrit = Race.create!(name: "Ifrit", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/2c/ca/28/2cca281e37e4c3dca5ae693aa701a3f7.png", source_id: bestiary_1.id, description: "Humans whose ancestry includes beings of elemental fire such as efreet, ifrits are a passionate and fickle race. No ifrit is satisfied with a sedentary life; like a wildfire, ifrits must keep moving or burn away into nothingness. Ifrits not only adore flames, but personify multiple aspects of them as well, embodying both fire’s dynamic, ever-changing energy and its destructive, pitiless nature.
+
+Physical Description: Ifrits vary in appearance as widely as their elemental ancestors do. Most have pointy ears, red or mottled horns on the brow, and hair that flickers and waves as if it were aflame. Some possess skin the color of polished brass or have charcoal-hued scales covering their arms and legs. Ifrits favor revealing and ostentatious clothing in bright oranges and reds, preferably paired with gaudy jewelry.
+
+Society: Ifrits are most often born into human communities, and rarely form societies of their own. Those who grow up in a city are almost always imprisoned or driven off before they reach adulthood; most are simply too hot-headed and independent to fit into civilized society, and their predilection toward pyromania doesn’t endear them to the local authorities. Those born into nomadic or tribal societies fare much better, since ifrits’ instinctive urge to explore and conquer their surroundings can easily earn them a place among their tribe’s leadership.
+
+Relations: Even the best-natured ifrits tend to view other individuals as tools to use as they see fit, and as such they get along best with races they can charm or browbeat into submission. Half-elves and gnomes often find themselves caught up in an ifrit’s schemes, while halflings, half-orcs, and dwarves usually bridle at ifrits’ controlling nature. Strangely, ifrits sometimes form incredibly close bonds with elves, whose calm, aloof nature seems to counterbalance an ifrit’s impulsiveness. Most ifrits refuse to associate with sylphs, but are otherwise on peaceable terms with the other elemental-touched races.
+
+Alignment and Religion: Ifrits are a dichotomous people—on one hand, fiercely independent, and on the other, imperious and demanding. They are often accused of being morally impoverished, but their troublemaking behavior is rarely motivated by true malice. Ifrits are usually lawful neutral or chaotic neutral, with a few falling into true neutrality. Most ifrits lack the mindset to follow a god’s teachings, and resent the strictures placed on them by organized faith. When ifrits do take to worship (usually venerating a fire-related deity), they prove to be zealous and devoted followers.
+
+Adventurers: Ifrits adventure for the sheer thrill of it and for the chance to test their skill against worthy foes, but most of all they adventure in search of power. Once ifrits dedicate themselves to a task, they pursue it unflinchingly, never stopping to consider the dangers ahead of them. When this brashness finally catches up with them, ifrits often rely on sorcery or bardic magic to combat their resulting troubles.
+
+Male Names: Aja, Denat, Efit, Elum, Jalij, Maqej, Urah.
+
+Female Names: Alayi, Etwa, Maqan, Qari, Sami, Zetaya.")
+
+RaceAbilityScoreModifier.create!(race_id: ifrit.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: ifrit.id, ability_score: "Charisma", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: ifrit.id, ability_score: "Wisdom", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: ifrit.id, description: "Ifrits are outsiders with the native subtype.")
+RacialTrait.create!(name: "Languages", race_id: ifrit.id, description: "Ifrits begin play speaking Common and Ignan. Ifrits with high Intelligence scores can choose from the following: Aquan, Auran, Dwarven, Elven, Gnome, Halfling, and Terran.")
+RacialTrait.create!(name: "Energy Resistance", race_id: ifrit.id, description: "Ifrits have fire resistance 5.")
+RacialTrait.create!(name: "Spell-Like Ability", race_id: ifrit.id, description: "Ifrits can use burning hands 1/day (caster level equals the ifrit’s total level).")
+RacialTrait.create!(name: "Darkvision", race_id: ifrit.id, description: "Ifrits can see perfectly in the dark up to 60 feet.")
+RacialTrait.create!(name: "Fire Affinity", race_id: ifrit.id, description: "Ifrit sorcerers with the elemental (fire) bloodline treat their Charisma score as 2 points higher for all sorcerer spells and class abilities. Ifrit spellcasters with the Fire domain use their domain powers and spells at +1 caster level.")
+
+print "Ifrit created! \r"
+
+undine = Race.create!(name: "Undine", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/b2/54/db/b254dbdf0c1f0e40d287fe563f068cad.jpg", source_id: bestiary_1.id, description: "Undines are humans who trace their ancestry to creatures from the Plane of Water. Even at first glance, one notices the potency of their ancestry, for an undine’s very flesh mimics the color of lakes, seas, and oceans. Whether they have the blood of marids or water mephits as their kin, all undines define themselves through their ancestry. They perceive their individual differences as gifts and explore the supernatural aspects of their unique heritage to the fullest.
+
+The undines are a proud race and show little outward fear. While good-natured and somewhat playful among their own kind, they behave with slightly more reserve and seriousness in the company of non-undines. They have excellent emotional control, and can edge their tempers from calm to raging and back again within but a few minutes. While some might dub their behavior erratic, undines are simply a bit more outwardly melodramatic than most races. Certainly, they are not moody and do not become angered, excited, or otherwise emotional without provocation. As close friends, some find them overly possessive, though they are also extremely protective of those they care about.
+
+Undines tend to settle near water, usually in warmer climates. Though land-dwellers, they spend a fair amount of time in the water. For this reason, most dress sparsely, wearing only enough clothing to protect themselves from the elements, and few wear shoes. They avoid wearing jewelry around their necks and keep their hair slicked back and tied into tight knots. This prevents hair or other objects from becoming a distraction or hindrance while swimming. Similarly, undines pursuing martial classes choose weapons that they can wield efficiently on land as well as in water.
+
+Physical Description: Undines display a wide variation of skin tones, ranging from pale turquoise to deep blue to sea green. An undine’s straight, thick hair tends to be of a similar, yet slightly darker color than her skin. All have limpid blue eyes. Physically, undines most resemble humans, and their physiques show human diversity in regard to overall height and body type. Aside from their coloration, their most racially defining traits remain their fin-like ears and webbed hands and feet.
+
+Society: Undines define themselves as a unique race and are capable of producing undine offspring. While they remain able to interbreed with humans, they tend to keep to themselves, and form small, reclusive communities near bodies of water, or in some cases, floating settlements. A typical undine community lives under the guidance of a small council comprising officials appointed by consensus. Council positions can be held indefinitely, though a community unhappy with the performance of a council member can call for her resignation.
+
+Intermarriage in undine communities is common, with children raised communally. A fair amount of regional diversity exists in undine culture, as influenced by the specific ancestry of independent settlements. It should also be noted that not all undine in a single settlement claim the same ancestry, as undines may marry other undines from outside their own communities.
+
+Relations: Undines hold no biases or prejudices toward any particular races. Their communities rely primarily on trade, giving them ample opportunity to interact with a diverse range of outsiders and foreigners. They have no qualms about establishing neighborhoods within the settlements of other races, provided adequate respect is given to both the undines and any nearby bodies of water. Still, in such instances, a given undine community does what it can to retain its autonomy.
+
+Undines get along quite well with elves and gnomes. Often these races share protective duties over forested lakes and streams. Similarly, they interact favorably with good or neutral aquatic humanoids, sharing many common interests. They barter most freely with humans and dwarves for resources such as metal and cloth.
+
+Alignment and Religion: Most undines are neutral. Their principle interests lie in the welfare of their people, and thus their moral concerns focus upon the community and upon themselves. This neutral view also allows them to interact with a broad scope of non-undine races with whom they trade. While not deeply religious, undines possess a strong spiritual connection to both their supernatural ancestors and to water itself. Those who pursue nonsecular paths almost always worship the gods of their ancestors or gods whose portfolios feature some aspect of water.
+
+Adventurers: On occasion, an undine leaves her people to seek out a life of adventure. Like water itself, some undines simply feel compelled to move, and adventuring gives them an ample excuse for living on the road. Others adventure for less wholesome reasons, and exile is a common punishment for crimes within undine society. With few other options, most exiles turn to adventuring hoping to find a new place in the world. Undines’ affinity toward water makes them particularly good druids, while undine sorcerers usually have aquatic bloodlines.
+
+Male Names: Aven, Dharak, Ghiv, Jamash, Maakor, Ondir, Radid, Shiradahz.
+
+Female Names: Afzara, Baarah, Calah, Iryani, Maarin, Nylgune, Pari, Radabeh, Urdahna.")
+
+RaceAbilityScoreModifier.create!(race_id: undine.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: undine.id, ability_score: "Wisdom", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: undine.id, ability_score: "Strength", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: undine.id, description: "Undines are outsiders with the native subtype.")
+RacialTrait.create!(name: "Swim Speed", race_id: undine.id, description: "Undines have a swim speed of 30 feet, can move in water without making Swim checks, and always treat Swim as a class skill.")
+RacialTrait.create!(name: "Languages", race_id: undine.id, description: "Undines begin play speaking Common and Aquan. Undines with high Intelligence scores can choose from the following: Auran, Dwarven, Elven, Gnome, Halfling, Ignan, and Terran.")
+RacialTrait.create!(name: "Energy Resistance", race_id: undine.id, description: "Undines have cold resistance 5.")
+RacialTrait.create!(name: "Spell-Like Ability", race_id: undine.id, description: "Undines can use hydraulic push 1/day (caster level equals the undine’s total level).")
+RacialTrait.create!(name: "Darkvision", race_id: undine.id, description: "Undines can see perfectly in the dark up to 60 feet.")
+RacialTrait.create!(name: "Water Affinity", race_id: undine.id, description: "Undine sorcerers with the elemental (water) bloodline treat their Charisma score as 2 points higher for all sorcerer spells and class abilities. Undine spellcasters with the Water domain use their domain powers and spells at +1 caster level.")
+
+print "Undine created! \r"
+
+oread = Race.create!(name: "Oread", speed: 20, size: "Medium", img_url: "https://i.pinimg.com/originals/40/3b/c7/403bc745a1d5ff605bbb9228360a1f1d.jpg", source_id: bestiary_1.id, description: "Oreads are humans whose ancestry includes the touch of an elemental being of earth somewhere along the line, often that of a shaitan genie. Stoic and contemplative, oreads are a race not easily moved, yet almost unstoppable when spurred to action. They remain a mystery to most of the world thanks to their reclusive nature, but those who seek them out in their secluded mountain hideaways find oreads to be quiet, dependable, and protective of their friends.
+
+Physical Description: Oreads are strong and solidly built, with skin and hair colored stony shades of black, brown, gray, or white. While all oreads appear vaguely earthy, a few bear more pronounced signs of their elemental heritage—skin that shines like polished onyx, rocky outcroppings protruding from their flesh, glowing gemstones for eyes, or hair like crystalline spikes. They often dress in earthy tones, wearing practical clothing well suited to vigorous physical activity and preferring fresh flowers, simple gemstones, and other natural accents to complex manufactured jewelry.
+
+Society: As a minor offshoot of the human race, oreads have no real established society of their own. Instead, most oreads grow up in human communities learning the customs of their parents. Adult oreads have a well-deserved reputation among other races for being hermits and loners. Few take well to the bustle of city life, preferring instead to spend their days in quiet contemplation atop some remote mountain peak or deep below the earth in a secluded cavern. Oreads with a greater tolerance for life among humans often join the city watch, or find some other way to serve their community in a position of responsibility.
+
+Relations: Oreads feel comfortable in the company of dwarves, with whom they have much in common. They find gnomes too strange and many halflings far too brash, and so avoid these races in general. Oreads gladly associate with half-orcs and half-elves, feeling a sense of kinship with the other part-human races despite inevitable personality conflicts. Among the elemental-touched races, oreads have few friends but no true enemies.
+
+Alignment and Religion: Oreads are, perhaps above all else, set in their ways, and any disruption of their routine is met with quiet disapproval. Oreads are fiercely protective of their friends, but don’t seem particularly concerned with the well-being of those outside their small circle of acquaintances. As such, most oreads are lawful neutral. Religious life comes easily to the earth-touched. They appreciate the quiet, contemplative life of the monastic order, and most dedicate themselves to the worship of earth- or nature-related deities.
+
+Adventurers: Oreads are initially hesitant adventurers. They dislike leaving their homes and don’t handle the shock of new experiences well. Usually it takes some outside force to rouse oreads into action, often by threatening their homes, lives, or friends. Once the initial threat is dealt with, however, oreads often find they’ve grown accustomed to the adventuring life, and continue to pursue it through the rest of their days. Oreads make good monks and fighters thanks to their prodigious strength and self-discipline.
+
+Male Names: Andanan, Jeydavu, Mentys, Oret, Sithundan, Urtar.
+
+Female Names: Besthana, Echane, Ghatiyara, Irice, Nysene, Pashe.")
+
+RaceAbilityScoreModifier.create!(race_id: oread.id, ability_score: "Strength", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: oread.id, ability_score: "Wisdom", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: oread.id, ability_score: "Charisma", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: oread.id, description: "Oreads are outsiders with the native subtype.")
+RacialTrait.create!(name: "Languages", race_id: oread.id, description: "Oreads begin play speaking Common and Terran. Oreads with high Intelligence scores can choose from the following: Aquan, Auran, Dwarven, Elven, Gnome, Halfling, Ignan, and Undercommon.")
+RacialTrait.create!(name: "Energy Resistance", race_id: oread.id, description: "Oreads have acid resistance 5.")
+RacialTrait.create!(name: "Spell-Like Ability", race_id: oread.id, description: "Oreads can use magic stone 1/day (caster level equals the oread’s total level).")
+RacialTrait.create!(name: "Darkvision", race_id: oread.id, description: "Oreads can see perfectly in the dark up to 60 feet.")
+RacialTrait.create!(name: "Earth Affinity", race_id: oread.id, description: "Oread sorcerers with the elemental (earth) bloodline treat their Charisma score as 2 points higher for all sorcerer spells and class abilities. Oread spellcasters with the Earth domain use their domain powers and spells at +1 caster level.")
+
+print "Oread created! \r"
+
+halfling = Race.create!(name: "Halfling", speed: 20, size: "Small", img_url: "https://res.cloudinary.com/jerrick/image/upload/fl_progressive,q_auto,w_1024/5fa2d6210c0a600020cc2d4a.png", source_id: core_rulebook.id, description: "Optimistic and cheerful by nature, blessed with uncanny luck, and driven by a powerful wanderlust, halflings make up for their short stature with an abundance of bravado and curiosity. At once excitable and easy-going, halflings like to keep an even temper and a steady eye on opportunity, and are not as prone to violent or emotional outbursts as some of the more volatile races. Even in the jaws of catastrophe, halflings almost never lose their sense of humor. Their ability to find humor in the absurd, no matter how dire the situation, often allows halflings to distance themselves ever so slightly from the dangers that surround them. This sense of detachment can also help shield them from terrors that might immobilize their allies.
+
+Halflings are inveterate opportunists. They firmly believe they can turn any situation to their advantage, and sometimes gleefully leap into trouble without any solid plan to extricate themselves if things go awry. Often unable to physically defend themselves from the rigors of the world, they know when to bend with the wind and when to hide away. Yet halflings’ curiosity often overwhelms their good sense, leading to poor decisions and narrow escapes. While harsh experience sometimes teaches halflings a measure of caution, it rarely makes them completely lose faith in their luck or stop believing that the universe, in some strange way, exists for their entertainment and would never really allow them to come to harm. Though their curiosity drives them to seek out new places and experiences, halflings possess a strong sense of hearth and home, often spending above their means to enhance the comforts of domestic life. Without a doubt, halflings enjoy luxury and comfort, but they have equally strong reasons to make their homes a showcase. Halflings consider this urge to devote time, money, and energy toward improving their dwellings a sign of both respect for strangers and affection for their loved ones. Whether for their own blood kin, cherished friends, or honored guests, halflings make their homes beautiful in order to express their feelings toward those they welcome inside. Even traveling halflings typically decorate their wagons or carry a few cherished keepsakes to adorn their campsites.
+
+Physical Description: Halflings rise to a humble height of 3 feet. They prefer to walk barefoot, leading the bottoms of their feet to become roughly calloused. Tufts of thick, curly hair warm the tops of their broad, tanned feet.
+
+Their skin tends toward a rich cinnamon color and their hair toward light shades of brown. A halfling’s ears are pointed, but proportionately not much larger than those of a human.
+
+Halflings prefer simple and modest clothing. Though willing and able to dress up if the situation demands it, their racial urge to remain quietly in the background makes them rather conservative dressers in most situations. Halfling entertainers, on the other hand, make their livings by drawing attention, and tend to go overboard with gaudy and flashy costumes.
+
+Society: Rather than place their faith in empires or great causes, many halflings prefer to focus on the simpler and humbler virtues of their families and local communities. Halflings claim no cultural homeland and control no settlements larger than rural assemblies of free towns. Most often, they dwell at the knees of their human cousins in human cities, eking out livings as they can from the scraps of larger societies. Many halflings lead perfectly fulfilling lives in the shadow of their larger neighbors, while some prefer more nomadic lives, traveling the world and experiencing all it has to offer.
+
+Halflings rely on customs and traditions to maintain their own culture. They have an extensive oral history filled with important stories about folk heroes who exemplify particular halfling virtues, but otherwise see little purpose in studying history in and of itself. Given a choice between a pointless truth and a useful fable, halflings almost always opt for the fable. This tendency helps to explain at least something of the famous halfling adaptability. Halflings look to the future and find it very easy to cast off the weight of ancient grudges or obligations that drag down so many other races.
+
+Relations: A typical halfling prides himself on his ability to go unnoticed by other races—a trait that allows many halflings to excel at thievery and trickery. Most halflings know full well the stereotypical view other races take of them as a result, and go out of their way to be forthcoming and friendly to the bigger races when they’re not trying to go unnoticed. They get along fairly well with gnomes, although most halflings regard these eccentric creatures with a hefty dose of caution. Halflings respect elves and dwarves, but these races often live in remote regions far from the comforts of civilization that halflings enjoy, thus limiting opportunities for interaction. By and large, only half-orcs are shunned by halflings, for their great size and violent natures are a bit too intimidating for most halflings to cope with. Halflings coexist well with humans as a general rule, but since some of the more aggressive human societies value halflings as slaves, they try not to grow too complacent. Halflings strongly value their freedom, especially the ability to travel in search of new experiences and the autonomy this requires. However, practical and flexible as always, enslaved halflings seldom fight back directly against their masters. When possible, they wait for the perfect opportunity and then simply slip away. Sometimes, if enslaved for long enough, halflings even come to adopt their owners as their new families. Though they still dream of escape and liberty, these halflings also make the best of their lives.
+
+Alignment and Religion: Halflings are loyal to their friends and families, but since they dwell in a world dominated by races twice as large as themselves, they have come to grips with the fact that sometimes they need to scrape and scrounge for survival. Most halflings are neutral as a result. Though they usually make a show of respecting the laws and endorsing the prejudices of their communities, halflings place an even greater emphasis on the innate common sense of the individual. When a halfling disagrees with society at large, he will do what he thinks is best. Always practical, halflings frequently worship the deity most favored by their larger and more powerful neighbors. They also usually cover their bets, however. The goddess of both luck and travel seems a natural fit for most halflings and offering her a quick prayer every now and then is only common sense.
+
+Adventurers: Their inherent luck coupled with their insatiable wanderlust makes halflings ideal candidates for lives of adventure. Though perfectly willing to pocket any valuables they come across, halflings often care more for the new experiences adventuring brings them than for any material reward. Halflings tend to view money as a means of making their lives easier and more comfortable, not as an end in and of itself. Other such vagabonds often put up with this curious race in hopes that some of their mystical luck will rub off. Halflings see nothing wrong with encouraging this belief, not just in their traveling companions, but also in the larger world. Many try to use their reputation for luck to haggle for reduced fare when traveling by ship or caravan, or even for an overnight stay at an inn. They meet with mixed success, but there are just enough stories circulating about the good fortune that befalls people traveling with halflings to give even the most skeptical pause. Of course, some suspect that halflings deliberately spread these reports for just that reason.
+
+Male Names: Antal, Boram, Hyrgan, Jamir, Lem, Miro, Sumak, Tribin, Uldar, Vraxim.
+
+Female Names: Anafa, Bellis, Etune, Filiu, Irlana, Marra, Pressi, Rilka, Sistra, Wyssal, Yamyra.")
+
+RaceAbilityScoreModifier.create!(race_id: halfling.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: halfling.id, ability_score: "Charisma", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: halfling.id, ability_score: "Strength", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: halfling.id, description: "Halflings are humanoids with the Halfling subtype.")
+RacialTrait.create!(name: "Languages", race_id: halfling.id, description: "Halflings begin play speaking Common and Halfling. Halflings with high Intelligence scores can choose from the following: Dwarven, Elven, Gnome, and Goblin.")
+RacialTrait.create!(name: "Fearless", race_id: halfling.id, description: "Halflings receive a +2 racial bonus on all saving throws against fear. This bonus stacks with the bonus granted by halfling luck.")
+RacialTrait.create!(name: "Halfling Luck", race_id: halfling.id, description: "Halflings receive a +1 racial bonus on all saving throws.")
+RacialTrait.create!(name: "Sure-Footed", race_id: halfling.id, description: "Halflings receive a +2 racial bonus on Acrobatics and Climb checks.")
+RacialTrait.create!(name: "Weapon Familiarity", race_id: halfling.id, description: "Halflings are proficient with slings and treat any weapon with the word “halfling” in its name as a martial weapon.")
+RacialTrait.create!(name: "Keen Senses", race_id: halfling.id, description: "Halflings receive a +2 racial bonus on Perception checks.")
+
+print "Halfling created! \r"
+
+gnome = Race.create!(name: "Gnome", speed: 20, size: "Small", img_url: "https://2static.fjcdn.com/pictures/Character_995828_5839850.jpg", source_id: core_rulebook.id, description: "Gnomes are distant relatives of the fey, and their history tells of a time when they lived in the fey’s mysterious realm, a place where colors are brighter, the wildlands wilder, and emotions more primal. Unknown forces drove the ancient gnomes from that realm long ago, forcing them to seek refuge in this world; despite this, the gnomes have never completely abandoned their fey roots or adapted to mortal culture. Though gnomes are no longer truly fey, their fey heritage can be seen in their innate magic powers, their oft-capricious natures, and their outlooks on life and the world.
+
+Gnomes can have the same concerns and motivations as members of other races, but just as often they are driven by passions and desires that non-gnomes see as eccentric at best, and nonsensical at worst. A gnome may risk his life to taste the food at a giant’s table, to reach the bottom of a pit just because it would be the lowest place he’s ever been, or to tell jokes to a dragon—and to the gnome those goals are as worthy as researching a new spell, gaining vast wealth, or putting down a powerful evil force. While such apparently fickle and impulsive acts are not universal among gnomes, they are common enough for the race as a whole to have earned a reputation for being impetuous and at least a little mad.
+
+Combined with their diminutive sizes, vibrant coloration, and lack of concern for the opinions of others, these attitudes have caused gnomes to be widely regarded by the other races as alien and strange. Gnomes, in turn, are often amazed how alike other common, civilized races are. It seems stranger to a gnome that humans and elves share so many similarities than that the gnomes do not. Indeed, gnomes often confound their allies by treating everyone who is not a gnome as part of a single, vast non-gnome collective race.
+
+Physical Description: Gnomes are one of the smallest of the common races, generally standing just over 3 feet in height. Despite their small frames, however, gnomes are extremely resilient, and not as weak as many of their foes assume. Though their diminutive stature reduces their ability to move quickly, gnomes often train to take advantage of their size, especially when fighting foes much larger than themselves.
+
+The coloration of gnomes varies so wildly that many outsiders assume gnomes commonly use dyes and illusions to change their skin and hair tones. While gnomes are certainly not above cosmetic enhancement (and may wish to change their appearance just to see how outlandish they can look), their natural hues truly range over a rainbow of coloration. Their hair tends toward vibrant colors such as the fiery orange of autumn leaves, the verdant green of forests at springtime, or the deep reds and purples of wildflowers in bloom. Similarly, their flesh tones range from earthy browns to floral pinks, and gnomes with black, pastel blue, or even green skin are not unknown. Gnomes’ coloration has little regard for heredity, with the color of a gnome’s parents and other kin having no apparent bearing on the gnome’s appearance. Gnomes possess highly mutable facial characteristics, and their proportions often don’t match the norm of other humanoid races. Many have overly large mouths and eyes, an effect which can be both disturbing and stunning, depending on the individual. Others may have extremely small features spread over an otherwise blank expanse of face, or may mix shockingly large eyes with a tiny, pursed mouth and a pert button of a nose. Gnomes rarely take pride in or show embarrassment about their features, but members of other races often fixate on a gnome’s most prominent feature and attempt to use it as the focus of insults or endearments.
+
+Society: Unlike most races, gnomes do not generally organize themselves within classic societal structures. Gnome cities are unusual and gnome kingdoms almost unknown. Further, gnomes have no particular tendency to gather in specific neighborhoods even when a large number of them live among other races. While specific laws meant to contain the potential impact of gnomes on a society may require a “gnome quarter,” and societal pressure sometimes causes all non-gnomes to move away from areas with high gnome populations, left to their own devices, gnomes tend to spread evenly throughout communities that allow them.
+
+However, even when gnomes are common within a community as a group, individual gnomes tend to be always on the move. Whimsical creatures at heart, they typically travel alone or with temporary companions, ever seeking new and more exciting experiences. They rarely form enduring relationships among themselves or with members of other races, instead pursuing crafts, professions, or collections with a passion that borders on zealotry. If a gnome does settle in an area or stay with a group for a longer period, it is almost always the result of some benefit that area gives to a vocation or obsession to which the gnome had dedicated himself.
+
+Despite their extremely varied backgrounds and lack of a unifying homeland, gnomes do possess some common cultural traits. Male gnomes have a strange fondness for unusual hats and headgear, often wearing the most expensive and ostentatious head-covering they can afford (and that their chosen careers will allow them to wear without causing problems). Females rarely cover their heads, but proudly wear elaborate and eccentric hairstyles that often include intricate jeweled combs and headpieces.
+
+Relations: Gnomes have difficulty interacting with the other races, on both emotional and physical levels. In many ways the very fact other races see gnomes as odd is itself the thing gnomes find most odd about other races, and this leads to a strong lack of common ground upon which understanding and relationships can be built. When two gnomes encounter one another, they generally assume some mutually beneficial arrangement can be reached, no matter how different their beliefs and traditions may be. Even if this turns out not to be the case, the gnomes continue to look for commonalities in their dealings with each other. The inability or unwillingness of members of other races to make the same effort when dealing with gnomes is both frustrating and confusing to most gnomes.
+
+In many ways, it is gnomes’ strong connection to a wide range of apparently unconnected ideas that makes it difficult for other races to build relationships with them. Gnome humor, for example, is often focused on physical pranks, nonsensical rhyming nicknames, and efforts to convince others of outrageous lies that strain all credibility. Gnomes find such efforts hysterically funny, but their pranks often come across as malicious or senseless to other races, while gnomes in turn tend to think of the taller races as dull and lumbering giants. Gnomes get along reasonably well with halflings and humans, who at least have some traditions of bizarre, gnome-like humor. Gnomes generally feel dwarves and half-orcs need to lighten up, and attempt to bring levity into their lives with tricks, jokes, and outrageous tales the more dour races simply cannot see the sense of. Gnomes respect elves, but often grow frustrated with the slow pace at which members of the long-lived race make decisions. To gnomes, action is always better than inaction, and many gnomes carry several highly involved projects with them at all times to keep themselves entertained during rest periods.
+
+Alignment and Religion: Although gnomes are impulsive tricksters, with sometimes inscrutable motives and equally confusing methods, their hearts are generally in the right place. What may seem a malicious act to a non-gnome is more likely an effort to introduce new acquaintances to new experiences, however unpleasant the experiences may be. Gnomes are prone to powerful fits of emotion, and find themselves most at peace within the natural world. They are usually neutral good, and prefer to worship deities who value individuality and nature.
+
+Adventurers: Gnomes’ propensity for wanderlust, deep curiosity, and desire to master odd or esoteric skills and languages make them natural adventurers. They often become wanderers to experience new aspects of life, for nothing is as novel as the uncounted dangers facing adventurers. Many gnomes see adventuring as the only worthwhile purpose in life, and seek out adventures for no other motive than to experience them. Other gnomes desire to find some lost lore or material that has ties to their chosen vocation and believe only dragon hoards and ancient ruins can contain the lore they need, which can result in gnomes who think of themselves as bakers or weavers being just as accomplished adventurers as those who declare themselves to be mages or scouts.
+
+Gnomes are physically weak compared to many races, and see this as a simple fact of life to be planned for accordingly. Most adventuring gnomes make up for their weakness with a proclivity for sorcery or bardic music, while others turn to alchemy or exotic weapons to grant them an edge in conflicts.
+
+Male Names: Abroshtor, Bastargre, Halungalom, Krolmnite, Poshment, Zarzuket, Zatqualmie.
+
+Female Names: Besh, Fijit, Lini, Majet, Neji, Pai, Queck, Trig.")
+
+RaceAbilityScoreModifier.create!(race_id: gnome.id, ability_score: "Constitution", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: gnome.id, ability_score: "Charisma", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: gnome.id, ability_score: "Strength", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: gnome.id, description: "Gnomes are Humanoid creatures with the gnome subtype.")
+RacialTrait.create!(name: "Languages", race_id: gnome.id, description: "Gnomes begin play speaking Common, Gnome, and Sylvan. Gnomes with high Intelligence scores can choose from the following: Draconic, Dwarven, Elven, Giant, Goblin, and Orc.")
+RacialTrait.create!(name: "Defensive Training", race_id: gnome.id, description: "Gnomes gain a +4 dodge bonus to AC against monsters of the giant subtype.")
+RacialTrait.create!(name: "Illusion Resistance", race_id: gnome.id, description: "Gnomes gain a +2 racial saving throw bonus against illusion spells and effects.")
+RacialTrait.create!(name: "Keen Senses", race_id: gnome.id, description: "Gnomes receive a +2 racial bonus on Perception checks.")
+RacialTrait.create!(name: "Obsessive", race_id: gnome.id, description: "Gnomes receive a +2 racial bonus on a Craft or Profession skill of their choice.")
+RacialTrait.create!(name: "Gnome Magic", race_id: gnome.id, description: "Gnomes add +1 to the DC of any saving throws against illusion spells that they cast. Gnomes with Charisma scores of 11 or higher also gain the following spell-like abilities: 1/day—dancing lights, ghost sound, prestidigitation, and speak with animals. The caster level for these effects is equal to the gnome’s level. The DC for these spells is equal to 10 + the spell’s level + the gnome’s Charisma modifier.")
+RacialTrait.create!(name: "Hatred", race_id: gnome.id, description: "Gnomes receive a +1 bonus on attack rolls against humanoid creatures of the reptilian and goblinoid subtypes because of their special training against these hated foes.")
+RacialTrait.create!(name: "Weapon Familiarity", race_id: gnome.id, description: "Gnomes treat any weapon with the word “gnome” in its name as a martial weapon.")
+RacialTrait.create!(name: "Low-Light Vision", race_id: gnome.id, description: "Gnomes can see twice as far as humans in conditions of dim light.")
+
+print "Gnome created! \r"
+
+elf = Race.create!(name: "Elf", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/99/1b/6f/991b6f9ccc7e3e98377fa0e0101acd4b.jpg", source_id: core_rulebook.id, description: "The long-lived elves are children of the natural world, similar in many superficial ways to fey creatures, though with key differences. While fey are truly linked to the flora and fauna of their homes, existing as the nearly immortal voices and guardians of the wilderness, elves are instead mortals who are in tune with the natural world around them. Elves seek to live in balance with the wild and understand it better than most other mortals. Some of this understanding is mystical, but an equal part comes from the elves’ long lifespans, which in turn gives them long-ranging outlooks. Elves can expect to remain active in the same locale for centuries. By necessity, they must learn to maintain sustainable lifestyles, and this is most easily done when they work with nature, rather than attempting to bend it to their will. However, their links to nature are not entirely driven by pragmatism. Elves’ bodies slowly change over time, taking on a physical representation of their mental and spiritual states, and those who dwell in a region for a long period of time find themselves physically adapting to match their surroundings, most noticeably taking on coloration that reflects the local environment.
+
+Elves value their privacy and traditions, and while they are often slow to make friends at both the personal and national levels, once an outsider is accepted as a comrade, the resulting alliances can last for generations. Elves take great joy in forging alliances with races that share or exceed their long lifetimes, and often work to befriend dragons, outsiders, and fey. Those elves who spend their lives among the short-lived races, on the other hand, often develop a skewed perception of mortality and become morose, the result of watching wave after wave of companions age and die before their eyes.
+
+Physical Description: Generally taller than humans, elves possess a graceful, slender physique that is accentuated by their long, pointed ears. It is a mistake, however, to consider them weak or feeble, as the thin limbs of an elf can contain surprising power. Their eyes are wide and almond-shaped, and filled with large, vibrantly colored pupils. The coloration of elves as a whole varies wildly, and is much more diverse than that of human populations. However, as their coloration often matches their surroundings, the elves of a single community may appear quite similar. Forest-dwelling elves often have variations of green, brown, and tan in their hair, eye, and even skin tones.
+
+While elven clothing often plays off the beauty of the natural world, those elves who live in cities tend to bedeck themselves in the latest fashions. Where city-dwelling elves encounter other urbanites, the elves are often fashion trendsetters.
+
+Society: Many elves feel a bond with nature and strive to live in harmony with the natural world. Although, like most, elves prefer bountiful lands where resources are plentiful, when driven to live in harsher climates, they work hard to protect and shepherd the region’s bounty, and learn how to maximize the benefit they receive from what little can be harvested. When they can carve out a sustainable, reliable life in deserts and wastelands, they take pride as a society in the accomplishment. While this can make them excellent guides to outsiders they befriend who must travel through such lands, their disdain of those who have not learned to live off the scant land as they have makes such friends rare.
+
+Elves have an innate gift for craftsmanship and artistry, especially when working in wood, bone, ivory, or leather. Most, however, find manipulating earth and stone to be distasteful, and prefer to avoid forging, stonework, and pottery. When such work must be done within a community, a few elves may find themselves drawn to it, but regardless of their craftsmanship, such “dirt-wrights” are generally seen by other elves as being a bit off. In the most insular of elven societies, they may even be treated as lower class.
+
+Elves also have an appreciation for the written word, magic, and painstaking research. Their naturally keen minds and senses, combined with their inborn patience, make them particularly suited to wizardry. Arcane research and accomplishment are seen as both practical goals, in line with being a soldier or architect, and artistic endeavors as great as poetry or sculpture. Within elven society, wizards are held in extremely high regard as masters of an art both powerful and aesthetically valued. Other spellcasters are not disdained, but do not gain the praise lavished upon elven wizards.
+
+Relations: Elves are prone to dismissing other races, writing them off as rash and impulsive, yet on an individual level, they are excellent judges of character. In many cases an elf will come to value a specific member of another race, seeing that individual as deserving and respectable, while still dismissing the race as a whole. If called on this behavior, the elf often doesn’t understand why his “special friend” is upset the elf has noticed the friend is “so much better than the rest of his kind.” Even elves who see such prejudice for what it is must constantly watch themselves to prevent such views from coloring their thinking.
+
+Elves are not foolish enough, however, to dismiss all aspects of other races and cultures. An elf might not want a dwarf neighbor, but would be the first to acknowledge dwarves’ skill at smithing and their tenacity in facing orc threats. Elves regard gnomes as strange (and sometimes dangerous) curiosities, but regard their magical talent as being worthy of praise and respect. Halflings are often viewed with a measure of pity, for these small folk seem to the elves to be adrift, without a traditional home. Elves are fascinated with humans, who seem to live in a few short years as full a life as an elf manages in centuries. In fact, many elves become infatuated with humans, as evidenced by the number of half-elves in the world. Elves have difficulty accepting crossbreeds of any sort, however, and usually disown such offspring. They similarly regard half-orcs with distrust and suspicion, assuming they possess the worst aspects of orc and human personalities.
+
+Alignment and Religion: Elves are emotional and capricious, yet value kindness and beauty. Most elves are chaotic good, wishing all creatures to be safe and happy, but unwilling to sacrifice personal freedom or choice to accomplish such goals. They prefer deities who share their love of the mystic qualities of the world.
+
+Adventurers: Many elves embark on adventures out of a desire to explore the world, leaving their secluded realms to reclaim forgotten elven magic or search out lost kingdoms established millennia ago by their ancestors. This need to see a wider world is accepted by their societies as a natural part of becoming mature and experienced individuals. Such elves are expected to return in some few decades and take up lives in their homelands once more, enriched both in treasure and in worldview. For those elves raised among humans, however, life within their homes—watching friends and family swiftly age and die—is often stifling, and the ephemeral and unfettered life of an adventurer holds a natural appeal. Elves generally eschew melee because of their relative frailty, preferring instead to engage enemies at range. Most see combat as unpleasant even when needful, and prefer it be done as quickly as possible, preferably without getting close enough to smell their foes. This preference for making war at a distance, coupled with their natural accuracy and grasp of the arcane, encourages elves to pursue classes such as wizards and rangers.
+
+Male Names: Caladrel, Heldalel, Lanliss, Meirdrarel, Seldlon, Talathel, Variel, Zordlon.
+
+Female Names: Amrunelara, Dardlara, Faunra, Jathal, Merisiel, Oparal, Soumral, Tessara, Yalandlara.")
+
+RaceAbilityScoreModifier.create!(race_id: elf.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: elf.id, ability_score: "Intelligence", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: elf.id, ability_score: "Constitution", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: elf.id, description: "Elves are Humanoids with the elf subtype.")
+RacialTrait.create!(name: "Languages", race_id: elf.id, description: "Elves begin play speaking Common and Elven. Elves with high Intelligence scores can choose from the following: Celestial, Draconic, Gnoll, Gnome, Goblin, Orc, and Sylvan.")
+RacialTrait.create!(name: "Elven Immunities", race_id: elf.id, description: "Elves are immune to magic sleep effects and gain a +2 racial saving throw bonus against enchantment spells and effects.")
+RacialTrait.create!(name: "Keen Senses", race_id: elf.id, description: "Elves receive a +2 racial bonus on Perception checks.")
+RacialTrait.create!(name: "Elven Magic", race_id: elf.id, description: "Elves receive a +2 racial bonus on caster level checks made to overcome spell resistance. In addition, elves receive a +2 racial bonus on Spellcraft skill checks made to identify the properties of magic items.")
+RacialTrait.create!(name: "Weapon Familiarity", race_id: elf.id, description: "Elves are proficient with longbows (including composite longbows), longswords, rapiers, and shortbows (including composite shortbows), and treat any weapon with the word “elven” in its name as a martial weapon.")
+RacialTrait.create!(name: "Low-Light Vision", race_id: elf.id, description: "Elves can see twice as far as humans in conditions of dim light.")
+
+print "Elf created! \r"
+
+dwarf = Race.create!(name: "Dwarf", speed: 20, size: "Medium", img_url: "https://paizo.com/image/content/PathfinderRPG/PZO1129-Shaman.jpg", source_id: core_rulebook.id, description: "Dwarves are a stoic but stern race, ensconced in cities carved from the hearts of mountains and fiercely determined to repel the depredations of savage races like orcs and goblins. More than any other race, dwarves have acquired a reputation as dour and humorless artisans of the earth. It could be said that their history shapes the dark disposition of many dwarves, for they reside in high mountains and dangerous realms below the earth, constantly at war with giants, goblins, and other such horrors.
+
+Dwarves are lovers of history and tradition, and their long lifespan leads to far less in the way of generational shifts in attitudes, styles, fashions, and trends than shorter-lived races exhibit. If a thing is not broken, they do not fix it or change it; and if it is broken, they fix it rather than replace it. Thrifty as a rule, dwarves are loath to discard anything unless it is truly ruined and unable to be fixed. At the same time, dwarves’ meticulous, near-obsessive attention to detail and durability in their craftsmanship makes that a rare occurrence, as the things they make are built to last. As a result, buildings, artwork, tools, housewares, garments, weapons, and virtually everything else made by dwarves still sees regular use at an age when such items would be relegated to museum pieces, dusty antique shelves, or junkyard fodder by other races. Taken together, these traits create the impression that dwarves are a race frozen in time.
+
+Nothing could be further from the truth, however, as dwarves are both thoughtful and imaginative, willing to experiment, if always keen to refine and perfect a new technique or product before moving on to the next one. Dwarves have achieved feats of metallurgy, stonework, and engineering that have consistently outpaced the technological advances of other races, though some non-dwarven races have used magic to supplement and perfect their own creations to achieve the same ends through mystical rather than mundane means. They are also a race typified by stubborn courage and dedication to seeing tasks through to completion, whatever the risks. These traits have led dwarves to explore and settle in extreme environments that would cause other races to quail and retreat. From the darkest depths of the underworld to the highest mountain peaks, from rusting iron citadels along desolate rocky coasts to squat jungle ziggurats, dwarves have established their enclaves and redoubts, holding them against all comers or perishing to the last and leaving only their enduring monuments to stand as their legacy. While it is said that dwarves are not venturesome or inventive, it would be more accurate to say that they maintain a focus on and dedication to each task they undertake and every change they adopt, vetting such changes thoroughly before adopting them wholeheartedly. When faced with new circumstances and new needs, they react by applying tried and true tools and techniques systematically, using existing methods whenever possible rather than trying to invent novel solutions for every situation. If necessity requires, however, they throw themselves with equal vigor into developing the next perfect procedure for demolishing the obstacles that get in their way. Once their desired goal is obtained, they focus on consolidating each new piece of territory or conceptual advance. Dwarves thus rarely overextend themselves, but they also may miss opportunities to seize the initiative and maximize the advantages they create.
+
+Physical Description: Dwarves are a short and stocky race, and stand about a foot shorter than most humans, with wide, compact bodies that account for their burly appearance. Male and female dwarves pride themselves on the long length of their hair, and men often decorate their beards with a variety of clasps and intricate braids. Clean-shavenness on a male dwarf is a sure sign of madness, or worse—no one familiar with their race trusts a beardless dwarven man.
+
+Society: The great distances between dwarves’ mountain citadels account for many of the cultural differences that exist within their society. Despite these schisms, dwarves throughout the world are characterized by their love of stonework, their passion for stone- and metal-based craftsmanship and architecture, and their fierce hatred of giants, orcs, and goblinoids. In some remote enclaves, such as those areas where these races are uncommon or unheard of, dwarves’ fixation on security and safety combined with their rather pugnacious nature leads them to find enemies or at least rivals wherever they settle. While they are not precisely militaristic, they learned long ago that those without axes can be hewn apart by them, and thus dwarves everywhere are schooled to be ready to enforce their rights and claims by force of arms. When their patience with diplomacy is exhausted, dwarves do not hesitate to adopt what they call “aggressive negotiations.”
+
+Relations: Dwarves and orcs have long dwelt in proximity to one another, and share a history of violence as old as both races. Dwarves generally distrust and shun half-orcs. They find elves, gnomes, and halflings to be too frail, flighty, or “pretty” to be worthy of proper respect. It is with humans that dwarves share the strongest link, for humans’ industrious nature and hearty appetites come closest to matching those of the dwarven ideal.
+
+Alignment and Religion: Dwarves are driven by honor and tradition. While they are often stereotyped as standoffish, they have a strong sense of friendship and justice, and those who win their trust understand that while they work hard, they play even harder—especially when good ale is involved. Most dwarves are lawful good.
+
+Adventurers: Although dwarven adventurers are rare compared to humans, they can be found in most regions of the world. Dwarves often leave the confines of their redoubts to seek glory for their clans, to find wealth with which to enrich the fortress-homes of their birth, or to reclaim fallen dwarven citadels from racial enemies. Dwarven warfare is often characterized by tunnel fighting and melee combat, and as such most dwarves tend toward classes such as fighters and barbarians.
+
+Male Names: Dolgrin, Grunyar, Harsk, Kazmuk, Morgrym, Rogar.
+
+Female Names: Agna, Bodill, Ingra, Kotri, Rusilka, Yangrit.")
+
+RaceAbilityScoreModifier.create!(race_id: dwarf.id, ability_score: "Constitution", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: dwarf.id, ability_score: "Wisdom", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: dwarf.id, ability_score: "Charisma", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: dwarf.id, description: "Dwarves are humanoids with the dwarf subtype.")
+RacialTrait.create!(name: "Slow and Steady", race_id: dwarf.id, description: "Dwarves have a base speed of 20 feet, but their speed is never modified by armor or encumbrance.")
+RacialTrait.create!(name: "Languages", race_id: dwarf.id, description: "Dwarves begin play speaking Common and Dwarven. Dwarves with high Intelligence scores can choose from the following: Giant, Gnome, Goblin, Orc, Terran, and Undercommon.")
+RacialTrait.create!(name: "Defensive Training", race_id: dwarf.id, description: "Dwarves gain a +4 dodge bonus to AC against monsters of the giant subtype.")
+RacialTrait.create!(name: "Hardy", race_id: dwarf.id, description: "Dwarves gain a +2 racial bonus on saving throws against poison, spells, and spell-like abilities.")
+RacialTrait.create!(name: "Stability", race_id: dwarf.id, description: "Dwarves gain a +4 racial bonus to their Combat Maneuver Defense when resisting a bull rush or trip attempt while standing on the ground.")
+RacialTrait.create!(name: "Greed", race_id: dwarf.id, description: "Dwarves gain a +2 racial bonus on Appraise checks made to determine the price of non-magical goods that contain precious metals or gemstones.")
+RacialTrait.create!(name: "Stonecutting", race_id: dwarf.id, description: "Dwarves gain a +2 bonus on Perception checks to notice unusual stonework, such as traps and hidden doors located in stone walls or floors. They receive a check to notice such features whenever they pass within 10 feet of them, whether or not they are actively looking.")
+RacialTrait.create!(name: "Darkvision", race_id: dwarf.id, description: "Dwarves can see perfectly in the dark up to 60 feet.")
+RacialTrait.create!(name: "Hatred", race_id: dwarf.id, description: "Dwarves gain a +1 racial bonus on attack rolls against humanoid creatures of the orc and goblinoid subtypes because of their special training against these hated foes.")
+RacialTrait.create!(name: "Weapon Familiarity", race_id: dwarf.id, description: "Dwarves are proficient with battleaxes, heavy picks, and warhammers, and treat any weapon with the word “dwarven” in its name as a martial weapon.")
+
+print "Dwarf Created! \r"
+
+minotaur_race = Race.create!(name: "Minotaur", speed: 30, size: "Large", img_url: "https://i.pinimg.com/originals/aa/c5/20/aac520ba14f2133a71738d900f3fa3d4.jpg", source_id: custom.id, description: "Nothing holds a grudge like a minotaur. Scorned by the civilized races centuries ago and born from a deific curse, minotaurs have hunted, slain, and devoured lesser humanoids in retribution for real or imagined slights for as long as anyone can remember. Many cultures have legends of how the first minotaurs were created by vengeful or slighted gods who punished humans by twisting their forms, robbing them of their intellects and beauty, and giving them the heads of bulls. Yet most modern minotaurs hold these legends in contempt and believe that they are not divine mockeries but divine paragons created by a potent and cruel demon lord named Baphomet.
+
+The traditional minotaur’s lair is a maze, be it a legitimate labyrinth constructed to baffle and confuse, an accidental one such as a city sewer system, or a naturally occurring one such as a tangle of caverns and other underground passageways. Employing their innate cunning, minotaurs use their maze lairs to vex unwary foes who seek them out or who simply stumble into the lairs and become lost, slowly hunting the intruders as they try in vain to find a way out. Only when despair has truly set in does the minotaur move in to strike at its lost victims. When dealing with a group, minotaurs often let one creature escape, to spread the tale of horror and lure others to their mazes in hope of slaying the beasts. Of course, to minotaurs, these would-be heroes make for delicious meals.
+
+Minotaurs might also be found in the employ of a more powerful monster or evil creature, serving it so long as they can still hunt and dine as they please. Usually, this means guarding some powerful object or valuable location, but it can also be a sort of mercenary work, hunting down the foes of its master.
+
+Minotaurs are relatively straightforward combatants, using their horns to horribly gore the nearest living creature when combat begins.")
+
+RaceAbilityScoreModifier.create!(race_id: minotaur_race.id, ability_score: "Strength", bonus: 4)
+RaceAbilityScoreModifier.create!(race_id: minotaur_race.id, ability_score: "Wisdom", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: minotaur_race.id, ability_score: "Intelligence", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: minotaur_race.id, description: "Minotaurs are monstrous humanoids.")
+RacialTrait.create!(name: "Languages", race_id: minotaur_race.id, description: "Minotaurs begin play speaking Common and Giant. Minotaurs with high Intelligence scores can choose from the following: Dwarven, Orc, Sylvan, Terran, and Undercommon.")
+RacialTrait.create!(name: "Darkvision", race_id: minotaur_race.id, description: "Minotaurs can see in the dark up to 60 feet.")
+RacialTrait.create!(name: "Natural Cunning", race_id: minotaur_race.id, description: "Minotaurs have a +4 racial bonus against the maze spell and to avoid getting lost, and a +2 racial bonus to skill checks to track other creatures.")
+RacialTrait.create!(name: "Natural Armor", race_id: minotaur_race.id, description: "Minotaurs have +1 natural armor bonus to their AC.")
+RacialTrait.create!(name: "Gore", race_id: minotaur_race.id, description: "Minotaurs have a gore attack that deals 1d6 points of damage.")
+
+print "Minotaur Created! \r"
+
+half_orc = Race.create!(name: "Half-Orc", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/24/6a/e7/246ae72fca915bb327ab8949c07156a6.jpg", source_id: core_rulebook.id, description: "As seen by civilized races, half-orcs are monstrosities, the result of perversion and violence—whether or not this is actually true. Half-orcs are rarely the result of loving unions, and as such are usually forced to grow up hard and fast, constantly fighting for protection or to make names for themselves. Half-orcs as a whole resent this treatment, and rather than play the part of the victim, they tend to lash out, unknowingly confirming the biases of those around them. A few feared, distrusted, and spat-upon half-orcs manage to surprise their detractors with great deeds and unexpected wisdom—though sometimes it’s easier just to crack a few skulls. Some half-orcs spend their entire lives proving to full-blooded orcs that they are just as fierce. Others opt for trying to blend into human society, constantly demonstrating that they aren’t monsters. Their need to always prove themselves worthy encourages half-orcs to strive for power and greatness within the society around them.
+
+Physical Description: Half-orcs average around 6 feet tall, with powerful builds and greenish or grayish skin. Their canine teeth often grow long enough to protrude from their mouths, and these “tusks,” combined with heavy brows and slightly pointed ears, give them their notoriously bestial appearance. While half-orcs may be impressive, few ever describe them as beautiful. Despite these obvious orc traits, half-orcs are as varied as their human parents.
+
+Society: Unlike half-elves, where at least part of society’s discrimination is born out of jealousy or attraction, half-orcs get the worst of both worlds: physically weaker than their orc kin, they also tend to be feared or attacked outright by humans who don’t bother making the distinction between full orcs and half bloods. Even on the best of terms, half-orcs in civilized societies are not exactly accepted, and tend to be valued only for their physical abilities. On the other hand, orc leaders have been known to deliberately spawn half-orcs, as the half breeds make up for their lack of physical strength with increased cunning and aggression, making them natural leaders and strategic advisors. Within orc tribes, half-orcs find themselves constantly striving to prove their worth in battle and with feats of strength. Half-orcs raised within orc tribes are more likely to file their tusks and cover themselves in tribal tattoos. Tribal leaders quietly recognize that half-orcs are often more clever than their orc cousins and often apprentice them to the tribe’s shaman, where their cunning might eventually strengthen the tribe. Apprenticeship to a shaman is a brutal and often short-lived distinction, however, and those half-orcs who survive it either become influential in the tribe or are eventually driven to leave.
+
+Half-orcs have a much more mixed experience in human society, where many cultures view them as little more than monsters. They often are unable even to get normal work, and are pressed into service in the military or sold into slavery. In these cultures, half-orcs often lead furtive lives, hiding their nature whenever possible. The dark underworld of society is often the most welcoming place, and many half-orcs wind up serving as enforcers for thieves guilds or other types of organized crime. Less commonly, human cities may allow half-orcs a more normal existence, even enabling them to develop small communities of their own. These communities are usually centered around the arena districts, the military, or mercenary organizations where their brute strength is valued and their appearance is more likely to be overlooked. Even surrounded by their own kind, half-orc life isn’t easy. Bullying and physical confrontation comes easy to a people who have been raised with few other examples of behavior. It is, however, one of the best places for young half-orcs to grow up without prejudice, and these small enclaves are one of the few places where half-orc marriages and children are truly accepted and sometimes cherished.
+
+Even more rarely, certain human cultures come to embrace half-orcs for their strength. There are stories of places where people see half-orc children as a blessing and seek out half-orc or orc lovers. In these cultures, half-orcs lead lives not much different from full-blooded humans.
+
+Relations: Elves and dwarves tend to be the least accepting of half-orcs, seeing in them too great a resemblance to their racial enemies, and other races aren’t much more understanding. A lifetime of persecution leaves the average half-orc wary and quick to anger, yet people who break through his savage exterior might find a well-hidden core of empathy. Human societies with few orc problems tend to be the most accommodating, and half-orcs dwelling there can often find work as mercenaries and enforcers. Even in places where there is a general tolerance for half-orcs, however, many humans mistreat them when they can get away with it.
+
+Half-orcs are envious of the measure of acceptance half-elves have within human and elven society and resent their physical beauty, which contrasts starkly to the half-orcs’ brutish appearance. While half-orcs avoid antagonizing their half-breed cousins directly, they won’t hesitate to undermine them if the opportunity presents itself.
+
+Of all the other races, half-orcs are most sympathetic with halflings, who often have an equally rough lot in life. Half-orcs respect the halfling’s ability to blend in and disappear and admire their perpetually cheerful outlook on life in spite of hardships. Halflings fail to appreciate this fact because they usually are too busy avoiding the large, intimidating half-orcs.
+
+Alignment and Religion: Forced to live either among brutish orcs or as lonely outcasts in civilized lands, most half-orcs are bitter, violent, and reclusive. Evil comes easily to them, but they are not evil by nature—rather, most half-orcs are chaotic neutral, having been taught by long experience that there’s no point doing anything but that which directly benefits themselves. Half-orcs worship the human or orc gods venerated in the area where they were raised. Those who live alongside humans most often worship human gods of war, freedom, or destruction. Half-orcs raised in orc tribes find themselves most drawn to the gods of blood, fire, and iron—depending more on what god the tribe worships rather than the half-orcs’ personal preference. Many half-orcs are contrary about religion, either ignoring it entirely, or getting deeply involved in it and trying to find meaning in a life filled with hate and misunderstanding; even a half-orc divine spellcaster may wrestle with doubt and anger about religion and faith.
+
+Adventurers: Staunchly independent, many half-orcs take to lives of adventure out of necessity, seeking to escape their painful pasts or improve their lot through force of arms. Others, more optimistic or desperate for acceptance, take up the mantle of crusaders in order to prove their worth to the world. Half-orcs raised in orc societies often take up the brutish ways of those around them, becoming fighters, barbarians, or rangers. Half-orcs who survive their shaman training may eventually succeed their masters as tribal shamans, or flee the tribe and practice their magic as outcasts or explorers.
+
+Half-orcs are just as likely to have children that possess an innate talent for sorcery as any other race, with the abyssal, destined, and elemental (fire) bloodlines being the most common types of sorcerers. Half-orcs are fascinated by alchemy, and its destructive capabilities make its usefulness obvious in any orc tribe. Half-orc alchemists treat themselves as living experiments, even to the point of trying to separate their orc and human halves through alchemy. Other alchemists use their powers to enhance their physical abilities and thus increase their status within orc communities.
+
+In human societies, half-orcs have a few more options. Many find it easy to take advantage of the brute strength and work as mercenaries or caravan guards. Crime is another easy route for half-orcs, as there are plenty of criminals looking for a strong arm. Half-orc clerics in human communities are fairly rare; the more religious half-orcs more often turn to (or get pushed to) the martial aspects of religious service and become paladins or inquisitors. Half-orcs usually lack the patience and money required to become a wizard.
+
+Males names: Ausk, Davor, Hakak, Kizziar, Makoa, Nesteruk, Tsadok.
+
+Female names: Canan, Drogheda, Goruza, Mazon, Shirish, Tevaga, Zeljka.")
+
+RaceAbilityScoreModifier.create!(race_id: half_orc.id, ability_score: "Any", bonus: 2)
+
+RacialTrait.create!(name: "Type", race_id: half_orc.id, description: "Half-orcs are Humanoid creatures with both the human and orc subtypes.")
+RacialTrait.create!(name: "Languages", race_id: half_orc.id, description: "Half-orcs begin play speaking Common and Orc. Half-orcs with high Intelligence scores can choose from the following: Abyssal, Draconic, Giant, Gnoll, and Goblin.")
+RacialTrait.create!(name: "Intimidating", race_id: half_orc.id, description: "Half-orcs receive a +2 racial bonus on Intimidate checks due to their fearsome nature.")
+RacialTrait.create!(name: "Orc Ferocity", race_id: half_orc.id, description: "Once per day, when a half-orc is brought below 0 hit points but not killed, he can fight on for 1 more round as if disabled. At the end of his next turn, unless brought to above 0 hit points, he immediately falls unconscious and begins dying.")
+RacialTrait.create!(name: "Weapon Familiarity", race_id: half_orc.id, description: "Half-orcs are proficient with greataxes and falchions and treat any weapon with the word “orc” in its name as a martial weapon.")
+RacialTrait.create!(name: "Darkvision", race_id: half_orc.id, description: "Half-orcs can see in the dark up to 60 feet.")
+RacialTrait.create!(name: "Orc Blood", race_id: half_orc.id, description: "Half-orcs count as both humans and orcs for any effect related to race.")
+
+print "Half-Orc Created! \r"
+
+vanara = Race.create!(name: "Vanara", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/cb/29/b4/cb29b44c13fcabf092b44d6d954ec279.png", source_id: bestiary_3.id, description: "Vanaras are intelligent, monkeylike humanoids that live in deep, warm forests and lush jungles. A vanara’s body is covered in a thin coat of soft fur, and individuals with chestnut, ivory, and even golden coats are common. Despite their fur, vanaras can grow lengthy hair on their head just as humans can, and both male and female vanaras take pains to wear elaborate hairstyles for important social functions. The hair on a vanara’s head matches the color of its fur. All vanaras have long, prehensile tails and handlike feet capable of well-articulated movements. A vanara stands slightly shorter and weighs slightly less than a typical human.")
+
+RaceAbilityScoreModifier.create!(race_id: vanara.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: vanara.id, ability_score: "Wisdom", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: vanara.id, ability_score: "Charisma", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: vanara.id, description: "Vanaras are humanoids with the vanara subtype.")
+RacialTrait.create!(name: "Climb Speed", race_id: vanara.id, description: "Vanaras have a climb speed of 20 feet.")
+RacialTrait.create!(name: "Languages", race_id: vanara.id, description: "Vanaras begin play speaking Common and Vanaran. Vanaras with high Intelligence scores can choose from the following: Aklo, Celestial, Elven, Gnome, Goblin, and Sylvan.")
+RacialTrait.create!(name: "Nimble", race_id: vanara.id, description: "Vanaras have a +2 racial bonus on Acrobatics and Stealth checks.")
+RacialTrait.create!(name: "Low-Light Vision", race_id: vanara.id, description: "Vanaras can see twice as far as a human in dim light.")
+RacialTrait.create!(name: "Languages", race_id: vanara.id, description: "A vanara has a long, flexible tail that she can use to carry objects. She cannot wield weapons with her tail, but the tail allows her to retrieve a small, stowed object carried on her person as a swift action.")
+
+print "Vanara Created! \r"
+
+catfolk = Race.create!(name: "Catfolk", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/736x/fb/84/c0/fb84c0a397204a1fe8c96e6a20bf2fa8.jpg", source_id: bestiary_3.id, description: "Catfolk are a race of natural explorers who rarely tire of trailblazing, but such trailblazing is not limited merely to the search for new horizons in distant lands. Many catfolk see personal growth and development as equally valid avenues of exploration. While most catfolk are nimble, capable, and often active creatures, there is also a strong tendency among some catfolk to engage in quiet contemplation and study. Such individuals are interested in finding new solutions to age-old problems and questioning even the most steadfast philosophical certainties of the day. They are curious by nature, and catfolk culture never discourages inquisitiveness, but rather fosters and encourages it. Many are seen as quirky extroverts by members of other races, but within catfolk tribes there is no shame attached to minor peculiarities, eccentricities, or foolhardiness. All but the most inwardly focused catfolk enjoy being the center of attention, but not at the expense of their tribe, whether it’s the one the catfolk are born into or the tribe they choose through the bonds of friendship with other creatures. catfolk tend to be both generous and loyal to their family and friends.
+
+Physical Description: In general, catfolk are lithe and slender, standing midway between dwarves and humans in stature. While clearly humanoid, they possess many feline features, including a coat of soft fine fur, slit pupils, and a sleek, slender tail. Their ears are pointed, but unlike those of elves, are more rounded and catlike. They manipulate objects as easily as any other humanoid, but their fingers terminate in small, sharp, retractable claws. These claws are typically not powerful enough to be used as weapons, but some members of the species—either by quirk of birth or from years of honing—can use them with deadly effect. Feline whiskers are not uncommon, but not universal, and hair and eye color vary greatly.
+
+Society: While self-expression is an important aspect of catfolk culture, it is mitigated by a strong sense of community and group effort. In the wild, catfolk are a hunter-gatherer tribal people. The pursuit of personal power never comes before the health and well-being of the tribe. More than one race has underestimated this seemingly gentle people only to discover much too late that their cohesion also provides them great strength.
+
+Catfolk prefer to be led by their most competent members, usually a council of sub-chieftains chosen by their peers, either though consensus or election. The sub-chiefs then choose a chieftain to lead in times of danger and to mediate disputes among the sub-chiefs. The chieftain is the most capable member of the tribe, and is often magically talented. catfolk who settle in more urban and civilized areas still cling to a similar tribal structure, but often see friends outside the tribe, even those from other races, as part of their extended tribe. Within adventuring groups, catfolk who do not consider themselves the obvious choice as chieftain often defer to the person who most resembles their cultural ideal of a chieftain.
+
+Relations: Adaptable and curious, catfolk get along with almost any race that extends reciprocal goodwill. They acclimate easily to halflings, humans, and especially elves. catfolk and elves share a passionate nature, as well as a love of music, dance, and storytelling; elven communities often gently mentor catfolk tribes, though such elves are careful not to act in a patronizing manner toward their feline friends. Gnomes make natural companions for catfolk, as catfolk enjoy gnomes’ strange and obsessive qualities. catfolk are tolerant of kobolds as long as the reptilian beings respect the Catfolk’s boundaries. The feral nature of orcs stirs as much puzzlement as it does revulsion among catfolk, as they don’t understand orcs’ savagery and propensity for self-destruction. Half-orcs, on the other hand, intrigue catfolk, especially those half-orcs who strive to excel beyond the deleterious and hateful nature of their savage kin. catfolk often view goblins and ratfolk as vermin, as they disdain the swarming and pernicious tendencies of those races.
+
+Alignment and Religion: With community and unselfish cooperation at the center of their culture, as well as a good-natured curiosity and willingness to adapt to the customs of many other races, most catfolk tend toward good alignments. The clear majority of catfolk are also chaotic, as wisdom is not their strongest virtue; nevertheless, there are exceptions with cause.
+
+Adventurers: Natural born trackers, the hunter-gatherer aspect of their tribes pushes many catfolk toward occupations as rangers and druids by default, but such roles don’t always speak to their love of performance art, be it song, dance, or storytelling. catfolk legends also speak of a rich tradition of great sorcerer heroes. Those catfolk who internalize their wanderlust often become wizards and monks, with many of those monks taking the path of the nimble guardian. While catfolk cavaliers and inquisitors are rare (steadfast dedication to a cause is often alien to the catfolk mindset) individuals who choose these paths are never looked down upon. catfolk understand that exploration and self-knowledge can lead down many roads, and are accepting of nearly all professions and ways of life.
+
+Male Names: Carruth, Drewan, Ferus, Gerran, Nyktan, Rouqar, Zithembe.
+
+Female Names: Alyara, Duline, Hoya, Jilyana, Milah, Miniri, Siphelele, Tiyeri.")
+
+RaceAbilityScoreModifier.create!(race_id: catfolk.id, ability_score: "Dexterity", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: catfolk.id, ability_score: "Charisma", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: catfolk.id, ability_score: "Wisdom", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: catfolk.id, description: "Catfolk are humanoids with the catfolk subtype.")
+RacialTrait.create!(name: "Languages", race_id: catfolk.id, description: "Catfolk begin play speaking Common and Catfolk. Catfolk with high Intelligence scores can choose from the following languages: Elven, Gnoll, Gnome, Goblin, Halfling, Orc, and Sylvan.")
+RacialTrait.create!(name: "Cat's Luck", race_id: catfolk.id, description: "Once per day when a catfolk makes a Reflex saving throw, he can roll the saving throw twice and take the better result. He must decide to use this ability before the saving throw is attempted.")
+RacialTrait.create!(name: "Natural Hunter", race_id: catfolk.id, description: "Catfolk receive a +2 racial bonus on Perception, Stealth, and Survival checks.")
+RacialTrait.create!(name: "Sprinter", race_id: catfolk.id, description: "Catfolk gain a 10-foot racial bonus to their speed when using the charge, run, or withdraw actions.")
+RacialTrait.create!(name: "Low-Light Vision", race_id: catfolk.id, description: "Catfolk have low-light vision allowing them to see twice as far as humans in dim light.")
+
+print "Catfolk Created! \r"
+
+ganzi = Race.create!(name: "Ganzi", speed: 30, size: "Medium", img_url: "https://pathfinderwiki.com/mediawiki/images/thumb/a/ad/Ganzi.jpg/250px-Ganzi.jpg", source_id: planar_adventures.id, description: "Unlike the crossbreed aasimars and tieflings, ganzi are mutations caused by generations of exposure to chaotic energies in the Material Plane.
+
+Ganzi share many traits with proteans. They are fluid and flexible, resilient, resistant to the energies of decay and entropy, and can sense the delicate currents of chaos that bind the planes together, alerting them to danger and deception and allowing enterprising ganzi to stir those eddies and rewrite a creature’s fortunes. They also share the proteans’ curiosity and disdain for order, compulsively wandering the world to see what can be seen.
+
+Physical Description: No two ganzi look alike, but most appear human with one or two unusual physical qualities—often slowly-shifting patterns of birthmarks on their hands, feet, or faces. A rare few display reptilian or birdlike qualities such as scaly skin, feathery hair, or needlesharp teeth. An unfortunate few are born missing major features, or with ears, eyes, or fingers in unusual places on their bodies. Their hair and eyes invariably shine in vibrant colors, which shift over the course of weeks or months. Less common than aasimars, tieflings, or geniekin, ganzi are often mistaken for these other races.
+
+Society: Ganzi tend to distrust organization and tradition, and rarely form strong communities or cultural touchstones. Instead they blend into the wilder ringes of their parent culture, joining artist conclaves, anarchist collectives, dissidents, protesters, or revolutionaries challenging tradition.
+
+Relations: Ganzi excel at blending in with other races, despite their bombastic tendencies and unusual physical traits. Most simply appear as excitable humans. Many ganzi never realize their true heritage, mistaking their strange abilities for sorcerous aptitude. Those who recognize a touch of the planes in their blood get on well with other native outsider races— geniekin especially. Their experiences as outcasts in a larger society means they appreciate the challenges faced by half-elves and half-orcs, even if their struggles are different.
+
+Alignment and Religion: As might be expected for a people touched by otherworldly chaos, ganzi tend to reject rigid codes and laws, but they feel no strong pulls toward good or evil, and tend most often toward chaotic neutral alignment. Ganzi who honor the gods prefer those who guide them on their journeys or who reward quick wit.
+
+Adventurers: Ganzi naturally slip into (and out of) the role of adventurer as they explore the world. Most succumb to a wanderlust that carries them out into the wilderness or drives them to explore the strange corners of their home communities, while others find that their natural impulse to test limits and poke at holes earns them enemies from whom they must flee.
+
+Ganzis are the end result of planar chaos touching living creatures. Where the planes brush against the Material Plane or where chaotic inhabitants (be they chaos beasts, proteans, valkyries, or others) affect or influence mortal life, ganzis are born in their wake like ripples in a pond.
+
+While ganzis are superficially human in appearance, they often have features that set them apart from the rest of humanity. These features can vary widely; one ganzi might have a discolored hand that flickers with entropic (but harmless) energy, while another might have brightly colored scales covering her shoulders and back, and yet another might have horns and glowing green eyes.
+
+Likewise, ganzi height and weight can vary dramatically, even by human standards, but the average ganzi stands between 5 and 6 feet tall and weighs anywhere from 100 to 300 pounds.
+
+Many ganzis are mistaken for aasimars or tieflings at birth, but in truth ganzi births very rarely result from mortals mingling with outsiders. The vast majority are born after one or both parents were exposed to a force of chaotic or entropic energy. As such, the circumstances of a ganzi’s childhood can vary dramatically and depend on the parents’ tolerance for the unexpected.
+
+A ganzi’s tendency towards chaos exacerbates this, with many ganzis developing gregarious, iconoclastic, or thrill-seeking reputations among their peers. A sizable minority of ganzis appear completely human early in life, their anarchic heritage manifesting shortly after puberty in a chaotic—and traumatic—spasm of rapid evolution. While ganzis are most commonly of human stock, it is not unknown for ganzis to be born among other races. These ganzis bear superficial signs of their nonhuman heritage, but their statistics and abilities are identical to those born to humans.
+
+Like other native outsiders of humanoid heritage, ganzis are found most often scattered amidst the societies of their parent races. The rare ganzis who choose not to wander may live their entire lives without meeting another of their kind. Due to their scattered pattern of birth and their tendency towards wandering lifestyles, ganzis rarely congregate in significant numbers and almost never form cultures of their own. On occasion, a Material Plane society in a region with links to other planes will produce enough ganzis over time for them to form their own subculture, but such societies are rare indeed.
+
+Given their relationship to the Cerulean Void and its natives, it is not uncommon for ganzis with awareness of their heritage and the resources for planar travel to journey to the Maelstrom. Some ganzis make this pilgrimage to seek out proteans, valkyries, or other natives of the Maelstrom in hopes of understanding their own place in the cosmos, while others are drawn to the idea of communing with the vast and potent force of primordial chaos itself.
+
+As befits their chaotic origin, the personality and outlook of individual ganzis can vary significantly. Often chaotic-aligned, with no particular tendency towards good or evil, many find themselves drawn to the life of the wandering adventurer. Ganzis are commonly possessed of deep curiosity and powerful creative talent, leading many to become artists or bards, while others enjoy the alchemist’s dichotomous mastery of creation and destruction. Sorcerous talents and oracular mysteries of all varieties are unsurprisingly common among ganzis.")
+
+RaceAbilityScoreModifier.create!(race_id: ganzi.id, ability_score: "Constitution", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: ganzi.id, ability_score: "Charisma", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: ganzi.id, ability_score: "Intelligence", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: ganzi.id, description: "Ganzis are outsiders with the native subtype.")
+RacialTrait.create!(name: "Languages", race_id: ganzi.id, description: "Ganzis begin play speaking Common and one of the following: Abyssal, Celestial, or Protean. Ganzis with high Intelligence scores can select any of those languages as bonus languages, along with Aklo, Aquan, Auran, Ignan, Sylvan, or Terran.")
+RacialTrait.create!(name: "Darkvision", race_id: ganzi.id, description: "Ganzis can see in the dark up to 60 feet.")
+RacialTrait.create!(name: "Maelstrom Resistance", race_id: ganzi.id, description: "Ganzis have acid resistance 5, electricity resistance 5, and sonic resistance 5, and they gain a +2 racial bonus on saving throws against spells of the polymorph subschool.")
+RacialTrait.create!(name: "Skilled", race_id: ganzi.id, description: "Ganzis gain a +2 racial bonus on Sense Motive and Survival checks.")
+RacialTrait.create!(name: "Ganzi Oddity", race_id: ganzi.id, description: "As creatures infused with the entropic forces of the Maelstrom, all ganzis have a distinct and unusual oddity that manifests as a physical or magical ability that sets the ganzi apart. Typically, a ganzi’s oddity is chosen from the most common manifestations of entropy listed below, but other, more unique oddities can certainly exist. The numbers listed for each option can be used to randomly determine what form of ganzi oddity a particular Ganzi might have, at the GM’s option, but the quibble ability is the most common.
+
+1–2: Chaos Champion (Su) Ganzis with a lineage linked to the einherji often become crusaders for the forces of entropy and excel in combat against lawful beings. The ganzi can smite law once per day as a swift action, targeting a lawful foe. She adds her Charisma modifier as a bonus on attack rolls and gains a bonus on damage rolls equal to her Hit Dice. Once activated, smite law persists until the target is dead or the ganzi rests, whichever comes first.
+
+3–4: Entropic Flesh (Ex) Ganzis with lineages that link strongly to chaos beasts retain some of their ancestors’ immunity to transformation. In addition to gaining a +2 bonus on Escape Artist checks and to CMD against grapple combat maneuvers, when such ganzis are affected by a hostile transmutation effect (such as polymorphing or petrification), they can attempt a new saving throw at the start of their next turn to end the effect. They gain a +4 bonus on this second saving throw, but if they fail, the transmutation effect persists as long as it normally would.
+
+5–6: Prehensile Tail (Ex) Ganzis with lineages that are particularly influenced by the presence of proteans often have colorful feathers, scales, or skin, and a long serpentine tail. This tail can be used to carry items. While ganzis with this oddity cannot wield weapons with their tails, they can use their tails to retrieve small, stowed objects carried on their persons as a swift action.
+
+7–14: Quibble (Su) For most ganzis, the influence of chaos is relatively subtle and manifests as an ability to infect others with entropy and unexpected luck (be it good luck or bad). Once per day as an immediate action, a ganzi can twist probability and alter the luck of a single creature within 20 feet, forcing it to reroll a single d20 roll it has just made. The target must take the second result, even if it is worse. A ganzi can use this ability after the target has rolled but must use it before the GM declares whether the roll was a success or failure. Unwilling creatures can resist a ganzi’s quibble with a successful Will save (DC = 10 + half the ganzi’s level + the ganzi’s Charisma modifier). This is a curse effect.
+
+15–18: Spell-Like Ability (Sp) Ganzis whose chaotic influences rise from regions other than the Maelstrom or its inhabitants often manifest an oddity that duplicates the effects of a specific spell. Such ganzis gain one of the following spell-like abilities, usable once per day at a caster level equal to the ganzi’s HD: alter self, blur, detect thoughts, hideous laughter, minor image, shatter, or spider climb.
+
+19–20: Weaponplay (Ex) Ganzis with lineages that link to the valkyries manifest their heritage in their skill in combat. Such ganzis are always proficient with all simple and martial weapons, and they can qualify for feats normally available only to fighters (such as Weapon Specialization) even if they don’t have any fighter class levels.
+
+Expanded Oddities
+Due to the Maelstrom’s entropic influence on their compositions, ganzis each have an unusual but defining feature—referred to as an oddity—that sets them apart from other races and even from other members of their own race. These oddities vary wildly from ganzi to ganzi, and they can manifest as physical features, such as feathers, scales, or a tail, or as more subtle magical abilities. At the GM’s discretion, players with ganzi characters can roll 1d20 to randomly determine what form their characters’ oddities take using the list below.
+
+1–3: Amorphous Limbs (Su) The influence of the Maelstrom manifests in the ganzi’s ability to transform one of her limbs at will, often into a natural weapon such as a massive clawed arm. Every 1d4 rounds as a swift action, a ganzi can transform one of her limbs into a natural melee weapon that deals 1d6 points of damage. The transformation lasts until the beginning of the ganzi’s next turn. The damage dealt by this natural weapon can be lethal or nonlethal, at the ganzi’s discretion, and she chooses whether the damage type is bludgeoning, piercing, or slashing.
+
+4–6: Ink (Ex) As a standard action, the ganzi can spit a stream of opaque, black ink from her mouth to a distance of up to 20 feet. The ganzi can target either a creature or a square on the ground, each with different effects, as detailed below. The ganzi can use this ability once per day, plus one additional time per day for every 4 Hit Dice she has. Creature: The ganzi shoots a stream of ink into a creature’s eyes as a ranged touch attack with a range of 30 feet. If the ganzi hits, the target must succeed at a Fortitude saving throw (DC = 10 + half the ganzi’s Hit Dice + the ganzi’s Constitution modifier) or be blinded for 1d4 rounds. Ground: The ganzi spits the ink into a single square on the ground within 30 feet, which becomes slippery for 1d6 rounds. Any creatures entering the square must succeed at a Reflex save (DC = 10 + half the ganzi’s Hit Dice + the ganzi’s Constitution modifier) or fall prone.
+
+7–10: Racing Mind (Ex) A ganzi whose lineage is linked to hunduns might inherit an aspect of the outsiders’ chaotic minds. The ganzi’s churning vortex of thoughts bolsters it against mental attacks, granting the ganzi a +2 bonus on Will saves against mind-affecting effects.
+
+11–13: Spell-Like Ability (Sp) Ganzis whose chaotic influences rise from sources other than the Maelstrom or its inhabitants often manifest an oddity that duplicates the effects of a specific spell. Such a ganzi gains one of the following spell-like abilities, which can be used once per day with a caster level equal to the ganzi’s HD: acid arrow, gust of wind, mirror image, resist energy, scorching ray, see invisibility, or warp wood.
+
+14–16: Uncanny Aura (Su) Some ganzis have an unsettling aura of chaos that rattles hostile creatures that venture too close. Once per day as a standard action, such a ganzi can activate an uncanny aura; enemies within 30 feet must succeed at a Will saving throw (DC = 10 + half the ganzi’s Hit Dice + the ganzi’s Charisma modifier) or become frightened until the beginning of the ganzi’s next turn. The aura remains for a number of rounds equal to the ganzi’s Charisma modifier (minimum 1 round). Once a creature has been affected by an uncanny aura, whether it failed its save or not, it cannot be affected again for 24 hours.
+
+17–18: Vestigial Wings (Ex) The ganzi has a pair of small, vestigial wings, likely but not limited to resembling those of a flying creature or some manner of construct. Though these appendages do not grant flight, these ganzis can use their wings to stabilize themselves when they’re thrown off balance. Such ganzis gain a +1 bonus on Reflex saving throws and a +2 bonus on Acrobatics checks to balance.
+
+19–20: Void Touch (Su) A ganzi whose lineage is influenced strongly by voidworms might exhibit the ability to inflict chaos on others’ minds. Three times per day when such a ganzi hits a creature with a melee attack, the ganzi can deliver a burst of chaos to that creature as a free action. The target must succeed at a Will save (DC = 10 + half the ganzi’s Hit Dice + the ganzi’s Constitution modifier) or be confused for 1 round.")
+
+print "Ganzi Created! \r"
+
+gillmen = Race.create!(name: "Gillmen", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/8f/8f/22/8f8f22d91a24ec9bf6ab10bc2bd12daa.png", source_id: advanced_race_guide.id, description: "Gillmen descended from humans. Aboleths captured several of these humans and muted them to survive underwater. The gillmen’s ancestors were thus saved from extinction, but at a terrible cost: for centuries, they served the aboleths, physically and mentally twisted into the perfect tools of that ancient race.
+
+In time, the aboleths abandoned their fleshwarped servants. Despite their freedom, gillmen still bear the psychic scars of their race’s captivity. They face the distrust of others, who often suspect gillmen of ulterior agendas.
+
+They view allies warily, wondering if they, too, want only to use the gillmen for their own purposes. Gillmen today are leery of everyone—even of their own kind.
+
+Gillmen appear human at first glance, but the gills on their neck and their vibrant purple eye color give them away. Gillmen have soft, delicate skin in shades of pearly white, peach, salmon, or sandy brown. Their hair is often dark brown or black, but for some it takes on the colors of the sea, and they have thick, expressive eyebrows. Gillmen are physically bound to the sea; they must submerge themselves in water at least once a day or their skin dries and cracks, their organs begin to fail, and they eventually die.
+
+When associating with others, gillmen prefer the company of their own kind, though they sometimes consort with humans or merfolk, usually as traders or messengers.
+
+Rumors persist that some gillmen still serve aboleth masters willingly, moving among coastal regions as spies and saboteurs. The discovery of these agents perpetuates the pervasive belief that all gillmen are—knowingly or unknowingly—thralls to aboleth masters.
+
+Adventurers: Though small gillman communities exist underwater, most gillmen operate independently or in small family groups. They share no overreaching racial goals or desires, banding together solely for survival. Each gillman has unique experiences and motivations that may lead to an adventuring life. Although gillmen are slow to make friends with other races, they are nonetheless a stable addition to any group of adventurers.
+
+Some gillmen are unable to let go of their race’s past. These adventurers follow rumors of aboleth activity and seek out villains that serve the deep-sea masters. They also pursue powerful allies and artifacts to aid them against the aboleth menace. Gillman adventurers quest for information on why the aboleths first created the gillmen, what purpose the gillmen were intended to fulfill, and why the aboleths gave up their thralls. These gillmen hope to ascertain their history so that it can be put to rest, allowing their people to begin building a unified future.")
+
+RaceAbilityScoreModifier.create!(race_id: gillmen.id, ability_score: "Constitution", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: gillmen.id, ability_score: "Charisma", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: gillmen.id, ability_score: "Wisdom", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: gillmen.id, description: "Gillmen are humanoids with the aquatic subtype.")
+RacialTrait.create!(name: "Swim Speed", race_id: gillmen.id, description: "Gillmen have a swim speed of 30 feet, can move in water without making Swim checks, and always treat Swim as a class skill.")
+RacialTrait.create!(name: "Languages", race_id: gillmen.id, description: "Gillmen begin play speaking Common and Aboleth. Gillmen with high Intelligence scores can choose from the following: Aklo, Aquan, Draconic, and Elven.")
+RacialTrait.create!(name: "Enchantment Resistance", race_id: gillmen.id, description: "Gillmen gain a +2 racial bonus to saving throws against non-aboleth enchantment spells and effects, but take a –2 penalty on such saving throws against aboleth sources.")
+RacialTrait.create!(name: "Water Dependent", race_id: gillmen.id, description: "A gillman’s body requires constant submersion in fresh or salt water. Gillmen who spend more than one day without fully submerging themselves in water risk internal organ failure, painful cracking of the skin, and death within 4d6 hours.")
+RacialTrait.create!(name: "Amphibious", race_id: gillmen.id, description: "Gillmen can breathe both water and air.")
+
+print "Gillmen Created! \r"
+
 puts "Ancestries Created!"
 
 
@@ -1222,6 +1927,22 @@ witch3 = KlassFeature.create!(klass_id: witch.id, name: "Hex", description: "Wit
     FeatureLevel.create!(klass_feature_id: witch3.id, level: 16, table_description: "Hex")
     FeatureLevel.create!(klass_feature_id: witch3.id, level: 18, table_description: "Hex")
     FeatureLevel.create!(klass_feature_id: witch3.id, level: 20, table_description: "Hex")
+
+witch4 = KlassFeature.create!(klass_id: witch.id, name: "Patron Spells", description: "At 1st level, when a witch gains her familiar, she must also select a patron. This patron is a vague and mysterious force, granting the witch power for reasons that she might not entirely understand. While these forces need not be named, they typically hold influence over one of the following forces.
+
+At 2nd level, and every two levels thereafter, a witch’s patron adds new spells to a witch’s list of spells known. These spells are also automatically added to the list of spells stored by the familiar. The spells gained depend upon the patron chosen. Each patron is listed by its theme. Its actual name is up to the GM and the witch to decide.")
+  FeatureLevel.create!(klass_feature_id: witch4.id, level: 1, table_description: "Patron Spells")
+
+witch5 = KlassFeature.create!(klass_id: witch.id, name: "Witch's Familiar", description: "At 1st level, a witch forms a close bond with a familiar, a creature that teaches her magic and helps to guide her along her path. Familiars also aid a witch by granting her skill bonuses, additional spells, and help with some types of magic. This functions like the wizard’s arcane bond class feature, except as noted in the Witch’s Familiar section.
+
+A witch must commune with her familiar each day to prepare her spells. Familiars store all of the spells that a witch knows, and a witch cannot prepare a spell that is not stored by her familiar. A witch’s familiar begins play storing all of the 0-level witch spells plus three 1st level spells of the witch’s choice. The witch also selects a number of additional 1st-level spells equal to her Intelligence modifier to store in her familiar. At each new witch level, she adds two new spells of any spell level or levels that she can cast (based on her new witch level) to her familiar. A witch can also add additional spells to her familiar through a special ritual.")
+  FeatureLevel.create!(klass_feature_id: witch5.id, level: 1, table_description: "Witch's Familiar")
+
+witch6 = KlassFeature.create!(klass_id: witch.id, name: "Major Hex", description: "Starting at 10th level, and every two levels thereafter, a witch can choose one of the following major hexes whenever she could select a new hex.")
+  FeatureLevel.create!(klass_feature_id: witch5.id, level: 10, table_description: "Major Hex")
+
+witch7 = KlassFeature.create!(klass_id: witch.id, name: "Grand Hex", description: "Starting at 18th level, and every two levels thereafter, a witch can choose one of the following grand hexes whenever she could select a new hex.")
+  FeatureLevel.create!(klass_feature_id: witch7.id, level: 18, table_description: "Grand Hex")
 
 print "Witch features created! \r"
 
@@ -2332,6 +3053,30 @@ alchemist7 = KlassFeature.create!(klass_id: alchemist.id, name: "Discovery", des
   FeatureLevel.create!(klass_feature_id: alchemist7.id, level: 14, table_description: "Discovery")
   FeatureLevel.create!(klass_feature_id: alchemist7.id, level: 16, table_description: "Discovery")
   FeatureLevel.create!(klass_feature_id: alchemist7.id, level: 18, table_description: "Discovery")
+
+alchemist8 = KlassFeature.create!(klass_id: alchemist.id, name: "Poison Resistance", description: "At 2nd level, an alchemist gains a +2 bonus on all saving throws against poison. This bonus increases to +4 at 5th level, and then again to +6 at 8th level. At 10th level, an alchemist becomes completely immune to poison.")
+  FeatureLevel.create!(klass_feature_id: alchemist8.id, level: 2, table_description: "Poison Resistance +2")
+  FeatureLevel.create!(klass_feature_id: alchemist8.id, level: 5, table_description: "Poison Resistance +4")
+  FeatureLevel.create!(klass_feature_id: alchemist8.id, level: 8, table_description: "Poison Resistance +6")
+  FeatureLevel.create!(klass_feature_id: alchemist8.id, level: 10, table_description: "Poison Immunity")
+
+alchemist9 = KlassFeature.create!(klass_id: alchemist.id, name: "Poison Use", description: "Alchemists are trained in the use of poison and starting at 2nd level, cannot accidentally poison themselves when applying poison to a weapon.")
+  FeatureLevel.create!(klass_feature_id: alchemist9.id, level: 2, table_description: "Poison Use")
+
+alchemist10 = KlassFeature.create!(klass_id: alchemist.id, name: "Swift Alchemy", description: "At 3rd level, an alchemist can create alchemical items with astounding speed. It takes an alchemist half the normal amount of time to create alchemical items, and he can apply poison to a weapon as a move action.")
+  FeatureLevel.create!(klass_feature_id: alchemist10.id, level: 3, table_description: "Swift Alchemy")
+
+alchemist11 = KlassFeature.create!(klass_id: alchemist.id, name: "Swift Poisoning", description: "At 6th level, an alchemist can apply a dose of poison to a weapon as a swift action.")
+  FeatureLevel.create!(klass_feature_id: alchemist11.id, level: 6, table_description: "Swift Poisoning")
+
+alchemist12 = KlassFeature.create!(klass_id: alchemist.id, name: "Persistant Mutagen", description: "At 14th level, the effects of a mutagen last for 1 hour per level.")
+  FeatureLevel.create!(klass_feature_id: alchemist12.id, level: 14, table_description: "Persistant Mutagen")
+
+alchemist13 = KlassFeature.create!(klass_id: alchemist.id, name: "Instant Alchemy", description: "At 18th level, an alchemist can create alchemical items with almost supernatural speed. He can create any alchemical item as a full-round action if he succeeds at the Craft (alchemy) check and has the appropriate resources at hand to fund the creation. He can apply poison to a weapon as an immediate action.")
+  FeatureLevel.create!(klass_feature_id: alchemist13.id, level: 18, table_description: "Instant Alchemy")
+
+alchemist14 = KlassFeature.create!(klass_id: alchemist.id, name: "Grand Discovery", description: "At 20th level, the alchemist makes a grand discovery. He immediately learns two normal discoveries, but also learns a third discovery chosen from the linked list below, representing a truly astounding alchemical breakthrough of significant import. For many alchemists, the promise of one of these grand discoveries is the primary goal of their experiments and hard work.")
+  FeatureLevel.create!(klass_feature_id: alchemist14.id, level: 20, table_description: "Grand Discovery")
 
 print "Alchemist features created! \r"
 

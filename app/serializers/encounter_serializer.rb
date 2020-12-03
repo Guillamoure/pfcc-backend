@@ -2,7 +2,12 @@ class EncounterSerializer < ActiveModel::Serializer
   attributes :id, :name, :location, :notes, :description, :creatures
 
   def creatures
-    self.object.encounter_creatures.map do |ec|
+    begin
+      se = self.object.object
+    rescue
+      se = self.object
+    end
+    se.encounter_creatures.map do |ec|
       creature = Creature.find(ec.creature_id)
       {
         count: ec.count,
@@ -10,5 +15,5 @@ class EncounterSerializer < ActiveModel::Serializer
       }
     end
   end
-  
+
 end
