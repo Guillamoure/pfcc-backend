@@ -9,3 +9,13 @@ namespace :db do
     end
   end
 end
+
+namespace :seed do
+  desc 'reset database and runs all seed files in sequence'
+  task :all do
+    Rake::Task['db:reset'].invoke
+    Rake::Task['db:seed:spells'].invoke
+    Rake::Task['db:seed:feats'].invoke
+    Rake::Task['db:seed:monsters'].invoke
+  end
+end

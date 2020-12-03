@@ -6,6 +6,7 @@ core_rulebook = Source.create!(title: "Core Rulebook", abbreviation: "CR", code:
 bestiary_1 = Source.create!(title: "Bestiary 1", abbreviation: "B1", code: "PZO1112")
 advanced_players_guide = Source.create!(title: "Advanced Player's Guide", abbreviation: "APG", code: "PZO1115")
 bestiary_2 = Source.create!(title: "Bestiary 2", abbreviation: "B2", code: "PZO1116")
+ultimate_magic = Source.create!(title: "Ultimate Magic", abbreviation: "UM", code: "PZO1117")
 ultimate_combat = Source.create!(title: "Ultimate Combat", abbreviation: "UC", code: "PZO1118")
 bestiary_3 = Source.create!(title: "Bestiary 3", abbreviation: "B3", code: "PZO1120")
 advanced_race_guide = Source.create!(title: "Advanced Race Guide", abbreviation: "ARG", code: "PZO1121")
@@ -1421,7 +1422,7 @@ RacialTrait.create!(name: "Keen Senses", race_id: halfling.id, description: "Hal
 
 print "Halfling created! \r"
 
-gnome = Race.create!(name: "Gnome", speed: 20, size: "Small", img_url: "https://2static.fjcdn.com/pictures/Character_995828_5839850.jpg", source_id: core_rulebook.id, description: "Gnomes are distant relatives of the fey, and their history tells of a time when they lived in the fey’s mysterious realm, a place where colors are brighter, the wildlands wilder, and emotions more primal. Unknown forces drove the ancient gnomes from that realm long ago, forcing them to seek refuge in this world; despite this, the gnomes have never completely abandoned their fey roots or adapted to mortal culture. Though gnomes are no longer truly fey, their fey heritage can be seen in their innate magic powers, their oft-capricious natures, and their outlooks on life and the world.
+gnome = Race.create!(name: "Gnome", speed: 20, size: "Small", img_url: "https://i.pinimg.com/originals/55/d7/af/55d7af2518252aa0b511262ae6917a7b.jpg", source_id: core_rulebook.id, description: "Gnomes are distant relatives of the fey, and their history tells of a time when they lived in the fey’s mysterious realm, a place where colors are brighter, the wildlands wilder, and emotions more primal. Unknown forces drove the ancient gnomes from that realm long ago, forcing them to seek refuge in this world; despite this, the gnomes have never completely abandoned their fey roots or adapted to mortal culture. Though gnomes are no longer truly fey, their fey heritage can be seen in their innate magic powers, their oft-capricious natures, and their outlooks on life and the world.
 
 Gnomes can have the same concerns and motivations as members of other races, but just as often they are driven by passions and desires that non-gnomes see as eccentric at best, and nonsensical at worst. A gnome may risk his life to taste the food at a giant’s table, to reach the bottom of a pit just because it would be the lowest place he’s ever been, or to tell jokes to a dragon—and to the gnome those goals are as worthy as researching a new spell, gaining vast wealth, or putting down a powerful evil force. While such apparently fickle and impulsive acts are not universal among gnomes, they are common enough for the race as a whole to have earned a reputation for being impetuous and at least a little mad.
 
@@ -1561,7 +1562,7 @@ RaceAbilityScoreModifier.create!(race_id: minotaur_race.id, ability_score: "Inte
 RacialTrait.create!(name: "Type", race_id: minotaur_race.id, description: "Minotaurs are monstrous humanoids.")
 RacialTrait.create!(name: "Languages", race_id: minotaur_race.id, description: "Minotaurs begin play speaking Common and Giant. Minotaurs with high Intelligence scores can choose from the following: Dwarven, Orc, Sylvan, Terran, and Undercommon.")
 RacialTrait.create!(name: "Darkvision", race_id: minotaur_race.id, description: "Minotaurs can see in the dark up to 60 feet.")
-RacialTrait.create!(name: "Natural Cunning", race_id: minotaur_race.id, description: "Minotaurs have a +4 racial bonus against the maze spell and to avoid getting lost, and a +2 racial bonus to skill checks to track other creatures.")
+RacialTrait.create!(name: "Natural Cunning", race_id: minotaur_race.id, description: "Minotaurs have a +4 racial bonus against the maze spell and skill checks and saving throws to avoid getting lost, and a +2 racial bonus to skill checks to track other creatures.")
 RacialTrait.create!(name: "Natural Armor", race_id: minotaur_race.id, description: "Minotaurs have +1 natural armor bonus to their AC.")
 RacialTrait.create!(name: "Gore", race_id: minotaur_race.id, description: "Minotaurs have a gore attack that deals 1d6 points of damage.")
 
@@ -1761,31 +1762,25 @@ puts "Ancestries Created!"
 # <-*-*-----*-*-*- Classes!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-oracle = Klass.create!(name: "Oracle", hit_die: 8, skill_ranks: 4, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/474x/31/c3/79/31c379bb4e8751a478360d8dfd22f7bc--female-wizard-pathfinder-rpg.jpg", source_id: advanced_players_guide.id, description: "Although the gods work through many agents, perhaps none is more mysterious than the oracle. These divine vessels are granted power without their choice, selected by providence to wield powers that even they do not fully understand. Unlike a cleric, who draws her magic through devotion to a deity, oracles garner strength and power from many sources, namely those patron deities who support their ideals. Instead of worshiping a single source, oracles tend to venerate all of the gods that share their beliefs. While some see the powers of the oracle as a gift, others view them as a curse, changing the life of the chosen in unforeseen ways.
+oracle = Klass.create!(name: "Oracle", hit_die: 8, skill_ranks: 4, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/474x/31/c3/79/31c379bb4e8751a478360d8dfd22f7bc--female-wizard-pathfinder-rpg.jpg", source_id: advanced_players_guide.id, starting_wealth: "3d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: "Although the gods work through many agents, perhaps none is more mysterious than the oracle. These divine vessels are granted power without their choice, selected by providence to wield powers that even they do not fully understand. Unlike a cleric, who draws her magic through devotion to a deity, oracles garner strength and power from many sources, namely those patron deities who support their ideals. Instead of worshiping a single source, oracles tend to venerate all of the gods that share their beliefs. While some see the powers of the oracle as a gift, others view them as a curse, changing the life of the chosen in unforeseen ways.
 
 Role: Oracles do not usually associate with any one church or temple, instead preferring to strike out on their own, or with a small group of like-minded individuals. Oracles typically use their spells and revelations to further their understanding of their mystery, be it through fighting mighty battles or tending to the poor and sick.
 
 Alignment: Any.")
 
-swashbuckler = Klass.create!(name: "Swashbuckler", hit_die: 10, skill_ranks: 4, fortitude: 0.34, reflex: 0.5, will: 0.34, img_url: "https://vignette.wikia.nocookie.net/pathfinderkingmaker/images/8/84/Taswik_duelist.jpg", source_id: advanced_class_guide.id, description: "Whereas many warriors brave battle encased in suits of armor and wielding large and powerful weapons, swashbucklers rely on speed, agility, and panache. Swashbucklers dart in and out of the fray, wearing down opponents with lunges and feints, all while foiling the powerful attacks against them with a flick of the wrist and a flash of the blade. Their deft parries and fatal ripostes are carnage elevated to an art form. Some may be arrogant and devil-may-care, but behind this veneer lie people deeply dedicated to their craft. Those of smaller races are particularly driven to prove that the right mix of discipline and daring is the perfect counter to size and strength, and enjoy nothing more than taking down lumbering brutes and bullies.
+swashbuckler = Klass.create!(name: "Swashbuckler", hit_die: 10, skill_ranks: 4, fortitude: 0.34, reflex: 0.5, will: 0.34, img_url: "https://vignette.wikia.nocookie.net/pathfinderkingmaker/images/8/84/Taswik_duelist.jpg", source_id: advanced_class_guide.id, starting_wealth: "5d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: "Whereas many warriors brave battle encased in suits of armor and wielding large and powerful weapons, swashbucklers rely on speed, agility, and panache. Swashbucklers dart in and out of the fray, wearing down opponents with lunges and feints, all while foiling the powerful attacks against them with a flick of the wrist and a flash of the blade. Their deft parries and fatal ripostes are carnage elevated to an art form. Some may be arrogant and devil-may-care, but behind this veneer lie people deeply dedicated to their craft. Those of smaller races are particularly driven to prove that the right mix of discipline and daring is the perfect counter to size and strength, and enjoy nothing more than taking down lumbering brutes and bullies.
 
 Role: Combining fancy footwork with quick and precise lunges, swashbucklers dart in and out of battle, harassing and thwarting their opponents. These fast and agile combatants serve as protectors for spellcasters and flank mates for rogues and slayers, while waiting for the opportunity to show panache and score the killing blow on some lumbering hulk. Swashbucklers often face death with wry humor, mocking it with jabbing wit.
 
-Alignment: Any.
+Alignment: Any.")
 
-Hit Die: d10.
-
-Parent Classes: Fighter and gunslinger.")
-
-unchained_rogue = Klass.create!(name: "Rogue", hit_die: 8, skill_ranks: 8, fortitude: 0.34, reflex: 0.5, will: 0.34, img_url: "http://www.d20pfsrd.com/wp-content/uploads/sites/12/2017/01/rogue__comm_by_yamaorce-d88oizc-320-2.png", source_id: core_rulebook.id, description: "Life is an endless adventure for those who live by their wits. Ever just one step ahead of danger, rogues bank on their cunning, skill, and charm to bend fate to their favor. Never knowing what to expect, they prepare for everything, becoming masters of a wide variety of skills, training themselves to be adept manipulators, agile acrobats, shadowy stalkers, or masters of any of dozens of other professions or talents. Thieves and gamblers, fast talkers and diplomats, bandits and bounty hunters, and explorers and investigators all might be considered rogues, as well as countless other professions that rely upon wits, prowess, or luck. Although many rogues favor cities and the innumerable opportunities of civilization, some embrace lives on the road, journeying far, meeting exotic people, and facing fantastic danger in pursuit of equally fantastic riches. In the end, any who desire to shape their fates and live life on their own terms might come to be called rogues.
+unchained_rogue = Klass.create!(name: "Rogue", hit_die: 8, skill_ranks: 8, fortitude: 0.34, reflex: 0.5, will: 0.34, img_url: "http://www.d20pfsrd.com/wp-content/uploads/sites/12/2017/01/rogue__comm_by_yamaorce-d88oizc-320-2.png", starting_wealth: "4d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: core_rulebook.id, description: "Life is an endless adventure for those who live by their wits. Ever just one step ahead of danger, rogues bank on their cunning, skill, and charm to bend fate to their favor. Never knowing what to expect, they prepare for everything, becoming masters of a wide variety of skills, training themselves to be adept manipulators, agile acrobats, shadowy stalkers, or masters of any of dozens of other professions or talents. Thieves and gamblers, fast talkers and diplomats, bandits and bounty hunters, and explorers and investigators all might be considered rogues, as well as countless other professions that rely upon wits, prowess, or luck. Although many rogues favor cities and the innumerable opportunities of civilization, some embrace lives on the road, journeying far, meeting exotic people, and facing fantastic danger in pursuit of equally fantastic riches. In the end, any who desire to shape their fates and live life on their own terms might come to be called rogues.
 
 Role: Rogues excel at moving about unseen and catching foes unaware, and tend to avoid head-to-head combat. Their varied skills and abilities allow them to be highly versatile, with great variations in expertise existing between different rogues. Most, however, excel in overcoming hindrances of all types, from unlocking doors and disarming traps to outwitting magical hazards and conning dull-witted opponents.
 
-Alignment: Any
+Alignment: Any")
 
-")
-
-shifter = Klass.create!(name: "Shifter", hit_die: 10, skill_ranks: 4, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/736x/2f/2f/1a/2f2f1a0f43c353bced1595dffa7db32c.jpg", source_id: ultimate_wilderness.id, description: "Whether riding on the wind as a falcon or hiding in some fetid bog waiting to strike, the shifter is a true master of the wild. Both a devoted defender of druidic circles and a fierce predator, the shifter can take on the forms of nature and even fuse them together with devastating effect and unbridled savagery. By way of the druidic discipline of wild shape, they become living aspects of the wild. At first, they are able to assume only a minor aspect, but with time and practice they can fully transform into ever more powerful forms.
+shifter = Klass.create!(name: "Shifter", hit_die: 10, skill_ranks: 4, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/736x/2f/2f/1a/2f2f1a0f43c353bced1595dffa7db32c.jpg", starting_wealth: "3d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: ultimate_wilderness.id, description: "Whether riding on the wind as a falcon or hiding in some fetid bog waiting to strike, the shifter is a true master of the wild. Both a devoted defender of druidic circles and a fierce predator, the shifter can take on the forms of nature and even fuse them together with devastating effect and unbridled savagery. By way of the druidic discipline of wild shape, they become living aspects of the wild. At first, they are able to assume only a minor aspect, but with time and practice they can fully transform into ever more powerful forms.
 
 The shifter class offers players a way to experience a shapeshifting character that is more martially inclined than a spellcasting druid. With each new level, the shifter’s powers grow in new and surprising ways, creating a character that thrives in battle, exploration, and stealth.
 
@@ -1797,19 +1792,19 @@ Role: The shifter is so attuned to nature and the wild beasts of the world that 
 
 Alignment: Any neutral.")
 
-unchained_barbarian = Klass.create!(name: "Barbarian", hit_die: 12, skill_ranks: 4, fortitude: 0.5, reflex: 0.34, will: 0.34, img_url: "https://i.pinimg.com/originals/1b/16/b9/1b16b9707ef85952b3cee0482cdbbd3c.jpg", source_id: core_rulebook.id, description: "For some, there is only rage. In the ways of their people, in the fury of their passion, in the howl of battle, conflict is all these brutal souls know. Savages, hired muscle, masters of vicious martial techniques, they are not soldiers or professional warriors—they are the battle possessed, creatures of slaughter and spirits of war. Known as barbarians, these warmongers know little of training, preparation, or the rules of warfare; for them, only the moment exists, with the foes that stand before them and the knowledge that the next moment might hold their death. They possess a sixth sense in regard to danger and the endurance to weather all that might entail. These brutal warriors might rise from all walks of life, both civilized and savage, though whole societies embracing such philosophies roam the wild places of the world. Within barbarians storms the primal spirit of battle, and woe to those who face their rage.
+unchained_barbarian = Klass.create!(name: "Barbarian", hit_die: 12, skill_ranks: 4, fortitude: 0.5, reflex: 0.34, will: 0.34, img_url: "https://i.pinimg.com/originals/1b/16/b9/1b16b9707ef85952b3cee0482cdbbd3c.jpg", starting_wealth: "3d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: core_rulebook.id, description: "For some, there is only rage. In the ways of their people, in the fury of their passion, in the howl of battle, conflict is all these brutal souls know. Savages, hired muscle, masters of vicious martial techniques, they are not soldiers or professional warriors—they are the battle possessed, creatures of slaughter and spirits of war. Known as barbarians, these warmongers know little of training, preparation, or the rules of warfare; for them, only the moment exists, with the foes that stand before them and the knowledge that the next moment might hold their death. They possess a sixth sense in regard to danger and the endurance to weather all that might entail. These brutal warriors might rise from all walks of life, both civilized and savage, though whole societies embracing such philosophies roam the wild places of the world. Within barbarians storms the primal spirit of battle, and woe to those who face their rage.
 
 Role: Barbarians excel in combat, possessing the martial prowess and fortitude to take on foes seemingly far superior to themselves. With rage granting them boldness and daring beyond that of most other warriors, barbarians charge furiously into battle and ruin all who would stand in their way.
 
 Alignment: Any non-lawful")
 
-witch = Klass.create!(name: "Witch", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://paizo.com/image/content/PathfinderCampaignSetting/PZO9249-WinterWitch.jpg", source_id: advanced_players_guide.id, description: "Some gain power through study, some through devotion, others through blood, but the witch gains power from her communion with the unknown. Generally feared and misunderstood, the witch draws her magic from a pact made with an otherworldly power. Communing with that source, using her familiar as a conduit, the witch gains not only a host of spells, but a number of strange abilities known as hexes. As a witch grows in power, she might learn about the source of her magic, but some remain blissfully unaware. Some are even afraid of that source, fearful of what it might be or where its true purposes lie.
+witch = Klass.create!(name: "Witch", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://paizo.com/image/content/PathfinderCampaignSetting/PZO9249-WinterWitch.jpg", starting_wealth: "3d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: advanced_players_guide.id, description: "Some gain power through study, some through devotion, others through blood, but the witch gains power from her communion with the unknown. Generally feared and misunderstood, the witch draws her magic from a pact made with an otherworldly power. Communing with that source, using her familiar as a conduit, the witch gains not only a host of spells, but a number of strange abilities known as hexes. As a witch grows in power, she might learn about the source of her magic, but some remain blissfully unaware. Some are even afraid of that source, fearful of what it might be or where its true purposes lie.
 
 Role: While many witches are recluses, living on the edge of civilization, some live within society, openly or in hiding. The blend of witches’ spells makes them adept at filling a number of different roles, from seer to healer, and their hexes grant them a number of abilities that are useful in a fight. Some witches travel about, seeking greater knowledge and better understanding of the mysterious powers that guide them.
 
 Alignment: Any.")
 
-vigilante = Klass.create!(name: "Vigilante", hit_die: 8, skill_ranks: 6, fortitude: 0.34, reflex: 0.5, will: 0.5, img_url: "https://i.pinimg.com/originals/a7/79/cf/a779cf8972496626f1074d9cc62f27a0.png", source_id: ultimate_intrigue.id, description: "Being a renowned hero can be dangerous to your health and prosperity. Fighting against corruption and the evil that lurks within society makes you a target and, even worse, puts your friends and family in danger. For those who must maintain a social persona, being a part of the greater community while secretly fighting against powerful forces within it requires leading a double life.
+vigilante = Klass.create!(name: "Vigilante", hit_die: 8, skill_ranks: 6, fortitude: 0.34, reflex: 0.5, will: 0.5, img_url: "https://i.pinimg.com/originals/a7/79/cf/a779cf8972496626f1074d9cc62f27a0.png", starting_wealth: "5d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: ultimate_intrigue.id, description: "Being a renowned hero can be dangerous to your health and prosperity. Fighting against corruption and the evil that lurks within society makes you a target and, even worse, puts your friends and family in danger. For those who must maintain a social persona, being a part of the greater community while secretly fighting against powerful forces within it requires leading a double life.
 
 By day, the vigilante maneuvers through society, dealing with other nobles or influential individuals. By night, he dons a disguise and an utterly different set of goals, taking the fight to his foes and solving problems with a blade when words will not suffice.
 
@@ -1829,37 +1824,37 @@ Role: A vigilante can take on many tasks within a group. Most are skilled at neg
 
 Alignment: Any.")
 
-arcanist = Klass.create!(name: "Arcanist", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/59/af/7d/59af7defc23bcd2a6338ad3d67e52df8.png", source_id: advanced_class_guide.id, description: "Some spellcasters seek the secrets of magic, pursuing the power to make the impossible possible. Others are born with magic in their blood, commanding unbelievable forces as effortlessly as they breathe. Yet still others seek to meld the science of arcane scholars with the natural might of innate casters. These arcanists seek to discover the mysterious laws of magic and through will and expertise bend those forces to their whims. Arcanists are the shapers and tinkers of the arcane world, and no magic can resist their control.
+arcanist = Klass.create!(name: "Arcanist", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/59/af/7d/59af7defc23bcd2a6338ad3d67e52df8.png", starting_wealth: "2d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: advanced_class_guide.id, description: "Some spellcasters seek the secrets of magic, pursuing the power to make the impossible possible. Others are born with magic in their blood, commanding unbelievable forces as effortlessly as they breathe. Yet still others seek to meld the science of arcane scholars with the natural might of innate casters. These arcanists seek to discover the mysterious laws of magic and through will and expertise bend those forces to their whims. Arcanists are the shapers and tinkers of the arcane world, and no magic can resist their control.
 
 Role: Arcanists are scholars of all things magical. They constantly seek out new forms of magic to discover how they work, and in many cases, to collect the energy of such magic for their own uses. Many arcanists are seen as reckless, more concerned with the potency of magic than the ramifications of unleashing such power.
 
 Alignment: Any.")
 
-brawler = Klass.create!(name: "Brawler", hit_die: 10, skill_ranks: 4, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/71/90/a8/7190a8fb193a883fda6f7fa5f1cc7bdd.jpg", source_id: advanced_class_guide.id, description: "Deadly even with nothing in her hands, a brawler eschews using the fighter’s heavy armor and the monk’s mysticism, focusing instead on perfecting many styles of brutal unarmed combat. Versatile, agile, and able to adapt to most enemy attacks, a brawler’s body is a powerful weapon.
+brawler = Klass.create!(name: "Brawler", hit_die: 10, skill_ranks: 4, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/71/90/a8/7190a8fb193a883fda6f7fa5f1cc7bdd.jpg", starting_wealth: "3d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: advanced_class_guide.id, description: "Deadly even with nothing in her hands, a brawler eschews using the fighter’s heavy armor and the monk’s mysticism, focusing instead on perfecting many styles of brutal unarmed combat. Versatile, agile, and able to adapt to most enemy attacks, a brawler’s body is a powerful weapon.
 
 Role: Brawlers are maneuverable and well suited for creating flanking situations or dealing with lightly armored enemies, as well as quickly adapting to a rapidly changing battlefield.
 
 Alignment: Any.")
 
-bard = Klass.create!(name: "Bard", hit_die: 8, skill_ranks: 6, fortitude: 0.34, reflex: 0.5, will: 0.5, img_url: "https://i.pinimg.com/originals/09/4c/27/094c279e4763d248da26622fb9654054.png", source_id: core_rulebook.id, description: "Untold wonders and secrets exist for those skillful enough to discover them. Through cleverness, talent, and magic, these cunning few unravel the wiles of the world, becoming adept in the arts of persuasion, manipulation, and inspiration. Typically masters of one or many forms of artistry, bards possess an uncanny ability to know more than they should and use what they learn to keep themselves and their allies ever one step ahead of danger. Bards are quick-witted and captivating, and their skills might lead them down many paths, be they gamblers or jacks-of-all-trades, scholars or performers, leaders or scoundrels, or even all of the above. For bards, every day brings its own opportunities, adventures, and challenges, and only by bucking the odds, knowing the most, and being the best might they claim the treasures of each.
+bard = Klass.create!(name: "Bard", hit_die: 8, skill_ranks: 6, fortitude: 0.34, reflex: 0.5, will: 0.5, img_url: "https://i.pinimg.com/originals/09/4c/27/094c279e4763d248da26622fb9654054.png", source_id: core_rulebook.id, starting_wealth: "3d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: "Untold wonders and secrets exist for those skillful enough to discover them. Through cleverness, talent, and magic, these cunning few unravel the wiles of the world, becoming adept in the arts of persuasion, manipulation, and inspiration. Typically masters of one or many forms of artistry, bards possess an uncanny ability to know more than they should and use what they learn to keep themselves and their allies ever one step ahead of danger. Bards are quick-witted and captivating, and their skills might lead them down many paths, be they gamblers or jacks-of-all-trades, scholars or performers, leaders or scoundrels, or even all of the above. For bards, every day brings its own opportunities, adventures, and challenges, and only by bucking the odds, knowing the most, and being the best might they claim the treasures of each.
 
 Role: Bards capably confuse and confound their foes while inspiring their allies to ever-greater daring. While accomplished with both weapons and magic, the true strength of bards lies outside melee, where they can support their companions and undermine their foes without fear of interruptions to their performances.
 
 Alignment: Any")
 
-fate_weaver = Klass.create!(name: "Fate Weaver", hit_die: 6, skill_ranks: 6, fortitude: 0.34, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/db/9f/cc/db9fcc1ded708f4ea2e90b515334b3b3.png", source_id: custom.id, description: "The Fate Weaver has been touched by those who control destiny, allowing their chaotic nature to benefit them tremendously. Whether they are aware of their powers, or believe they are just lucky, the Fate Weaver seeks domination. With their granted gifts, their fortune is more real than anyone else's: they just have to take it.
+fate_weaver = Klass.create!(name: "Fate Weaver", hit_die: 6, skill_ranks: 6, fortitude: 0.34, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/db/9f/cc/db9fcc1ded708f4ea2e90b515334b3b3.png", source_id: custom.id, starting_wealth: "2d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: "The Fate Weaver has been touched by those who control destiny, allowing their chaotic nature to benefit them tremendously. Whether they are aware of their powers, or believe they are just lucky, the Fate Weaver seeks domination. With their granted gifts, their fortune is more real than anyone else's: they just have to take it.
 
 Role: The Fate Weaver has a wide array of options, but they may not always be consistent, necessary, or beneficial. Be wary of the Fate Weaver’s power: it is awesome in the both the good and the bad sense. A clutch Fate Weaver can change the tide in an instant, and often has a card up their sleeve for the most unlikely situations.
 
 Alignment: Any Chaotic")
 
-wizard = Klass.create!(name: "Wizard", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/e0/cc/47/e0cc47ea55051b8221c15cfc208f3a20.png", source_id: core_rulebook.id, description: "Beyond the veil of the mundane hide the secrets of absolute power. The works of beings beyond mortals, the legends of realms where gods and spirits tread, the lore of creations both Wondrous Item and terrible—such mysteries call to those with the ambition and the intellect to rise above the common folk to grasp true might. Such is the path of the wizard. These shrewd magic-users seek, collect, and covet esoteric knowledge, drawing on cultic arts to work wonders beyond the abilities of mere mortals. While some might choose a particular field of magical study and become masters of such powers, others embrace versatility, reveling in the unbounded wonders of all magic. In either case, wizards prove a cunning and potent lot, capable of smiting their foes, empowering their allies, and shaping the world to their every desire.
+wizard = Klass.create!(name: "Wizard", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/e0/cc/47/e0cc47ea55051b8221c15cfc208f3a20.png", source_id: core_rulebook.id, starting_wealth: "2d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: "Beyond the veil of the mundane hide the secrets of absolute power. The works of beings beyond mortals, the legends of realms where gods and spirits tread, the lore of creations both Wondrous Item and terrible—such mysteries call to those with the ambition and the intellect to rise above the common folk to grasp true might. Such is the path of the wizard. These shrewd magic-users seek, collect, and covet esoteric knowledge, drawing on cultic arts to work wonders beyond the abilities of mere mortals. While some might choose a particular field of magical study and become masters of such powers, others embrace versatility, reveling in the unbounded wonders of all magic. In either case, wizards prove a cunning and potent lot, capable of smiting their foes, empowering their allies, and shaping the world to their every desire.
 
 Role: While universalist wizards might study to prepare themselves for any manner of danger, specialist wizards research schools of magic that make them exceptionally skilled within a specific focus. Yet no matter their specialty, all wizards are masters of the impossible and can aid their allies in overcoming any danger.
 
 Alignment: Any")
 
-unchained_summoner = Klass.create!(name: 'Summoner', hit_die: 8, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: 'https://i.pinimg.com/originals/4f/9d/ac/4f9dac371934ff8f117751e94165c285.png', source_id: advanced_players_guide.id, description: 'There are those who take a different path when pursuing the arcane arts, reaching across the boundaries of the world to the far-f lung planes to call forth all manner of creatures to do their bidding. Known as summoners, these arcane practitioners form close bonds with particular outsiders, known as eidolons, which increase in power along with their callers. In the end, summoners and their eidolons become linked, sharing shards of the same souls.
+unchained_summoner = Klass.create!(name: 'Summoner', hit_die: 8, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: 'https://i.pinimg.com/originals/4f/9d/ac/4f9dac371934ff8f117751e94165c285.png', source_id: advanced_players_guide.id, starting_wealth: "2d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: 'There are those who take a different path when pursuing the arcane arts, reaching across the boundaries of the world to the far-f lung planes to call forth all manner of creatures to do their bidding. Known as summoners, these arcane practitioners form close bonds with particular outsiders, known as eidolons, which increase in power along with their callers. In the end, summoners and their eidolons become linked, sharing shards of the same souls.
 
 Role: Summoners spend much of their time exploring the arcane arts alongside their eidolons. While their power comes from within, they rely heavily on their eidolon companions in dangerous situations. While a summoner and his eidolon function as individuals, their true power lies in what they can accomplish together.
 
@@ -1867,16 +1862,30 @@ Unchained: Most of the summoner’s class features are the same as those of the 
 
 Alignment: Any.')
 
-cleric = Klass.create!(name: 'Cleric', hit_die: 8, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: 'https://i.pinimg.com/originals/11/64/74/116474aaa94e3c45029f6ec5c7c341ff.png', source_id: core_rulebook.id, description: 'In faith and the miracles of the divine, many find a greater purpose. Called to serve powers beyond most mortal understanding, all priests preach wonders and provide for the spiritual needs of their people. Clerics are more than mere priests, though; these emissaries of the divine work the will of their deities through strength of arms and the magic of their gods. Devoted to the tenets of the religions and philosophies that inspire them, these ecclesiastics quest to spread the knowledge and influence of their faith. Yet while they might share similar abilities, clerics prove as different from one another as the divinities they serve, with some offering healing and redemption, others judging law and truth, and still others spreading conflict and corruption. The ways of the cleric are varied, yet all who tread these paths walk with the mightiest of allies and bear the arms of the gods themselves.
+cleric = Klass.create!(name: 'Cleric', hit_die: 8, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: 'https://i.pinimg.com/originals/11/64/74/116474aaa94e3c45029f6ec5c7c341ff.png', source_id: core_rulebook.id, starting_wealth: "4d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: 'In faith and the miracles of the divine, many find a greater purpose. Called to serve powers beyond most mortal understanding, all priests preach wonders and provide for the spiritual needs of their people. Clerics are more than mere priests, though; these emissaries of the divine work the will of their deities through strength of arms and the magic of their gods. Devoted to the tenets of the religions and philosophies that inspire them, these ecclesiastics quest to spread the knowledge and influence of their faith. Yet while they might share similar abilities, clerics prove as different from one another as the divinities they serve, with some offering healing and redemption, others judging law and truth, and still others spreading conflict and corruption. The ways of the cleric are varied, yet all who tread these paths walk with the mightiest of allies and bear the arms of the gods themselves.
 Role: More than capable of upholding the honor of their deities in battle, clerics often prove stalwart and capable combatants. Their true strength lies in their capability to draw upon the power of their deities, whether to increase their own and their allies’ prowess in battle, to vex their foes with divine magic, or to lend healing to companions in need. As their powers are influenced by their faith, all clerics must focus their worship upon a divine source. While the vast majority of clerics revere a specific deity, a small number dedicate themselves to a divine concept worthy of devotion—such as battle, death, justice, or knowledge—free of a deific abstraction. (Work with your GM if you prefer this path to selecting a specific deity.)
 
 Alignment: A cleric’s alignment must be within one step of her deity’s, along either the law/chaos axis or the good/evil axis.')
 
-alchemist = Klass.create!(name: "Alchemist", hit_die: 8, skill_ranks: 4, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/62/89/42/628942741fe62cefa1e3291428e6d8ff.png", source_id: advanced_players_guide.id, description: "Whether secreted away in a smoky basement laboratory or gleefully experimenting in a well-respected school of magic, the alchemist is often regarded as being just as unstable, unpredictable, and dangerous as the concoctions he brews. While some creators of alchemical items content themselves with sedentary lives as merchants, providing tindertwigs and smokesticks, the true alchemist answers a deeper calling. Rather than cast magic like a spellcaster, the alchemist captures his own magic potential within liquids and extracts he creates, infusing his chemicals with virulent power to grant him impressive skill with poisons, explosives, and all manner of self-transformative magic.
+alchemist = Klass.create!(name: "Alchemist", hit_die: 8, skill_ranks: 4, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/62/89/42/628942741fe62cefa1e3291428e6d8ff.png", source_id: advanced_players_guide.id, starting_wealth: "3d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: "Whether secreted away in a smoky basement laboratory or gleefully experimenting in a well-respected school of magic, the alchemist is often regarded as being just as unstable, unpredictable, and dangerous as the concoctions he brews. While some creators of alchemical items content themselves with sedentary lives as merchants, providing tindertwigs and smokesticks, the true alchemist answers a deeper calling. Rather than cast magic like a spellcaster, the alchemist captures his own magic potential within liquids and extracts he creates, infusing his chemicals with virulent power to grant him impressive skill with poisons, explosives, and all manner of self-transformative magic.
 
 Role: The alchemist’s reputation is not softened by his exuberance (some would say dangerous recklessness) in perfecting his magical extracts and potion-like creations, infusing these substances with magic siphoned from his aura and using his own body as experimental stock. Nor is it mollified by the alchemist’s almost gleeful passion for building explosive bombs and discovering strange new poisons and methods for their use. These traits, while making him a liability and risk for most civilized organizations and institutions of higher learning, seem to fit quite well with most adventuring groups.
 
 Alignment: Any.")
+
+magus = Klass.create!(name: "Magus", hit_die: 8, skill_ranks: 2, fortitude: 0.5, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/22/ee/20/22ee20e80b622daabfd4967c653536b9.png", source_id: ultimate_magic.id, starting_wealth: "4d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: "There are those who spend their lives poring over ancient tomes and texts, unlocking the power of magic, and there are those who spend their time perfecting the use of individual weapons, becoming masters without equal. The magus is at once a student of both philosophies, blending magical ability and martial prowess into something entirely unique, a discipline in which both spell and steel are used to devastating effect. As he grows in power, the magus unlocks powerful forms of arcana that allow him to merge his talents further, and at the pinnacle of his art, the magus becomes a blur of steel and magic, a force that few foes would dare to stand against.
+
+Role: Magi spend much of their time traveling the world, learning whatever martial or arcane secrets they can find. They might spend months learning a new sword-fighting style from a master warrior, while simultaneously moonlighting in the local library, poring through tomes of ancient lore. Most who take this path dabble in all sorts of lore, picking up anything that might aid them in their search for perfection.
+
+Alignment: Any.")
+
+ranger = Klass.create!(name: "Ranger", hit_die: 10, skill_ranks: 6, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/dc/9f/41/dc9f416c690f5a7416bfe3f55ee54534.png", source_id: core_rulebook.id, starting_wealth: "5d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: "For those who relish the thrill of the hunt, there are only predators and prey. Be they scouts, trackers, or bounty hunters, rangers share much in common: unique mastery of specialized weapons, skill at stalking even the most elusive game, and the expertise to defeat a wide range of quarries. Knowledgeable, patient, and skilled hunters, these rangers hound man, beast, and monster alike, gaining insight into the way of the predator, skill in varied environments, and ever more lethal martial prowess. While some track man-eating creatures to protect the frontier, others pursue more cunning game—even fugitives among their own people.
+
+Role: Ranger are deft skirmishers, either in melee or at range, capable of skillfully dancing in and out of battle. Their abilities allow them to deal significant harm to specific types of foes, but their skills are valuable against all manner of enemies.
+
+Alignment: Any")
+# Klass.create!(name: "", hit_die: , skill_ranks: , fortitude: , reflex: , will: , img_url: "", description: "")
+
 # Klass.create!(name: "", hit_die: , skill_ranks: , fortitude: , reflex: , will: , img_url: "", description: "")
 # Klass.create!(name: "", hit_die: , skill_ranks: , fortitude: , reflex: , will: , img_url: "", description: "")
 
@@ -3080,6 +3089,264 @@ alchemist14 = KlassFeature.create!(klass_id: alchemist.id, name: "Grand Discover
 
 print "Alchemist features created! \r"
 
+magus1 = KlassFeature.create!(klass_id: magus.id, name: "Weapon and Armor Proficiency", description: "A magus is proficient with all simple and martial weapons. A magus is also proficient with light armor. He can cast magus spells while wearing light armor without incurring the normal arcane spell failure chance. Like any other arcane spellcaster, a magus wearing medium armor, heavy armor, or a shield incurs a chance of arcane spell failure if the spell in question has a somatic component. A multiclass magus still incurs the normal arcane spell failure chance for arcane spells received from other classes.")
+  FeatureLevel.create!(klass_feature_id: magus1.id, level: 1, table_description: "")
+  magus1_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: magus1.id, feature_id: magus1_feature.id)
+    FeatureWeaponProficiency.create!(feature_id: magus1_feature.id, proficiency_group: "Simple")
+    FeatureWeaponProficiency.create!(feature_id: magus1_feature.id, proficiency_group: "Martial")
+    FeatureArmorProficiency.create!(feature_id: magus1_feature.id, proficiency_group: "Light")
+
+magus2 = KlassFeature.create!(klass_id: magus.id, name: "Spells", description: "A magus casts arcane spells drawn from the magus spell list. A magus must choose and prepare his spells ahead of time.
+
+To learn, prepare, or cast a spell, the magus must have an Intelligence score equal to at least 10 + the spell level. The Difficulty Class for a saving throw against a magus’s spell is 10 + the spell level + the magus’s Intelligence modifier.
+
+A magus can cast only a certain number of spells of each spell level per day. His base daily spell allotment is given on Table: Magus. In addition, he receives bonus spells per day if he has a high Intelligence score.
+
+A magus may know any number of spells. He must choose and prepare his spells ahead of time by getting 8 hours of sleep and spending 1 hour studying his spellbook. While studying, the magus decides which spells to prepare.
+
+Cantrips: A magus can prepare a number of cantrips, or 0-level spells, each day, as noted on Table: Magus under “Spells per Day.” These spells are cast like any other spell, but they are not expended when cast and may be used again.
+
+Spellbooks: A magus must study his spellbook each day to prepare his spells. He cannot prepare any spell not recorded in his spellbook except for read magic, which all magi can prepare from memory. A magus begins play with a spellbook containing all 0-level magus spells plus three 1st-level magus spells of his choice. The magus also selects a number of additional 1st-level magus spells equal to his Intelligence modifier to add to his spellbook. At each new magus level, he gains two new magus spells of any spell level or levels that he can cast (based on his new magus level) for his spellbook. At any time, a magus can also add spells found in other spellbooks to his own.
+
+A magus can learn spells from a wizard’s spellbook, just as a wizard can from a magus’s spellbook. The spells learned must be on the magus spell list, as normal. An alchemist can learn formulae from a magus’s spellbook, if the spells are also on the alchemist spell list. A magus cannot learn spells from an alchemist.")
+  FeatureLevel.create!(klass_feature_id: magus2.id, level: 1, table_description: "")
+  magus_spell_list = SpellList.create!(name: "Magus Spells List")
+  magus2_feature = Feature.create!()
+    KlassFeatureFeature.create!(feature_id: magus2_feature.id, klass_feature_id: magus2.id)
+    magus_spellcasting = FeatureSpellcasting.create!(feature_id: magus2_feature.id, ability_score: "intelligence", prepare_spells: true, expend_prepared_spells: true, infinite_zero_level: false, known_spell_list: true, apply_metamagic_when_casting: false, apply_metamagic_when_preparing: true, type_of_magic: "Arcane", caster_level_penalty: 0, spell_list_id: magus_spell_list.id)
+
+magus3 = KlassFeature.create!(klass_id: magus.id, name: "Arcane Pool", description: "At 1st level, the magus gains a reservoir of mystical arcane energy that he can draw upon to fuel his powers and enhance his weapon. This arcane pool has a number of points equal to 1/2 his magus level (minimum 1) + his Intelligence modifier. The pool refreshes once per day when the magus prepares his spells.
+
+At 1st level, a magus can expend 1 point from his arcane pool as a swift action to grant any weapon he is holding a +1 enhancement bonus for 1 minute. For every four levels beyond 1st, the weapon gains another +1 enhancement bonus, to a maximum of +5 at 17th level. These bonuses can be added to the weapon, stacking with existing weapon enhancement to a maximum of +5. Multiple uses of this ability do not stack with themselves.
+
+At 5th level, these bonuses can be used to add any of the following weapon properties: dancing, flaming, flaming burst, frost, icy burst, keen, shock, shocking burst, speed, or vorpal.
+
+Adding these properties consumes an amount of bonus equal to the property’s base price modifier. These properties are added to any the weapon already has, but duplicates do not stack. If the weapon is not magical, at least a +1 enhancement bonus must be added before any other properties can be added. These bonuses and properties are decided when the arcane pool point is spent and cannot be changed until the next time the magus uses this ability. These bonuses do not function if the weapon is wielded by anyone other than the magus.
+
+A magus can only enhance one weapon in this way at one time. If he uses this ability again, the first use immediately ends.")
+  FeatureLevel.create!(klass_feature_id: magus3.id, level: 1, table_description: "Arcane Pool")
+
+magus4 = KlassFeature.create!(klass_id: magus.id, name: "Spell Combat", description: "At 1st level, a magus learns to cast spells and wield his weapons at the same time. This functions much like two-weapon fighting, but the off-hand weapon is a spell that is being cast. To use this ability, the magus must have one hand free (even if the spell being cast does not have somatic components), while wielding a light or one-handed melee weapon in the other hand. As a full-round action, he can make all of his attacks with his melee weapon at a –2 penalty and can also cast any spell from the magus spell list with a casting time of 1 standard action (any attack roll made as part of this spell also takes this penalty). If he casts this spell defensively, he can decide to take an additional penalty on his attack rolls, up to his Intelligence bonus, and add the same amount as a circumstance bonus on his concentration check. If the check fails, the spell is wasted, but the attacks still take the penalty. A magus can choose to cast the spell first or make the weapon attacks first, but if he has more than one attack, he cannot cast the spell between weapon attacks.")
+  FeatureLevel.create!(klass_feature_id: magus4.id, level: 1, table_description: "Spell Combat")
+
+magus5 = KlassFeature.create!(klass_id: magus.id, name: "Spellstrike", description: "At 2nd level, whenever a magus casts a spell with a range of “touch” from the magus spell list, he can deliver the spell through any weapon he is wielding as part of a melee attack. Instead of the free melee touch attack normally allowed to deliver the spell, a magus can make one free melee attack with his weapon (at his highest base attack bonus) as part of casting this spell. If successful, this melee attack deals its normal damage as well as the effects of the spell. If the magus makes this attack in concert with spell combat, this melee attack takes all the penalties accrued by spell combat melee attacks. This attack uses the weapon’s critical range (20, 19–20, or 18–20 and modified by the keen weapon property or similar effects), but the spell effect only deals ×2 damage on a successful critical hit, while the weapon damage uses its own critical modifier.")
+  FeatureLevel.create!(klass_feature_id: magus5.id, level: 2, table_description: "Spellstrike")
+
+magus6 = KlassFeature.create!(klass_id: magus.id, name: "Magus Arcana", description: "As he gains levels, a magus learns arcane secrets tailored to his specific way of blending martial puissance and magical skill. Starting at 3rd level, a magus gains one magus arcana. He gains an additional magus arcana for every three levels of magus attained after 3rd level. Unless specifically noted in a magus arcana’s description, a magus cannot select a particular magus arcana more than once. Magus arcana that affect spells can only be used to modify spells from the magus spell list unless otherwise noted.")
+  FeatureLevel.create!(klass_feature_id: magus6.id, level: 3, table_description: "Magus Arcana")
+  FeatureLevel.create!(klass_feature_id: magus6.id, level: 6, table_description: "Magus Arcana")
+  FeatureLevel.create!(klass_feature_id: magus6.id, level: 9, table_description: "Magus Arcana")
+  FeatureLevel.create!(klass_feature_id: magus6.id, level: 12, table_description: "Magus Arcana")
+  FeatureLevel.create!(klass_feature_id: magus6.id, level: 15, table_description: "Magus Arcana")
+  FeatureLevel.create!(klass_feature_id: magus6.id, level: 18, table_description: "Magus Arcana")
+
+magus7 = KlassFeature.create!(klass_id: magus.id, name: "Spell Recall", description: "At 4th level, the magus learns to use his arcane pool to recall spells he has already cast. With a swift action he can recall any single magus spell that he has already prepared and cast that day by expending a number of points from his arcane pool equal to the spell’s level (minimum 1). The spell is prepared again, just as if it had not been cast.")
+  FeatureLevel.create!(klass_feature_id: magus7.id, level: 4, table_description: "Spell Recall")
+
+magus8 = KlassFeature.create!(klass_id: magus.id, name: "Bonus Feats", description: "At 5th level, and every six levels thereafter, a magus gains a bonus feat in addition to those gained from normal advancement. These bonus feats must be selected from those listed as combat, item creation, or metamagic feats. He must meet the prerequisites for these feats as normal.")
+  FeatureLevel.create!(klass_feature_id: magus8.id, level: 5, table_description: "Bonus Feat")
+  FeatureLevel.create!(klass_feature_id: magus8.id, level: 11, table_description: "Bonus Feat")
+  FeatureLevel.create!(klass_feature_id: magus8.id, level: 17, table_description: "Bonus Feat")
+
+magus9 = KlassFeature.create!(klass_id: magus.id, name: "Knowledge Pool", description: "At 7th level, when a magus prepares his magus spells, he can decide to expend 1 or more points from his arcane pool, up to his Intelligence bonus. For each point he expends, he can treat any one spell from the magus spell list as if it were in his spellbook and can prepare that spell as normal that day. If he does not cast spells prepared in this way before the next time he prepares spells, he loses those spells. He can also cast spells added in this way using his spell recall ability, but only until he prepares spells again.")
+  FeatureLevel.create!(klass_feature_id: magus9.id, level: 7, table_description: "Knowledge Pool")
+
+magus10 = KlassFeature.create!(klass_id: magus.id, name: "Medium Armor", description: "At 7th level, a magus gains proficiency with medium armor. A magus can cast magus spells while wearing medium armor without incurring the normal arcane spell failure chance. Like any other arcane spellcaster, a magus wearing heavy armor or using a shield incurs a chance of arcane spell failure if the spell in question has a somatic component.")
+  FeatureLevel.create!(klass_feature_id: magus10.id, level: 7, table_description: "Medium Armor")
+
+magus11 = KlassFeature.create!(klass_id: magus.id, name: "Improved Spell Combat", description: "At 8th level, the magus’s ability to cast spells and make melee attacks improves. When using the spell combat ability, the magus receives a +2 circumstance bonus on concentration checks, in addition to any bonus granted by taking an additional penalty on the attack roll.")
+  FeatureLevel.create!(klass_feature_id: magus11.id, level: 8, table_description: "Improved Spell Combat")
+
+magus12 = KlassFeature.create!(klass_id: magus.id, name: "Fighter Training", description: "Starting at 10th level, a magus counts 1/2 his total magus level as his fighter level for the purpose of qualifying for feats. If he has levels in fighter, these levels stack.")
+  FeatureLevel.create!(klass_feature_id: magus12.id, level: 10, table_description: "Fighter Training")
+
+magus13 = KlassFeature.create!(klass_id: magus.id, name: "Improved Spell Recall", description: "At 11th level, the magus’s ability to recall spells using his arcane pool becomes more efficient. Whenever he recalls a spell with spell recall, he expends a number of points from his arcane pool equal to 1/2 the spell’s level (minimum 1). Furthermore, instead of recalling a used spell, as a swift action the magus can prepare a spell of the same level that he has in his spellbook. He does so by expending a number of points from his arcane pool equal to the spell’s level (minimum 1). The magus cannot apply metamagic feats to a spell prepared in this way. The magus does not need to reference his spellbook to prepare a spell in this way.")
+  FeatureLevel.create!(klass_feature_id: magus13.id, level: 11, table_description: "Improved Spell Recall")
+
+magus14 = KlassFeature.create!(klass_id: magus.id, name: "Heavy Armor", description: "At 13th level, a magus gains proficiency with heavy armor. A magus can cast magus spells while wearing heavy armor without incurring the normal arcane spell failure chance. Like any other arcane spellcaster, a magus using a shield incurs a chance of arcane spell failure if the spell in question has a somatic component.")
+  FeatureLevel.create!(klass_feature_id: magus14.id, level: 13, table_description: "Heavy Armor")
+
+magus15 = KlassFeature.create!(klass_id: magus.id, name: "Greater Spell Combat", description: "At 14th level, the magus gains the ability to seamlessly cast spells and make melee attacks. Whenever he uses the spell combat ability, his concentration check bonus equals double the amount of the attack penalty taken.")
+  FeatureLevel.create!(klass_feature_id: magus15.id, level: 14, table_description: "Greater Spell Combat")
+
+magus16 = KlassFeature.create!(klass_id: magus.id, name: "Counterstrike", description: "At 16th level, whenever an enemy within reach of the magus successfully casts a spell defensively, that enemy provokes an attack of opportunity from the magus after the spell is complete. This attack of opportunity cannot disrupt the spell.")
+  FeatureLevel.create!(klass_feature_id: magus16.id, level: 16, table_description: "Counterstrike")
+
+magus17 = KlassFeature.create!(klass_id: magus.id, name: "Greater Spell Access", description: "At 19th level, the magus gains access to an expanded spell list. He learns and places 14 spells from the wizard’s spell list into his spellbook as magus spells of their wizard level. He gains two of each of the following wizard spells not on the magus spell list:
+
+0-level, 1st-level, 2nd-level, 3rd-level, 4th-level, 5th-level, and 6th-level.
+
+He can ignore the somatic component of these spells, casting them without the normal chance of spell failure.")
+  FeatureLevel.create!(klass_feature_id: magus17.id, level: 19, table_description: "Greater Spell Access")
+
+magus18 = KlassFeature.create!(klass_id: magus.id, name: "True Magus", description: "At 20th level, the magus becomes a master of spells and combat. Whenever he uses his spell combat ability, he does not need to make a concentration check to cast the spell defensively. Whenever the magus uses spell combat and his spell targets the same creature as his melee attacks, he can choose to either increase the DC to resist the spell by +2, grant himself a +2 circumstance bonus on any checks made to overcome spell resistance, or grant himself a +2 circumstance bonus on all attack rolls made against the target during his turn.")
+  FeatureLevel.create!(klass_feature_id: magus18.id, level: 20, table_description: "True Magus")
+
+print "Magus features created! \r"
+
+ranger1 = KlassFeature.create!(klass_id: ranger.id, name: "Weapon and Armor Proficiency", description: "A ranger is proficient with all simple and martial weapons and with light armor, medium armor, and shields (except tower shields).")
+  FeatureLevel.create!(klass_feature_id: ranger1.id, level: 1, table_description: "")
+  ranger1_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: ranger1.id, feature_id: ranger1_feature.id)
+    FeatureWeaponProficiency.create!(feature_id: ranger1_feature.id, proficiency_group: "Simple")
+    FeatureWeaponProficiency.create!(feature_id: ranger1_feature.id, proficiency_group: "Martial")
+    FeatureArmorProficiency.create!(feature_id: ranger1_feature.id, proficiency_group: "Light")
+    FeatureArmorProficiency.create!(feature_id: ranger1_feature.id, proficiency_group: "Medium")
+    FeatureArmorProficiency.create!(feature_id: ranger1_feature.id, proficiency_group: "Shield")
+    FeatureArmorProficiency.create!(feature_id: bard1_feature.id, armor_id: tower_shield.id, additive: false)
+
+ranger2 = KlassFeature.create!(klass_id: ranger.id, name: "Favored Enemy", description: "At 1st level, a ranger selects a creature type from the below list. He gains a +2 bonus on Bluff, Knowledge, Perception, Sense Motive, and Survival checks against creatures of his selected type. Likewise, he gets a +2 bonus on weapon attack and damage rolls against them. A ranger may make Knowledge skill checks untrained when attempting to identify these creatures.
+
+At 5th level and every five levels thereafter (10th, 15th, and 20th level), the ranger may select an additional favored enemy. In addition, at each such interval, the bonus against any one favored enemy (including the one just selected, if so desired) increases by +2.
+
+If the ranger chooses humanoids or outsiders as a favored enemy, he must also choose an associated subtype, as indicated on the table below. (Note that there are other types of humanoid to choose from—those called out specifically on the table below are merely the most common.) If a specific creature falls into more than one category of favored enemy, the ranger’s bonuses do not stack; he simply uses whichever bonus is higher.
+
+Aberration
+Animal
+Construct
+Dragon
+Fey
+Humanoid (aquatic)
+Humanoid (dwarf)
+Humanoid (elf)
+Humanoid (giant)
+Humanoid (goblinoid)
+Humanoid (gnoll)
+Humanoid (gnome)
+Humanoid (halfling)
+Humanoid (human)
+Humanoid (orc)
+Humanoid (reptilian)
+Humanoid (other subtype)
+Magical beast
+Monstrous humanoid
+Ooze
+Outsider (air)
+Outsider (chaotic)
+Outsider (earth)
+Outsider (evil)
+Outsider (fire)
+Outsider (good)
+Outsider (lawful)
+Outsider (native)
+Outsider (water)
+Plant
+Undead
+Vermin")
+  FeatureLevel.create!(klass_feature_id: ranger2.id, level: 1, table_description: "1st Favored Enemy")
+  FeatureLevel.create!(klass_feature_id: ranger2.id, level: 5, table_description: "2nd Favored Enemy")
+  FeatureLevel.create!(klass_feature_id: ranger2.id, level: 10, table_description: "3rd Favored Enemy")
+  FeatureLevel.create!(klass_feature_id: ranger2.id, level: 15, table_description: "4th Favored Enemy")
+  FeatureLevel.create!(klass_feature_id: ranger2.id, level: 20, table_description: "5th Favored Enemy")
+
+ranger3 = KlassFeature.create!(klass_id: ranger.id, name: "Track", description: "A ranger adds half his level (minimum 1) to Survival skill checks made to follow tracks.")
+  FeatureLevel.create!(klass_feature_id: ranger3.id, level: 1, table_description: "Track")
+
+ranger4 = KlassFeature.create!(klass_id: ranger.id, name: "Wild Empathy", description: "A ranger can improve the initial attitude of an animal. This ability functions just like a Diplomacy check to improve the attitude of a person (see Using Skills). The ranger rolls 1d20 and adds his ranger level and his Charisma bonus to determine the wild empathy check result. The typical domestic animal has a starting attitude of indifferent, while wild animals are usually unfriendly.
+
+To use wild empathy, the ranger and the animal must be within 30 feet of one another under normal visibility conditions. Generally, influencing an animal in this way takes 1 minute, but, as with influencing people, it might take more or less time.
+
+The ranger can also use this ability to influence a magical beast with an Intelligence score of 1 or 2, but he takes a –4 penalty on the check.")
+  FeatureLevel.create!(klass_feature_id: ranger4.id, level: 1, table_description: "Wild Empathy")
+
+ranger5 = KlassFeature.create!(klass_id: ranger.id, name: "Combat Style Feat", description: "At 2nd level, a ranger must select one combat style to pursue.
+
+The ranger’s expertise manifests in the form of bonus feats at 2nd, 6th, 10th, 14th, and 18th level. He can choose feats from his selected combat style, even if he does not have the normal prerequisites.
+
+The benefits of the ranger’s chosen style feats apply only when he wears light, medium, or no armor. He loses all benefits of his combat style feats when wearing heavy armor. Once a ranger selects a combat style, it cannot be changed.")
+  FeatureLevel.create!(klass_feature_id: ranger5.id, level: 2, table_description: "Combat Style Feat")
+  FeatureLevel.create!(klass_feature_id: ranger5.id, level: 6, table_description: "Combat Style Feat")
+  FeatureLevel.create!(klass_feature_id: ranger5.id, level: 10, table_description: "Combat Style Feat")
+  FeatureLevel.create!(klass_feature_id: ranger5.id, level: 14, table_description: "Combat Style Feat")
+  FeatureLevel.create!(klass_feature_id: ranger5.id, level: 18, table_description: "Combat Style Feat")
+
+ranger6 = KlassFeature.create!(klass_id: ranger.id, name: "Endurance", description: "A ranger gains Endurance as a bonus feat at 3rd level.")
+  FeatureLevel.create!(klass_feature_id: ranger6.id, level: 3, table_description: "Endurance")
+
+ranger7 = KlassFeature.create!(klass_id: ranger.id, name: "Favored Terrain", description: "At 3rd level, a ranger may select a type of terrain from the below list. The ranger gains a +2 bonus on initiative checks and Knowledge (geography), Perception, Stealth, and Survival skill checks when he is in this terrain. A ranger traveling through his favored terrain normally leaves no trail and cannot be tracked (though he may leave a trail if he so chooses).
+
+At 8th level and every five levels thereafter, the ranger may select an additional favored terrain. In addition, at each such interval, the skill bonus and initiative bonus in any one favored terrain (including the one just selected, if so desired), increases by +2.
+
+If a specific terrain falls into more than one category of favored terrain, the ranger’s bonuses do not stack; he simply uses whichever bonus is higher.
+
+Cold (ice, glaciers, snow, and tundra)
+Desert (sand and wastelands)
+Forest (coniferous and deciduous)
+Jungle
+Mountain (including hills)
+Plains
+Planes (pick one, other than Material Plane)
+Swamp
+Underground (caves and dungeons)
+Urban (buildings, streets, and sewers)
+Water (above and below the surface)")
+  FeatureLevel.create!(klass_feature_id: ranger7.id, level: 3, table_description: "1st Favored Terrain")
+  FeatureLevel.create!(klass_feature_id: ranger7.id, level: 8, table_description: "2nd Favored Terrain")
+  FeatureLevel.create!(klass_feature_id: ranger7.id, level: 13, table_description: "3rd Favored Terrain")
+  FeatureLevel.create!(klass_feature_id: ranger7.id, level: 18, table_description: "4th Favored Terrain")
+
+ranger8 = KlassFeature.create!(klass_id: ranger.id, name: "Hunter's Bond", description: "At 4th level, a ranger forms a bond with his hunting companions. This bond can take one of two forms. Once the form is chosen, it cannot be changed. The first is a bond to his companions. This bond allows him to spend a move action to grant half his favored enemy bonus against a single target of the appropriate type to all allies within 30 feet who can see or hear him. This bonus lasts for a number of rounds equal to the ranger’s Wisdom modifier (minimum 1). This bonus does not stack with any favored enemy bonuses possessed by his allies; they use whichever bonus is higher.
+
+The second option is to form a close bond with an animal companion. A ranger who selects an animal companion can choose from the following list: antelope, armorfish, baboon, badger, bird, bustard, camel, capybara, cat (small), dire rat, dog, elk, falcon, horse, kangaroo, lizard (giant gecko), marsupial devil, pony, ram, reindeer, snake (viper, constrictor, reef snake, or spitting cobra), stag, stringray, trumpeter swan, thylacine, wolf, wolfdog, yak, or zebra. If the campaign takes place wholly or partly in an aquatic environment, the ranger may choose a shark instead. This animal is a loyal companion that accompanies the ranger on his adventures as appropriate for its kind. A ranger’s animal companion shares his favored enemy and favored terrain bonuses.
+
+This ability functions like the druid animal companion ability (which is part of the Nature Bond class feature), except that the ranger’s effective druid level is equal to his ranger level –3.")
+  FeatureLevel.create!(klass_feature_id: ranger8.id, level: 4, table_description: "Hunter's Bond")
+
+ranger9 = KlassFeature.create!(klass_id: ranger.id, name: "Spells", description: "Beginning at 4th level, a ranger gains the ability to cast a small number of divine spells, which are drawn from the ranger spell list. A ranger must choose and prepare his spells in advance.
+
+To prepare or cast a spell, a ranger must have a Wisdom score equal to at least 10 + the spell level. The Difficulty Class for a saving throw against a ranger’s spell is 10 + the spell level + the ranger’s Wisdom modifier.
+
+Like other spellcasters, a ranger can cast only a certain number of spells of each spell level per day. His base daily spell allotment is given on Table: Ranger. In addition, he receives bonus spells per day if he has a high Wisdom score (see Table: Ability Modifiers and Bonus Spells). When Table: Ranger indicates that the ranger gets 0 spells per day of a given spell level, he gains only the bonus spells he would be entitled to based on his Wisdom score for that spell level.
+
+A ranger must spend 1 hour per day in quiet meditation to regain his daily allotment of spells. A ranger may prepare and cast any spell on the ranger spell list, provided that he can cast spells of that level, but he must choose which spells to prepare during his daily meditation.
+
+Through 3rd level, a ranger has no caster level. At 4th level and higher, his caster level is equal to his ranger level – 3.")
+  FeatureLevel.create!(klass_feature_id: ranger9.id, level: 4, table_description: "")
+  ranger_spell_list = SpellList.create!(name: "Ranger Spells List")
+  ranger9_feature = Feature.create!()
+    KlassFeatureFeature.create!(feature_id: ranger9_feature.id, klass_feature_id: ranger9.id)
+    ranger_spellcasting = FeatureSpellcasting.create!(feature_id: ranger9_feature.id, ability_score: "wisdom", prepare_spells: true, expend_prepared_spells: true, infinite_zero_level: false, known_spell_list: false, apply_metamagic_when_casting: false, apply_metamagic_when_preparing: true, type_of_magic: "Divine", caster_level_penalty: 0, spell_list_id: ranger_spell_list.id)
+
+ranger10 = KlassFeature.create!(klass_id: ranger.id, name: "Woodland Stride", description: "Starting at 7th level, a ranger may move through any sort of undergrowth (such as natural thorns, briars, overgrown areas, and similar terrain) at his normal speed and without taking damage or suffering any other impairment.
+
+Thorns, briars, and overgrown areas that are enchanted or magically manipulated to impede motion, however, still affect him.")
+  FeatureLevel.create!(klass_feature_id: ranger10.id, level: 7, table_description: "Woodland Stride")
+
+ranger11 = KlassFeature.create!(klass_id: ranger.id, name: "Swift Tracker", description: "Beginning at 8th level, a ranger can move at his normal speed while using Survival to follow tracks without taking the normal –5 penalty. He takes only a –10 penalty (instead of the normal –20) when moving at up to twice normal speed while tracking.")
+  FeatureLevel.create!(klass_feature_id: ranger11.id, level: 8, table_description: "Swift Tracker")
+
+ranger12 = KlassFeature.create!(klass_id: ranger.id, name: "Evasion", description: "When he reaches 9th level, a ranger can avoid even magical and unusual attacks with great agility. If he makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, he instead takes no damage. Evasion can be used only if the ranger is wearing light armor, medium armor, or no armor. A helpless ranger does not gain the benefit of evasion.")
+  FeatureLevel.create!(klass_feature_id: ranger12.id, level: 9, table_description: "Evasion")
+
+ranger13 = KlassFeature.create!(klass_id: ranger.id, name: "Quarry", description: "At 11th level, a ranger can, as a standard action, denote one target within his line of sight as his quarry. Whenever he is following the tracks of his quarry, a ranger can take 10 on his Survival skill checks while moving at normal speed, without penalty. In addition, he receives a +2 insight bonus on attack rolls made against his quarry, and all critical threats are automatically confirmed. A ranger can have no more than one quarry at a time and the creature’s type must correspond to one of his favored enemy types. He can dismiss this effect at any time as a free action, but he cannot select a new quarry for 24 hours. If the ranger sees proof that his quarry is dead, he can select a new quarry after waiting 1 hour.")
+  FeatureLevel.create!(klass_feature_id: ranger13.id, level: 11, table_description: "Quarry")
+
+ranger14 = KlassFeature.create!(klass_id: ranger.id, name: "Camouflage", description: "A ranger of 12th level or higher can use the Stealth skill to hide in any of his favored terrains, even if the terrain doesn’t grant cover or concealment.")
+  FeatureLevel.create!(klass_feature_id: ranger14.id, level: 12, table_description: "Camouflage")
+
+ranger15 = KlassFeature.create!(klass_id: ranger.id, name: "Improved Evasion", description: "At 16th level, a ranger’s evasion improves. This ability works like evasion, except that while the ranger still takes no damage on a successful Reflex saving throw against attacks, he henceforth takes only half damage on a failed save. A helpless ranger does not gain the benefit of improved evasion.")
+  FeatureLevel.create!(klass_feature_id: ranger15.id, level: 16, table_description: "Improved Evasion")
+
+ranger16 = KlassFeature.create!(klass_id: ranger.id, name: "Hide in Plain Sight", description: "While in any of his favored terrains, a ranger of 17th level or higher can use the Stealth skill even while being observed.")
+  FeatureLevel.create!(klass_feature_id: ranger16.id, level: 17, table_description: "Hide in Plain Sight")
+
+ranger17 = KlassFeature.create!(klass_id: ranger.id, name: "Improved Quarry", description: "At 19th level, the ranger’s ability to hunt his quarry improves. He can now select a quarry as a free action, and can now take 20 while using Survival to track his quarry, while moving at normal speed without penalty. His insight bonus to attack his quarry increases to +4. If his quarry is killed or dismissed, he can select a new one after 10 minutes have passed.")
+  FeatureLevel.create!(klass_feature_id: ranger17.id, level: 19, table_description: "Improved Quarry")
+
+ranger18 = KlassFeature.create!(klass_id: ranger.id, name: "Master Hunter", description: "A ranger of 20th level becomes a master hunter. He can always move at full speed while using Survival to follow tracks without penalty. He can, as a standard action, make a single attack against a favored enemy at his full attack bonus. If the attack hits, the target takes damage normally and must make a Fortitude save or die. The DC of this save is equal to 10 + 1/2 the ranger’s level + the ranger’s Wisdom modifier. A ranger can choose instead to deal an amount of nonlethal damage equal to the creature’s current hit points. A successful save negates this damage. A ranger can use this ability once per day against each favored enemy type he possesses, but not against the same creature more than once in a 24-hour period.")
+  FeatureLevel.create!(klass_feature_id: ranger18.id, level: 20, table_description: "Master Hunter")
+
+print "Ranger Features Created! \r"
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+
+# IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
+  # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
 
 # IDENTIFIER = KlassFeature.create!(klass_id: CLASS.id, name: "", description: "")
   # FeatureLevel.create!(klass_feature_id: IDENTIFIER.id, level: 1, table_description: "")
@@ -3746,13 +4013,178 @@ SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 20, spells: 4, feature
 # SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 19, spells: 4, feature_spellcasting_id: alchemist.id)
 # SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 20, spells: 5, feature_spellcasting_id: alchemist.id)
 
-# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , klass_id: )
-# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , klass_id: )
-# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , klass_id: )
-# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , klass_id: )
-# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , klass_id: )
-# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , klass_id: )
-# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , klass_id: )
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 1, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 2, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 3, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 4, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 5, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 6, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 7, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 8, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 9, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 10, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 11, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 12, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 13, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 14, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 15, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 16, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 17, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 18, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 19, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 20, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 1, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 2, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 3, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 4, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 5, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 6, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 7, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 8, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 9, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 10, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 11, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 12, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 13, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 14, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 15, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 16, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 17, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 18, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 19, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 20, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 1, spells: 1, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 2, spells: 2, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 3, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 4, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 5, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 6, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 7, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 8, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 9, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 10, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 11, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 12, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 13, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 14, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 15, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 16, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 17, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 18, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 19, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 20, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 4, spells: 1, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 5, spells: 2, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 6, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 7, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 8, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 9, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 10, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 11, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 12, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 13, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 14, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 15, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 16, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 17, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 18, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 19, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 20, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 7, spells: 1, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 8, spells: 2, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 9, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 10, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 11, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 12, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 13, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 14, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 15, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 16, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 17, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 18, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 19, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 20, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 10, spells: 1, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 11, spells: 2, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 12, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 13, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 14, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 15, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 16, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 17, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 18, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 19, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 20, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 13, spells: 1, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 14, spells: 2, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 15, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 16, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 17, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 18, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 19, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 20, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 16, spells: 1, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 17, spells: 2, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 18, spells: 3, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 19, spells: 4, feature_spellcasting_id: magus_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 20, spells: 5, feature_spellcasting_id: magus_spellcasting.id)
+
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 4, spells: 0, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 5, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 6, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 7, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 8, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 9, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 10, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 11, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 12, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 13, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 14, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 15, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 16, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 17, spells: 4, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 18, spells: 4, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 19, spells: 4, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 20, spells: 4, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 7, spells: 0, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 8, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 9, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 10, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 11, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 12, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 13, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 14, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 15, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 16, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 17, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 18, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 19, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 20, spells: 4, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 10, spells: 0, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 11, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 12, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 13, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 14, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 15, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 16, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 17, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 18, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 19, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 20, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 13, spells: 0, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 14, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 15, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 16, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 17, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 18, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 19, spells: 2, feature_spellcasting_id: ranger_spellcasting.id)
+SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 20, spells: 3, feature_spellcasting_id: ranger_spellcasting.id)
+
+# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , feature_spellcasting_id: )
+# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , feature_spellcasting_id: )
+# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , feature_spellcasting_id: )
+# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , feature_spellcasting_id: )
+# SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , feature_spellcasting_id: )
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Prepared Amount!-*-*-*-----*-*->
@@ -3939,6 +4371,8 @@ oum_calendar = Calendar.create!(name: "Oum Calendar", leap_year: false)
 current_campaign = Campaign.create!(name: 'Ask Questions Second', current_weekday: 'Everglow', current_month: 'Autumn Festival', current_day: 7, current_age: "5th Age", current_year: 1241, dm_id: admin.id, skillset_id: dmc.id, theme: "", setting: "", custom_notes: "", calendar_id: oum_calendar.id, starting_level: 1, websocket_code: UUID.new.generate)
 
 test_campaign = Campaign.create!(name: "Testing 123 Testing", calendar_id: oum_calendar.id, dm_id: admin.id, skillset_id: dmc.id, starting_level: 1, websocket_code: UUID.new.generate)
+
+ravnica_campaign = Campaign.create!(name: "Ravnica", calendar_id: oum_calendar.id, dm_id: admin.id, skillset_id: ravnica_custom.id, starting_level: 2, websocket_code: UUID.new.generate)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Class Skillset Skills!-*-*-*-----*-*->

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_020236) do
+ActiveRecord::Schema.define(version: 2020_12_03_055910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -710,6 +710,7 @@ ActiveRecord::Schema.define(version: 2020_10_12_020236) do
     t.float "will"
     t.string "img_url"
     t.integer "source_id"
+    t.string "starting_wealth"
   end
 
   create_table "known_spells_per_levels", force: :cascade do |t|
