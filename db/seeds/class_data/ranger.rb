@@ -258,3 +258,67 @@ print "Ranger Features Created! \r"
 # //////////////////////////////////////////////////
 # <-*-*-----*-*-*- Class Archetypes!-*-*-*-----*-*->
 # //////////////////////////////////////////////////
+
+dandy = KlassArchetype.create!(name: "Dandy", klass_id: ranger.id, source_id: ultimate_intrigue.id, description: "The antithesis of the gruff and wild woodsmen, a dandy takes effort to master the subtle etiquette of noble courts, the whispers of dark rumors, and the customs of the cultured world. Nonetheless, he is still a ranger at heart, and he hunts for rumors and gossip throughout the grand ballrooms of the wealthy and powerful just as most rangers hunt for enemies in the wilderness.")
+
+  dandy1 = KlassArchetypeFeature.create!(name: "Class Skills", klass_archetype_id: dandy.id, description: "A dandy adds Bluff, Diplomacy, Knowledge (local), Knowledge (nobility), and Sense Motive to his list of class skills, instead of Handle Animal, Knowledge (dungeoneering), Knowledge (geography), Knowledge (nature), and Survival.
+
+  This alters the ranger’s class skills.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy1.id, level: 1, table_description: "")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_archetype_feature_id: dandy1.id, alters_class_skills: true, replace_or_alter: "alter")
+
+  dandy2 = KlassArchetypeFeature.create!(name: "Favored Nation", klass_archetype_id: dandy.id, description: "Each time he would select a favored enemy, a dandy instead selects a country with whose courtly graces he is wholly versed and studied. He gains a +2 bonus on Bluff, Diplomacy, Knowledge, Perception, Sense Motive, and Survival checks against courtiers, officials, nobles, and gentry from that nation. Likewise, he gains a +2 bonus on weapon attack and damage rolls against them.
+
+  A dandy can attempt the appropriate Knowledge checks untrained to identify such people from the selected country. A dandy gains additional favored nations, and can increase the bonuses of one of his current favored nations, in the same way he would with a normal ranger’s favored enemy.
+
+  This ability replaces favored enemy.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy2.id, level: 1, table_description: "1st Favored Nation")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy2.id, level: 5, table_description: "2nd Favored Nation")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy2.id, level: 10, table_description: "3rd Favored Nation")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy2.id, level: 15, table_description: "4th Favored Nation")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy2.id, level: 20, table_description: "5th Favored Nation")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: ranger2.id, klass_archetype_feature_id: dandy2.id, replace_or_alter: "replace")
+
+  dandy3 = KlassArchetypeFeature.create!(name: "Rumor Empathy", klass_archetype_id: dandy.id, description: "A dandy can alter the flow and spread of rumors in his favor. This functions similarly to wild empathy, except that it takes 1 day (8 hours of work), instead of 1 minute, and it affects the general tenor of a rumor instead of a wild animal.
+
+  A successful rumor empathy check allows the dandy to increase or decrease the rumor’s tone by one step. For example, he could make an indifferent rumor friendly and thus positive toward its target, or an unfriendly rumor hostile and thus even more negative toward its target than it was originally.
+
+  The difficulty of influencing a rumor depends on the size of the community in which it is spreading. The DC of the check is 15 in a village or smaller settlement. This DC increases by 5 and the number of days required to attempt the check increases by 2 for every settlement size category larger than a village—to a maximum of DC 40 and 11 days to affect a rumor spreading through an entire metropolis.
+
+  If the rumor is only spreading through a smaller segment of the population, such as the elven district in a larger metropolis, use the population of that smaller segment to determine the DC and number of days of work required to use rumor empathy. The DC also increases by 10 if the rumor is about the dandy himself, since the dandy is obviously a biased source with respects to rumors about his own person.
+
+  This ability replaces wild empathy.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy3.id, level: 1, table_description: "Rumor Empathy")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: ranger4.id, klass_archetype_feature_id: dandy3.id, replace_or_alter: "replace")
+
+  dandy4 = KlassArchetypeFeature.create!(name: "Favored Terrain", klass_archetype_id: dandy.id, description: "At 3rd level, a dandy gains favored terrain (urban), and though the ability continues to increase at the same levels, he doesn’t add additional terrains. However, at 8th level, whenever he is at a courtly function or party, his favored terrain bonuses increase by an additional 2.
+
+  This ability alters favored terrain.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy4.id, level: 3, table_description: "Favored Terrain")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: ranger7.id, klass_archetype_feature_id: dandy4.id, replace_or_alter: "alter")
+
+  dandy5 = KlassArchetypeFeature.create!(name: "Hobnob", klass_archetype_id: dandy.id, description: "At 4th level, a dandy must choose his allies as his hunter’s bond, not an animal companion.
+
+  In addition to the usual hunter’s bond ability, the dandy can spend 10 minutes at a particular event or party hobnobbing and introducing his allies to the right people in order to provide them with half the skill bonuses of his favored nation (though not the bonuses on attack and damage rolls) for the duration of the event.
+
+  This ability alters hunter’s bond.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy5.id, level: 4, table_description: "Hobnob")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: ranger8.id, klass_archetype_feature_id: dandy5.id, replace_or_alter: "replace")
+
+  dandy6 = KlassArchetypeFeature.create!(name: "Dandy Spells", klass_archetype_id: dandy.id, description: "At 4th level, the dandy gains a different sort of spellcasting than most rangers. A dandy uses his Charisma instead of his Wisdom to determine spells per day, DCs, and other factors related to spellcasting. He casts spells spontaneously from the bard spell list (rather than the ranger spell list) with the same number of spells known and spells per day as a medium of his ranger level.
+
+  This ability alters the ranger’s spellcasting.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy6.id, level: 4, table_description: "")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: ranger9.id, klass_archetype_feature_id: dandy6.id, replace_or_alter: "alter")
+
+  dandy7 = KlassArchetypeFeature.create!(name: "Party Crasher", klass_archetype_id: dandy.id, description: "At 7th level, the dandy is able to finagle his way into fancy parties, kings’ balls, and other social events meant for the cream of society. To do so, he must attempt a DC 25 Diplomacy check, which takes 1d4 hours. If he succeeds, he finds himself an invitation, an invitee looking for a date, a staff member willing to look the other way, or some other way to enter the party.
+
+  This does not allow him to break into restricted areas or to infiltrate strictly closed gatherings, such as secret meetings; it only allows him access to social events.
+
+  This ability replaces woodland stride.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy7.id, level: 7, table_description: "Party Crasher")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: ranger10.id, klass_archetype_feature_id: dandy7.id, replace_or_alter: "replace")
+
+  print "Dandy Archetype Created! \r"
+
+puts "Ranger Created!"

@@ -53,4 +53,15 @@ class Api::V1::KlassesController < ApplicationController
     render json: { klass: KlassSerializer.new(@klass) }, status: 201
   end
 
+  def archetypes
+    @klass = Klass.find(params[:id])
+    @archetypes = @klass.archetypes
+    @archetypes = @archetypes.map do |arch|
+      KlassArchetypeSerializer.new(arch)
+    end
+    # byebug
+
+    render json: @archetypes
+  end
+
 end

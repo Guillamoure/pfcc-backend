@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_055910) do
+ActiveRecord::Schema.define(version: 2020_12_03_183647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "archetype_feature_replace_klass_features", force: :cascade do |t|
+    t.integer "klass_archetype_feature_id"
+    t.integer "klass_feature_id"
+    t.string "replace_or_alter"
+    t.boolean "alters_class_skills", default: false
   end
 
   create_table "armors", force: :cascade do |t|
@@ -652,6 +659,25 @@ ActiveRecord::Schema.define(version: 2020_12_03_055910) do
 
   create_table "ideas", force: :cascade do |t|
     t.string "content"
+  end
+
+  create_table "klass_archetype_feature_levels", force: :cascade do |t|
+    t.integer "klass_archetype_feature_id"
+    t.integer "level"
+    t.string "table_description"
+  end
+
+  create_table "klass_archetype_features", force: :cascade do |t|
+    t.integer "klass_archetype_id"
+    t.string "name"
+    t.string "description"
+  end
+
+  create_table "klass_archetypes", force: :cascade do |t|
+    t.integer "klass_id"
+    t.string "name"
+    t.string "description"
+    t.integer "source_id"
   end
 
   create_table "klass_feature_associated_spells", force: :cascade do |t|
