@@ -5,6 +5,7 @@ class CreateArchetypeFeatureReplaceKlassFeatures < ActiveRecord::Migration[5.2]
       t.integer :klass_feature_id
       t.string :replace_or_alter
       t.boolean :alters_class_skills, default: false
+      t.integer :affects_specific_level
     end
   end
 end

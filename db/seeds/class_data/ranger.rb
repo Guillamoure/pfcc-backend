@@ -37,6 +37,9 @@ custom = Source.find_by!(title: "Custom", abbreviation: "Custom", code: nil)
 
 tower_shield = Armor.find_by!(name: 'Tower Shield', proficiency: 'Shield', price_in_gp: 30, bonus: 4, bonus_type: 'Shield', max_dex_bonus: 2, armor_check_penalty: -10, arcane_spell_failure: 50, spell_30: nil, spell_20: nil, don: "1 move action", don_hastily: nil, remove: "1 move action", weight: 45, source_id: core_rulebook.id)
 
+cr = Skillset.find_by!(name: "Core Rulebook")
+dmc = Skillset.find_by!(name: "DMCustom")
+ravnica_custom = Skillset.find_by!(name: "Ravnica Custom")
 
 
 
@@ -45,6 +48,37 @@ ranger = Klass.create!(name: "Ranger", hit_die: 10, skill_ranks: 6, fortitude: 0
 Role: Ranger are deft skirmishers, either in melee or at range, capable of skillfully dancing in and out of battle. Their abilities allow them to deal significant harm to specific types of foes, but their skills are valuable against all manner of enemies.
 
 Alignment: Any")
+
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Climb").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Craft").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Handle Animal").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Heal").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Intimidate").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Knowledge (dungeoneering)").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Knowledge (geography)").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Knowledge (nature)").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Perception").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Profession").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Ride").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Spellcraft").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Stealth").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Survival").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: cr.id, skill_id: Skill.find_by!(name: "Swim").id)
+
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Climb").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Handle Animal").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Heal").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Intimidate").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Investigation").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Nature").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Profession").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Stealth").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Survival").id)
+ClassSkillsetSkill.create!(klass_id: ranger.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Swim").id)
+
 
 # /////////////////////////////////////////////////////
 # <-*-*-----*-*-*- Base Class Features!-*-*-*-----*-*->

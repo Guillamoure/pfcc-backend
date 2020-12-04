@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_183647) do
+ActiveRecord::Schema.define(version: 2020_12_04_170308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_183647) do
     t.integer "klass_feature_id"
     t.string "replace_or_alter"
     t.boolean "alters_class_skills", default: false
+    t.integer "affects_specific_level"
   end
 
   create_table "armors", force: :cascade do |t|
@@ -703,8 +704,8 @@ ActiveRecord::Schema.define(version: 2020_12_03_183647) do
     t.datetime "updated_at", null: false
     t.boolean "specialization"
     t.integer "choice_amount", default: 0
-    t.boolean "options"
     t.integer "base_klass_feature_id"
+    t.boolean "has_klass_feature_options"
   end
 
   create_table "klass_specialization_feature_features", force: :cascade do |t|
