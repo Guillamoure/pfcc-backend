@@ -64,4 +64,11 @@ class Api::V1::KlassesController < ApplicationController
     render json: @archetypes
   end
 
+  def klass_feature_options
+    @klass_feature = KlassFeature.find(params[:id])
+    @options = @klass_feature.options
+
+    render json: @options
+  end
+
 end

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       post 'character_skillset_skills', to: 'character_skillset_skills#ranks'
       post 'spells_per_day', to: 'klasses#spells'
       get 'klasses/:id/archetypes', to: 'klasses#archetypes'
+      get 'klass_features/:id/options', to: 'klasses#klass_feature_options'
       post 'spellcasting', to: 'effects#spellcasting'
       patch 'cast_spells', to: 'cast_spells#rollback'
       patch 'cast_spells/toggle_cast/:id', to: 'cast_spells#toggle_cast'

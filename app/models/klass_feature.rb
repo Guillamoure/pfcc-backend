@@ -11,8 +11,10 @@ class KlassFeature < ApplicationRecord
   has_many :klass_feature_associated_spells
   has_many :associated_spells, through: :klass_feature_associated_spells, class_name: "Spell", source: "spell"
 
-  belongs_to :base_klass_feature, optional: true
-  has_many :options, class_name: "KlassFeature", foreign_key: "base_klass_feature_id"
+  # belongs_to :base_klass_feature, optional: true
+  # has_many :options, class_name: "KlassFeature", foreign_key: "base_klass_feature_id"
+
+  has_many :options, class_name: "FeatureOption"
 
   has_many :klass_feature_klass_specializations
   has_many :klass_specializations, through: :klass_feature_klass_specializations

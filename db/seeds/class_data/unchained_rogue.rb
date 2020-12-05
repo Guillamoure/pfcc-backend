@@ -212,8 +212,11 @@ print "Unchained Rogue features created! \r"
 # ///////////////////////////////////////////////////////
 
 FeatureOption.create!(name: "Minor Magic", klass_feature_id: unchained_rogue6.id, level_available: 2, description: "A rogue with this talent gains the ability to cast a 0-level spell from the sorcerer/wizard spell list. This spell can be cast at will as a spell-like ability. The rogue’s caster level for this ability is equal to her rogue level. The save DC for this spell is 10 + the rogue’s Intelligence modifier. A rogue must have an Intelligence score of at least 10 to select this talent.")
+
 FeatureOption.create!(name: "Fast Stealth", klass_feature_id: unchained_rogue6.id, level_available: 2, description: "This ability allows a rogue to move at full speed using the Stealth skill without penalty.")
+
 FeatureOption.create!(name: "Ledge Walker", klass_feature_id: unchained_rogue6.id, level_available: 2, description: "This ability allows a rogue to move along narrow, uneven, or slippery surfaces (such as ice) at full speed using the Acrobatics skill without penalty. In addition, a rogue with this talent is not flat-footed when using Acrobatics to move along such surfaces, and retains her Dexterity bonus to AC.")
+
 FeatureOption.create!(name: "Powerful Sneak", klass_feature_id: unchained_rogue6.id, level_available: 2, description: "Whenever a rogue with this talent takes a full-attack action, she can take a –2 penalty on all attack rolls until the start of her next turn. If she does, she can reroll any sneak attack damage dice that result in 1s. She can reroll multiple dice, but she can’t reroll any individual die more than once per attack.")
 
 # //////////////////////////////////////////////////

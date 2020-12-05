@@ -205,7 +205,7 @@ Through 3rd level, a ranger has no caster level. At 4th level and higher, his ca
   ranger_spell_list = SpellList.create!(name: "Ranger Spells List")
   ranger9_feature = Feature.create!()
     KlassFeatureFeature.create!(feature_id: ranger9_feature.id, klass_feature_id: ranger9.id)
-    ranger_spellcasting = FeatureSpellcasting.create!(feature_id: ranger9_feature.id, ability_score: "wisdom", prepare_spells: true, expend_prepared_spells: true, infinite_zero_level: false, known_spell_list: false, apply_metamagic_when_casting: false, apply_metamagic_when_preparing: true, type_of_magic: "Divine", caster_level_penalty: 0, spell_list_id: ranger_spell_list.id)
+    ranger_spellcasting = FeatureSpellcasting.create!(feature_id: ranger9_feature.id, ability_score: "wisdom", prepare_spells: true, expend_prepared_spells: true, infinite_zero_level: false, known_spell_list: false, apply_metamagic_when_casting: false, apply_metamagic_when_preparing: true, type_of_magic: "Divine", caster_level_penalty: 3, spell_list_id: ranger_spell_list.id)
 
     SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 4, spells: 0, feature_spellcasting_id: ranger_spellcasting.id)
     SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 5, spells: 1, feature_spellcasting_id: ranger_spellcasting.id)
@@ -329,6 +329,7 @@ dandy = KlassArchetype.create!(name: "Dandy", klass_id: ranger.id, source_id: ul
 
   This ability alters favored terrain.")
     KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy4.id, level: 3, table_description: "Favored Terrain")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy4.id, level: 8, table_description: "Favored Terrain")
     ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: ranger7.id, klass_archetype_feature_id: dandy4.id, replace_or_alter: "alter")
 
   dandy5 = KlassArchetypeFeature.create!(name: "Hobnob", klass_archetype_id: dandy.id, description: "At 4th level, a dandy must choose his allies as his hunter’s bond, not an animal companion.
@@ -337,7 +338,7 @@ dandy = KlassArchetype.create!(name: "Dandy", klass_id: ranger.id, source_id: ul
 
   This ability alters hunter’s bond.")
     KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: dandy5.id, level: 4, table_description: "Hobnob")
-    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: ranger8.id, klass_archetype_feature_id: dandy5.id, replace_or_alter: "replace")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: ranger8.id, klass_archetype_feature_id: dandy5.id, replace_or_alter: "alter")
 
   dandy6 = KlassArchetypeFeature.create!(name: "Dandy Spells", klass_archetype_id: dandy.id, description: "At 4th level, the dandy gains a different sort of spellcasting than most rangers. A dandy uses his Charisma instead of his Wisdom to determine spells per day, DCs, and other factors related to spellcasting. He casts spells spontaneously from the bard spell list (rather than the ranger spell list) with the same number of spells known and spells per day as a medium of his ranger level.
 
