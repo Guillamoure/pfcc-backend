@@ -153,12 +153,17 @@ ranger5 = KlassFeature.create!(klass_id: ranger.id, name: "Combat Style Feat", d
 
 The ranger’s expertise manifests in the form of bonus feats at 2nd, 6th, 10th, 14th, and 18th level. He can choose feats from his selected combat style, even if he does not have the normal prerequisites.
 
-The benefits of the ranger’s chosen style feats apply only when he wears light, medium, or no armor. He loses all benefits of his combat style feats when wearing heavy armor. Once a ranger selects a combat style, it cannot be changed.")
+The benefits of the ranger’s chosen style feats apply only when he wears light, medium, or no armor. He loses all benefits of his combat style feats when wearing heavy armor. Once a ranger selects a combat style, it cannot be changed.", specialization: true, choice_amount: 1)
   FeatureLevel.create!(klass_feature_id: ranger5.id, level: 2, table_description: "Combat Style Feat")
   FeatureLevel.create!(klass_feature_id: ranger5.id, level: 6, table_description: "Combat Style Feat")
   FeatureLevel.create!(klass_feature_id: ranger5.id, level: 10, table_description: "Combat Style Feat")
   FeatureLevel.create!(klass_feature_id: ranger5.id, level: 14, table_description: "Combat Style Feat")
   FeatureLevel.create!(klass_feature_id: ranger5.id, level: 18, table_description: "Combat Style Feat")
+
+  archery = KlassSpecialization.create!(name: "Archery", description: "Far Shot, Focused Shot, Point Blank Shot, Precise Shot, and Rapid Shot. At 6th level, he adds Crossbow Mastery, Improved Precise Shot, Parting Shot, Point Blank Master and Manyshot to the list. At 10th level, he adds Pinpoint Targeting and Shot on the Run to the list.")
+    KlassFeatureKlassSpecialization.create!(klass_feature_id: ranger5.id, klass_specialization_id: archery.id)
+  two_weapon_combat = KlassSpecialization.create!(name: "Two-Weapon Combat", description: "Double Slice, Improved Shield Bash, Quick Draw, and Two-Weapon Fighting. At 6th level, he adds Improved Two-Weapon Fighting and Two-Weapon Defense to the list. At 10th level, he adds Greater Two-Weapon Fighting and Two-Weapon Rend to the list.")
+    KlassFeatureKlassSpecialization.create!(klass_feature_id: ranger5.id, klass_specialization_id: two_weapon_combat.id)
 
 ranger6 = KlassFeature.create!(klass_id: ranger.id, name: "Endurance", description: "A ranger gains Endurance as a bonus feat at 3rd level.")
   FeatureLevel.create!(klass_feature_id: ranger6.id, level: 3, table_description: "Endurance")

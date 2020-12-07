@@ -82,6 +82,7 @@ Rails.application.routes.draw do
       patch 'character_klass_feature_usages', to: 'klass_features#usage_update'
       patch 'character_klass_specialization_feature_usages', to: 'klass_features#klass_specialization_usage_update'
       get 'klass_specializations', to: 'klass_features#klass_specializations'
+      get 'klass_features/:id/specializations', to: 'klass_features#klass_specializations'
       post 'character_klass_specializations', to: 'klass_features#create_character_klass_specialization'
       delete 'character_klass_specializations/:id', to: 'klass_features#delete_character_klass_specialization'
 

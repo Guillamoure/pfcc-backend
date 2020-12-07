@@ -51,7 +51,11 @@ class Api::V1::KlassFeaturesController < ApplicationController
   end
 
   def klass_specializations
-    @klass_feature = KlassFeature.find(params[:klass_id])
+    if params[:id]
+      @klass_feature = KlassFeature.find(params[:id])
+    else
+      @klass_feature = KlassFeature.find(params[:klass_id])
+    end
     @specializations = []
     @klass_feature.klass_specializations.each do |kspec|
       @specializations.push(KlassSpecializationSerializer.new(kspec))
