@@ -1548,21 +1548,1126 @@ intimidate = Skill.create!(name: "Intimidate", ability_score: "Charisma", untrai
 
 Demoralize: You can use this skill to cause an opponent to become shaken for a number of rounds. The DC of this check is equal to 10 + the target’s Hit Dice + the target’s Wisdom modifier. If you are successful, the target is shaken for 1 round. This duration increases by 1 round for every 5 by which you beat the DC. You can only threaten an opponent in this way if it is within 30 feet and can clearly see and hear you. Using demoralize on the same creature only extends the duration; it does not create a stronger fear condition.", action: "Using Intimidate to change an opponent’s attitude requires 1 minute of conversation. Demoralizing an opponent is a standard action.", try_again: "You can attempt to Intimidate an opponent again, but each additional check increases the DC by +5. This increase resets after 1 hour has passed.", special: "You also gain a +4 bonus on Intimidate checks if you are larger than your target and a –4 penalty on Intimidate checks if you are smaller than your target.", skill_unlock_5: "If you exceed the DC to demoralize a target by at least 10, it is frightened for 1 round and shaken thereafter. A Will save (DC = 10 + your number of ranks in Intimidate) negates the frightened condition, but the target is still shaken, even if it has the stalwart ability.", skill_unlock_10: "If you exceed the DC to demoralize a target by at least 10, it is panicked for 1 round or frightened for 1d4 rounds (your choice) and shaken thereafter. A Will save (DC = 10 + your number of ranks in Intimidate) negates the frightened or panicked condition, but the target is still shaken, even if it has the stalwart ability.", skill_unlock_15: "If you exceed the DC to demoralize a target by at least 20, it is cowering for 1 round or panicked for 1d4 rounds (your choice) and frightened thereafter. A Will save (DC = 10 + your number of ranks in Intimidate) negates the cowering, panicked, and frightened conditions, but the target is still shaken, even if it has the stalwart ability.", skill_unlock_20: "If you exceed the DC to demoralize a target by at least 20, it is cowering for 1d4 rounds and panicked thereafter. A Will save (DC = 10 + your number of ranks in Intimidate) negates the cowering and panicked conditions, but the target is still shaken, even if it has the stalwart ability.")
 
-knowledge_arcana = Skill.create!(name: "Knowledge (arcana)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
-knowledge_dungeoneering = Skill.create!(name: "Knowledge (dungeoneering)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
-knowledge_engineering = Skill.create!(name: "Knowledge (engineering)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
-knowledge_geography = Skill.create!(name: "Knowledge (geography)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
-knowledge_history = Skill.create!(name: "Knowledge (history)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
-knowledge_local = Skill.create!(name: "Knowledge (local)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
-knowledge_nature = Skill.create!(name: "Knowledge (nature)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
-knowledge_nobility = Skill.create!(name: "Knowledge (nobility)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
-knowledge_planes = Skill.create!(name: "Knowledge (planes)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
-knowledge_religion = Skill.create!(name: "Knowledge (religion)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
-knowledge = Skill.create!(name: "Knowledge", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true, customizable: true)
-linguistics = Skill.create!(name: "Linguistics", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
-perception = Skill.create!(name: "Perception", ability_score: "Wisdom", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
-perform = Skill.create!(name: "Perform", ability_score: "Charisma", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", customizable: true)
-profession = Skill.create!(name: "Profession", ability_score: "Wisdom", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", customizable: true)
+knowledge_arcana = Skill.create!(name: "Knowledge (arcana)", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties. Arcana includes ancient mysteries, magic traditions, arcane symbols, constructs, dragons, magical beasts. Although robots are constructs, Knowledge (arcana) cannot be used to identify robots or their abilities and weaknesses.", description: "Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Identify Auras While Using Detect Magic</td>
+    <td>Arcana</td>
+    <td>15 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify a Spell Effect That Is In Place</td>
+    <td>Arcana</td>
+    <td>20 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify Materials Manufactured by Magic</td>
+    <td>Arcana</td>
+    <td>20 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify a Spell That Just Targeted You</td>
+    <td>Arcana</td>
+    <td>25 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify the Spells Cast Using a Specific Material Component</td>
+    <td>Arcana</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+knowledge_dungeoneering = Skill.create!(name: "Knowledge (dungeoneering)", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties. Dungeoneering includes aberrations, caverns, oozes, spelunking.", description: "Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Identify Underground Hazard</td>
+    <td>Dungeoneering</td>
+    <td>15 + Hazard's CR</td>
+  </tr>
+  <tr>
+    <td>Identify Mineral, Stone, or Metal</td>
+    <td>Dungeoneering</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Determine Slope</td>
+    <td>Dungeoneering</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Determine Depth Underground</td>
+    <td>Dungeoneering</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+knowledge_engineering = Skill.create!(name: "Knowledge (engineering)", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties. Engineering includes buildings, aqueducts, bridges, fortifications. This is the most important skill with regard to technological subjects. Knowledge (engineering) can be used to identify a robot’s abilities and weaknesses. Knowledge (engineering) is also used to identify and understand unknown technological objects in a similar manner to how Spellcraft is used to identify the properties of a magic item. The DC to correctly identify and understand an unknown technological object is equal to the object’s Craft DC. An object with a Craft DC of 15 or less can be automatically identified and understood by someone trained in Knowledge (engineering) who also has the Technologist feat.", description: "Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Identify Dangerous Construction</td>
+    <td>Engineering</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Determine a Structure's Style or Age</td>
+    <td>Engineering</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Determine a Structure's Weakness</td>
+    <td>Engineering</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+knowledge_geography = Skill.create!(name: "Knowledge (geography)", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties. Geography includes lands, terrain, climate, people. Used for astronomy.", description: "Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Identify a Creature's Ethnicity or Accent</td>
+    <td>Geography</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Recognize Regional Terrain Features</td>
+    <td>Geography</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Location of Nearest Community or Noteworthy Site</td>
+    <td>Geography</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+knowledge_history = Skill.create!(name: "Knowledge (history)", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties. History includes wars, colonies, migrations, founding of cities.", description: "Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Know Recent or Historically Significant Date</td>
+    <td>History</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Determine Approximate Date of Specific Event</td>
+    <td>History</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Obscure or Ancient Historical Event</td>
+    <td>History</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+knowledge_local = Skill.create!(name: "Knowledge (local)", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties. Local includes legends, personalities, inhabitants, laws, customs, traditions, humanoids.", description: "Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Know Local Laws, Rulers, and Popular Locations</td>
+    <td>Local</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Know a Common Rumor or Local Tradition</td>
+    <td>Local</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Hidden Organizations, Rulers, and Locations</td>
+    <td>Local</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+knowledge_nature = Skill.create!(name: "Knowledge (nature)", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties. Nature includes animals, fey, monstrous humanoids, plants, seasons and cycles, weather, vermin.", description: "Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Identify Natural Hazard</td>
+    <td>Nature</td>
+    <td>15 + Hazard's CR</td>
+  </tr>
+  <tr>
+    <td>Identify a Common Plant or Animal</td>
+    <td>Nature</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Identify Unnatural Weather Phenomenon</td>
+    <td>Nature</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Determine Artifical Nature of Feature</td>
+    <td>Nature</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+knowledge_nobility = Skill.create!(name: "Knowledge (nobility)", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties. Nobility includes lineages, heraldry, personalities, royalty.", description: "Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Know Current Rulers and Their Symbols</td>
+    <td>Nobility</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Know Proper Etiquette</td>
+    <td>Nobility</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Line of Succession</td>
+    <td>Nobility</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+knowledge_planes = Skill.create!(name: "Knowledge (planes)", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties. Planes includes the Inner Planes, the Outer Planes, the Astral Plane, the Ethereal Plane, outsiders, planar magic.", description: "Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Know the Names of the Planes</td>
+    <td>Planes</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Recognize Current Plane</td>
+    <td>Planes</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Identify a Creature's Planar Origin</td>
+    <td>Planes</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+knowledge_religion = Skill.create!(name: "Knowledge (religion)", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties. Religion includes gods and goddesses, mythic history, ecclesiastic tradition, holy symbols, undead.", description: "Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Recognize a Common Deity's Symbol or Clergy</td>
+    <td>Religion</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Know Common Mythology and Tenets</td>
+    <td>Religion</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Recognize an Obscure Deity's Symbol or Clergy</td>
+    <td>Religion</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+knowledge = Skill.create!(name: "Knowledge", ability_score: "Intelligence", untrained: false, blurb: "You are educated in a field of study and can answer both simple and complex questions. Like the Craft, Perform, and Profession skills, Knowledge actually encompasses a number of different specialties.", description: "Arcana (ancient mysteries, magic traditions, arcane symbols, constructs, dragons, magical beasts)
+
+Dungeoneering (aberrations, caverns, oozes, spelunking)
+
+Engineering (buildings, aqueducts, bridges, fortifications)
+
+Geography (lands, terrain, climate, people)
+
+History (wars, colonies, migrations, founding of cities)
+
+Local (legends, personalities, inhabitants, laws, customs, traditions, humanoids)
+
+Nature (animals, fey, monstrous humanoids, plants, seasons and cycles, weather, vermin)
+
+Nobility (lineages, heraldry, personalities, royalty)
+
+Planes (the Inner Planes, the Outer Planes, the Astral Plane, the Ethereal Plane, outsiders, planar magic)
+
+Religion (gods and goddesses, mythic history, ecclesiastic tradition, holy symbols, undead)
+
+Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Many of the Knowledge skills have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Knowledge Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Identify Auras While Using Detect Magic</td>
+    <td>Arcana</td>
+    <td>15 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify a Spell Effect That Is In Place</td>
+    <td>Arcana</td>
+    <td>20 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify Materials Manufactured by Magic</td>
+    <td>Arcana</td>
+    <td>20 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify a Spell That Just Targeted You</td>
+    <td>Arcana</td>
+    <td>25 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify the Spells Cast Using a Specific Material Component</td>
+    <td>Arcana</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify Underground Hazard</td>
+    <td>Dungeoneering</td>
+    <td>15 + Hazard's CR</td>
+  </tr>
+  <tr>
+    <td>Identify Mineral, Stone, or Metal</td>
+    <td>Dungeoneering</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Determine Slope</td>
+    <td>Dungeoneering</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Determine Depth Underground</td>
+    <td>Dungeoneering</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify Dangerous Construction</td>
+    <td>Engineering</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Determine a Structure's Style or Age</td>
+    <td>Engineering</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Determine a Structure's Weakness</td>
+    <td>Engineering</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Creature's Ethnicity or Accent</td>
+    <td>Geography</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Recognize Regional Terrain Features</td>
+    <td>Geography</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Location of Nearest Community or Noteworthy Site</td>
+    <td>Geography</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Know Recent or Historically Significant Date</td>
+    <td>History</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Determine Approximate Date of Specific Event</td>
+    <td>History</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Obscure or Ancient Historical Event</td>
+    <td>History</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Know Local Laws, Rulers, and Popular Locations</td>
+    <td>Local</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Know a Common Rumor or Local Tradition</td>
+    <td>Local</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Hidden Organizations, Rulers, and Locations</td>
+    <td>Local</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify Natural Hazard</td>
+    <td>Nature</td>
+    <td>15 + Hazard's CR</td>
+  </tr>
+  <tr>
+    <td>Identify a Common Plant or Animal</td>
+    <td>Nature</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Identify Unnatural Weather Phenomenon</td>
+    <td>Nature</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Determine Artifical Nature of Feature</td>
+    <td>Nature</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Know Current Rulers and Their Symbols</td>
+    <td>Nobility</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Know Proper Etiquette</td>
+    <td>Nobility</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Line of Succession</td>
+    <td>Nobility</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Know the Names of the Planes</td>
+    <td>Planes</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Recognize Current Plane</td>
+    <td>Planes</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Identify a Creature's Planar Origin</td>
+    <td>Planes</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Recognize a Common Deity's Symbol or Clergy</td>
+    <td>Religion</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Know Common Mythology and Tenets</td>
+    <td>Religion</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Recognize an Obscure Deity's Symbol or Clergy</td>
+    <td>Religion</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Knowledge check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.", skill_unlock_5: "When you successfully identify a creature, you gain one additional piece of information for every 5 ranks you possess in that Knowledge skill.", skill_unlock_10: "When you successfully identify a creature, you gain a +1 competence bonus on attack rolls, opposed ability checks, skill checks, and caster level checks against creatures of that kind (e.g., glabrezu demons, but not other demons or evil outsiders) for 1 minute. This bonus increases by 1 for every 5 ranks beyond 10 you possess in that Knowledge skill.", skill_unlock_15: "When you fail a Knowledge check, you can reroll the check at a –10 penalty. The competence bonus above also applies to saving throws against exceptional, spell-like, or supernatural abilities used by creatures you identify.", skill_unlock_20: "Whenever you attempt a Knowledge check, you can roll twice and take the better result.", knowledge: true)
+
+linguistics = Skill.create!(name: "Linguistics", ability_score: "Intelligence", untrained: false, blurb: "You are skilled at working with language, in both its spoken and written forms. You can speak multiple languages, and can decipher nearly any tongue given enough time. Your skill in writing allows you to create and detect forgeries as well.", description: "You can decipher writing in an unfamiliar language or a message written in an incomplete or archaic form. The base DC is 20 for the simplest messages, 25 for standard texts, and 30 or higher for intricate, exotic, or very old writing. If the check succeeds, you understand the general content of a piece of writing about one page long (or the equivalent). If the check fails, make a DC 5 Wisdom check to see if you avoid drawing a false conclusion about the text. (Success means that you do not draw a false conclusion; failure means that you do.)
+
+Both the Linguistics check and (if necessary) the Wisdom check are made secretly by the GM, so that you can’t tell whether the conclusion you draw is true or false.
+
+<table>
+  <tr>
+    <th>Condition</th>
+    <th>Linguistics Check Modifier</th>
+  </tr>
+  <tr>
+    <td>Type of Document is Unknown to Reader</td>
+    <td>-2</td>
+  </tr>
+  <tr>
+    <td>Type of Document is Somewhat Known to Reader</td>
+    <td>+0</td>
+  </tr>
+  <tr>
+    <td>Type of Document is Well Known to Reader</td>
+    <td>+2</td>
+  </tr>
+  <tr>
+    <td>Handwriting Not Known to Reader</td>
+    <td>-2</td>
+  </tr>
+  <tr>
+    <td>Handwriting Somewhat Known to Reader</td>
+    <td>+0</td>
+  </tr>
+  <tr>
+    <td>Handwritin Intimately Known to Reader</td>
+    <td>+2</td>
+  </tr>
+  <tr>
+    <td>Reader Only Casually Reviews Document</td>
+    <td>-2</td>
+  </tr>
+  <tr>
+    <td>Document Contradicts Orders or Knowledge</td>
+    <td>+2</td>
+  </tr>
+</table>
+
+Create or Detect Forgeries: Forgery requires writing materials appropriate to the document being forged. To forge a document on which the handwriting is not specific to a person, you need only to have seen a similar document before, and you gain a +8 bonus on your check. To forge a signature, you need an autograph of that person to copy, and you gain a +4 bonus on the check. To forge a longer document written in the hand of some particular person, a large sample of that person’s handwriting is needed.
+
+The Linguistics check is made secretly, so that you’re not sure how good your forgery is. As with Disguise, you don’t make a check until someone examines the work. Your Linguistics check is opposed by the Linguistics check of the person who examines the document to verify its authenticity. The examiner gains modifiers if any of the conditions are listed on the table above.
+
+Learn a Language: Whenever you put a rank into this skill, you learn to speak and read a new language. Common languages (and their typical speakers) include the following.
+
+Abyssal (demons and other chaotic evil outsiders)
+
+Aklo (derros, inhuman or otherworldly monsters, evil fey)
+
+Aquan (aquatic creatures, water-based creatures)
+
+Auran (f lying creatures, air-based creatures)
+
+Celestial (angels and other good outsiders)
+
+Common (humans and the core races)
+
+Draconic (dragons, reptilian humanoids)
+
+Druidic (druids only)
+
+Dwarven (dwarves)
+
+Elven (elves, half-elves)
+
+Giant (cyclopses, ettins, giants, ogres, trolls)
+
+Gnome (gnomes)
+
+Goblin (bugbears, goblins, hobgoblins)
+
+Gnoll (gnolls)
+
+Half ling (half lings)
+
+Ignan (f ire-based creatures)
+
+Infernal (devils and other lawful evil outsiders)
+
+Orc (orcs, half-orcs)
+
+Sylvan (centaurs, fey creatures, plant creatures, unicorns)
+
+Terran (earth-based creatures)
+
+Undercommon (drow, duergar, morlocks, svirfneblin)
+
+Read Lips: Any PC may learn to read lips with a rank in Linguistics as if they had learned a new language. When reading the lips of a speaking creature within 10 feet in normal lighting conditions, the reader need not make any skill checks. In situations of dim lighting, extreme distances, or to read the lips of someone trying to hide their words from the reader, the reader must make Perception checks (DC determined by the GM based on the situation). A lip reader may only understand spoken words in a language it knows.", action: "Varies. Deciphering a page of ordinary text takes 1 minute (10 consecutive rounds). Creating a forgery can take anywhere from 1 minute to 1d4 minutes per page. Detecting a forgery using Linguistics takes 1 round of examination per page.", try_again: "Yes.", special: "You must be trained to use this skill, but you can always attempt to read archaic and strange forms of your own racial bonus languages. In addition, you can also always attempt to detect a forgery.", skill_unlock_5: "You can use Linguistics instead of Sense Motive to intercept and interpret secret messages (as the Bluff skill). You gain a +1 insight bonus on Perception and Disable Device checks to detect or disarm written magical traps. This bonus increases by 1 for every 5 ranks beyond 5 you possess in Linguistics.", skill_unlock_10: "If you succeed at a Linguistics check by at least 10 when examining writing, you can learn the precise meaning rather than general content, and you never draw false conclusions on a failed check. A successful DC 30 Linguistics check reveals the general meaning of speech, a successful DC 35 check reveals 1d4 pieces of specific information, and a successful DC 40 check reveals exact meaning.", skill_unlock_15: "You can decipher magical writings (as read magic) by succeeding at a Linguistics check (DC = 25 + caster level). If you identify a written magical trap in this way, you gain a +2 circumstance bonus on Disable Device checks to disarm it.", skill_unlock_20: "You can attempt to decipher magical or non-magical text at a rate of one page per round. If you instead spend 1 minute per page, roll twice and take the better result.")
+
+perception = Skill.create!(name: "Perception", ability_score: "Wisdom", untrained: true, blurb: "Your senses allow you to notice fine details and alert you to danger. Perception covers all five senses, including sight, hearing, touch, taste, and smell.", description: "Perception has a number of uses, the most common of which is an opposed check versus an opponent’s Stealth check to notice the opponent and avoid being surprised. If you are successful, you notice the opponent and can react accordingly. If you fail, your opponent can take a variety of actions, including sneaking past you and attacking you.
+
+Perception is also used to notice fine details in the environment. The DC to notice such details varies depending upon distance, the environment, and how noticeable the detail is. The following table gives a number of guidelines.
+
+<table>
+  <tr>
+    <th>Detail</th>
+    <th>Perception DC</th>
+  </tr>
+  <tr>
+    <td>Hear the Sound of Battle</td>
+    <td>-10</td>
+  </tr>
+  <tr>
+    <td>Notice the Stench of Rotting Garbage</td>
+    <td>-10</td>
+  </tr>
+  <tr>
+    <td>Detect the Smell of Smoke</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Hear the Details of a Conversation</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Notice a Visible Creature</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Determine if Food is Spoiled</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Hear the Sound of a Creature Walking</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Hear the Details of a Whispered Conversation</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Find the Average Concealed Door</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Hear the Sound of a Key Being Turned in a Lock</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Find the Average Secret Door</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Hear a Bow Being Drawn</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Sense a Burrowing Creature Underneath You</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Notice a Pickpocket</td>
+    <td>Opposed by Sleight of Hand</td>
+  </tr>
+  <tr>
+    <td>Notice a Creature Using Stealth</td>
+    <td>Opposed by Stealth</td>
+  </tr>
+  <tr>
+    <td>Find a Hidden Trap</td>
+    <td>Varies by Trap</td>
+  </tr>
+  <tr>
+    <td>Identify the Powers of a Potion through Taste</td>
+    <td>15 + Potion's Caster Level</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Perception Modifiers</th>
+    <th>DC Modifier</th>
+  </tr>
+  <tr>
+    <td>Distance to the Source, Object, or Creature</td>
+    <td>+1 per 10 Feet</td>
+  </tr>
+  <tr>
+    <td>Through a Closed Door</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Through a Wall</td>
+    <td>+10 per Foot</td>
+  </tr>
+  <tr>
+    <td>Favorable Conditions</td>
+    <td>-2</td>
+  </tr>
+  <tr>
+    <td>Unfavorable Conditions</td>
+    <td>+2</td>
+  </tr>
+  <tr>
+    <td>Terrible Conditions</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Creature Making the Check is Distracted</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Creature Making the Check is Asleep</td>
+    <td>+10</td>
+  </tr>
+  <tr>
+    <td>Creature or Object is Invisible</td>
+    <td>+20</td>
+  </tr>
+</table>", action: "Most Perception checks are reactive, made in response to observable stimulus. Intentionally searching for stimulus is a move action.", try_again: "Yes. You can try to sense something you missed the first time, so long as the stimulus is still present.", special: "Creatures with the scent special quality have a +8 bonus on Perception checks made to detect a scent. Creatures with the tremorsense special quality have a +8 bonus on Perception checks against creatures touching the ground and automatically make any such checks within their range.", skill_unlock_5: "You remain alert to sounds even in your sleep, and the normal DC increase to Perception checks when you are sleeping is halved. The distance modifier on the DC of Perception checks you attempt is reduced to +1 per 20 feet.", skill_unlock_10: "The distance modifier on the DC of Perception checks you attempt is reduced to +1 per 30 feet. In addition, you gain a +5 bonus on Perception checks to notice or locate an invisible creature or object.", skill_unlock_15: "You remain alert to sounds even in your sleep, and the normal DC increase to Perception checks when you are sleeping doesn’t apply to you. The distance modifier on the DC of your Perception checks is reduced to +1 per 40 feet.", skill_unlock_20: "You gain a +10 bonus on Perception checks to notice invisible creatures or objects. The distance modifier on the DC of Perception checks you attempt is reduced to +1 per 60 feet.")
+
+perform = Skill.create!(name: "Perform", ability_score: "Charisma", untrained: true, blurb: "You are skilled at one form of entertainment, from singing to acting to playing an instrument. Like Craft, Knowledge, and Profession, Perform is actually a number of separate skills. You could have several Perform skills, each with its own ranks.
+
+Each of the nine categories of the Perform skill includes a variety of methods, instruments, or techniques, a small sample of which is provided for each category below.
+
+Act (comedy, drama, pantomime)
+
+Comedy (buffoonery, limericks, joke-telling)
+
+Dance (ballet, waltz, jig)
+
+Keyboard instruments (harpsichord, piano, pipe organ)
+
+Oratory (epic, ode, storytelling)
+
+Percussion instruments (bells, chimes, drums, gong)
+
+String instruments (fiddle, harp, lute, mandolin)
+
+Wind instruments (flute, pan pipes, recorder, trumpet)
+
+Sing (ballad, chant, melody)", description: "You can impress audiences with your talent and skill in your chosen performance type.
+
+<table>
+  <tr>
+    <th>Perform DC</th>
+    <th>Performance</th>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>Routine performance. Trying to earn money by playing in public is akin to begging. You can earn 1d10 cp/day.</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>Enjoyable performance. In a prosperous city, you can earn 1d10 sp/day.</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>Great performance. In a prosperous city, you can earn 3d10 sp/day. In time, you may be invited to join a professional troupe and may develop a regional reputation.</td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td>Memorable performance. In a prosperous city, you can earn 1d6 gp/day. In time, you may come to the attention of noble patrons and develop a national reputation.</td>
+  </tr>
+  <tr>
+    <td>30</td>
+    <td>Extraordinary performance. In a prosperous city, you can earn 3d6 gp/day. In time, you may draw attention from distant patrons, or even from extraplanar beings.</td>
+  </tr>
+</table>
+
+A masterwork musical instrument gives you a +2 circumstance bonus on all Perform checks that involve its use.
+
+In addition to being able to put on a show, a performer knows the prominent works of their chosen type of performance.
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Perform Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Mimic the Style of a Famous Performer</td>
+    <td>Varies</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Recall or Recognize All the Notes, Lyrics, or Lines of a Popular Work</td>
+    <td>Varies</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Recall or Recognize All the Notes, Lyrics, or Lines of an Obscure Work</td>
+    <td>Varies</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Improvise a Routine on a Specific Subject</td>
+    <td>Act, Comedy, Oratory, or Sing</td>
+    <td>20</td>
+  </tr>
+</table>", action: "Varies. Trying to earn money by playing in public requires anywhere from an evening’s work to a full day’s performance. The bard’s special Perform-based abilities are described in that class’s description.", try_again: "Yes. Retries are allowed, but they don’t negate previous failures, and an audience that has been unimpressed in the past is likely to be prejudiced against future performances. (Increase the DC by 2 for each previous failure.)", special: "A bard must have ranks in specific Perform categories to use some of his Bardic Performance abilities.", skill_unlock_5: "Whenever you attempt a Bluff, Diplomacy, Handle Animal, or Intimidate check, you can attempt a DC 20 Perform check to gain a +2 circumstance bonus on the check.", skill_unlock_10: "Whenever you cast a spell with the emotion or language-dependent descriptor, you can attempt a DC 25 Perform check to increase the save DC by 1.", skill_unlock_15: "Whenever you cast a spell with the emotion or language-dependent descriptor, you can attempt a DC 30 Perform check to increase your caster level by 1. You must choose whether to use this ability or the ability unlocked at 10 ranks when casting the spell.", skill_unlock_20: "Choose one of the following skills: Bluff, Diplomacy, or Intimidate. When you attempt a skill check with that skill, you can also attempt a Perform check and use the better result to determine the success of that skill check.", customizable: true)
+
+profession = Skill.create!(name: "Profession", ability_score: "Wisdom", untrained: false, blurb: "You are skilled at a specific job. Like Craft, Knowledge, and Perform, Profession is actually a number of separate skills. You could have several Profession skills, each with its own ranks. While a Craft skill represents ability in creating an item, a Profession skill represents an aptitude in a vocation requiring a broader range of less specific knowledge. The most common Profession skills are architect, baker, barrister, brewer, butcher, clerk, cook, courtesan, driver, engineer, farmer, f isherman, gambler, gardener, herbalist, innkeeper, librarian, merchant, midwife, miller, miner, porter, sailor, scribe, shepherd, stable master, soldier, tanner, trapper, and woodcutter.", description: "You can earn half your Profession check result in gold pieces per week of dedicated work. You know how to use the tools of your trade, how to perform the profession’s daily tasks, how to supervise helpers, and how to handle common problems. You can also answer questions about your Profession. Basic questions are DC 10, while more complex questions are DC 15 or higher.
+
+A profession often encompasses many smaller areas of expertise, and these auxiliary skills can come in handy in situations beyond just making money or answering trade-specific questions. Below are some sample additional uses for Profession skills, and GMs are encouraged to create their own.
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Profession Skill</th>
+    <th>DC</th>
+  </tr>
+  <tr>
+    <td>Determine Hardness and Hit Points of a Structure</td>
+    <td>Architect or Engineer</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Prepare Trail Rations (Takes 1 Hour Per Day's Worth of Rations)</td>
+    <td>Baker or Cook</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Obtain a Legal Permit</td>
+    <td>Barrister or Clerk</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Get Somone Released From Jail Who Has Been Imprisoned for a Minor Crime</td>
+    <td>Barrister</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Ask a Special Favor From a Judge (Such as Arresting Someone)</td>
+    <td>Barrister</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>Brew Alcohol of Exceptional Quality</td>
+    <td>Brewer</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Notice Poison in a Beverage</td>
+    <td>Brewer</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Skin an Animal and Tan the Hide</td>
+    <td>Butcher, Shepherd, or Tanner</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Slaughter and Butcher an Animal</td>
+    <td>Butcher, Cook, or Shepherd</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Reduce a Legal Fine or Tax By Half the Result of the Check in gp (up to 75%)</td>
+    <td>Clerk</td>
+    <td>20+</td>
+  </tr>
+  <tr>
+    <td>Cook a Meal of Exceptional Quality</td>
+    <td>Cook</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Notice Poison in Food</td>
+    <td>Cook</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Find Potential Clients within an Establishment or Large Group</td>
+    <td>Courtesan</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Continue Steering a Vehicle When You Take Damage</td>
+    <td>Driver or Sailor</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Take Cover (As The Ride Skill) While Steering a Vehicle</td>
+    <td>Driver or Sailor</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Identify a Non-Creature Plant</td>
+    <td>Farmer or Gardener</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Rejuvinate Dying Plants</td>
+    <td>Farmer or Gardener</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Provide 1 Day's Worth of Food for Yourself and Others in the Wild</td>
+    <td>Fisherman or Trapper</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Recall the Rules of a Game of Chance</td>
+    <td>Gambler</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Get a Hunch Regarding Whether a Game is Rigged</td>
+    <td>Gambler</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Reduce an Average or Lower Cost of Living by 50%</td>
+    <td>Innkeeper</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Sate Hunger or Thirst for 1 Day</td>
+    <td>Herbalist</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Identify Common Medicinal Herbs</td>
+    <td>Herbalist</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Identify Rare Medicinal Herbs</td>
+    <td>Herbalist</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Aid Another on a Knowledge Check Using Reference Material</td>
+    <td>Librarian</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Recall the Name of a Rare Book</td>
+    <td>Librarian</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Determine Where an Item was Manufactured</td>
+    <td>Merchant</td>
+    <td>10+</td>
+  </tr>
+  <tr>
+    <td>Recall Where a Common Good Fetches a Higher Price</td>
+    <td>Merchant</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Safely Deliver a Child</td>
+    <td>Midwife</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Safely Deliver a Child Despite Complications</td>
+    <td>Midwife</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Grind a Small Piece of Nonmagical Substance into Powder</td>
+    <td>Miller</td>
+    <td>10 + Hardness</td>
+  </tr>
+  <tr>
+    <td>Identify Common Metal or Semiprecious Stone</td>
+    <td>Miner</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Identify Rare Metal or Precious Gem</td>
+    <td>Miner</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Ignore Half Hardness When Attacking a Stone or Metal Object</td>
+    <td>Miner</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Increase Carrying Capacity for 8 Hours as if Strength were 2 Higher</td>
+    <td>Porter</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Unload a Vessel in Half the Normal Time</td>
+    <td>Porter</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Navigate a Ship in Fair Conditions</td>
+    <td>Sailor</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Pilot a Ship Safely Through a Hazardous Seaway</td>
+    <td>Sailor</td>
+    <td>25+</td>
+  </tr>
+  <tr>
+    <td>Determine Which Scribe Wrote a Document</td>
+    <td>Scribe</td>
+    <td>10+</td>
+  </tr>
+  <tr>
+    <td>Copy a Document (30 Minutes per Page; Requires a Blank Book)</td>
+    <td>Scribe</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Illuminate a Manuscript (1 Hour per Page)</td>
+    <td>Scribe</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Determine the Quality of Woolen Textiles</td>
+    <td>Shepherd</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Determine Whether a Weapon or Armor is of Masterwork Quality</td>
+    <td>Soldier</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Estimate the Size of a Military Force</td>
+    <td>Soldier</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Identify Advantages and Disadvantages of a Military Formation</td>
+    <td>Soldier</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Keep Horses Fed in the Wild</td>
+    <td>Stable Master</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Fit or Remove Barding in Half the Normal Time</td>
+    <td>Stable Master</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Recognize Damaged or Sabotaged Horse Tack</td>
+    <td>Stable Master</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Determine the Quality of Leatherwork (and Tell If It's Masterwork Quality)</td>
+    <td>Tanner</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Aid Another on an Skill Check to Get Out of a Trap or Snare</td>
+    <td>Trapper</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Reset a Trap in Half the Normal Amount of Time</td>
+    <td>Trapper</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Scavenge Wood Suitable for Campfire or Shelter</td>
+    <td>Woodcutter</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Ignore Half Hardness When Attacking Wooden Object</td>
+    <td>Woodcutter</td>
+    <td>20</td>
+  </tr>
+</table>", action: "Not applicable. A single check generally represents a week of work.", try_again: "Varies. An attempt to use a Profession skill to earn income cannot be retried. You are stuck with whatever weekly wage your check result brought you. Another check may be made after a week to determine a new income for the next period of time. An attempt to accomplish some specific task can usually be retried.", special: "Untrained laborers and assistants (that is, characters without any ranks in Profession) earn an average of 1 silver piece per day.", skill_unlock_5: "When using Profession checks to earn income, you earn gold pieces equal to the result of your check each week.", skill_unlock_10: "When attempting Profession checks, you can roll twice and take the better result. When answering questions about your Profession, you can always take 10.", skill_unlock_15: "You can attempt checks to earn income once per day instead of once per week.", skill_unlock_20: "When attempting Profession checks, you can choose to roll once instead of twice. If you do and the result of the roll is less than 10, replace it with 10. When answering questions about your Profession, you can always take 20.", customizable: true)
+
 ride = Skill.create!(name: "Ride", ability_score: "Dexterity", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
 sense_motive = Skill.create!(name: "Sense Motive", ability_score: "Wisdom", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
 sleight_of_hand = Skill.create!(name: "Sleight of Hand", ability_score: "Dexterity", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
