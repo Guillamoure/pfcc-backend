@@ -1073,38 +1073,481 @@ You also can rig simple devices such as saddles or wagon wheels to work normally
 
 Open Locks: The DC for opening a lock depends on its quality. If you do not have a set of thieves’ tools, these DCs increase by 10.
 
-  <table>
-    <tr>
-      <th>Lock Quality</th>
-      <th>Disable Device DC</th>
-    </tr>
-    <tr>
-      <td>Simple</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <td>Average</td>
-      <td>25</td>
-    </tr>
-    <tr>
-      <td>Good</td>
-      <td>30</td>
-    </tr>
-    <tr>
-      <td>Superior</td>
-      <td>40</td>
-    </tr>
+<table>
+  <tr>
+    <th>Lock Quality</th>
+    <th>Disable Device DC</th>
+  </tr>
+  <tr>
+    <td>Simple</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Average</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Good</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>Superior</td>
+    <td>40</td>
+  </tr>
 </table>", action: "The amount of time needed to make a Disable Device check depends on the task, as noted above. Disabling a simple device takes 1 round and is a full-round action. An intricate or complex device requires 1d4 or 2d4 rounds. Attempting to open a lock is a full-round action.", try_again: "Varies. You can retry checks made to disable traps if you miss the check by 4 or less. You can retry checks made to open locks.", special: "A rogue who beats a trap’s DC by 10 or more can study the trap, figure out how it works, and bypass it without disarming it. A rogue can rig a trap so her allies can bypass it as well.
 
 Characters with the trapfinding ability (like rogues) can disarm magic traps. A magic trap generally has a DC of 25 + the level of the spell used to create it.
 The spells fire trap, glyph of warding, symbol, and teleportation circle also create traps that a rogue can disarm with a successful Disable Device check. Spike growth and spike stones, however, create magic hazards against which Disable Device checks do not succeed. See the individual spell descriptions for details.", skill_unlock_5: "Reduce the time required to disarm a trap or open a lock by taking a –5 penalty on your Disable Device check for each step by which you reduce the time required: 2d4 rounds, 1d4 rounds, 1 round, a standard action, a move action, a swift action.", skill_unlock_10: "You can disarm magical traps at a –10 penalty even if you lack the trapfinding ability. If you possess the trapfinding ability, when attempting to disable magic traps, you never trigger them, even if you perform the trigger action (such as looking at a symbol). If you fail the check, you can still trigger the trap, and you can’t use this ability to bypass it.", skill_unlock_15: "When attacked by a trap, you can attempt a Disable Device check as an immediate action (adding your trap sense bonus, if any) opposed by the trap’s attack roll or its save DC. If you succeed, you take half damage (or no damage if you exceed the DC by at least 10).", skill_unlock_20: "You halve the penalties for performing a quick disarm as described in the 5 Ranks entry. If you possess the trapfinding ability and accept a –20 penalty while using the ability unlocked at 15 ranks, all nearby allies gain the benefit, and you disable the trap as an immediate action before it can trigger if you exceed the DC by at least 10.")
 
-disguise = Skill.create!(name: "Disguise", ability_score: "Charisma", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
-escape_artist = Skill.create!(name: "Escape Artist", ability_score: "Dexterity", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
-fly = Skill.create!(name: "Fly", ability_score: "Dexterity", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
-handle_animal = Skill.create!(name: "Handle Animal", ability_score: "Charisma", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
-heal = Skill.create!(name: "Heal", ability_score: "Wisdom", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
-intimidate = Skill.create!(name: "Intimidate", ability_score: "Charisma", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+disguise = Skill.create!(name: "Disguise", ability_score: "Charisma", untrained: true, blurb: "You are skilled at changing your appearance.", description: "Your Disguise check result determines how good the disguise is, and it is opposed by others’ Perception check results. If you don’t draw any attention to yourself, others do not get to make Perception checks. If you come to the attention of people who are suspicious (such as a guard who is watching commoners walking through a city gate), it can be assumed that such observers are taking 10 on their Perception checks.
+
+You get only one Disguise check per use of the skill, even if several people make Perception checks against it. The Disguise check is made secretly, so that you can’t be sure how good the result is.
+
+The effectiveness of your disguise depends on how much you’re changing your appearance. Disguise can be used to make yourself appear like a creature that is one size category larger or smaller than your actual size. This does not change your actual size or reach, should you enter combat while wearing such a disguise.
+
+*Per step of difference between your actual age category and your disguised age category. The steps are: young (younger than adulthood), adulthood, middle age, old, and venerable.
+
+<table>
+  <tr>
+    <th>Disguise</th>
+    <th>Disguise Check Modifier</th>
+  </tr>
+  <tr>
+    <td>Minor Details Only</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Disguised as a Different Gender</td>
+    <td>-2</td>
+  </tr>
+  <tr>
+    <td>Disguised as a Different Ancestry</td>
+    <td>-2</td>
+  </tr>
+  <tr>
+    <td>Disguised as a Different Age Category</td>
+    <td>-2*</td>
+  </tr>
+  <tr>
+    <td>Disguised as a Different Size Category</td>
+    <td>-10</td>
+  </tr>
+</table>
+
+If you are impersonating a particular individual, those who know what that person looks like get a bonus on their Perception checks according to the table below. Furthermore, they are automatically considered to be suspicious of you, so opposed checks are always called for.
+
+<table>
+  <tr>
+    <th>Familiarity</th>
+    <th>Viewer's Perception Check Bonus</th>
+  </tr>
+  <tr>
+    <td>Recognizes on Sight</td>
+    <td>+4</td>
+  </tr>
+  <tr>
+    <td>Friends or Associates</td>
+    <td>+6</td>
+  </tr>
+  <tr>
+    <td>Close Friends</td>
+    <td>+8</td>
+  </tr>
+  <tr>
+    <td>Intimate</td>
+    <td>+10</td>
+  </tr>
+</table>
+
+An individual makes a Perception check to see through your disguise immediately upon meeting you and again every hour thereafter. If you casually meet a large number of different creatures, each for a short time, check once per day or hour, using an average Perception modifier for the group.", action: "Creating a disguise requires 1d3 × 10 minutes of work. Using magic (such as the disguise self spell) reduces this action to the time required to cast the spell or trigger the effect.", try_again: "Yes. You may try to redo a failed disguise, but once others know that a disguise was attempted, they’ll be more suspicious.", special: "Magic that alters your form, such as alter self, disguise self, polymorph, or shapechange, grants you a +10 bonus on Disguise checks (see the individual spell descriptions). Divination magic that allows people to see through illusions (such as true seeing) does not penetrate a mundane disguise, but it can negate the magical component of a magically enhanced one.
+
+You must make a Disguise check when you cast a simulacrum spell to determine how good the likeness is.", skill_unlock_5: "You can create a disguise in 1d3 minutes.", skill_unlock_10: "You can create a disguise in 1d3 rounds. If you take the full normal amount of time to create your disguise, you take no penalty for disguising your gender, race, or age category.", skill_unlock_15: "You can create a disguise as a full-round action.", skill_unlock_20: "You can create a disguise as a standard action, or as a full-round action combined with a Bluff check to create a diversion to hide.")
+
+escape_artist = Skill.create!(name: "Escape Artist", ability_score: "Dexterity", untrained: true, blurb: "Your training allows you to slip out of bonds and escape from grapples.", description: "The table below gives the DCs needed to escape various forms of restraints.
+
+Ropes: The DC of your Escape Artist check is equal to the binder’s Combat Maneuver Bonus +20.
+
+Manacles and Masterwork Manacles: The DC for manacles is set by their construction (see the table below).
+
+Tight Space: The DC noted is for getting through a space through which your head fits but your shoulders don’t. If the space is long, you may need to make multiple checks. You can’t squeeze through a space that your head does not fit through.
+
+Grappler: You can make an Escape Artist check in place of a combat maneuver check to escape a grapple or a pin.
+
+<table>
+  <tr>
+    <th>Restraint</th>
+    <th>Escape Artist DC</th>
+  </tr>
+  <tr>
+    <td>Rope/Bindings</td>
+    <td>Binder's CMB+20</td>
+  </tr>
+  <tr>
+    <td>Net, animate rope, command plants, control plants, or entangle</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>snare Spell</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>Manacles</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>Tight Space</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>Masterwork Manacles</td>
+    <td>35</td>
+  </tr>
+  <tr>
+    <td>Grapple</td>
+    <td>Grappler's CMD</td>
+  </tr>
+</table>", action: "Making an Escape Artist check to escape from rope bindings, manacles, or other restraints (except a grappler) requires 1 minute of work. Escaping from a net or an animate rope, command plants, control plants, or entangle spell is a full-round action. Escaping from a grapple or pin is a standard action. Squeezing through a tight space takes at least 1 minute, maybe longer, depending on how long the space is.", try_again: "Varies. You can make another check after a failed check if you’re squeezing your way through a tight space, making multiple checks. If the situation permits, you can make additional checks, or even take 20, as long as you’re not being actively opposed. If the DC to escape from rope or bindings is higher than 20 + your Escape Artist skill bonus, you cannot escape from the bonds using Escape Artist.", special: "", skill_unlock_5: "If you take a –10 penalty, the time required to use this skill is halved; escaping a grapple or pin is a move action, and escaping a net, animate rope, command plants, or control plants spell is a standard action.", skill_unlock_10: "You can attempt to escape from any entangling effect as a standard action with an Escape Artist check (DC = the effect’s save DC + 10). You can attempt an Escape Artist check as a move action to set the DC for a creature to escape from ropes or bindings; you gain a +10 bonus on the check if you instead attempt it as a full-round action.", skill_unlock_15: "You can escape any entangling effect (as above) as a move action. As a standard action, you can attempt an Escape Artist check (DC = the effect’s save DC + 20) to suppress a slow or paralysis effect for 1 round, plus 1 round for every 5 by which you exceed the DC. This action counts as purely mental for the purpose of being able to take it while paralyzed.", skill_unlock_20: "You can escape being entangled, grappled, or pinned as an immediate action with an Escape Artist check (DC = the effect’s DC + 10 or the attacker’s CMB + 10). You can attempt to suppress a slow or paralysis effect as a standard action (increasing the DC by 10), a move action (increasing the DC by 15), or an immediate action (increasing the DC by 20).")
+
+fly = Skill.create!(name: "Fly", ability_score: "Dexterity", untrained: true, blurb: "You are skilled at flying, through either the use of wings or magic, and can perform daring or complex maneuvers while airborne. Note that this skill does not give you the ability to fly.", description: "You generally need only make a Fly check when you are attempting a complex maneuver. Without making a check, a flying creature can remain flying at the end of its turn so long as it moves a distance greater than half its speed. It can also turn up to 45 degrees by sacrificing 5 feet of movement, can rise at half speed at an angle of 45 degrees, and can descend at any angle at normal speed. Note that these restrictions only apply to movement taken during your current turn. At the beginning of the next turn, you can move in a different direction than you did the previous turn without making a check. Taking any action that violates these rules requires a Fly check. The difficulty of these maneuvers varies depending upon the maneuver you are attempting, as noted on the following chart.
+
+<table>
+  <tr>
+    <th>Flying Maneuver</th>
+    <th>Fly DC</th>
+  </tr>
+  <tr>
+    <td>Move Less Than Half Speed and Remain Flying</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Hover</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Turn Greater Than 45 Degrees by Spending 5 Feet of Movement</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Turn 180 Degrees by Spending 10 Feet of Movement</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Fly Up at Greater Than 45 Degree Angle</td>
+    <td>20</td>
+  </tr>
+</table>
+
+Attacked While Flying: You are not considered flat-footed while flying. If you are flying using wings and you take damage while flying, you must make a DC 10 Fly check to avoid losing 10 feet of altitude. This descent does not provoke an attack of opportunity and does not count against a creature’s movement.
+
+Collision While Flying: If you are using wings to f ly and you collide with an object equal to your size or larger, you must immediately make a DC 25 Fly check to avoid plummeting to the ground, taking the appropriate falling damage.
+
+Avoid Falling Damage: If you are falling and have the ability to f ly, you can make a DC 10 Fly check to negate the damage. You cannot make this check if you are falling due to a failed Fly check or a collision.
+
+High Wind Speeds: Flying in high winds adds penalties on your Fly checks as noted on Table 4–5. “Checked” means that creatures of that size or smaller must succeed on a DC 20 Fly check to move at all so long as the wind persists. “Blown away” means that creatures of that size or smaller must make a DC 25 Fly check or be blown back 2d6 × 10 feet and take 2d6 points of nonlethal damage. This check must be made every round the creature remains airborne. A creature that is blown away must still make a DC 20 Fly check to move due to also being checked.
+
+<table>
+  <tr>
+    <th>Wind Force</th>
+    <th>Wind Speed</th>
+    <th>Checked Size</th>
+    <th>Blown Away Size</th>
+    <th>Fly Penalty</th>
+  </tr>
+  <tr>
+    <td>Light</td>
+    <td>0 - 10 mph</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>Moderate</td>
+    <td>11 - 20 mph</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>Strong</td>
+    <td>21 - 30 mph</td>
+    <td>Tiny</td>
+    <td>-</td>
+    <td>-2</td>
+  </tr>
+  <tr>
+    <td>Severe</td>
+    <td>31 - 50 mph</td>
+    <td>Small</td>
+    <td>Tiny</td>
+    <td>-4</td>
+  </tr>
+  <tr>
+    <td>Windstorm</td>
+    <td>51 - 74 mph</td>
+    <td>Medium</td>
+    <td>Small</td>
+    <td>-8</td>
+  </tr>
+  <tr>
+    <td>Hurricane</td>
+    <td>75 - 175 mph</td>
+    <td>Large</td>
+    <td>Medium</td>
+    <td>-12</td>
+  </tr>
+  <tr>
+    <td>Tornado</td>
+    <td>175+ mph</td>
+    <td>Huge</td>
+    <td>Medium</td>
+    <td>-16</td>
+  </tr>
+</table>", action: "None. A Fly check doesn’t require an action; it is made as part of another action or as a reaction to a situation.", try_again: "Varies. You can attempt a Fly check to perform
+the same maneuver on subsequent rounds. If you are using wings and you fail a Fly check by 5 or more, you plummet to the ground, taking the appropriate falling damage.", special: "Creatures with a fly speed treat the Fly skill as a class skill. A creature with a natural fly speed receives a bonus (or penalty) on Fly skill checks depending on its maneuverability: Clumsy –8, Poor –4, Average +0, Good +4, Perfect +8. Creatures without a listed maneuverability rating are assumed to have average maneuverability.
+
+A creature larger or smaller than Medium takes a size bonus or penalty on Fly checks depending on its size category: Fine +8, Diminutive +6, Tiny +4, Small +2, Large –2, Huge –4, Gargantuan –6, Colossal –8.
+You cannot take ranks in this skill without a natural means of flight or gliding. Creatures can also take ranks in Fly if they possess a reliable means of flying every day • (either through a spell or other special ability).", skill_unlock_5: "A successful DC 20 Fly check allows you to make a 45-degree turn without sacrificing movement.", skill_unlock_10: "A successful DC 30 Fly check allows you to ascend at a 45-degree angle at full speed. You treat falls after midair collisions as 10 feet shorter with a successful DC 10 Fly check, plus 10 feet for every 10 points by which you exceed the DC.", skill_unlock_15: "A successful DC 30 Fly check allows you to make a 90-degree turn without sacrificing movement, or a 180-degree turn by sacrificing 5 feet of movement. You are considered one size category larger when determining wind effects on Fly checks.", skill_unlock_20: "A successful DC 35 Fly check allows you to fly straight up at full speed. You are considered two size categories larger when determining wind effects on Fly checks.")
+
+handle_animal = Skill.create!(name: "Handle Animal", ability_score: "Charisma", untrained: false, blurb: "You are trained at working with animals, and can teach • them tricks, get them to follow your simple commands, or
+even domesticate them.", description: "The DC depends on what you are trying to do.
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Handle Animal DC</th>
+  </tr>
+  <tr>
+    <td>Handle an Animal</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>'Push' an Animal</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Teach an Animal a Trick</td>
+    <td>15 - 20</td>
+  </tr>
+  <tr>
+    <td>Train an Animal for General Purpose</td>
+    <td>15 - 20</td>
+  </tr>
+  <tr>
+    <td>Rear a Wild Animal</td>
+    <td>15 + HD of Animal</td>
+  </tr>
+</table>
+
+Handle an Animal: This task involves commanding an animal to perform a task or trick that it knows. If the animal is wounded or has taken any nonlethal damage or ability score damage, the DC increases by 2. If your check succeeds, the animal performs the task or trick on its next action.
+
+Push an Animal: To push an animal means to get it to perform a task or trick that it doesn’t know but is physically capable of performing. This category also covers making an animal perform a forced march or forcing it to hustle for more than 1 hour between sleep cycles. If the animal is wounded or has taken any nonlethal damage or ability score damage, the DC increases by 2. If your check succeeds, the animal performs the task or trick on its next action.
+
+Teach an Animal a Trick: You can teach an animal a specific trick with one week of work and a successful Handle Animal check against the indicated DC. An animal with an Intelligence score of 1 can learn a maximum of three tricks, while an animal with an Intelligence score of 2 can learn a maximum of six tricks.The following tricks can be taught to animals by training the animal for a week and making a successful Handle Animal skill check against the listed DC.
+
+Aid (DC 20): The animal can use the aid another action to aid a specific ally in combat by attacking a specific foe the ally is fighting. You point to a particular creature that you wish the animal to aid, and you point to another that you want it to make an attack roll against, and it will comply if able. The normal creature type restrictions governing the attack trick still apply.
+
+Attack (DC 20) The animal attacks apparent enemies. You may point to a particular creature that you wish the animal to attack, and it will comply if able. Normally, an animal will attack only humanoids, monstrous humanoids, giants, or other animals. Teaching an animal to attack all creatures (including such unnatural creatures as undead and aberrations) counts as two tricks.
+
+Bombard (DC 20): A flying animal can deliver projectiles on command, attempting to drop a specified item that it can carry (often alchemist’s fire or a similar splash weapon) on a designated point or opponent, using its base attack bonus to determine its attack roll. The animal cannot throw the object, and it must be able to fly directly over the target.
+
+Break Out (DC 20): On command, the animal attempts to break or gnaw through bars or bindings restricting it, its handler, or a person indicated by the handler. If the animal cannot break the restraints by itself, its attempts grant the restricted creature a +4 circumstance bonus on Escape Artist checks. Furthermore, the animal can take certain basic actions such as lifting a latch or bringing its master an unattended key. Weight and Strength restrictions still apply, and pickpocketing a key or picking any sort of lock is still far beyond the animal‘s ability.
+
+Build Simple Structure (DC 25): The companion can build simple structures on command, limited by its natural abilities and inclinations. The companion is able to build only structures that creatures of its type would naturally build on their own, and this trick merely allows the handler to direct the companion on when and where to build such structures. For example, a spider could be commanded to spin a web between two trees, but it could not be made to create a hammock or a tent out of silk. Similarly, a beaver could be ordered to make a dam or lodge, an alligator a dome-shaped nest, and any burrowing creature a small tunnel or hole. In general, this process takes 10 minutes for each 5-foot square the structure occupies, but depending on the terrain and the type of structure, it might take as little as 1 minute or as much as 1 hour or more, at the GM’s discretion. Only companions that naturally build structures can learn this trick.
+
+Bury (DC 15): an animal with this trick can be instructed to bury an object in its possession. The animal normally seeks a secluded place to bury its object. an animal that knows both the bury and fetch tricks can be instructed to fetch an item it has buried.
+
+Cocoon (DC 15): The companion can cocoon an object or a helpless or willing Huge or smaller creature in webbing. The amount of time this takes depends on the size of the creature or object to be cocooned, as outlined on the following table. The cocoon has hardness 2 and 10 hit points. A creature trapped within the cocoon is effectively pinned, and it can attempt an Escape Artist check or combat maneuver check as a full-round action to escape (DC = 20 + the companion’s CMD). Alternatively, a DC 25 Strength check can break the cocoon. The companion must know the spin silk trick before it can learn this trick.
+
+<table>
+  <tr>
+    <th>Target Size</th>
+    <th>Time to Cocoon</th>
+  </tr>
+  <tr>
+    <td>Tiny or Smaller</td>
+    <td>1 Minute</td>
+  </tr>
+  <tr>
+    <td>Small or Medium</td>
+    <td>10 Minutes</td>
+  </tr>
+  <tr>
+    <td>Large</td>
+    <td>1 Hour</td>
+  </tr>
+  <tr>
+    <td>Huge</td>
+    <td>4 Hours</td>
+  </tr>
+</table>
+
+Come (DC 15) The animal comes to you, even if it normally would not do so.
+
+Defend (DC 20) The animal defends you (or is ready to defend you if no threat is present), even without any command being given. Alternatively, you can command the animal to defend a specific other character.
+
+Deliver (DC 15): The animal takes an object (one you or an ally gives it, or one that it recovers with the fetch trick) to a place or person you indicate. If you indicate a place, the animal drops the item and returns to you. If you indicate a person, the animal stays adjacent to the person until the item is taken. (Retrieving an item from an animal using the deliver trick is a move action.)
+
+Demolish (DC 15): The companion can be commanded to attack and damage objects and structures. A companion must know the attack trick before it can be taught the demolish trick, and the companion must be trained to attack creatures of all types. The companion’s handler can direct it either to make natural attacks against the object in question or to make a Strength check to attempt to break it (if applicable).
+
+Detect (DC 25): The animal is trained to seek out the smells of air currents, alchemical items and poisons, unusual noises or echoes, and other common elements that signify the presence of potential dangers or secret passages. When commanded, the animal uses its Perception skill to try to pinpoint the source of anything that strikes it as out of the ordinary about a room or location. Note that because the animal is not intelligent, any number of doors, scents, strange mechanisms, or unfamiliar objects might catch the animal’s attention, and it cannot attempt the same Perception check more than once in this way.
+
+Down (DC 15) The animal breaks off from combat or otherwise backs down. An animal that doesn’t know this trick continues to fight until it must flee (due to injury, a fear effect, or the like) or its opponent is defeated.
+
+Entertain (DC 25): The animal can dance, sing, or perform some other impressive and enjoyable trick to entertain those around it. At the command of its owner, the animal can attempt a Perform check (or a Charisma check if it has no ranks in Perform) to show off its talent. Willing onlookers or those who fail an opposed Sense Motive check take a –2 penalty on Perception checks to notice anything but the animal entertaining them. Once an onlooker observes an animal’s entertain trick, that creature cannot be distracted in this way by the same animal for 24 hours. Tricksters and con artists often teach their animals to perform this trick while they pickpocket viewers or sneak about unnoticed.
+
+Exclusive (DC 20): The animal takes directions only from the handler who taught it this trick. If an animal has both the exclusive and serve tricks, it takes directions only from the handler that taught it the exclusive trick and those creatures indicated by the trainer’s serve command. An animal with the exclusive trick does not take trick commands from others even if it is friendly or helpful toward them (such as through the result of a charm animal spell), though this does not prevent it from being controlled by other enchantment spells (such as dominate animal), and the animal still otherwise acts as a friendly or helpful creature when applicable.
+
+Feint (DC 20): The companion is trained to feint against opponents. A companion must know the attack trick before it can be taught the feint trick, and it performs feints only against targets it would normally attack.
+
+Fetch (DC 15): The animal goes and gets something. If you do not point out a specific item, the animal fetches a random object.
+
+Flank (DC 20): You can instruct an animal to attack a foe you point to and to always attempt to be adjacent to (and threatening) that foe. If you or an ally is also threatening the foe, the animal attempts to flank the foe, if possible. While animals following the attack trick will flank when convenient, this trick instructs them to flank even if doing so denies it a full attack or puts the animal companion at an inconvenience or at risk, such as from attacks of opportunity, dangerous positioning, or difficult terrain. The animal must know the attack trick before it can learn this trick, and it performs it only against foes it would normally attack.
+
+Flee (DC 20): The animal attempts to run away or hide as best it can, returning only when its handler commands it to do so. Until such a command is received, the animal does its best to track its handler and any accompanying creatures, remaining hidden but within range of its sight or hearing. This trick is particularly useful for adventurers and thieves in that it allows the animal to evade capture, and then return later to help free its friends.
+
+Get Help (DC 20): With this trick, a trainer can designate a number of creatures up to the animal’s Intelligence score as “help.” When the command is given, the animal attempts to find one of those creatures and bring it back to the handler, even if that means journeying a long distance to the last place it encountered the target creature.
+
+Guard (DC 20) The animal stays in place and prevents others from approaching.
+
+Guide (DC 15): The companion can serve as a guide to a character that is blinded or otherwise unable to see. While serving as a guide, the companion remains adjacent to the guided creature at all times, readying an action each round to move when that creature moves. This allows the guided creature to automatically succeed at Acrobatics checks to move at more than half speed while blinded. Additionally, the companion identifies obstacles in the guided creature’s path and pushes them, pulls them, or otherwise signals to the creature how to avoid them, allowing the guided creature to locate and move around obstacles such as hazards, opponents, and other terrain features as though she were able to see them (though she can’t distinguish between obstacles). Finally, while serving as a guide, the companion indicates to the guided creature the presence and direction of any adjacent allies, allowing the guided creature to pinpoint the locations of such creatures. The companion can serve as a guide only as long as it is able to see in some fashion, and its ability to detect and avoid creatures and obstacles is limited by what it is able to perceive normally.
+
+Heel (DC 15) The animal follows you closely, even to places where it normally wouldn’t go.
+
+Hunt (DC 20): This trick allows an animal to use its natural stalking or foraging instincts to find food and return it to the animal’s handler. an animal with this trick can attempt Survival checks (or Wisdom checks, if the animal has no ranks in Survival) to provide food for others or lead them to water and shelter (as the “get along in the wild” use of the Survival skill). an animal with this trick can use the aid another action to grant a bonus on its handlers Survival checks for these purposes.
+
+Intimidate (DC 15): The companion bares its teeth, barks, bristles, growls, or otherwise threatens a creature you designate, or, alternatively, it can be trained to do so when it encounters any creature besides its handler. The companion takes a –4 penalty on Intimidate checks against creatures other than those with the animal or humanoid types unless it has also been trained to attack creatures of any type. A companion that knows this trick automatically uses the aid another action to assist Intimidate checks attempted by its handler, provided that it is within 15 feet of its handler at the time and has not been ordered to perform another task.
+
+Maneuver (DC 20): The animal is trained to use a specific combat maneuver on command, even when it naturally wouldn’t do so (animals typically use combat maneuvers only when using a monster ability to make a free combat maneuver, since otherwise it would provoke an attack of opportunity). an animal must know the attack trick before it can be taught the maneuver trick, and it performs maneuvers only against targets it would normally attack. This trick can be taught to an animal multiple times. Each time it is taught, the animal can be commanded to use a different combat maneuver.
+
+Mark Territory (DC 25): Whether by spraying musk, rubbing its back against trees and rocks, or simply howling loudly, the companion lets other nearby animals know that it has claimed an area. By spending 1 hour performing this trick, the companion can mark an area of up to half a square mile in this fashion. If it does so, after 24 hours, whenever there would be a random encounter within that area that involves a wild animal or other creature of Intelligence 2 or less (including vermin but not other mindless creatures, such as oozes and mindless undead), there is a 25% chance that the encounter doesn’t actually occur, as creatures might be warded off by the markings. The companion must renew any territorial markings at least once per week, or they lose their effectiveness. There is also a 10% chance per week that the markings attract the attention of a powerful predator, which actively seeks out the companion to challenge it (and its master) for the territory.
+
+Menace (DC 20): A menacing animal attempts to keep a creature you indicate from moving. It does its best to dissuade the target, but it attacks only if the target attempts to move from its present location or take any significant action (particularly a hostile-seeming action). As soon as the target stops moving, the animal ceases attacking but it continues to menace.
+
+Milk Venom (DC 20): The companion can be coaxed into providing a single dose of venom on command. This process takes 10 minutes, and it requires a vial or similar container in which to store the poison. A companion that has been specifically trained to be milked of its venom never bites, stings, or otherwise poisons its handler when being milked, although the handler must still succeed at a Handle Animal check to successfully harvest the venom. A companion must have the poison ability to be taught this trick.
+
+Perform (DC 15) The animal performs a variety of simple tricks, such as sitting up, rolling over, roaring or barking, and so on.
+
+Pose as Scenery (DC 20): The companion freezes in place, seeming to be a mundane plant rather than a plant creature. The companion must have taken root in order to use this trick. It attempts a Disguise check with a +8 circumstance bonus, opposed by the Perception checks of observers. If it succeeds at the opposed check, the observer mistakes it for an ordinary, harmless plant. The companion must have the take root trick in order to learn this trick. Only plant companions can learn this trick.
+
+Receive Spell (DC 25): The companion has been trained to be the recipient of a specific spell (chosen at the time the animal is taught the trick), allowing it to fully take advantage of the spell’s effects. The spell should be one that grants the companion an ability it might not normally be intelligent enough to make use of or one that it might not even realize it has (such as air walk ). The companion is able to recognize when it has been affected by this spell and can take full advantage of the spell’s effects. At the GM’s discretion, a companion can also be trained to receive certain nonspell effects, such as those granted by an elixir of fire breathing. The companion can be taught this trick multiple times; each time it learns this trick, it becomes trained to utilize a different spell effect.
+
+Rescue (DC 20): The companion has been trained to drag its handler or another creature that the handler designates out of danger and to a safe place in the event that the handler or creature is incapacitated. If a creature that the companion is defending is rendered helpless or is slain, the companion will carry, drag, or otherwise move that creature out of danger. If the companion knows the get help trick, it will attempt to bring the creature it is rescuing to one of the creatures designated as “help.” Otherwise, you can designate a single location in advance as a safe place, and the companion will attempt to bring the creature it is rescuing to that place. If it is unable to do either of these, the companion simply moves the creature to the nearest location of relative safety. A companion must have the deliver and guard tricks in order to learn this trick.
+
+Seek (DC 15) The animal moves into an area and looks around for anything that is obviously alive or animate.
+
+Serve (DC 15): An animal with this trick willingly takes orders from a creature you designate. If the creature you tell the animal to serve knows what tricks the animal has, it can instruct the animal to perform these tricks using your Handle Animal bonus on the check instead of its own. The animal treats the designated ally as friendly. An animal can unlearn this trick with 1 week of training. This trick can be taught to an animal multiple times. Each time it is taught, the animal can serve an additional creature you designate.
+
+Sneak (DC 15): The animal can be ordered to make Stealth checks in order to stay hidden and to continue using Stealth even when circumstances or its natural instincts would normally cause it to abandon secrecy.
+
+Speak (DC 25): The companion is able to communicate very simple concepts through barks, gestures, whistles, or similar actions. The companion’s vocabulary is extremely limited, generally restricted to “yes,” “no,” and counting up to three. The companion is also able to recognize and respond to up to two specific questions per point of Intelligence. The companion does not so much understand the words as recognize the sound of them, and it responds accordingly. This trick does not actually increase the companion’s capacity to understand concepts and ideas; it can be taught a way to communicate the concept of “food,” for example, but it won’t distinguish cooked food from raw food, and it might not even recognize as food anything that is not part of its own diet. A companion must have an Intelligence score of 2 or higher to learn this trick.
+
+Spin Silk (DC 20): The companion can create strands of delicate yet incredibly strong silk. Harvesting the silk takes 10 minutes, and it can be done once per day. This silk functions identically to a silk rope. The companion can produce a total number of feet of silk equal to 10 times its Constitution score per day, which can be divided as the handler chooses in 10-foot increments. Silk produced in this way degrades into uselessness after 24 hours. Only companions with the web ability can learn this trick.
+
+Stay (DC 15) The animal stays in place, waiting for you to return. It does not challenge other creatures that come by, though it still defends itself if it needs to.
+
+Subdue (DC 15): The companion can attempt to subdue opponents. Once the command is given, the companion makes all its natural attacks as nonlethal attacks (taking the typical –4 penalty on attack rolls when using normally lethal attacks) until ordered to do otherwise.
+
+Take Root (DC 15): The companion extends its roots into the soil beneath it, anchoring itself in place and drawing water and nutrients from the soil. Taking root is a full-round action that provokes attacks of opportunity. While rooted, the companion cannot move, but it can otherwise act normally and gains a +4 bonus to CMD to resist bull rush, drag, overrun, reposition, and trip attempts. If the companion remains rooted for at least 1 hour, it absorbs enough water and nutrients to feed itself for a day. A separate command causes the companion to uproot itself as a full-round action. The companion can take root only in areas of soft soil. Only plant companions can learn this trick.
+
+Track (DC 20) The animal tracks the scent presented to it. (This requires the animal to have the scent ability)
+
+Throw Rider (DC 15): The animal can attempt to fling a creature riding it to the ground. Treat this as a trip combat maneuver that applies to all creatures riding the animal, and that does not provoke attacks of opportunity. An animal that knows the throw rider and exclusive tricks can be instructed to attempt to automatically throw anyone other than its trainer who attempts to ride it.
+
+Watch (DC 15): The animal can be commanded to keep watch over a particular area, such as a campsite, and to raise an alarm if it notices any dangerous or sizable creature entering the area.
+
+Withhold Venom (DC 20): The companion can be ordered to avoid injecting poison into creatures it strikes with whatever natural attack would normally deliver venom. As long as the companion has been ordered to withhold its venom, successful hits with that natural attack deal damage as normal and convey all other effects that they normally would, but they do not expose the target to the companion’s poison. Only companions with the poison special ability can learn this trick.
+
+Work (DC 15) The animal pulls or pushes a medium or heavy load.
+
+Rather than teaching an animal individual tricks, you can simply train it for a general purpose. Essentially, an animal’s purpose represents a preselected set of known tricks that fit into a common scheme, such as guarding or heavy labor. The animal must meet all the normal prerequisites for all tricks included in the training package. If the package includes more than three tricks, the animal must have an Intelligence score of 2.
+
+An animal can be trained for only one general purpose, though if the creature is capable of learning additional tricks (above and beyond those included in its general purpose), it may do so. Training an animal for a purpose requires fewer checks than teaching individual tricks does, but no less time.
+
+Air Support (DC 20): An animal trained in air support knows the attack, bombard, and deliver tricks.
+
+Burglar (DC 25): An animal trained as a burglar knows the come, fetch, maneuver (steal), seek, and sneak tricks. You can order it to steal a specific item you point out.
+
+Combat Training (DC 20) An animal trained to bear a rider into combat knows the tricks attack, come, defend, down, guard, and heel. Training an animal for combat riding takes 6 weeks. You may also “upgrade” an animal trained for riding to one trained for combat by spending 3 weeks and making a successful DC 20 Handle Animal check. The new general purpose and tricks completely replace the animal’s previous purpose and any tricks it once knew. Many horses and riding dogs are trained in this way.
+
+Fighting (DC 20) An animal trained to engage in combat knows the tricks attack, down, and stay. Training an animal for fighting takes three weeks.
+
+Guarding (DC 20) An animal trained to guard knows the tricks attack, defend, down, and guard. Training an animal for guarding takes four weeks.
+
+Heavy Labor (DC 15) An animal trained for heavy labor knows the tricks come and work. Training an animal for heavy labor takes two weeks.
+
+Hunting (DC 20) An animal trained for hunting knows the tricks attack, down, fetch, heel, seek, and track. Training an animal for hunting takes six weeks.
+
+Liberator (DC 25): An animal trained in liberating knows the break out, flee, and get help tricks.
+
+Performance (DC 15) An animal trained for performance knows the tricks come, fetch, heel, perform, and stay. Training an animal for performance takes five weeks.
+
+Riding (DC 15) An animal trained to bear a rider knows the tricks come, heel, and stay. Training an animal for riding takes three weeks.
+
+Servant (DC 20): An animal trained as a servant knows the deliver, exclusive, and serve tricks.
+
+Rear a Wild Animal: To rear an animal means to raise a wild creature from infancy so that it becomes domesticated. A handler can rear as many as three creatures of the same kind at once.
+
+A successfully domesticated animal can be taught tricks at the same time it’s being raised, or it can be taught as a domesticated animal later.", action: "Varies. Handling an animal is a move action, while “pushing” an animal is a full-round action. (A druid or ranger can handle an animal companion as a free action or push it as a move action.) For tasks with specific time frames noted above, you must spend half this time (at the rate of 3 hours per day per animal being handled) working toward completion of the task before you attempt the Handle Animal check. If the check fails, your attempt to teach, rear, or train the animal fails and you need not complete the teaching, rearing, or training time. If the check succeeds, you must invest the remainder of the time to complete the teaching, rearing, or training. If the time is interrupted or the task is not followed through to completion, the attempt to teach, rear, or train the animal automatically fails.", try_again: "Yes, except for rearing an animal.", special: "You can use this skill on a creature with an Intelligence score of 1 or 2 that is not an animal, but the DC of any such check increases by 5. Such creatures have the same limit on tricks known as animals do.
+
+A druid or ranger gains a +4 circumstance bonus on Handle Animal checks involving an animal companion.
+
+In addition, a druid’s or ranger’s animal companion knows one or more bonus tricks, which don’t count against the normal limit on tricks known and don’t require any training time or Handle Animal checks to teach.
+
+If you have no ranks in Handle Animal, you can use a Charisma check to handle and push domestic animals, but you can’t teach, rear, or train animals. A druid or ranger with no ranks in Handle Animal can use a Charisma check to handle and push her animal companion, but she can’t teach, rear, or train other nondomestic animals.", skill_unlock_5: "Creatures you have trained gain a +2 bonus on Will saves when adjacent to you.", skill_unlock_10: "Creatures you have trained gain a +2 bonus on Will saves whenever you are within 30 feet and clearly visible. You can teach a trick in 1 day by increasing the DC by 20.", skill_unlock_15: "You can train an animal to understand your speech (as speak with animals) with 1 week of effort and a successful DC 30 Handle Animal check. Its actions are still limited by its Intelligence. You can teach a trick in 1 day (increasing the DC by 10) or 1 hour (increasing the DC by 20).", skill_unlock_20: "You can make your speech understandable to any animal for 24 hours with a successful DC 30 Handle Animal check (DC 40 for magical beasts or vermin). You can teach a trick in 1 day, 1 hour (increasing the DC by 10), or 1 minute (increasing the DC by 20).")
+
+heal = Skill.create!(name: "Heal", ability_score: "Wisdom", untrained: true, blurb: "You are skilled at tending to wounds and ailments.", description: "The DC and effect of a Heal check depend on the task you attempt.
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Heal DC</th>
+  </tr>
+  <tr>
+    <td>First Aid</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Long-Term Care</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Treat Wounds from Caltrops, spike growth, or spike stones</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Treat Deadly Wounds</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Treat Poison</td>
+    <td>Poison's Save DC</td>
+  </tr>
+  <tr>
+    <td>Treat Disease</td>
+    <td>Disease's Save DC</td>
+  </tr>
+</table>
+
+First Aid: You usually use first aid to save a dying character. If a character has negative hit points and is losing hit points (at the rate of 1 per round, 1 per hour, or 1 per day), you can make him stable. A stable character regains no hit points but stops losing them. First aid also stops a character from losing hit points due to effects that cause bleed.
+
+Long-Term Care: Providing long-term care means treating a wounded person for a day or more. If your Heal check is successful, the patient recovers hit points or ability score points lost to ability damage at twice the normal rate: 2 hit points per level for a full 8 hours of rest in a day, or 4 hit points per level for each full day of complete rest; 2 ability score points for a full 8 hours of rest in a day, or 4 ability score points for each full day of complete rest.
+
+You can tend to as many as six patients at a time. You need a few items and supplies (bandages, salves, and so on) that are easy to come by in settled lands. Giving long-term care counts as light activity for the healer. You cannot give long-term care to yourself.
+
+Treat Wounds from Caltrops, Spike Growth, or Spike Stones: A creature wounded by stepping on a caltrop moves at half normal speed. A successful Heal check removes this movement penalty.
+
+A creature wounded by a spike growth or spike stones spell must succeed on a Ref lex save or take injuries that reduce his speed by one-third. Another character can remove this penalty by taking 10 minutes to dress the victim’s injuries and succeeding on a Heal check against the spell’s save DC.
+
+Treat Deadly Wounds: When treating deadly wounds, you can restore hit points to a damaged creature. Treating deadly wounds restores 1 hit point per level of the creature. If you exceed the DC by 5 or more, add your Wisdom modifier (if positive) to this amount. A creature can only benefit from its deadly wounds being treated within 24 hours of being injured and never more than once per day. You must expend two uses from a healer’s kit to perform this task. You take a –2 penalty on your Heal skill check for each use from the healer’s kit that you lack.
+
+Treat Poison: To treat poison means to tend to a single character who has been poisoned and who is going to take more damage from the poison (or suffer some other effect). Every time the poisoned character makes a saving throw against the poison, you make a Heal check. If your Heal check exceeds the DC of the poison, the character receives a +4 competence bonus on his saving throw against the poison.
+
+Treat Disease: To treat a disease means to tend to a single diseased character. Every time the diseased character makes a saving throw against disease effects, you make a Heal check. If your Heal check exceeds the DC of the disease, the character receives a +4 competence bonus on his saving throw against the disease.", action: "Providing first aid, treating a wound, or treating poison is a standard action. Treating a disease or tending a creature wounded by a spike growth or spike stones spell takes 10 minutes of work. Treating deadly wounds takes 1 hour of work. Providing long-term care requires 8 hours of light activity.", try_again: "Varies. Generally speaking, you can’t try a Heal check again without witnessing proof of the original check’s failure. You can always retry a check to provide first aid, assuming the target of the previous attempt is still alive.", special: "A healer’s kit gives you a +2 circumstance bonus on Heal checks.", skill_unlock_5: "When you treat deadly wounds, the target recovers hit points and ability damage as if it had rested for a full day.", skill_unlock_10: "When you treat deadly wounds, the target recovers hit points as if it had rested for a full day with long-term care.", skill_unlock_15: "When you treat deadly wounds, the creature recovers hit point and ability damage as if it had rested for 3 days.", skill_unlock_20: "When you treat deadly wounds, the target recovers hit point and ability damage as if it had rested for 3 days with long-term care.")
+
+intimidate = Skill.create!(name: "Intimidate", ability_score: "Charisma", untrained: true, blurb: "You can use this skill to frighten your opponents or to get them to act in a way that benefits you. This skill includes verbal threats and displays of prowess.", description: "You can use Intimidate to force an opponent to act friendly toward you for 1d6 × 10 minutes with a successful check. The DC of this check is equal to 10 + the target’s Hit Dice + the target’s Wisdom modifier. If successful, the target gives you the information you desire, takes actions that do not endanger it, or otherwise offers limited assistance. After the Intimidate expires, the target treats you as unfriendly and may report you to local authorities. If you fail this check by 5 or more, the target attempts to deceive you or otherwise hinder your activities.
+
+Demoralize: You can use this skill to cause an opponent to become shaken for a number of rounds. The DC of this check is equal to 10 + the target’s Hit Dice + the target’s Wisdom modifier. If you are successful, the target is shaken for 1 round. This duration increases by 1 round for every 5 by which you beat the DC. You can only threaten an opponent in this way if it is within 30 feet and can clearly see and hear you. Using demoralize on the same creature only extends the duration; it does not create a stronger fear condition.", action: "Using Intimidate to change an opponent’s attitude requires 1 minute of conversation. Demoralizing an opponent is a standard action.", try_again: "You can attempt to Intimidate an opponent again, but each additional check increases the DC by +5. This increase resets after 1 hour has passed.", special: "You also gain a +4 bonus on Intimidate checks if you are larger than your target and a –4 penalty on Intimidate checks if you are smaller than your target.", skill_unlock_5: "If you exceed the DC to demoralize a target by at least 10, it is frightened for 1 round and shaken thereafter. A Will save (DC = 10 + your number of ranks in Intimidate) negates the frightened condition, but the target is still shaken, even if it has the stalwart ability.", skill_unlock_10: "If you exceed the DC to demoralize a target by at least 10, it is panicked for 1 round or frightened for 1d4 rounds (your choice) and shaken thereafter. A Will save (DC = 10 + your number of ranks in Intimidate) negates the frightened or panicked condition, but the target is still shaken, even if it has the stalwart ability.", skill_unlock_15: "If you exceed the DC to demoralize a target by at least 20, it is cowering for 1 round or panicked for 1d4 rounds (your choice) and frightened thereafter. A Will save (DC = 10 + your number of ranks in Intimidate) negates the cowering, panicked, and frightened conditions, but the target is still shaken, even if it has the stalwart ability.", skill_unlock_20: "If you exceed the DC to demoralize a target by at least 20, it is cowering for 1d4 rounds and panicked thereafter. A Will save (DC = 10 + your number of ranks in Intimidate) negates the cowering and panicked conditions, but the target is still shaken, even if it has the stalwart ability.")
+
 knowledge_arcana = Skill.create!(name: "Knowledge (arcana)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
 knowledge_dungeoneering = Skill.create!(name: "Knowledge (dungeoneering)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
 knowledge_engineering = Skill.create!(name: "Knowledge (engineering)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
