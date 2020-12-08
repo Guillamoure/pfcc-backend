@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_07_222321) do
+ActiveRecord::Schema.define(version: 2020_12_08_213830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,11 @@ ActiveRecord::Schema.define(version: 2020_12_07_222321) do
     t.integer "character_id"
     t.integer "feature_id"
     t.string "choice"
+  end
+
+  create_table "character_klass_archetypes", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "klass_archetype_id"
   end
 
   create_table "character_klass_feature_usages", force: :cascade do |t|
@@ -247,6 +252,10 @@ ActiveRecord::Schema.define(version: 2020_12_07_222321) do
     t.string "full_name"
     t.integer "campaign_id"
     t.integer "max_hp", default: 0
+    t.integer "pp"
+    t.integer "gp"
+    t.integer "sp"
+    t.integer "cp"
   end
 
   create_table "class_skillset_skills", force: :cascade do |t|

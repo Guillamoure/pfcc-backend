@@ -79,7 +79,10 @@ ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: ravnica_custom.id, s
 # /////////////////////////////////////////////////////
 
 witch1 = KlassFeature.create!(klass_id: witch.id, name: "Weapon and Armor Proficiency", description: "Witches are proficient with all simple weapons. They are not proficient with any type of armor or shield. Armor interferes with a witch’s gestures, which can cause her spells with somatic components to fail.")
-    FeatureLevel.create!(klass_feature_id: witch1.id, level: 1, table_description: "none")
+  FeatureLevel.create!(klass_feature_id: witch1.id, level: 1, table_description: "")
+  witch1_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: witch1.id, feature_id: witch1_feature.id)
+    FeatureWeaponProficiency.create!(feature_id: witch1_feature.id, proficiency_group: "Simple")
 
 witch2 = KlassFeature.create!(klass_id: witch.id, name: "Spells", description: "A witch casts arcane spells drawn from the witch spell list. A witch must choose and prepare her spells ahead of time.
 
