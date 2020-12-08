@@ -4775,12 +4775,6 @@ Role: Barbarians excel in combat, possessing the martial prowess and fortitude t
 
 Alignment: Any non-lawful")
 
-witch = Klass.create!(name: "Witch", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://paizo.com/image/content/PathfinderCampaignSetting/PZO9249-WinterWitch.jpg", starting_wealth: "3d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: advanced_players_guide.id, description: "Some gain power through study, some through devotion, others through blood, but the witch gains power from her communion with the unknown. Generally feared and misunderstood, the witch draws her magic from a pact made with an otherworldly power. Communing with that source, using her familiar as a conduit, the witch gains not only a host of spells, but a number of strange abilities known as hexes. As a witch grows in power, she might learn about the source of her magic, but some remain blissfully unaware. Some are even afraid of that source, fearful of what it might be or where its true purposes lie.
-
-Role: While many witches are recluses, living on the edge of civilization, some live within society, openly or in hiding. The blend of witches’ spells makes them adept at filling a number of different roles, from seer to healer, and their hexes grant them a number of abilities that are useful in a fight. Some witches travel about, seeking greater knowledge and better understanding of the mysterious powers that guide them.
-
-Alignment: Any.")
-
 vigilante = Klass.create!(name: "Vigilante", hit_die: 8, skill_ranks: 6, fortitude: 0.34, reflex: 0.5, will: 0.5, img_url: "https://i.pinimg.com/originals/a7/79/cf/a779cf8972496626f1074d9cc62f27a0.png", starting_wealth: "5d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: ultimate_intrigue.id, description: "Being a renowned hero can be dangerous to your health and prosperity. Fighting against corruption and the evil that lurks within society makes you a target and, even worse, puts your friends and family in danger. For those who must maintain a social persona, being a part of the greater community while secretly fighting against powerful forces within it requires leading a double life.
 
 By day, the vigilante maneuvers through society, dealing with other nobles or influential individuals. By night, he dons a disguise and an utterly different set of goals, taking the fight to his foes and solving problems with a blade when words will not suffice.
@@ -4866,55 +4860,6 @@ In addition to the spells gained by oracles as they gain levels, each oracle als
 Upon reaching 4th level, and at every even-numbered oracle level after that (6th, 8th, and so on), an oracle can choose to learn a new spell in place of one she already knows. In effect, the oracle loses the old spell in exchange for the new one. The new spell’s level must be the same as that of the spell being exchanged. An oracle may swap only a single spell at any given level, and must choose whether or not to swap the spell at the same time that she gains new spells known for the level. She cannot swap any cure or inflict spells, nor can she swap any spells gained from her mystery. Unlike a cleric, an oracle need not prepare her spells in advance. She can cast any spell she knows at any time, assuming she has not yet used up her spells per day for that spell level. Oracles do not need to provide a divine focus to cast spells that list divine focus (DF) as part of the components.")
 
 print "Oracle features created! \r"
-
-witch1 = KlassFeature.create!(klass_id: witch.id, name: "Weapon and Armor Proficiency", description: "Witches are proficient with all simple weapons. They are not proficient with any type of armor or shield. Armor interferes with a witch’s gestures, which can cause her spells with somatic components to fail.")
-    FeatureLevel.create!(klass_feature_id: witch1.id, level: 1, table_description: "none")
-
-witch2 = KlassFeature.create!(klass_id: witch.id, name: "Spells", description: "A witch casts arcane spells drawn from the witch spell list. A witch must choose and prepare her spells ahead of time.
-
-  To learn or cast a spell, a witch must have an Intelligence score equal to at least 10 + the spell level. The Difficulty Class for a saving throw against a witch’s spell is 10 + the spell level + the witch’s Intelligence modifier.
-
-  A witch can cast only a certain number of spells of each spell level per day. Her base daily spell allotment is given on Table: Witch. In addition, she receives bonus spells per day if she has a high Intelligence score (see Table: Ability Modifiers and Bonus Spells).
-
-  A witch may know any number of spells. She must choose and prepare her spells ahead of time by getting 8 hours of sleep and spending 1 hour communing with her familiar. While communing, the witch decides which spells to prepare.
-
-  Cantrips Witches can prepare a number of cantrips, or 0-level spells, each day, as noted on Table: Witch under “Spells per Day.” These spells are cast like any other spell, but they are not expended when cast and may be used again. Cantrips prepared using other spell slots, due to metamagic feats for example, are expended normally.")
-    FeatureLevel.create!(klass_feature_id: witch2.id, level: 1, table_description: "none")
-
-
-witch3 = KlassFeature.create!(klass_id: witch.id, name: "Hex", description: "Witches learn a number of magic tricks, called hexes, that grant them powers or weaken foes. At 1st level, a witch gains one hex of her choice. She gains an additional hex at 2nd level and for every 2 levels attained after 2nd level, as noted on Table: Witch. A witch cannot select an individual hex more than once.
-
-  Unless otherwise noted, using a hex is a standard action that does not provoke an attack of opportunity. The save to resist a hex is equal to 10 + 1/2 the witch’s level + the witch’s Intelligence modifier.")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 1, table_description: "Hex")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 2, table_description: "Hex")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 4, table_description: "Hex")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 6, table_description: "Hex")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 8, table_description: "Hex")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 10, table_description: "Hex")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 12, table_description: "Hex")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 14, table_description: "Hex")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 16, table_description: "Hex")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 18, table_description: "Hex")
-    FeatureLevel.create!(klass_feature_id: witch3.id, level: 20, table_description: "Hex")
-
-witch4 = KlassFeature.create!(klass_id: witch.id, name: "Patron Spells", description: "At 1st level, when a witch gains her familiar, she must also select a patron. This patron is a vague and mysterious force, granting the witch power for reasons that she might not entirely understand. While these forces need not be named, they typically hold influence over one of the following forces.
-
-At 2nd level, and every two levels thereafter, a witch’s patron adds new spells to a witch’s list of spells known. These spells are also automatically added to the list of spells stored by the familiar. The spells gained depend upon the patron chosen. Each patron is listed by its theme. Its actual name is up to the GM and the witch to decide.")
-  FeatureLevel.create!(klass_feature_id: witch4.id, level: 1, table_description: "Patron Spells")
-
-witch5 = KlassFeature.create!(klass_id: witch.id, name: "Witch's Familiar", description: "At 1st level, a witch forms a close bond with a familiar, a creature that teaches her magic and helps to guide her along her path. Familiars also aid a witch by granting her skill bonuses, additional spells, and help with some types of magic. This functions like the wizard’s arcane bond class feature, except as noted in the Witch’s Familiar section.
-
-A witch must commune with her familiar each day to prepare her spells. Familiars store all of the spells that a witch knows, and a witch cannot prepare a spell that is not stored by her familiar. A witch’s familiar begins play storing all of the 0-level witch spells plus three 1st level spells of the witch’s choice. The witch also selects a number of additional 1st-level spells equal to her Intelligence modifier to store in her familiar. At each new witch level, she adds two new spells of any spell level or levels that she can cast (based on her new witch level) to her familiar. A witch can also add additional spells to her familiar through a special ritual.")
-  FeatureLevel.create!(klass_feature_id: witch5.id, level: 1, table_description: "Witch's Familiar")
-
-witch6 = KlassFeature.create!(klass_id: witch.id, name: "Major Hex", description: "Starting at 10th level, and every two levels thereafter, a witch can choose one of the following major hexes whenever she could select a new hex.")
-  FeatureLevel.create!(klass_feature_id: witch5.id, level: 10, table_description: "Major Hex")
-
-witch7 = KlassFeature.create!(klass_id: witch.id, name: "Grand Hex", description: "Starting at 18th level, and every two levels thereafter, a witch can choose one of the following grand hexes whenever she could select a new hex.")
-  FeatureLevel.create!(klass_feature_id: witch7.id, level: 18, table_description: "Grand Hex")
-
-print "Witch features created! \r"
-
 
 
   fate_weaver1 = KlassFeature.create!(klass_id: fate_weaver.id, name: "Chaotic Nature", description: "A Fate Weaver is initially a victim of chaos, but over time, she learns to become not only an agent, but a master of chaos. If she is damaged by a lawful creature’s unarmed attack, a lawfully aligned or axiomatic weapon, or a spell with a lawful descriptor, she takes additional damage equal to her Hit Dice.
@@ -5923,7 +5868,7 @@ print "Brawler features created! \r"
 
 Spellcasting.create!(klass_feature_id: oracle2.id, ability_score: "Charisma", prepared: false, limited: true, expendable: false, infinite_zero_level: true, bonus_spells: false, klass_spell_list_id: cleric.id)
 
-Spellcasting.create!(klass_feature_id: witch2.id, ability_score: "Intelligence", prepared: true, limited: true, expendable: true, infinite_zero_level: false, bonus_spells: true, klass_spell_list_id: witch.id)
+# Spellcasting.create!(klass_feature_id: witch2.id, ability_score: "Intelligence", prepared: true, limited: true, expendable: true, infinite_zero_level: false, bonus_spells: true, klass_spell_list_id: witch.id)
 
 Spellcasting.create!(klass_feature_id: fate_weaver4.id, ability_score: "Charisma", prepared: false, limited: true, expendable: false, infinite_zero_level: false, bonus_spells: false, klass_spell_list_id: fate_weaver.id)
 
@@ -5939,135 +5884,6 @@ puts "Classes Created!"
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells Per Day!-*-*-*-----*-*->
 # /////////////////////////////////////////
-
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 1, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 2, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 3, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 4, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 5, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 6, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 7, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 8, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 9, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 10, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 11, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 12, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 13, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 14, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 15, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 16, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 17, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 18, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 19, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 20, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 1, spells: 1, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 2, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 3, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 4, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 5, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 6, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 7, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 8, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 9, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 10, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 11, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 12, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 13, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 14, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 15, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 16, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 17, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 18, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 19, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 20, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 3, spells: 1, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 4, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 5, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 6, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 7, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 8, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 9, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 10, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 11, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 12, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 13, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 14, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 15, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 16, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 17, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 18, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 19, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 20, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 5, spells: 1, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 6, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 7, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 8, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 9, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 10, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 11, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 12, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 13, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 14, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 15, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 16, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 17, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 18, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 19, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 20, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 7, spells: 1, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 8, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 9, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 10, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 11, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 12, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 13, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 14, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 15, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 16, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 17, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 18, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 19, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 20, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 9, spells: 1, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 10, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 11, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 12, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 13, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 14, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 15, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 16, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 17, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 18, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 19, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 20, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 11, spells: 1, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 12, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 13, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 14, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 15, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 16, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 17, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 18, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 19, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 20, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 13, spells: 1, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 14, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 15, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 16, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 17, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 18, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 19, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 20, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 15, spells: 1, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 16, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 17, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 18, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 19, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 20, spells: 4, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 17, spells: 1, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 18, spells: 2, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 19, spells: 3, feature_spellcasting_id: witch.id)
-# SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 20, spells: 4, feature_spellcasting_id: witch.id)
 
 SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 1, spells: 1, feature_spellcasting_id: bard_spellcasting.id)
 SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 2, spells: 2, feature_spellcasting_id: bard_spellcasting.id)
@@ -6728,14 +6544,14 @@ ClassSkillsetSkill.create!(klass_id: oracle.id, skillset_id: dmc.id, skill_id: r
 ClassSkillsetSkill.create!(klass_id: oracle.id, skillset_id: dmc.id, skill_id: sense_motive.id)
 ClassSkillsetSkill.create!(klass_id: oracle.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id)
 
-ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: acrobatics.id)
-ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: craft.id)
-ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: heal.id)
-ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: intimidate.id)
-ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: nature_unchained.id)
-ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: profession.id)
-ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: religion_unchained.id)
-ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id)
+# ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: acrobatics.id)
+# ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: craft.id)
+# ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: heal.id)
+# ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: intimidate.id)
+# ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: nature_unchained.id)
+# ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: profession.id)
+# ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: religion_unchained.id)
+# ClassSkillsetSkill.create!(klass_id: witch.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id)
 
 ClassSkillsetSkill.create!(klass_id: shifter.id, skillset_id: dmc.id, skill_id: acrobatics.id)
 ClassSkillsetSkill.create!(klass_id: shifter.id, skillset_id: dmc.id, skill_id: climb.id)
@@ -6848,7 +6664,7 @@ ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: s
 
 hp_up = FavoredKlassBonus.create!(description: '+1 hit point')
 one_skill_point = FavoredKlassBonus.create!(description: '+1 skill point')
-witch_changeling = FavoredKlassBonus.create!(klass_id: witch.id, race_id: changeling.id, description: '+1 spell to your familiar. Must be at least one level below the highest level spell you can cast')
+# witch_changeling = FavoredKlassBonus.create!(klass_id: witch.id, race_id: changeling.id, description: '+1 spell to your familiar. Must be at least one level below the highest level spell you can cast')
 fate_weaver_human = FavoredKlassBonus.create!(klass_id: fate_weaver.id, race_id: human.id, description: '+1/3 Fate Points each day when you roll')
 # alchemist_vine_leshy = FavoredKlassBonus.create!(klass_id: alchemist.id, race_id: vine_leshy.id, description: "Add 1/4 to the alchemist's natural armor bonus when using their mutagen.")
 bard_vine_leshy = FavoredKlassBonus.create!(klass_id: bard.id, race_id: vine_leshy.id, description: "Add a +1/3 bonus to Perform (oratory) checks, including checks using versatile performance, as long as the bard first spends at least 10 minutes telling a story.")
@@ -6864,16 +6680,16 @@ oracle_vine_leshy = FavoredKlassBonus.create!(klass_id: oracle.id, race_id: vine
 # <-*-*-----*-*-*- Character!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-persephone = Character.create!(user_id: admin.id, name: "Persephone", strength: 5, dexterity: 15, constitution: 12, intelligence: 17, wisdom: 4, charisma: 15, race_id: changeling.id, skillset_id: dmc.id, alignment: 'chaotic neutral', campaign_id: current_campaign.id)
-# +1 to Int from Tome of Clear Thought
-
-CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: witch_changeling.id)
-CharacterKlass.create!(character_id: persephone.id, klass_id: vigilante.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
-CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: witch_changeling.id)
-CharacterKlass.create!(character_id: persephone.id, klass_id: vigilante.id, hp: nil, feat_id: nil, ability_score_improvement: 'intelligence', level: 4, favored_klass_bonus_id: nil)
-CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: witch_changeling.id)
-CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: witch_changeling.id)
-CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: witch_changeling.id)
+# persephone = Character.create!(user_id: admin.id, name: "Persephone", strength: 5, dexterity: 15, constitution: 12, intelligence: 17, wisdom: 4, charisma: 15, race_id: changeling.id, skillset_id: dmc.id, alignment: 'chaotic neutral', campaign_id: current_campaign.id)
+# # +1 to Int from Tome of Clear Thought
+#
+# CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: witch_changeling.id)
+# CharacterKlass.create!(character_id: persephone.id, klass_id: vigilante.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+# CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: witch_changeling.id)
+# CharacterKlass.create!(character_id: persephone.id, klass_id: vigilante.id, hp: nil, feat_id: nil, ability_score_improvement: 'intelligence', level: 4, favored_klass_bonus_id: nil)
+# CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: witch_changeling.id)
+# CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: witch_changeling.id)
+# CharacterKlass.create!(character_id: persephone.id, klass_id: witch.id, hp: nil, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: witch_changeling.id)
 
 sly = Character.create!(user_id: admin.id, name: "Sly", full_name: 'Slyvester Ruby', strength: 8, dexterity: 16, constitution: 16, intelligence: 8, wisdom: 13, charisma: 18, race_id: grippli.id, skillset_id: dmc.id, campaign_id: current_campaign.id)
 
