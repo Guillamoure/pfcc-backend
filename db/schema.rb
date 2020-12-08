@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_04_170308) do
+ActiveRecord::Schema.define(version: 2020_12_07_222321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -843,6 +843,14 @@ ActiveRecord::Schema.define(version: 2020_12_04_170308) do
     t.boolean "untrained", default: true
     t.boolean "customizable", default: false
     t.boolean "knowledge", default: false
+    t.string "blurb"
+    t.string "action"
+    t.string "try_again"
+    t.string "special"
+    t.string "skill_unlock_5"
+    t.string "skill_unlock_10"
+    t.string "skill_unlock_15"
+    t.string "skill_unlock_20"
   end
 
   create_table "skillset_skills", force: :cascade do |t|

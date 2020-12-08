@@ -241,7 +241,7 @@ magus4 = KlassFeature.create!(klass_id: magus.id, name: "Spell Combat", descript
 magus5 = KlassFeature.create!(klass_id: magus.id, name: "Spellstrike", description: "At 2nd level, whenever a magus casts a spell with a range of “touch” from the magus spell list, he can deliver the spell through any weapon he is wielding as part of a melee attack. Instead of the free melee touch attack normally allowed to deliver the spell, a magus can make one free melee attack with his weapon (at his highest base attack bonus) as part of casting this spell. If successful, this melee attack deals its normal damage as well as the effects of the spell. If the magus makes this attack in concert with spell combat, this melee attack takes all the penalties accrued by spell combat melee attacks. This attack uses the weapon’s critical range (20, 19–20, or 18–20 and modified by the keen weapon property or similar effects), but the spell effect only deals ×2 damage on a successful critical hit, while the weapon damage uses its own critical modifier.")
   FeatureLevel.create!(klass_feature_id: magus5.id, level: 2, table_description: "Spellstrike")
 
-magus6 = KlassFeature.create!(klass_id: magus.id, name: "Magus Arcana", description: "As he gains levels, a magus learns arcane secrets tailored to his specific way of blending martial puissance and magical skill. Starting at 3rd level, a magus gains one magus arcana. He gains an additional magus arcana for every three levels of magus attained after 3rd level. Unless specifically noted in a magus arcana’s description, a magus cannot select a particular magus arcana more than once. Magus arcana that affect spells can only be used to modify spells from the magus spell list unless otherwise noted.")
+magus6 = KlassFeature.create!(klass_id: magus.id, name: "Magus Arcana", has_klass_feature_options: true, description: "As he gains levels, a magus learns arcane secrets tailored to his specific way of blending martial puissance and magical skill. Starting at 3rd level, a magus gains one magus arcana. He gains an additional magus arcana for every three levels of magus attained after 3rd level. Unless specifically noted in a magus arcana’s description, a magus cannot select a particular magus arcana more than once. Magus arcana that affect spells can only be used to modify spells from the magus spell list unless otherwise noted.")
   FeatureLevel.create!(klass_feature_id: magus6.id, level: 3, table_description: "Magus Arcana")
   FeatureLevel.create!(klass_feature_id: magus6.id, level: 6, table_description: "Magus Arcana")
   FeatureLevel.create!(klass_feature_id: magus6.id, level: 9, table_description: "Magus Arcana")
@@ -347,7 +347,90 @@ Magus Arcana: The following magus arcana complement the bladebound magus archety
 
   Senses: A black blade is aware of everything around it like a creature that can see and hear. It can be blinded and deafened as if it were a creature. It uses the saving throws of its magus, even if the magus is not currently wielding the black blade.
 
-  Black Blade Arcane Pool: A black blade has an arcane pool with a number of points equal to 1 + its Intelligence bonus.")
+  Black Blade Arcane Pool: A black blade has an arcane pool with a number of points equal to 1 + its Intelligence bonus.
+
+  <table>
+    <tr>
+      <th>Magus Class Level</th>
+      <th>Enhancement Bonus</th>
+      <th>Int</th>
+      <th>Wis/Cha</th>
+      <th>Ego</th>
+      <th>Special</th>
+    </tr>
+    <tr>
+      <td>3rd - 4th</td>
+      <td>+1</td>
+      <td>11</td>
+      <td>7</td>
+      <td>5</td>
+      <td>Alertness, Black Blade Strike, Telepathy, Unbreakable</td>
+    </tr>
+    <tr>
+      <td>5th - 6th</td>
+      <td>+2</td>
+      <td>12</td>
+      <td>8</td>
+      <td>8</td>
+      <td>Energy Attunement</td>
+    </tr>
+    <tr>
+      <td>7th - 8th</td>
+      <td>+2</td>
+      <td>13</td>
+      <td>9</td>
+      <td>10</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>9th - 10th</td>
+      <td>+3</td>
+      <td>14</td>
+      <td>10</td>
+      <td>12</td>
+      <td>Teleport Blade</td>
+    </tr>
+    <tr>
+      <td>11th - 12th</td>
+      <td>+3</td>
+      <td>15</td>
+      <td>11</td>
+      <td>14</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>13th - 14th</td>
+      <td>+4</td>
+      <td>16</td>
+      <td>12</td>
+      <td>16</td>
+      <td>Transfer Arcana</td>
+    </tr>
+    <tr>
+      <td>15th - 16th</td>
+      <td>+4</td>
+      <td>17</td>
+      <td>13</td>
+      <td>18</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>17th - 18th</td>
+      <td>+5</td>
+      <td>18</td>
+      <td>14</td>
+      <td>22</td>
+      <td>Spell Defense</td>
+    </tr>
+    <tr>
+      <td>19th - 20th</td>
+      <td>+5</td>
+      <td>19</td>
+      <td>15</td>
+      <td>24</td>
+      <td>Life Drinker</td>
+    </tr>
+  </table>")
     KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: bladebound3.id, level: 3, table_description: "")
     ArchetypeFeatureReplaceKlassFeature.create!(klass_archetype_feature_id: bladebound3.id, replace_or_alter: "replace")
 

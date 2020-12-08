@@ -46,50 +46,1096 @@ ravnica_custom = Skillset.create!(name: "Ravnica Custom")
 # <-*-*-----*-*-*- Skills!-*-*-*-----*-*->
 # /////////////////////////////////////////
 
-acrobatics = Skill.create!(name: "Acrobatics", ability_score: "Dexterity", untrained: true, description: "")
-appraise = Skill.create!(name: "Appraise", ability_score: "Intelligence", untrained: true, description: "")
-bluff = Skill.create!(name: "Bluff", ability_score: "Charisma", untrained: true, description: "")
-climb = Skill.create!(name: "Climb", ability_score: "Strength", untrained: true, description: "")
-craft = Skill.create!(name: "Craft", ability_score: "Intelligence", untrained: true, description: "", customizable: true)
-diplomacy = Skill.create!(name: "Diplomacy", ability_score: "Charisma", untrained: true, description: "")
-disable_device = Skill.create!(name: "Disable Device", ability_score: "Dexterity", untrained: false, description: "")
-disguise = Skill.create!(name: "Disguise", ability_score: "Charisma", untrained: true, description: "")
-escape_artist = Skill.create!(name: "Escape Artist", ability_score: "Dexterity", untrained: true, description: "")
-fly = Skill.create!(name: "Fly", ability_score: "Dexterity", untrained: true, description: "")
-handle_animal = Skill.create!(name: "Handle Animal", ability_score: "Charisma", untrained: false, description: "")
-heal = Skill.create!(name: "Heal", ability_score: "Wisdom", untrained: true, description: "")
-intimidate = Skill.create!(name: "Intimidate", ability_score: "Charisma", untrained: true, description: "")
-knowledge_arcana = Skill.create!(name: "Knowledge (arcana)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
-knowledge_dungeoneering = Skill.create!(name: "Knowledge (dungeoneering)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
-knowledge_engineering = Skill.create!(name: "Knowledge (engineering)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
-knowledge_geography = Skill.create!(name: "Knowledge (geography)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
-knowledge_history = Skill.create!(name: "Knowledge (history)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
-knowledge_local = Skill.create!(name: "Knowledge (local)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
-knowledge_nature = Skill.create!(name: "Knowledge (nature)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
-knowledge_nobility = Skill.create!(name: "Knowledge (nobility)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
-knowledge_planes = Skill.create!(name: "Knowledge (planes)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
-knowledge_religion = Skill.create!(name: "Knowledge (religion)", ability_score: "Intelligence", untrained: false, description: "", knowledge: true)
-knowledge = Skill.create!(name: "Knowledge", ability_score: "Intelligence", untrained: false, description: "", knowledge: true, customizable: true)
-linguistics = Skill.create!(name: "Linguistics", ability_score: "Intelligence", untrained: false, description: "")
-perception = Skill.create!(name: "Perception", ability_score: "Wisdom", untrained: true, description: "")
-perform = Skill.create!(name: "Perform", ability_score: "Charisma", untrained: true, description: "", customizable: true)
-profession = Skill.create!(name: "Profession", ability_score: "Wisdom", untrained: false, description: "", customizable: true)
-ride = Skill.create!(name: "Ride", ability_score: "Dexterity", untrained: true, description: "")
-sense_motive = Skill.create!(name: "Sense Motive", ability_score: "Wisdom", untrained: true, description: "")
-sleight_of_hand = Skill.create!(name: "Sleight of Hand", ability_score: "Dexterity", untrained: false, description: "")
-spellcraft = Skill.create!(name: "Spellcraft", ability_score: "Intelligence", untrained: false, description: "")
-stealth = Skill.create!(name: "Stealth", ability_score: "Dexterity", untrained: true, description: "")
-survival = Skill.create!(name: "Survival", ability_score: "Wisdom", untrained: true, description: "")
-swim = Skill.create!(name: "Swim", ability_score: "Strength", untrained: true, description: "")
-use_magic_device = Skill.create!(name: "Use Magic Device", ability_score: "Charisma", untrained: false, description: "")
+acrobatics = Skill.create!(name: "Acrobatics", ability_score: "Dexterity", untrained: true, blurb: "You can keep your balance while traversing narrow or treacherous surfaces. You can also dive, flip, jump, and roll, avoiding attacks and confusing your opponents.", description: "You can use Acrobatics to move on narrow surfaces and uneven ground without falling. A successful check allows you to move at half speed across such surfaces—only one check is needed per round. Use the following table to determine the base DC, which is then modified by the Acrobatics skill modifiers noted below. While you are using Acrobatics in this way, you are considered flat-footed and lose your Dexterity bonus to your AC (if any). If you take damage while using Acrobatics, you must immediately make another Acrobatics check at the same DC to avoid falling or being knocked prone. *No Acrobatics check is needed to move across these surfaces unless the modifiers increase the DC to 10 or higher.
+
+<table>
+  <tr>
+    <th>Surface Width</th>
+    <th>Base Acrobatics DC</th>
+  </tr>
+  <tr>
+    <td>Greater Than 3 Feet Wide</td>
+    <td>0*</td>
+  </tr>
+  <tr>
+    <td>1-3 Feet Wide</td>
+    <td>5*</td>
+  </tr>
+  <tr>
+    <td>7-11 Inches Wide</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>2-6 Inches Wide</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Less Than 2 Inches Wide</td>
+    <td>20</td>
+  </tr>
+</table>
+
+In addition, you can move through a threatened square without provoking an attack of opportunity from an enemy by using Acrobatics. When moving in this way, you move at half speed. You can move at full speed by increasing the DC of the check by 10. You cannot use Acrobatics to move past foes if your speed is reduced due to carrying a medium or heavy load or wearing medium or heavy armor. If an ability allows you to move at full speed under such conditions, you can use Acrobatics to move past foes. You can use Acrobatics in this way while prone, but doing so requires a full-round action to move 5 feet, and the DC is increased by 5. If you attempt to move through an enemy’s space and fail the check, you lose the move action and provoke an attack of opportunity. *This DC is used to avoid an attack of opportunity due to movement. This DC increases by 2 for each additional opponent avoided in 1 round.
+
+<table>
+  <tr>
+    <th>Situation</th>
+    <th>Base Acrobatics DC*</th>
+  </tr>
+  <tr>
+    <td>Move Through a Threatened Area</td>
+    <td>Opponent's Combat Maneuver Defense</td>
+  </tr>
+  <tr>
+    <td>Move Through an Enemy's Space</td>
+    <td>5 + Opponent's Combat Maneuver Defense</td>
+  </tr>
+</table>
+
+Finally, you can use the Acrobatics skill to make jumps or to soften a fall. The base DC to make a jump is equal to the distance to be crossed (if horizontal) or four times the height to be reached (if vertical). These DCs double if you do not have at least 10 feet of space to get a running start. The only Acrobatics modifiers that apply are those concerning the surface you are jumping from. If you fail this check by 4 or less, you can attempt a DC 20 Reflex save to grab hold of the other side after having missed the jump. If you fail by 5 or more, you fail to make the jump and fall (or land prone, in the case of a vertical jump).
+
+Creatures with a base land speed above 30 feet receive a +4 racial bonus on Acrobatics checks made to jump for every 10 feet of their speed above 30 feet. Creatures with a base land speed below 30 feet receive a –4 racial bonus on Acrobatics checks made to jump for every 10 feet of their speed below 30 feet. No jump can allow you to exceed your maximum movement for the round.
+
+For a running jump, the result of your Acrobatics check indicates the distance traveled in the jump (and if the check fails, the distance at which you actually land and fall prone). Halve this result for a standing long jump to determine where you land.
+
+When you deliberately fall any distance, even as a result of a missed jump, a DC 15 Acrobatics skill check allows you to ignore the first 10 feet fallen, although you still end up prone if you take damage from a fall.
+
+<table>
+  <tr>
+    <th>Long Jump</th>
+    <th>Acrobatics DC</th>
+  </tr>
+  <tr>
+    <td>5 Feet</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>10 Feet</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>15 Feet</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>20 Feet</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Greater Than 20 Feet</td>
+    <td>+5 per 5 Feet</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>High Jump</th>
+    <th>Acrobatics DC</th>
+  </tr>
+  <tr>
+    <td>1 Foot</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>2 Feet</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>3 Feet</td>
+    <td>12</td>
+  </tr>
+  <tr>
+    <td>4 Feet</td>
+    <td>16</td>
+  </tr>
+  <tr>
+    <td>Greater Than 4 Feet</td>
+    <td>+4 per Foot</td>
+  </tr>
+</table>
+
+The following modifiers apply to all Acrobatics skill checks. The modifiers stack with one another, but only the most severe modifier for any given condition applies.
+
+<table>
+  <tr>
+    <th>Acrobatics Modifiers</th>
+    <th>DC Modifier</th>
+  </tr>
+  <tr>
+    <td>Slightly Obstructed (Gravel, Sand)</td>
+    <td>+2</td>
+  </tr>
+  <tr>
+    <td>Severyly Obstructed (Cavern, Rubble)</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Slightly Slippery (Wet)</td>
+    <td>+2</td>
+  </tr>
+  <tr>
+    <td>Severly Slippery</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Slightly Sloped (<45 degrees)</td>
+    <td>+2</td>
+  </tr>
+  <tr>
+    <td>Severly Sloped (>45 degrees)</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Slightly Unsteady (Boat in Rough Water)</td>
+    <td>+2</td>
+  </tr>
+  <tr>
+    <td>Moderately Unsteady (Boat in a Storm)</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Move at Full Speed on Narrow or Uneven Surfaces</td>
+    <td>+5 (not to Jumps)</td>
+  </tr>
+</table>", action: "None. An Acrobatics check is made as part of another action or as a reaction to a situation.", try_again: "", special: "If you have 3 or more ranks in Acrobatics, you gain a +3 dodge bonus to AC when fighting defensively instead of the usual +2, and a +6 dodge bonus to AC when taking the total defense action instead of the usual +4.", skill_unlock_5: "You can move at normal speed through a threatened square without provoking an attack of opportunity by increasing the DC of the check by 5 (instead of by 10). You aren’t denied your Dexterity bonus when attempting Acrobatics checks with DCs of 20 or lower.", skill_unlock_10: "You can attempt an Acrobatics check at a –10 penalty and use the result as your CMD against trip maneuvers. You can also attempt an Acrobatics check at a –10 penalty in place of a Reflex save to avoid falling. You must choose to use this ability before the trip attempt or Reflex save is rolled. With a successful DC 20 Acrobatics check, you treat an unintentional fall as 10 feet shorter plus 10 feet for every 10 by which you exceed the DC, and treat an intentional fall as 10 feet shorter for every 10 by which you exceed the DC.", skill_unlock_15: "You do not provoke attacks of opportunity when standing up from prone.", skill_unlock_20: "You double the result of any Acrobatics check when jumping and never fall prone at the end of a fall as long as you remain conscious.")
+
+appraise = Skill.create!(name: "Appraise", ability_score: "Intelligence", untrained: true, blurb: "You can evaluate the monetary value of an object.", description: "A DC 20 Appraise check determines the value of a common item. If you succeed by 5 or more, you also determine if the item has magic properties, although this success does not grant knowledge of the magic item’s abilities. If you fail the check by less than 5, you determine the price of that item to within 20% of its actual value. If you fail this check by 5 or more, the price is wildly inaccurate, subject to GM discretion. Particularly rare or exotic items might increase the DC of this check by 5 or more.
+
+You can also use this check to determine the most valuable item visible in a treasure hoard. The DC of this check is generally 20 but can increase to as high as 30 for a particularly large hoard.", action: "Appraising an item takes 1 standard action. Determining the most valuable object in a treasure hoard takes 1 full-round action.", try_again: "Additional attempts to Appraise an item reveal the same result.", special: "", skill_unlock_5: "A successful DC 20 Appraise check reveals whether an item is magical, and a second check (DC = 25 + the item’s caster level) unveils its properties. You can use Appraise to detect non-written forgeries and counterfeits.", skill_unlock_10: "You can determine the most expensive object a creature is wearing or wielding (or in a 5-foot cube) as a standard action by succeeding at a DC 20 check. You never make a wildly inaccurate appraisal of an item’s value.", skill_unlock_15: "Determining the most expensive object as above is a move action. You can substitute an Appraise check at a –10 penalty for a Will save to disbelieve a figment or glamer.", skill_unlock_20: "Determining the most expensive object as above is a move action, and if the check succeeds, you gain a +2 circumstance bonus on combat maneuver checks to steal that object or disarm a creature of that object for 1 minute.")
+
+bluff = Skill.create!(name: "Bluff", ability_score: "Charisma", untrained: true, blurb: "You know how to tell a lie.", description: "Bluff is an opposed skill check against your opponent’s Sense Motive skill. If you use Bluff to fool someone, with a successful check you convince your opponent that what you are saying is true. Bluff checks are modified depending upon the believability of the lie. The following modifiers are applied to the roll of the creature attempting to tell the lie. Note that some lies are so improbable that it is impossible to convince anyone that they are true (subject to GM discretion).
+
+<table>
+  <tr>
+    <th>Circumstances</th>
+    <th>Bluff Modifier</th>
+  </tr>
+  <tr>
+    <td>The Target Wants to Believe You</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>The Lie is Believable</td>
+    <td>+0</td>
+  </tr>
+  <tr>
+    <td>The Lie is Unlikely</td>
+    <td>-5</td>
+  </tr>
+  <tr>
+    <td>The Lie is Far-fetched</td>
+    <td>-10</td>
+  </tr>
+  <tr>
+    <td>The Lie is Impossible</td>
+    <td>-20</td>
+  </tr>
+  <tr>
+    <td>The Target is Drunk or Impaired</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>You Possess Convincing Proof</td>
+    <td>Up to +10</td>
+  </tr>
+</table>
+
+Fient: You can also use Bluff to feint in combat, causing your opponent to be denied his Dexterity bonus to his AC against your next attack. The DC of this check is equal to 10 + your opponent’s base attack bonus + your opponent’s Wisdom modifier. If your opponent is trained in Sense Motive, the DC is instead equal to 10 + your opponent’s Sense Motive bonus, if higher.
+
+Secret Messages: You can use Bluff to pass hidden messages to another character without others understanding your true meaning. The DC of this check is 15 for simple messages and 20 for complex messages. If you are successful, the target automatically understands you, assuming you are speaking in a language that it understands. If your check fails by 5 or more, you deliver the wrong message. Other creatures that hear the message can decipher the message by succeeding at an opposed Sense Motive check against your Bluff result.", action: "Attempting to deceive someone takes at least 1 round, but can possibly take longer if the lie is elaborate (as determined by the GM on a case-by-case basis).
+
+Feinting in combat is a standard action.
+
+Using Bluff to deliver a secret message takes twice as long as the message would otherwise take to relay.", try_again: "If you fail to deceive someone, further attempts to deceive them are at a –10 penalty and may be impossible (GM discretion).
+
+You can attempt to feint against someone again if you fail. Secret messages can be relayed again if the first attempt fails.", special: "", skill_unlock_5: "The penalty to Bluff a creature after a failed check is halved unless you failed by 5 or more.", skill_unlock_10: "You take no penalty to Bluff a creature after a failed check unless you failed by 5 or more.", skill_unlock_15: "Creatures magically attempting to read your thoughts, detect your alignment, or reveal when you are lying must attempt a caster level check (DC = 11 + your ranks in Bluff ) or the effect reveals nothing.", skill_unlock_20: "As a full-round action, you can make a suggestion (as the spell, maximum duration 1 hour) to a creature within 30 feet (Will negates, DC = 15 + your Charisma modifier). A creature that saves against your suggestion is immune to further uses of this effect for 24 hours, and whenever the suggested creature is specifically confronted with proof of your manipulation, it receives another saving throw. This is an extraordinary mind-affecting compulsion.")
+
+climb = Skill.create!(name: "Climb", ability_score: "Strength", untrained: true, blurb: "You are skilled at scaling vertical surfaces, from smooth city walls to rocky cliffs.", description: "With a successful Climb check, you can advance up, down, or across a slope, wall, or other steep incline (or even across a ceiling, provided it has handholds) at one-quarter your normal speed. A slope is considered to be any incline at an angle measuring less than 60 degrees; a wall is any incline at an angle measuring 60 degrees or more. A Climb check that fails by 4 or less means that you make no progress, and one that fails by 5 or more means that you fall from whatever height you have already attained. The DC of the check depends on the conditions of the climb. Compare the task with those on the following table to determine an appropriate DC.
+
+You need both hands free to climb, but you may cling to a wall with one hand while you cast a spell or take some other action that requires only one hand. While climbing, you can’t move to avoid a blow, so you lose your Dexterity bonus to AC (if any). You also can’t use a shield while climbing. Anytime you take damage while climbing, make a Climb check against the DC of the slope or wall. Failure means you fall from your current height and sustain the appropriate falling damage.
+
+<table>
+  <tr>
+    <th>DC</th>
+    <th>Example Surface or Activity</th>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>A slope too steep to walk up, or a knotted rope with a wall to brace against.</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>A rope with a wall to brace against, or a knotted rope, or a rope affected by the rope trick spell.</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>A surface with ledges to hold on to and stand on, such as a very rough wall or a ship’s rigging.</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>Any surface with adequate handholds and footholds (natural or artificial), such as a very rough natural rock surface or a tree, or an unknotted rope, or pulling yourself up when dangling by your hands.</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>An uneven surface with some narrow handholds and footholds, such as a typical wall in a dungeon.</td>
+  </tr>
+  <tr>
+    <td>21</td>
+    <td>A typical buildings upper-story wall</td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td>A rough surface, such as a natural rock wall or a brick wall; A typical buildings lower-story wall.</td>
+  </tr>
+  <tr>
+    <td>-</td>
+    <td>A perfectly smooth, flat, vertical (or inverted) surface cannot be climbed.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Climb DC Modifier</th>
+    <th>Example Surface or Activity</th>
+  </tr>
+  <tr>
+    <td>-10</td>
+    <td>Climbing a chimney (artificial or natural) or other location where you can brace against two opposite walls.</td>
+  </tr>
+  <tr>
+    <td>-5</td>
+    <td>Climbing a corner where you can brace against perpendicular walls.</td>
+  </tr>
+  <tr>
+    <td>+5</td>
+    <td>Surface is slippery.</td>
+  </tr>
+</table>
+
+Accelerated Climbing: You try to climb more quickly than normal. By accepting a –5 penalty, you can move half your speed (instead of one-quarter your speed).
+
+Make Your Own Handholds and Footholds: You can make your own handholds and footholds by pounding pitons into a wall. Doing so takes 1 minute per piton, and one piton is needed per 5 feet of distance. As with any surface that offers handholds and footholds, a wall with pitons inithasaDCof15.Inthesameway,aclimberwitha handaxe or similar implement can cut handholds in an ice wall.
+
+Catch Yourself When Falling: It’s practically impossible to catch yourself on a wall while falling. Make a Climb check (DC = wall’s DC + 20) to do so. It’s much easier to catch yourself on a slope (DC = slope’s DC + 10).
+
+Catch a Falling Character While Climbing: If someone climbing above you or adjacent to you falls, you can attempt to catch the falling character if he or she is within your reach. Doing so requires a successful melee touch attack against the falling character (though he or she can voluntarily forego any Dexterity bonus to AC if desired). If you hit, you must immediately attempt a Climb check (DC = wall’s DC + 10). Success indicates that you catch the falling character, but his total weight, including equipment, cannot exceed your heavy load limit or you automatically fall. If you fail your Climb check by 4 or less, you fail to stop the character’s fall but don’t lose your grip on the wall. If you fail by 5 or more, you fail to stop the character’s fall and begin falling as well.", action: "Climbing is part of movement, so it’s generally part of a move action (and may be combined with other types of movement in a move action). Each move action that includes any climbing requires a separate Climb check. Catching yourself or another falling character doesn’t take an action.", try_again: "", special: "You can use a rope to haul a character upward (or lower a character) through sheer strength. You can lift double your maximum load in this manner.
+
+A creature with a climb speed has a +8 racial bonus on all Climb checks. The creature must make a Climb check to climb any wall or slope with a DC higher than 0, but it can always choose to take 10, even if rushed or threatened while climbing. If a creature with a climb speed chooses an accelerated climb (see above), it moves at double its climb speed (or at its land speed, whichever is slower) and makes a single Climb check at a –5 penalty. Such a creature retains its Dexterity bonus to Armor Class (if any) while climbing, and opponents get no special bonus to their attacks against it. It cannot, however, use the run action while climbing.
+
+Any creature of Tiny or smaller size should use its Dex modifier instead of its Str modifier for Climb and Swim checks.", skill_unlock_5: "You are no longer denied your Dexterity bonus when climbing.", skill_unlock_10: "You gain a natural climb speed (but not the +8 racial bonus on Climb checks) of 10 feet, but only on surfaces with a Climb DC of 20 or lower.", skill_unlock_15: "You gain a natural climb speed (but not the +8 racial bonus on Climb checks) equal to your base speed on surfaces with a Climb DC of 20 or lower, and of 10 feet on all other surfaces.", skill_unlock_20: "You gain a natural climb speed equal to your base speed on all surfaces. If you have both hands free, you gain a +8 racial bonus on Climb checks.")
+
+craft = Skill.create!(name: "Craft", ability_score: "Intelligence", untrained: true, blurb: "You are skilled in the creation of a specific group of items, such as armor or weapons. Like Knowledge, Perform, and Profession, Craft is actually a number of separate skills. You could have several Craft skills, each with its own ranks. The most common Craft skills are alchemy, armor, baskets, books, bows, calligraphy, carpentry, cloth, clothing, glass, jewelry, leather, locks, paintings, pottery, sculptures, ships, shoes, stonemasonry, traps, and weapons.
+
+A Craft skill is specifically focused on creating something. If nothing is created by the endeavor, it probably falls under the heading of a Profession skill.", description: "You can practice your trade and make a decent living, earning half your check result in gold pieces per week of dedicated work. You know how to use the tools of your trade, how to perform the craft’s daily tasks, how to supervise untrained helpers, and how to handle common problems. (Untrained laborers and assistants earn an average of 1 silver piece per day.)
+
+The basic function of the Craft skill, however, is to allow you to make an item of the appropriate type. The DC depends on the complexity of the item to be created. The DC, your check result, and the price of the item determine how long it takes to make a particular item. The item’s finished price also determines the cost of raw materials.
+
+To determine how much time and money it takes to make an item, follow these steps.
+
+1) Find the item’s price in silver pieces (1 gp = 10 sp).
+
+2) Find the item’s DC from Table: Craft Skills.
+
+3) Pay 1/3 of the item’s price for the raw material cost.
+
+4) Make an appropriate Craft check representing one week’s worth of work. If the check succeeds, multiply your check result by the DC. If the result × the DC equals the price of the item in sp, then you have completed the item. (If the result × the DC equals double or triple the price of the item in silver pieces, then you’ve completed the task in one-half or one-third of the time. Other multiples of the DC reduce the time in the same manner.) If the result × the DC doesn’t equal the price, then it represents the progress you’ve made this week. Record the result and make a new Craft check for the next week. Each week, you make more progress until your total reaches the price of the item in silver pieces.
+
+If you fail a check by 4 or less, you make no progress this week (or day, see below). If you miss by 5 or more, you ruin half the raw materials and have to pay half the original raw material cost again.
+
+Tools: All crafts require artisan’s tools to give the best chance of success. If improvised tools are used, the check is made with a –2 penalty. On the other hand, masterwork artisan’s tools provide a +2 circumstance bonus on the check.
+
+Fabricate Spell: In some cases, the fabricate spell can be used to achieve the results of a Craft check with no actual check involved. You must still make an appropriate Craft check when using the spell to make articles requiring a high degree of craftsmanship.
+
+Ironwood Spell: A successful Craft check related to woodworking in conjunction with the casting of the ironwood spell enables you to make wooden items that have the strength of steel.
+
+Minor Creation: When casting the spell minor creation, you must succeed on an appropriate Craft check to make a complex item.
+
+Progress by the Day: You can make checks by the day instead of by the week. In this case your progress (check result × DC) should be divided by the number of days in a week.
+
+Create Masterwork Items: You can make a masterwork item: a weapon, suit of armor, shield, or tool that conveys a bonus on its use through its exceptional craftsmanship. To create a masterwork item, you create the masterwork component as if it were a separate item in addition to the standard item. The masterwork component has its own price (300 gp for a weapon or 150 gp for a suit of armor or a shield, see Chapter 6 for the price of other masterwork tools) and a Craft DC of 20. Once both the standard component and the masterwork component are completed, the masterwork item is finished. The cost you pay for the masterwork component is one-third of the given amount, just as it is for the cost in raw materials.
+
+Repair Items: You can repair an item by making checks against the same DC that it took to make the item in the first place. The cost of repairing an item is one-fifth of the item’s price.
+
+*You must be trained in the listed skill to attempt this task.
+
+<table>
+  <tr>
+    <th>Item/Task</th>
+    <th>Craft Skill</th>
+    <th>Craft DC</th>
+  </tr>
+  <tr>
+    <td>Craft Acid</td>
+    <td>Alchemy</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Determine the Items an Alchemist Makes with Substances from Their Lab*</td>
+    <td>Alchemy</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Craft Alchemist's Fire, Smokestick, or Tindertwig</td>
+    <td>Alchemy</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Craft Antitoxin, Sunrod, Tanglefoot Bag, or Thunderstone</td>
+    <td>Alchemy</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Craft Armor or Shield</td>
+    <td>Armor</td>
+    <td>10 + AC Bonus</td>
+  </tr>
+  <tr>
+    <td>Etch Metal Armor Plates with Decorative Designs</td>
+    <td>Armor or Paintings</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Identify a Suit of Masterwork Armor on Sight</td>
+    <td>Armor</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Determine What Type of Environment a Basket's Material Came From</td>
+    <td>Baskets</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Determine the Specific Region a Basket's Material Came From</td>
+    <td>Baskets</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Smelt Ore and Refine the Metal</td>
+    <td>Blacksmithing</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Create Armor Spikes or Shield Spikes Without Craft (Armor)*</td>
+    <td>Blacksmithing</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Determine a Book's Approxiamte Age</td>
+    <td>Books</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Identify a Composite Bow on Site</td>
+    <td>Bows</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Craft Longbow, Shortbow, or Arrows</td>
+    <td>Bows</td>
+    <td>12</td>
+  </tr>
+  <tr>
+    <td>Craft Composite Longbow or Composite Shortbow</td>
+    <td>Bows</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Identify a Masterwork Bow on Sight</td>
+    <td>Bows</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Craft Composite Longbow or Composite Shortbow With High Strength Rating</td>
+    <td>Bows</td>
+    <td>15 + (2 x Rating)</td>
+  </tr>
+  <tr>
+    <td>Determine a Writer's Experience Level and Handedness*</td>
+    <td>Calligraphy</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Write an Invitation That Matches Appropriate Social Conventions</td>
+    <td>Calligraphy</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Make a Makeshift Barrel or Crate</td>
+    <td>Carpentry</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Create a Rudiementary Raft from Found Materials</td>
+    <td>Carpentry or Ships</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Carve Fine Woodworking</td>
+    <td>Carpentry or Sculptures</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Craft Wooden Armor or a Wooden Shield Without Craft (Armor)</td>
+    <td>Carpentry</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Correctly Dye a Garment or Bolt of Cloth</td>
+    <td>Cloth</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Mend a Sail</td>
+    <td>Cloth, Clothin, or Ships</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Tailor a Garment to Another Size or Body Shape</td>
+    <td>Clothing</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Create Temporary Cold-Weather Gear (Grants a +2 Bonus)</td>
+    <td>Clothing</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Create Padded Armor Without Craft (Armor)</td>
+    <td>Clothing</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Craft One-Handed Firearm or Two-Handed Firearm</td>
+    <td>Firearms</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Craft Seige Firearm, Heavy</td>
+    <td>Firearms</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>Craft Seige Firearm, Light</td>
+    <td>Firearms</td>
+    <td>35</td>
+  </tr>
+  <tr>
+    <td>Locate or Identify Naturally Formed Glass</td>
+    <td>Glass</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Identify the Work of Famous Jewelers</td>
+    <td>Jewelry</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Create a Fake Gemstone*</td>
+    <td>Jewelry</td>
+    <td>Opposed</td>
+  </tr>
+  <tr>
+    <td>Identify the Sort of Creature From Which a Piece of Leather Came*</td>
+    <td>Leather</td>
+    <td>10+</td>
+  </tr>
+  <tr>
+    <td>Skin an Animal and Tan the Hide</td>
+    <td>Leather</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Create a High-Quality Item From the Hide of a Non-Standard Creature*</td>
+    <td>Leather</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Create Leather, Studded Leather, or Hide Armor Without Craft (Armor)</td>
+    <td>Leather</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Aid Another on a Skill Check to Open a Lock*</td>
+    <td>Locks</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Tune a Musical Instrument</td>
+    <td>Musical Instruments</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Create Paint or Other Pigments from Scratch</td>
+    <td>Paintings</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Re-create Someone's Likeness from Memory</td>
+    <td>Paintings</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Re-create Someone's Likeness from an Eyewitness Account</td>
+    <td>Paintings</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Create a Temporary or Makeshift Kiln</td>
+    <td>Pottery</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Make a Mold of an Object or Part of a Body</td>
+    <td>Sculptures</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Craft Ranged Seige Engine, Heavy</td>
+    <td>Seige Engines</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Craft Ranged Seige Engine, Medium</td>
+    <td>Seige Engines</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Craft Ranged Seige Engine, Light</td>
+    <td>Seige Engines</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>Alter Shoes to a Different Size or Foot Shape*</td>
+    <td>Shoes</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Recognize a Famous Ship and Where it Likely Came From</td>
+    <td>Ships</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Identify Whether a Stone Wall is Entirely Stone or a Veneer</td>
+    <td>Stonemasonry</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Create a Temporary Stone Support or Small Rampart with Found Supplies</td>
+    <td>Stonemasonry</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Craft Mechanical Traps</td>
+    <td>Traps</td>
+    <td>Varies</td>
+  </tr>
+  <tr>
+    <td>Determine the Age of a Mechanical Trap</td>
+    <td>Traps</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Identify a Masterwork Weapon on Sight</td>
+    <td>Weapons</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Craft Crossbow or Bolts</td>
+    <td>Weapons</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Craft Simple Melee or Thrown Weapon</td>
+    <td>Weapons</td>
+    <td>12</td>
+  </tr>
+  <tr>
+    <td>Craft Martial Melee or Thrown Weapon</td>
+    <td>Weapons</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Craft Exotic Melee or Thrown Weapon</td>
+    <td>Weapons</td>
+    <td>18</td>
+  </tr>
+  <tr>
+    <td>Very Simple Item (Wooden Spoon)</td>
+    <td>Varies</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Craft Typical Item (Iron Pot)</td>
+    <td>Varies</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Identify a Famous Maker's Mark</td>
+    <td>Varies</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Craft High-Quality Item (Bell)</td>
+    <td>Varies</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Detemine What Culture (e.g. Elves, Frost Giants) Made an Item</td>
+    <td>Varies</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Craft Complex or Superior Item (Lock)</td>
+    <td>Varies</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify an Obscure Maker's Mark*</td>
+    <td>Varies</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Determine the Hardness and Hit Points of an Item*</td>
+    <td>Varies</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify the Creator of an Item with No Mark*</td>
+    <td>Varies</td>
+    <td>30</td>
+  </tr>
+</table>
+
+The table below lists which craft skills to use for certain prominent items and adventuring tools. This list omits obvious items - outfits are made with Craft (clothing), keelboats with Craft (ships),  and so on. More specific skills can also be used instead of the listed skill, such as using Craft (tattoos) instead of Craft (paintings) for a tattoo.
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Craft Skill</th>
+  </tr>
+  <tr>
+    <td>Alchemist's Lab</td>
+    <td>Alchemy</td>
+  </tr>
+  <tr>
+    <td>Artisan's Tools</td>
+    <td>Blacksmithing or Carpentry</td>
+  </tr>
+  <tr>
+    <td>Backpack</td>
+    <td>Clothing or Leather</td>
+  </tr>
+  <tr>
+    <td>Barding</td>
+    <td>Armor</td>
+  </tr>
+  <tr>
+    <td>Bedroll</td>
+    <td>Cloth or Leather</td>
+  </tr>
+  <tr>
+    <td>Caltrops</td>
+    <td>Weapons</td>
+  </tr>
+  <tr>
+    <td>Cart or Carriage</td>
+    <td>Carpentry</td>
+  </tr>
+  <tr>
+    <td>Chain</td>
+    <td>Blacksmithing or Traps</td>
+  </tr>
+  <tr>
+    <td>Chest</td>
+    <td>Carpentry or Locks</td>
+  </tr>
+  <tr>
+    <td>Climber's Kit</td>
+    <td>Blacksmithing</td>
+  </tr>
+  <tr>
+    <td>Disguise Kit</td>
+    <td>Alchemy or Paintings</td>
+  </tr>
+  <tr>
+    <td>Flint and Steel</td>
+    <td>Blacksmithing or Stonemasonry</td>
+  </tr>
+  <tr>
+    <td>Grappling Hook</td>
+    <td>Blacksmithing or Weapons</td>
+  </tr>
+  <tr>
+    <td>Gunslinger's Kit</td>
+    <td>Alchemy or Blacksmithing</td>
+  </tr>
+  <tr>
+    <td>Harrow Deck</td>
+    <td>Paintings</td>
+  </tr>
+  <tr>
+    <td>Healer's Kit</td>
+    <td>Alchemy or Cloth</td>
+  </tr>
+  <tr>
+    <td>Hemp Rope</td>
+    <td>Baskets or Cloth</td>
+  </tr>
+  <tr>
+    <td>Lamp</td>
+    <td>Blacksmithing or Glass</td>
+  </tr>
+  <tr>
+    <td>Manacles<td>
+    <td>Blacksmithing or Locks</td>
+  </tr>
+  <tr>
+    <td>Masterwork Tool</td>
+    <td>Blacksmithing</td>
+  </tr>
+  <tr>
+    <td>Musical Instrument</td>
+    <td>Musical Instruments</td>
+  </tr>
+  <tr>
+    <td>Saddle</td>
+    <td>Leather</td>
+  </tr>
+  <tr>
+    <td>Scroll Case</td>
+    <td>Carpentry or Leather</td>
+  </tr>
+  <tr>
+    <td>Signet Ring</td>
+    <td>Jewelry</td>
+  </tr>
+  <tr>
+    <td>Silk Rope</td>
+    <td>Cloth</td>
+  </tr>
+  <tr>
+    <td>Silver Holy Symbol</td>
+    <td>Blacksmithing or Sculptures</td>
+  </tr>
+  <tr>
+    <td>Skeleton Key</td>
+    <td>Locks</td>
+  </tr>
+  <tr>
+    <td>Spell Component Pouch/td>
+    <td>Leather</td>
+  </tr>
+  <tr>
+    <td>Spyglass</td>
+    <td>Glass</td>
+  </tr>
+  <tr>
+    <td>Tattoo</td>
+    <td>Paintings</td>
+  </tr>
+  <tr>
+    <td>Tent</td>
+    <td>Cloth or Leather</td>
+  </tr>
+  <tr>
+    <td>Thieves' Tools</td>
+    <td>Blacksmithing or Locks</td>
+  </tr>
+  <tr>
+    <td>Waterskin</td>
+    <td>Leather</td>
+  </tr>
+  <tr>
+    <td>Wood Holy Symbol</td>
+    <td>Carpentry or Sculptures</td>
+  </tr>
+</table>
+
+The following table indicates which Craft skills are typically used to create common worn items. While the normal system for creating magic items doesn't incorporate Craft skills, such skills could reasonably be used while creating a magic item to make it appear especially ornate.
+
+<table>
+  <tr>
+    <th>Worn Item</th>
+    <th>Craft Skill</th>
+  </tr>
+  <tr>
+    <td>Amulet</td>
+    <td>Jewelry</td>
+  </tr>
+  <tr>
+    <td>Belt</td>
+    <td>Leather or Clothing</td>
+  </tr>
+  <tr>
+    <td>Bracelet</td>
+    <td>Blacksmithing or Jewelry</td>
+  </tr>
+  <tr>
+    <td>Bracer</td>
+    <td>Armor or Leather</td>
+  </tr>
+  <tr>
+    <td>Brooch</td>
+    <td>Jewelry</td>
+  </tr>
+  <tr>
+    <td>Cape or Cloak</td>
+    <td>Cloth or Clothing</td>
+  </tr>
+  <tr>
+    <td>Circlet</td>
+    <td>Blacksmithing or Jewelry</td>
+  </tr>
+  <tr>
+    <td>Crown</td>
+    <td>Blacksmithing or Jewelry</td>
+  </tr>
+  <tr>
+    <td>Gauntlet</td>
+    <td>Armor</td>
+  </tr>
+  <tr>
+    <td>Girdle</td>
+    <td>Clothing or Leather</td>
+  </tr>
+  <tr>
+    <td>Glasses or Goggles</td>
+    <td>Glass</td>
+  </tr>
+  <tr>
+    <td>Glove</td>
+    <td>Clothing or Leather</td>
+  </tr>
+  <tr>
+    <td>Hat</td>
+    <td>Clothing or Leather</td>
+  </tr>
+  <tr>
+    <td>Headband</td>
+    <td>Cloth or Clothing</td>
+  </tr>
+  <tr>
+    <td>Helm</td>
+    <td>Armor</td>
+  </tr>
+  <tr>
+    <td>Mask</td>
+    <td>Clothing or Leather</td>
+  </tr>
+  <tr>
+    <td>Necklace</td>
+    <td>Blacksmithing or Jewelry</td>
+  </tr>
+  <tr>
+    <td>Periapt</td>
+    <td>Jewelry</td>
+  </tr>
+  <tr>
+    <td>Phylactery</td>
+    <td>Leather or Carpentry</td>
+  </tr>
+  <tr>
+    <td>Ring</td>
+    <td>Jewelry</td>
+  </tr>
+  <tr>
+    <td>Robe</td>
+    <td>Clothing</td>
+  </tr>
+  <tr>
+    <td>Vestments</td>
+    <td>Clothing</td>
+  </tr>
+</table>", action: "Does not apply. Craft checks are made by the day or week (see above).", try_again: "Yes, but each time you fail by 5 or more, you ruin half the raw materials and have to pay half the original raw material cost again.", special: "You may voluntarily add +10 to the indicated DC to craft an item. This allows you to create the item more quickly (since you’ll be multiplying this higher DC by your Craft check result to determine progress). You must decide whether to increase the DC before you make each weekly or daily check.
+
+To make an item using Craft (alchemy), you must have alchemical equipment. If you are working in a city, you can buy what you need as part of the raw materials cost to make the item, but alchemical equipment is difficult or impossible to come by in some places. Purchasing and maintaining an alchemist’s lab grants a +2 circumstance bonus on Craft (alchemy) checks because you have the perfect tools for the job, but it does not affect the cost of any items made using the skill.
+
+Those who wish to construct or repair technological items use Craft (mechanical) in conjunction with technological item crafting feats. Without the Technologist feat, Craft (mechanical) can still be used to craft less advanced forms of technology such as gears, hinges, and pulleys. NPCs with the means of crafting technological items are extremely rare, and it is not assumed that PCs have access to such resources. GMs are encouraged to discuss such considerations with their players before allowing technological crafting into the game.", skill_unlock_5: "When determining your weekly progress, double the result of your Craft check before multiplying the result by the item’s DC.", skill_unlock_10: "You do not ruin any of your raw materials unless you fail a check by 10 or more.", skill_unlock_15: "When you determine your progress, the result of your check is how much work you complete each day in silver pieces.", skill_unlock_20: "You can craft magic armor, magic weapons, magic rings, and wondrous items that fall under your category of Craft using the normal Craft rules.", customizable: true)
+
+diplomacy = Skill.create!(name: "Diplomacy", ability_score: "Charisma", untrained: true, blurb: "You can use this skill to persuade others to agree with your arguments, to resolve differences, and to gather valuable information or rumors from people. This skill is also used to negotiate conflicts by using the proper etiquette and manners suitable to the problem.", description: "You can change the initial attitudes of nonplayer characters with a successful check. The DC of this check depends on the creature’s starting attitude toward you, adjusted by its Charisma modifier. If you succeed, the character’s attitude toward you is improved by one step. For every 5 by which your check result exceeds the DC, the character’s attitude toward you increases by one additional step. A creature’s attitude cannot be shifted more than two steps up in this way, although the GM can override this rule in some situations. If you fail the check by 4 or less, the character’s attitude toward you is unchanged. If you fail by 5 or more, the character’s attitude toward you is decreased by one step.
+
+You cannot use Diplomacy against a creature that does not understand you or has an Intelligence of 3 or less. Diplomacy is generally ineffective in combat and against creatures that intend to harm you or your allies in the immediate future. Any attitude shift caused through Diplomacy generally lasts for 1d4 hours but can last much longer or shorter depending upon the situation (GM discretion).
+
+<table>
+  <tr>
+    <th>Starting Attitude</th>
+    <th>Diplomacy DC</th>
+  </tr>
+  <tr>
+    <td>Hostile</td>
+    <td>25 + Creature's Cha Modifier</td>
+  </tr>
+  <tr>
+    <td>Unfriendly</td>
+    <td>20 + Creature's Cha Modifier</td>
+  </tr>
+  <tr>
+    <td>Indifferent</td>
+    <td>15 + Creature's Cha Modifier</td>
+  </tr>
+  <tr>
+    <td>Friendly</td>
+    <td>10 + Creature's Cha Modifier</td>
+  </tr>
+  <tr>
+    <td>Helpful</td>
+    <td>0 + Creature's Cha Modifier</td>
+  </tr>
+</table>
+
+If a creature’s attitude toward you is at least indifferent, you can make requests of the creature. This is an additional Diplomacy check, using the creature’s current attitude to determine the base DC, with one of the following modifiers. Once a creature’s attitude has shifted to helpful, the creature gives in to most requests without a check, unless the request is against its nature or puts it in serious peril. Some requests automatically fail if the request goes against the creature’s values or its nature, subject to GM discretion.
+
+<table>
+  <tr>
+    <th>Request</th>
+    <th>Diplomacy DC Modifier</th>
+  </tr>
+  <tr>
+    <td>Give Simple Advice or Directions</td>
+    <td>-5</td>
+  </tr>
+  <tr>
+    <td>Give Detailed Advice</td>
+    <td>+0</td>
+  </tr>
+  <tr>
+    <td>Give Simple Aid</td>
+    <td>+0</td>
+  </tr>
+  <tr>
+    <td>Reveal an Unimportant Secret</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Give Lengthy or Complicated Aid</td>
+    <td>+5</td>
+  </tr>
+  <tr>
+    <td>Give Dangerous Aid</td>
+    <td>+10</td>
+  </tr>
+  <tr>
+    <td>Reveal an Important Secret</td>
+    <td>+10 or More</td>
+  </tr>
+  <tr>
+    <td>Give Aid That Could Result in Punishment</td>
+    <td>+15 or More</td>
+  </tr>
+  <tr>
+    <td>Additional Requests</td>
+    <td>+5 per Request</td>
+  </tr>
+</table>
+
+Gather Information: You can also use Diplomacy to gather information about a specific topic or individual. To do this, you must spend at least 1d4 hours canvassing people at local taverns, markets, and gathering places. The DC of this check depends on the obscurity of the information sought, but for most commonly known facts or rumors it is 10. For obscure or secret knowledge, the DC might increase to 20 or higher. The GM might rule that some topics are simply unknown to common folk.", action: "Using Diplomacy to influence a creature’s attitude takes 1 minute of continuous interaction. Making a request of a creature takes 1 or more rounds of interaction, depending upon the complexity of the request. Using Diplomacy to gather information takes 1d4 hours of work searching for rumors and informants.", try_again: "You cannot use Diplomacy to influence a given creature’s attitude more than once in a 24-hour period. If a request is refused, the result does not change with additional checks, although other requests might be made. You can retry Diplomacy checks made to gather information.", special: "", skill_unlock_5: "The time required to influence a creature’s attitude or gather information is halved.", skill_unlock_10: "You can attempt to adjust a creature’s attitude in 1 round by taking a –10 penalty. If you take 1 minute to adjust a creature’s attitude, add your Charisma bonus to the number of hours that attitude change persists.", skill_unlock_15: "You can attempt to adjust a creature’s attitude in 1 round with no penalty. If you take 1 minute to adjust a creature’s attitude, the duration of the resulting change is measured in days, not hours. You can gather information in 10 minutes by taking a –5 penalty.", skill_unlock_20: "You can attempt to adjust a creature’s attitude in 1 round with no penalty. If you take 1 minute to adjust a creature’s attitude, the duration of the resulting change is measured in weeks, not hours. You can gather information in 1d4 minutes with no penalty.")
+
+disable_device = Skill.create!(name: "Disable Device", ability_score: "Dexterity", untrained: false, blurb: "You are skilled at disarming traps and opening locks. In addition, this skill lets you sabotage simple mechanical devices, such as catapults, wagon wheels, and doors.", description: "When disarming a trap or other device, the Disable Device check is made secretly, so that you don’t necessarily know whether you’ve succeeded.
+
+The DC depends on how tricky the device is. If the check succeeds, you disable the device. If it fails by 4 or less, you have failed but can try again. If you fail by 5 or more, something goes wrong. If the device is a trap, you trigger it. If you’re attempting some sort of sabotage, you think the device is disabled, but it still works normally.
+
+You also can rig simple devices such as saddles or wagon wheels to work normally for a while and then fail or fall off some time later (usually after 1d4 rounds or minutes of use).
+
+*If you attempt to leave behind no trace of your tampering, add 5 to the DC.
+
+<table>
+  <tr>
+    <th>Device</th>
+    <th>Time</th>
+    <th>Disable Device DC*</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>Simple</td>
+    <td>1 Round</td>
+    <td>10</td>
+    <td>Jam a Lock</td>
+  </tr>
+  <tr>
+    <td>Tricky</td>
+    <td>1d4 Rounds</td>
+    <td>15</td>
+    <td>Sabotage a Wagon Wheel</td>
+  </tr>
+  <tr>
+    <td>Difficult</td>
+    <td>2d4 Rounds</td>
+    <td>20</td>
+    <td>Disarm a Trap, Reset a Trap</td>
+  </tr>
+  <tr>
+    <td>Extreme</td>
+    <td>2d4 Rounds</td>
+    <td>25</td>
+    <td>Disarm a Complex Trap, Cleverly Sabotage a Clockwork Device</td>
+  </tr>
+</table>
+
+Open Locks: The DC for opening a lock depends on its quality. If you do not have a set of thieves’ tools, these DCs increase by 10.
+
+  <table>
+    <tr>
+      <th>Lock Quality</th>
+      <th>Disable Device DC</th>
+    </tr>
+    <tr>
+      <td>Simple</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>Average</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>Good</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>Superior</td>
+      <td>40</td>
+    </tr>
+</table>", action: "The amount of time needed to make a Disable Device check depends on the task, as noted above. Disabling a simple device takes 1 round and is a full-round action. An intricate or complex device requires 1d4 or 2d4 rounds. Attempting to open a lock is a full-round action.", try_again: "Varies. You can retry checks made to disable traps if you miss the check by 4 or less. You can retry checks made to open locks.", special: "A rogue who beats a trap’s DC by 10 or more can study the trap, figure out how it works, and bypass it without disarming it. A rogue can rig a trap so her allies can bypass it as well.
+
+Characters with the trapfinding ability (like rogues) can disarm magic traps. A magic trap generally has a DC of 25 + the level of the spell used to create it.
+The spells fire trap, glyph of warding, symbol, and teleportation circle also create traps that a rogue can disarm with a successful Disable Device check. Spike growth and spike stones, however, create magic hazards against which Disable Device checks do not succeed. See the individual spell descriptions for details.", skill_unlock_5: "Reduce the time required to disarm a trap or open a lock by taking a –5 penalty on your Disable Device check for each step by which you reduce the time required: 2d4 rounds, 1d4 rounds, 1 round, a standard action, a move action, a swift action.", skill_unlock_10: "You can disarm magical traps at a –10 penalty even if you lack the trapfinding ability. If you possess the trapfinding ability, when attempting to disable magic traps, you never trigger them, even if you perform the trigger action (such as looking at a symbol). If you fail the check, you can still trigger the trap, and you can’t use this ability to bypass it.", skill_unlock_15: "When attacked by a trap, you can attempt a Disable Device check as an immediate action (adding your trap sense bonus, if any) opposed by the trap’s attack roll or its save DC. If you succeed, you take half damage (or no damage if you exceed the DC by at least 10).", skill_unlock_20: "You halve the penalties for performing a quick disarm as described in the 5 Ranks entry. If you possess the trapfinding ability and accept a –20 penalty while using the ability unlocked at 15 ranks, all nearby allies gain the benefit, and you disable the trap as an immediate action before it can trigger if you exceed the DC by at least 10.")
+
+disguise = Skill.create!(name: "Disguise", ability_score: "Charisma", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+escape_artist = Skill.create!(name: "Escape Artist", ability_score: "Dexterity", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+fly = Skill.create!(name: "Fly", ability_score: "Dexterity", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+handle_animal = Skill.create!(name: "Handle Animal", ability_score: "Charisma", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+heal = Skill.create!(name: "Heal", ability_score: "Wisdom", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+intimidate = Skill.create!(name: "Intimidate", ability_score: "Charisma", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+knowledge_arcana = Skill.create!(name: "Knowledge (arcana)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+knowledge_dungeoneering = Skill.create!(name: "Knowledge (dungeoneering)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+knowledge_engineering = Skill.create!(name: "Knowledge (engineering)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+knowledge_geography = Skill.create!(name: "Knowledge (geography)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+knowledge_history = Skill.create!(name: "Knowledge (history)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+knowledge_local = Skill.create!(name: "Knowledge (local)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+knowledge_nature = Skill.create!(name: "Knowledge (nature)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+knowledge_nobility = Skill.create!(name: "Knowledge (nobility)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+knowledge_planes = Skill.create!(name: "Knowledge (planes)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+knowledge_religion = Skill.create!(name: "Knowledge (religion)", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+knowledge = Skill.create!(name: "Knowledge", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true, customizable: true)
+linguistics = Skill.create!(name: "Linguistics", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+perception = Skill.create!(name: "Perception", ability_score: "Wisdom", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+perform = Skill.create!(name: "Perform", ability_score: "Charisma", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", customizable: true)
+profession = Skill.create!(name: "Profession", ability_score: "Wisdom", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", customizable: true)
+ride = Skill.create!(name: "Ride", ability_score: "Dexterity", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+sense_motive = Skill.create!(name: "Sense Motive", ability_score: "Wisdom", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+sleight_of_hand = Skill.create!(name: "Sleight of Hand", ability_score: "Dexterity", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+spellcraft = Skill.create!(name: "Spellcraft", ability_score: "Intelligence", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+stealth = Skill.create!(name: "Stealth", ability_score: "Dexterity", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+survival = Skill.create!(name: "Survival", ability_score: "Wisdom", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+swim = Skill.create!(name: "Swim", ability_score: "Strength", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+use_magic_device = Skill.create!(name: "Use Magic Device", ability_score: "Charisma", untrained: false, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
 # rand = Skill.create!(name: "", ability_score: "", untrained: true, description: "")
 
-finesse_unchained = Skill.create!(name: "Finesse", ability_score: "Dexterity", untrained: true, description: "")
-nature_unchained = Skill.create!(name: "Nature", ability_score: "Intelligence", untrained: true, description: "", knowledge: true)
-investigation = Skill.create!(name: "Investigation", ability_score: "Intelligence", untrained: true, description: "")
-religion_unchained = Skill.create!(name: "Religion", ability_score: "Intelligence", untrained: true, description: "", knowledge: true)
-society_unchained = Skill.create!(name: "Society", ability_score: "Intelligence", untrained: true, description: "", knowledge: true)
-spellcraft_unchained = Skill.create!(name: "Spellcraft", ability_score: "Intelligence", untrained: true, description: "", knowledge: true)
+finesse_unchained = Skill.create!(name: "Finesse", ability_score: "Dexterity", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+nature_unchained = Skill.create!(name: "Nature", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+investigation = Skill.create!(name: "Investigation", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+religion_unchained = Skill.create!(name: "Religion", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+society_unchained = Skill.create!(name: "Society", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+spellcraft_unchained = Skill.create!(name: "Spellcraft", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
 # rand = Skill.create!(name: "", ability_score: "", untrained: true, description: "")
 
 puts "Skills Created!"
