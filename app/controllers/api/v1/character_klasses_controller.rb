@@ -28,4 +28,18 @@ class Api::V1::CharacterKlassesController < ApplicationController
     # end
   end
 
+  def create_character_klass_archetype
+    archetypes_array = []
+    params[:archetypes].each do |id|
+      @cka = CharacterKlassArchetype.create!(character_id: params[:character_id], klass_archetype_id: id)
+      if @cka.valid?
+        archetypes_array.push(KlassArchetypeSerializer.new(@cka.klass_archetype))
+      else
+        render json: { error: "Could not create" }, status: 400
+      end
+    end
+
+    render json: archetypes_array
+  end
+
 end

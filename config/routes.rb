@@ -85,6 +85,7 @@ Rails.application.routes.draw do
       get 'klass_features/:id/specializations', to: 'klass_features#klass_specializations'
       post 'character_klass_specializations', to: 'klass_features#create_character_klass_specialization'
       delete 'character_klass_specializations/:id', to: 'klass_features#delete_character_klass_specialization'
+      post 'character_klass_archetypes', to: 'character_klasses#create_character_klass_archetype'
 
 
       get 'campaigns/new', to: 'campaigns#new'
