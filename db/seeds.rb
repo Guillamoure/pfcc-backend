@@ -1097,6 +1097,7 @@ Open Locks: The DC for opening a lock depends on its quality. If you do not have
 </table>", action: "The amount of time needed to make a Disable Device check depends on the task, as noted above. Disabling a simple device takes 1 round and is a full-round action. An intricate or complex device requires 1d4 or 2d4 rounds. Attempting to open a lock is a full-round action.", try_again: "Varies. You can retry checks made to disable traps if you miss the check by 4 or less. You can retry checks made to open locks.", special: "A rogue who beats a trap’s DC by 10 or more can study the trap, figure out how it works, and bypass it without disarming it. A rogue can rig a trap so her allies can bypass it as well.
 
 Characters with the trapfinding ability (like rogues) can disarm magic traps. A magic trap generally has a DC of 25 + the level of the spell used to create it.
+
 The spells fire trap, glyph of warding, symbol, and teleportation circle also create traps that a rogue can disarm with a successful Disable Device check. Spike growth and spike stones, however, create magic hazards against which Disable Device checks do not succeed. See the individual spell descriptions for details.", skill_unlock_5: "Reduce the time required to disarm a trap or open a lock by taking a –5 penalty on your Disable Device check for each step by which you reduce the time required: 2d4 rounds, 1d4 rounds, 1 round, a standard action, a move action, a swift action.", skill_unlock_10: "You can disarm magical traps at a –10 penalty even if you lack the trapfinding ability. If you possess the trapfinding ability, when attempting to disable magic traps, you never trigger them, even if you perform the trigger action (such as looking at a symbol). If you fail the check, you can still trigger the trap, and you can’t use this ability to bypass it.", skill_unlock_15: "When attacked by a trap, you can attempt a Disable Device check as an immediate action (adding your trap sense bonus, if any) opposed by the trap’s attack roll or its save DC. If you succeed, you take half damage (or no damage if you exceed the DC by at least 10).", skill_unlock_20: "You halve the penalties for performing a quick disarm as described in the 5 Ranks entry. If you possess the trapfinding ability and accept a –20 penalty while using the ability unlocked at 15 ranks, all nearby allies gain the benefit, and you disable the trap as an immediate action before it can trigger if you exceed the DC by at least 10.")
 
 disguise = Skill.create!(name: "Disguise", ability_score: "Charisma", untrained: true, blurb: "You are skilled at changing your appearance.", description: "Your Disguise check result determines how good the disguise is, and it is opposed by others’ Perception check results. If you don’t draw any attention to yourself, others do not get to make Perception checks. If you come to the attention of people who are suspicious (such as a guard who is watching commoners walking through a city gate), it can be assumed that such observers are taking 10 on their Perception checks.
@@ -3067,12 +3068,125 @@ Use a Wand, Staff, or Other Spell Trigger Item: Normally, to use a wand, you mus
 
 # rand = Skill.create!(name: "", ability_score: "", untrained: true, description: "")
 
-finesse_unchained = Skill.create!(name: "Finesse", ability_score: "Dexterity", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+finesse_unchained = Skill.create!(name: "Finesse", ability_score: "Dexterity", untrained: true, blurb: "This skill is from the Pathfinder Unchained material, and represent a combination of the skills Disable Device and Sleight of Hand. The text below outlines a consolidation of those skills' features with minimal edits.", description: "<underline>Disable Device</underline>
+
+You are skilled at disarming traps and opening locks. In addition, this skill lets you sabotage simple mechanical devices, such as catapults, wagon wheels, and doors. Your training allows you to pick pockets, draw hidden weapons, and take a variety of actions without being noticed.
+
+When disarming a trap or other device, the Disable Device check is made secretly, so that you don’t necessarily know whether you’ve succeeded.
+
+The DC depends on how tricky the device is. If the check succeeds, you disable the device. If it fails by 4 or less, you have failed but can try again. If you fail by 5 or more, something goes wrong. If the device is a trap, you trigger it. If you’re attempting some sort of sabotage, you think the device is disabled, but it still works normally.
+
+You also can rig simple devices such as saddles or wagon wheels to work normally for a while and then fail or fall off some time later (usually after 1d4 rounds or minutes of use).
+
+*If you attempt to leave behind no trace of your tampering, add 5 to the DC.
+
+<table>
+  <tr>
+    <th>Device</th>
+    <th>Time</th>
+    <th>Disable Device DC*</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>Simple</td>
+    <td>1 Round</td>
+    <td>10</td>
+    <td>Jam a Lock</td>
+  </tr>
+  <tr>
+    <td>Tricky</td>
+    <td>1d4 Rounds</td>
+    <td>15</td>
+    <td>Sabotage a Wagon Wheel</td>
+  </tr>
+  <tr>
+    <td>Difficult</td>
+    <td>2d4 Rounds</td>
+    <td>20</td>
+    <td>Disarm a Trap, Reset a Trap</td>
+  </tr>
+  <tr>
+    <td>Extreme</td>
+    <td>2d4 Rounds</td>
+    <td>25</td>
+    <td>Disarm a Complex Trap, Cleverly Sabotage a Clockwork Device</td>
+  </tr>
+</table>
+
+Open Locks: The DC for opening a lock depends on its quality. If you do not have a set of thieves’ tools, these DCs increase by 10.
+
+<table>
+  <tr>
+    <th>Lock Quality</th>
+    <th>Disable Device DC</th>
+  </tr>
+  <tr>
+    <td>Simple</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Average</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Good</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>Superior</td>
+    <td>40</td>
+  </tr>
+</table>
+
+<underline>Sleight of Hand</underline>
+
+A DC 10 Sleight of Hand check lets you palm a coin-sized, unattended object. Performing a minor feat of legerdemain, such as making a coin disappear, also has a DC of 10 unless an observer is determined to note where the item went.
+
+When you use this skill under close observation, your skill check is opposed by the observer’s Perception check. The observer’s success doesn’t prevent you from performing the action, just from doing it unnoticed.
+
+You can hide a small object (including a light weapon or an easily concealed ranged weapon, such as a dart, sling, or hand crossbow) on your body. Your Sleight of Hand check is opposed by the Perception check of anyone observing you or of anyone frisking you. In the latter case, the searcher gains a +4 bonus on the Perception check, since it’s generally easier to find such an object than to hide it. A dagger is easier to hide than most light weapons, and grants you a +2 bonus on your Sleight of Hand check to conceal it. An extraordinarily small object, such as a coin, shuriken, or ring, grants you a +4 bonus on your Sleight of Hand check to conceal it, and heavy or baggy clothing (such as a cloak) grants you a +2 bonus on the check.
+
+Drawing a hidden weapon is a standard action and doesn’t provoke an attack of opportunity.
+
+If you try to take something from a creature, you must make a DC 20 Sleight of Hand check. The opponent makes a Perception check to detect the attempt, opposed by the Sleight of Hand check result you achieved when you tried to grab the item. An opponent who succeeds on this check no- tices the attempt, regardless of whether you got the item. You cannot use this skill to take an object from another creature during combat if the creature is aware of your presence.
+
+You can also use Sleight of Hand to entertain an audience as though you were using the Perform skill. In such a case, your “act” encompasses elements of legerdemain, juggling, and the like.
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Sleight of Hand DC</th>
+  </tr>
+  <tr>
+    <td>Palm a Coin-Sized Object, Make a Coin Disappear</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Lift a Small Object from a Person</td>
+    <td>20</td>
+  </tr>
+</table>", action: "<underline>Disable Device</underline>: The amount of time needed to make a Disable Device check depends on the task, as noted above. Disabling a simple device takes 1 round and is a full-round action. An intricate or complex device requires 1d4 or 2d4 rounds. Attempting to open a lock is a full-round action.
+
+<underline>Sleight of Hand</underline>: Any Sleight of Hand check is normally a standard action. However, you may perform a Sleight of Hand check as a move action by taking a –20 penalty on the check.", try_again: "<underline>Disable Device</underline>: Varies. You can retry checks made to disable traps if you miss the check by 4 or less. You can retry checks made to open locks.
+
+<underline>Sleight of Hand</underline>: Yes, but after an initial failure, a second Sleight of Hand attempt against the same target (or while you are being watched by the same observer who noticed your previous attempt) increases the DC for the task by 10.", special: "<underline>Disable Device</underline>: A rogue who beats a trap’s DC by 10 or more can study the trap, figure out how it works, and bypass it without disarming it. A rogue can rig a trap so her allies can bypass it as well.
+
+Characters with the trapfinding ability (like rogues) can disarm magic traps. A magic trap generally has a DC of 25 + the level of the spell used to create it.
+
+The spells fire trap, glyph of warding, symbol, and teleportation circle also create traps that a rogue can disarm with a successful Disable Device check. Spike growth and spike stones, however, create magic hazards against which Disable Device checks do not succeed. See the individual spell descriptions for details.
+
+<underline>Sleight of Hand</underline>: An untrained Sleight of Hand check is simply a Dexterity check. Without actual training, you can’t succeed on any Sleight of Hand check with a DC higher than 10, except for hiding an object on your body.", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+
 nature_unchained = Skill.create!(name: "Nature", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+
 investigation = Skill.create!(name: "Investigation", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
+
 religion_unchained = Skill.create!(name: "Religion", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+
 society_unchained = Skill.create!(name: "Society", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+
 spellcraft_unchained = Skill.create!(name: "Spellcraft", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+
 # rand = Skill.create!(name: "", ability_score: "", untrained: true, description: "")
 
 puts "Skills Created!"

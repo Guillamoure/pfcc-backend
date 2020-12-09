@@ -7,6 +7,9 @@ class Api::V1::SkillsController < ApplicationController
 
   def show
     @skill = Skill.find_by(name: params[:id])
+    if params[:id]
+      @skill = Skill.find(params[:id])
+    end
     render json: { skill: SkillSerializer.new(@skill) }, status: 200
   end
 

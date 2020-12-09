@@ -10,9 +10,11 @@ class Api::V1::DataController < ApplicationController
       :racial_traits, :race_ability_score_modifiers, :favored_klass_bonuses, :source
     ).all
     @everything = {}
+
     puts "\n\n\n"
     puts "SERIALIZER"
     puts "\n\n\n"
+
     all_classes = @classes.map do |klass|
       KlassSerializer.new(klass)
     end
@@ -21,6 +23,11 @@ class Api::V1::DataController < ApplicationController
       RaceSerializer.new(race)
     end
     @everything[:races] = all_races
+
+    all_skills = Skill.all.map do |skill|
+      SkillSerializer.new(skill)
+    end
+    @everything[:skills] = all_skills
 
     render json: @everything
   end

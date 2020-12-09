@@ -13,7 +13,7 @@ class Character < ApplicationRecord
   has_many :character_klass_specializations, dependent: :destroy
   has_many :klass_specializations, through: :character_klass_specializations
   has_many :character_klass_archetypes, dependent: :destroy
-  has_many :archetypes, through: :character_klass_archetypes, class_name: "KlassArchetype"
+  has_many :archetypes, through: :character_klass_archetypes, source: 'klass_archetype'
   has_many :character_choices
 
   has_many :prepared_spells, dependent: :destroy

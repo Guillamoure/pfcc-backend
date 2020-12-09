@@ -231,7 +231,7 @@ witch2 = KlassFeature.create!(klass_id: witch.id, name: "Spells", description: "
 
 witch3 = KlassFeature.create!(klass_id: witch.id, name: "Hex", description: "Witches learn a number of magic tricks, called hexes, that grant them powers or weaken foes. At 1st level, a witch gains one hex of her choice. She gains an additional hex at 2nd level and for every 2 levels attained after 2nd level, as noted on Table: Witch. A witch cannot select an individual hex more than once.
 
-  Unless otherwise noted, using a hex is a standard action that does not provoke an attack of opportunity. The save to resist a hex is equal to 10 + 1/2 the witch’s level + the witch’s Intelligence modifier.")
+  Unless otherwise noted, using a hex is a standard action that does not provoke an attack of opportunity. The save to resist a hex is equal to 10 + 1/2 the witch’s level + the witch’s Intelligence modifier.", has_klass_feature_options: true)
     FeatureLevel.create!(klass_feature_id: witch3.id, level: 1, table_description: "Hex")
     FeatureLevel.create!(klass_feature_id: witch3.id, level: 2, table_description: "Hex")
     FeatureLevel.create!(klass_feature_id: witch3.id, level: 4, table_description: "Hex")
