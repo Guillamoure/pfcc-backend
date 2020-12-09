@@ -36,6 +36,7 @@ namespace :seed do
     Rake::Task['db:seed:class:fighter'].invoke
     Rake::Task['db:seed:class:magus'].invoke
     Rake::Task['db:seed:class:ranger'].invoke
+    Rake::Task['db:seed:class:unchained_monk'].invoke
     Rake::Task['db:seed:class:unchained_rogue'].invoke
     Rake::Task['db:seed:class:witch'].invoke
   end
