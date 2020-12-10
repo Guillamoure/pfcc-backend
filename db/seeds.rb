@@ -3068,9 +3068,7 @@ Use a Wand, Staff, or Other Spell Trigger Item: Normally, to use a wand, you mus
 
 # rand = Skill.create!(name: "", ability_score: "", untrained: true, description: "")
 
-finesse_unchained = Skill.create!(name: "Finesse", ability_score: "Dexterity", untrained: true, blurb: "This skill is from the Pathfinder Unchained material, and represent a combination of the skills Disable Device and Sleight of Hand. The text below outlines a consolidation of those skills' features with minimal edits.", description: "<underline>Disable Device</underline>
-
-You are skilled at disarming traps and opening locks. In addition, this skill lets you sabotage simple mechanical devices, such as catapults, wagon wheels, and doors. Your training allows you to pick pockets, draw hidden weapons, and take a variety of actions without being noticed.
+finesse_unchained = Skill.create!(name: "Finesse", ability_score: "Dexterity", untrained: true, blurb: "This skill is from the Pathfinder Unchained material, and represent a combination of the skills Disable Device and Sleight of Hand. The text below outlines a consolidation of those skills' features with minimal edits.", description: "<underline>Disable Device</underline> You are skilled at disarming traps and opening locks. In addition, this skill lets you sabotage simple mechanical devices, such as catapults, wagon wheels, and doors. Your training allows you to pick pockets, draw hidden weapons, and take a variety of actions without being noticed.
 
 When disarming a trap or other device, the Disable Device check is made secretly, so that you don’t necessarily know whether you’ve succeeded.
 
@@ -3138,7 +3136,7 @@ Open Locks: The DC for opening a lock depends on its quality. If you do not have
   </tr>
 </table>
 
-<underline>Sleight of Hand</underline>
+<underline>Sleight of Hand</underline> Your training allows you to pick pockets, draw hidden weapons, and take a variety of actions without being noticed.
 
 A DC 10 Sleight of Hand check lets you palm a coin-sized, unattended object. Performing a minor feat of legerdemain, such as making a coin disappear, also has a DC of 10 unless an observer is determined to note where the item went.
 
@@ -3177,15 +3175,280 @@ The spells fire trap, glyph of warding, symbol, and teleportation circle also cr
 
 <underline>Sleight of Hand</underline>: An untrained Sleight of Hand check is simply a Dexterity check. Without actual training, you can’t succeed on any Sleight of Hand check with a DC higher than 10, except for hiding an object on your body.", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
 
-nature_unchained = Skill.create!(name: "Nature", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+nature_unchained = Skill.create!(name: "Nature", ability_score: "Intelligence", untrained: true, blurb: "This skill is from the Pathfinder Unchained material, and represent a combination of the skills Knowledge (dungeoneering), Knowledge (geography), and Knowledge (nature). The text below outlines a consolidation of those skills' features with minimal edits.", description: "Dungeoneering includes aberrations, caverns, oozes, spelunking. Geography includes lands, terrain, climate, people. Used for astronomy. Nature includes animals, fey, monstrous humanoids, plants, seasons and cycles, weather, vermin.
+
+Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Nature can have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Nature DC</th>
+  </tr>
+  <tr>
+    <td>Identify Underground or Natural Hazard</td>
+    <td>15 + Hazard's CR</td>
+  </tr>
+  <tr>
+    <td>Identify Mineral, Stone, or Metal</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Identify a Creature's Ethnicity or Accent</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Identify a Common Plant or Animal</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Determine Slope</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Recognize Regional Terrain Features</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Identify Unnatural Weather Phenomenon</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Determine Depth Underground</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Know Location of Nearest Community or Noteworthy Site</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Determine Artifical Nature of Feature</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Nature check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Nature check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Nature checks in the fields that they cover.", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
 
 investigation = Skill.create!(name: "Investigation", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "")
 
-religion_unchained = Skill.create!(name: "Religion", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+religion_unchained = Skill.create!(name: "Religion", ability_score: "Intelligence", untrained: true, blurb: "This skill is from the Pathfinder Unchained material, and represent a combination of the skills Knowledge (planes) and Knowledge (religion). The text below outlines a consolidation of those skills' features with minimal edits.", description: "Planes includes the Inner Planes, the Outer Planes, the Astral Plane, the Ethereal Plane, outsiders, planar magic. Religion includes gods and goddesses, mythic history, ecclesiastic tradition, holy symbols, undead.
 
-society_unchained = Skill.create!(name: "Society", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
 
-spellcraft_unchained = Skill.create!(name: "Spellcraft", ability_score: "Intelligence", untrained: true, blurb: "", description: "", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Religion can have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Religion DC</th>
+  </tr>
+  <tr>
+    <td>Know the Names of the Planes</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Recognize a Common Deity's Symbol or Clergy</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Recognize Current Plane</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Common Mythology and Tenets</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Identify a Creature's Planar Origin</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Recognize an Obscure Deity's Symbol or Clergy</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "Usually none. In most cases, a Religion check doesn’t take an action.", try_again: "No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "You cannot make an untrained Religion check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Nature checks in the fields that they cover.", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+
+society_unchained = Skill.create!(name: "Society", ability_score: "Intelligence", untrained: true, blurb: "This skill is from the Pathfinder Unchained material, and represent a combination of the skills Appraise, Knowledge (local), and Knowledge (nobility). The text below outlines a consolidation of those skills' features with minimal edits.", description: "<underline>Appraise</underline>: You can evaluate the monetary value of an object. A DC 20 Appraise check determines the value of a common item. If you succeed by 5 or more, you also determine if the item has magic properties, although this success does not grant knowledge of the magic item’s abilities. If you fail the check by less than 5, you determine the price of that item to within 20% of its actual value. If you fail this check by 5 or more, the price is wildly inaccurate, subject to GM discretion. Particularly rare or exotic items might increase the DC of this check by 5 or more.
+
+You can also use this check to determine the most valuable item visible in a treasure hoard. The DC of this check is generally 20 but can increase to as high as 30 for a particularly large hoard.
+
+<underline>Local and Nobility</underline>: Local includes legends, personalities, inhabitants, laws, customs, traditions, humanoids. Nobility includes lineages, heraldry, personalities, royalty.
+
+Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Society can have specific uses as noted on the below table.
+
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Society DC</th>
+  </tr>
+  <tr>
+    <td>Know Local Laws, Rulers, and Popular Locations</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Know Current Rulers and Their Symbols</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Know a Common Rumor or Local Tradition</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Proper Etiquette</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Know Hidden Organizations, Rulers, and Locations</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Know Line of Succession</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+</table>", action: "<underline>Appraise</underline>: Appraising an item takes 1 standard action. Determining the most valuable object in a treasure hoard takes 1 full-round action.
+
+<underline>Local and Nobility</underline>: Usually none. In most cases, a Society check doesn’t take an action.", try_again: "<underline>Appraise</underline>: Additional attempts to Appraise an item reveal the same result.
+
+<underline>Local and Nobility</underline>: No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.", special: "<underline>Local and Nobility</underline>: You cannot make an untrained Society check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Nature checks in the fields that they cover.", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+
+spellcraft_unchained = Skill.create!(name: "Spellcraft", ability_score: "Intelligence", untrained: true, blurb: "This skill is from the Pathfinder Unchained material, and represent a combination of the skills Knowledge (arcana), Spellcraft, and Use Magic Device. The text below outlines a consolidation of those skills' features with minimal edits. All Use Magic Device skillchecks are now based on Intelligence rather than Charisma.", description: "<underline>Arcana</underline>: Arcana includes ancient mysteries, magic traditions, arcane symbols, constructs, dragons, magical beasts. Although robots are constructs, Knowledge (arcana) cannot be used to identify robots or their abilities and weaknesses.
+
+Answering a question within your field of study has a DC of 10 (for really easy questions), 15 (for basic questions), or 20 to 30 (for really tough questions).
+
+You can use this skill to identify monsters and their special powers or vulnerabilities. In general, the DC of such a check equals 10 + the monster’s CR. For common monsters, such as goblins, the DC of this check equals 5 + the monster’s CR. For particularly rare monsters, such as the tarrasque, the DC of this check equals 15 + the monster’s CR, or more. A successful check allows you to remember a bit of useful information about that monster. For every 5 points by which your check result exceeds the DC, you recall another piece of useful information. Arcana can have specific uses as noted on the below table.
+
+<underline>Spellcraft</underline>: You are skilled at the art of casting spells, identifying magic items, crafting magic items, and identifying spells as they are being cast.
+
+Spellcraft is used whenever your knowledge and skill of the technical art of casting a spell or crafting a magic item comes into question. This skill is also used to identify the properties of magic items in your possession through the use of spells such as detect magic and identify. The DC of this check varies depending upon the task at hand.
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Spellcraft DC</th>
+  </tr>
+  <tr>
+    <td>Identify a Spell as It is Being Cast</td>
+    <td>15 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify Auras While Using detect magic</td>
+    <td>15 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify the Properties of a Magic Item using detect magic</td>
+    <td>15 + Item's Caster Level</td>
+  </tr>
+  <tr>
+    <td>Learn a Spell from a Spellbook or Scroll</td>
+    <td>15 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Prepare a Spell from a Borrowed Spellbook</td>
+    <td>15 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Decipher a Scroll</td>
+    <td>20 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify a Spell Effect That Is In Place</td>
+    <td>20 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify Materials Manufactured by Magic</td>
+    <td>20 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify the Spells Cast Using a Specific Material Component</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Identify a Spell That Just Targeted You</td>
+    <td>25 + Spell Level</td>
+  </tr>
+  <tr>
+    <td>Identify a Monster's Abilities and Weaknesses</td>
+    <td>Varies</td>
+    <td>10 + Monster's CR</td>
+  </tr>
+  <tr>
+    <td>Craft a Magic Item</td>
+    <td>Varies by Item</td>
+  </tr>
+</table>
+
+<underline>Use Magic Device</underline>: You are skilled at activating magic items, even if you are not otherwise trained in their use.
+
+You can use this skill to read a spell or to activate a magic item. Use Magic Device lets you use a magic item as if you had the spell ability or class features of another class, as if you were a different race, or as if you were of a different alignment.
+
+You make a Use Magic Device check each time you activate a device such as a wand. If you are using the check to emulate an alignment or some other quality in an ongoing manner, you need to make the relevant Use Magic Device check once per hour.
+
+You must consciously choose which requirement to emulate. That is, you must know what you are trying to emulate when you make a Use Magic Device check for that purpose. The DCs for various tasks involving Use Magic Device checks are summarized on the table below.
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Use Magic Device DC</th>
+  </tr>
+  <tr>
+    <td>Activate Blindly</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Use a Scroll</td>
+    <td>20 + Caster Level</td>
+  </tr>
+  <tr>
+    <td>Use a Wand</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Emulate a Class Feature</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Emulate an Ability Score</td>
+    <td>See Text</td>
+  </tr>
+  <tr>
+    <td>Emulate an Ancestry</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Emulate an Alignment</td>
+    <td>30</td>
+  </tr>
+</table>
+
+Activate Blindly: Some magic items are activated by special words, thoughts, or actions. You can activate such an item as if you were using the activation word, thought, or action, even when you’re not and even if you don’t know it. You do have to perform some equivalent activity in order to make the check. That is, you must speak, wave the item around, or otherwise attempt to get it to activate. You get a +2 bonus on your Use Magic Device check if you’ve activated the item in question at least once before. If you fail by 9 or less, you can’t activate the device. If you fail by 10 or more, you suffer a mishap. A mishap means that magical energy gets released but doesn’t do what you wanted it to do. The default mishaps are that the item affects the wrong target or that uncontrolled magical energy is released, dealing 2d6 points of damage to you. This mishap is in addition to the chance for a mishap that you normally risk when you cast a spell from a scroll that you could not otherwise cast yourself.
+
+Emulate an Ability Score: To cast a spell from a scroll, you need a high score in the appropriate ability (Intelligence for wizard spells, Wisdom for divine spells, or Charisma for sorcerer or bard spells). Your effective ability score (appropriate to the class you’re emulating when you try to cast the spell from the scroll) is your Use Magic Device check result minus 15. If you already have a high enough score in the appropriate ability, you don’t need to make this check.
+
+Emulate an Alignment: Some magic items have positive or negative effects based on the user’s alignment. Use Magic Device lets you use these items as if you were of an alignment of your choice. You can emulate only one alignment at a time.
+
+Emulate a Class Feature: Sometimes you need to use a class feature to activate a magic item. In this case, your effective level in the emulated class equals your Use Magic Device check result minus 20. This skill does not let you actually use the class feature of another class. It just lets you activate items as if you had that class feature. If the class whose feature you are emulating has an alignment requirement, you must meet it, either honestly or by emulating an appropriate alignment with a separate Use Magic Device check (see above).
+
+Emulate an Ancestry: Some magic items work only for members of certain ancestries, or work better for members of those ancestries. You can use such an item as if you were a member of an ancestry of your choice. You can emulate only one ancestry at a time.
+
+Use a Scroll: Normally, to cast a spell from a scroll, you must have the scroll’s spell on your class spell list. Use Magic Device allows you to use a scroll as if you had a particular spell on your class spell list. The DC is equal to 20 + the caster level of the spell you are trying to cast from the scroll. In addition, casting a spell from a scroll requires a minimum score (10 + spell level) in the appropriate ability. If you don’t have a sufficient score in that ability, you must emulate the ability score with a separate Use Magic Device check.
+
+This use of the skill also applies to other spell completion magic items.
+
+Use a Wand, Staff, or Other Spell Trigger Item: Normally, to use a wand, you must have the wand’s spell on your class spell list. This use of the skill allows you to use a wand as if you had a particular spell on your class spell list. Failing the roll does not expend a charge.", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
 
 # rand = Skill.create!(name: "", ability_score: "", untrained: true, description: "")
 
