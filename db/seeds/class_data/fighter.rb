@@ -161,7 +161,7 @@ Tribal: Club, dagger, greatclub, handaxe, heavy shield, light shield, shortspear
   FeatureLevel.create!(klass_feature_id: fighter5.id, level: 17, table_description: "Weapon Training 4")
 
 fighter6 = KlassFeature.create!(klass_id: fighter.id, name: "Armor Mastery", description: "At 19th level, a fighter gains damage reduction 5/— whenever he is wearing armor or using a shield.")
-  FeatureLevel.create!(klass_feature_id: fighter5.id, level: 19, table_description: "Armor Mastery")
+  FeatureLevel.create!(klass_feature_id: fighter6.id, level: 19, table_description: "Armor Mastery")
 
 fighter7 = KlassFeature.create!(klass_id: fighter.id, name: "Weapon Mastery", description: "At 20th level, a fighter chooses one weapon, such as the longsword, greataxe, or longbow. Any attacks made with that weapon automatically confirm all critical threats and have their damage multiplier increased by 1 (×2 becomes ×3, for example). In addition, he cannot be disarmed while wielding a weapon of this type.")
   FeatureLevel.create!(klass_feature_id: fighter7.id, level: 20, table_description: "Weapon Mastery")

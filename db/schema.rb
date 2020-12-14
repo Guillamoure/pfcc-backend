@@ -10,13 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_08_213830) do
+ActiveRecord::Schema.define(version: 2020_12_14_031829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "alternate_racial_traits", force: :cascade do |t|
+    t.integer "race_id"
+    t.string "name"
+    t.string "description"
+    t.integer "source_id"
+  end
+
+  create_table "alternate_trait_replace_racial_traits", force: :cascade do |t|
+    t.integer "alternate_racial_trait_id"
+    t.integer "racial_trait_id"
   end
 
   create_table "archetype_feature_replace_klass_features", force: :cascade do |t|
@@ -376,6 +388,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_213830) do
     t.string "description"
     t.string "blurb"
     t.integer "source_id"
+    t.string "prerequisite"
   end
 
   create_table "feature_actions", force: :cascade do |t|

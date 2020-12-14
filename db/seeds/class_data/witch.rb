@@ -32,7 +32,9 @@ bestiary_5 = Source.find_by!(title: "Bestiary 5", abbreviation: "B5", code: "PZO
 ultimate_intrigue = Source.find_by!(title: "Ultimate Intrigue", abbreviation: "UI", code: "PZO1134")
 ultimate_wilderness = Source.find_by!(title: "Ultimate Wilderness", abbreviation: "UW", code: "PZO1140")
 planar_adventures = Source.find_by!(title: "Planar Adventures", abbreviation: "PA", code: "PZO1141")
-inner_sea_bestariy = Source.find_by!(title: "Pathfinder Campaign Setting: Inner Sea Bestiary", abbreviation: "PCB: ISB", code: "PZO9251")
+inner_sea_world_guide = Source.find_by!(title: "Pathfinder Campaign Setting: Inner Sea World Guide", abbreviation: "PCB: ISWG", code: "PZO9226")
+inner_sea_bestiary = Source.find_by!(title: "Pathfinder Campaign Setting: Inner Sea Bestiary", abbreviation: "PCB: ISB", code: "PZO9251")
+harrow_handbook = Source.find_by!(title: "Pathfinder Player Companion: The Harrow Handbook", abbreviation: "PPC: HH", code: "PZO9446")
 custom = Source.find_by!(title: "Custom", abbreviation: "Custom", code: nil)
 
 
@@ -255,12 +257,19 @@ A witch must commune with her familiar each day to prepare her spells. Familiars
   FeatureLevel.create!(klass_feature_id: witch5.id, level: 1, table_description: "Witch's Familiar")
 
 witch6 = KlassFeature.create!(klass_id: witch.id, name: "Major Hex", description: "Starting at 10th level, and every two levels thereafter, a witch can choose one of the following major hexes whenever she could select a new hex.")
-  FeatureLevel.create!(klass_feature_id: witch5.id, level: 10, table_description: "Major Hex")
+  FeatureLevel.create!(klass_feature_id: witch6.id, level: 10, table_description: "Major Hex")
 
 witch7 = KlassFeature.create!(klass_id: witch.id, name: "Grand Hex", description: "Starting at 18th level, and every two levels thereafter, a witch can choose one of the following grand hexes whenever she could select a new hex.")
   FeatureLevel.create!(klass_feature_id: witch7.id, level: 18, table_description: "Grand Hex")
 
 print "Witch features created! \r"
+
+# ///////////////////////////////////////////////////////
+# <-*-*-----*-*-*- Class Specializations!-*-*-*-----*-*->
+# ///////////////////////////////////////////////////////
+
+trickery = KlassSpecialization.create!(name: "Trickery", description: "animate rope, mirror image, major image, hallucinary terrain, mirage arcana, mislead, reverse gravity, screen, time stop")
+  KlassFeatureKlassSpecialization.create!(klass_feature_id: witch4.id, klass_specialization_id: trickery.id)
 
 # ///////////////////////////////////////////////////////
 # <-*-*-----*-*-*- Class Feature Options!-*-*-*-----*-*->
@@ -282,11 +291,11 @@ The hair cannot be sundered or attacked as a separate creature. Pieces cut from 
 # <-*-*-----*-*-*- Class Archetypes!-*-*-*-----*-*->
 # //////////////////////////////////////////////////
 
-cartomancer = KlassArchetype.create!(name: "Cartomancer", klass_id: witch.id, source_id: ultimate_magic.id, description: "More than mere playing cards, harrow decks allow individuals to communicate with powers beyond mortal ken. A witch who serves the spirits of the harrow in exchange for mystical power is known as a cartomancer. Rather than connecting with a familiar, a cartomancer communes with her patron through a consecrated harrow deck.
+cartomancer = KlassArchetype.create!(name: "Cartomancer", klass_id: witch.id, source_id: harrow_handbook.id, description: "More than mere playing cards, harrow decks allow individuals to communicate with powers beyond mortal ken. A witch who serves the spirits of the harrow in exchange for mystical power is known as a cartomancer. Rather than connecting with a familiar, a cartomancer communes with her patron through a consecrated harrow deck.
 
 Hexes: The following witch hexes complement the cartomancer archetype: evil eye, fortune, misfortune, soothsayer.
 
-Major Hexes: The following major hexes complement the cartomancer archetype: harrowing curse (see below), vision.
+Major Hexes: The following major hexes complement the cartomancer archetype: harrowing curse, vision.
 
 Grand Hexes: The following grand hex complements the cartomancer archetype: Dire Prophecy.")
 

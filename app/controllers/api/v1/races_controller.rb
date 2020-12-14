@@ -7,6 +7,9 @@ class Api::V1::RacesController < ApplicationController
 
   def show
     @race = Race.find_by(name: params["id"])
+    if params[:id] && !@race
+      @race = Race.find(params[:id])
+    end
     render json: @race
   end
 

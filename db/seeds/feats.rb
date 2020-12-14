@@ -15,6 +15,8 @@ bestiary_4 = Source.find_by!(title: "Bestiary 4", abbreviation: "B4", code: "PZO
 advanced_class_guide = Source.find_by!(title: "Advanced Class Guide", abbreviation: "ACG", code: "PZO1129")
 ultimate_intrigue = Source.find_by!(title: "Ultimate Intrigue", abbreviation: "UI", code: "PZO1134")
 ultimate_wilderness = Source.find_by!(title: "Ultimate Wilderness", abbreviation: "UW", code: "PZO1140")
+inner_sea_world_guide = Source.find_by!(title: "Pathfinder Campaign Setting: Inner Sea World Guide", abbreviation: "PCB: ISWG", code: "PZO9226")
+harrow_handbook = Source.find_by!(title: "Pathfinder Player Companion: The Harrow Handbook", abbreviation: "PPC: HH", code: "PZO9446")
 custom = Source.find_by!(title: "Custom", abbreviation: "Custom", code: nil)
 
 # //////////////////////////////////////////////////
@@ -40,6 +42,19 @@ weapon_finesse = Feat.create!(name: "Weapon Finesse", description: "You are trai
   weapon_finesse_feature = Feature.create!()
     FeatFeature.create!(feat_id: weapon_finesse.id, feature_id: weapon_finesse_feature.id)
     FeatureWeaponApplication.create!(feature_id: weapon_finesse_feature.id, proficiency_group: "Light", could_apply_dex_for_attack_rolls: true)
+
+arcane_strike = Feat.create!(name: "Arcane Strike", description: "As a swift action, you can imbue your weapons with a fraction of your power. For 1 round, your weapons deal +1 damage and are treated as magic for the purpose of overcoming damage reduction. For every five caster levels you possess, this bonus increases by +1, to a maximum of +5 at 20th level.", blurb: "You draw upon your arcane power to enhance your weapons with magical energy.", prerequisite: "Ability to cast arcane spells.", source_id:  core_rulebook.id)
+  FeatFeatType.create!(feat_id: arcane_strike.id, feat_type_id: combat_feat.id)
+
+deadly_dealer = Feat.create!(name: "Deadly Dealer", description: "You can throw a card as though it were a dart, with the same damage, range, and other features. You must use the Arcane Strike feat when throwing a card in this way, or else the card lacks the magical force and precision to deal lethal damage. A card is destroyed when thrown in this way.
+
+Harrow cards are treated as masterwork weapons when thrown using this feat, but are still destroyed after they are thrown. A harrow deck can no longer be used as a fortune-telling device after even a single card is thrown.
+
+A spellcaster with this feat can enhance a deck of cards as though it were a ranged weapon with 54 pieces of ammunition. This enhancement functions only when used in tandem with this feat, and has no affect on any other way the cards might be used.
+
+Only a character who possesses this feat can use an enhanced deck of cards; she must still use the Arcane Strike feat to activate the cards’ enhancement.", blurb: "Your skill with handling a deck and your arcane talents allow you to turn mundane cards into weapons.", prerequisite: "Arcane Strike, Sleight of Hand 5 ranks.", source_id: harrow_handbook.id)
+
+harrowed = Feat.create!(name: "Harrowed", description: "You get a +1 bonus on all Will saves made to resist enchantment effects. Once per day, you may draw a card from a Harrow deck you own. At any one time for the rest of that day, you may apply a +2 bonus on any d20 roll modified by the card’s suit. For example, if you drew a card from the suit of Dexterity, you could apply this +2 bonus on an Initiative check, a Reflex save, a Dexterity-based skill check, or a ranged attack roll. You may assign this +2 bonus after you make the roll, but you must do so before you know whether the roll was a success or not.", blurb: "Numerous Harrow readings early in your life seem to have hit the mark precisely, increasing your belief that you are destined for a specific purpose in life.", source_id: inner_sea_world_guide.id)
 
 
 puts "Feats Created!"

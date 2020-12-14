@@ -16,7 +16,10 @@ bestiary_5 = Source.create!(title: "Bestiary 5", abbreviation: "B5", code: "PZO1
 ultimate_intrigue = Source.create!(title: "Ultimate Intrigue", abbreviation: "UI", code: "PZO1134")
 ultimate_wilderness = Source.create!(title: "Ultimate Wilderness", abbreviation: "UW", code: "PZO1140")
 planar_adventures = Source.create!(title: "Planar Adventures", abbreviation: "PA", code: "PZO1141")
-inner_sea_bestariy = Source.create!(title: "Pathfinder Campaign Setting: Inner Sea Bestiary", abbreviation: "PCB: ISB", code: "PZO9251")
+inner_sea_world_guide = Source.create!(title: "Pathfinder Campaign Setting: Inner Sea World Guide", abbreviation: "PCB: ISWG", code: "PZO9226")
+inner_sea_bestiary = Source.create!(title: "Pathfinder Campaign Setting: Inner Sea Bestiary", abbreviation: "PCB: ISB", code: "PZO9251")
+harrow_handbook = Source.create!(title: "Pathfinder Player Companion: The Harrow Handbook", abbreviation: "PPC: HH", code: "PZO9446")
+blood_of_the_beast = Source.create!(title: "Pathfinder Player Companion: Blood of the Beast", abbreviation: "PPC: BotB", code: "PZO473")
 custom = Source.create!(title: "Custom", abbreviation: "Custom", code: nil)
 
 # /////////////////////////////////////////
@@ -3448,7 +3451,19 @@ Use a Scroll: Normally, to cast a spell from a scroll, you must have the scroll�
 
 This use of the skill also applies to other spell completion magic items.
 
-Use a Wand, Staff, or Other Spell Trigger Item: Normally, to use a wand, you must have the wand’s spell on your class spell list. This use of the skill allows you to use a wand as if you had a particular spell on your class spell list. Failing the roll does not expend a charge.", action: "", try_again: "", special: "", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
+Use a Wand, Staff, or Other Spell Trigger Item: Normally, to use a wand, you must have the wand’s spell on your class spell list. This use of the skill allows you to use a wand as if you had a particular spell on your class spell list. Failing the roll does not expend a charge.", action: "<underline>Arcana</underline>: Usually none. In most cases, a Knowledge check doesn’t take an action.
+
+<underline>Spellcraft</underline>: Identifying a spell as it is being cast requires no action, but you must be able to clearly see the spell as it is being cast, and this incurs the same penalties as a Perception skill check due to distance, poor conditions, and other factors. Learning a spell from a spellbook takes 1 hour per level of the spell (0-level spells take 30 minutes). Preparing a spell from a borrowed spellbook does not add any time to your spell preparation. Making a Spellcraft check to craft a magic item is made as part of the creation process. Attempting to ascertain the properties of a magic item takes 3 rounds per item to be identified and you must be able to thoroughly examine the object.
+
+<underline>Use Magic Device</underline>: None. The Use Magic Device check is made as part of the action (if any) required to activate the magic item.", try_again: "<underline>Arcana</underline>: No. The check represents what you know, and thinking about a topic a second time doesn’t let you know something that you never learned in the first place.
+
+<underline>Spellcraft</underline>: You cannot retry checks made to identify a spell. If you fail to learn a spell from a spellbook or scroll, you must wait at least 1 week before you can try again. If you fail to prepare a spell from a borrowed spellbook, you cannot try again until the next day. When using detect magic or identify to learn the properties of magic items, you can only attempt to ascertain the properties of an individual item once per day. Additional attempts reveal the same results.
+
+<underline>Use Magic Device</underline>: Yes, but if you ever roll a natural 1 while attempting to activate an item and you fail, then you can’t try to activate that item again for 24 hours.", special: "<underline>Arcana</underline>: You cannot make an untrained Knowledge check with a DC higher than 10. If you have access to an extensive library that covers a specific skill, this limit is removed. The time to make checks using a library, however, increases to 1d4 hours. Particularly complete libraries might even grant a bonus on Knowledge checks in the fields that they cover.
+
+<underline>Spellcraft</underline>: If you are a specialist wizard, you get a +2 bonus on Spellcraft checks made to identify, learn, and prepare spells from your chosen school. Similarly, you take a –5 penalty on similar checks made concerning spells from your opposition schools.
+
+<underline>Use Magic Device</underline>: You cannot take 10 with this skill. You can’t aid another on Use Magic Device checks. Only the user of the item may attempt such a check.", skill_unlock_5: "", skill_unlock_10: "", skill_unlock_15: "", skill_unlock_20: "", knowledge: true)
 
 # rand = Skill.create!(name: "", ability_score: "", untrained: true, description: "")
 
@@ -4118,12 +4133,12 @@ jenn = User.create!(username: "jenn", password: "password", admin: false, skills
 sarah = User.create!(username: "sarah", password: "password", admin: false, skillset_id: dmc.id)
 scott = User.create!(username: "scott", password: "password", admin: false, skillset_id: dmc.id)
 
-clare_voyance = User.create!(username: "clare_voyance", password: "password", admin: false, skillset_id: ravnica_custom.id)
-adam1 = User.create!(username: "Adam1", password: "password", admin: false, skillset_id: ravnica_custom.id)
-bluegdec1 = User.create!(username: "bluegdec1", password: "password", admin: false, skillset_id: ravnica_custom.id)
-just_TDUBB_it = User.create!(username: "just TDUBB it", password: "password", admin: false, skillset_id: ravnica_custom.id)
-nlscott744 = User.create!(username: "nlscott744", password: "password", admin: false, skillset_id: ravnica_custom.id)
-snegerj = User.create!(username: "snegerj", password: "password", admin: false, skillset_id: ravnica_custom.id)
+# clare_voyance = User.create!(username: "clare_voyance", password: "password", admin: false, skillset_id: ravnica_custom.id)
+# adam1 = User.create!(username: "Adam1", password: "password", admin: false, skillset_id: ravnica_custom.id)
+# bluegdec1 = User.create!(username: "bluegdec1", password: "password", admin: false, skillset_id: ravnica_custom.id)
+# just_TDUBB_it = User.create!(username: "just TDUBB it", password: "password", admin: false, skillset_id: ravnica_custom.id)
+# nlscott744 = User.create!(username: "nlscott744", password: "password", admin: false, skillset_id: ravnica_custom.id)
+# snegerj = User.create!(username: "snegerj", password: "password", admin: false, skillset_id: ravnica_custom.id)
 
 
 
@@ -4185,10 +4200,13 @@ RaceAbilityScoreModifier.create!(race_id: kitsune.id, ability_score: "Strength",
 RacialTrait.create!(name: "Languages", race_id: kitsune.id, description: "Kitsune begin play speaking Common and Sylvan. Kitsune with high Intelligence scores can choose from the following: any human language, Aklo, Celestial, Elven, Gnome, and Tengu. See the Linguistics skill page for more information about these languages.")
 RacialTrait.create!(name: "Agile", race_id: kitsune.id, description: "Kitsune receive a +2 racial bonus on Acrobatics checks.")
 RacialTrait.create!(name: "Change Shape", race_id: kitsune.id, description: "A kitsune can assume the appearance of a specific single human form of the same sex. The kitsune always takes this specific form when she uses this ability. A kitsune in human form cannot use her bite attack, but gains a +10 racial bonus on Disguise checks made to appear human. Changing shape is a standard action. This ability otherwise functions as alter self, except that the kitsune does not adjust her ability scores and can remain in this form indefinitely.")
-RacialTrait.create!(name: "Kitsune Magic", race_id: kitsune.id, description: "Kitsune add +1 to the DC of any saving throws against enchantment spells that they cast. Kitsune with a Charisma score of 11 or higher gain the following spell-like ability: 3/day—dancing lights (caster level equals the kitsune’s level).")
+kitsune_magic_kitsune = RacialTrait.create!(name: "Kitsune Magic", race_id: kitsune.id, description: "Kitsune add +1 to the DC of any saving throws against enchantment spells that they cast. Kitsune with a Charisma score of 11 or higher gain the following spell-like ability: 3/day—dancing lights (caster level equals the kitsune’s level).")
 RacialTrait.create!(name: "Natural Weapons", race_id: kitsune.id, description: "In her natural form, a kitsune has a bite attack that deals 1d4 points of damage.")
 RacialTrait.create!(name: "Low-Light Vision", race_id: kitsune.id, description: "Kitsune can see twice as far as humans in conditions of dim light.")
 # RacialTrait.create!(name: "", race_id: , description: "")
+
+fast_shifter_kitsune = AlternateRacialTrait.create!(race_id: kitsune.id, name: "Fast Shifter", description: "You were born with an innate talent for switching between your natural forms. Using your racial change shape ability is a move action instead of a standard action. This racial trait replaces kitsune magic.", source_id: advanced_race_guide.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: fast_shifter_kitsune.id, racial_trait_id: kitsune_magic_kitsune.id)
 
 print "Kitsune created! \r"
 
@@ -4416,11 +4434,17 @@ RaceAbilityScoreModifier.create!(race_id: tiefling.id, ability_score: "Charisma"
 
 RacialTrait.create!(name: 'Type', race_id: tiefling.id, description: 'Tieflings are outsiders with the native subtype.')
 RacialTrait.create!(name: 'Languages', race_id: tiefling.id, description: 'Tieflings begin play speaking Common and either Abyssal or Infernal. Tieflings with high intelligence scores can choose from the following: Abyssal, Draconic, Dwarven, Elven, Gnome, Goblin, Halfling, Infernal, and Orc.')
-RacialTrait.create!(name: 'Fiendish Resistance', race_id: tiefling.id, description: 'Tieflings have cold resistance 5, electricity resistance 5, and fire resistance 5.')
+fiendish_resistance_tiefling = RacialTrait.create!(name: 'Fiendish Resistance', race_id: tiefling.id, description: 'Tieflings have cold resistance 5, electricity resistance 5, and fire resistance 5.')
 RacialTrait.create!(name: 'Skilled', race_id: tiefling.id, description: 'Tieflings gain a +2 racial bonus on Bluff and Stealth checks.')
 RacialTrait.create!(name: 'Spell-like Ability', race_id: tiefling.id, description: 'Tieflings can use darkness once per day as a spell-like ability. The caster level for this ability equals the tiefling’s class level.')
 RacialTrait.create!(name: 'Darkvision', race_id: tiefling.id, description: 'Tieflings can see perfectly in the dark for up to 60 feet.')
-RacialTrait.create!(name: 'Fiendish Sorcery', race_id: tiefling.id, description: 'Tiefling sorcerers with the Abyssal or Infernal bloodlines treat their Charisma score as 2 points higher for all sorcerer class abilities.')
+fiendish_sorcery_tiefling = RacialTrait.create!(name: 'Fiendish Sorcery', race_id: tiefling.id, description: 'Tiefling sorcerers with the Abyssal or Infernal bloodlines treat their Charisma score as 2 points higher for all sorcerer class abilities.')
+
+prehensile_tail_tiefling = AlternateRacialTrait.create!(race_id: tiefling.id, name: "Prehensile Tail", description: "Many tieflings have tails, but some have long, flexible tails that can be used to carry items. While they cannot wield weapons with their tails, they can use them to retrieve small, stowed objects carried on their persons as a swift action. This racial trait replaces fiendish sorcery.", source_id: advanced_race_guide.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: prehensile_tail_tiefling.id, racial_trait_id: fiendish_sorcery_tiefling.id)
+
+scaled_skin_tiefling = AlternateRacialTrait.create!(race_id: tiefling.id, name: "Scaled Skin", description: "The skin of these tieflings provides some energy resistance, but is also as hard as armor. Choose one of the following energy types: cold, electricity, or fire. A tiefling with this trait gains resistance 5 in the chosen energy type and also gains a +1 natural armor bonus to AC. This racial trait replaces fiendish resistance.", source_id: advanced_race_guide.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: scaled_skin_tiefling.id, racial_trait_id: fiendish_resistance_tiefling.id)
 
 print "Tiefling created! \r"
 
@@ -4630,7 +4654,7 @@ RacialTrait.create!(name: "Darkvision", race_id: ratfolk.id, description: "Ratfo
 
 print "Ratfolk created! \r"
 
-syrinx = Race.create!(name: "Syrinx", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/ff/70/14/ff701427ba3747bbb15bb08a0e58a8da.png", source_id: inner_sea_bestariy.id, description: "Robed in silk and its own regal wings, this humanoid assays its surroundings with the lethal detachment of the owl it resembles.
+syrinx = Race.create!(name: "Syrinx", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/ff/70/14/ff701427ba3747bbb15bb08a0e58a8da.png", source_id: inner_sea_bestiary.id, description: "Robed in silk and its own regal wings, this humanoid assays its surroundings with the lethal detachment of the owl it resembles.
 
 From lofty monastery-cities entrenched in soaring cliff sides and high mountain valleys, the syrinx seek to bring peace to all lands that fall within sight of their marbled spires. Erudite and aloof, the owl-like scholars embrace art, philosophy, and nebulous faiths, seeking to distance themselves from a history of barbarism and ruin.")
 
@@ -4974,12 +4998,17 @@ RaceAbilityScoreModifier.create!(race_id: vanara.id, ability_score: "Dexterity",
 RaceAbilityScoreModifier.create!(race_id: vanara.id, ability_score: "Wisdom", bonus: 2)
 RaceAbilityScoreModifier.create!(race_id: vanara.id, ability_score: "Charisma", bonus: -2)
 
-RacialTrait.create!(name: "Type", race_id: vanara.id, description: "Vanaras are humanoids with the vanara subtype.")
+type_vanara = RacialTrait.create!(name: "Type", race_id: vanara.id, description: "Vanaras are humanoids with the vanara subtype.")
 RacialTrait.create!(name: "Climb Speed", race_id: vanara.id, description: "Vanaras have a climb speed of 20 feet.")
 RacialTrait.create!(name: "Languages", race_id: vanara.id, description: "Vanaras begin play speaking Common and Vanaran. Vanaras with high Intelligence scores can choose from the following: Aklo, Celestial, Elven, Gnome, Goblin, and Sylvan.")
-RacialTrait.create!(name: "Nimble", race_id: vanara.id, description: "Vanaras have a +2 racial bonus on Acrobatics and Stealth checks.")
+nimble_vanara = RacialTrait.create!(name: "Nimble", race_id: vanara.id, description: "Vanaras have a +2 racial bonus on Acrobatics and Stealth checks.")
 RacialTrait.create!(name: "Low-Light Vision", race_id: vanara.id, description: "Vanaras can see twice as far as a human in dim light.")
-RacialTrait.create!(name: "Languages", race_id: vanara.id, description: "A vanara has a long, flexible tail that she can use to carry objects. She cannot wield weapons with her tail, but the tail allows her to retrieve a small, stowed object carried on her person as a swift action.")
+RacialTrait.create!(name: "Prehensile Tail", race_id: vanara.id, description: "A vanara has a long, flexible tail that she can use to carry objects. She cannot wield weapons with her tail, but the tail allows her to retrieve a small, stowed object carried on her person as a swift action.")
+
+change_size_vanara = AlternateRacialTrait.create!(race_id: vanara.id, name: "Change Size", description: "One vanara in every 500 is gifted with limited shapeshifting ability. Such a creature can adjust her size at will. She gains the change shape ability and the shapeshifter subtype. Instead of changing appearance, she can use change shape to reduce her size category to Small. Her ability scores don't change, only her size (and thus her weapon damage); normal size penalties and bonuses to AC and CMD and on attack and skill rolls apply. Changing size or returning to her true size is a full-round action. This racial trait alters the vanara's type and replaces nimble.", source_id: blood_of_the_beast.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: change_size_vanara.id, racial_trait_id: nimble_vanara.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: type_vanara.id, racial_trait_id: nimble_vanara.id)
+
 
 print "Vanara Created! \r"
 
