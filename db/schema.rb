@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_031829) do
+ActiveRecord::Schema.define(version: 2020_12_15_052720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,11 @@ ActiveRecord::Schema.define(version: 2020_12_14_031829) do
     t.integer "feature_spellcasting_id"
   end
 
+  create_table "character_alternate_racial_traits", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "alternate_racial_trait_id"
+  end
+
   create_table "character_armors", force: :cascade do |t|
     t.integer "character_id"
     t.integer "armor_id"
@@ -139,6 +144,12 @@ ActiveRecord::Schema.define(version: 2020_12_14_031829) do
   create_table "character_klass_archetypes", force: :cascade do |t|
     t.integer "character_id"
     t.integer "klass_archetype_id"
+  end
+
+  create_table "character_klass_feature_options", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "feature_option_id"
+    t.integer "level"
   end
 
   create_table "character_klass_feature_usages", force: :cascade do |t|

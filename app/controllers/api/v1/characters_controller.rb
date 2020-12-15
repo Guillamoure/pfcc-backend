@@ -81,6 +81,11 @@ class Api::V1::CharactersController < ApplicationController
     if params[:character][:campaign_id]
       @character.update(skillset_id: Campaign.find(params[:character][:campaign_id]).skillset_id)
     end
+
+    params[:character][:skillRanks].each do |sr|
+      CharacterSkillsetSkill.create!(character_id: @character.id, skillset_id: @character.skillset_id, skill_id: sr[:skill][:id], ranks: sr[:ranks], detail: sr[:detail])
+    end
+
     if @character.valid?
       render json: { character: CharacterSerializer.new(@character) }, status: 201
     else

@@ -12,8 +12,12 @@ class Character < ApplicationRecord
   has_many :klass_features, through: :klasses
   has_many :character_klass_specializations, dependent: :destroy
   has_many :klass_specializations, through: :character_klass_specializations
+  has_many :character_klass_feature_options, dependent: :destroy
+  has_many :klass_feature_options, through: :character_klass_feature_options, source: 'feature_option'
   has_many :character_klass_archetypes, dependent: :destroy
   has_many :archetypes, through: :character_klass_archetypes, source: 'klass_archetype'
+  has_many :character_alternate_racial_traits, dependent: :destroy
+  has_many :alternate_racial_traits, through: :character_alternate_racial_traits
   has_many :character_choices
 
   has_many :prepared_spells, dependent: :destroy
