@@ -149,6 +149,7 @@ charm = Subschool.create!(name: "Charm", description: "A charm spell changes how
 mind_affecting = Subschool.create!(name: "Mind-Affecting", description: "Mindless creatures (those with an Intelligence score of “—”) and undead are immune to mind-affecting effects.")
 language_dependent = Subschool.create!(name: "Language-Dependent", description: "A language-dependent spell uses intelligible language as a medium for communication. If the target cannot understand or hear what the caster of a language-dependent spell says, the spell has no effect, even if the target fails its saving throw.")
 light = Subschool.create!(name: "Light", description: "Spells that create significant amounts of light or attack darkness effects should have the light descriptor. Giving a spell the light descriptor indicates whether a spell like darkness is high enough level counter or dispel it.")
+darkness = Subschool.create!(name: "Darkness", description: "Spells that create darkness or reduce the amount of light should have the darkness descriptor. Giving a spell the darkness descriptor indicates whether a spell like daylight is high enough level to counter or dispel it.")
 electricity = Subschool.create!(name: "Electricity", description: "Electricity effects involve the presence and flow of electrical charge, whether expressed in amperes or volts. Electricity deals damage to creatures by disrupting their biological systems. It deals damage to objects (as well as creatures) by heating the material it passes through, and thus technically many electricity spells could also be treated as fire spells, but for sake of game simplicity, it is better to just let electricity-based spells deal electricity damage. Electricity effects may stun, paralyze, or even kill.")
 compulsion = Subschool.create!(name: "Compulsion", description: "A compulsion spell forces the subject to act in some manner or changes the way its mind works. Some compulsion spells determine the subject’s actions or the effects on the subject, others allow you to determine the subject’s actions when you cast the spell, and still others give you ongoing control over the subject.")
 glamer = Subschool.create!(name: "Glamer", description: "A glamer spell changes a subject’s sensory qualities, making it look, feel, taste, smell, or sound like something else, or even seem to disappear.")
@@ -3242,29 +3243,56 @@ sp218 = Spell.create!(name: "Summon Monster IX", description: "This spell functi
 
   FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp218.id, added_to_known_spells: false, applicable_spell_level: 9, bonus_spell_slot_option: true)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+sp219 = Spell.create!(name: "Goodberry", description: "Casting goodberry makes 2d4 freshly picked berries magical. You (as well as any other druid of 3rd or higher level) can immediately discern which berries are affected. Each transmuted berry provides nourishment as if it were a normal meal for a Medium creature. The berry also cures 1 point of damage when eaten, subject to a maximum of 8 points of such curing in any 24-hour period.", target: "2d4 fresh berries touched", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 day/level", time: 1, unit_of_time: "day", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp219.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp219.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp219.id, component_id: divine_focus.id, item: nil)
+  # goodberry_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp219.id, spell_level: 1)
+  # goodberry_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp219.id, spell_level: 1)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+  AlternateRacialTraitAssociatedSpell.create!(alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Grapevine").id, spell_id: sp219.id)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+sp220 = Spell.create!(name: "Pass Without Trace", description: "The subject or subjects of this spell do not leave footprints or a scent trail while moving. Tracking the subjects is impossible by non-magical means.", target: "The subject or subjects of this spell do not leave footprints or a scent trail while moving. Tracking the subjects is impossible by non-magical means.", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 hour/level", time: 1, unit_of_time: "hour", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellComponent.create!(spell_id: sp220.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp220.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp220.id, component_id: divine_focus.id, item: nil)
+  # pass_without_trace_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp220.id, spell_level: 1)
+  pass_without_trace_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp220.id, spell_level: 1)
+  # pass_without_trace_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp220.id, spell_level: 1)
+
+  RacialTraitAssociatedSpell.create!(racial_trait_id: RacialTrait.find_by!(name: "Pass Without Trace").id, spell_id: sp220.id)
+
+  print "220 Spells Created \r"
+
+sp221 = Spell.create!(name: "Flare", description: "This cantrip creates a burst of light. If you cause the light to burst in front of a single creature, that creature is dazzled for 1 minute unless it makes a successful Fortitude save. Sightless creatures, as well as creatures already dazzled, are not affected by flare.", target: "burst of light", saving_throw: "Fortitude", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp221.id, subschool_id: light.id)
+  SpellComponent.create!(spell_id: sp221.id, component_id: verbal.id, item: nil)
+  flare_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp221.id, spell_level: 0)
+  # flare_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp221.id, spell_level: 0)
+  flare_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp221.id, spell_level: 0)
+  # flare_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp221.id, spell_level: 0)
+  # flare_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp221.id, spell_level: 0)
+
+sp222 = Spell.create!(name: "Darkness", description: "This spell causes an object to radiate darkness out to a 20-foot radius. This darkness causes the illumination level in the area to drop one step, from bright light to normal light, from normal light to dim light, or from dim light to darkness. This spell has no effect in an area that is already dark. Creatures with light vulnerability or sensitivity take no penalties in normal light. All creatures gain concealment (20% miss chance) in dim light. All creatures gain total concealment (50% miss chance) in darkness. Creatures with darkvision can see in an area of dim light or darkness without penalty. Nonmagical sources of light, such as torches and lanterns, do not increase the light level in an area of darkness. Magical light sources only increase the light level in an area if they are of a higher spell level than darkness.
+
+If darkness is cast on a small object that is then placed inside or under a lightproof covering, the spell’s effect is blocked until the covering is removed.
+
+This spell does not stack with itself. Darkness can be used to counter or dispel any light spell of equal or lower spell level.", target: "object touched", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: evocation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp222.id, subschool_id: darkness.id)
+  SpellComponent.create!(spell_id: sp222.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp222.id, component_id: material.id, item: "bat fur and a piece of coal")
+  SpellComponent.create!(spell_id: sp222.id, component_id: divine_focus.id, item: nil)
+  # darkness_antipaladin = SpellListSpell.create!(spell_list_id: antipaladin_spell_list.id, spell_id: sp222.id, spell_level: 2)
+  darkness_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp222.id, spell_level: 2)
+  darkness_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp222.id, spell_level: 2)
+  # darkness_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp222.id, spell_level: 2)
+  darkness_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp222.id, spell_level: 2)
+  # darkness_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp222.id, spell_level: 2)
+  # darkness_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp222.id, spell_level: 2)
+
+  RacialTraitAssociatedSpell.create!(racial_trait_id: RacialTrait.find_by!(description: 'Tieflings can use darkness once per day as a spell-like ability. The caster level for this ability equals the tiefling’s class level.').id, spell_id: sp222.id)
+
 
 #IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )

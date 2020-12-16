@@ -12,6 +12,7 @@ bestiary_3 = Source.create!(title: "Bestiary 3", abbreviation: "B3", code: "PZO1
 advanced_race_guide = Source.create!(title: "Advanced Race Guide", abbreviation: "ARG", code: "PZO1121")
 bestiary_4 = Source.create!(title: "Bestiary 4", abbreviation: "B4", code: "PZO1127")
 advanced_class_guide = Source.create!(title: "Advanced Class Guide", abbreviation: "ACG", code: "PZO1129")
+occult_adventures = Source.create!(title: "Occult Adventures", abbreviation: "OA", code: "PZO1132")
 bestiary_5 = Source.create!(title: "Bestiary 5", abbreviation: "B5", code: "PZO1133")
 ultimate_intrigue = Source.create!(title: "Ultimate Intrigue", abbreviation: "UI", code: "PZO1134")
 ultimate_wilderness = Source.create!(title: "Ultimate Wilderness", abbreviation: "UW", code: "PZO1140")
@@ -4372,12 +4373,20 @@ RacialTrait.create!(name: "Languages", race_id: vine_leshy.id, description: "Vin
 RacialTrait.create!(name: "Plantspeech", race_id: vine_leshy.id, description: "Vine leshys can speak with vines as if subject to a continual speak with plants spell.")
 RacialTrait.create!(name: "Darkvision", race_id: vine_leshy.id, description: "Vine leshys can see in the dark up to 60 feet.")
 RacialTrait.create!(name: "Low-Light Vision", race_id: vine_leshy.id, description: "Vine leshys can see twice as far as humans under conditions of dim light.")
-RacialTrait.create!(name: "Pass without Trace", race_id: vine_leshy.id, description: "Vine leshys have pass without trace as a constant spell-like ability (caster level 2nd).")
+pass_without_trace_vine_leshy = RacialTrait.create!(name: "Pass Without Trace", race_id: vine_leshy.id, description: "Vine leshys have pass without trace as a constant spell-like ability (caster level 2nd).")
 RacialTrait.create!(name: "Change Shape", race_id: vine_leshy.id, description: "Vine leshys can transform into vines, with results similar to tree shape. In this form, the leshy appears as a particularly healthy Small vine. The leshy can assume plant form or revert to its true form as a swift action.")
 RacialTrait.create!(name: "Verdant Burst", race_id: vine_leshy.id, description: "When slain, a vine leshy explodes in a burst of fertile energies. All plant creatures within 30 feet of the slain leshy regain hit 1d8 points, and vines quickly infest the area. If the terrain can support vines, the undergrowth is dense enough to make the region into difficult terrain for 24 hours, after which the plant life diminishes to a normal level; otherwise, this plant life has no significant effect on movement and withers and dies within an hour.")
-RacialTrait.create!(name: "Unassuming Foliage", race_id: vine_leshy.id, description: "Vine leshys gain a +4 racial bonus on Stealth checks in forests.")
-RacialTrait.create!(name: "Climber", race_id: vine_leshy.id, description: "Vine leshys gain a +2 racial bonus on Climb checks.")
+unassuming_foliage_vine_leshy = RacialTrait.create!(name: "Unassuming Foliage", race_id: vine_leshy.id, description: "Vine leshys gain a +4 racial bonus on Stealth checks in forests.")
+climber_vine_leshy = RacialTrait.create!(name: "Climber", race_id: vine_leshy.id, description: "Vine leshys gain a +2 racial bonus on Climb checks.")
 # RacialTrait.create!(name: "", race_id: , description: "")
+
+grapevine_vine_leshy = AlternateRacialTrait.create!(race_id: vine_leshy.id, name: "Grapevine", description: "A vine leshy made from a grapevine can produce magically infused fruit that can heal her allies. She can cast goodberry once per day as a spell-like ability, with a caster level equal to her character level. This replaces pass without trace.", source_id: ultimate_wilderness.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: grapevine_vine_leshy.id, racial_trait_id: pass_without_trace_vine_leshy.id)
+
+swamp_leshy_vine_leshy = AlternateRacialTrait.create!(race_id: vine_leshy.id, name: "Swamp Leshy", description: "Some vine leshys are made from plants that naturally grow in swamps. These leshys gain a +2 racial bonus on Swim checks and a +4 racial bonus on Stealth checks in swamps. This replaces climber and alters unassuming foliage.", source_id: ultimate_wilderness.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: swamp_leshy_vine_leshy.id, racial_trait_id: climber_vine_leshy.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: swamp_leshy_vine_leshy.id, racial_trait_id: unassuming_foliage_vine_leshy.id)
+
 
 print "Vine Leshy created! \r"
 

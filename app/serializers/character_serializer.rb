@@ -88,7 +88,8 @@ class CharacterSerializer < ActiveModel::Serializer
         name: art.name,
         description: art.description,
         source: art.source,
-        alternate_trait_replace_racial_traits: art.alternate_trait_replace_racial_traits
+        alternate_trait_replace_racial_traits: art.alternate_trait_replace_racial_traits,
+        associated_spells: art.associated_spells
       }
     end
   end
