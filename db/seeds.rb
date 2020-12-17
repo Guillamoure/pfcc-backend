@@ -19,8 +19,9 @@ ultimate_wilderness = Source.create!(title: "Ultimate Wilderness", abbreviation:
 planar_adventures = Source.create!(title: "Planar Adventures", abbreviation: "PA", code: "PZO1141")
 inner_sea_world_guide = Source.create!(title: "Pathfinder Campaign Setting: Inner Sea World Guide", abbreviation: "PCB: ISWG", code: "PZO9226")
 inner_sea_bestiary = Source.create!(title: "Pathfinder Campaign Setting: Inner Sea Bestiary", abbreviation: "PCB: ISB", code: "PZO9251")
+inner_sea_races = Source.create!(title: "Pathfinder Campaign Setting: Inner Sea Races", abbreviation: "PPC: ISR", code: "PZO9280")
 harrow_handbook = Source.create!(title: "Pathfinder Player Companion: The Harrow Handbook", abbreviation: "PPC: HH", code: "PZO9446")
-blood_of_the_beast = Source.create!(title: "Pathfinder Player Companion: Blood of the Beast", abbreviation: "PPC: BotB", code: "PZO473")
+blood_of_the_beast = Source.create!(title: "Pathfinder Player Companion: Blood of the Beast", abbreviation: "PPC: BotB", code: "PZO9473")
 custom = Source.create!(title: "Custom", abbreviation: "Custom", code: nil)
 
 # /////////////////////////////////////////
@@ -3320,7 +3321,6 @@ You can use this skill to identify monsters and their special powers or vulnerab
   </tr>
   <tr>
     <td>Identify a Monster's Abilities and Weaknesses</td>
-    <td>Varies</td>
     <td>10 + Monster's CR</td>
   </tr>
 </table>", action: "<underline>Appraise</underline>: Appraising an item takes 1 standard action. Determining the most valuable object in a treasure hoard takes 1 full-round action.
@@ -4036,9 +4036,15 @@ Although they are thrown weapons, shuriken are treated as ammunition for the pur
   WeaponWeaponGroup.create!(weapon_id: shuriken.id, weapon_group_id: monk_group.id)
   WeaponHand.create!(weapon_id: shuriken.id, hands: "One")
 
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
-  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
-  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+traveling_kettle = Weapon.create!(name: 'Traveling Kettle', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 5, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 2, damage_type: 'Bludgeoning', source_id: core_rulebook.id, description: 'These small tea kettles are made with clamping lids and heavily reinforced handles, allowing them to be swung like a club. A traveling kettle with boiling water inside deals an additional 1 point of fire damage on a hit. Boiling water cools to a non-damaging temperature after 5 minutes.')
+  WeaponWeaponQuality.create!(weapon_id: traveling_kettle.id, weapon_quality_id: monk_quality.id)
+  WeaponWeaponGroup.create!(weapon_id: traveling_kettle.id, weapon_group_id: monk_group.id)
+  WeaponHand.create!(weapon_id: traveling_kettle.id, hands: "One")
+
+
+kerambit = Weapon.create!(name: 'Kerambit', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 3, range: 0, thrown: false, weight: 0, damage_type: 'Slashing', critical_range: 20, critical: 3, description: 'This small, curved pull dagger has a metal loop at the base of its handle allowing it to be secured with a pinky or worn on a string tied in the hair. While relatively small, the curved blade can create brutal wounds. Easily concealed (the wielder gets a +2 bonus on Sleight of Hand skill checks made to conceal a kerambit on her body), it is a favorite concealed weapon of ninja and assassins.', source_id: ultimate_combat.id)
+  WeaponWeaponGroup.create!(weapon_id: kerambit.id, weapon_group_id: light_blades.id)
+  WeaponHand.create!(weapon_id: kerambit.id, hands: "One")
 
 # IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
   # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
@@ -4093,7 +4099,13 @@ buckler = Armor.create!(name: 'Buckler', proficiency: 'Shield', price_in_gp: 5, 
 
 light_steel_shield = Armor.create!(name: 'Light Steel Shield', proficiency: 'Shield', price_in_gp: 9, bonus: 1, bonus_type: 'Shield', max_dex_bonus: nil, armor_check_penalty: -1, arcane_spell_failure: 5, spell_30: nil, spell_20: nil, don: "1 move action", don_hastily: nil, remove: "1 move action", weight: 6, source_id: core_rulebook.id, description: 'You can bash an opponent with a light shield. See “shield, light” on Table: Weapons for the damage dealt by a shield bash. Used this way, a light shield is a martial bludgeoning weapon. For the purpose of penalties on attack rolls, treat a light shield as a light weapon. If you use your shield as a weapon, you lose its Armor Class bonus until your next turn. An enhancement bonus on a shield does not improve the effectiveness of a shield bash made with it, but the shield can be made into a magic weapon in its own right.', damage_dice: 3, num_of_dice: 1, weapon_proficiency: "Martial", weapon_category: "Light")
 
-# IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
+leaf_armor = Armor.create!(name: 'Leaf Armor', proficiency: 'Light', price_in_gp: 500, bonus: 3, bonus_type: 'Armor', max_dex_bonus: 5, armor_check_penalty: 0, arcane_spell_failure: 15, spell_30: 30, spell_20: 20, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 20, source_id: inner_sea_world_guide.id, description: 'Using alchemical compounds, elves or druidic orders treat special leaves for use in crafting armor. These leaves are stitched together in an overlapping pattern to create a leathery armor as strong and deflective as metal counterparts. Leaf armor jerkins, bracers, and leggings have been made through this process.')
+
+darkleaf_cloth_studded_leather = Armor.create!(name: 'Darkleaf Cloth Studded Leather', proficiency: 'Light', price_in_gp: 775, bonus: 3, bonus_type: 'Armor', max_dex_bonus: 7, armor_check_penalty: 0, arcane_spell_failure: 5, spell_30: 30, spell_20: 20, don: "1 minute", don_hastily: "5 rounds", remove: "1 minute", weight: 10, source_id: core_rulebook.id, description: 'An improved form of leather armor, studded leather armor is covered with dozens of metal protuberances. While these rounded studs offer little defense individually, in the numbers they are arrayed in upon such armor, they help catch lethal edges and channel them away from vital spots. The rigidity caused by the additional metal does, however, result in less mobility than is afforded by a suit of normal leather armor.
+
+Darkleaf cloth is a special form of flexible material made by weaving together leaves and thin strips of bark from darkwood trees, then treating the resulting fabric with special alchemical processes. The resulting material is tough as cured hide but much lighter, making it an excellent material from which to create armor. Spell failure chances for armors made from darkleaf cloth decrease by 10% (to a minimum of 5%), maximum Dexterity bonuses increase by 2, and armor check penalties decrease by 3 (to a minimum of 0).
+
+An item made from darkleaf cloth weighs half as much as the same item made from normal cured leather, furs, or hides. Items not primarily constructed of leather, fur, or hide are not meaningfully affected by being partially made of darkleaf cloth. As such padded, leather, studded leather, and hide armor can be made out of darkleaf cloth (although other types of armor made of leather or hide might be possible). Because darkleaf cloth remains flexible, it cannot be used to construct rigid items such as shields or metal armors. Armors fashioned from darkleaf cloth are always masterwork items as well; the masterwork cost is included in the prices given below.')
 
 # IDENTIFIER = Armor.create!(name: '', proficiency: '', price_in_gp: 0, bonus: 0, bonus_type: '', max_dex_bonus: 0, armor_check_penalty: 0, arcane_spell_failure: 0, spell_30: 30, spell_20: 20, don: "", don_hastily: "", remove: "", weight: 1, source_id: SOURCE.id, description: '')
 
@@ -4416,8 +4428,11 @@ RaceAbilityScoreModifier.create!(race_id: human.id, ability_score: "Any", bonus:
 
 RacialTrait.create!(name: "Languages", race_id: human.id, description: "Humans begin play speaking Common. Humans with high Intelligence scores can choose any languages they want (except secret languages, such as Druidic).")
 RacialTrait.create!(name: "Bonus Feat", race_id: human.id, description: "Humans select one extra feat at 1st level.")
-RacialTrait.create!(name: "Skilled", race_id: human.id, description: "Humans gain an additional skill rank at first level and one additional rank whenever they gain a level.")
+skilled_human = RacialTrait.create!(name: "Skilled", race_id: human.id, description: "Humans gain an additional skill rank at first level and one additional rank whenever they gain a level.")
 # RacialTrait.create!(name: "", race_id: , description: "")
+
+innovative_human = AlternateRacialTrait.create!(race_id: human.id, name: "Innovative", description: "Humans have come to shape the world because they are inveterate innovators. Humans with this racial trait gain a +2 racial bonus on Knowledge (arcana) and Spellcraft checks to independently research spells, create magic items they have never encountered before, and identify unique magical effects. They also gain a +2 racial bonus on Charisma-based skill checks to persuade others to adopt a new ideology or further the cause of discovery and progress. This racial trait replaces skilled.", source_id: inner_sea_races.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: innovative_human.id, racial_trait_id: skilled_human.id)
 
 print "Human created! \r"
 

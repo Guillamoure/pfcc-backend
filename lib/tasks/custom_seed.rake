@@ -38,6 +38,7 @@ namespace :seed do
     Rake::Task['seed:classes'].invoke
     Rake::Task['db:seed:spells'].invoke
     Rake::Task['db:seed:feats'].invoke
+    Rake::Task['db:seed:items'].invoke
     Rake::Task['db:seed:monsters'].invoke
     Rake::Task['seed:campaign'].invoke
   end

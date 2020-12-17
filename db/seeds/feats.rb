@@ -56,5 +56,7 @@ Only a character who possesses this feat can use an enhanced deck of cards; she 
 
 harrowed = Feat.create!(name: "Harrowed", description: "You get a +1 bonus on all Will saves made to resist enchantment effects. Once per day, you may draw a card from a Harrow deck you own. At any one time for the rest of that day, you may apply a +2 bonus on any d20 roll modified by the card’s suit. For example, if you drew a card from the suit of Dexterity, you could apply this +2 bonus on an Initiative check, a Reflex save, a Dexterity-based skill check, or a ranged attack roll. You may assign this +2 bonus after you make the roll, but you must do so before you know whether the roll was a success or not.", blurb: "Numerous Harrow readings early in your life seem to have hit the mark precisely, increasing your belief that you are destined for a specific purpose in life.", source_id: inner_sea_world_guide.id)
 
+realistic_likeness = Feat.create!(name: "Realistic Likeness", description: "You can precisely mimic the physical features of any individual you have encountered. When you use your racial change shape ability, you can attempt to take the form of an individual, granting you a +10 circumstance bonus on Disguise checks made to fool others with your impersonation.", blurb: "When you are in human form, you can take the shape of a specific individual.", prerequisite: "Kitsune", source_id: advanced_race_guide.id)
+
 
 puts "Feats Created!"

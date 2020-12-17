@@ -213,6 +213,8 @@ print "Unchained Rogue features created! \r"
 # <-*-*-----*-*-*- Class Feature Options!-*-*-*-----*-*->
 # ///////////////////////////////////////////////////////
 
+FeatureOption.create!(name: "Combat Trick", klass_feature_id: unchained_rogue6.id, level_available: 2, description: "A rogue that selects this talent gains a bonus combat feat.")
+
 FeatureOption.create!(name: "Minor Magic", klass_feature_id: unchained_rogue6.id, level_available: 2, description: "A rogue with this talent gains the ability to cast a 0-level spell from the sorcerer/wizard spell list. This spell can be cast at will as a spell-like ability. The rogue’s caster level for this ability is equal to her rogue level. The save DC for this spell is 10 + the rogue’s Intelligence modifier. A rogue must have an Intelligence score of at least 10 to select this talent.")
 
 FeatureOption.create!(name: "Fast Stealth", klass_feature_id: unchained_rogue6.id, level_available: 2, description: "This ability allows a rogue to move at full speed using the Stealth skill without penalty.")
@@ -256,14 +258,25 @@ Advanced Talents: The following advanced rogue talents complement the pirate arc
 
   print "Pirate Archetype Created! \r"
 
+scout = KlassArchetype.create!(name: "Scout", klass_id: unchained_rogue.id, source_id: advanced_players_guide.id, description: "Not all rogues live in the city. Scouts frequently roam the wilderness, often banding together as bandits, but sometimes serving as guides, as trailblazers, or as companions to a ranger or barbarian warrior. More comfortable with sneaking and hiding outdoors, the scout is still effective in the city and the dungeon.
 
-  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
-  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
-  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+Rogue Talents: The following rogue talents complement the scout archetype: assault leader, camouflage, cunning trigger, survivalist, and trap spotter*.
 
-  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
-  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
-  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+Advanced Talents: The following advanced rogue talents complement the scout archetype: hunter’s surprise, skill mastery*, and stealthy sniper.")
+
+  scout1 = KlassArchetypeFeature.create!(name: "Scout's Charge", klass_archetype_id: scout.id, description: "At 4th level, whenever a scout makes a charge, her attack deals sneak attack damage as if the target were flat-footed. Foes with uncanny dodge are immune to this ability.
+
+  This ability replaces uncanny dodge.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: scout1.id, level: 4, table_description: "Scout's Charge")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue9.id, klass_archetype_feature_id: scout1.id, replace_or_alter: "replace")
+
+  scout2 = KlassArchetypeFeature.create!(name: "Skirmisher", klass_archetype_id: scout.id, description: "At 8th level, whenever a scout moves more than 10 feet in a round and makes an attack action, the attack deals sneak attack damage as if the target was flat-footed. If the scout makes more than one attack this turn, this ability only applies to the first attack. Foes with uncanny dodge are immune to this ability.
+
+  This ability replaces improved uncanny dodge.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: scout2.id, level: 8, table_description: "Skirmisher")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue11.id, klass_archetype_feature_id: scout2.id, replace_or_alter: "replace")
+
+  print "Scout Archetype Created! \r"
 
   # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
   #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
