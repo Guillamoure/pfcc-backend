@@ -58,5 +58,7 @@ harrowed = Feat.create!(name: "Harrowed", description: "You get a +1 bonus on al
 
 realistic_likeness = Feat.create!(name: "Realistic Likeness", description: "You can precisely mimic the physical features of any individual you have encountered. When you use your racial change shape ability, you can attempt to take the form of an individual, granting you a +10 circumstance bonus on Disguise checks made to fool others with your impersonation.", blurb: "When you are in human form, you can take the shape of a specific individual.", prerequisite: "Kitsune", source_id: advanced_race_guide.id)
 
+point_blank_shot = Feat.create!(name: "Point-Blank Shot", description: "You get a +1 bonus on attack and damage rolls with ranged weapons at ranges of up to 30 feet.", blurb: "You are especially accurate when making ranged attacks against close targets.", source_id: core_rulebook.id)
+
 
 puts "Feats Created!"

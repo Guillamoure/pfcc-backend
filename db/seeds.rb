@@ -4535,7 +4535,7 @@ Adventurers: Owing to their delicious nature, ghorans seldom know peace the way 
 
 Names: Ghoran naming conventions seem random, as each ghoran is self-named and “born” with a near perfect recollection of every memory from previous incarnations. As a result, ghorans sometimes pick names they found pleasing in other lives or name themselves after people or places they once knew. Others maintain the same name over several incarnations, though minor personality and physical changes from life to life ensure that while the ghoran’s name might remain the same, aspects of the ghoran’s gradual change can often confuse and frustrate longtime friends and allies.")
 
-RaceAbilityScoreModifier.create!(race_id: ghoran.id, ability_score: "Constituion", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: ghoran.id, ability_score: "Constitution", bonus: 2)
 RaceAbilityScoreModifier.create!(race_id: ghoran.id, ability_score: "Charisma", bonus: 2)
 RaceAbilityScoreModifier.create!(race_id: ghoran.id, ability_score: "Intelligence", bonus: -2)
 
@@ -5225,12 +5225,6 @@ Role: A vigilante can take on many tasks within a group. Most are skilled at neg
 
 Alignment: Any.")
 
-arcanist = Klass.create!(name: "Arcanist", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/59/af/7d/59af7defc23bcd2a6338ad3d67e52df8.png", starting_wealth: "2d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: advanced_class_guide.id, description: "Some spellcasters seek the secrets of magic, pursuing the power to make the impossible possible. Others are born with magic in their blood, commanding unbelievable forces as effortlessly as they breathe. Yet still others seek to meld the science of arcane scholars with the natural might of innate casters. These arcanists seek to discover the mysterious laws of magic and through will and expertise bend those forces to their whims. Arcanists are the shapers and tinkers of the arcane world, and no magic can resist their control.
-
-Role: Arcanists are scholars of all things magical. They constantly seek out new forms of magic to discover how they work, and in many cases, to collect the energy of such magic for their own uses. Many arcanists are seen as reckless, more concerned with the potency of magic than the ramifications of unleashing such power.
-
-Alignment: Any.")
-
 brawler = Klass.create!(name: "Brawler", hit_die: 10, skill_ranks: 4, fortitude: 0.5, reflex: 0.5, will: 0.34, img_url: "https://i.pinimg.com/originals/71/90/a8/7190a8fb193a883fda6f7fa5f1cc7bdd.jpg", starting_wealth: "3d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", source_id: advanced_class_guide.id, description: "Deadly even with nothing in her hands, a brawler eschews using the fighter’s heavy armor and the monk’s mysticism, focusing instead on perfecting many styles of brutal unarmed combat. Versatile, agile, and able to adapt to most enemy attacks, a brawler’s body is a powerful weapon.
 
 Role: Brawlers are maneuverable and well suited for creating flanking situations or dealing with lightly armored enemies, as well as quickly adapting to a rapidly changing battlefield.
@@ -5774,60 +5768,6 @@ A cleric who is neither good nor evil and whose deity is neither good nor evil c
 
 print "Cleric features created! \r"
 
-
-arcanist1 = KlassFeature.create!(klass_id: arcanist.id, name: "Weapon and Armor Proficiencies", description: "Arcanists are proficient with all simple weapons. They are not proficient with any type of armor or shield. Armor interferes with an arcanist’s gestures, which can cause her spells with somatic components to fail (see Arcane Spells and Armor).")
-  FeatureLevel.create!(klass_feature_id: arcanist1.id, level: 1, table_description: "none")
-
-
-arcanist2 = KlassFeature.create!(klass_id: arcanist.id, name: "Spells", description: "An arcanist casts arcane spells drawn from the sorcerer/wizard spell list. An arcanist must prepare her spells ahead of time, but unlike a wizard, her spells are not expended when they’re cast. Instead, she can cast any spell that she has prepared consuming a spell slot of the appropriate level, assuming she hasn’t yet used up her spell slots per day for that level.
-
-To learn, prepare, or cast a spell, the arcanist must have an Intelligence score equal to at least 10 + the spell’s level. The saving throw DC against an arcanist’s spell is 10 + the spell’s level + the arcanist’s Intelligence modifier.
-
-An arcanist can only cast a certain number of spells of each spell level per day. Her base daily spell allotment is given on Table: Arcanist under “Spells per Day.” In addition, she receives bonus spells per day if she has a high Intelligence score.
-
-An arcanist may know any number of spells, but the number she can prepare each day is limited. At 1st level, she can prepare four 0-level spells and two 1st-level spells each day. At each new arcanist level, the number of spells she can prepare each day increases, adding new spell levels as indicated on Table: Arcanist Spells Prepared. Unlike the number of spells she can cast per day, the number of spells an arcanist can prepare each day is not affected by her Intelligence score. Feats and other effects that modify the number of spells known by a spellcaster instead affect the number of spells an arcanist can prepare.
-
-An arcanist must choose and prepare her spells ahead of time by getting 8 hours of sleep and spending 1 hour studying her spellbook. While studying, the arcanist decides what spells to prepare and refreshes her available spell slots for the day.
-
-Like a sorcerer, an arcanist can choose to apply any metamagic feats she knows to a prepared spell as she casts it, with the same increase in casting time (see Spontaneous Casting and Metamagic Feats). However, she may also prepare a spell with any metamagic feats she knows and cast it without increasing casting time like a wizard. She cannot combine these options—a spell prepared with metamagic feats cannot be further modified with another metamagic feat at the time of casting (unless she has the metamixing arcanist exploit, detailed below).
-
-Spellbooks: An arcanist must study her spellbook each day to prepare her spells. She can’t prepare any spell not recorded in her spellbook, except for read magic (which all arcanists can prepare from memory).
-
-An arcanist begins play with a spellbook containing all 0-level wizard/sorcerer spells plus three 1st-level spells of her choice. The arcanist also selects a number of additional 1st-level spells equal to her Intelligence modifier to add to the spellbook. At each new arcanist level, she gains two new spells of any spell level or levels that she can cast (based on her new arcanist level) for her spellbook. At any time, an arcanist can also add spells found in wizards‘ or other arcanists’ spellbooks to her own.
-
-Cantrips: Arcanists can prepare a number of cantrips, or 0-level spells, each day as noted on Table: Arcanist Spells Prepared. These spells are cast like any other spell, but they do not consume spell slots. As with her other spells, these spells are not expended when cast.")
-  FeatureLevel.create!(klass_feature_id: arcanist2.id, level: 1, table_description: "none")
-
-arcanist3 = KlassFeature.create!(klass_id: arcanist.id, name: 'Arcane Reservoir', description: 'An arcanist has an innate pool of magical energy that she can draw upon to fuel her arcanist exploits and enhance her spells. The arcanist’s arcane reservoir can hold a maximum amount of magical energy equal to 3 + the arcanist’s level. Each day, when the arcanist prepares spells, the arcanist’s arcane reservoir fills with raw magical energy, gaining a number of points equal to 3 + 1/2 her arcanist level. Any points she had from the previous day are lost. She can also regain these points through the consume spells class feature and some arcanist exploits. The arcane reservoir can never hold more points than the maximum amount noted above; points gained in excess of this total are lost.
-
-Points from the arcane reservoir are used to fuel many of the arcanist’s powers. In addition, the arcanist can expend 1 point from her arcane reservoir as a free action whenever she casts an arcanist spell. If she does, she can choose to increase the caster level by 1 or increase the spell’s DC by 1. She can expend no more than 1 point from her reservoir on a given spell in this way.')
-  FeatureLevel.create!(klass_feature_id: arcanist3.id, level: 1, table_description: 'Arcane Reservoir')
-
-arcanist4 = KlassFeature.create!(klass_id: arcanist.id, name: 'Arcanist Exploit', description: 'By bending and sometimes even breaking the rules of magic, the arcanist learns to exploit gaps and exceptions in the laws of magic. Some of these exploits allow her to break down various forms of magic, adding their essence to her arcane reservoir. At 1st level and every 2 levels thereafter, the arcanist learns a new arcane exploit selected from the following list. An arcanist exploit cannot be selected more than once. Once an arcanist exploit has been selected, it cannot be changed. Most arcanist exploits require the arcanist to expend points from her arcane reservoir to function. Unless otherwise noted, the saving throw DC of an arcanist exploit is equal to 10 + 1/2 the arcanist’s level + the arcanist’s Charisma modifier.')
-  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 1, table_description: 'Arcanist Exploit')
-  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 3, table_description: 'Arcanist Exploit')
-  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 5, table_description: 'Arcanist Exploit')
-  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 7, table_description: 'Arcanist Exploit')
-  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 9, table_description: 'Arcanist Exploit')
-  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 11, table_description: 'Arcanist Exploit')
-  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 13, table_description: 'Arcanist Exploit')
-  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 15, table_description: 'Arcanist Exploit')
-  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 17, table_description: 'Arcanist Exploit')
-  FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 19, table_description: 'Arcanist Exploit')
-
-arcanist5 = KlassFeature.create!(klass_id: arcanist.id, name: 'Consume Spells', description: 'At 1st level, an arcanist can expend an available arcanist spell slot as a move action, making it unavailable for the rest of the day, just as if she had used it to cast a spell. She can use this ability a number of times per day equal to her Charisma modifier (minimum 1). Doing this adds a number of points to her arcane reservoir equal to the level of the spell slot consumed. She cannot consume cantrips (0 level spells) in this way. Points gained in excess of the reservoir’s maximum are lost.')
-  FeatureLevel.create!(klass_feature_id: arcanist5.id, level: 1, table_description: 'Consume Spells')
-
-arcanist6 = KlassFeature.create!(klass_id: arcanist.id, name: 'Greater Exploits', description: 'At 11th level and every 2 levels thereafter, an arcanist can choose one of the following greater exploits in place of an arcanist exploit.')
-  FeatureLevel.create!(klass_feature_id: arcanist6.id, level: 11, table_description: 'Greater Exploits')
-
-arcanist7 = KlassFeature.create!(klass_id: arcanist.id, name: 'Magical Supremacy', description: 'At 20th level, the arcanist learns how to convert her arcane reservoir into spells and back again. She can cast any spell she has prepared by expending a number of points from her arcane reservoir equal to 1 + the level of the spell to be cast instead of expending a spell slot. When she casts a spell in this fashion, she treats her caster level as 2 higher than normal, and the DCs of any saving throws associated with the spell increase by 2. She cannot further expend points from her arcane reservoir to enhance a spell cast in this way.')
-  FeatureLevel.create!(klass_feature_id: arcanist7.id, level: 20, table_description: 'Magical Supremacy')
-
-print "Arcanist features created! \r"
-
-
-
 vigilante1 = KlassFeature.create!(klass_id: vigilante.id, name: "Weapon and Armor Proficiency", description: "Vigilantes are proficient with all simple and martial weapons, light armor, medium armor, and shields (except tower shields).")
   FeatureLevel.create!(klass_feature_id: vigilante1.id, level: 1, table_description: "none")
 
@@ -6304,7 +6244,7 @@ Spellcasting.create!(klass_feature_id: fate_weaver4.id, ability_score: "Charisma
 
 Spellcasting.create!(klass_feature_id: bard2.id, ability_score: "Charisma", prepared: false, limited: true, expendable: false, infinite_zero_level: true, bonus_spells: true, klass_spell_list_id: bard.id)
 
-Spellcasting.create!(klass_feature_id: arcanist2.id, ability_score: "Intelligence", prepared: true, limited: true, expendable: false, infinite_zero_level: true, bonus_spells: true, klass_spell_list_id: wizard.id, prepared_amount: true)
+# Spellcasting.create!(klass_feature_id: arcanist2.id, ability_score: "Intelligence", prepared: true, limited: true, expendable: false, infinite_zero_level: true, bonus_spells: true, klass_spell_list_id: wizard.id, prepared_amount: true)
 
 # Spellcasting.create!(klass_feature_id: alchemist2.id, ability_score: "Intelligence", prepared: true, limited: true, expendable: true, infinite_zero_level: false, bonus_spells: true, klass_spell_list_id: alchemist.id, alchemy: true)
 
@@ -6616,110 +6556,6 @@ SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 18, spells: 2, feature
 SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 19, spells: 3, feature_spellcasting_id: cleric_spellcasting.id)
 SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 20, spells: 4, feature_spellcasting_id: cleric_spellcasting.id)
 
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 1, spells: 2, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 2, spells: 3, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 3, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 4, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 5, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 6, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 7, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 8, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 9, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 10, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 11, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 12, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 13, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 14, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 15, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 16, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 17, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 18, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 19, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 1, klass_level: 20, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 4, spells: 2, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 5, spells: 3, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 6, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 7, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 8, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 9, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 10, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 11, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 12, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 13, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 14, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 15, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 16, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 17, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 18, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 19, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 2, klass_level: 20, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 6, spells: 2, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 7, spells: 3, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 8, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 9, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 10, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 11, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 12, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 13, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 14, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 15, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 16, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 17, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 18, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 19, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 3, klass_level: 20, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 8, spells: 2, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 9, spells: 3, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 10, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 11, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 12, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 13, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 14, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 15, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 16, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 17, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 18, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 19, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 4, klass_level: 20, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 10, spells: 2, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 11, spells: 3, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 12, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 13, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 14, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 15, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 16, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 17, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 18, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 19, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 5, klass_level: 20, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 12, spells: 2, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 13, spells: 3, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 14, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 15, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 16, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 17, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 18, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 19, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 6, klass_level: 20, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 14, spells: 2, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 15, spells: 3, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 16, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 17, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 18, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 19, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 7, klass_level: 20, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 16, spells: 2, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 17, spells: 3, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 18, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 19, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 8, klass_level: 20, spells: 4, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 18, spells: 2, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 19, spells: 3, feature_spellcasting_id: arcanist.id)
-# SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 20, spells: 4, feature_spellcasting_id: arcanist.id)
-#
-
-
-
 
 # SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , feature_spellcasting_id: )
 # SpellsPerDayPerLevel.create!(spell_level: , klass_level: , spells: , feature_spellcasting_id: )
@@ -6730,127 +6566,6 @@ SpellsPerDayPerLevel.create!(spell_level: 9, klass_level: 20, spells: 4, feature
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Prepared Amount!-*-*-*-----*-*->
 # /////////////////////////////////////////
-
-PreparedAmount.create!(spell_level: 0, klass_level: 1, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 2, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 3, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 4, spells: 6, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 5, spells: 6, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 6, spells: 7, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 7, spells: 7, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 8, spells: 8, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 9, spells: 8, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 10, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 11, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 12, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 13, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 14, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 15, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 16, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 17, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 18, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 19, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 0, klass_level: 20, spells: 9, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 1, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 2, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 3, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 4, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 5, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 6, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 7, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 8, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 9, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 10, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 11, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 12, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 13, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 14, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 15, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 16, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 17, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 18, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 19, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 1, klass_level: 20, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 4, spells: 1, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 5, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 6, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 7, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 8, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 9, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 10, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 11, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 12, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 13, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 14, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 15, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 16, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 17, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 18, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 19, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 2, klass_level: 20, spells: 5, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 6, spells: 1, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 7, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 8, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 9, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 10, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 11, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 12, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 13, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 14, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 15, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 16, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 17, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 18, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 19, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 3, klass_level: 20, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 8, spells: 1, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 9, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 10, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 11, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 12, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 13, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 14, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 15, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 16, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 17, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 18, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 19, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 4, klass_level: 20, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 10, spells: 1, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 11, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 12, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 13, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 14, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 15, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 16, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 17, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 18, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 19, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 5, klass_level: 20, spells: 4, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 6, klass_level: 12, spells: 1, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 6, klass_level: 13, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 6, klass_level: 14, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 6, klass_level: 15, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 6, klass_level: 16, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 6, klass_level: 17, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 6, klass_level: 18, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 6, klass_level: 19, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 6, klass_level: 20, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 7, klass_level: 14, spells: 1, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 7, klass_level: 15, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 7, klass_level: 16, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 7, klass_level: 17, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 7, klass_level: 18, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 7, klass_level: 19, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 7, klass_level: 20, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 8, klass_level: 16, spells: 1, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 8, klass_level: 17, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 8, klass_level: 18, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 8, klass_level: 19, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 8, klass_level: 20, spells: 3, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 9, klass_level: 18, spells: 1, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 9, klass_level: 19, spells: 2, klass_id: arcanist.id)
-PreparedAmount.create!(spell_level: 9, klass_level: 20, spells: 3, klass_id: arcanist.id)
 
 
 
@@ -6994,14 +6709,14 @@ ClassSkillsetSkill.create!(klass_id: shifter.id, skillset_id: dmc.id, skill_id: 
 ClassSkillsetSkill.create!(klass_id: shifter.id, skillset_id: dmc.id, skill_id: survival.id)
 ClassSkillsetSkill.create!(klass_id: shifter.id, skillset_id: dmc.id, skill_id: swim.id)
 
-ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: craft.id)
-ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: linguistics.id)
-ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: nature_unchained.id)
-ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: profession.id)
-ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: religion_unchained.id)
-ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: society_unchained.id)
-ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id)
-ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: investigation.id)
+# ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: craft.id)
+# ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: linguistics.id)
+# ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: nature_unchained.id)
+# ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: profession.id)
+# ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: religion_unchained.id)
+# ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: society_unchained.id)
+# ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id)
+# ClassSkillsetSkill.create!(klass_id: arcanist.id, skillset_id: dmc.id, skill_id: investigation.id)
 
 ClassSkillsetSkill.create!(klass_id: brawler.id, skillset_id: dmc.id, skill_id: acrobatics.id)
 ClassSkillsetSkill.create!(klass_id: brawler.id, skillset_id: dmc.id, skill_id: climb.id)
@@ -7209,27 +6924,27 @@ CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, sk
 CharacterSkillsetSkill.create!(character_id: cedrick.id, skillset_id: dmc.id, skill_id: survival.id, ranks: 1)
 
 
-maddox = Character.create!(user_id: admin.id, name: "Maddox", full_name: 'Maddox Magpie', strength: 9, dexterity: 16, constitution: 14, intelligence: 18, wisdom: 11, charisma: 17, race_id: samsaran.id, skillset_id: dmc.id, campaign_id: current_campaign.id, is_done_preparing_spells: true)
-# +1 to Charisma, Tome of Leadership and Influence
+# maddox = Character.create!(user_id: admin.id, name: "Maddox", full_name: 'Maddox Magpie', strength: 9, dexterity: 16, constitution: 14, intelligence: 18, wisdom: 11, charisma: 17, race_id: samsaran.id, skillset_id: dmc.id, campaign_id: current_campaign.id, is_done_preparing_spells: true)
+# # +1 to Charisma, Tome of Leadership and Influence
+#
+# maddox1 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+# maddox2 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+# maddox3 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
+# maddox4 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 4, favored_klass_bonus_id: nil)
+# maddox5 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: nil)
+# maddox6 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
+# maddox7 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
 
-maddox1 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
-maddox2 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
-maddox3 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
-maddox4 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 4, favored_klass_bonus_id: nil)
-maddox5 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 5, favored_klass_bonus_id: nil)
-maddox6 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 6, favored_klass_bonus_id: nil)
-maddox7 = CharacterKlass.create!(character_id: maddox.id, klass_id: arcanist.id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 7, favored_klass_bonus_id: nil)
-
-CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: acrobatics.id, ranks: 3)
-CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: craft.id, ranks: 3, detail: 'gears/clockwork')
-CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: heal.id, ranks: 5)
-CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: investigation.id, ranks: 6)
-CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: linguistics.id, ranks: 6)
-CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: nature_unchained.id, ranks: 6)
-CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: perception.id, ranks: 5)
-CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: religion_unchained.id, ranks: 6)
-CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id, ranks: 6)
-CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: survival.id, ranks: 3)
+# CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: acrobatics.id, ranks: 3)
+# CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: craft.id, ranks: 3, detail: 'gears/clockwork')
+# CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: heal.id, ranks: 5)
+# CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: investigation.id, ranks: 6)
+# CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: linguistics.id, ranks: 6)
+# CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: nature_unchained.id, ranks: 6)
+# CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: perception.id, ranks: 5)
+# CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: religion_unchained.id, ranks: 6)
+# CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id, ranks: 6)
+# CharacterSkillsetSkill.create!(character_id: maddox.id, skillset_id: dmc.id, skill_id: survival.id, ranks: 3)
 
 robby = Character.create!(user_id: admin.id, name: 'Robby', full_name: 'Sir Robby Redfurred', strength: 13, dexterity: 16, constitution: 10, intelligence: 9, wisdom: 13, charisma: 17, race_id: kitsune.id, skillset_id: dmc.id, campaign_id: current_campaign.id, lethal_damage: 26)
 # +1 to Strength, Manual of Gainful Exercise
