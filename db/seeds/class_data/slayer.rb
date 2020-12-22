@@ -120,9 +120,17 @@ At 7th level, a slayer can study an opponent as a move or swift action.")
   FeatureLevel.create!(klass_feature_id: slayer2.id, level: 10, table_description: "3rd Studied Target")
   FeatureLevel.create!(klass_feature_id: slayer2.id, level: 15, table_description: "4th Studied Target")
   FeatureLevel.create!(klass_feature_id: slayer2.id, level: 20, table_description: "5th Studied Target")
+  slayer2_feature = Feature.create!(action_id: move.id)
+    KlassFeatureFeature.create!(klass_feature_id: slayer2.id, feature_id: slayer2_feature.id)
+    FeatureAlternateAction.create!(feature_id: slayer2_feature.id, level: 7, action_id: swift.id)
+
 
 slayer3 = KlassFeature.create!(klass_id: slayer.id, name: "Track", description: "A slayer adds half his level (minimum 1) to Survival skill checks made to follow tracks.")
   FeatureLevel.create!(klass_feature_id: slayer3.id, level: 1, table_description: "Track")
+  # slayer3_feature = Feature.create!()
+  #   KlassFeatureFeature.create!(klass_feature_id: slayer3.id, feature_id: slayer3_feature.id)
+  #   FeatureSkillBonus.create!(feature_id: slayer3_feature.id, skill_id: Skill.find_by!(name: "Survival").id, bonus: 0.5, bonus_type: "untyped", duration: "permanent", specific_statistic: "Knowledge", bonus_multiplier: "level", round_down: true, minimum_bonus: 1, bonus_multiplier_based_on_feature_level: true)
+
 
 slayer4 = KlassFeature.create!(klass_id: slayer.id, name: "Slayer Talents", description: "As a slayer gains experience, he learns a number of talents that aid him and confound his foes. Starting at 2nd level and every 2 levels thereafter, a slayer gains one slayer talent. Unless otherwise noted, a slayer cannot select an individual talent more than once.
 

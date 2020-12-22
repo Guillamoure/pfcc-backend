@@ -194,6 +194,8 @@ chaotic = Subschool.create!(name: 'Chaotic', description: "Spells that draw upon
 good = Subschool.create!(name: 'Good', description: "Spells that draw upon the power of true goodness or conjure creatures from good-aligned planes or with the good subtype should have the good descriptor.")
 calling = Subschool.create!(name: 'Calling', description: "A calling spell transports a creature from another plane to the plane you are on. The spell grants the creature the one-time ability to return to its plane of origin, although the spell may limit the circumstances under which this is possible. Creatures who are called actually die when they are killed; they do not disappear and reform, as do those brought by a summoning spell (see below). The duration of a calling spell is instantaneous, which means that the called creature can’t be dispelled.")
 teleportation = Subschool.create!(name: 'Teleportation', description: "A teleportation spell transports one or more creatures or objects a great distance. The most powerful of these spells can cross planar boundaries. Unlike summoning spells, the transportation is (unless otherwise noted) one-way and not dispellable.")
+fear = Subschool.create!(name: "Fear", description: "Spells with the fear descriptor create, enhance, or manipulate fear. Most fear spells are necromancy spells, though some are enchantment spells.")
+pattern = Subschool.create!(name: "Pattern", description: "Like a figment, a pattern spell creates an image that others can see, but a pattern also affects the minds of those who see it or are caught in it. All patterns are mind-affecting spells.")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spells!-*-*-*-----*-*->
@@ -2635,6 +2637,8 @@ The spell cannot affect objects carried or worn by a creature.", target: "one ro
   animate_rope_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp178.id, spell_level: 1)
   # animate_rope_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp178.id, spell_level: 1)
   animate_rope_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp178.id, spell_level: 1)
+  # NOT ACCURATE, HARDCODED
+  animate_rope_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp178.id, spell_level: 1)
 
   FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp178.id, added_to_known_spells: false, applicable_spell_level: 1, bonus_spell_slot_option: true)
 
@@ -3324,6 +3328,262 @@ sp225 = Spell.create!(name: "Disrupt Undead", description: "You direct a ray of 
   # disrupt_undead_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp225.id, spell_level: 0)
   disrupt_undead_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp225.id, spell_level: 0)
   disrupt_undead_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp225.id, spell_level: 0)
+
+sp226 = Spell.create!(name: "Grease", description: "A grease spell covers a solid surface with a layer of slippery grease. Any creature in the area when the spell is cast must make a successful Reflex save or fall. A creature can walk within or through the area of grease at half normal speed with a DC 10 Acrobatics check. Failure means it can’t move that round (and must then make a Reflex save or fall), while failure by 5 or more means it falls (see the Acrobatics skill for details). Creatures that do not move on their turn do not need to make this check and are not considered flat-footed.
+
+The spell can also be used to create a greasy coating on an item. Material objects not in use are always affected by this spell, while an object wielded or employed by a creature requires its bearer to make a Reflex saving throw to avoid the effect. If the initial saving throw fails, the creature immediately drops the item. A saving throw must be made in each round that the creature attempts to pick up or use the greased item. A creature wearing greased armor or clothing gains a +10 circumstance bonus on Escape Artist checks and combat maneuver checks made to escape a grapple, and to their CMD to avoid being grappled.", target: "one object of 10-ft. square", saving_throw: "Reflex", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
+  SpellSubschool.create!(spell_id: sp226.id, subschool_id: creation.id)
+  SpellComponent.create!(spell_id: sp226.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp226.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp226.id, component_id: material.id, item: "butter")
+  grease_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp226.id, spell_level: 1)
+  grease_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp226.id, spell_level: 1)
+  grease_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp226.id, spell_level: 1)
+  # grease_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp226.id, spell_level: 1)
+
+sp227 = Spell.create!(name: "Frostbite", description: "Your melee touch attack deals 1d6 points of nonlethal cold damage + 1 point per level, and the target is fatigued. The fatigued condition ends when the target recovers from the nonlethal damage. This spell cannot make a creature exhausted even if it is already fatigued. You can use this melee touch attack up to one time per level.", target: "creature touched", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp227.id, subschool_id: cold.id)
+  SpellComponent.create!(spell_id: sp227.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp227.id, component_id: somatic.id, item: nil)
+  # frostbite_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager_spell_list.id, spell_id: sp227.id, spell_level: 1)
+  # frostbite_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp227.id, spell_level: 1)
+  frostbite_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp227.id, spell_level: 1)
+  # frostbite_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp227.id, spell_level: 1)
+  frostbite_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp227.id, spell_level: 1)
+
+sp228 = Spell.create!(name: "Shocking Grasp", description: "Your successful melee touch attack deals 1d6 points of electricity damage per caster level (maximum 5d6). When delivering the jolt, you gain a +3 bonus on attack rolls if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).", target: "creature or object touched", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp228.id, subschool_id: electricity.id)
+  SpellComponent.create!(spell_id: sp228.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp228.id, component_id: somatic.id, item: nil)
+  # shocking_grasp_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager_spell_list.id, spell_id: sp228.id, spell_level: 1)
+  shocking_grasp_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp228.id, spell_level: 1)
+  shocking_grasp_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp228.id, spell_level: 1)
+
+sp229 = Spell.create!(name: "Blend", description: "You draw upon your elven link to the wilderness to change the coloration of yourself and your equipment to match that of your surroundings. This grants you a +4 circumstance bonus on Stealth checks and allows you to make Stealth checks without cover or concealment, but only while you move no more than half your base speed or less. If you move more than half your base speed on your turn, you gain no benefit from this spell until the start of your next turn. If you make an attack, this spell ends (as invisibility).", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: illusion.id, duration: "10 minutes/level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp229.id, subschool_id: glamer.id)
+  SpellComponent.create!(spell_id: sp229.id, component_id: somatic.id, item: nil)
+  blend_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp229.id, spell_level: 1)
+  # blend_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp229.id, spell_level: 1)
+  blend_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp229.id, spell_level: 1)
+  # blend_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp229.id, spell_level: 1)
+  blend_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp229.id, spell_level: 1)
+  # blend_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp229.id, spell_level: 1)
+  blend_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp229.id, spell_level: 1)
+  blend_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp229.id, spell_level: 1)
+
+sp230 = Spell.create!(name: "Cause Fear", description: "The affected creature becomes frightened. If the subject succeeds on a Will save, it is shaken for 1 round. Creatures with 6 or more HD are immune to this effect. Cause fear counters and dispels remove fear.", target: "one living creature with 5 or fewer HD", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: necromancy.id, duration: "1d4 rounds or 1 round", time: 1, unit_of_time: "round", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp230.id, subschool_id: emotion.id)
+  SpellSubschool.create!(spell_id: sp230.id, subschool_id: fear.id)
+  SpellSubschool.create!(spell_id: sp230.id, subschool_id: mind_affecting.id)
+  SpellComponent.create!(spell_id: sp230.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp230.id, component_id: somatic.id, item: nil)
+  # cause_fear_antipaladin = SpellListSpell.create!(spell_list_id: antipaladin_spell_list.id, spell_id: sp230.id, spell_level: 1)
+  cause_fear_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp230.id, spell_level: 1)
+  # cause_fear_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager_spell_list.id, spell_id: sp230.id, spell_level: 1)
+  cause_fear_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp230.id, spell_level: 1)
+  # cause_fear_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp230.id, spell_level: 1)
+  # cause_fear_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp230.id, spell_level: 1)
+  # cause_fear_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp230.id, spell_level: 1)
+  cause_fear_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp230.id, spell_level: 1)
+  cause_fear_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp230.id, spell_level: 1)
+
+  print "230 Spells Created \r"
+
+
+sp231 = Spell.create!(name: "Command", description: "You give the subject a single command, which it obeys to the best of its ability at its earliest opportunity. You may select from the following options.
+
+Approach: On its turn, the subject moves toward you as quickly and directly as possible for 1 round. The creature may do nothing but move during its turn, and it provokes attacks of opportunity for this movement as normal.
+
+Drop: On its turn, the subject drops whatever it is holding. It can’t pick up any dropped item until its next turn.
+
+Fall: On its turn, the subject falls to the ground and remains prone for 1 round. It may act normally while prone but takes any appropriate penalties.
+
+Flee: On its turn, the subject moves away from you as quickly as possible for 1 round. It may do nothing but move during its turn, and it provokes attacks of opportunity for this movement as normal.
+
+Halt: The subject stands in place for 1 round. It may not take any actions but is not considered helpless.
+
+If the subject can’t carry out your command on its next turn, the spell automatically fails.", target: "one living creature", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: enchantment.id, duration: "1 round", time: 1, unit_of_time: "round", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp231.id, subschool_id: compulsion.id)
+  SpellSubschool.create!(spell_id: sp231.id, subschool_id: language_dependent.id)
+  SpellSubschool.create!(spell_id: sp231.id, subschool_id: mind_affecting.id)
+  SpellComponent.create!(spell_id: sp231.id, component_id: verbal.id, item: nil)
+  # command_antipaladin = SpellListSpell.create!(spell_list_id: antipaladin_spell_list.id, spell_id: sp231.id, spell_level: 1)
+  command_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp231.id, spell_level: 1)
+  # command_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp231.id, spell_level: 1)
+  # command_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp231.id, spell_level: 1)
+  command_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp231.id, spell_level: 1)
+
+sp232 = Spell.create!(name: "Mudball", description: "When you cast this spell, you conjure a single ball of sticky mud and launch it at an enemy’s face as a ranged touch attack. If the mudball hits, the target is blinded. Each round at the beginning of its turn, a creature blinded by this spell can attempt a Reflex saving throw to shake off the mud, ending the effect. The mudball can also be wiped off by the creature affected by it or by a creature adjacent to the creature affected by it as a standard action.", target: "single fist-sized blog of sticky mud", saving_throw: "Reflex", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp232.id, subschool_id: creation.id)
+  SpellSubschool.create!(spell_id: sp232.id, subschool_id: earth.id)
+  SpellComponent.create!(spell_id: sp232.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp232.id, component_id: somatic.id, item: nil)
+  # mudball_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager_spell_list.id, spell_id: sp232.id, spell_level: 1)
+  # mudball_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp232.id, spell_level: 1)
+  mudball_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp232.id, spell_level: 1)
+  mudball_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp232.id, spell_level: 1)
+  mudball_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp232.id, spell_level: 1)
+
+sp233 = Spell.create!(name: "Color Spray", description: "A vivid cone of clashing colors springs forth from your hand, causing creatures to become stunned, perhaps also blinded, and possibly knocking them unconscious. Each creature within the cone is affected according to its HD.
+
+2 HD or less: The creature is unconscious, blinded, and stunned for 2d4 rounds, then blinded and stunned for 1d4 rounds, and then stunned for 1 round. (Only living creatures are knocked unconscious.)
+
+3 or 4 HD: The creature is blinded and stunned for 1d4 rounds, then stunned for 1 round.
+
+5 or more HD: The creature is stunned for 1 round.
+
+Sightless creatures are not affected by color spray.", target: "cone-shaped burst", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: fifteen_feet.id, magic_school_id: illusion.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp233.id, subschool_id: pattern.id)
+  SpellSubschool.create!(spell_id: sp233.id, subschool_id: mind_affecting.id)
+  SpellComponent.create!(spell_id: sp233.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp233.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp233.id, component_id: material.id, item: "red, yellow, and blue powder or colored sand")
+  # color_spray_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager_spell_list.id, spell_id: sp233.id, spell_level: 1)
+  color_spray_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp233.id, spell_level: 1)
+  # color_spray_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp233.id, spell_level: 1)
+  color_spray_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp233.id, spell_level: 1)
+
+sp234 = Spell.create!(name: "Burning Disarm", description: "This spell causes a metal object to instantly become red hot. A creature holding the item may attempt a Reflex save to drop it and take no damage (even if it is not their turn), otherwise the hot metal deals 1d4 points of fire damage per caster level (maximum 5d4). Circumstances that prevent the creature from dropping the item (such as a locked gauntlet) mean the creature gets no saving throw. The heat does not harm the item, and it does not get hot enough or last long enough to ignite flammable objects. The item cools to its previous temperature almost instantly. If cast underwater, burning disarm deals half damage and boils the surrounding water.", target: "Held metal item of one creature or 15 lbs. of unattended metal", saving_throw: "Reflex", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellSubschool.create!(spell_id: sp234.id, subschool_id: fire.id)
+  SpellComponent.create!(spell_id: sp234.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp234.id, component_id: somatic.id, item: nil)
+  burning_disarm_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp234.id, spell_level: 1)
+  # burning_disarm_druid = SpellListSpell.create!(spell_list_id: druid_spell_list.id, spell_id: sp234.id, spell_level: 1)
+  burning_disarm_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp234.id, spell_level: 1)
+
+sp235 = Spell.create!(name: "Deivon's Parry", description: "Originally designed by an Aldori magus who had long admired swashbucklers for their ability to deflect blows, Deivon’s parry has swiftly gained popularity among bards and magi alike. Your reflexes snap into action, allowing you to deflect a blow. This spell can be cast only when an opponent makes a melee attack against you, and only before the attack roll has been made. Make a parry attempt with a light or one-handed weapon you’re wielding, as if using the swashbuckler’s opportune parry and riposte deed (except that this does not require panache). You cannot riposte as part of this spell’s effect.", target: "you", saving_throw: "none", spell_resistance: false, action_id: immediate.id, spell_range_id: personal.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp235.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp235.id, component_id: somatic.id, item: nil)
+  deivons_parry_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp235.id, spell_level: 1)
+  deivons_parry_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp235.id, spell_level: 1)
+
+sp236 = Spell.create!(name: "Fallback Strategy", description: "While this spell is active, you may reroll one attack roll, combat maneuver check, or skill check before the result of the roll or check is known. You must take the result of the reroll, even if it’s worse than the original roll. Once the reroll is used, the spell ends. You can have no more than one fallback strategy active on you at the same time.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: abjuration.id, duration: "1 minute/level or until discharged", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp236.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp236.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp236.id, component_id: divine_focus.id, item: nil)
+  fallback_strategy_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp236.id, spell_level: 1)
+  # fallback_strategy_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp236.id, spell_level: 1)
+  # fallback_strategy_paladin = SpellListSpell.create!(spell_list_id: paladin_spell_list.id, spell_id: sp236.id, spell_level: 1)
+  fallback_strategy_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp236.id, spell_level: 1)
+
+sp237 = Spell.create!(name: "Weaponwand", description: "When you cast this spell on a weapon, you cause a portion of the weapon to open like the skin of a partially peeled apple, revealing a space large enough to insert a single wand within. As part of the spell’s casting, you can insert a single wand into the weapon, at which point the weapon returns to its original form with the wand held inside of it without negatively impacting the weapon’s integrity. For the spell’s duration, a character who wields the transmuted weapon is also considered to be wielding the wand as well. You can attack normally with the weapon or use the weapon as if it were the encased wand. If the effect created by the wand requires an attack roll to successfully strike a foe, you may make the attack roll as if you were making an attack with the weapon at its highest bonus (including any bonuses the weapon would normally receive) rather than just a normal attack with the wand—doing so does not allow you to add the weapon’s damage to the wand’s attack roll, but instead allows you to use your skill with the weapon to boost your chance of hitting with the spell.
+
+At the end of the spell’s duration, the encased wand is ejected from the weapon. If you have a free hand, you may catch the weapon as a free action; otherwise, the wand drops to the ground. If the weapon housing the wand is broken or destroyed during the duration of weaponwand, the encased wand is similarly broken or destroyed.", target: "one weapon", saving_throw: "Will", spell_resistance: true, action_id: full_round.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: sp237.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: sp237.id, component_id: somatic.id, item: nil)
+  SpellComponent.create!(spell_id: sp237.id, component_id: focus.id, item: "a magic wand")
+  weaponwand_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: sp237.id, spell_level: 1)
+  weaponwand_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp237.id, spell_level: 1)
+  # weaponwand_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp237.id, spell_level: 1)
+  weaponwand_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp237.id, spell_level: 1)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
+
+#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
+  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
+  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
+  # var = SpellListSpell.create!(spell_list_id: , spell_id: IDENTIFIER.id, spell_level: 0)
 
 #IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )

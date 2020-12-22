@@ -4046,21 +4046,35 @@ kerambit = Weapon.create!(name: 'Kerambit', category: 'Light', proficiency: 'Mar
   WeaponWeaponGroup.create!(weapon_id: kerambit.id, weapon_group_id: light_blades.id)
   WeaponHand.create!(weapon_id: kerambit.id, hands: "One")
 
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
-  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
-  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+spring_blade = Weapon.create!(name: 'Spring Blade', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 70, num_of_dice: 1, damage_dice: 4, critical: 2, critical_range: 20, range: 10, thrown: true, weight: 1, damage_type: 'Piercing or Slashing', source_id: ultimate_intrigue.id, description: 'This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded. With a click of a switch, a spring thrusts the blade outward, where it locks into place until it is reset.
+
+Releasing the blade is a free action, and resetting it is a move action. The handle must be in your hand for the blade to be released; placing it in your hand requires the same type of action as drawing a weapon. A spring blade is easy to conceal: an observer must succeed at a DC 20 Perception check to notice the blade hidden within the wooden handle, and you gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body.')
+  # WeaponWeaponQuality.create!(weapon_id: spring_blade.id, weapon_quality_id: QUALITY.id)
+  WeaponWeaponGroup.create!(weapon_id: spring_blade.id, weapon_group_id: light_blades.id)
+  WeaponWeaponGroup.create!(weapon_id: spring_blade.id, weapon_group_id: thrown.id)
+  WeaponHand.create!(weapon_id: spring_blade.id, hands: "One")
+
+
+kunai = Weapon.create!(name: 'Kunai', category: 'Light', proficiency: 'Simple', weapon_type: 'Melee', price_in_gp: 2, num_of_dice: 1, damage_dice: 4, critical: 2, critical_range: 20, range: 10, thrown: true, weight: 2, damage_type: 'Bludgeoning or Piercing', source_id: ultimate_combat.id, description: 'Crafted from a single piece of iron, a kunai has a leaf-shaped blade and a ring for a pommel. Adapted from the common trowel, the kunai has a thick blade that is sharpened only near the tip.
+
+Unlike finer weapons, the kunai can readily substitute for a crowbar or piton without being damaged in the process.')
+  # WeaponWeaponQuality.create!(weapon_id: kunai.id, weapon_quality_id: QUALITY.id)
+  WeaponWeaponGroup.create!(weapon_id: kunai.id, weapon_group_id: close.id)
+  WeaponWeaponGroup.create!(weapon_id: kunai.id, weapon_group_id: thrown.id)
+  WeaponHand.create!(weapon_id: kunai.id, hands: "One")
+
 
 # IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
   # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
   # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+  # WeaponHand.create!(weapon_id: IDENTIFIER.id, hands: "One")
+
 
 # IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
   # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
   # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
+  # WeaponHand.create!(weapon_id: IDENTIFIER.id, hands: "One")
 
-# IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
-  # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
-  # WeaponWeaponGroup.create!(weapon_id: IDENTIFIER.id, weapon_group_id: GROUP.id)
 
 
 puts "Weapons Created!!"
@@ -4231,11 +4245,17 @@ RaceAbilityScoreModifier.create!(race_id: grippli.id, ability_score: "Strength",
 
 RacialTrait.create!(name: "Climb Speed", race_id: grippli.id, description: "Gripplis have a climb speed of 20 feet")
 RacialTrait.create!(name: "Languages", race_id: grippli.id, description: "Gripplis begin play speaking Common and Grippli. Gripplis with high Intelligence scores can choose from the following: Boggard, Draconic, Elven, Gnome, Goblin, and Sylvan. See the Linguistics skill page for more information about these languages.")
-RacialTrait.create!(name: "Camouflage", race_id: grippli.id, description: "Gripplis receive a +4 racial bonus on Stealth checks in marshes and forested areas.")
-RacialTrait.create!(name: "Swamp Stride", race_id: grippli.id, description: "A grippli can move through difficult terrain at its normal speed while within a swamp. Magically altered terrain affects a grippli normally.")
+camouflage_grippli = RacialTrait.create!(name: "Camouflage", race_id: grippli.id, description: "Gripplis receive a +4 racial bonus on Stealth checks in marshes and forested areas.")
+swamp_stride_grippli = RacialTrait.create!(name: "Swamp Stride", race_id: grippli.id, description: "A grippli can move through difficult terrain at its normal speed while within a swamp. Magically altered terrain affects a grippli normally.")
 RacialTrait.create!(name: "Weapon Familiarity", race_id: grippli.id, description: "Gripplis are proficient with nets.")
 RacialTrait.create!(name: "Darkvision", race_id: grippli.id, description: "Gripplis can see perfectly in the dark up to 60 feet.")
 # RacialTrait.create!(name: "", race_id: , description: "")
+
+toxic_skin_grippli = AlternateRacialTrait.create!(race_id: grippli.id, name: "Toxic Skin", description: "Once per day as a swift action, a grippli can create a poison that can be applied to a weapon or delivered as a touch attack. Alternatively, the grippli can smear the poison on its own body as a standard action, affecting the first creature to hit it with an unarmed strike or natural weapon. The poison loses its potency after 1 hour. The grippli is immune to its own poison. This racial trait replaces swamp stride and camouflage.
+
+Grippli Poison: Skin or weapon—contact or injury; save Fort DC 10 + 1/2 the grippli’s Hit Dice plus its Constitution modifier; frequency 1/round for 6 rounds; effect 1d2 Dexterity damage; cure 1 save.", source_id: advanced_race_guide.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: toxic_skin_grippli.id, racial_trait_id: camouflage_grippli.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: toxic_skin_grippli.id, racial_trait_id: swamp_stride_grippli.id)
 
 print "Grippli created! \r"
 
@@ -7111,6 +7131,14 @@ festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, 
 #     MagicItemFeature.create!(magic_item_id: potion_of_cure_light_wounds.id, feature_id: potion_of_cure_light_wounds_feature1.id)
 #     potion_of_cure_light_wounds_feature1_usage = FeatureUsage.create!(feature_id: potion_of_cure_light_wounds_feature1.id, limit: 1, destroy_after_use: true, limit_frequency: 'Round', adjustable: false)
 #       FeatureUsageSpellOption.create!(feature_usage_id: potion_of_cure_light_wounds_feature1_usage.id, spell_id: sp17.id, castable: false, cost: 1)
+
+travelers_anytool = MagicItem.create!(name: "Traveler's Any-Tool", description: "This implement at first seems to be nothing but a 12-inch iron bar lined with small plates and spikes. It can be folded, twisted, hinged, and bent, to form almost any known tool. Hammers, shovels, even a block and tackle (without rope) are possible. It can duplicate any tool the wielder can clearly visualize that contains only limited moving parts, such as a pair of scissors, but not a handloom. It cannot be used to replace missing or broken parts of machines or vehicles unless a mundane tool would have done the job just as well.
+
+The any-tool counts as a set of masterwork artisan’s tools for most Craft or Profession skills (although very specialist crafts such as alchemy still require their own unique toolset). It is an ineffective weapon, always counting as an improvised weapon and never granting any masterwork bonus on attack rolls.", slot: "none", aura: "moderate transmutation", caster_level: 9, price_in_gp: 250, weight: 2, activatable: false, expendable: false, group: "Wondrous Item")
+
+hand_of_the_mage = MagicItem.create!(name: "Hand of the Mage", description: "This mummified elf hand hangs by a golden chain around a character’s neck (taking up space as a magic necklace would).
+
+It allows the wearer to utilize the spell mage hand at will.", slot: "neck", aura: "faint transmutation", caster_level: 2, price_in_gp: 900, weight: 2, activatable: false, expendable: false, group: "Wondrous Item")
 #
 # potion_of_cure_moderate_wounds = MagicItem.create!(name: 'Potion of Cure Moderate Wounds', description: 'The imbiber of this potion is affected by the cure moderate wounds spell.', slot: 'potion', aura: 'faint conjuration', caster_level: 3, price_in_gp: 300, weight: 0, activatable: true, expendable: true, group: 'Potion')
 #   potion_of_cure_moderate_wounds_feature1 = Feature.create!(name: nil, action_id: standard.id)

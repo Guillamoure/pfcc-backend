@@ -31,6 +31,8 @@ class Character < ApplicationRecord
   has_many :character_magic_item_feature_usage_options, through: :character_magic_items
   has_many :character_klass_feature_usages
   has_many :character_klass_specialization_feature_usages
+  has_many :character_items, dependent: :destroy
+  has_many :items, through: :character_items
 
   has_many :character_weapons, dependent: :destroy
   has_many :weapons, through: :character_weapons

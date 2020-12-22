@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_16_153604) do
+ActiveRecord::Schema.define(version: 2020_12_19_014901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,12 @@ ActiveRecord::Schema.define(version: 2020_12_16_153604) do
     t.integer "character_id"
     t.integer "feature_id"
     t.string "choice"
+  end
+
+  create_table "character_items", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "item_id"
+    t.boolean "discovered"
   end
 
   create_table "character_klass_archetypes", force: :cascade do |t|
@@ -716,6 +722,8 @@ ActiveRecord::Schema.define(version: 2020_12_16_153604) do
     t.string "description"
     t.float "weight"
     t.float "price_in_gp"
+    t.string "craft_skill"
+    t.integer "craft_dc"
   end
 
   create_table "klass_archetype_feature_levels", force: :cascade do |t|
@@ -867,6 +875,13 @@ ActiveRecord::Schema.define(version: 2020_12_16_153604) do
     t.integer "alternate_source_id"
     t.string "alternate_source_ability"
     t.integer "direct_spell_id"
+  end
+
+  create_table "prepared_spells_per_levels", force: :cascade do |t|
+    t.integer "spell_level"
+    t.integer "klass_level"
+    t.integer "spells"
+    t.integer "feature_spellcasting_id"
   end
 
   create_table "race_ability_score_modifiers", force: :cascade do |t|

@@ -101,7 +101,7 @@ witch2 = KlassFeature.create!(klass_id: witch.id, name: "Spells", description: "
     witch_spell_list = SpellList.create!(name: "Witch Spells List")
     witch2_feature = Feature.create!()
       KlassFeatureFeature.create!(feature_id: witch2_feature.id, klass_feature_id: witch2.id)
-      witch_spellcasting = FeatureSpellcasting.create!(feature_id: witch2_feature.id, ability_score: "intelligence", prepare_spells: true, expend_prepared_spells: true, infinite_zero_level: false, known_spell_list: true, apply_metamagic_when_casting: false, apply_metamagic_when_preparing: true, type_of_magic: "Arcane", caster_level_penalty: 0, spell_list_id: witch_spell_list.id)
+      witch_spellcasting = FeatureSpellcasting.create!(feature_id: witch2_feature.id, ability_score: "intelligence", prepare_spells: true, expend_prepared_spells: true, infinite_zero_level: true, known_spell_list: true, apply_metamagic_when_casting: false, apply_metamagic_when_preparing: true, type_of_magic: "Arcane", caster_level_penalty: 0, spell_list_id: witch_spell_list.id)
 
     SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 1, spells: 3, feature_spellcasting_id: witch_spellcasting.id)
     SpellsPerDayPerLevel.create!(spell_level: 0, klass_level: 2, spells: 4, feature_spellcasting_id: witch_spellcasting.id)

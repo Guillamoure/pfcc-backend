@@ -60,5 +60,9 @@ realistic_likeness = Feat.create!(name: "Realistic Likeness", description: "You 
 
 point_blank_shot = Feat.create!(name: "Point-Blank Shot", description: "You get a +1 bonus on attack and damage rolls with ranged weapons at ranges of up to 30 feet.", blurb: "You are especially accurate when making ranged attacks against close targets.", source_id: core_rulebook.id)
 
+precise_shot = Feat.create!(name: "Precise Shot", description: "You can shoot or throw ranged weapons at an opponent engaged in melee without taking the standard –4 penalty on your attack roll.
+
+Note: Two characters are engaged in melee if they are enemies of each other and either threatens the other.", blurb: "You are adept at firing ranged attacks into melee.", prerequisite: "Point-Blank Shot", source_id: core_rulebook.id)
+
 
 puts "Feats Created!"

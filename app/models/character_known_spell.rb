@@ -20,12 +20,16 @@ class CharacterKnownSpell < ApplicationRecord
 
     can_you_know_a_spell_at_this_level = false
 
+    if known_spells_this_level.length === 0
+      can_you_know_a_spell_at_this_level = true
+    end
+
     known_spells_this_level.each do |ks|
       if ks.spell_level >= spell_level
         can_you_know_a_spell_at_this_level = true
       end
     end
-    
+
     if !can_you_know_a_spell_at_this_level
       errors.add(:spell_list_spell_id, "is too high a spell level to be known by the character")
     end

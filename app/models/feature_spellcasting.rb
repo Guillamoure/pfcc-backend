@@ -5,6 +5,7 @@ class FeatureSpellcasting < ApplicationRecord
 
   has_many :spells_per_day_per_level
   has_many :known_spells_per_level
+  has_many :prepared_spells_per_level
 
   has_one :klass_feature_feature, through: :feature
   has_one :klass_feature, through: :klass_feature_feature
