@@ -2,21 +2,21 @@ backpack_common = Item.create!(name: "Common Backpack", category: "adventuring g
 
 backpack_masterwork = Item.create!(name: "Masterwork Backpack", category: "adventuring gear", description: "This backpack has numerous pockets for storing items that might be needed while adventuring. Hooks are included for attaching items such as canteens, pouches, or even a rolled-up blanket. It has padded bands that strap across the chest and the waist to distribute its weight more evenly. Like a common backpack, it can hold about 2 cubic feet of material in its main container. When wearing a masterwork backpack, treat your Strength score as +1 higher than normal when calculating your carrying capacity.", weight: 4, price_in_gp: 50)
 
-cup = Item.create!(name: "Cup", category: "mundane gear", description: "", weight: 0, price_in_gp: 0.01)
+cup = Item.create!(name: "Cup", category: "mundane gear", description: "A common cup, carved of wood.", weight: 0, price_in_gp: 0.01)
 
-spoon = Item.create!(name: "Spoon", category: "mundane gear", description: "", weight: 0, price_in_gp: 0.01)
+spoon = Item.create!(name: "Spoon", category: "mundane gear", description: "A simple wooden spoon.", weight: 0, price_in_gp: 0.01)
 
-fork = Item.create!(name: "Fork", category: "mundane gear", description: "", weight: 0, price_in_gp: 0.01)
+fork = Item.create!(name: "Fork", category: "mundane gear", description: "A simple wooden fork.", weight: 0, price_in_gp: 0.01)
 
-knife = Item.create!(name: "Knife", category: "mundane gear", description: "", weight: 0, price_in_gp: 0.01)
+knife = Item.create!(name: "Knife", category: "mundane gear", description: "A simple metal knife with no sharp edge.", weight: 0, price_in_gp: 0.01)
 
-plate = Item.create!(name: "Plate", category: "mundane gear", description: "", weight: 0, price_in_gp: 0.1)
+plate = Item.create!(name: "Plate", category: "mundane gear", description: "A carved wooden plate.", weight: 0, price_in_gp: 0.1)
 
-bowl = Item.create!(name: "Bowl", category: "mundane gear", description: "", weight: 0, price_in_gp: 0.1)
+bowl = Item.create!(name: "Bowl", category: "mundane gear", description: "A cheap ceramic bowl.", weight: 0, price_in_gp: 0.1)
 
-garbage_mat = Item.create!(name: "Garbage Mat", category: "mundane gear", description: "", weight: 0, price_in_gp: 0)
+garbage_mat = Item.create!(name: "Garbage Mat", category: "mundane gear", description: "A placemat made of refuse.", weight: 0, price_in_gp: 0)
 
-olive_oil = Item.create!(name: "Olive Oil", category: "food and drink", description: "Ceramic container of olive oil.", weight: 1, price_in_gp: 5)
+olive_oil = Item.create!(name: "Olive Oil", category: "food and drink", description: "Tall, narrow, ceramic container of olive oil.", weight: 1, price_in_gp: 5)
 
 pot_common = Item.create!(name: "Common Pot", category: "adventuring gear", description: "This 8-inch diameter iron pot is sturdy and has feet, a lid, and a rounded handle. It can hold enough stew to feed one hungry human for one meal.", weight: 4, price_in_gp: 0.8)
 

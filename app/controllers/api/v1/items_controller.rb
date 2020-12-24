@@ -46,6 +46,18 @@ class Api::V1::ItemsController < ApplicationController
         items.push(arm)
       end
     end
+    Item.all.each do |item|
+      applicable = false
+      if item.name.include?(term)
+        applicable = true
+      end
+      if item.name.include?(cap)
+        applicable = true
+      end
+      if applicable
+        items.push(item)
+      end
+    end
     render json: items
   end
 

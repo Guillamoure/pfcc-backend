@@ -102,7 +102,20 @@ class Api::V1::CharactersController < ApplicationController
     @characters = Character
   end
 
+  def update
+    @character = Character.find(params[:id])
+    @character.update(character_params)
+    if @character.valid?
+      render json: { response: "Character data was updated" }, status: 201
+    else
+      render json: { error: "Could not update" }, status: 401
+    end  end
+
   private
+
+  def character_params
+    params.require(:character).permit(:pp, :gp, :sp, :cp)
+  end
 
   def character_serializer(character)
 
