@@ -28,6 +28,17 @@ majestik = Character.create!(name: "Majestik", user_id: nlscott744.id, strength:
   CharacterAlternateRacialTrait.create!(character_id: majestik.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Prehensile Tail").id)
   CharacterAlternateRacialTrait.create!(character_id: majestik.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Scaled Skin").id)
 
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Heal").id, ranks: 2)
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Society").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id, ranks: 1, detail: "alchemy")
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 2, detail: "rakdos")
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perform").id, ranks: 2, detail: "oratory")
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Profession").id, ranks: 1, detail: "fortune teller")
+
+
   CharacterKlass.create!(character_id: majestik.id, klass_id: Klass.find_by!(name: "Witch").id, hp: 6, feat_id: Feat.find_by!(name: "Harrowed").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
     CharacterKlassSpecialization.create!(character_id: majestik.id, klass_feature_klass_specialization_id: KlassSpecialization.find_by!(name: "Trickery").id)
     CharacterKlassFeatureOption.create!(character_id: majestik.id, feature_option_id: FeatureOption.find_by!(name: "Evil Eye").id, level: 1)

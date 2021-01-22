@@ -6648,7 +6648,7 @@ current_campaign = Campaign.create!(name: 'Ask Questions Second', current_weekda
 
 test_campaign = Campaign.create!(name: "Testing 123 Testing", calendar_id: oum_calendar.id, dm_id: admin.id, skillset_id: dmc.id, starting_level: 1, websocket_code: UUID.new.generate)
 
-ravnica_campaign = Campaign.create!(name: "Ravnica", calendar_id: oum_calendar.id, dm_id: admin.id, skillset_id: ravnica_custom.id, starting_level: 2, websocket_code: UUID.new.generate)
+# ravnica_campaign = Campaign.create!(name: "Ravnica", calendar_id: oum_calendar.id, dm_id: admin.id, skillset_id: ravnica_custom.id, starting_level: 2, websocket_code: UUID.new.generate)
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Class Skillset Skills!-*-*-*-----*-*->
