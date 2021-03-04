@@ -8,6 +8,8 @@ bluegdec1 = User.create!(username: "bluegdec1", password: "password", admin: fal
 tdubb = User.create!(username: "TDUBB", password: "password", admin: false, skillset_id: ravnica_custom.id)
 nlscott744 = User.create!(username: "nlscott744", password: "password", admin: false, skillset_id: ravnica_custom.id)
 snegerj = User.create!(username: "snegerj", password: "password", admin: false, skillset_id: ravnica_custom.id)
+peabug = User.create!(username: "peabug", password: "password", admin: false, skillset_id: ravnica_custom.id)
+colehilsmith = User.create!(username: "Colehilsmith", password: "password", admin: false, skillset_id: ravnica_custom.id)
 
 oum_calendar = Calendar.find_by!(name: "Oum Calendar", leap_year: false)
 
@@ -100,7 +102,7 @@ majestik = Character.create!(name: "Majestik", user_id: nlscott744.id, strength:
 
   print "Majestik created! \r"
 
-fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id: clare_voyance.id, strength: 10, dexterity: 12, constitution: 14, intelligence: 10, wisdom: 4, charisma: 9, race_id: Race.find_by!(name: "Vine Leshy").id, skillset_id: ravnica_custom.id, alignment: "", campaign_id: ravnica_campaign.id, description: "", height: "2'3\"", weight: "9 lbs")
+fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id: clare_voyance.id, strength: 10, dexterity: 12, constitution: 14, intelligence: 10, wisdom: 4, charisma: 9, race_id: Race.find_by!(name: "Vine Leshy").id, skillset_id: ravnica_custom.id, alignment: "", campaign_id: ravnica_campaign.id, description: "", height: "2'3\"", weight: "9 lbs", pp: 232, gp: 65, sp: 8)
 
   CharacterAlternateRacialTrait.create!(character_id: fire_roasted_tomatoes.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Grapevine").id)
   CharacterAlternateRacialTrait.create!(character_id: fire_roasted_tomatoes.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Swamp Leshy").id)
@@ -136,7 +138,7 @@ fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id
 
   print "Fire-Roasted Tomatoes created! \r"
 
-iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexterity: 16, constitution: 16, intelligence: 13, wisdom: 15, charisma: 12, race_id: Race.find_by!(name: "Kitsune").id, skillset_id: ravnica_custom.id, alignment: "Neutral", campaign_id: ravnica_campaign.id, description: "", deity: "Pharasma")
+iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexterity: 16, constitution: 16, intelligence: 13, wisdom: 15, charisma: 12, race_id: Race.find_by!(name: "Kitsune").id, skillset_id: ravnica_custom.id, alignment: "Neutral", campaign_id: ravnica_campaign.id, description: "", deity: "Pharasma", pp: 235, gp: 216)
 
   CharacterAlternateRacialTrait.create!(character_id: iyugi.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Fast Shifter").id)
   CharacterKlassArchetype.create!(character_id: iyugi.id, klass_archetype_id: KlassArchetype.find_by!(name: "Scout").id)
@@ -160,6 +162,7 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
   CharacterWeapon.create!(character_id: iyugi.id, weapon_id: Weapon.find_by!(name: "Dagger").id, masterwork: false, discovered: true, known: true, name: "")
   CharacterWeapon.create!(character_id: iyugi.id, weapon_id: Weapon.find_by!(name: "Dagger").id, masterwork: false, discovered: true, known: true, name: "")
   CharacterWeapon.create!(character_id: iyugi.id, weapon_id: Weapon.find_by!(name: "Kerambit").id, masterwork: false, discovered: true, known: true, name: "")
+  CharacterWeapon.create!(character_id: iyugi.id, weapon_id: Weapon.find_by!(name: "Gladius").id, masterwork: true, discovered: true, known: true, name: "Boros Bright Gladius", description: "stocky, ornately carved shortsword with gold and red motifs. Hilt is carved to look like sunbeans. Has an inscription along the fuller.")
   CharacterArmor.create!(character_id: iyugi.id, armor_id: Armor.find_by!(name: "Darkleaf Cloth Studded Leather").id, masterwork: true, discovered: true, known: true, equipped: true)
 
   CharacterItem.create!(character_id: iyugi.id, item_id: Item.find_by!(name: "Peasant's Outfit").id, discovered: true)
@@ -189,7 +192,7 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
 
   print "Iyugi created! \r"
 
-ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence")
+ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence", pp: 235, gp: 136)
 
   CharacterAlternateRacialTrait.create!(character_id: ildre.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Innovative").id)
 
@@ -247,7 +250,7 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
 
   print "Ildre created! \r"
 
-natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14, dexterity: 17, constitution: 15, intelligence: 17, wisdom: 12, charisma: 8, race_id: Race.find_by!(name: "Android").id, skillset_id: ravnica_custom.id, alignment: "Neutral Good", campaign_id: ravnica_campaign.id, age: 4)
+natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14, dexterity: 17, constitution: 15, intelligence: 17, wisdom: 12, charisma: 8, race_id: Race.find_by!(name: "Android").id, skillset_id: ravnica_custom.id, alignment: "Neutral Good", campaign_id: ravnica_campaign.id, age: 4, pp: 235, gp: 66)
 
   CharacterKlassArchetype.create!(character_id: natesse.id, klass_archetype_id: KlassArchetype.find_by!(name: "Bladebound").id)
 
@@ -308,7 +311,7 @@ natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14
     print "Natesse created! \r"
 
 
-dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexterity: 17, constitution: 15, intelligence: 9, wisdom: 16, charisma: 12, race_id: Race.find_by!(name: "Grippli").id, skillset_id: ravnica_custom.id, alignment: "Neutral Evil", campaign_id: ravnica_campaign.id, height: "2'", weight: "30 lbs", age: 14)
+dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexterity: 17, constitution: 15, intelligence: 9, wisdom: 16, charisma: 12, race_id: Race.find_by!(name: "Grippli").id, skillset_id: ravnica_custom.id, alignment: "Neutral Evil", campaign_id: ravnica_campaign.id, height: "2'", weight: "30 lbs", age: 14, pp: 200, gp: 43)
 
   CharacterAlternateRacialTrait.create!(character_id: dzeyn.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Toxic Skin").id)
 
@@ -344,6 +347,42 @@ dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexte
   CharacterItem.create!(character_id: dzeyn.id, item_id: Item.find_by!(name: "Dimir Insignia Charm").id, discovered: true)
 
   print "Dz'eyn created! \r"
+
+reverend_redwood = Character.create!(name: "Reverend Redwood", user_id: peabug.id, strength: 9, dexterity: 13, constitution: 10, intelligence: 11, wisdom: 14, charisma: 15, race_id: Race.find_by!(name: "Minotaur (Medium)").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Good", campaign_id: ravnica_campaign.id, height: "", weight: "", age: 26)
+
+  CharacterKlass.create!(character_id: reverend_redwood.id, klass_id: Klass.find_by!(name: "Sorcerer").id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: reverend_redwood.id, klass_id: Klass.find_by!(name: "Sorcerer").id, hp: 3, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+
+  print "Reverend Redwood created! \r"
+
+dink_weatherbyrst = Character.create!(name: "Dink Weatherbyrst", user_id: colehilsmith.id, strength: 16, dexterity: 8, constitution: 14, intelligence: 11, wisdom: 14, charisma: 13, race_id: Race.find_by!(name: "Gnome").id, skillset_id: ravnica_custom.id, alignment: "Neutral Good", campaign_id: ravnica_campaign.id, height: "3'7\"", weight: "", gp: 143, deity: "Pharasma")
+
+  CharacterAlternateRacialTrait.create!(character_id: dink_weatherbyrst.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Warden of Nature").id)
+  CharacterAlternateRacialTrait.create!(character_id: dink_weatherbyrst.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Fey Fortitude").id)
+  CharacterAlternateRacialTrait.create!(character_id: dink_weatherbyrst.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Nosophobia").id)
+  CharacterAlternateRacialTrait.create!(character_id: dink_weatherbyrst.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Utilitarian Magic").id)
+
+  CharacterKlass.create!(character_id: dink_weatherbyrst.id, klass_id: Klass.find_by!(name: "Warpriest").id, hp: 8, feat_id: Feat.find_by!(name: "Endurance"), ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: dink_weatherbyrst.id, klass_id: Klass.find_by!(name: "Warpriest").id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+
+  CharacterSkillsetSkill.create!(character_id: dink_weatherbyrst.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 1, detail: "golgari")
+  CharacterSkillsetSkill.create!(character_id: dink_weatherbyrst.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Heal").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: dink_weatherbyrst.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Sense Motive").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: dink_weatherbyrst.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Religion").id, ranks: 1)
+
+  CharacterWeapon.create!(character_id: dink_weatherbyrst.id, weapon_id: Weapon.find_by!(name: "Heavy Pick").id, masterwork: true, discovered: true, known: true, name: "")
+  CharacterArmor.create!(character_id: dink_weatherbyrst.id, armor_id: Armor.find_by!(name: "Half-Plate").id, masterwork: true, discovered: true, known: true, equipped: true)
+
+  CharacterItem.create!(character_id: dink_weatherbyrst.id, item_id: Item.find_by!(name: "Monk's Outfit").id, discovered: true)
+  CharacterItem.create!(character_id: dink_weatherbyrst.id, item_id: Item.find_by!(name: "Golgari Insignia Charm").id, discovered: true)
+
+
+  # before reset DB,
+  # check character pp, gp, sp, cp, lethal_damage, non_lethal_damage, temp_hp
+  # PreparedSpell, CastSpell
+
+
+
 
 
 

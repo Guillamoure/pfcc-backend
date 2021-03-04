@@ -100,6 +100,9 @@ flint_and_steel = Item.create!(name: "Flint and Steel", category: "adventuring g
 
 harrow_carrying_case = Item.create!(name: "Harrow Carrying Case", category: "adventure gear", description: "This small darkwood case contains a recessed area to hold a harrow deck and harrow mat, as well as a compartment for incense. Nonmagical harrow cards are protected against rips, tears, water damages, bending, and flames so long as they are stored in a harrow carrying case.", weight: 2, price_in_gp: 10)
 
+monks_outfit = Item.create!(name: "Monk's Outfit", category: "clothing, outfits, accessories", description: "This simple outfit includes sandals, loose breeches, and a loose shirt, and is bound together with sashes. The outfit is designed to give you maximum mobility, and it’s made of high-quality fabric. You can conceal small weapons in pockets hidden in the folds, and the sashes are strong enough to serve as short ropes.")
+
+
 Item.create!(name: "Azorius Insignia Charm", category: "clothing, outfits, accessories", description: "A Charm with the Azorius Insignia. Proof of your membership to the Azorius Senate", weight: 0, price_in_gp: 10)
 Item.create!(name: "Boros Insignia Charm", category: "clothing, outfits, accessories", description: "A Charm with the Boros Insignia. Proof of your membership to the Boros Legion", weight: 0, price_in_gp: 10)
 Item.create!(name: "Dimir Insignia Charm", category: "clothing, outfits, accessories", description: "A Charm with the Dimir Insignia. Proof of your membership to House Dimir", weight: 0, price_in_gp: 10)

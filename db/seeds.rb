@@ -4061,8 +4061,11 @@ Unlike finer weapons, the kunai can readily substitute for a crowbar or piton wi
   # WeaponWeaponQuality.create!(weapon_id: kunai.id, weapon_quality_id: QUALITY.id)
   WeaponWeaponGroup.create!(weapon_id: kunai.id, weapon_group_id: close.id)
   WeaponWeaponGroup.create!(weapon_id: kunai.id, weapon_group_id: thrown.id)
-  WeaponHand.create!(weapon_id: kunai.id, hands: "One")
 
+gladius = Weapon.create!(name: 'Gladius', category: 'Light', proficiency: 'Martial', weapon_type: 'Melee', price_in_gp: 15, num_of_dice: 1, damage_dice: 6, critical_range: 19, range: 0, thrown: false, weight: 3, damage_type: 'Piercing or Slashing', description: 'The galdius is the favorite short sword of gladiators, with a heavier blade than the standard short sword. It serves well as a slashing weapon.
+
+Feats and abilities that affect short swords apply to the gladius', source_id: ultimate_combat.id)
+  WeaponWeaponGroup.create!(weapon_id: gladius.id, weapon_group_id: light_blades.id)
 
 # IDENTIFIER = Weapon.create!(name: '', category: '', proficiency: '', weapon_type: '', price_in_gp: 0, num_of_dice: 1, damage_dice: 6, critical: 2, critical_range: 20, range: 0, thrown: false, weight: 1, damage_type: '', source_id: SOURCE.id, description: '')
   # WeaponWeaponQuality.create!(weapon_id: IDENTIFIER.id, weapon_quality_id: QUALITY.id)
@@ -4886,14 +4889,27 @@ RaceAbilityScoreModifier.create!(race_id: gnome.id, ability_score: "Strength", b
 
 RacialTrait.create!(name: "Type", race_id: gnome.id, description: "Gnomes are Humanoid creatures with the gnome subtype.")
 RacialTrait.create!(name: "Languages", race_id: gnome.id, description: "Gnomes begin play speaking Common, Gnome, and Sylvan. Gnomes with high Intelligence scores can choose from the following: Draconic, Dwarven, Elven, Giant, Goblin, and Orc.")
-RacialTrait.create!(name: "Defensive Training", race_id: gnome.id, description: "Gnomes gain a +4 dodge bonus to AC against monsters of the giant subtype.")
+defensive_training_gnome = RacialTrait.create!(name: "Defensive Training", race_id: gnome.id, description: "Gnomes gain a +4 dodge bonus to AC against monsters of the giant subtype.")
 RacialTrait.create!(name: "Illusion Resistance", race_id: gnome.id, description: "Gnomes gain a +2 racial saving throw bonus against illusion spells and effects.")
 RacialTrait.create!(name: "Keen Senses", race_id: gnome.id, description: "Gnomes receive a +2 racial bonus on Perception checks.")
-RacialTrait.create!(name: "Obsessive", race_id: gnome.id, description: "Gnomes receive a +2 racial bonus on a Craft or Profession skill of their choice.")
-RacialTrait.create!(name: "Gnome Magic", race_id: gnome.id, description: "Gnomes add +1 to the DC of any saving throws against illusion spells that they cast. Gnomes with Charisma scores of 11 or higher also gain the following spell-like abilities: 1/day—dancing lights, ghost sound, prestidigitation, and speak with animals. The caster level for these effects is equal to the gnome’s level. The DC for these spells is equal to 10 + the spell’s level + the gnome’s Charisma modifier.")
-RacialTrait.create!(name: "Hatred", race_id: gnome.id, description: "Gnomes receive a +1 bonus on attack rolls against humanoid creatures of the reptilian and goblinoid subtypes because of their special training against these hated foes.")
-RacialTrait.create!(name: "Weapon Familiarity", race_id: gnome.id, description: "Gnomes treat any weapon with the word “gnome” in its name as a martial weapon.")
+obsessive_gnome = RacialTrait.create!(name: "Obsessive", race_id: gnome.id, description: "Gnomes receive a +2 racial bonus on a Craft or Profession skill of their choice.")
+gnome_magic_gnome = RacialTrait.create!(name: "Gnome Magic", race_id: gnome.id, description: "Gnomes add +1 to the DC of any saving throws against illusion spells that they cast. Gnomes with Charisma scores of 11 or higher also gain the following spell-like abilities: 1/day—dancing lights, ghost sound, prestidigitation, and speak with animals. The caster level for these effects is equal to the gnome’s level. The DC for these spells is equal to 10 + the spell’s level + the gnome’s Charisma modifier.")
+hatred_gnome = RacialTrait.create!(name: "Hatred", race_id: gnome.id, description: "Gnomes receive a +1 bonus on attack rolls against humanoid creatures of the reptilian and goblinoid subtypes because of their special training against these hated foes.")
+weapon_familiarity_gnome = RacialTrait.create!(name: "Weapon Familiarity", race_id: gnome.id, description: "Gnomes treat any weapon with the word “gnome” in its name as a martial weapon.")
 RacialTrait.create!(name: "Low-Light Vision", race_id: gnome.id, description: "Gnomes can see twice as far as humans in conditions of dim light.")
+
+warden_of_nature_gnome = AlternateRacialTrait.create!(race_id: gnome.id, name: "Warden of Nature", description: "Gnomes must often protect their homes against unnatural or pestilential infestations. Gnomes with this racial trait gain a +2 dodge bonus to AC against aberrations, oozes, and vermin, and a +1 bonus on attack rolls against them because of their special training. This racial trait replaces defensive training and hatred.", source_id: advanced_race_guide.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: warden_of_nature_gnome.id, racial_trait_id: defensive_training_gnome.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: warden_of_nature_gnome.id, racial_trait_id: hatred_gnome.id)
+
+fey_fortitude_gnome = AlternateRacialTrait.create!(race_id: gnome.id, name: "Fey Fortitude", description: "Gnomes with this racial trait are infused with a connection to life. They gain a +2 racial bonus on saves to resist death effects. This replaces weapon familiarity.", source_id: advanced_race_guide.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: fey_fortitude_gnome.id, racial_trait_id: weapon_familiarity_gnome.id)
+
+nosophobia_gnome = AlternateRacialTrait.create!(race_id: gnome.id, name: "Nosophobia", description: "You gain a +4 bonus on Fortitude saves against disease and poison, including magical diseases. This racial trait replaces obsessive.", source_id: advanced_race_guide.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: nosophobia_gnome.id, racial_trait_id: obsessive_gnome.id)
+
+utilitarian_magic_gnome = AlternateRacialTrait.create!(race_id: gnome.id, name: "Utilitarian Magic", description: "Some gnomes develop practical magic to assist them with their obsessive projects. These gnomes add 1 to the DC of any saving throws against transmutation spells they cast. If their Intelligence score is 11 or higher, they also gain the following spell-like abilities 1/day—mage hand, open/close, prestidigitation, and unseen servant. The DC for these spells is equal to 10 + the spell’s level + the gnome’s Intelligence modifier. This racial trait replaces gnome magic.", source_id: advanced_race_guide.id)
+  AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: utilitarian_magic_gnome.id, racial_trait_id: gnome_magic_gnome.id)
 
 print "Gnome created! \r"
 
@@ -4975,7 +4991,7 @@ RacialTrait.create!(name: "Weapon Familiarity", race_id: dwarf.id, description: 
 
 print "Dwarf Created! \r"
 
-minotaur_race = Race.create!(name: "Minotaur", speed: 30, size: "Large", img_url: "https://i.pinimg.com/originals/aa/c5/20/aac520ba14f2133a71738d900f3fa3d4.jpg", source_id: custom.id, description: "Nothing holds a grudge like a minotaur. Scorned by the civilized races centuries ago and born from a deific curse, minotaurs have hunted, slain, and devoured lesser humanoids in retribution for real or imagined slights for as long as anyone can remember. Many cultures have legends of how the first minotaurs were created by vengeful or slighted gods who punished humans by twisting their forms, robbing them of their intellects and beauty, and giving them the heads of bulls. Yet most modern minotaurs hold these legends in contempt and believe that they are not divine mockeries but divine paragons created by a potent and cruel demon lord named Baphomet.
+minotaur_race = Race.create!(name: "Minotaur (Large)", speed: 30, size: "Large", img_url: "https://i.pinimg.com/originals/aa/c5/20/aac520ba14f2133a71738d900f3fa3d4.jpg", source_id: custom.id, description: "Nothing holds a grudge like a minotaur. Scorned by the civilized races centuries ago and born from a deific curse, minotaurs have hunted, slain, and devoured lesser humanoids in retribution for real or imagined slights for as long as anyone can remember. Many cultures have legends of how the first minotaurs were created by vengeful or slighted gods who punished humans by twisting their forms, robbing them of their intellects and beauty, and giving them the heads of bulls. Yet most modern minotaurs hold these legends in contempt and believe that they are not divine mockeries but divine paragons created by a potent and cruel demon lord named Baphomet.
 
 The traditional minotaur’s lair is a maze, be it a legitimate labyrinth constructed to baffle and confuse, an accidental one such as a city sewer system, or a naturally occurring one such as a tangle of caverns and other underground passageways. Employing their innate cunning, minotaurs use their maze lairs to vex unwary foes who seek them out or who simply stumble into the lairs and become lost, slowly hunting the intruders as they try in vain to find a way out. Only when despair has truly set in does the minotaur move in to strike at its lost victims. When dealing with a group, minotaurs often let one creature escape, to spread the tale of horror and lure others to their mazes in hope of slaying the beasts. Of course, to minotaurs, these would-be heroes make for delicious meals.
 
@@ -4992,9 +5008,30 @@ RacialTrait.create!(name: "Languages", race_id: minotaur_race.id, description: "
 RacialTrait.create!(name: "Darkvision", race_id: minotaur_race.id, description: "Minotaurs can see in the dark up to 60 feet.")
 RacialTrait.create!(name: "Natural Cunning", race_id: minotaur_race.id, description: "Minotaurs have a +4 racial bonus against the maze spell and skill checks and saving throws to avoid getting lost, and a +2 racial bonus to skill checks to track other creatures.")
 RacialTrait.create!(name: "Natural Armor", race_id: minotaur_race.id, description: "Minotaurs have +1 natural armor bonus to their AC.")
-RacialTrait.create!(name: "Gore", race_id: minotaur_race.id, description: "Minotaurs have a gore attack that deals 1d6 points of damage.")
+RacialTrait.create!(name: "Gore", race_id: minotaur_race.id, description: "Minotaurs have a gore attack that deals 1d8 points of damage.")
 
-print "Minotaur Created! \r"
+print "Minotaur Large Created! \r"
+
+minotaur_medium_race = Race.create!(name: "Minotaur (Medium)", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/aa/c5/20/aac520ba14f2133a71738d900f3fa3d4.jpg", source_id: custom.id, description: "Nothing holds a grudge like a minotaur. Scorned by the civilized races centuries ago and born from a deific curse, minotaurs have hunted, slain, and devoured lesser humanoids in retribution for real or imagined slights for as long as anyone can remember. Many cultures have legends of how the first minotaurs were created by vengeful or slighted gods who punished humans by twisting their forms, robbing them of their intellects and beauty, and giving them the heads of bulls. Yet most modern minotaurs hold these legends in contempt and believe that they are not divine mockeries but divine paragons created by a potent and cruel demon lord named Baphomet.
+
+The traditional minotaur’s lair is a maze, be it a legitimate labyrinth constructed to baffle and confuse, an accidental one such as a city sewer system, or a naturally occurring one such as a tangle of caverns and other underground passageways. Employing their innate cunning, minotaurs use their maze lairs to vex unwary foes who seek them out or who simply stumble into the lairs and become lost, slowly hunting the intruders as they try in vain to find a way out. Only when despair has truly set in does the minotaur move in to strike at its lost victims. When dealing with a group, minotaurs often let one creature escape, to spread the tale of horror and lure others to their mazes in hope of slaying the beasts. Of course, to minotaurs, these would-be heroes make for delicious meals.
+
+Minotaurs might also be found in the employ of a more powerful monster or evil creature, serving it so long as they can still hunt and dine as they please. Usually, this means guarding some powerful object or valuable location, but it can also be a sort of mercenary work, hunting down the foes of its master.
+
+Minotaurs are relatively straightforward combatants, using their horns to horribly gore the nearest living creature when combat begins.")
+
+RaceAbilityScoreModifier.create!(race_id: minotaur_medium_race.id, ability_score: "Strength", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: minotaur_medium_race.id, ability_score: "Wisdom", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: minotaur_medium_race.id, ability_score: "Intelligence", bonus: -2)
+
+RacialTrait.create!(name: "Type", race_id: minotaur_medium_race.id, description: "Minotaurs are monstrous humanoids.")
+RacialTrait.create!(name: "Languages", race_id: minotaur_medium_race.id, description: "Minotaurs begin play speaking Common and Giant. Minotaurs with high Intelligence scores can choose from the following: Dwarven, Orc, Sylvan, Terran, and Undercommon.")
+RacialTrait.create!(name: "Darkvision", race_id: minotaur_medium_race.id, description: "Minotaurs can see in the dark up to 60 feet.")
+RacialTrait.create!(name: "Natural Cunning", race_id: minotaur_medium_race.id, description: "Minotaurs have a +4 racial bonus against the maze spell and skill checks and saving throws to avoid getting lost, and a +2 racial bonus to skill checks to track other creatures.")
+RacialTrait.create!(name: "Natural Armor", race_id: minotaur_medium_race.id, description: "Minotaurs have +1 natural armor bonus to their AC.")
+RacialTrait.create!(name: "Gore", race_id: minotaur_medium_race.id, description: "Minotaurs have a gore attack that deals 1d6 points of damage.")
+
+print "Minotaur Large Created! \r"
 
 half_orc = Race.create!(name: "Half-Orc", speed: 30, size: "Medium", img_url: "https://i.pinimg.com/originals/24/6a/e7/246ae72fca915bb327ab8949c07156a6.jpg", source_id: core_rulebook.id, description: "As seen by civilized races, half-orcs are monstrosities, the result of perversion and violence—whether or not this is actually true. Half-orcs are rarely the result of loving unions, and as such are usually forced to grow up hard and fast, constantly fighting for protection or to make names for themselves. Half-orcs as a whole resent this treatment, and rather than play the part of the victim, they tend to lash out, unknowingly confirming the biases of those around them. A few feared, distrusted, and spat-upon half-orcs manage to surprise their detractors with great deeds and unexpected wisdom—though sometimes it’s easier just to crack a few skulls. Some half-orcs spend their entire lives proving to full-blooded orcs that they are just as fierce. Others opt for trying to blend into human society, constantly demonstrating that they aren’t monsters. Their need to always prove themselves worthy encourages half-orcs to strive for power and greatness within the society around them.
 
@@ -5647,16 +5684,16 @@ A cleric must be able to present her holy symbol to use this ability.")
     KlassFeatureFeature.create!(klass_feature_id: cleric4.id, feature_id: cleric4_feature.id)
     FeatureUsage.create!(feature_id: cleric4_feature.id, limit_frequency: "Day", adjustable: true, base_limit: 3, base_limit_modifier: "charisma")
     FeatureSavingThrow.create!(feature_id: cleric4_feature.id, base: 10, ability_score_modifier: "charisma", level_modifier: 0.5, saving_throw: "will", bonus_multiplier_based_on_feature_level: true)
-    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 1, damage_dice: 6, applicable_level: 1)
-    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 2, damage_dice: 6, applicable_level: 2)
-    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 3, damage_dice: 6, applicable_level: 3)
-    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 4, damage_dice: 6, applicable_level: 4)
-    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 5, damage_dice: 6, applicable_level: 5)
-    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 6, damage_dice: 6, applicable_level: 6)
-    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 7, damage_dice: 6, applicable_level: 7)
-    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 8, damage_dice: 6, applicable_level: 8)
-    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 9, damage_dice: 6, applicable_level: 9)
-    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 10, damage_dice: 6, applicable_level: 10)
+    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 1, damage_dice: 6, applicable_step: 1)
+    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 2, damage_dice: 6, applicable_step: 2)
+    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 3, damage_dice: 6, applicable_step: 3)
+    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 4, damage_dice: 6, applicable_step: 4)
+    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 5, damage_dice: 6, applicable_step: 5)
+    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 6, damage_dice: 6, applicable_step: 6)
+    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 7, damage_dice: 6, applicable_step: 7)
+    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 8, damage_dice: 6, applicable_step: 8)
+    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 9, damage_dice: 6, applicable_step: 9)
+    FeatureDamage.create!(feature_id: cleric4_feature.id, num_of_dice: 10, damage_dice: 6, applicable_step: 10)
     FeatureStep.create!(feature_id: cleric4_feature.id, applicable_level: 1, step: 1, sub_feature: "damage")
     FeatureStep.create!(feature_id: cleric4_feature.id, applicable_level: 3, step: 2, sub_feature: "damage")
     FeatureStep.create!(feature_id: cleric4_feature.id, applicable_level: 5, step: 3, sub_feature: "damage")

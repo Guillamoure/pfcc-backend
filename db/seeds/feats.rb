@@ -64,5 +64,11 @@ precise_shot = Feat.create!(name: "Precise Shot", description: "You can shoot or
 
 Note: Two characters are engaged in melee if they are enemies of each other and either threatens the other.", blurb: "You are adept at firing ranged attacks into melee.", prerequisite: "Point-Blank Shot", source_id: core_rulebook.id)
 
+fleet = Feat.create!(name: "Fleet", description: "While you are wearing light or no armor, your base speed increases by 5 feet. You lose the benefits of this feat if you carry a medium or heavy load.", blurb: "You are faster than most.", special: "You can take this feat multiple times. The effects stack.", source_id: core_rulebook.id)
+
+endurance = Feat.create!(name: "Endurance", description: "You gain a +4 bonus on the following checks and saves: Swim checks made to resist nonlethal damage from exhaustion; Constitution checks made to continue running; Constitution checks made to avoid nonlethal damage from a forced march; Constitution checks made to hold your breath; Constitution checks made to avoid nonlethal damage from starvation or thirst; Fortitude saves made to avoid nonlethal damage from hot or cold environments; and Fortitude saves made to resist damage from suffocation.
+
+You may sleep in light or medium armor without becoming fatigued.", blurb: "Harsh conditions or long exertions do not easily tire you.", source_id: core_rulebook.id)
+
 
 puts "Feats Created!"

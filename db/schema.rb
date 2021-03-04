@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_014901) do
+ActiveRecord::Schema.define(version: 2021_03_02_052601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -672,12 +672,12 @@ ActiveRecord::Schema.define(version: 2020_12_19_014901) do
     t.boolean "adjustable", default: false
     t.boolean "toggleable", default: false
     t.boolean "wieldable", default: false
-    t.integer "base_limit"
     t.string "base_limit_modifier"
-    t.integer "limit_increase_per_level"
     t.integer "toggle_off_action_id"
     t.string "expend_frequency"
     t.integer "maintain_action_id"
+    t.float "limit_increase_per_level"
+    t.float "base_limit"
   end
 
   create_table "feature_weapon_applications", force: :cascade do |t|
