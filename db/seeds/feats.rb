@@ -70,5 +70,7 @@ endurance = Feat.create!(name: "Endurance", description: "You gain a +4 bonus on
 
 You may sleep in light or medium armor without becoming fatigued.", blurb: "Harsh conditions or long exertions do not easily tire you.", source_id: core_rulebook.id)
 
+improved_initiative = Feat.create!(name: "Improved Initiative", description: "You get a +4 bonus on initiative checks.", blurb: "Your quick reflexes allow you to react rapidly to danger.", source_id: core_rulebook.id)
+  FeatFeatType.create!(feat_id: improved_initiative.id, feat_type_id: combat_feat.id)
 
 puts "Feats Created!"

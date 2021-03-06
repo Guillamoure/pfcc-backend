@@ -106,10 +106,14 @@ fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id
 
   CharacterAlternateRacialTrait.create!(character_id: fire_roasted_tomatoes.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Grapevine").id)
   CharacterAlternateRacialTrait.create!(character_id: fire_roasted_tomatoes.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Swamp Leshy").id)
+  CharacterKlassArchetype.create!(character_id: fire_roasted_tomatoes.id, klass_archetype_id: KlassArchetype.find_by!(name: "Carnivalist").id)
+  CharacterKlassArchetype.create!(character_id: fire_roasted_tomatoes.id, klass_archetype_id: KlassArchetype.find_by!(name: "Snoop").id)
+  CharacterCreature.create!(character_id: fire_roasted_tomatoes.id, creature_id: Creature.find_by!(name: "Chicken").id, relationship: "familiar", feature_id: KlassArchetypeFeature.find_by!(name: "Familiar", klass_archetype_id: KlassArchetype.find_by!(name: "Carnivalist").id).features[0].id)
 
   CharacterKlass.create!(character_id: fire_roasted_tomatoes.id, klass_id: Klass.find_by!(name: "Kineticist").id, hp: 8, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
     CharacterKlassSpecialization.create!(character_id: fire_roasted_tomatoes.id, klass_feature_klass_specialization_id: KlassSpecialization.find_by!(name: "Fire").id)
   CharacterKlass.create!(character_id: fire_roasted_tomatoes.id, klass_id: Klass.find_by!(name: "Kineticist").id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: fire_roasted_tomatoes.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 8, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
 
   CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Profession").id, ranks: 2, detail: "chef")
   CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Nature").id, ranks: 1)
@@ -195,6 +199,7 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
 ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence", pp: 235, gp: 136)
 
   CharacterAlternateRacialTrait.create!(character_id: ildre.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Innovative").id)
+  CharacterKlassArchetype.create!(character_id: iyugi.id, klass_archetype_id: KlassArchetype.find_by!(name: "Occultist").id)
 
   CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
   CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 3, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
@@ -363,6 +368,9 @@ dink_weatherbyrst = Character.create!(name: "Dink Weatherbyrst", user_id: colehi
   CharacterAlternateRacialTrait.create!(character_id: dink_weatherbyrst.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Utilitarian Magic").id)
 
   CharacterKlass.create!(character_id: dink_weatherbyrst.id, klass_id: Klass.find_by!(name: "Warpriest").id, hp: 8, feat_id: Feat.find_by!(name: "Endurance"), ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+    CharacterKlassSpecialization.create!(character_id: dink_weatherbyrst.id, klass_feature_klass_specialization_id: KlassSpecialization.find_by!(name: "Death Blessing").id)
+    CharacterKlassSpecialization.create!(character_id: dink_weatherbyrst.id, klass_feature_klass_specialization_id: KlassSpecialization.find_by!(name: "Healing Blessing").id)
+
   CharacterKlass.create!(character_id: dink_weatherbyrst.id, klass_id: Klass.find_by!(name: "Warpriest").id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
 
   CharacterSkillsetSkill.create!(character_id: dink_weatherbyrst.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 1, detail: "golgari")

@@ -377,12 +377,29 @@ print "Arcanish features created! \r"
 # <-*-*-----*-*-*- Class Archetypes!-*-*-*-----*-*->
 # //////////////////////////////////////////////////
 
-  # IDENTIFIER = KlassArchetypeFeature.create!(name: "NAME", klass_archetype_id: ARCHETYPE.id, description: "")
-  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "NAME")
-  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+occultist = KlassArchetype.create!(name: "Occultist", klass_id: arcanist.id, source_id: advanced_class_guide.id, description: "Not all arcanists peer inward to discern the deepest secrets of magic. Some look outward, connecting with extraplanar creatures and bartering for secrets, power, and favor.")
 
-  # IDENTIFIER = KlassArchetypeFeature.create!(name: "NAME", klass_archetype_id: ARCHETYPE.id, description: "")
-  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "NAME")
-  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+  occultist1 = KlassArchetypeFeature.create!(name: "Planar Spells", klass_archetype_id: occultist.id, description: "An occultist adds all planar ally spells to her spell list (using her arcanist level as the cleric level), and treats plane shift as a 5th-level arcanist spell.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: occultist1.id, level: 1, table_description: "Planar Spells")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_archetype_feature_id: occultist1.id, replace_or_alter: "alter")
+
+  occultist2 = KlassArchetypeFeature.create!(name: "Conjurer's Focus", klass_archetype_id: occultist.id, description: "An occultist can spend 1 point from her arcane reservoir to cast summon monster I. She can cast this spell as a standard action and the summoned creatures remain for 1 minute per level (instead of 1 round per level). At 3rd level and every 2 levels thereafter, the power of this ability increases by one spell level, allowing her to summon more powerful creatures (to a maximum of summon monster IX at 17th level), at the cost of an additional point from her arcane spell reserve per spell level. An occultist cannot have more than one summon monster spell active in this way at one time. If this ability is used again, any existing summon monster immediately ends.
+
+  This ability replaces the arcanist exploit gained at 1st level.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: occultist2.id, level: 1, table_description: "Conjurer's Focus")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: arcanist4.id, klass_archetype_feature_id: occultist2.id, replace_or_alter: "replace", affects_specific_level: 1)
+
+  occultist3 = KlassArchetypeFeature.create!(name: "Planar Contact", klass_archetype_id: occultist.id, description: "At 7th level, an occultist can cast augury once per day and contact other plane once per week, using her arcanist level as her caster level.
+
+  This ability replaces the arcanist exploit gained at 7th level.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: occultist3.id, level: 7, table_description: "Planar Contact")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: arcanist4.id, klass_archetype_feature_id: occultist3.id, replace_or_alter: "replace", affects_specific_level: 7)
+
+  occultist4 = KlassArchetypeFeature.create!(name: "Perfect Summoner", klass_archetype_id: occultist.id, description: "At 20th level, an occultist can use her conjurer’s focus without spending points from her arcane reservoir, and the creatures summoned last until dismissed.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: occultist4.id, level: 20, table_description: "Perfect Summoner")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: arcanist7.id, klass_archetype_feature_id: occultist4.id, replace_or_alter: "replace")
+
+  print "Occultist Archetype Created! \r"
+
 
 puts "Arcanist Created!"

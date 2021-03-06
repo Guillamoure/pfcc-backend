@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_052601) do
+ActiveRecord::Schema.define(version: 2021_03_06_050416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,13 @@ ActiveRecord::Schema.define(version: 2021_03_02_052601) do
     t.integer "character_id"
     t.integer "feature_id"
     t.string "choice"
+  end
+
+  create_table "character_creatures", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "creature_id"
+    t.string "relationship"
+    t.integer "feature_id"
   end
 
   create_table "character_items", force: :cascade do |t|
@@ -308,6 +315,11 @@ ActiveRecord::Schema.define(version: 2021_03_02_052601) do
     t.string "name"
   end
 
+  create_table "creature_familiar_abilities", force: :cascade do |t|
+    t.integer "creature_id"
+    t.string "ability"
+  end
+
   create_table "creature_feats", force: :cascade do |t|
     t.integer "creature_id"
     t.integer "feat_id"
@@ -423,6 +435,11 @@ ActiveRecord::Schema.define(version: 2021_03_02_052601) do
     t.integer "feature_id"
     t.integer "level"
     t.integer "action_id"
+  end
+
+  create_table "feature_animals", force: :cascade do |t|
+    t.integer "feature_id"
+    t.string "animal_type"
   end
 
   create_table "feature_applications", force: :cascade do |t|
@@ -724,6 +741,11 @@ ActiveRecord::Schema.define(version: 2021_03_02_052601) do
     t.float "price_in_gp"
     t.string "craft_skill"
     t.integer "craft_dc"
+  end
+
+  create_table "klass_archetype_feature_features", force: :cascade do |t|
+    t.integer "klass_archetype_feature_id"
+    t.integer "feature_id"
   end
 
   create_table "klass_archetype_feature_levels", force: :cascade do |t|

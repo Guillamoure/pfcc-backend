@@ -20,6 +20,7 @@ planar_adventures = Source.create!(title: "Planar Adventures", abbreviation: "PA
 inner_sea_world_guide = Source.create!(title: "Pathfinder Campaign Setting: Inner Sea World Guide", abbreviation: "PCB: ISWG", code: "PZO9226")
 inner_sea_bestiary = Source.create!(title: "Pathfinder Campaign Setting: Inner Sea Bestiary", abbreviation: "PCB: ISB", code: "PZO9251")
 inner_sea_races = Source.create!(title: "Pathfinder Campaign Setting: Inner Sea Races", abbreviation: "PPC: ISR", code: "PZO9280")
+animal_archive = Source.create!(title: "Pathfinder Player Companion: Animal Archive", abbreviation: "PPC: AA", code: "PZO9429")
 harrow_handbook = Source.create!(title: "Pathfinder Player Companion: The Harrow Handbook", abbreviation: "PPC: HH", code: "PZO9446")
 blood_of_the_beast = Source.create!(title: "Pathfinder Player Companion: Blood of the Beast", abbreviation: "PPC: BotB", code: "PZO9473")
 custom = Source.create!(title: "Custom", abbreviation: "Custom", code: nil)
@@ -5300,12 +5301,6 @@ Role: The Fate Weaver has a wide array of options, but they may not always be co
 
 Alignment: Any Chaotic")
 
-wizard = Klass.create!(name: "Wizard", hit_die: 6, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: "https://i.pinimg.com/originals/e0/cc/47/e0cc47ea55051b8221c15cfc208f3a20.png", source_id: core_rulebook.id, starting_wealth: "2d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: "Beyond the veil of the mundane hide the secrets of absolute power. The works of beings beyond mortals, the legends of realms where gods and spirits tread, the lore of creations both Wondrous Item and terrible—such mysteries call to those with the ambition and the intellect to rise above the common folk to grasp true might. Such is the path of the wizard. These shrewd magic-users seek, collect, and covet esoteric knowledge, drawing on cultic arts to work wonders beyond the abilities of mere mortals. While some might choose a particular field of magical study and become masters of such powers, others embrace versatility, reveling in the unbounded wonders of all magic. In either case, wizards prove a cunning and potent lot, capable of smiting their foes, empowering their allies, and shaping the world to their every desire.
-
-Role: While universalist wizards might study to prepare themselves for any manner of danger, specialist wizards research schools of magic that make them exceptionally skilled within a specific focus. Yet no matter their specialty, all wizards are masters of the impossible and can aid their allies in overcoming any danger.
-
-Alignment: Any")
-
 unchained_summoner = Klass.create!(name: 'Summoner', hit_die: 8, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: 'https://i.pinimg.com/originals/4f/9d/ac/4f9dac371934ff8f117751e94165c285.png', source_id: advanced_players_guide.id, starting_wealth: "2d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: 'There are those who take a different path when pursuing the arcane arts, reaching across the boundaries of the world to the far-f lung planes to call forth all manner of creatures to do their bidding. Known as summoners, these arcane practitioners form close bonds with particular outsiders, known as eidolons, which increase in power along with their callers. In the end, summoners and their eidolons become linked, sharing shards of the same souls.
 
 Role: Summoners spend much of their time exploring the arcane arts alongside their eidolons. While their power comes from within, they rely heavily on their eidolon companions in dangerous situations. While a summoner and his eidolon function as individuals, their true power lies in what they can accomplish together.
@@ -6829,14 +6824,6 @@ ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_
 ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: perception.id)
 ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: sense_motive.id)
 ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: survival.id)
-
-ClassSkillsetSkill.create!(klass_id: wizard.id, skillset_id: dmc.id, skill_id: craft.id)
-ClassSkillsetSkill.create!(klass_id: wizard.id, skillset_id: dmc.id, skill_id: linguistics.id)
-ClassSkillsetSkill.create!(klass_id: wizard.id, skillset_id: dmc.id, skill_id: nature_unchained.id)
-ClassSkillsetSkill.create!(klass_id: wizard.id, skillset_id: dmc.id, skill_id: profession.id)
-ClassSkillsetSkill.create!(klass_id: wizard.id, skillset_id: dmc.id, skill_id: religion_unchained.id)
-ClassSkillsetSkill.create!(klass_id: wizard.id, skillset_id: dmc.id, skill_id: society_unchained.id)
-ClassSkillsetSkill.create!(klass_id: wizard.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id)
 
 ClassSkillsetSkill.create!(klass_id: unchained_summoner.id, skillset_id: dmc.id, skill_id: craft.id)
 ClassSkillsetSkill.create!(klass_id: unchained_summoner.id, skillset_id: dmc.id, skill_id: handle_animal.id)

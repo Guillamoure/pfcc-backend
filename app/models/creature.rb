@@ -5,4 +5,6 @@ class Creature < ApplicationRecord
 
   has_many :creature_weapons
   has_many :weapons, through: :creature_weapons
+
+  has_one :familiar_ability, class_name: "CreatureFamiliarAbility"
 end

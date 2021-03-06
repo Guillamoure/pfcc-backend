@@ -13,7 +13,8 @@ class KlassArchetypeSerializer < ActiveModel::Serializer
           name: arch_f[:name],
           description: arch_f[:description],
           klass_archetype_feature_levels: kafl,
-          replaces_klass_features: rkf
+          replaces_klass_features: rkf,
+          features: arch_f.features.map {|f| FeatureSerializer.new(f)}
         }
       else
         arch_f

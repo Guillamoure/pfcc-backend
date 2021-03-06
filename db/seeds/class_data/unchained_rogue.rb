@@ -32,7 +32,8 @@ bestiary_5 = Source.find_by!(title: "Bestiary 5", abbreviation: "B5", code: "PZO
 ultimate_intrigue = Source.find_by!(title: "Ultimate Intrigue", abbreviation: "UI", code: "PZO1134")
 ultimate_wilderness = Source.find_by!(title: "Ultimate Wilderness", abbreviation: "UW", code: "PZO1140")
 planar_adventures = Source.find_by!(title: "Planar Adventures", abbreviation: "PA", code: "PZO1141")
-inner_sea_bestariy = Source.find_by!(title: "Pathfinder Campaign Setting: Inner Sea Bestiary", abbreviation: "PCB: ISB", code: "PZO9251")
+inner_sea_bestiary = Source.find_by!(title: "Pathfinder Campaign Setting: Inner Sea Bestiary", abbreviation: "PCB: ISB", code: "PZO9251")
+animal_archive = Source.find_by!(title: "Pathfinder Player Companion: Animal Archive")
 custom = Source.find_by!(title: "Custom", abbreviation: "Custom", code: nil)
 
 
@@ -277,6 +278,140 @@ Advanced Talents: The following advanced rogue talents complement the scout arch
     ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue11.id, klass_archetype_feature_id: scout2.id, replace_or_alter: "replace")
 
   print "Scout Archetype Created! \r"
+
+snoop = KlassArchetype.create!(name: "Snoop", klass_id: unchained_rogue.id, source_id: advanced_class_guide.id, description: "Snoops are the underworld’s version of detectives. They often act as information peddlers, specializing in gathering secrets through investigation, subterfuge, and coercion, and selling or trading those secrets for personal gain.
+
+Rogue Talents: The following rogue talents complement the snoop archetype: black market connections, coax information, fast stealth, follow clues, and strong impression (as well as certainty for an unchained rogue).
+
+Advanced Talents: The following advanced rogue talents complement the snoop archetype: hard minded, hidden mind, skill mastery, and thoughtful re-examining (as well as cutting edge for an unchained rogue).")
+
+  snoop1 = KlassArchetypeFeature.create!(name: "Inspiration", klass_archetype_id: snoop.id, description: "At 1st level, a snoop gains an ability similar to the investigator’s inspiration class ability. The snoop begins with an inspiration pool equal to half her rogue level plus her Intelligence modifier (minimum of 1). Unlike an investigator, a snoop can only use inspiration on skill checks, not on attack rolls or saving throws. This ability is otherwise identical to the investigator class ability of the same name.
+
+  This ability replaces trapfinding and evasion.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: snoop1.id, level: 1, table_description: "Inspiration")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue3.id, klass_archetype_feature_id: snoop1.id, replace_or_alter: "replace")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue5.id, klass_archetype_feature_id: snoop1.id, replace_or_alter: "replace")
+
+  snoop2 = KlassArchetypeFeature.create!(name: "Investigator Talents", klass_archetype_id: snoop.id, description: "Beginning at 2nd level, and each time she selects a new rogue talent, a snoop can instead select one of the following investigator talents: eidetic recollection, empathy, hidden agendas, inspired alertness, inspired intimidator, item lore, or underworld inspiration. Her effective investigator level for the purpose of these talents is equal to her rogue level. She still can’t use inspiration on attack rolls or saving throws (so, for instance, she can’t use the second part of hidden agendas).")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: snoop2.id, level: 2, table_description: "Investigator Talents")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_archetype_feature_id: snoop2.id, replace_or_alter: "alter")
+
+  snoop3 = KlassArchetypeFeature.create!(name: "Uncanny Snoop", klass_archetype_id: snoop.id, description: "At 4th level, a snoop gains a +2 bonus on Intimidate checks when trying to force an opponent to give her information (or Bluff and Diplomacy checks for the same purpose if she has the coax information rogue talent). She also gains a +2 bonus on Sense Motive checks to tell if someone’s information is false. At 8th level, these bonuses increase to +4.
+
+  This ability replaces uncanny dodge and improved uncanny dodge.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: snoop3.id, level: 4, table_description: "Uncanny Snoop")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: snoop3.id, level: 8, table_description: "Uncanny Snoop")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue9.id, klass_archetype_feature_id: snoop3.id, replace_or_alter: "replace")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue11.id, klass_archetype_feature_id: snoop3.id, replace_or_alter: "replace")
+
+  snoop4 = KlassArchetypeFeature.create!(name: "Master of Whispers", klass_archetype_id: snoop.id, description: "At 8th level, a snoop receives the rumormonger advanced rogue talent.
+
+  This ability replaces the rogue talent gained at 8th level.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: snoop4.id, level: 8, table_description: "Master of Whispers")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue6.id, klass_archetype_feature_id: snoop4.id, replace_or_alter: "replace", affects_specific_level: 8)
+
+  print "Snoop Archetype Created! \r"
+
+carnivalist = KlassArchetype.create!(name: "Carnivalist", klass_id: unchained_rogue.id, source_id: animal_archive.id, description: "Carnivalists train their miniature minions to perform acts of larceny and often hide their true talents behind theatrical sideshows.")
+
+  carnivalist1 = KlassArchetypeFeature.create!(name: "Class Skills", klass_archetype_id: carnivalist.id, description: "A carnivalist gains Handle Animal as a class skill.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist1.id, level: 1, table_description: "Class Skills")
+    ArchetypeFeatureReplaceKlassFeature.create!(alters_class_skills: true, klass_archetype_feature_id: carnivalist1.id, replace_or_alter: "alter")
+
+  carnivalist2 = KlassArchetypeFeature.create!(name: "Familiar", klass_archetype_id: carnivalist.id, description: "At 1st level, a carnivalist gains a familiar as a wizard of equal level. Levels in a class that grants a familiar stack with carnivalist levels for determining the familiar‘s abilities.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist2.id, level: 1, table_description: "Familiar")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_archetype_feature_id: carnivalist2.id, replace_or_alter: "alter")
+    carnivalist2_feature = Feature.create!()
+      KlassArchetypeFeatureFeature.create!(klass_archetype_feature_id: carnivalist2.id, feature_id: carnivalist2_feature.id)
+      FeatureAnimal.create!(feature_id: carnivalist2_feature.id, animal_type: "familiar")
+
+  carnivalist3 = KlassArchetypeFeature.create!(name: "Pet Performance", klass_archetype_id: carnivalist.id, description: "A carnivalist gains use of several bardic performances, making Handle Animal checks in place of any Perform checks.
+
+  At 2nd level, she gains the distraction bardic performance.
+
+  At 4th level, she gains the fascinate bardic performance.
+
+  At 6th level, she also gains use of the following performance.
+
+  Trained Legerdemain (Ex): At 6th level, a carnivalist can command a familiar or pet within 30 feet to make a Disable Device or Sleight of Hand check as if trained in the skill, using its own skill ranks (if any), Dexterity modifier, and equipment, with a competence bonus equal to 1/2 her rogue level. The check requires the normal amount of time to complete and the DC increases by 5. The carnivalist must maintain this pet performance each round her familiar or pet attempts a Disable Device or Sleight of Hand check.
+
+  The pet performance ability otherwise functions identically to bardic performance. Levels in a class with the distraction or fascinate bardic performances stack with carnivalist levels for the purpose of determining bonuses granted by these performances.
+
+  This ability replaces the rogue talents gained at 2nd, 4th, and 6th level.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist3.id, level: 2, table_description: "Pet Performance")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist3.id, level: 4, table_description: "Pet Performance")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist3.id, level: 6, table_description: "Pet Performance")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue6.id, klass_archetype_feature_id: carnivalist3.id, replace_or_alter: "replace", affects_specific_level: 2)
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue6.id, klass_archetype_feature_id: carnivalist3.id, replace_or_alter: "replace", affects_specific_level: 4)
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue6.id, klass_archetype_feature_id: carnivalist3.id, replace_or_alter: "replace", affects_specific_level: 6)
+
+  carnivalist4 = KlassArchetypeFeature.create!(name: "Sneak Attack", klass_archetype_id: carnivalist.id, description: "A carnivalist gains this ability starting at 2nd level. The sneak attack damage dealt is 1d6 points at 2nd level, and increases by 1d6 points every 4 carnivalist levels thereafter. A carnivalist’s familiar can also deal sneak attack damage as appropriate to foes as long as it is within 30 feet of her (though only Small and larger creatures may flank enemies, as usual).")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist4.id, level: 2, table_description: "Sneak Attack +1d6")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist4.id, level: 6, table_description: "Sneak Attack +2d6")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist4.id, level: 10, table_description: "Sneak Attack +3d6")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist4.id, level: 14, table_description: "Sneak Attack +4d6")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist4.id, level: 18, table_description: "Sneak Attack +5d6")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue2.id, klass_archetype_feature_id: carnivalist4.id, replace_or_alter: "alter")
+
+  carnivalist5 = KlassArchetypeFeature.create!(name: "Animal Trainer", klass_archetype_id: carnivalist.id, description: "Starting at 3rd level, a carnivalist receives a bonus equal to 1/2 her rogue level whenever she uses Handle Animal on a Tiny or Small animal. In addition, she can increase the DC by 5 to reduce the time needed to teach an animal a new trick or train an animal for a general purpose to 1 day for every week normally required. She can also train more than one animal at once, although each animal after the first adds 2 to the DC.
+
+  This ability replaces trap sense.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: carnivalist5.id, level: 3, table_description: "Animal Trainer")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue7.id, klass_archetype_feature_id: carnivalist5.id, replace_or_alter: "replace")
+
+  print "Carnivalist Archetype Created \r!"
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+
+  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
+  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
+  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
 
   # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
   #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")

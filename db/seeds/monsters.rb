@@ -59,4 +59,13 @@ dolphin = Creature.create!(creature_type_id: animal_type.id, name: "Dolphin", hi
   CreatureFeat.create!(creature_id: dolphin.id, feat_id: weapon_finesse.id)
   CreatureWeapon.create!(creature_id: dolphin.id, weapon_id: slam.id)
 
+chicken = Creature.create!(creature_type_id: animal_type.id, name: "Chicken", hit_dice: 1, challenge_rating: 0.16, alignment: "neutral", size: "Tiny", strength: 1, dexterity: 11, constitution: 12, intelligence: 2, wisdom: 12, charisma: 13, blurb: "This fowl has a compact body, a short beak flanked by red wattles, and a crimson comb on the crown of its head.", description: "Chickens are prized for the hearty breakfast meals they provide if properly fed and cared for. Chickens are highly social creatures that raise their young communally. They’re picky about the spots where they roost, and a hen rarely strays from a particular nest once she’s laid her eggs there. A fertilized chicken egg hatches into a chick after roughly 3 weeks of incubation.
+
+In addition to their quick reproductive cycles, chickens have the ability to thrive on simple foods, and they are valued in both rural farming communities and metropolitan areas for their delicious and nutrient-rich eggs and meat. A hen bred for laying eggs can produce up to one egg every 24 hours.
+
+A chicken is about 1 foot tall and weighs 5 pounds.", natural_armor: 0, environment: "any temperate", organization: "solitary, pair, or flock (3-20)", treasure: "none")
+  CreatureFeat.create!(creature_id: chicken.id, feat_id: Feat.find_by!(name: "Improved Initiative").id)
+  CreatureWeapon.create!(creature_id: chicken.id, weapon_id: bite.id)
+  CreatureFamiliarAbility.create!(creature_id: chicken.id, ability: "+3 hit points")
+
 puts "Creatures Created!"
