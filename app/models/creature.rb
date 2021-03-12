@@ -7,4 +7,6 @@ class Creature < ApplicationRecord
   has_many :weapons, through: :creature_weapons
 
   has_one :familiar_ability, class_name: "CreatureFamiliarAbility"
+  has_many :movements, class_name: "CreatureMovement"
+  has_many :creature_skillset_skills
 end

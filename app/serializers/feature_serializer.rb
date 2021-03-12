@@ -12,4 +12,26 @@ class FeatureSerializer < ActiveModel::Serializer
     end
   end
 
+  def animal
+    a = self.object.animal
+    if a
+      list = nil
+      if a.summoned_creature_list_id
+        list = a.summoned_creature_list.summoned_creature_list_creatures.map do |sclc|
+          {step: sclc.step, creature: CreatureSerializer.new(sclc.creature)}
+        end
+      end
+
+      return {
+            id: a.id,
+            feature_id: a.feature_id,
+            animal_type: a.animal_type,
+            summoned_creature_list: list
+          }
+    else
+      return a
+    end
+
+  end
+
 end

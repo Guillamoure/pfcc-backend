@@ -50,6 +50,15 @@ class Api::V1::KlassFeaturesController < ApplicationController
     render json: @cksfu, status: 200
   end
 
+  def klass_archetype_usage_update
+    @ckafu = CharacterKlassArchetypeFeatureUsage.find_or_create_by(character_id: params[:character_id], klass_archetype_feature_id: params[:klass_archetype_feature_id], feature_usage_id: params[:feature_usage_id])
+    puts params
+
+    @ckafu.update(current_usage: params[:current_usage])
+
+    render json: @ckafu, status: 200
+  end
+
   def klass_specializations
     if params[:id]
       @klass_feature = KlassFeature.find(params[:id])

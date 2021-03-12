@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_050416) do
+ActiveRecord::Schema.define(version: 2021_03_12_043612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,12 +151,24 @@ ActiveRecord::Schema.define(version: 2021_03_06_050416) do
     t.integer "creature_id"
     t.string "relationship"
     t.integer "feature_id"
+    t.string "name"
+    t.string "description"
+    t.integer "lethal_damage"
+    t.integer "non_lethal_damage"
+    t.integer "temp_hp"
   end
 
   create_table "character_items", force: :cascade do |t|
     t.integer "character_id"
     t.integer "item_id"
     t.boolean "discovered"
+  end
+
+  create_table "character_klass_archetype_feature_usages", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "klass_archetype_feature_id"
+    t.integer "feature_usage_id"
+    t.integer "current_usage", default: 0
   end
 
   create_table "character_klass_archetypes", force: :cascade do |t|
@@ -236,6 +248,11 @@ ActiveRecord::Schema.define(version: 2021_03_06_050416) do
     t.boolean "discovered", default: false
     t.boolean "known", default: false
     t.boolean "equipped", default: false
+  end
+
+  create_table "character_poisons", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "poison_id"
   end
 
   create_table "character_skillset_skills", force: :cascade do |t|
@@ -325,6 +342,26 @@ ActiveRecord::Schema.define(version: 2021_03_06_050416) do
     t.integer "feat_id"
   end
 
+  create_table "creature_movements", force: :cascade do |t|
+    t.integer "creature_id"
+    t.string "movement"
+    t.integer "feet"
+  end
+
+  create_table "creature_skillset_skills", force: :cascade do |t|
+    t.integer "creature_id"
+    t.integer "skillset_id"
+    t.integer "skill_id"
+    t.integer "ranks"
+    t.string "detail"
+  end
+
+  create_table "creature_type_skillset_skills", force: :cascade do |t|
+    t.integer "creature_type_id"
+    t.integer "skill_id"
+    t.integer "skillset_id"
+  end
+
   create_table "creature_types", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -340,6 +377,9 @@ ActiveRecord::Schema.define(version: 2021_03_06_050416) do
     t.integer "weapon_id"
     t.boolean "masterwork", default: false
     t.string "name"
+    t.integer "overwrite_damage_dice"
+    t.integer "overwrite_num_of_dice"
+    t.integer "num_of_attacks"
   end
 
   create_table "creatures", force: :cascade do |t|
@@ -440,6 +480,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_050416) do
   create_table "feature_animals", force: :cascade do |t|
     t.integer "feature_id"
     t.string "animal_type"
+    t.integer "summoned_creature_list_id"
   end
 
   create_table "feature_applications", force: :cascade do |t|
@@ -695,6 +736,9 @@ ActiveRecord::Schema.define(version: 2021_03_06_050416) do
     t.integer "maintain_action_id"
     t.float "limit_increase_per_level"
     t.float "base_limit"
+    t.float "daily_base"
+    t.float "daily_base_increase_per_level"
+    t.integer "minimum_limit"
   end
 
   create_table "feature_weapon_applications", force: :cascade do |t|
@@ -880,6 +924,18 @@ ActiveRecord::Schema.define(version: 2021_03_06_050416) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "poisons", force: :cascade do |t|
+    t.string "name"
+    t.string "affliction_type"
+    t.integer "fortitude_dc"
+    t.string "onset"
+    t.string "frequency"
+    t.string "effect"
+    t.string "cure"
+    t.float "price_in_gp"
+    t.integer "source_id"
+  end
+
   create_table "prepared_amounts", force: :cascade do |t|
     t.integer "spell_level"
     t.integer "klass_level"
@@ -978,6 +1034,11 @@ ActiveRecord::Schema.define(version: 2021_03_06_050416) do
     t.string "item"
   end
 
+  create_table "spell_features", force: :cascade do |t|
+    t.integer "spell_id"
+    t.integer "feature_id"
+  end
+
   create_table "spell_list_spells", force: :cascade do |t|
     t.integer "spell_list_id"
     t.integer "spell_id"
@@ -1046,6 +1107,16 @@ ActiveRecord::Schema.define(version: 2021_03_06_050416) do
   create_table "subschools", force: :cascade do |t|
     t.string "name"
     t.string "description"
+  end
+
+  create_table "summoned_creature_list_creatures", force: :cascade do |t|
+    t.integer "summoned_creature_list_id"
+    t.integer "creature_id"
+    t.integer "step"
+  end
+
+  create_table "summoned_creature_lists", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

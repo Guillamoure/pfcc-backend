@@ -344,6 +344,7 @@ Points from the arcane reservoir are used to fuel many of the arcanist’s power
   FeatureLevel.create!(klass_feature_id: arcanist3.id, level: 1, table_description: 'Arcane Reservoir')
   arcanist3_feature = Feature.create!(action_id: free.id)
     KlassFeatureFeature.create!(klass_feature_id: arcanist3.id, feature_id: arcanist3_feature.id)
+    arcanist3_feature_usage = FeatureUsage.create!(feature_id: arcanist3_feature.id, limit_frequency: "Day", base_limit: 3, limit_increase_per_level: 1, adjustable: true, daily_base: 3.5, daily_base_increase_per_level: 0.5)
 
 arcanist4 = KlassFeature.create!(klass_id: arcanist.id, name: 'Arcanist Exploit', description: 'By bending and sometimes even breaking the rules of magic, the arcanist learns to exploit gaps and exceptions in the laws of magic. Some of these exploits allow her to break down various forms of magic, adding their essence to her arcane reservoir. At 1st level and every 2 levels thereafter, the arcanist learns a new arcane exploit selected from the following list. An arcanist exploit cannot be selected more than once. Once an arcanist exploit has been selected, it cannot be changed. Most arcanist exploits require the arcanist to expend points from her arcane reservoir to function. Unless otherwise noted, the saving throw DC of an arcanist exploit is equal to 10 + 1/2 the arcanist’s level + the arcanist’s Charisma modifier.')
   FeatureLevel.create!(klass_feature_id: arcanist4.id, level: 1, table_description: 'Arcanist Exploit')
@@ -388,6 +389,10 @@ occultist = KlassArchetype.create!(name: "Occultist", klass_id: arcanist.id, sou
   This ability replaces the arcanist exploit gained at 1st level.")
     KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: occultist2.id, level: 1, table_description: "Conjurer's Focus")
     ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: arcanist4.id, klass_archetype_feature_id: occultist2.id, replace_or_alter: "replace", affects_specific_level: 1)
+    occultist_conjurers_focus_feature1 = Feature.create!(action_id: standard.id)
+      KlassArchetypeFeatureFeature.create!(klass_archetype_feature_id: occultist2.id, feature_id: occultist_conjurers_focus_feature1.id)
+      occultist_conjurers_focus_feature1_usage = FeatureUsage.create!(feature_id: occultist_conjurers_focus_feature1.id)
+      FeatureUsageFeatureOption.create!(base_feature_usage_id: arcanist3_feature_usage.id, option_feature_usage_id: occultist_conjurers_focus_feature1_usage.id, option_name: "Arcane Reservoir", cost: 1)
 
   occultist3 = KlassArchetypeFeature.create!(name: "Planar Contact", klass_archetype_id: occultist.id, description: "At 7th level, an occultist can cast augury once per day and contact other plane once per week, using her arcanist level as her caster level.
 

@@ -18,6 +18,16 @@ namespace :db do
       end
     end
 
+    namespace :creature do
+      Dir[Rails.root.join('db', 'seeds', 'creature_data', '*.rb')].each do |filename|
+        task_name = File.basename(filename, '.rb')
+        desc "Seed " + task_name + ", based on the file with the same name in `db/seeds/creature_data/*.rb`"
+        task task_name.to_sym => :environment do
+          load(filename) if File.exist?(filename)
+        end
+      end
+    end
+
     namespace :campaign do
       Dir[Rails.root.join('db', 'seeds', 'campaign_data', '*.rb')].each do |filename|
         task_name = File.basename(filename, '.rb')
@@ -39,7 +49,7 @@ namespace :seed do
     Rake::Task['db:seed:spells'].invoke
     Rake::Task['db:seed:feats'].invoke
     Rake::Task['db:seed:items'].invoke
-    Rake::Task['db:seed:monsters'].invoke
+    Rake::Task['seed:creatures'].invoke
     Rake::Task['seed:campaign'].invoke
   end
 
@@ -60,5 +70,10 @@ namespace :seed do
 
   task :campaign do
     Rake::Task['db:seed:campaign:ravnica'].invoke
+  end
+
+  task :creatures do
+    Rake::Task['db:seed:creature:animals'].invoke
+    Rake::Task['db:seed:creature:vermin'].invoke
   end
 end

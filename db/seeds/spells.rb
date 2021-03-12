@@ -56,8 +56,14 @@ artifice_domain3_feature = KlassSpecializationFeature.find_by!(name: "Domain Spe
 
 chaos_domain3_feature = KlassSpecializationFeature.find_by!(name: "Domain Spells", description: "1st—protection from law, 2nd—align weapon (chaos only), 3rd—magic circle against law, 4th—chaos hammer, 5th—dispel law, 6th—animate objects, 7th—word of chaos, 8th—cloak of chaos, 9th—summon monster IX (chaos spell only).").features[0]
 
+occultist_conjurers_focus_feature1 = KlassArchetypeFeature.find_by!(name: "Conjurer's Focus", description: "An occultist can spend 1 point from her arcane reservoir to cast summon monster I. She can cast this spell as a standard action and the summoned creatures remain for 1 minute per level (instead of 1 round per level). At 3rd level and every 2 levels thereafter, the power of this ability increases by one spell level, allowing her to summon more powerful creatures (to a maximum of summon monster IX at 17th level), at the cost of an additional point from her arcane spell reserve per spell level. An occultist cannot have more than one summon monster spell active in this way at one time. If this ability is used again, any existing summon monster immediately ends.\n\n  This ability replaces the arcanist exploit gained at 1st level.").features[0]
 
 
+# ////////////////////////////////////////////////////////
+# <-*-*-----*-*-*- Summoned Creature List -*-*-*-----*-*->
+# ////////////////////////////////////////////////////////
+
+summon_monster_list = SummonedCreatureList.find_or_create_by!(name: "Summon Monster List")
 
 # /////////////////////////////////////////
 # <-*-*-----*-*-*- Spell List -*-*-*-----*-*->
@@ -714,6 +720,11 @@ The summon monster spells have numerous entries representing creatures that are 
   # summon_monster_I_medium = SpellListSpell.create!(spell_list_id: medium.id, spell_id: sp33.id, spell_level: 1)
   # summon_monster_I_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp33.id, spell_level: 1)
   # summon_monster_I_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp33.id, spell_level: 1)
+  summon_monster_I_feature = Feature.create!()
+    SpellFeature.create!(spell_id: sp33.id, feature_id: summon_monster_I_feature.id)
+    FeatureAnimal.create!(feature_id: summon_monster_I_feature.id, animal_type: "summoned", summoned_creature_list_id: summon_monster_list.id)
+
+  FeatureCastableSpell.create!(feature_id: occultist_conjurers_focus_feature1.id, spell_id: sp33.id, added_to_known_spells: false, applicable_spell_level: 1, bonus_spell_slot_option: false)
 
 sp34 = Spell.create!(name: "Tiny Hut", description: "You create an unmoving, opaque sphere of force of any color you desire around yourself. Half the sphere projects above the ground, and the lower hemisphere passes through the ground. As many as nine other Medium creatures can fit into the field with you; they can freely pass into and out of the hut without harming it. However, if you remove yourself from the hut, the spell ends.
 

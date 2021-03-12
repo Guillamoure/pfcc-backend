@@ -32,8 +32,11 @@ class Character < ApplicationRecord
   has_many :character_magic_item_feature_usage_options, through: :character_magic_items
   has_many :character_klass_feature_usages
   has_many :character_klass_specialization_feature_usages
+  has_many :character_klass_archetype_feature_usages
   has_many :character_items, dependent: :destroy
   has_many :items, through: :character_items
+  has_many :character_poisons, dependent: :destroy
+  has_many :poisons, through: :character_poisons
 
   has_many :character_weapons, dependent: :destroy
   has_many :weapons, through: :character_weapons
@@ -46,12 +49,40 @@ class Character < ApplicationRecord
 
   def applicable_klass_features
 
-    self.class_obj.map do |cl_hash|
+    features = self.class_obj.map do |cl_hash|
       klass = Klass.find(cl_hash[:klass_id])
 
       klass.klass_features.select { |kf| kf.feature_levels.map { |fl| fl.level}[0] <= cl_hash[:level] }
 
     end.flatten
+
+    self.archetypes.each do |archetype|
+
+      # find the klass level for this specific feature
+      klass = self.class_obj.find { |co| co[:klass_id] == archetype[:klass_id] }
+
+      archetype.klass_archetype_features.each do |karch_feature|
+        # find if the specific karch_feature is within our level
+        valid_level = karch_feature.klass_archetype_feature_levels.find { |fl| fl[:level] <= klass[:level] }
+
+        if valid_level
+          features.push(karch_feature)
+        end
+
+        # if we need to, replace the klass feature that exists
+        karch_feature.replaces_klass_features.each do |rkf|
+          if rkf[:replace_or_alter] == "replace"
+            features = features.select { |f| f[:id] != rkf[:klass_feature_id]}
+          end
+        end
+
+      end
+
+    end
+
+    features
+
+
   end
 
   def class_obj

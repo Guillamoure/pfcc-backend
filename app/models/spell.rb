@@ -12,6 +12,9 @@ class Spell < ApplicationRecord
   belongs_to :spell_range
   belongs_to :magic_school
 
+  has_many :spell_features
+  has_many :features, through: :spell_features
+
   # create a method that does this vv
   # has_many :feature_castable_spells
   # has_many :features, through: :feature_castable_spells

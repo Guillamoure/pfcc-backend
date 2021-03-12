@@ -4,6 +4,7 @@ class FeatureUsage < ApplicationRecord
   has_many :spells, through: :feature_usage_spell_options
   has_many :options, class_name: 'FeatureUsageOption'
   has_many :character_klass_feature_usages
+  has_many :character_klass_archetype_feature_usages
 
   belongs_to :toggle_off_action, class_name: 'Action', optional: true
   belongs_to :maintain_action, class_name: 'Action', optional: true

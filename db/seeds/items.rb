@@ -100,7 +100,7 @@ flint_and_steel = Item.create!(name: "Flint and Steel", category: "adventuring g
 
 harrow_carrying_case = Item.create!(name: "Harrow Carrying Case", category: "adventure gear", description: "This small darkwood case contains a recessed area to hold a harrow deck and harrow mat, as well as a compartment for incense. Nonmagical harrow cards are protected against rips, tears, water damages, bending, and flames so long as they are stored in a harrow carrying case.", weight: 2, price_in_gp: 10)
 
-monks_outfit = Item.create!(name: "Monk's Outfit", category: "clothing, outfits, accessories", description: "This simple outfit includes sandals, loose breeches, and a loose shirt, and is bound together with sashes. The outfit is designed to give you maximum mobility, and it’s made of high-quality fabric. You can conceal small weapons in pockets hidden in the folds, and the sashes are strong enough to serve as short ropes.")
+monks_outfit = Item.create!(name: "Monk's Outfit", category: "clothing, outfits, accessories", description: "This simple outfit includes sandals, loose breeches, and a loose shirt, and is bound together with sashes. The outfit is designed to give you maximum mobility, and it’s made of high-quality fabric. You can conceal small weapons in pockets hidden in the folds, and the sashes are strong enough to serve as short ropes.", weight: 2, price_in_gp: 5)
 
 
 Item.create!(name: "Azorius Insignia Charm", category: "clothing, outfits, accessories", description: "A Charm with the Azorius Insignia. Proof of your membership to the Azorius Senate", weight: 0, price_in_gp: 10)
@@ -117,3 +117,9 @@ Item.create!(name: "Simic Insignia Charm", category: "clothing, outfits, accesso
 # IDENTIFIER = Item.create!(name: "", category: "", description: "", weight: 0, price_in_gp: 0)
 
 # IDENTIFIER = Item.create!(name: "", category: "", description: "", weight: 0, price_in_gp: 0)
+
+Poison.create!(name: "Arsenic", affliction_type: "ingested", fortitude_dc: 13, onset: "10 min", frequency: "1/min for 4 mins", effect: "1d2 Con damage", cure: "1 save", price_in_gp: 120)
+Poison.create!(name: "Drow Poison", affliction_type: "injury", fortitude_dc: 13, onset: "-", frequency: "1/min for 2 mins", effect: "Initial Effect: Unconscious for 1 minute/Secondary Effect: Unconscious for 2d4 hours", cure: "1 save", price_in_gp: 75)
+# Poison.create!(name: "", affliction_type: "", fortitude_dc: 10, onset: "", frequency: "", effect: "", save: "", price_in_gp: 0)
+# Poison.create!(name: "", affliction_type: "", fortitude_dc: 10, onset: "", frequency: "", effect: "", save: "", price_in_gp: 0)
+# Poison.create!(name: "", affliction_type: "", fortitude_dc: 10, onset: "", frequency: "", effect: "", save: "", price_in_gp: 0)

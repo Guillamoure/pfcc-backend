@@ -1,7 +1,7 @@
 class CharacterSerializer < ActiveModel::Serializer
   # attributes :id, :name, :alignment, :deity, :homeland, :gender, :age, :height, :weight, :hair, :eyes, :user_id, :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, :description, :background, :any_bonus, :character_skillset_skills, :lethal_damage, :non_lethal_damage, :temp_hp, :uniq_klasses, :character_klasses, :full_name, :character_magic_items, :character_magic_item_feature_usages, :allies, :campaign, :character_magic_item_feature_usage_options, :notes, :is_done_preparing_spells, :max_hp, :applicable_klass_features, :class_obj
   #
-  attributes :id, :name, :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, :alignment, :deity, :homeland, :gender, :age, :height, :weight, :hair, :eyes, :description, :background, :any_bonus, :lethal_damage, :non_lethal_damage, :temp_hp, :full_name, :is_done_preparing_spells, :max_hp, :uniq_klasses, :character_skillset_skills, :character_klasses, :character_magic_items, :character_magic_item_feature_usages, :notes, :applicable_klass_features, :class_obj, :skillset, :character_klass_feature_usages, :character_known_spells, :klass_specializations, :cast_spells, :character_choices, :character_klass_specialization_feature_usages, :pp, :gp, :sp, :cp, :archetypes, :alternate_racial_traits, :klass_feature_options, :items, :character_creatures
+  attributes :id, :name, :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, :alignment, :deity, :homeland, :gender, :age, :height, :weight, :hair, :eyes, :description, :background, :any_bonus, :lethal_damage, :non_lethal_damage, :temp_hp, :full_name, :is_done_preparing_spells, :max_hp, :uniq_klasses, :character_skillset_skills, :character_klasses, :character_magic_items, :character_magic_item_feature_usages, :notes, :applicable_klass_features, :class_obj, :skillset, :character_klass_feature_usages, :character_known_spells, :klass_specializations, :cast_spells, :character_choices, :character_klass_specialization_feature_usages, :pp, :gp, :sp, :cp, :archetypes, :alternate_racial_traits, :klass_feature_options, :items, :character_creatures, :poisons, :character_klass_archetype_feature_usages
 
   belongs_to :user
   # # has_many :character_klasses
@@ -83,7 +83,11 @@ class CharacterSerializer < ActiveModel::Serializer
   end
   def applicable_klass_features
     self.object.applicable_klass_features.map do |akf|
-      KlassFeatureSerializer.new(akf)
+      if akf[:klass_archetype_id]
+        KlassArchetypeFeatureSerializer.new(akf)
+      else
+        KlassFeatureSerializer.new(akf)
+      end
     end
   end
 

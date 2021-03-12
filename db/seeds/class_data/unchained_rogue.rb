@@ -291,6 +291,9 @@ Advanced Talents: The following advanced rogue talents complement the snoop arch
     KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: snoop1.id, level: 1, table_description: "Inspiration")
     ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue3.id, klass_archetype_feature_id: snoop1.id, replace_or_alter: "replace")
     ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue5.id, klass_archetype_feature_id: snoop1.id, replace_or_alter: "replace")
+    snoop1_feature = Feature.create!(action_id: free.id)
+      KlassArchetypeFeatureFeature.create!(feature_id: snoop1_feature.id, klass_archetype_feature_id: snoop1.id)
+      FeatureUsage.create!(feature_id: snoop1_feature.id, base_limit: 0.5, limit_increase_per_level: 0.5, base_limit_modifier: "intelligence", adjustable: true, minimum_limit: 1)
 
   snoop2 = KlassArchetypeFeature.create!(name: "Investigator Talents", klass_archetype_id: snoop.id, description: "Beginning at 2nd level, and each time she selects a new rogue talent, a snoop can instead select one of the following investigator talents: eidetic recollection, empathy, hidden agendas, inspired alertness, inspired intimidator, item lore, or underworld inspiration. Her effective investigator level for the purpose of these talents is equal to her rogue level. She still can’t use inspiration on attack rolls or saving throws (so, for instance, she can’t use the second part of hidden agendas).")
     KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: snoop2.id, level: 2, table_description: "Investigator Talents")
