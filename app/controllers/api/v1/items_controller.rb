@@ -58,6 +58,18 @@ class Api::V1::ItemsController < ApplicationController
         items.push(item)
       end
     end
+    Poison.all.each do |poison|
+      applicable = false
+      if poison.name.include?(term)
+        applicable = true
+      end
+      if poison.name.include?(cap)
+        applicable = true
+      end
+      if applicable
+        items.push(poison)
+      end
+    end
     render json: items
   end
 
@@ -71,7 +83,7 @@ class Api::V1::ItemsController < ApplicationController
 
 
   def create
-    character_item = nil
+    @character_item = nil
     id = params[:item][:id]
     if params[:item][:weapon_type]
       @weapon = Weapon.find(id)
@@ -124,6 +136,36 @@ class Api::V1::ItemsController < ApplicationController
       @user = User.find(params[:current_user])
       render json: { current_user: UserSerializer.new(@user) }, status: 200
     end
+  end
+
+  def weapon_create
+    @character_weapon = CharacterWeapon.create!(character_id: params[:character_id], weapon_id: params[:item_id], known: params[:known], description: params[:description], name: params[:name], discovered: params[:discovered])
+
+    render json: @character_weapon, status: 201
+  end
+
+  def armor_create
+    @character_armor = CharacterArmor.create!(character_id: params[:character_id], armor_id: params[:item_id], known: params[:known], description: params[:description], name: params[:name], discovered: params[:discovered])
+
+    render json: @character_armor, status: 201
+  end
+
+  def item_create
+    @character_item = CharacterItem.create!(character_id: params[:character_id], item_id: params[:item_id], discovered: params[:discovered])
+
+    render json: @character_item.item, status: 201
+  end
+
+  def poison_create
+    @character_poison = CharacterPoison.create!(character_id: params[:character_id], poison_id: params[:poison_id], discovered: params[:discovered])
+
+    render json: @character_poison, status: 201
+  end
+
+  def magic_item_create
+    @character_magic_item = CharacterMagicItem.create!(character_id: params[:character_id], magic_item_id: params[:magic_item_id], discovered: params[:discovered], known: params[:known])
+
+    render json: @character_magic_item, status: 201
   end
 
   def mi_discovered

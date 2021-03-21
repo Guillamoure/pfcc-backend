@@ -110,16 +110,19 @@ fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id
   CharacterKlassArchetype.create!(character_id: fire_roasted_tomatoes.id, klass_archetype_id: KlassArchetype.find_by!(name: "Snoop").id)
   CharacterCreature.create!(character_id: fire_roasted_tomatoes.id, creature_id: Creature.find_by!(name: "Chicken").id, relationship: "familiar", feature_id: KlassArchetypeFeature.find_by!(name: "Familiar", klass_archetype_id: KlassArchetype.find_by!(name: "Carnivalist").id).features[0].id)
 
-  CharacterKlass.create!(character_id: fire_roasted_tomatoes.id, klass_id: Klass.find_by!(name: "Kineticist").id, hp: 8, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: fire_roasted_tomatoes.id, klass_id: Klass.find_by!(name: "Kineticist").id, hp: 8, feat_id: Feat.find_by!(name: "Skill Focus").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
     CharacterKlassSpecialization.create!(character_id: fire_roasted_tomatoes.id, klass_feature_klass_specialization_id: KlassSpecialization.find_by!(name: "Fire").id)
   CharacterKlass.create!(character_id: fire_roasted_tomatoes.id, klass_id: Klass.find_by!(name: "Kineticist").id, hp: 7, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
   CharacterKlass.create!(character_id: fire_roasted_tomatoes.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 8, feat_id: Feat.find_by!(name: "Toughness").id, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
 
-  CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Profession").id, ranks: 2, detail: "chef")
+  CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Profession").id, ranks: 3, detail: "chef")
   CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Nature").id, ranks: 1)
-  CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Linguistics").id, ranks: 1)
-  CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Survival").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Linguistics").id, ranks: 2)
+  CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Survival").id, ranks: 2)
   CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id, ranks: 1, detail: "woodcarving")
+  CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Handle Animal").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 2)
+  CharacterSkillsetSkill.create!(character_id: fire_roasted_tomatoes.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 1, detail: "golgari")
 
   CharacterWeapon.create!(character_id: fire_roasted_tomatoes.id, weapon_id: Weapon.find_by!(name: "Traveling Kettle").id, masterwork: true, discovered: true, known: true, name: "")
   CharacterWeapon.create!(character_id: fire_roasted_tomatoes.id, weapon_id: Weapon.find_by!(name: "Dagger").id, masterwork: false, discovered: true, known: true, name: "Chef's Knife", description: "Decently sharp, single-edged knife. Used primarily for preparing meals.")
@@ -146,22 +149,25 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
 
   CharacterAlternateRacialTrait.create!(character_id: iyugi.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Fast Shifter").id)
   CharacterKlassArchetype.create!(character_id: iyugi.id, klass_archetype_id: KlassArchetype.find_by!(name: "Scout").id)
+  CharacterKlassArchetype.create!(character_id: iyugi.id, klass_archetype_id: KlassArchetype.find_by!(name: "Knife Master").id)
 
   CharacterKlass.create!(character_id: iyugi.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 8, feat_id: Feat.find_by!(name: "Realistic Likeness").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
   CharacterKlass.create!(character_id: iyugi.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
     CharacterKlassFeatureOption.create!(character_id: iyugi.id, feature_option_id: FeatureOption.find_by!(name: "Combat Trick").id, level: 2)
+  CharacterKlass.create!(character_id: iyugi.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
 
 
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 2)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Bluff").id, ranks: 2)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 3)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Bluff").id, ranks: 3)
   CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Disguise").id, ranks: 2)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Finesse").id, ranks: 2)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Diplomacy").id, ranks: 3)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Finesse").id, ranks: 3)
   CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Investigation").id, ranks: 1)
   CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 2, detail: "dimir")
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 2)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Sense Motive").id, ranks: 2)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 3)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Sense Motive").id, ranks: 3)
   CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Society").id, ranks: 1)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Stealth").id, ranks: 2)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Stealth").id, ranks: 3)
 
   CharacterWeapon.create!(character_id: iyugi.id, weapon_id: Weapon.find_by!(name: "Dagger").id, masterwork: false, discovered: true, known: true, name: "")
   CharacterWeapon.create!(character_id: iyugi.id, weapon_id: Weapon.find_by!(name: "Dagger").id, masterwork: false, discovered: true, known: true, name: "")
@@ -196,16 +202,17 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
 
   print "Iyugi created! \r"
 
-ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence", pp: 235, gp: 136)
+ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence", pp: 200, gp: 126)
 
   CharacterAlternateRacialTrait.create!(character_id: ildre.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Innovative").id)
   CharacterKlassArchetype.create!(character_id: ildre.id, klass_archetype_id: KlassArchetype.find_by!(name: "Occultist").id)
 
-  CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 6, feat_id: Feat.find_by!(name: "Spell Focus").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
   CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 3, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
-  CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 4, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 4, feat_id: Feat.find_by!(name: "Augment Summoning").id, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
 
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id, ranks: 1, detail: "blacksmithing")
+  CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id, ranks: 2, detail: "alchemy")
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Diplomacy").id, ranks: 2)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Finesse").id, ranks: 1)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Investigation").id, ranks: 1)
@@ -214,9 +221,10 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Nature").id, ranks: 1)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 1)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Religion").id, ranks: 2)
-  CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 2)
+  CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 3)
 
   CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Quarterstaff").id, masterwork: true, discovered: true, known: true, name: "")
+  CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Light Crossbow").id, masterwork: true, discovered: true, known: true, name: "")
   # CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Light Crossbow").id, masterwork: true, discovered: true, known: true, name: "")
   #  deduct cost of mwk crossbow 335
 
@@ -258,6 +266,8 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
     CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Shield").id).id)
     CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Burning Disarm").id).id)
     CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Ray of Enfeeblement").id).id)
+    CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Enlarge Person").id).id)
+    CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Silent Image").id).id)
 
   print "Ildre created! \r"
 
@@ -268,15 +278,16 @@ natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14
 
   CharacterKlass.create!(character_id: natesse.id, klass_id: Klass.find_by!(name: "Magus").id, hp: 8, feat_id: Feat.find_by!(name: "Weapon Finesse").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
   CharacterKlass.create!(character_id: natesse.id, klass_id: Klass.find_by!(name: "Magus").id, hp: 2, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
-  CharacterKlass.create!(character_id: natesse.id, klass_id: Klass.find_by!(name: "Magus").id, hp: 0, feat_id: Feat.find_by!(name: "Dervish Dance"), ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: natesse.id, klass_id: Klass.find_by!(name: "Magus").id, hp: 2, feat_id: Feat.find_by!(name: "Dervish Dance").id, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
 
   CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 1)
-  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 2)
-  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Investigation").id, ranks: 2)
-  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 1, detail: "Izzet")
+  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Investigation").id, ranks: 3)
+  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Intimidate").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 2, detail: "Izzet")
+  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 3)
   CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perform").id, ranks: 2, detail: "Dance")
-  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 2)
-  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Stealth").id, ranks: 2)
+  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 3)
+  CharacterSkillsetSkill.create!(character_id: natesse.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Stealth").id, ranks: 3)
 
   CharacterWeapon.create!(character_id: natesse.id, weapon_id: Weapon.find_by!(name: "Scimitar").id, masterwork: false, discovered: true, known: true, name: "")
   CharacterArmor.create!(character_id: natesse.id, armor_id: Armor.find_by!(name: "Studded Leather").id, masterwork: false, discovered: true, known: true, equipped: true)
@@ -318,6 +329,8 @@ natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14
     CharacterKnownSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Shield").id).id)
     CharacterKnownSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Vanish").id).id)
     CharacterKnownSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "True Strike").id).id)
+    CharacterKnownSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Glue Seal").id).id)
+    CharacterKnownSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Silent Image").id).id)
 
 
     print "Natesse created! \r"
@@ -329,7 +342,7 @@ dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexte
 
   CharacterKlass.create!(character_id: dzeyn.id, klass_id: Klass.find_by!(name: "Slayer").id, hp: 10, feat_id: Feat.find_by!(name: "Point-Blank Shot").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
   CharacterKlass.create!(character_id: dzeyn.id, klass_id: Klass.find_by!(name: "Slayer").id, hp: 4, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
-  CharacterKlass.create!(character_id: dzeyn.id, klass_id: Klass.find_by!(name: "Slayer").id, hp: 3, feat_id: Feat.find_by!(name: "Deadly Aim"), ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: dzeyn.id, klass_id: Klass.find_by!(name: "Slayer").id, hp: 3, feat_id: Feat.find_by!(name: "Deadly Aim").id, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
 
   CharacterSkillsetSkill.create!(character_id: dzeyn.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 3)
   CharacterSkillsetSkill.create!(character_id: dzeyn.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Bluff").id, ranks: 1)

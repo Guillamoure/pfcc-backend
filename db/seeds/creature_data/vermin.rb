@@ -48,5 +48,9 @@ giant_ant_worker = Creature.create!(creature_type_id: vermin_type.id, name: "Gia
   CreatureWeapon.create!(creature_id: giant_ant_worker.id, weapon_id: bite.id)
   SummonedCreatureListCreature.create!(summoned_creature_list_id: summon_monster_list.id, creature_id: giant_ant_worker.id, step: 2)
 
+giant_fire_beetle = Creature.create!(creature_type_id: vermin_type.id, name: "Giant Fire Beetle", hit_dice: 1, challenge_rating: 0.34, alignment: "neutral", size: "Small", strength: 10, dexterity: 11, constitution: 11, intelligence: nil, wisdom: 10, charisma: 7, blurb: "This housecat-sized beetle is a dull brown color brightened by two glowing green-yellow spots on its carapace.", description: "Although nocturnal, the fire beetle lacks darkvision—it relies on its own glowing glands for illumination. Caged fire beetles are a popular source of long-lasting illumination among eccentrics and miners.", natural_armor: 1, environment: "any", organization: "solitary, cluster (2–6) or colony (7–12)", treasure: "none")
+  CreatureWeapon.create!(creature_id: giant_fire_beetle.id, weapon_id: bite.id)
+  SummonedCreatureListCreature.create!(summoned_creature_list_id: summon_monster_list.id, creature_id: giant_fire_beetle.id, step: 1)
+
 
 puts "Vermin Created!"

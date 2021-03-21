@@ -50,7 +50,7 @@ Rails.application.routes.draw do
 
       get 'item_search', to: 'items#index'
       get 'weapons', to: 'items#weapon_index'
-      post 'character_items', to: 'items#create'
+      # post 'character_items', to: 'items#create'
       get 'character_magic_items/:id', to: 'items#cmi_show'
       delete 'character_magic_items/:id', to: 'items#magic_destroy'
       patch 'character_magic_items/:id', to: 'items#usage_update'
@@ -94,6 +94,12 @@ Rails.application.routes.draw do
       patch 'campaigns/:id', to: 'campaigns#date_change'
       post 'campaigns/new', to: 'campaigns#create'
       get 'calendars/:id', to: 'campaigns#calendar_data'
+
+      post 'character_weapons/', to: 'items#weapon_create'
+      post 'character_armors/', to: 'items#armor_create'
+      post 'character_items/', to: 'items#item_create'
+      post 'character_poisons/', to: 'items#poison_create'
+      post 'character_magic_items/', to: 'items#magic_item_create'
 
     end
   end

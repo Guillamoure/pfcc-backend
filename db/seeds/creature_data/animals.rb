@@ -27,12 +27,15 @@ Animals breathe, eat, and sleep.", hit_die: 8, fortitude: 0.5, reflex: 0.5, will
 bite = Weapon.find_or_create_by!(name: "Bite", damage_dice: 6, num_of_dice: 1, category: "Light", attack_type: "Primary", weapon_type: "Melee")
 slam = Weapon.find_or_create_by!(name: "Slam", damage_dice: 4, num_of_dice: 1, category: "Light", attack_type: "Primary", weapon_type: "Melee", damage_type: "Bludgeoning")
 talons = Weapon.find_or_create_by!(name: "Talons", damage_dice: 4, num_of_dice: 1, category: "Light", attack_type: "Primary", weapon_type: "Melee", damage_type: "Slashing")
+hoof = Weapon.find_or_create_by!(name: "Hoof", damage_dice: 4, num_of_dice: 1, category: "Light", attack_type: "Secondary", weapon_type: "Melee", damage_type: "Bludgeoning")
 
 # ///////////////////////////////////////
 # <-*-*-----*-*-*- Feats -*-*-*-----*-*->
 # ///////////////////////////////////////
 
 weapon_finesse = Feat.find_by!(name: "Weapon Finesse", description: "You are trained in using your agility in melee combat, as opposed to brute strength.", blurb: "Use Dex instead of Str on attack rolls with light weapons", benefit: "With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.", special: "Natural weapons are considered light weapons.")
+endurance = Feat.find_by!(name: "Endurance")
+run_feat = Feat.find_by!(name: "Run")
 
 # ////////////////////////////////////////////
 # <-*-*-----*-*-*- References -*-*-*-----*-*->
@@ -88,6 +91,22 @@ Eagles generally weigh between 8 and 15 pounds, with a wingspan of up to 7 feet,
   CreatureWeapon.create!(creature_id: eagle.id, weapon_id: bite.id)
   SummonedCreatureListCreature.create!(summoned_creature_list_id: summon_monster_list.id, creature_id: eagle.id, step: 1)
 
+poisonous_frog = Creature.create!(creature_type_id: animal_type.id, name: "Poisonous Frog", hit_dice: 1, challenge_rating: 0.5, alignment: "neutral", size: "Tiny", strength: 2, dexterity: 12, constitution: 11, intelligence: 1, wisdom: 9, charisma: 10, blurb: "This small frog is bright green and red, with electric-blue stripes on its hind legs.", description: "Poisonous frogs are a bright green color, with additional bright yellow, red, or blue markings. They are just over a foot long and weigh 10 pounds. The poison of poisonous frogs is often gathered by primitive tribes and used to coat darts and arrows for hunting.", natural_armor: 0, environment: "warm marshes and aquatic", organization: "solitary, pair, or army (3-12)", treasure: "none")
+  CreatureFeat.create!(creature_id: poisonous_frog.id, feat_id: weapon_finesse.id)
+  CreatureWeapon.create!(creature_id: poisonous_frog.id, weapon_id: bite.id)
+  SummonedCreatureListCreature.create!(summoned_creature_list_id: summon_monster_list.id, creature_id: poisonous_frog.id, step: 1)
+
+pony = Creature.create!(creature_type_id: animal_type.id, name: "Pony", hit_dice: 2, challenge_rating: 0.5, alignment: "neutral", size: "Medium", strength: 13, dexterity: 13, constitution: 14, intelligence: 2, wisdom: 11, charisma: 4, blurb: "This squat equine plods forward with large, curious eyes. As it nears, it extends its muzzle, clearly expecting a treat.", description: "Ponies are smaller breeds of horses better suited to halflings, gnomes, and dwarves, but they also make fond pets for humans as well. They stand 3 to 4 feet tall and weigh about 600 pounds.
+
+A light load for a pony is up to 100 pounds, a medium load is 101–200 pounds, and a heavy load is 201–300 pounds. A pony can drag 1,500 pounds.
+
+The statistics presented above are for a typical pony. Tougher ponies with the advanced simple template exist, but are relatively uncommon and, unlike horses, these creatures are not generally called “heavy ponies.”
+
+Like horses, ponies can be trained for combat with the Handle Animal skill, and such mounts often serve halflings, gnomes, and other small races as steeds in combat.", natural_armor: 0, environment: "temperate plains", organization: "solitary, pair, or herd (3-30)", treasure: "none")
+  CreatureFeat.create!(creature_id: pony.id, feat_id: endurance.id)
+  CreatureFeat.create!(creature_id: pony.id, feat_id: run_feat.id)
+  CreatureWeapon.create!(creature_id: pony.id, weapon_id: hoof.id, overwrite_damage_dice: 3, num_of_attacks: 2)
+  SummonedCreatureListCreature.create!(summoned_creature_list_id: summon_monster_list.id, creature_id: pony.id, step: 1)
 
 
 puts "Animals Created!"

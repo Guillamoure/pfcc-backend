@@ -7163,6 +7163,10 @@ The any-tool counts as a set of masterwork artisan’s tools for most Craft or P
 hand_of_the_mage = MagicItem.create!(name: "Hand of the Mage", description: "This mummified elf hand hangs by a golden chain around a character’s neck (taking up space as a magic necklace would).
 
 It allows the wearer to utilize the spell mage hand at will.", slot: "neck", aura: "faint transmutation", caster_level: 2, price_in_gp: 900, weight: 2, activatable: false, expendable: false, group: "Wondrous Item")
+
+sleeves_of_many_garmants = MagicItem.create!(name: "Sleeves of Many Garments", description: "These translucent cloth tubes easily fit over their wearer’s arms.
+
+The wearer of these sleeves can, when she slips them on, choose to transform the appearance of her current garments into any other non-magical set of clothing. These new clothes fit her perfectly and are always clean and mended unless she specifically designates otherwise. When she removes the sleeves, her clothes revert to their original form.", slot: "wrists", aura: "faint illusion", caster_level: 1, price_in_gp: 200, weight: 1, group: "Wondrous Item")
 #
 # potion_of_cure_moderate_wounds = MagicItem.create!(name: 'Potion of Cure Moderate Wounds', description: 'The imbiber of this potion is affected by the cure moderate wounds spell.', slot: 'potion', aura: 'faint conjuration', caster_level: 3, price_in_gp: 300, weight: 0, activatable: true, expendable: true, group: 'Potion')
 #   potion_of_cure_moderate_wounds_feature1 = Feature.create!(name: nil, action_id: standard.id)

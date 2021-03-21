@@ -364,17 +364,37 @@ carnivalist = KlassArchetype.create!(name: "Carnivalist", klass_id: unchained_ro
 
   print "Carnivalist Archetype Created \r!"
 
-  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
-  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
-  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+knife_master = KlassArchetype.create!(klass_id: unchained_rogue.id, name: "Knife Master", source_id: ultimate_combat.id, description: "The knife master is a trained killer who specializes in close-up combat and the wave and weave of knife fighting. In her hands, daggers and other similar light blades become truly deadly instruments.
 
-  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
-  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
-  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+Rogue Talents: The following rogue talents complement the knife master archetype: befuddling strike, combat trick, offensive defense, surprise attack, underhanded, and weapon training.
 
-  # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
-  #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")
-  #   ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: KLASSFEATURE.id, klass_archetype_feature_id: IDENTIFIER.id, replace_or_alter: "alter")
+Advanced Talents: The following advanced rogue talents complement the knife master archetype: another day, confounding blades, deadly sneak, entanglement of blades, and unwitting ally.")
+
+  knife_master1 = KlassArchetypeFeature.create!(name: "Hidden Blade", klass_archetype_id: knife_master.id, description: "A knife master adds 1/2 her level on Sleight of Hand checks made to conceal a light blade.
+
+  This ability replaces trapfinding.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: knife_master1.id, level: 1, table_description: "Hidden Blade")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue3.id, klass_archetype_feature_id: knife_master1.id, replace_or_alter: "replace")
+
+  knife_master2 = KlassArchetypeFeature.create!(name: "Sneak Stab", klass_archetype_id: knife_master.id, description: "A knife master focuses her ability to deal sneak attack damage with daggers and similar weapons to such a degree that she can deal more sneak attack damage with those weapons at the expense of sneak attacks with other weapons. When she makes a sneak attack with a dagger, kerambit, kukri, punching daggers, starknife, or swordbreaker dagger, she uses d8s to roll sneak attack damage instead of d6s. For sneak attacks with all other weapons, she uses d4s instead of d6s.
+
+  This ability is identical in all other ways to sneak attack, and supplements that ability.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: knife_master2.id, level: 1, table_description: "Sneak Stab")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue2.id, klass_archetype_feature_id: knife_master2.id, replace_or_alter: "alter")
+
+  knife_master3 = KlassArchetypeFeature.create!(name: "Blade Sense", klass_archetype_id: knife_master.id, description: "At 3rd level, a knife master is so skilled in combat involving light blades that she gains a +1 dodge bonus to AC against attacks made against her with light blades. This bonus increases by +1 for every three levels, to a maximum of +6 at 18th level.
+
+  This ability replaces danger sense.")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: knife_master3.id, level: 3, table_description: "Blade Sense +1")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: knife_master3.id, level: 6, table_description: "Blade Sense +2")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: knife_master3.id, level: 9, table_description: "Blade Sense +3")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: knife_master3.id, level: 12, table_description: "Blade Sense +4")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: knife_master3.id, level: 15, table_description: "Blade Sense +5")
+    KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: knife_master3.id, level: 18, table_description: "Blade Sense +6")
+    ArchetypeFeatureReplaceKlassFeature.create!(klass_feature_id: unchained_rogue7.id, klass_archetype_feature_id: knife_master3.id, replace_or_alter: "replace")
+
+  print "Knife Master Archetype Created \r!"
+
 
   # IDENTIFIER = KlassArchetypeFeature.create!(name: "", klass_archetype_id: ARCHETYPE.id, description: "")
   #   KlassArchetypeFeatureLevel.create!(klass_archetype_feature_id: IDENTIFIER.id, level: 1, table_description: "")

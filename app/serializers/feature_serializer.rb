@@ -13,7 +13,11 @@ class FeatureSerializer < ActiveModel::Serializer
   end
 
   def animal
-    a = self.object.animal
+    begin
+      a = self.object.object.animal
+    rescue
+      a = self.object.animal
+    end
     if a
       list = nil
       if a.summoned_creature_list_id
