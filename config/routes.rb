@@ -50,7 +50,7 @@ Rails.application.routes.draw do
 
       get 'item_search', to: 'items#index'
       get 'weapons', to: 'items#weapon_index'
-      # post 'character_items', to: 'items#create'
+      # post 'character_items_', to: 'items#create'
       get 'character_magic_items/:id', to: 'items#cmi_show'
       delete 'character_magic_items/:id', to: 'items#magic_destroy'
       patch 'character_magic_items/:id', to: 'items#usage_update'

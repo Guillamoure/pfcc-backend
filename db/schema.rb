@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_043612) do
+ActiveRecord::Schema.define(version: 2021_03_22_005332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -674,6 +674,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_043612) do
     t.integer "applicable_level"
     t.string "statistic_details"
     t.boolean "bonus_multiplier_based_on_feature_level", default: false
+    t.integer "bonus_multiplier_increase_based_on_count"
   end
 
   create_table "feature_stat_bonus_conditions", force: :cascade do |t|

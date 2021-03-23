@@ -145,7 +145,7 @@ fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id
 
   print "Fire-Roasted Tomatoes created! \r"
 
-iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexterity: 16, constitution: 16, intelligence: 13, wisdom: 15, charisma: 12, race_id: Race.find_by!(name: "Kitsune").id, skillset_id: ravnica_custom.id, alignment: "Neutral", campaign_id: ravnica_campaign.id, description: "", deity: "Pharasma", pp: 235, gp: 216)
+iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexterity: 16, constitution: 16, intelligence: 13, wisdom: 15, charisma: 12, race_id: Race.find_by!(name: "Kitsune").id, skillset_id: ravnica_custom.id, alignment: "Neutral", campaign_id: ravnica_campaign.id, description: "", deity: "Pharasma", pp: 60, gp: 66)
 
   CharacterAlternateRacialTrait.create!(character_id: iyugi.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Fast Shifter").id)
   CharacterKlassArchetype.create!(character_id: iyugi.id, klass_archetype_id: KlassArchetype.find_by!(name: "Scout").id)
@@ -175,6 +175,8 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
   CharacterWeapon.create!(character_id: iyugi.id, weapon_id: Weapon.find_by!(name: "Gladius").id, masterwork: true, discovered: true, known: true, name: "Boros Bright Gladius", description: "stocky, ornately carved shortsword with gold and red motifs. Hilt is carved to look like sunbeans. Has an inscription along the fuller.")
   CharacterArmor.create!(character_id: iyugi.id, armor_id: Armor.find_by!(name: "Darkleaf Cloth Studded Leather").id, masterwork: true, discovered: true, known: true, equipped: true)
 
+  CharacterMagicItem.create!(character_id: iyugi.id, magic_item_id: MagicItem.find_by!(name: "Sleeves of Many Garments").id, discovered: true, known: true)
+
   CharacterItem.create!(character_id: iyugi.id, item_id: Item.find_by!(name: "Peasant's Outfit").id, discovered: true)
   CharacterItem.create!(character_id: iyugi.id, item_id: Item.find_by!(name: "Masterwork Thieves' Tools").id, discovered: true)
   CharacterItem.create!(character_id: iyugi.id, item_id: Item.find_by!(name: "Silk Rope").id, discovered: true)
@@ -202,7 +204,7 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
 
   print "Iyugi created! \r"
 
-ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence", pp: 200, gp: 126)
+ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence", pp: 177, gp: 6)
 
   CharacterAlternateRacialTrait.create!(character_id: ildre.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Innovative").id)
   CharacterKlassArchetype.create!(character_id: ildre.id, klass_archetype_id: KlassArchetype.find_by!(name: "Occultist").id)
@@ -224,7 +226,7 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 3)
 
   CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Quarterstaff").id, masterwork: true, discovered: true, known: true, name: "")
-  CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Light Crossbow").id, masterwork: true, discovered: true, known: true, name: "")
+  CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Light Crossbow").id, masterwork: true, discovered: true, known: true, name: "Cerulean Hope", description: "hopefully cerulean")
   # CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Light Crossbow").id, masterwork: true, discovered: true, known: true, name: "")
   #  deduct cost of mwk crossbow 335
 
@@ -336,7 +338,7 @@ natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14
     print "Natesse created! \r"
 
 
-dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexterity: 17, constitution: 15, intelligence: 9, wisdom: 16, charisma: 12, race_id: Race.find_by!(name: "Grippli").id, skillset_id: ravnica_custom.id, alignment: "Neutral Evil", campaign_id: ravnica_campaign.id, height: "2'", weight: "30 lbs", age: 14, pp: 200, gp: 43)
+dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexterity: 17, constitution: 15, intelligence: 9, wisdom: 16, charisma: 12, race_id: Race.find_by!(name: "Grippli").id, skillset_id: ravnica_custom.id, alignment: "Neutral Evil", campaign_id: ravnica_campaign.id, height: "2'", weight: "30 lbs", age: 14, pp: 165, gp: 40)
 
   CharacterAlternateRacialTrait.create!(character_id: dzeyn.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Toxic Skin").id)
 
@@ -360,6 +362,8 @@ dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexte
   CharacterWeapon.create!(character_id: dzeyn.id, weapon_id: Weapon.find_by!(name: "Kunai").id, masterwork: false, discovered: true, known: true, name: "")
   CharacterWeapon.create!(character_id: dzeyn.id, weapon_id: Weapon.find_by!(name: "Kunai").id, masterwork: false, discovered: true, known: true, name: "")
   CharacterWeapon.create!(character_id: dzeyn.id, weapon_id: Weapon.find_by!(name: "Spring Blade").id, masterwork: true, discovered: true, known: true, name: "")
+  CharacterWeapon.create!(character_id: dzeyn.id, weapon_id: Weapon.find_by!(name: "Light Crossbow").id, masterwork: true, discovered: true, known: true, name: "The Nightstalker", description: "it shoots things")
+  CharacterWeapon.create!(character_id: dzeyn.id, weapon_id: Weapon.find_by!(name: "Crossbow Bolt").id, masterwork: false, discovered: true, known: true, name: nil, ammunition_amount: 30)
   CharacterArmor.create!(character_id: dzeyn.id, armor_id: Armor.find_by!(name: "Padded").id, masterwork: true, discovered: true, known: true, equipped: true)
 
   CharacterItem.create!(character_id: dzeyn.id, item_id: Item.find_by!(name: "Ivory Domino").id, discovered: true)
@@ -408,11 +412,14 @@ dink_weatherbyrst = Character.create!(name: "Dink Weatherbyrst", user_id: colehi
 
   CharacterItem.create!(character_id: dink_weatherbyrst.id, item_id: Item.find_by!(name: "Monk's Outfit").id, discovered: true)
   CharacterItem.create!(character_id: dink_weatherbyrst.id, item_id: Item.find_by!(name: "Golgari Insignia Charm").id, discovered: true)
+  # silver god necklace Whatever
+  # detail for improved monk's outfit
 
 
   # before reset DB,
   # check character pp, gp, sp, cp, lethal_damage, non_lethal_damage, temp_hp
   # PreparedSpell, CastSpell
+  # CharacterWeapon, CharacterArmor, CharacterMagicItem, CharacterItem, CharacterPoison
 
 
 

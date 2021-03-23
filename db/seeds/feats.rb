@@ -2,6 +2,22 @@ Feat.destroy_all
 FeatType.destroy_all
 
 # /////////////////////////////////////////
+# <-*-*-----*-*-*- Actions-*-*-*-----*-*->
+# /////////////////////////////////////////
+
+standard = Action.find_or_create_by!(name: "Standard Action")
+full_round = Action.find_or_create_by!(name: "Full-Round Action")
+move = Action.find_or_create_by!(name: "Move Action")
+swift = Action.find_or_create_by!(name: "Swift Action")
+free = Action.find_or_create_by!(name: "Free Action")
+immediate = Action.find_or_create_by!(name: "Immediate Action")
+ten = Action.find_or_create_by!(name: "Ten Minutes")
+one_minute = Action.find_or_create_by!(name: "One Minute")
+three_rounds = Action.find_or_create_by!(name: "Three Rounds")
+varies = Action.find_or_create_by!(name: "See Text")
+thirty_minutes = Action.find_or_create_by!(name: "Thirty Minutes")
+
+# /////////////////////////////////////////
 # <-*-*-----*-*-*- Sources-*-*-*-----*-*->
 # /////////////////////////////////////////
 
@@ -77,6 +93,11 @@ toughness = Feat.create!(name: "Toughness", description: "You gain +3 hit points
 
 deadly_aim = Feat.create!(name: "Deadly Aim", description: "You can choose to take a –1 penalty on all ranged attack rolls to gain a +2 bonus on all ranged damage rolls. When your base attack bonus reaches +4, and every +4 thereafter, the penalty increases by –1 and the bonus to damage increases by +2. You must choose to use this feat before making an attack roll and its effects last until your next turn. The bonus damage does not apply to touch attacks or effects that do not deal hit point damage.", blurb: "You can make exceptionally deadly ranged attacks by pinpointing a foe’s weak spot, at the expense of making the attack less likely to succeed.", prerequisite: "Dex 13, base attack bonus +1.", source_id: core_rulebook.id)
   FeatFeatType.create!(feat_id: deadly_aim.id, feat_type_id: combat_feat.id)
+  deadly_aim_feature = Feature.create!(action_id: free.id)
+    FeatFeature.create!(feat_id: deadly_aim.id, feature_id: deadly_aim_feature.id)
+    FeatureUsage.create!(feature_id: deadly_aim_feature.id, limit_frequency: "Round")
+    FeatureStatBonus.create!(feature_id: deadly_aim_feature.id, statistic: "Attack", specific_statistic: "range", bonus: -1, duration: "temporary", bonus_type: "untyped", bonus_multiplier: "base attack bonus", bonus_multiplier_increase_based_on_count: 4)
+    FeatureStatBonus.create!(feature_id: deadly_aim_feature.id, statistic: "Damage", specific_statistic: "range", bonus: 2, duration: "temporary", bonus_type: "untyped", bonus_multiplier: "base attack bonus", bonus_multiplier_increase_based_on_count: 4)
 
 diehard = Feat.create!(name: "Diehard", benefit: "When your hit point total is below 0, but you are not dead, you automatically stabilize. You do not need to make a Constitution check each round to avoid losing additional hit points. You may choose to act as if you were disabled, rather than dying. You must make this decision as soon as you are reduced to negative hit points (even if it isn’t your turn). If you do not choose to act as if you were disabled, you immediately fall unconscious.
 

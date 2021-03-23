@@ -85,12 +85,16 @@ class Api::V1::ItemsController < ApplicationController
   def create
     @character_item = nil
     id = params[:item][:id]
-    if params[:item][:weapon_type]
+    if params[:item_type] == "weapon"
       @weapon = Weapon.find(id)
-    elsif params[:item][:max_dex_bonus]
+    elsif params[:item_type] == "armor"
       @armor = Armor.find(id)
-    else
+    elsif params [:item_type] == "magic_item"
       @magic_item = MagicItem.find(id)
+    elsif params [:item_type] == "item"
+      @item = Item.find(id)
+    elsif params [:item_type] == "poison"
+      @poison = Poison.find(id)
     end
 
     if @weapon
@@ -99,6 +103,14 @@ class Api::V1::ItemsController < ApplicationController
 
     if @armor
       @character_item = CharacterArmor.create!(character_id: params[:character_id], armor_id: @armor.id, known: true, description: params[:desc], name: '')
+    end
+
+    if @item
+      @character_item = CharacterItem.create!(character_id: params[:character_id], item_id: @item.id, discovered: true)
+    end
+
+    if @poison
+      @character_item = CharacterItem.create!(character_id: params[:character_id], poison_id: @poison.id)
     end
 
     if @magic_item
@@ -157,13 +169,13 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def poison_create
-    @character_poison = CharacterPoison.create!(character_id: params[:character_id], poison_id: params[:poison_id], discovered: params[:discovered])
+    @character_poison = CharacterPoison.create!(character_id: params[:character_id], poison_id: params[:item_id])
 
-    render json: @character_poison, status: 201
+    render json: @character_poison.poison, status: 201
   end
 
   def magic_item_create
-    @character_magic_item = CharacterMagicItem.create!(character_id: params[:character_id], magic_item_id: params[:magic_item_id], discovered: params[:discovered], known: params[:known])
+    @character_magic_item = CharacterMagicItem.create!(character_id: params[:character_id], magic_item_id: params[:item_id], discovered: params[:discovered], known: params[:known], false_desc: params[:false_desc])
 
     render json: @character_magic_item, status: 201
   end
