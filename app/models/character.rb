@@ -37,6 +37,9 @@ class Character < ApplicationRecord
   has_many :items, through: :character_items
   has_many :character_poisons, dependent: :destroy
   has_many :poisons, through: :character_poisons
+  has_many :character_potions, dependent: :destroy
+  has_many :character_scrolls, dependent: :destroy
+  has_many :character_wands, dependent: :destroy
 
   has_many :character_weapons, dependent: :destroy
   has_many :weapons, through: :character_weapons

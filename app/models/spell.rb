@@ -21,4 +21,35 @@ class Spell < ApplicationRecord
   # has_many :klass_specialization_feature_features, through: :features
   # has_many :klass_specialization_features, through: :klass_specialization_features
   # has_many :klass_specializations, through: :klass_specialization_features
+
+  def Spell.able_to_be_potions
+    Spell.all.select do |spell|
+      valid = true
+
+      spell.spell_list_spells.each do |sls|
+        if sls.spell_level > 3
+          valid = false
+        end
+      end
+      if spell.spell_list_spells.length == 0
+        valid = false
+      end
+
+      if !["Standard Action", "Full-Round Action", "Move Action", "Swift Action", "Free Action", "Immediate Action", "Three Rounds"].include?(spell.action.name)
+        valid = false
+      end
+
+      if spell.spell_range.name == "Personal"
+        valid = false
+      end
+
+      if !(spell.target.include?("creature") || spell.target.include?("object")) || spell.target.include?("summoned creature")
+        valid = false
+      end
+
+
+      valid
+    end
+  end
+
 end

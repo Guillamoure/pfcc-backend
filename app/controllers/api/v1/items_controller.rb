@@ -180,6 +180,24 @@ class Api::V1::ItemsController < ApplicationController
     render json: @character_magic_item, status: 201
   end
 
+  def potion_create
+    @character_potion = CharacterPotion.create!(character_id: params[:character_id], spell_id: params[:spell_id], discovered: params[:discovered], known: params[:known], caster_level: params[:caster_level], potion_or_oil: params[:potion_or_oil])
+
+    render json: @character_potion, status: 201
+  end
+
+  def scroll_create
+    @character_scroll = CharacterScroll.create!(character_id: params[:character_id], spell_id: params[:spell_id], discovered: params[:discovered], known: params[:known], spell_level: params[:spell_level], scroll_type: params[:scroll_type])
+
+    render json: @character_scroll, status: 201
+  end
+
+  def wand_create
+    @character_wand = CharacterWand.create!(character_id: params[:character_id], spell_id: params[:spell_id], discovered: params[:discovered], known: params[:known], caster_level: params[:caster_level], charges: params[:charges], name: params[:name], description: params[:description])
+
+    render json: @character_wand, status: 201
+  end
+
   def mi_discovered
     @character_item = CharacterMagicItem.find(params[:id])
     @character_item.update(discovered: true)
@@ -196,6 +214,24 @@ class Api::V1::ItemsController < ApplicationController
     @character_item = CharacterArmor.find(params[:id])
     @character_item.update(discovered: true)
     render json: { message: "Updated CharacterArmor with id of #{@character_item.id} by changing the discovered attribute to true"}, status: 200
+  end
+
+  def p_discovered
+    @character_item = CharacterPotion.find(params[:id])
+    @character_item.update(discovered: true)
+    render json: { message: "Updated CharacterPotion with id of #{@character_item.id} by changing the discovered attribute to true" }, status: 202
+  end
+
+  def s_discovered
+    @character_item = CharacterScroll.find(params[:id])
+    @character_item.update(discovered: true)
+    render json: { message: "Updated CharacterScroll with id of #{@character_item.id} by changing the discovered attribute to true" }, status: 202
+  end
+
+  def wand_discovered
+    @character_item = CharacterWand.find(params[:id])
+    @character_item.update(discovered: true)
+    render json: { message: "Updated CharacterWand with id of #{@character_item.id} by changing the discovered attribute to true" }, status: 202
   end
 
   def mi_equip
@@ -276,7 +312,15 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def known
-    @character_item = CharacterMagicItem.find(params[:id])
+    if params[:item_type] == "magic_item"
+      @character_item = CharacterMagicItem.find(params[:id])
+    elsif params[:item_type] == "potion"
+      @character_item = CharacterPotion.find(params[:id])
+    elsif params[:item_type] == "scroll"
+      @character_item = CharacterScroll.find(params[:id])
+    elsif params[:item_type] == "wand"
+      @character_item = CharacterWand.find(params[:id])
+    end
     if @character_item
       @character_item.update(known: true)
 

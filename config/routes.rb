@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :skills
       resources :skillsets
       resources :spells
+      get '/potion_spells', to: 'spells#potion_spells'
       resources :known_spells
       resources :prepared_spells
       resources :cast_spells
@@ -100,6 +101,14 @@ Rails.application.routes.draw do
       post 'character_items/', to: 'items#item_create'
       post 'character_poisons/', to: 'items#poison_create'
       post 'character_magic_items/', to: 'items#magic_item_create'
+      post 'character_potions/', to: 'items#potion_create'
+      post 'character_scrolls/', to: 'items#scroll_create'
+      post 'character_wands/', to: 'items#wand_create'
+
+      patch 'character_potions_discovered/:id', to: 'items#p_discovered'
+      patch 'character_scrolls_discovered/:id', to: 'items#s_discovered'
+      patch 'character_wands_discovered/:id', to: 'items#wand_discovered'
+
 
     end
   end

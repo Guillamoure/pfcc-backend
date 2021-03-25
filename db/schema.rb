@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_005332) do
+ActiveRecord::Schema.define(version: 2021_03_23_210115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -255,12 +255,41 @@ ActiveRecord::Schema.define(version: 2021_03_22_005332) do
     t.integer "poison_id"
   end
 
+  create_table "character_potions", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "spell_id"
+    t.integer "caster_level"
+    t.string "potion_or_oil"
+    t.boolean "known", default: false
+    t.boolean "discovered", default: false
+  end
+
+  create_table "character_scrolls", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "spell_id"
+    t.string "scroll_type"
+    t.integer "spell_level"
+    t.boolean "known", default: false
+    t.boolean "discovered", default: false
+  end
+
   create_table "character_skillset_skills", force: :cascade do |t|
     t.integer "character_id"
     t.integer "skillset_id"
     t.integer "skill_id"
     t.integer "ranks"
     t.string "detail"
+  end
+
+  create_table "character_wands", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "spell_id"
+    t.integer "charges"
+    t.integer "caster_level"
+    t.string "name"
+    t.string "description"
+    t.boolean "known"
+    t.boolean "discovered"
   end
 
   create_table "character_weapons", force: :cascade do |t|
