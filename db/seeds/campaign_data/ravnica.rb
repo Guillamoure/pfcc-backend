@@ -108,7 +108,7 @@ fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id
   CharacterAlternateRacialTrait.create!(character_id: fire_roasted_tomatoes.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Swamp Leshy").id)
   CharacterKlassArchetype.create!(character_id: fire_roasted_tomatoes.id, klass_archetype_id: KlassArchetype.find_by!(name: "Carnivalist").id)
   CharacterKlassArchetype.create!(character_id: fire_roasted_tomatoes.id, klass_archetype_id: KlassArchetype.find_by!(name: "Snoop").id)
-  CharacterCreature.create!(character_id: fire_roasted_tomatoes.id, creature_id: Creature.find_by!(name: "Chicken").id, relationship: "familiar", feature_id: KlassArchetypeFeature.find_by!(name: "Familiar", klass_archetype_id: KlassArchetype.find_by!(name: "Carnivalist").id).features[0].id)
+  CharacterCreature.create!(character_id: fire_roasted_tomatoes.id, creature_id: Creature.find_by!(name: "Chicken").id, relationship: "familiar", feature_id: KlassArchetypeFeature.find_by!(name: "Familiar", klass_archetype_id: KlassArchetype.find_by!(name: "Carnivalist").id).features[0].id, name: "Chicken Pot Pie")
 
   CharacterKlass.create!(character_id: fire_roasted_tomatoes.id, klass_id: Klass.find_by!(name: "Kineticist").id, hp: 8, feat_id: Feat.find_by!(name: "Skill Focus").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
     CharacterKlassSpecialization.create!(character_id: fire_roasted_tomatoes.id, klass_feature_klass_specialization_id: KlassSpecialization.find_by!(name: "Fire").id)
@@ -227,12 +227,11 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
 
   CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Quarterstaff").id, masterwork: true, discovered: true, known: true, name: "")
   CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Light Crossbow").id, masterwork: true, discovered: true, known: true, name: "Cerulean Hope", description: "hopefully cerulean")
-  # CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Light Crossbow").id, masterwork: true, discovered: true, known: true, name: "")
-  #  deduct cost of mwk crossbow 335
 
   CharacterItem.create!(character_id: ildre.id, item_id: Item.find_by!(name: "Blacksmith Anvil").id, discovered: true)
   CharacterItem.create!(character_id: ildre.id, item_id: Item.find_by!(name: "Alchemist's Lab").id, discovered: true)
   CharacterItem.create!(character_id: ildre.id, item_id: Item.find_by!(name: "Izzet Insignia Charm").id, discovered: true)
+  CharacterWand.create!(character_id: ildre.id, spell_id: Spell.find_by!(name: "Sleep").id, discovered: true, known: true, charges: 4, caster_level: 1, description: "Three gnarled roots twisted into a form, with 2 leafy sprigs flowering from the tip")
 
 
   arcanist_spellcasting = FeatureSpellcasting.find_by!(feature_id: KlassFeature.find_by!(klass_id: Klass.find_by!(name: "Arcanist").id, name: "Spells").features[0].id)

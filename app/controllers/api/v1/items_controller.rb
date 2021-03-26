@@ -98,11 +98,11 @@ class Api::V1::ItemsController < ApplicationController
     end
 
     if @weapon
-      @character_item = CharacterWeapon.create!(character_id: params[:character_id], weapon_id: @weapon.id, known: true, description: params[:desc], name: '')
+      @character_item = CharacterWeapon.create!(character_id: params[:character_id], weapon_id: @weapon.id, known: true, description: params[:desc], name: params[:name], description: params[:description], ammunition_amount: params[:ammunition_amount], discovered: true)
     end
 
     if @armor
-      @character_item = CharacterArmor.create!(character_id: params[:character_id], armor_id: @armor.id, known: true, description: params[:desc], name: '')
+      @character_item = CharacterArmor.create!(character_id: params[:character_id], armor_id: @armor.id, known: true, description: params[:desc], name: '', discovered: true)
     end
 
     if @item
@@ -110,7 +110,7 @@ class Api::V1::ItemsController < ApplicationController
     end
 
     if @poison
-      @character_item = CharacterItem.create!(character_id: params[:character_id], poison_id: @poison.id)
+      @character_item = CharacterPoison.create!(character_id: params[:character_id], poison_id: @poison.id)
     end
 
     if @magic_item
@@ -151,7 +151,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def weapon_create
-    @character_weapon = CharacterWeapon.create!(character_id: params[:character_id], weapon_id: params[:item_id], known: params[:known], description: params[:description], name: params[:name], discovered: params[:discovered])
+    @character_weapon = CharacterWeapon.create!(character_id: params[:character_id], weapon_id: params[:item_id], known: params[:known], description: params[:description], name: params[:name], discovered: params[:discovered], ammunition_amount: params[:ammunition_amount])
 
     render json: @character_weapon, status: 201
   end

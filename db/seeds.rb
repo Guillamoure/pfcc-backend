@@ -3988,7 +3988,7 @@ You can fire a repeating crossbow with one hand or fire a repeating crossbow in 
   WeaponHand.create!(weapon_id: repeating_heavy_crossbow.id, hands: "One")
   WeaponHand.create!(weapon_id: repeating_heavy_crossbow.id, hands: "Two")
 
-repeating_light_crossbow = Weapon.create!(name: 'Repeating Heavy Crossbow', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 250, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 19, range: 80, thrown: false, weight: 6, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'This weapon functions identically to a repeating light crossbow, except that its damage, critical, and range values are equivalent to those of a light crossbow instead of a heavy crossbow. Its significantly lighter construction and pull make it both more portable and more useful to those who rely on stealth or speed.
+repeating_light_crossbow = Weapon.create!(name: 'Repeating Light Crossbow', category: 'Ranged', proficiency: 'Exotic', weapon_type: 'Range', price_in_gp: 250, num_of_dice: 1, damage_dice: 8, critical: 2, critical_range: 19, range: 80, thrown: false, weight: 6, damage_type: 'Piercing', source_id: core_rulebook.id, description: 'This weapon functions identically to a repeating light crossbow, except that its damage, critical, and range values are equivalent to those of a light crossbow instead of a heavy crossbow. Its significantly lighter construction and pull make it both more portable and more useful to those who rely on stealth or speed.
 
 As long as it holds bolts, you can reload it by pulling the reloading lever (a free action). Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.
 
@@ -7167,6 +7167,20 @@ It allows the wearer to utilize the spell mage hand at will.", slot: "neck", aur
 sleeves_of_many_garmants = MagicItem.create!(name: "Sleeves of Many Garments", description: "These translucent cloth tubes easily fit over their wearer’s arms.
 
 The wearer of these sleeves can, when she slips them on, choose to transform the appearance of her current garments into any other non-magical set of clothing. These new clothes fit her perfectly and are always clean and mended unless she specifically designates otherwise. When she removes the sleeves, her clothes revert to their original form.", slot: "wrists", aura: "faint illusion", caster_level: 1, price_in_gp: 200, weight: 1, group: "Wondrous Item")
+
+martyrs_tear = MagicItem.create!(name: "Martyr's Tear", description: "This imperfect, rose-tinted gemstone resembles a teardrop or a broken heart depending on its orientation. Its pale facets are typically marred by a single crack or chip near the gem’s middle.
+
+Once per day, the bearer may spend a standard action to transfer 3d6 hit points from himself into the gem. This deepens the gem’s color, with a stronger color indicating more life energy stored in it. The gem can store a maximum of 18 hit points. If any hit points are stored in the gem, the bearer may touch it himself or another creature as a standard action, transferring all the stored life energy from the gem to the target creature, healing it a number of hit points equal to the amount stored in the gem. This returns the gem to its normal color.", slot: "none", aura: "moderate necromancy", caster_level: 6, price_in_gp: 6000, weight: 0, activatable: true, expendable: false, group: "Wondrous Item")
+
+staff_of_blessed_relief = MagicItem.create!(name: "Staff of Blessed Relief", description: "This simple wooden staff is given to young clergy when they first set out into the world to spread the charity of their faith. The staff allows use of the following spells:
+
+Create water (1 charge)
+Stabilize (1 charge)
+Bless (2 charges)", slot: "none", aura: "faint conjuration", caster_level: 8, price_in_gp: 7200, weight: 5, activatable: false, expendable: false, group: "Staff")
+
+headband_of_vast_intelligence_2 = MagicItem.create!(name: "Headband of Vast Intelligence +2", description: "This intricate gold headband is decorated with several small blue and deep purple gemstones.
+
+The headband grants the wearer an enhancement bonus to Intelligence of +2, +4, or +6. Treat this as a temporary ability bonus for the first 24 hours the headband is worn. A headband of vast intelligence has one skill associated with it per +2 bonus it grants. After being worn for 24 hours, the headband grants a number of skill ranks in those skills equal to the wearer’s total Hit Dice. These ranks do not stack with the ranks a creature already possesses. These skills are chosen when the headband is created. If no skill is listed, the headband is assumed to grant skill ranks in randomly determined Knowledge skills.", slot: "headband", aura: "moderate transmutation", caster_level: 8, price_in_gp: 4000, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
 #
 # potion_of_cure_moderate_wounds = MagicItem.create!(name: 'Potion of Cure Moderate Wounds', description: 'The imbiber of this potion is affected by the cure moderate wounds spell.', slot: 'potion', aura: 'faint conjuration', caster_level: 3, price_in_gp: 300, weight: 0, activatable: true, expendable: true, group: 'Potion')
 #   potion_of_cure_moderate_wounds_feature1 = Feature.create!(name: nil, action_id: standard.id)
