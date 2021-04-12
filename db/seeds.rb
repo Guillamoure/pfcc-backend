@@ -4500,7 +4500,7 @@ wyvaran = Race.create!(name: "Wyvaran", speed: 30, size: "Medium", img_url: "htt
 
 Many civilized races dismiss wyvarans as fast, dumb, selfish brutes. However, a creature who respects the wyvarans’ rules about their property finds that they make steadfast and loyal allies. Adventuring wyvarans often view their companions as clutchmates, and are willing to take great risks to protect them.")
 
-RaceAbilityScoreModifier.create!(race_id: wyvaran.id, ability_score: "Dexteriy", bonus: 2)
+RaceAbilityScoreModifier.create!(race_id: wyvaran.id, ability_score: "Dexterity", bonus: 2)
 RaceAbilityScoreModifier.create!(race_id: wyvaran.id, ability_score: "Wisdom", bonus: 2)
 RaceAbilityScoreModifier.create!(race_id: wyvaran.id, ability_score: "Intelligence", bonus: -2)
 
@@ -7181,6 +7181,92 @@ Bless (2 charges)", slot: "none", aura: "faint conjuration", caster_level: 8, pr
 headband_of_vast_intelligence_2 = MagicItem.create!(name: "Headband of Vast Intelligence +2", description: "This intricate gold headband is decorated with several small blue and deep purple gemstones.
 
 The headband grants the wearer an enhancement bonus to Intelligence of +2, +4, or +6. Treat this as a temporary ability bonus for the first 24 hours the headband is worn. A headband of vast intelligence has one skill associated with it per +2 bonus it grants. After being worn for 24 hours, the headband grants a number of skill ranks in those skills equal to the wearer’s total Hit Dice. These ranks do not stack with the ranks a creature already possesses. These skills are chosen when the headband is created. If no skill is listed, the headband is assumed to grant skill ranks in randomly determined Knowledge skills.", slot: "headband", aura: "moderate transmutation", caster_level: 8, price_in_gp: 4000, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
+
+headband_of_alluring_charisma_2 = MagicItem.create!(name: "Headband of Alluring Charisma +2", description: "This attractive silver headband is decorated with a number of small red and orange gemstones.
+
+The headband grants the wearer an enhancement bonus to Charisma of +2, +4, or +6. Treat this as a temporary ability bonus for the first 24 hours the headband is worn.", slot: "headband", aura: "moderate transmutation", caster_level: 8, price_in_gp: 4000, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
+
+headband_of_inspired_wisdom_2 = MagicItem.create!(name: "Headband of Inspired Wisdom +2", description: "This simple bronze headband is decorated with an intricate pattern of fine green etchings.
+
+The headband grants the wearer an enhancement bonus to Wisdom of +2, +4, or +6. Treat this as a temporary ability bonus for the first 24 hours the headband is worn.", slot: "headband", aura: "moderate transmutation", caster_level: 8, price_in_gp: 4000, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
+
+cloak_of_resistance_1 = MagicItem.create!(name: "Cloak of Resistance +1", description: "Flecks of silver or steel are often sown amid the fabric of these magical cloaks.
+
+This garment offers magic protection in the form of a +1 to +5 resistance bonus on all saving throws (Fortitude, Reflex, and Will).", slot: "shoulders", aura: "faint abjuration", caster_level: 5, price_in_gp: 1000, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
+
+belt_of_giant_strength_2 = MagicItem.create!(name: "Belt of Giant Strength +2", description: "This belt is a thick leather affair, often decorated with huge metal buckles. The belt grants the wearer an enhancement bonus to Strength of +2, +4, or +6. Treat this as a temporary ability bonus for the first 24 hours the belt is worn.", slot: "belt", aura: "moderate transmutation", caster_level: 8, price_in_gp: 4000, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
+
+belt_of_incredible_dexterity_2 = MagicItem.create!(name: "Belt of Incredible Dexterity +2", description: "This belt has a large silver buckle, usually depicting the image of a tiger.
+
+The belt grants the wearer an enhancement bonus to Dexterity of +2, +4, or +6. Treat this as a temporary ability bonus for the first 24 hours the belt is worn.", slot: "belt", aura: "moderate transmutation", caster_level: 8, price_in_gp: 4000, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
+
+belt_of_mighty_constitution_2 = MagicItem.create!(name: "Belt of Mighty Constitution +2", description: "This belt’s golden buckle depicts a bear’s head. The belt grants the wearer an enhancement bonus to Constitution of +2, +4, or +6. Treat this as a temporary ability bonus for the first 24 hours the belt is worn.", slot: "belt", aura: "moderate transmutation", caster_level: 8, price_in_gp: 4000, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
+
+blinkback_belt = MagicItem.create!(name: "Blinkback Belt", description: "A set of clips is attached to this segmented belt constructed of metallic links.
+
+Up to two one-handed melee weapons or up to four light melee weapons can be hung from the belt in straps or sheaths. When the wearer draws a weapon attached to this belt and throws it before the end of her next turn, the weapon teleports back to its strap or sheath immediately after the attack is resolved.", slot: "belt", aura: "moderate conjuration", caster_level: 7, price_in_gp: 5000, weight: 2, activatable: false, expendable: false, group: "Wondrous Item")
+
+body_wrap_of_mighty_strikes_1 = MagicItem.create!(name: "Body Wrap of Mighty Strikes +1", description: "This long cloth is wrapped around the chest multiple times like a bandage.
+
+Once per round, the wearer may add an enhancement bonus of +1 to +5 on one attack and damage roll for an unarmed strike or natural attack (for one specific attack, not all attacks made with an unarmed strike that round). The wearer may use this item an additional time per round when his BAB reaches +6, +11, and +16.
+
+Choosing to enhance an unarmed strike is not an action and may occur when it is not the wearer’s turn (such as when making an attack of opportunity). The wearer must decide to use the item before the attack roll is made, but does not have to expend all uses at the same time. For example, if the wearer can use the item twice per round, he can use it once on his turn when making an attack and save the second for the possibility of making an attack of opportunity.
+
+Additionally, the bodywrap can grant melee weapon special abilities to a creature’s unarmed attacks, so long as those special abilities to be added apply to unarmed attacks. See Table: Melee Weapon Special Abilities for a list of abilities. Special abilities count as additional bonuses for determining the market value of the item, but do not modify attack or damage bonuses. Any special abilities are set at the time of creation. A bodywrap of mighty strikes cannot have a modified bonus (enhancement bonus plus special ability bonus equivalents) higher than +7. Unlike an amulet of mighty fists, a bodywrap needs to have a +1 enhancement bonus to grant a melee weapon special ability.", slot: "body", aura: "faint evocation", caster_level: 5, price_in_gp: 3000, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
+
+cassock_of_the_clergy = MagicItem.create!(name: "Cassock of the Clergy", description: "The cut and color of this solemn vestment varies from religion to religion, but its properties are the same.
+
+The wearer may command the cassock of the clergy to display the holy symbol of her deity or hide this symbol. At the most basic level, the garment functions as a divine focus. Additionally, the wearer gains a +3 competence bonus on Charisma-based checks to influence creatures that match her alignment or that of her patron deity. Also, the wearer may use bless and sanctuary (DC 11) each once per day, and may prepare one additional orison each day. If the wearer is a spontaneous divine caster, once per day she may spend 1 hour in prayer to gain an orison of her choice as a spell known for the next 24 hours.", slot: "body", aura: "moderate abjuration", caster_level: 1, price_in_gp: 4600, weight: 1, activatable: true, expendable: false, group: "Wondrous Item")
+
+vest_of_surgery = MagicItem.create!(name: "Vest of Surgery", description: "This emerald vest has four prominent and bulging pockets along its front.
+
+The wearer is always treated as if using a healer’s kit when making Heal checks. Once per day, the wearer can make a DC 20 Heal check as if attempting to treat deadly wounds. If the check is successful, it cures 1d4 points of ability damage instead of hit point damage.", slot: "chest", aura: "faint conjuration", caster_level: 5, price_in_gp: 3000, weight: 4, activatable: true, expendable: false, group: "Wondrous Item")
+
+eyes_of_the_eagle = MagicItem.create!(name: "Eyes of the Eagle", description: "These lenses are made of special crystal and fit over the eyes of the wearer.
+
+They grant a +5 competence bonus on Perception checks. Both lenses must be worn to gain the benefit. Wearing only one causes a character to become dizzy and stunned for 1 round.", slot: "eyes", aura: "faint divination", caster_level: 3, price_in_gp: 2500, weight: 0, activatable: false, expendable: false, group: "Wondrous Item")
+
+eyes_of_keen_sight = MagicItem.create!(name: "Eyes of Keen Sight", description: "These clear crystals fit over the wearer’s eyes.
+
+They grant the wearer a +2 competence bonus on Perception checks, and the wearer gains low-light vision. If the wearer has low-light vision already, these lenses double the distance the wearer can see with this vision.", slot: "eyes", aura: "faint transmutation", caster_level: 1, price_in_gp: 6000, weight: 0, activatable: false, expendable: false, group: "Wondrous Item")
+
+treasure_hunters_goggles = MagicItem.create!(name: "Treasure Hunter's Goggles", description: "These sturdy but plain goggles help the wearer locate secret doors and coins and identify treasure.
+
+While wearing these goggles, the wearer can use detect secret doors at will. The goggles do not aid in determining how secret doors are opened.
+
+Once per day on command, the wearer gains the ability to locate object as per the spell, but only to detect 100 or more coins in a small area, such as a backpack, chest, pouch, or sack.
+
+Three times per day, the wearer may use identify.", slot: "eyes", aura: "faint divination", caster_level: 3, price_in_gp: 6400, weight: 0, activatable: true, expendable: false, group: "Wondrous Item")
+
+boots_of_elvenkind = MagicItem.create!(name: "Boots of Elvenkind", description: "These soft boots are partially made out of living leaves and other natural materials.
+
+They enable the wearer to move nimbly about in virtually any surroundings, granting a +5 competence bonus on Acrobatics checks.", slot: "feet", aura: "faint transmutation", caster_level: 5, price_in_gp: 2500, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
+
+slippers_of_spider_climbing = MagicItem.create!(name: "Slippers of Spider Climbing", description: "When worn, a pair of these slippers enables movement on vertical surfaces or even upside down along ceilings, leaving the wearer’s hands free. Her climb speed is 20 feet. Severely slippery surfaces—icy, oiled, or greased surfaces—make these slippers useless. The slippers can be used for 10 minutes per day, split up as the wearer chooses (minimum 1 minute per use).", slot: "feet", aura: "faint transmutation", caster_level: 4, price_in_gp: 4800, weight: 0.5, activatable: false, expendable: false, group: "Wondrous Item")
+
+engineers_workgloves = MagicItem.create!(name: "Engineer's Workgloves", description: "These durable canvas and leather gloves imbue the wearer with an instinctive knowledge of mechanical devices.
+
+The wearer also gains a +5 competence bonus on Craft and Knowledge checks made to repair or understand mechanical devices.
+
+Once per day, the wearer may touch a device and instantly analyze it, learning its purpose and general method of operation, as well as diagnosing any acute malfunctions of the device, but not its magical powers or additional non-mechanical effects. For example, she could touch a pressure plate and understand that stepping on it would trigger a wall scythe trap attacking that square and that the trap resets automatically, but not that the trap includes a +1 flaming scythe coated in poison.", slot: "hands", aura: "faint divination", caster_level: 5, price_in_gp: 3000, weight: 0, activatable: true, expendable: false, group: "Wondrous Item")
+
+hat_of_disguise = MagicItem.create!(name: "Hat of Disguise", description: "This apparently normal hat allows its wearer to alter her appearance as with a disguise self spell. As part of the disguise, the hat can be changed to appear as a comb, ribbon, headband, cap, coif, hood, helmet, or other headwear.", slot: "head", aura: "faint illusion", caster_level: 1, price_in_gp: 1800, weight: 0, activatable: false, expendable: false, group: "Wondrous Item")
+
+plague_mask = MagicItem.create!(name: "Plague Mask", description: "This stylized bird mask consists of a pair of goggles attached to a ceramic beak that covers the nose and mouth.
+
+The goggles are not magic and can be replaced with other goggles or eye slot items. It grants the wearer a +4 resistance bonus on saving throws against disease. Once per day on command, the user can remove disease (as the spell) on a single creature touched.", slot: "head", aura: "faint necromancy", caster_level: 5, price_in_gp: 7500, weight: 2, activatable: true, expendable: false, group: "Wondrous Item")
+
+amulet_of_natural_armor_1 = MagicItem.create!(name: "Amulet of Natural Armor +1", description: "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer’s body and flesh, giving him an enhancement bonus to his natural armor from +1 to +5, depending on the kind of amulet.", slot: "neck", aura: "faint transmutation", caster_level: 5, price_in_gp: 2000, weight: 0, activatable: false, expendable: false, group: "Wondrous Item")
+
+bracers_of_armor_1 = MagicItem.create!(name: "Bracers of Armor +1", description: "These items appear to be wrist or arm guards, sometimes etched with symbols of protection or depictions of vigilant-looking animals.
+
+Bracers of armor surround the wearer with an invisible but tangible field of force, granting him an armor bonus of +1 to +8, just as though he were wearing armor. Both bracers must be worn for the magic to be effective.
+
+Alternatively, bracers of armor can be enchanted with armor special abilities. See Table: Armor Special Abilities for a list of abilities. Special abilities usually count as additional bonuses for determining the market value of an item, but do not improve AC. Bracers of armor cannot have a modified bonus (armor bonus plus armor special ability bonus equivalents) higher than +8. Bracers of armor must have at least a +1 armor bonus to grant an armor special ability. Bracers of armor cannot have any armor special abilities that add a flat gp amount to their cost. Bracers of armor and ordinary armor do not stack. If a creature receives a larger armor bonus from another source, the bracers of armor cease functioning and do not grant their armor bonus or their armor special abilities. If the bracers of armor grant a larger armor bonus, the other source of armor ceases functioning.", slot: "wrists", aura: "moderate conjuration", caster_level: 7, price_in_gp: 1000, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
+
+armbands_of_the_brawler = MagicItem.create!(name: "Armbands of the Brawler", description: "These scarred and worn armbands have clearly seen rough use, and are constructed out of coarse leather and fastened with thick leather straps.
+
+They grant their wearer a +1 competence bonus on grapple checks and checks to break a grapple.", slot: "wrists", aura: "faint transmutation", caster_level: 3, price_in_gp: 500, weight: 1, activatable: false, expendable: false, group: "Wondrous Item")
 #
 # potion_of_cure_moderate_wounds = MagicItem.create!(name: 'Potion of Cure Moderate Wounds', description: 'The imbiber of this potion is affected by the cure moderate wounds spell.', slot: 'potion', aura: 'faint conjuration', caster_level: 3, price_in_gp: 300, weight: 0, activatable: true, expendable: true, group: 'Potion')
 #   potion_of_cure_moderate_wounds_feature1 = Feature.create!(name: nil, action_id: standard.id)
