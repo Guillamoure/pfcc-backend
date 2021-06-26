@@ -5,7 +5,7 @@ class Api::V1::FeatsController < ApplicationController
       FeatSerializer.new(feat)
     end
 
-    render json: @feats
+    render json: @feats, root: "Feat"
   end
 
   def show
