@@ -114,4 +114,6 @@ augment_summoning = Feat.create!(name: "Augment Summoning", benefit: "Each creat
 
 run = Feat.create!(name: "Run", benefit: "When running, you move five times your normal speed (if wearing medium, light, or no armor and carrying no more than a medium load) or four times your speed (if wearing heavy armor or carrying a heavy load). If you make a jump after a running start (see Acrobatics), you gain a +4 bonus on your Acrobatics check. While running, you retain your Dexterity bonus to your Armor Class.", blurb: "You are swift of foot.", normal: "You move four times your speed while running (if wearing medium, light, or no armor and carrying no more than a medium load) or three times your speed (if wearing heavy armor or carrying a heavy load), and you lose your Dexterity bonus to AC.", source_id: core_rulebook.id)
 
+extra_hex = Feat.create!(name: "Extra Hex", benefit: "You gain one additional hex. You must meet the prerequisites for this hex. If you are a shaman, it must be a hex granted by your spirit rather than one from a wandering spirit.", blurb: "You have learned the secrets of a new hex.", prerequisite: "Hex class feature", special: "You can take this feat multiple times. Each time you do, you gain another hex.", source_id: advanced_class_guide.id)
+
 puts "Feats Created!"

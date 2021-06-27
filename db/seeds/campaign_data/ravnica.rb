@@ -24,27 +24,29 @@ You are going to be a scrappy band of ne'er-do-wells, who are doing jobs for the
 
 
 
-majestik = Character.create!(name: "Majestik", user_id: nlscott744.id, strength: 15, dexterity: 15, constitution: 15, intelligence: 16, wisdom: 10, charisma: 9, race_id: Race.find_by!(name: "Tiefling").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Evil", campaign_id: ravnica_campaign.id, description: "Hot. (literally)")
+majestik = Character.create!(name: "Majestik", user_id: nlscott744.id, strength: 15, dexterity: 15, constitution: 15, intelligence: 16, wisdom: 10, charisma: 9, race_id: Race.find_by!(name: "Tiefling").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Evil", campaign_id: ravnica_campaign.id, description: "Hot. (literally)", pp: 5, gp: 95, sp: 5)
 
   CharacterKlassArchetype.create!(character_id: majestik.id, klass_archetype_id: KlassArchetype.find_by!(name: "Cartomancer").id)
   CharacterAlternateRacialTrait.create!(character_id: majestik.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Prehensile Tail").id)
   CharacterAlternateRacialTrait.create!(character_id: majestik.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Scaled Skin").id)
 
   CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 1)
-  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Heal").id, ranks: 2)
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Heal").id, ranks: 3)
   CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 1)
-  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft").id, ranks: 2)
   CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Society").id, ranks: 1)
-  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id, ranks: 1, detail: "alchemy")
-  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 2, detail: "rakdos")
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Religion").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id, ranks: 2, detail: "alchemy")
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 3, detail: "rakdos")
   CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perform").id, ranks: 2, detail: "oratory")
-  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Profession").id, ranks: 1, detail: "fortune teller")
+  CharacterSkillsetSkill.create!(character_id: majestik.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Profession").id, ranks: 2, detail: "fortune teller")
 
 
   CharacterKlass.create!(character_id: majestik.id, klass_id: Klass.find_by!(name: "Witch").id, hp: 6, feat_id: Feat.find_by!(name: "Harrowed").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
     CharacterKlassSpecialization.create!(character_id: majestik.id, klass_feature_klass_specialization_id: KlassSpecialization.find_by!(name: "Trickery").id)
     CharacterKlassFeatureOption.create!(character_id: majestik.id, feature_option_id: FeatureOption.find_by!(name: "Evil Eye").id, level: 1)
   CharacterKlass.create!(character_id: majestik.id, klass_id: Klass.find_by!(name: "Witch").id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: majestik.id, klass_id: Klass.find_by!(name: "Witch").id, hp: 4, feat_id: Feat.find_by!(name: "Extra Hex"), ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
 
   CharacterArmor.create!(character_id: majestik.id, armor_id: Armor.find_by!(name: "Haramaki").id, masterwork: false, discovered: true, known: true, equipped: true)
   CharacterWeapon.create!(character_id: majestik.id, weapon_id: Weapon.find_by!(name: "Sickle").id, masterwork: false, discovered: true, known: true, name: "")
@@ -99,10 +101,23 @@ majestik = Character.create!(name: "Majestik", user_id: nlscott744.id, strength:
   CharacterKnownSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Reduce Person").id).id)
   CharacterKnownSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Animate Rope").id).id)
 
+  CharacterKnownSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Hold Person").id).id)
+  CharacterKnownSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Molten Orb").id).id)
+
+  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Bleed").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Daze").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Detect Magic").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Mending").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Message").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Hold Person").id).id, spell_level: 2, cast: false, bonus_spell: nil, )
+  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Cure Light Wounds").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
+  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Burning Hands").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
+  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Command").id).id, spell_level: 2, cast: false, bonus_spell: nil, )
+
 
   print "Majestik created! \r"
 
-fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id: clare_voyance.id, strength: 10, dexterity: 12, constitution: 14, intelligence: 10, wisdom: 4, charisma: 9, race_id: Race.find_by!(name: "Vine Leshy").id, skillset_id: ravnica_custom.id, alignment: "", campaign_id: ravnica_campaign.id, description: "", height: "2'3\"", weight: "9 lbs", pp: 232, gp: 65, sp: 8)
+fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id: clare_voyance.id, strength: 10, dexterity: 12, constitution: 14, intelligence: 10, wisdom: 4, charisma: 9, race_id: Race.find_by!(name: "Vine Leshy").id, skillset_id: ravnica_custom.id, alignment: "", campaign_id: ravnica_campaign.id, description: "", height: "2'3\"", weight: "9 lbs", pp: 237, gp: 2110, sp: 7, lethal_damage: 7)
 
   CharacterAlternateRacialTrait.create!(character_id: fire_roasted_tomatoes.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Grapevine").id)
   CharacterAlternateRacialTrait.create!(character_id: fire_roasted_tomatoes.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Swamp Leshy").id)
@@ -141,11 +156,14 @@ fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id
   CharacterItem.create!(character_id: fire_roasted_tomatoes.id, item_id: Item.find_by!(name: "Common Pot").id, discovered: true)
   CharacterItem.create!(character_id: fire_roasted_tomatoes.id, item_id: Item.find_by!(name: "Golgari Insignia Charm").id, discovered: true)
 
+  CharacterMagicItem.create!(character_id: fire_roasted_tomatoes.id, magic_item_id: MagicItem.find_by!(name: "Martyr's Tear").id, discovered: true, known: true)
+
+
 
 
   print "Fire-Roasted Tomatoes created! \r"
 
-iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexterity: 16, constitution: 16, intelligence: 13, wisdom: 15, charisma: 12, race_id: Race.find_by!(name: "Kitsune").id, skillset_id: ravnica_custom.id, alignment: "Neutral", campaign_id: ravnica_campaign.id, description: "", deity: "Pharasma", pp: 60, gp: 66)
+iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexterity: 16, constitution: 16, intelligence: 13, wisdom: 15, charisma: 12, race_id: Race.find_by!(name: "Kitsune").id, skillset_id: ravnica_custom.id, alignment: "Neutral", campaign_id: ravnica_campaign.id, description: "", deity: "Pharasma", pp: 65, gp: 117)
 
   CharacterAlternateRacialTrait.create!(character_id: iyugi.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Fast Shifter").id)
   CharacterKlassArchetype.create!(character_id: iyugi.id, klass_archetype_id: KlassArchetype.find_by!(name: "Scout").id)
@@ -204,7 +222,7 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
 
   print "Iyugi created! \r"
 
-ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence", pp: 177, gp: 6)
+ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence", pp: 177, gp: 7, sp: 7)
 
   CharacterAlternateRacialTrait.create!(character_id: ildre.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Innovative").id)
   CharacterKlassArchetype.create!(character_id: ildre.id, klass_archetype_id: KlassArchetype.find_by!(name: "Occultist").id)
@@ -270,9 +288,21 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
     CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Enlarge Person").id).id)
     CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Silent Image").id).id)
 
+
+    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Shield").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
+    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Color Spray").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
+    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Grease").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
+    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Magic Missile").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
+    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Prestidigitation").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Dancing Lights").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Mage Hand").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Bleed").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Touch of Fatigue").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Message").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
+
   print "Ildre created! \r"
 
-natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14, dexterity: 17, constitution: 15, intelligence: 17, wisdom: 12, charisma: 8, race_id: Race.find_by!(name: "Android").id, skillset_id: ravnica_custom.id, alignment: "Neutral Good", campaign_id: ravnica_campaign.id, age: 4, pp: 235, gp: 66)
+natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14, dexterity: 17, constitution: 15, intelligence: 17, wisdom: 12, charisma: 8, race_id: Race.find_by!(name: "Android").id, skillset_id: ravnica_custom.id, alignment: "Neutral Good", campaign_id: ravnica_campaign.id, age: 4, pp: 240, gp: 129)
 
   CharacterKlassArchetype.create!(character_id: natesse.id, klass_archetype_id: KlassArchetype.find_by!(name: "Bladebound").id)
 
@@ -299,6 +329,7 @@ natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14
   CharacterItem.create!(character_id: natesse.id, item_id: Item.find_by!(name: "Flint and Steel").id, discovered: true)
   CharacterItem.create!(character_id: natesse.id, item_id: Item.find_by!(name: "Izzet Insignia Charm").id, discovered: true)
   CharacterMagicItem.create!(character_id: natesse.id, magic_item_id: MagicItem.find_by!(name: "Traveler's Any-Tool").id, discovered: true, known: true)
+  CharacterMagicItem.create!(character_id: natesse.id, magic_item_id: MagicItem.find_by!(name: "Cloak of Resistance +1").id, discovered: true, known: true)
 
 
 
@@ -333,11 +364,21 @@ natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14
     CharacterKnownSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Glue Seal").id).id)
     CharacterKnownSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Silent Image").id).id)
 
+    PreparedSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Detect Magic").id).id, spell_level: 0, cast: false, bonus_spell: nil)
+    PreparedSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Mage Hand").id).id, spell_level: 0, cast: false, bonus_spell: nil)
+    PreparedSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Read Magic").id).id, spell_level: 0, cast: false, bonus_spell: nil)
+    PreparedSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Open/Close").id).id, spell_level: 0, cast: false, bonus_spell: nil)
+    PreparedSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Acid Splash").id).id, spell_level: 0, cast: false, bonus_spell: nil)
+    PreparedSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Deivon's Parry").id).id, spell_level: 1, cast: false, bonus_spell: nil)
+    PreparedSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Fallback Strategy").id).id, spell_level: 1, cast: false, bonus_spell: nil)
+    PreparedSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Shocking Grasp").id).id, spell_level: 1, cast: false, bonus_spell: nil)
+    PreparedSpell.create!(character_id: natesse.id, feature_spellcasting_id: magus_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: magus_spell_list.id, spell_id: Spell.find_by!(name: "Vanish").id).id, spell_level: 1, cast: false, bonus_spell: nil)
+
 
     print "Natesse created! \r"
 
 
-dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexterity: 17, constitution: 15, intelligence: 9, wisdom: 16, charisma: 12, race_id: Race.find_by!(name: "Grippli").id, skillset_id: ravnica_custom.id, alignment: "Neutral Evil", campaign_id: ravnica_campaign.id, height: "2'", weight: "30 lbs", age: 14, pp: 165, gp: 40)
+dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexterity: 17, constitution: 15, intelligence: 9, wisdom: 16, charisma: 12, race_id: Race.find_by!(name: "Grippli").id, skillset_id: ravnica_custom.id, alignment: "Neutral Evil", campaign_id: ravnica_campaign.id, height: "2'", weight: "30 lbs", age: 14, pp: 162, gp: 83, sp: 8)
 
   CharacterAlternateRacialTrait.create!(character_id: dzeyn.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Toxic Skin").id)
 
@@ -419,6 +460,11 @@ dink_weatherbyrst = Character.create!(name: "Dink Weatherbyrst", user_id: colehi
   # check character pp, gp, sp, cp, lethal_damage, non_lethal_damage, temp_hp
   # PreparedSpell, CastSpell
   # CharacterWeapon, CharacterArmor, CharacterMagicItem, CharacterItem, CharacterPoison
+
+  # y Campaign.find_by(name: "Ravnica").characters.map {|char| "- #{char.name} has #{char.pp || 0} pp, #{char.gp || 0} gp, #{char.sp || 0} sp, and #{char.cp || 0} cp." }
+  # y Campaign.find_by(name: "Ravnica").characters.map {|char| "- #{char.name} has prepared #{char.prepared_spells.map {|ps| ps.spell}.pluck(:name)}" }
+  # y Campaign.find_by(name: "Ravnica").characters.map {|char| "- #{char.name} has #{char.lethal_damage} lethal damage, #{char.non_lethal_damage} non-lethal damage, and #{char.temp_hp} temporary hp" }
+  # y CharacterMagicItem.all.map {|cmi| "#{cmi.magic_item.name} - #{cmi.character.name}"}
 
 
 
