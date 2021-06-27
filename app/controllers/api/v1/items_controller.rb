@@ -78,7 +78,7 @@ class Api::V1::ItemsController < ApplicationController
     Weapon.all.each do |weapon|
       weapons.push(WeaponSerializer.new(weapon))
     end
-    render json: weapons
+    render json: weapons, root: "Weapon"
   end
 
 

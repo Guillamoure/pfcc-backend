@@ -6,7 +6,7 @@ class Api::V1::CreaturesController < ApplicationController
       CreatureSerializer.new(creature)
     end
 
-    render json: serialized_creatures
+    render json: serialized_creatures, root: "Creature"
   end
 
   def show

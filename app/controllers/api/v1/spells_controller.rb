@@ -11,7 +11,7 @@ class Api::V1::SpellsController < ApplicationController
     @spells = spells.map do |sp|
       SpellSerializer.new(sp)
     end
-    render json: @spells, status: 200
+    render json: @spells, status: 200, root: "Spell"
   end
 
   def show
@@ -23,7 +23,7 @@ class Api::V1::SpellsController < ApplicationController
     @spells = Spell.able_to_be_potions.map do |sp|
       SpellSerializer.new(sp)
     end
-    render json: @spells, status: 200
+    render json: @spells, status: 200, root: "Spell"
   end
 
 

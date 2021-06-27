@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'dotenv-rails', groups: [:development, :test]
 
 
-ruby '2.3.3'
+ruby '2.6.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -18,7 +18,7 @@ gem 'puma', '~> 3.12'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.10.9'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

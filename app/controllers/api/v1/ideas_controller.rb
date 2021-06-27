@@ -10,7 +10,7 @@ class Api::V1::IdeasController < ApplicationController
         @ideas.shuffle
         @ideas.pop
       end
-      render json: @ideas
+      render json: @ideas, root: "Idea"
     else
       while @ideas.length < params[:id].to_i
         proposed_idea = Idea.all.sample
@@ -18,7 +18,7 @@ class Api::V1::IdeasController < ApplicationController
           @ideas << proposed_idea.content
         end
       end
-      render json: @ideas
+      render json: @ideas, root: "Idea"
     end
   end
 
