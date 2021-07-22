@@ -53,6 +53,16 @@ namespace :seed do
     Rake::Task['seed:campaign'].invoke
   end
 
+  task :heroku_seed do
+    Rake::Task['db:seed'].invoke
+    Rake::Task['seed:classes'].invoke
+    Rake::Task['db:seed:spells'].invoke
+    Rake::Task['db:seed:feats'].invoke
+    Rake::Task['db:seed:items'].invoke
+    Rake::Task['seed:creatures'].invoke
+    Rake::Task['seed:campaign'].invoke
+  end
+
   task :classes do
     Rake::Task['db:seed:class:alchemist'].invoke
     Rake::Task['db:seed:class:arcanist'].invoke
