@@ -6,7 +6,7 @@ class CreateDuration < ActiveRecord::Migration[5.2]
       t.integer :time
       t.boolean :dismissible
       t.boolean :concentration
-      t.integer :time
+      # t.integer :time
       t.string :unit
       t.integer :increase_per_level
     end
