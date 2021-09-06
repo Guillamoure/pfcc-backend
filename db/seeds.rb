@@ -5301,14 +5301,6 @@ Role: The Fate Weaver has a wide array of options, but they may not always be co
 
 Alignment: Any Chaotic")
 
-unchained_summoner = Klass.create!(name: 'Summoner', hit_die: 8, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: 'https://i.pinimg.com/originals/4f/9d/ac/4f9dac371934ff8f117751e94165c285.png', source_id: advanced_players_guide.id, starting_wealth: "2d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: 'There are those who take a different path when pursuing the arcane arts, reaching across the boundaries of the world to the far-f lung planes to call forth all manner of creatures to do their bidding. Known as summoners, these arcane practitioners form close bonds with particular outsiders, known as eidolons, which increase in power along with their callers. In the end, summoners and their eidolons become linked, sharing shards of the same souls.
-
-Role: Summoners spend much of their time exploring the arcane arts alongside their eidolons. While their power comes from within, they rely heavily on their eidolon companions in dangerous situations. While a summoner and his eidolon function as individuals, their true power lies in what they can accomplish together.
-
-Unchained: Most of the summoner’s class features are the same as those of the class’s original design—the biggest change comes to the eidolon. The unchained summoner selects a subtype for his eidolon (such as angel, demon, or protean), which determines a number of its evolutions and helps to shape the eidolon’s general attitude and appearance. In addition, some of the evolutions are now tied to one or more subtypes and base forms, to make eidolons that better match the expected appearances and abilities of such creatures. Finally, the summoner spell list has been greatly revised, removing a number of imbalances.
-
-Alignment: Any.')
-
 cleric = Klass.create!(name: 'Cleric', hit_die: 8, skill_ranks: 2, fortitude: 0.34, reflex: 0.34, will: 0.5, img_url: 'https://i.pinimg.com/originals/11/64/74/116474aaa94e3c45029f6ec5c7c341ff.png', source_id: core_rulebook.id, starting_wealth: "4d6 × 10 gp (average 175 gp.) In addition, each character begins play with an outfit worth 10 gp or less.", description: 'In faith and the miracles of the divine, many find a greater purpose. Called to serve powers beyond most mortal understanding, all priests preach wonders and provide for the spiritual needs of their people. Clerics are more than mere priests, though; these emissaries of the divine work the will of their deities through strength of arms and the magic of their gods. Devoted to the tenets of the religions and philosophies that inspire them, these ecclesiastics quest to spread the knowledge and influence of their faith. Yet while they might share similar abilities, clerics prove as different from one another as the divinities they serve, with some offering healing and redemption, others judging law and truth, and still others spreading conflict and corruption. The ways of the cleric are varied, yet all who tread these paths walk with the mightiest of allies and bear the arms of the gods themselves.
 Role: More than capable of upholding the honor of their deities in battle, clerics often prove stalwart and capable combatants. Their true strength lies in their capability to draw upon the power of their deities, whether to increase their own and their allies’ prowess in battle, to vex their foes with divine magic, or to lend healing to companions in need. As their powers are influenced by their faith, all clerics must focus their worship upon a divine source. While the vast majority of clerics revere a specific deity, a small number dedicate themselves to a divine concept worthy of devotion—such as battle, death, justice, or knowledge—free of a deific abstraction. (Work with your GM if you prefer this path to selecting a specific deity.)
 
@@ -6825,16 +6817,6 @@ ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_
 ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: sense_motive.id)
 ClassSkillsetSkill.create!(klass_id: fate_weaver.id, skillset_id: dmc.id, skill_id: survival.id)
 
-ClassSkillsetSkill.create!(klass_id: unchained_summoner.id, skillset_id: dmc.id, skill_id: craft.id)
-ClassSkillsetSkill.create!(klass_id: unchained_summoner.id, skillset_id: dmc.id, skill_id: handle_animal.id)
-ClassSkillsetSkill.create!(klass_id: unchained_summoner.id, skillset_id: dmc.id, skill_id: linguistics.id)
-ClassSkillsetSkill.create!(klass_id: unchained_summoner.id, skillset_id: dmc.id, skill_id: nature_unchained.id)
-ClassSkillsetSkill.create!(klass_id: unchained_summoner.id, skillset_id: dmc.id, skill_id: profession.id)
-ClassSkillsetSkill.create!(klass_id: unchained_summoner.id, skillset_id: dmc.id, skill_id: religion_unchained.id)
-ClassSkillsetSkill.create!(klass_id: unchained_summoner.id, skillset_id: dmc.id, skill_id: society_unchained.id)
-ClassSkillsetSkill.create!(klass_id: unchained_summoner.id, skillset_id: dmc.id, skill_id: spellcraft_unchained.id)
-
-
 ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: diplomacy.id)
 ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: heal.id)
 ClassSkillsetSkill.create!(klass_id: cleric.id, skillset_id: dmc.id, skill_id: linguistics.id)
@@ -7059,9 +7041,6 @@ festus1 = CharacterKlass.create!(character_id: festus.id, klass_id: brawler.id, 
 # KnownSpell.create!(klass_spell_id: trial_of_fire_and_acid_witch.id, character_id: persephone.id, klass_id: witch.id)
 # KnownSpell.create!(klass_spell_id: mount_witch.id, character_id: persephone.id, klass_id: witch.id)
 # KnownSpell.create!(klass_spell_id: unerring_weapon_witch.id, character_id: persephone.id, klass_id: witch.id)
-#
-# KnownSpell.create!(klass_spell_id: message_unchained_summoner.id, character_id: persephone.id, klass_id: vigilante.id)
-# KnownSpell.create!(klass_spell_id: summon_monster_I_unchained_summoner.id, character_id: persephone.id, klass_id: vigilante.id)
 #
 # KnownSpell.create!(klass_spell_id: charm_person_bard.id, character_id: nettie.id, klass_id: bard.id)
 # KnownSpell.create!(klass_spell_id: message_bard.id, character_id: nettie.id, klass_id: bard.id)

@@ -76,6 +76,7 @@ alchemist_spell_list = SpellList.find_or_create_by!(name: "Alchemist Spells List
 magus_spell_list = SpellList.find_or_create_by!(name: "Magus Spells List")
 witch_spell_list = SpellList.find_or_create_by!(name: "Witch Spells List")
 wizard_spell_list = SpellList.find_or_create_by!(name: "Wizard Spells List")
+summoner_spell_list = SpellList.find_or_create_by!(name: "Summoner Spells List")
 
 
 puts "References Found"
