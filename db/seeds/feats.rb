@@ -116,4 +116,7 @@ run = Feat.create!(name: "Run", benefit: "When running, you move five times your
 
 extra_hex = Feat.create!(name: "Extra Hex", benefit: "You gain one additional hex. You must meet the prerequisites for this hex. If you are a shaman, it must be a hex granted by your spirit rather than one from a wandering spirit.", blurb: "You have learned the secrets of a new hex.", prerequisite: "Hex class feature", special: "You can take this feat multiple times. Each time you do, you gain another hex.", source_id: advanced_class_guide.id)
 
+lightning_reflexes = Feat.create!(name: "Lightning Reflexes", benefit: "You get a +2 bonus on all Reflex saving throws.", blurb: "You have faster reflexes than normal.", source_id: core_rulebook.id)
+
+
 puts "Feats Created!"

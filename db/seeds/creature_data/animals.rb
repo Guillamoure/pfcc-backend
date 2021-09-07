@@ -36,6 +36,7 @@ hoof = Weapon.find_or_create_by!(name: "Hoof", damage_dice: 4, num_of_dice: 1, c
 weapon_finesse = Feat.find_by!(name: "Weapon Finesse", description: "You are trained in using your agility in melee combat, as opposed to brute strength.", blurb: "Use Dex instead of Str on attack rolls with light weapons", benefit: "With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.", special: "Natural weapons are considered light weapons.")
 endurance = Feat.find_by!(name: "Endurance")
 run_feat = Feat.find_by!(name: "Run")
+lightning_reflexes = Feat.find_by!(name: "Lightning Reflexes")
 
 # ////////////////////////////////////////////
 # <-*-*-----*-*-*- References -*-*-*-----*-*->
@@ -108,5 +109,14 @@ Like horses, ponies can be trained for combat with the Handle Animal skill, and 
   CreatureWeapon.create!(creature_id: pony.id, weapon_id: hoof.id, overwrite_damage_dice: 3, num_of_attacks: 2)
   SummonedCreatureListCreature.create!(summoned_creature_list_id: summon_monster_list.id, creature_id: pony.id, step: 1)
 
+giant_frog = Creature.create!(creature_type_id: animal_type.id, name: "Giant Frog", hit_dice: 2, challenge_rating: 1, alignment: "neutral", size: "Medium", strength: 15, dexterity: 13, constitution: 16, intelligence: 1, wisdom: 8, charisma: 6, blurb: "This creature looks like a normal frog, with moist, mottled, blackish-green skin, but grown to truly monstrous size.", description: "Giant frogs have razor-sharp teeth lining their mouths. They are 6 feet long and weigh 200 pounds.", natural_armor: 1, environment: "temperate or warm marshes and aquatic", organization: "solitary, pair, or army (3–8)", treasure: "none")
+  CreatureFeat.create!(creature_id: giant_frog.id, feat_id: lightning_reflexes.id)
+  CreatureWeapon.create!(creature_id: giant_frog.id, weapon_id: bite.id)
+  SummonedCreatureListCreature.create!(summoned_creature_list_id: summon_monster_list.id, creature_id: giant_frog.id, step: 2)
+  # tongue attack
+  # reach with tongue
+  # special attacks pull and swallow whole, tongue ex ability
+  # skills
+  # increase to grapple and trip CMB CMD
 
 puts "Animals Created!"
