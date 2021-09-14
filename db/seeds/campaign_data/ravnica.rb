@@ -173,6 +173,7 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
   CharacterKlass.create!(character_id: iyugi.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
     CharacterKlassFeatureOption.create!(character_id: iyugi.id, feature_option_id: FeatureOption.find_by!(name: "Combat Trick").id, level: 2)
   CharacterKlass.create!(character_id: iyugi.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
+  # CharacterKlass.create!(character_id: iyugi.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 7, feat_id: nil, ability_score_improvement: "intelligence", level: 4, favored_klass_bonus_id: nil)
 
 
   CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 3)
@@ -186,6 +187,17 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
   CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Sense Motive").id, ranks: 3)
   CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Society").id, ranks: 1)
   CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Stealth").id, ranks: 3)
+
+  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 4)
+  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Bluff").id, ranks: 4)
+  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Diplomacy").id, ranks: 4)
+  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Disguise").id, ranks: 4)
+  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 4, detail: "dimir")
+  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 4)
+  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Sense Motive").id, ranks: 4)
+  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Stealth").id, ranks: 4)
+  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Investigation").id, ranks: 3)
+
 
   CharacterWeapon.create!(character_id: iyugi.id, weapon_id: Weapon.find_by!(name: "Dagger").id, masterwork: false, discovered: true, known: true, name: "")
   CharacterWeapon.create!(character_id: iyugi.id, weapon_id: Weapon.find_by!(name: "Dagger").id, masterwork: false, discovered: true, known: true, name: "")
