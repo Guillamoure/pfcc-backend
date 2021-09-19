@@ -109,7 +109,7 @@ Rails.application.routes.draw do
       patch 'character_scrolls_discovered/:id', to: 'items#s_discovered'
       patch 'character_wands_discovered/:id', to: 'items#wand_discovered'
 
-
+      get 'campaign_updates/:id', to: 'campaigns#campaign_updates'
     end
   end
 

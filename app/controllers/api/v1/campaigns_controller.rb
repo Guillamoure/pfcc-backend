@@ -72,6 +72,39 @@ class Api::V1::CampaignsController < ApplicationController
     render json: NewCampaignSerializer.new(@calendar)
   end
 
+  def campaign_updates
+    @characters = Campaign.find(params[:id]).characters
+    @char_arr = []
+
+    @characters.each do |char|
+      hash = {name: char.name}
+
+      # currency
+      hash[:currency] = "#{char.name} has #{char.pp || 0} pp, #{char.gp || 0} gp, #{char.sp || 0} sp, and #{char.cp || 0} cp."
+
+      # hp
+      hash[:hp] = "#{char.name} has #{char.lethal_damage} lethal damage, #{char.non_lethal_damage} non-lethal damage, and #{char.temp_hp} temporary hp"
+
+      #spells
+      spells = char.prepared_spells.map do |psp|
+        "#{psp.spell.name} as a #{psp.spell_level}-level spell, and it has#{psp.cast ? "" : " not"} been cast"
+      end
+      spells = spells.join(" - ")
+      hash[:spells] = "#{char.name} has prepared #{spells == "" ? "no spells" : spells}"
+
+      #items
+      hash[:weapons] = "#{char.name} has #{char.character_weapons.map {|cw| "a #{cw.masterwork ? "mwk " : ""}#{cw.weapon.name}#{cw.name != nil && cw.name.length > 0 ? " named #{cw.name}" : ""}"}.join(" - ")}"
+      hash[:armors] = "#{char.name} has #{char.character_armors.map {|ca| "a #{ca.masterwork ? "mwk " : ""}#{ca.armor.name} that is #{ca.equipped ? "" : "not "}equipped"}.join(" - ")}"
+      hash[:magic_items] = "#{char.name} has #{char.character_magic_items.length > 0 ?char.character_magic_items.map {|ca| "a #{ca.magic_item.name}"}.join(" - ") : "none"}"
+      hash[:items] = "#{char.name} has #{char.character_items.map {|ca| "a #{ca.item.name}"}.join(" - ")}"
+      hash[:poisons] = "#{char.name} has #{char.character_poisons.length > 0 ? char.character_poisons.map {|ca| "a #{ca.poison.name}"}.join(" - ") : "none"}"
+
+      @char_arr.push(hash)
+    end
+
+    render json: @char_arr
+  end
+
   private
 
   def campaign_params
