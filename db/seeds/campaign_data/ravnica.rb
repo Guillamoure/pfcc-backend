@@ -242,6 +242,7 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
   CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 6, feat_id: Feat.find_by!(name: "Spell Focus").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
   CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 3, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
   CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 4, feat_id: Feat.find_by!(name: "Augment Summoning").id, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
+  # CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 5, feat_id: nil, ability_score_improvement: "constitution", level: 4, favored_klass_bonus_id: nil)
 
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id, ranks: 1, detail: "blacksmithing")
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id, ranks: 2, detail: "alchemy")
@@ -254,6 +255,12 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 1)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Religion").id, ranks: 2)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 3)
+
+  # CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 4)
+  # CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Diplomacy").id, ranks: 3)
+  # CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Bluff").id, ranks: 1)
+  # CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Society").id, ranks: 1)
+  # CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Swim").id, ranks: 1)
 
   CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Quarterstaff").id, masterwork: true, discovered: true, known: true, name: "")
   CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Light Crossbow").id, masterwork: true, discovered: true, known: true, name: "Cerulean Hope", description: "hopefully cerulean")
@@ -300,6 +307,8 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
     CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Enlarge Person").id).id)
     CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Silent Image").id).id)
 
+    CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Create Pit").id).id)
+    CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Glitterdust").id).id)
 
     PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Shield").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
     PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Color Spray").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
