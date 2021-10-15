@@ -2961,6 +2961,7 @@ If you end the spell and become material while inside a material object (such as
   ethereal_jaunt_cleric = SpellListSpell.create!(spell_list_id: cleric_spell_list.id, spell_id: sp194.id, spell_level: 7)
   ethereal_jaunt_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp194.id, spell_level: 7)
   # ethereal_jaunt_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp194.id, spell_level: 6)
+  ethereal_jaunt_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp194.id, spell_level: 5)
 
 sp195 = Spell.create!(name: "Etherealness", description: "This spell functions like ethereal jaunt, except that you and other willing creatures joined by linked hands (along with their equipment) become ethereal. Besides yourself, you can bring one creature per three caster levels to the Ethereal Plane. Once ethereal, the subjects need not stay together.
 
@@ -3012,6 +3013,7 @@ sp197 = Spell.create!(name: "Plane Shift", description: "You move yourself or so
   plane_shift_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp197.id, spell_level: 7)
   # plane_shift_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp197.id, spell_level: 6)
   plane_shift_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp197.id, spell_level: 7)
+  plane_shift_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp197.id, spell_level: 5)
 
 sp198 = Spell.create!(name: "Shadow Walk", description: "To use the shadow walk spell, you must be in an area of dim light. You and any creature you touch are then transported along a coiling path of shadowstuff to the edge of the Material Plane where it borders the Plane of Shadow. The effect is largely illusory, but the path is quasi-real. You can take more than one creature along with you (subject to your level limit), but all must be touching each other.
 
@@ -3063,6 +3065,7 @@ Mishap: You and anyone else teleporting with you have gotten “scrambled.” Yo
   # teleport_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist_spell_list.id, spell_id: sp199.id, spell_level: 5)
   # teleport_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp199.id, spell_level: 5)
   teleport_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp199.id, spell_level: 5)
+  teleport_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp199.id, spell_level: 4)
 
 sp200 = Spell.create!(name: "Maze", description: "You banish the subject into an extra-dimensional labyrinth. Each round on its turn, it may attempt a DC 20 Intelligence check to escape the labyrinth as a full-round action. If the subject doesn’t escape, the maze disappears after 10 minutes, freeing the subject.
 
@@ -3072,6 +3075,7 @@ On escaping or leaving the maze, the subject reappears where it had been when th
   SpellComponent.create!(spell_id: sp200.id, component_id: somatic.id, item: nil)
   maze_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp200.id, spell_level: 8)
   maze_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp200.id, spell_level: 8)
+  maze_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp200.id, spell_level: 6)
 
   print "200 Spells Created \r"
 
@@ -3082,6 +3086,7 @@ sp201 = Spell.create!(name: "Greater Teleport", description: "This spell functio
   greater_teleport_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp201.id, spell_level: 7)
   # greater_teleport_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp201.id, spell_level: 6)
   greater_teleport_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp201.id, spell_level: 7)
+  greater_teleport_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp201.id, spell_level: 5)
 
 sp202 = Spell.create!(name: "Teleportation Circle", description: "You create a circle on the floor or other horizontal surface that teleports, as greater teleport, any creature who stands on it to a designated spot. Once you designate the destination for the circle, you can’t change it. The spell fails if you attempt to set the circle to teleport creatures into a solid object, to a place with which you are not familiar and have no clear description, or to another plane.
 
@@ -3094,6 +3099,7 @@ Teleportation circle can be made permanent with a permanency spell. A permanent 
   # teleportation_circle_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp202.id, spell_level: 9)
   teleportation_circle_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp202.id, spell_level: 9)
   teleportation_circle_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp202.id, spell_level: 9)
+  teleportation_circle_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp202.id, spell_level: 6)
 
 sp203 = Spell.create!(name: "Dimensional Anchor", description: "A green ray springs from your hand. You must make a ranged touch attack to hit the target. Any creature or object struck by the ray is covered with a shimmering emerald field that completely blocks extradimensional travel. Forms of movement barred by a dimensional anchor include astral projection, blink, dimension door, ethereal jaunt, etherealness, gate, maze, plane shift, shadow walk, teleport, and similar spell-like abilities. The spell also prevents the use of a gate or teleportation circle for the duration of the spell.
 
@@ -3104,6 +3110,7 @@ A dimensional anchor does not interfere with the movement of creatures already i
   # dimensional_anchor_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor_spell_list.id, spell_id: sp203.id, spell_level: 3)
   dimensional_anchor_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp203.id, spell_level: 4)
   # dimensional_anchor_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp203.id, spell_level: 4)
+  dimensional_anchor_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp203.id, spell_level: 3)
 
 sp204 = Spell.create!(name: "Magic Circle against Evil", description: "All creatures within the area gain the effects of a protection from evil spell, and evil summoned creatures cannot enter the area either. Creatures in the area, or who later enter the area, receive only one attempt to suppress effects that are controlling them. If successful, such effects are suppressed as long as they remain in the area. Creatures that leave the area and come back are not protected. You must overcome a creature’s Spell Resistance in order to keep it at bay (as in the third function of protection from evil), but the deflection and resistance bonuses and the protection from mental control apply regardless of enemies’ Spell Resistance.
 
@@ -3127,6 +3134,7 @@ This spell is not cumulative with protection from evil and vice versa.", target:
   # magic_circle_against_evil_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp204.id, spell_level: 3)
   magic_circle_against_evil_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp204.id, spell_level: 3)
   # magic_circle_against_evil_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  magic_circle_against_evil_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp204.id, spell_level: 3)
 
 sp205 = Spell.create!(name: "Magic Circle against Law", description: "This spell functions like magic circle against evil, except that it is similar to protection from law instead of protection from evil, and it can imprison a non-chaotic called creature.", target: "10-ft.-radius emanation from touched creature", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: abjuration.id, duration: "10 min./level", time: 10, unit_of_time: "minute", increase_per_level: 10, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp205.id, subschool_id: chaotic.id)
@@ -3141,6 +3149,7 @@ sp205 = Spell.create!(name: "Magic Circle against Law", description: "This spell
   # magic_circle_against_evil_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp204.id, spell_level: 3)
   magic_circle_against_evil_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp204.id, spell_level: 3)
   # magic_circle_against_evil_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp204.id, spell_level: 3)
+  magic_circle_against_evil_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp204.id, spell_level: 3)
 
   FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp205.id, added_to_known_spells: false, applicable_spell_level: 3, bonus_spell_slot_option: true)
 
@@ -3393,7 +3402,6 @@ This spell does not stack with itself. Darkness can be used to counter or dispel
 
   RacialTraitAssociatedSpell.create!(racial_trait_id: RacialTrait.find_by!(description: 'Tieflings can use darkness once per day as a spell-like ability. The caster level for this ability equals the tiefling’s class level.').id, spell_id: sp222.id)
 
-
 sp223 = Spell.create!(name: "Ray of Frost", description: "A ray of freezing air and ice projects from your pointing finger. You must succeed on a ranged touch attack with the ray to deal damage to a target. The ray deals 1d3 points of cold damage.", target: "ray", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp223.id, subschool_id: cold.id)
   SpellComponent.create!(spell_id: sp223.id, component_id: verbal.id, item: nil)
@@ -3435,6 +3443,7 @@ The spell can also be used to create a greasy coating on an item. Material objec
   grease_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp226.id, spell_level: 1)
   grease_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp226.id, spell_level: 1)
   # grease_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp226.id, spell_level: 1)
+  grease_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp226.id, spell_level: 1)
 
 sp227 = Spell.create!(name: "Frostbite", description: "Your melee touch attack deals 1d6 points of nonlethal cold damage + 1 point per level, and the target is fatigued. The fatigued condition ends when the target recovers from the nonlethal damage. This spell cannot make a creature exhausted even if it is already fatigued. You can use this melee touch attack up to one time per level.", target: "creature touched", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp227.id, subschool_id: cold.id)
@@ -3901,6 +3910,7 @@ eagles_splendor = Spell.create!(name: "Eagle's Splendor", description: "The tran
   # eagles_splendor_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: eagles_splendor.id, spell_level: 2)
   eagles_splendor_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: eagles_splendor.id, spell_level: 2)
   # eagles_splendor_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: eagles_splendor.id, spell_level: 2)
+  eagles_splendor_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: eagles_splendor.id, spell_level: 2)
 
 bulls_strength = Spell.create!(name: "Bull's Strength", description: "The subject becomes stronger. The spell grants a +4 enhancement bonus to Strength, adding the usual benefits to melee attack rolls, melee damage rolls, and other uses of the Strength modifier.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: bulls_strength.id, component_id: verbal.id, item: nil)
@@ -3918,6 +3928,7 @@ bulls_strength = Spell.create!(name: "Bull's Strength", description: "The subjec
   # bulls_strength_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: bulls_strength.id, spell_level: 2)
   bulls_strength_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: bulls_strength.id, spell_level: 2)
   # bulls_strength_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: bulls_strength.id, spell_level: 2)
+  bulls_strength_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: bulls_strength.id, spell_level: 2)
 
 bears_endurance = Spell.create!(name: "Bear's Endurance", description: "The affected creature gains greater vitality and stamina. The spell grants the subject a +4 enhancement bonus to Constitution, which adds the usual benefits to hit points, Fortitude saves, Constitution checks, and so forth. Hit points gained by a temporary increase in Constitution score are not temporary hit points. They go away when the subject’s Constitution drops back to normal. They are not lost first as temporary hit points are.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: bears_endurance.id, component_id: verbal.id, item: nil)
@@ -3934,6 +3945,7 @@ bears_endurance = Spell.create!(name: "Bear's Endurance", description: "The affe
   # bears_endurance_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: bears_endurance.id, spell_level: 2)
   bears_endurance_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: bears_endurance.id, spell_level: 2)
   # bears_endurance_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: bears_endurance.id, spell_level: 2)
+  bears_endurance_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: bears_endurance.id, spell_level: 2)
 
   print "260 Spells Created \r"
 
@@ -3952,6 +3964,7 @@ cats_grace = Spell.create!(name: "Cat's Grace", description: "The transmuted cre
   cats_grace_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: cats_grace.id, spell_level: 2)
   cats_grace_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: cats_grace.id, spell_level: 2)
   # cats_grace_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: cats_grace.id, spell_level: 2)
+  cats_grace_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: cats_grace.id, spell_level: 2)
 
 foxs_cunning = Spell.create!(name: "Fox's Cunning", description: "The target becomes smarter. The spell grants a +4 enhancement bonus to Intelligence, adding the usual benefits to Intelligence-based skill checks and other uses of the Intelligence modifier. Wizards (and other spellcasters who rely on Intelligence) affected by this spell do not gain any additional bonus spells for the increased Intelligence, but the save DCs for spells they cast while under this spell’s effect do increase. This spell doesn’t grant extra skill ranks.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: foxs_cunning.id, component_id: verbal.id, item: nil)
@@ -3963,6 +3976,7 @@ foxs_cunning = Spell.create!(name: "Fox's Cunning", description: "The target bec
   # foxs_cunning_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: foxs_cunning.id, spell_level: 2)
   foxs_cunning_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: foxs_cunning.id, spell_level: 2)
   # foxs_cunning_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: foxs_cunning.id, spell_level: 2)
+  foxs_cunning_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: foxs_cunning.id, spell_level: 2)
 
 owls_wisdom = Spell.create!(name: "Owl's Wisdom", description: "The transmuted creature becomes wiser. The spell grants a +4 enhancement bonus to Wisdom, adding the usual benefit to Wisdom-related skills. Clerics, druids, and rangers (and other Wisdom-based spellcasters) who receive owl’s wisdom do not gain any additional bonus spells for the increased Wisdom, but the save DCs for their spells increase.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: owls_wisdom.id, component_id: verbal.id, item: nil)
@@ -3979,6 +3993,7 @@ owls_wisdom = Spell.create!(name: "Owl's Wisdom", description: "The transmuted c
   # owls_wisdom_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: owls_wisdom.id, spell_level: 2)
   owls_wisdom_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: owls_wisdom.id, spell_level: 2)
   # owls_wisdom_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: owls_wisdom.id, spell_level: 2)
+  owls_wisdom_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: owls_wisdom.id, spell_level: 2)
 
 peacebond = Spell.create!(name: "Peacebond", description: "You lock a weapon in place on its owner’s body, or within the weapon’s sheath or holster. Anyone who then tries to draw the weapon must spend a standard action and succeed at a Strength check (DC equal to the saving throw DC) to do so, provoking attacks of opportunity whether the attempt succeeds or fails.", target: "one sheathed or slung weapon", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: abjuration.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: peacebond.id, component_id: somatic.id, item: nil)
