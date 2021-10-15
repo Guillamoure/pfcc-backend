@@ -268,6 +268,7 @@ Detect magic can be made permanent with a permanency spell.", target: "cone-shap
   detect_magic_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp2.id, spell_level: 0)
   # detect_magic_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp2.id, spell_level: 0)
   # detect_magic_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp2.id, spell_level: 0)
+  detect_magic_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp2.id, spell_level: 0)
 
 sp3 = Spell.create!(name: "Mending", description: "This spell repairs damaged objects, restoring 1d4 hit points to the object. If the object has the broken condition, this condition is removed if the object is restored to at least half its original hit points. All of the pieces of an object must be present for this spell to function. Magic items can be repaired by this spell, but you must have a caster level equal to or higher than that of the object. Magic items that are destroyed (at 0 hit points or less) can be repaired with this spell, but this spell does not restore their magic abilities. This spell does not affect creatures (including constructs). This spell has no effect on objects that have been warped or otherwise transmuted, but it can still repair damage done to such items.", target: "one object of up to 1 lb./level", saving_throw: "Will", spell_resistance: true, action_id: ten.id, spell_range_id: ten_feet.id, magic_school_id: transmutation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: sp3.id, component_id: verbal.id)
@@ -279,6 +280,7 @@ sp3 = Spell.create!(name: "Mending", description: "This spell repairs damaged ob
   # mending_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp3.id, spell_level: 0)
   # mending_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp3.id, spell_level: 0)
   # mending_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp3.id, spell_level: 0)
+  mending_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp3.id, spell_level: 0)
 
   FeatureCastableSpell.create!(feature_id: artifice_domain1_feature.id, spell_id: sp3.id, effective_level_based_on_feature_level: true, added_to_known_spells: false, applicable_spell_level: 0, bonus_spell_slot_option: false, cast_at_will: true)
 
@@ -293,6 +295,7 @@ sp4 = Spell.create!(name: "Message", description: "You can whisper messages and 
   message_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp4.id, spell_level: 0)
   # message_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp4.id, spell_level: 0)
   # message_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp4.id, spell_level: 0)
+  message_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp4.id, spell_level: 0)
 
 sp5 = Spell.create!(name: "Light", description: "This spell causes a touched object to glow like a torch, shedding normal light in a 20-foot radius from the point touched, and increasing the light level for an additional 20 feet by one step, up to normal light (darkness becomes dim light, and dim light becomes normal light). In an area of normal or bright light, this spell has no effect. The effect is immobile, but it can be cast on a movable object.
 
@@ -311,6 +314,7 @@ You can only have one light spell active at any one time. If you cast this spell
   light_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp5.id, spell_level: 0)
   # light_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp5.id, spell_level: 0)
   # light_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp5.id, spell_level: 0)
+  light_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp5.id, spell_level: 0)
 
 sp6 = Spell.create!(name: "Discern Next of Kin", description: "You can scan the thoughts of one individual and learn the names and locations of the target’s living relatives, as well as the attitude of the target toward those relatives (and vice versa). You learn about one relative per round you concentrate on the target. For example, you might learn the target’s father’s name, that the father lives on a nearby farm, and that the target and his father don’t get along. Since this spell reads the target’s mind, you can learn only what the target knows or believes.", target: "one creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: sixty_feet.id, magic_school_id: divination.id, duration: "concentration, up to 1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: true)
   SpellSubschool.create!(spell_id: sp6.id, subschool_id: mind_affecting.id)
@@ -346,6 +350,7 @@ sp8 = Spell.create!(name: "Open/Close", description: "You can open or close (you
   # open_close_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp8.id, spell_level: 0)
   open_close_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp8.id, spell_level: 0)
   # open_close_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp8.id, spell_level: 0)
+  open_close_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp8.id, spell_level: 0)
 
 sp9 = Spell.create!(name: "Haste", description: "The transmuted creatures move and act more quickly than normal. This extra speed has several effects.
 
@@ -367,6 +372,7 @@ All of the hasted creature’s modes of movement (including land movement, burro
   # haste_occultist = SpellListSpell.create!(spell_list_id: occultist.id, spell_id: sp9.id, spell_level: 3)
   # haste_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp9.id, spell_level: 3)
   # haste_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp9.id, spell_level: 3)
+  haste_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp9.id, spell_level: 2)
 
 sp10 = Spell.create!(name: "Mage Hand", description: "You point your finger at an object and can lift it and move it at will from a distance. As a move action, you can propel the object as far as 15 feet in any direction, though the spell ends if the distance between you and the object ever exceeds the spell’s range.", target: "one non-magical, unattended object weighing up to 5 lbs.", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "concentration", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: true)
   SpellComponent.create!(spell_id: sp10.id, component_id: verbal.id)
@@ -376,6 +382,7 @@ sp10 = Spell.create!(name: "Mage Hand", description: "You point your finger at a
   # mage_hand_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp10.id, spell_level: 0)
   mage_hand_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp10.id, spell_level: 0)
   # mage_hand_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp10.id, spell_level: 0)
+  mage_hand_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp10.id, spell_level: 0)
 
 print "10 Spells Created \r"
 
@@ -427,6 +434,7 @@ sp14 = Spell.create!(name: "Identify", description: "This spell functions as det
   identify_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp14.id, spell_level: 1)
   identify_alchemist = SpellListSpell.create!(spell_list_id: alchemist_spell_list.id, spell_id: sp14.id, spell_level: 1)
   # identify_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp14.id, spell_level: 1)
+  identify_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp14.id, spell_level: 1)
 
 sp15 = Spell.create!(name: "Vanish", description: "This spell functions like invisibility, except the effect only lasts for 1 round per caster level (maximum of 5 rounds). Like invisibility, the spell immediately ends if the subject attacks any creature.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: illusion.id, duration: "1 round/level (up to 5 rounds)", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
   SpellSubschool.create!(spell_id: sp15.id, subschool_id: glamer.id)
@@ -461,6 +469,7 @@ Invisibility can be made permanent (on objects only) with a permanency spell.", 
   # invisiblilty_occultist = SpellListSpell.create!(spell_list_id: occultist.id, spell_id: sp16.id, spell_level: 2)
   # invisiblilty_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp16.id, spell_level: 2)
   # invisiblilty_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp16.id, spell_level: 2)
+  invisiblilty_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp16.id, spell_level: 2)
 
 sp17 = Spell.create!(name: "Cure Light Wounds", description: "When laying your hand upon a living creature, you channel positive energy that cures 1d8 points of damage +1 point per caster level (maximum +5). Since undead are powered by negative energy, this spell deals damage to them instead of curing their wounds. An undead creature can apply Spell Resistance, and can attempt a Will save to take half damage.", target: "creature touched", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp17.id, subschool_id: healing.id)
@@ -494,6 +503,7 @@ Feather fall works only upon free-falling objects. It does not affect a sword bl
   # feather_fall_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager.id, spell_id: sp18.id, spell_level: 1)
   feather_fall_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp18.id, spell_level: 1)
   # feather_fall_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp18.id, spell_level: 1)
+  feather_fall_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp18.id, spell_level: 1)
 
 sp19 = Spell.create!(name: "Shield", description: "Shield creates an invisible shield of force that hovers in front of you. It negates magic missile attacks directed at you. The disk also provides a +4 shield bonus to AC. This bonus applies against incorporeal touch attacks, since it is a force effect. The shield has no armor check penalty or arcane spell failure chance.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: abjuration.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
   SpellSubschool.create!(spell_id: sp19.id, subschool_id: force.id)
@@ -505,6 +515,7 @@ sp19 = Spell.create!(name: "Shield", description: "Shield creates an invisible s
   # shield_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager.id, spell_id: sp19.id, spell_level: 1)
   shield_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp19.id, spell_level: 1)
   # shield_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp19.id, spell_level: 1)
+  shield_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp19.id, spell_level: 1)
 
 sp20 = Spell.create!(name: "Dancing Lights", description: "Depending on the version selected, you create up to four lights that resemble lanterns or torches (and cast that amount of light), or up to four glowing spheres of light (which look like will-o’-wisps), or one faintly glowing, vaguely humanoid shape. The dancing lights must stay within a 10-foot-radius area in relation to each other but otherwise move as you desire (no concentration required): forward or back, up or down, straight or turning corners, or the like. The lights can move up to 100 feet per round. A light winks out if the distance between you and it exceeds the spell’s range.
 
@@ -540,6 +551,7 @@ Resistance can be made permanent with a permanency spell.", target: "creature to
   # resistance_paladin = SpellListSpell.create!(spell_list_id: paladin.id, spell_id: sp21.id, spell_level: 1)
   # resistance_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp21.id, spell_level: 0)
   # resistance_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp21.id, spell_level: 0)
+  resistance_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp21.id, spell_level: 0)
 
 sp22 = Spell.create!(name: "Summon Instrument", description: "This spell summons one handheld musical instrument of your choice. This instrument appears in your hands or at your feet (your choice). The instrument is typical for its type. Only one instrument appears per casting, and it will play only for you. You can’t summon an instrument too large to be held in two hands. The summoned instrument disappears at the end of this spell.", target: "one summoned handheld musical instrument", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: zero_feet.id, magic_school_id: conjuration.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
   SpellSubschool.create!(spell_id: sp22.id, subschool_id: summoning.id)
@@ -566,6 +578,7 @@ Read magic can be made permanent with a permanency spell.", target: "you", savin
   # read_magic_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp23.id, spell_level: 0)
   read_magic_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp23.id, spell_level: 1)
   # read_magic_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp23.id, spell_level: 0)
+  read_magic_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp23.id, spell_level: 0)
 
 sp24 = Spell.create!(name: "Haunted Fey Aspect", description: "You surround yourself with disturbing illusions, making you look and sound like a bizarre, insane fey creature. You gain DR 1/cold iron against a single opponent until the end of the spell, or until you take damage.", target: "you", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: personal.id, magic_school_id: illusion.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
   SpellSubschool.create!(spell_id: sp24.id, subschool_id: glamer.id)
@@ -609,6 +622,7 @@ Multiple slow effects don’t stack. Slow counters and dispels haste.", target: 
   # slow_occultist = SpellListSpell.create!(spell_list_id: occultist.id, spell_id: sp27.id, spell_level: 3)
   # slow_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp27.id, spell_level: 3)
   # slow_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp27.id, spell_level: 3)
+  slow_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp27.id, spell_level: 2)
 
 sp28 = Spell.create!(name: "Bleed for your Master", description: "When you would be hit by an attack that requires an attack roll, or when you are within an area of effect that allows you to attempt a Reflex saving throw, with a single touch you compel the target to throw itself in front of the blow or shield you from the effect.
 
@@ -699,6 +713,7 @@ sp32 = Spell.create!(name: "Summon Monster II", description: "This spell functio
   # summon_monster_II_medium = SpellListSpell.create!(spell_list_id: medium.id, spell_id: sp32.id, spell_level: 2)
   # summon_monster_II_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp32.id, spell_level: 2)
   # summon_monster_II_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp32.id, spell_level: 2)
+  summon_monster_II_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp32.id, spell_level: 2)
 
 sp33 = Spell.create!(name: "Summon Monster I", description: "This spell summons an extraplanar creature (typically an outsider, elemental, or magical beast native to another plane). It appears where you designate and acts immediately, on your turn. It attacks your opponents to the best of its ability. If you can communicate with the creature, you can direct it not to attack, to attack particular enemies, or to perform other actions. The spell conjures one of the creatures from the 1st Level list on Table: Summon Monster. You choose which kind of creature to summon, and you can choose a different one each time you cast the spell.
 
@@ -721,6 +736,7 @@ The summon monster spells have numerous entries representing creatures that are 
   # summon_monster_I_medium = SpellListSpell.create!(spell_list_id: medium.id, spell_id: sp33.id, spell_level: 1)
   # summon_monster_I_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp33.id, spell_level: 1)
   # summon_monster_I_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp33.id, spell_level: 1)
+  summon_monster_I_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp33.id, spell_level: 1)
   summon_monster_I_feature = Feature.create!()
     SpellFeature.create!(spell_id: sp33.id, feature_id: summon_monster_I_feature.id)
     FeatureAnimal.create!(feature_id: summon_monster_I_feature.id, animal_type: "summoned", summoned_creature_list_id: summon_monster_list.id)
@@ -774,6 +790,7 @@ Counterspell: When dispel magic is used in this way, the spell targets a spellca
   # dispel_magic_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp35.id, spell_level: 3)
   # dispel_magic_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp35.id, spell_level: 3)
   # dispel_magic_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp35.id, spell_level: 3)
+  dispel_magic_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp35.id, spell_level: 3)
 
 sp36 = Spell.create!(name: "Whip of Spiders", description: "You summon hundreds of Diminutive spiders, which cling together in the form of a whip made for a creature of your size. You can wield this object as if it were an actual whip, except you make a melee touch attack with it instead of a regular attack. Any creature you strike with the whip takes swarm damage as if it were attacked by a spider swarm (1d6 points of damage plus poison and distraction). The swarm whip is able to damage creatures with armor or natural armor, even if a normal whip could not. It cannot be used to make bull rush, grapple, or trip attacks, and (unlike a swarm) is subject to a miss chance for concealment and cover.
 
@@ -790,6 +807,7 @@ As a standard action, you can transform the whip into a spider swarm (all square
   # whip_of_spiders_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp36.id, spell_level: 2)
   whip_of_spiders_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp36.id, spell_level: 2)
   # whip_of_spiders_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp36.id, spell_level: 2)
+  whip_of_spiders_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp36.id, spell_level: 2)
 
 sp37 = Spell.create!(name: "Summon Swarm", description: "You summon a swarm of bats, rats, or spiders (your choice), which attacks all other creatures within its area. (You may summon the swarm so that it shares the area of other creatures.) If no living creatures are within its area, the swarm attacks or pursues the nearest creature as best it can. The caster has no control over its target or direction of travel.", target: "one swarm of bats, rats, or spiders", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "concentration + 2 rounds", time: 2, unit_of_time: "round", increase_per_level: 0, dismissible: false, concentration: true)
   SpellSubschool.create!(spell_id: sp37.id, subschool_id: summoning.id)
@@ -802,6 +820,7 @@ sp37 = Spell.create!(name: "Summon Swarm", description: "You summon a swarm of b
   # summon_swarm_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp37.id, spell_level: 2)
   summon_swarm_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp37.id, spell_level: 2)
   # summon_swarm_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp37.id, spell_level: 2)
+  summon_swarm_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp37.id, spell_level: 2)
 
 sp38 = Spell.create!(name: "Pugwampi's Grace", description: "The gremlins known as pugwampis infect those around them with a malignant form of unluck—an effect that this spell emulates. If the target fails its Will save, it becomes infused with the so-called “grace of the pugwampi.” A creature affected by this spell must roll two d20s whenever a situation calls for a d20 roll (such as an attack roll, a skill check, or a saving throw) and must use the lower of the two results generated. As with the aura shed by actual pugwampies, this spell has no effect on animals, gremlins, or gnolls. The effects of this spell are negated as long as a target gains any sort of luck bonus to a d20 roll (such as those granted by a luckstone or divine favor), but the spell’s duration is not impacted by these effects. If the luck bonus goes away before the pugwampi’s grace effect ends, the unluck returns and remains until the spell’s normal duration runs out.", target: "one creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: enchantment.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp38.id, subschool_id: compulsion.id)
@@ -823,6 +842,7 @@ sp39 = Spell.create!(name: "Mount", description: "You summon a light horse or a 
   mount_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp39.id, spell_level: 1)
   # mount_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager.id, spell_id: sp39.id, spell_level: 1)
   mount_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp39.id, spell_level: 1)
+  mount_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp39.id, spell_level: 1)
 
 sp40 = Spell.create!(name: "Trial of Fire and Acid", description: "The target creature is covered in burning acid that deals 1d6 points of acid damage and 1d6 points of fire damage each round.
 
@@ -859,6 +879,7 @@ Creatures who fall into the pit take falling damage as normal. The pit’s coars
   SpellComponent.create!(spell_id: sp42.id, component_id: focus.id, item: 'miniature shovel costing 10gp')
   create_pit_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp42.id, spell_level: 2)
   # create_pit_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp42.id, spell_level: 2)
+  create_pit_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp42.id, spell_level: 2)
 
 sp43 = Spell.create!(name: "Inflict Light Wounds", description: "When laying your hand upon a creature, you channel negative energy that deals 1d8 points of damage + 1 point per caster level (maximum +5).
 
@@ -925,6 +946,7 @@ See invisibility can be made permanent with a permanency spell.", target: "you",
   # see_invisibility_occultist = SpellListSpell.create!(spell_list_id: occultist.id, spell_id: sp46.id, spell_level: 2)
   # see_invisibility_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp46.id, spell_level: 2)
   # see_invisibility_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp46.id, spell_level: 2)
+  see_invisibility_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp46.id, spell_level: 2)
 
 sp47 = Spell.create!(name: "Misdirection", description: "By means of this spell, you misdirect the information from divination spells that reveal auras (detect evil, detect magic, discern lies, and the like). On casting the spell, you choose another object within range. For the duration of the spell, the subject of misdirection is detected as if it were the other object. Neither the subject nor the other object gets a saving throw against this effect. Detection spells provide information based on the second object rather than on the actual target of the detection unless the caster of the detection succeeds on a Will save. For instance, you could make yourself detect as a tree if one were within range at casting: not evil, not lying, not magical, neutral in alignment, and so forth. This spell does not affect other types of divination magic (augury, detect thoughts, clairaudience/clairvoyance, and the like).", target: "one creature or object, up to a 10-ft. cube in size", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: illusion.id, duration: "1 hour/level", time: 1, unit_of_time: "hour", increase_per_level: 1, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp47.id, subschool_id: glamer.id)
@@ -938,6 +960,7 @@ sp47 = Spell.create!(name: "Misdirection", description: "By means of this spell,
   # misdirection_occultist = SpellListSpell.create!(spell_list_id: occultist.id, spell_id: sp47.id, spell_level: 2)
   # misdirection_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp47.id, spell_level: 2)
   # misdirection_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp47.id, spell_level: 2)
+  misdirection_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp47.id, spell_level: 2)
 
 sp48 = Spell.create!(name: "Boneshaker", description: "By using a bone fetish like a marionette, you take control of a target creature’s skeleton. This has a variety of effects depending on whether the target is living or undead.
 
@@ -1000,6 +1023,7 @@ sp52 = Spell.create!(name: "Expeditious Retreat", description: "This spell incre
   # expeditious_retreat_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor.id, spell_id: sp52.id, spell_level: 1)
   expeditious_retreat_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp52.id, spell_level: 1)
   # expeditious_retreat_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp52.id, spell_level: 1)
+  expeditious_retreat_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp52.id, spell_level: 1)
 
 sp53 = Spell.create!(name: "Glue Seal", description: "You cover a solid surface with a layer of sticky glue. Anyone in the area when the spell is cast must attempt a Reflex save. Those who fail become entangled, but can break free by succeeding at a combat maneuver check or an Escape Artist check as a standard action against the DC of this spell. The area of the spell is considered difficult terrain. A creature moving through the glue must succeed at a combat maneuver check or an Escape Artist check as part of its move action (DC = the spell’s DC). Creatures that fail lose their movement and become entangled in the first square they enter.
 
@@ -1012,6 +1036,7 @@ The spell can also be used to create a sticky coating on an item. A creature hol
   # glue_seal_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp53.id, spell_level: 1)
   glue_seal_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp53.id, spell_level: 1)
   # glue_seal_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp53.id, spell_level: 1)
+  glue_seal_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp53.id, spell_level: 1)
 
 sp54 = Spell.create!(name: "Corrosive Touch", description: "Your successful melee touch attack deals 1d4 points of acid damage per caster level (maximum 5d4).", target: "creature or object touched", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp54.id, subschool_id: creation.id)
@@ -1022,6 +1047,7 @@ sp54 = Spell.create!(name: "Corrosive Touch", description: "Your successful mele
   # corrosive_touch_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp54.id, spell_level: 1)
   # corrosive_touch_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager.id, spell_id: sp54.id, spell_level: 1)
   corrosive_touch_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp54.id, spell_level: 1)
+  corrosive_touch_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp54.id, spell_level: 1)
 
 sp55 = Spell.create!(name: "Disguise Self", description: "You make yourself – including clothing, armor, weapons, and equipment – look different. You can seem 1 foot shorter or taller, thin, fat, or in between. You cannot change your creature type (although you can appear as another subtype). Otherwise, the extent of the apparent change is up to you. You could add or obscure a minor feature or look like an entirely different person or gender.
 
@@ -1052,6 +1078,7 @@ A levitating creature that attacks with a melee or ranged weapon finds itself in
   # levitate_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp56.id, spell_level: 2)
   # levitate_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp56.id, spell_level: 2)
   # levitate_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp56.id, spell_level: 2)
+  levitate_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp56.id, spell_level: 2)
 
 sp57 =  Spell.create!(name: "Fly", description: "The subject can fly at a speed of 60 feet (or 40 feet if it wears medium or heavy armor, or if it carries a medium or heavy load). It can ascend at half speed and descend at double speed, and its maneuverability is good.
 
@@ -1074,6 +1101,7 @@ See Falling Damage if something bad happens!", target: "creature touched", savin
   # fly_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp57.id, spell_level: 3)
   # fly_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp57.id, spell_level: 3)
   # fly_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist.id, spell_id: sp57.id, spell_level: 3)
+  fly_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp57.id, spell_level: 3)
 
 sp58 =  Spell.create!(name: "Sleep", description: "A sleep spell causes a magical slumber to come upon 4 HD of creatures. Creatures with the fewest HD are affected first. Among creatures with equal HD, those who are closest to the spell’s point of origin are affected first. HD that are not sufficient to affect a creature are wasted. Sleeping creatures are helpless. Slapping or wounding awakens an affected creature, but normal noise does not. Awakening a creature is a standard action (an application of the aid another action). Sleep does not target unconscious creatures, constructs, or undead creatures.", target: "one or more living creatures within a 10-ft.-radius burst", saving_throw: "Will", spell_resistance: true, action_id: full_round.id, spell_range_id: medium.id, magic_school_id: enchantment.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp58.id, subschool_id: compulsion.id)
@@ -1106,6 +1134,7 @@ Magic fang can be made permanent with a permanency spell.", target: "living crea
   # magic_fang_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp60.id, spell_level: 1)
   # magic_fang_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp60.id, spell_level: 1)
   magic_fang_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp60.id, spell_level: 1)
+  magic_fang_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp60.id, spell_level: 1)
 
 print "60 Spells Created \r"
 
@@ -1120,6 +1149,7 @@ Greater magic fang can be made permanent with a permanency spell.", target: "one
   # greater_magic_fang_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp61.id, spell_level: 3)
   # greater_magic_fang_druid = SpellListSpell.create!(spell_list_id: druid.id, spell_id: sp61.id, spell_level: 3)
   greater_magic_fang_ranger = SpellListSpell.create!(spell_list_id: ranger_spell_list.id, spell_id: sp61.id, spell_level: 3)
+  greater_magic_fang_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp61.id, spell_level: 3)
 
 sp62 = Spell.create!(name: "Unseen Servant", description: "An unseen servant is an invisible, mindless, shapeless force that performs simple tasks at your command. It can run and fetch things, open unstuck doors, and hold chairs, as well as clean and mend. The servant can perform only one activity at a time, but it repeats the same activity over and over again if told to do so as long as you remain within range. It can open only normal doors, drawers, lids, and the like. It has an effective Strength score of 2 (so it can lift 20 pounds or drag 100 pounds). It can trigger traps and such, but it can exert only 20 pounds of force, which is not enough to activate certain pressure plates and other devices. It can’t perform any task that requires a skill check with a DC higher than 10 or that requires a check using a skill that can’t be used untrained. This servant cannot fly, climb, or even swim (though it can walk on water). Its base speed is 15 feet.
 
@@ -1134,6 +1164,7 @@ The servant cannot attack in any way; it is never allowed an attack roll. It can
   unseen_servant_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp62.id, spell_level: 1)
   unseen_servant_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp62.id, spell_level: 1)
   # unseen_servant_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp62.id, spell_level: 1)
+  unseen_servant_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp62.id, spell_level: 1)
 
 sp63 = Spell.create!(name: "Obscuring Mist", description: "A misty vapor arises around you. It is stationary. The vapor obscures all sight, including darkvision, beyond 5 feet. A creature 5 feet away has concealment (attacks have a 20% miss chance). Creatures farther away have total concealment (50% miss chance, and the attacker cannot use sight to locate the target).
 
@@ -1176,6 +1207,7 @@ Enlarge person can be made permanent with a permanency spell.", target: "one hum
   enlarge_person_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp64.id, spell_level: 1)
   # enlarge_person_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp64.id, spell_level: 1)
   enlarge_person_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp64.id, spell_level: 1)
+  enlarge_person_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp64.id, spell_level: 1)
 
 sp65 = Spell.create!(name: "Reduce Person", description: "This spell causes instant diminution of a humanoid creature, halving its height, length, and width and dividing its weight by 8. This decrease changes the creature’s size category to the next smaller one. The target gains a +2 size bonus to Dexterity, a -2 size penalty to Strength (to a minimum of 1), and a +1 bonus on attack rolls and AC due to its reduced size.
 
@@ -1198,6 +1230,7 @@ Reduce person can be made permanent with a permanency spell.", target: "one huma
   reduce_person_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp65.id, spell_level: 1)
   # reduce_person_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp65.id, spell_level: 1)
   reduce_person_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp65.id, spell_level: 1)
+  reduce_person_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp65.id, spell_level: 1)
 
 sp66 = Spell.create!(name: "Shrink Item", description: "You are able to shrink one nonmagical item (if it is within the size limit) to 1/16 of its normal size in each dimension (to about 1/4,000 the original volume and mass). This change effectively reduces the object’s size by four categories. Optionally, you can also change its now shrunken composition to a clothlike one. Objects changed by a shrink item spell can be returned to normal composition and size merely by tossing them onto any solid surface or by a word of command from the original caster. Even a burning fire and its fuel can be shrunk by this spell. Restoring the shrunken object to its normal size and composition ends the spell.
 
@@ -1217,6 +1250,7 @@ sp67 = Spell.create!(name: "Mass Enlarge Person", description: "This spell funct
   # enlarge_person_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp67.id, spell_level: 4)
   enlarge_person_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp67.id, spell_level: 4)
   # enlarge_person_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp67.id, spell_level: 4)
+  enlarge_person_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp67.id, spell_level: 3)
 
 sp68 = Spell.create!(name: "Mass Reduce Person", description: "This spell functions like reduce person, except that it affects multiple creatures.", target: "one humanoid creature/level, no two of which can be more than 30 ft. apart", saving_throw: "Fortitude", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
   SpellComponent.create!(spell_id: sp68.id, component_id: verbal.id, item: nil)
@@ -1227,6 +1261,7 @@ sp68 = Spell.create!(name: "Mass Reduce Person", description: "This spell functi
   # reduce_person_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp68.id, spell_level: 4)
   reduce_person_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp68.id, spell_level: 4)
   # reduce_person_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp68.id, spell_level: 4)
+  reduce_person_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp68.id, spell_level: 3)
 
 sp69 = Spell.create!(name: "Fireball", description: "A fireball spell generates a searing explosion of flame that detonates with a low roar and deals 1d6 points of fire damage per caster level (maximum 10d6) to every creature within the area. Unattended objects also take this damage. The explosion creates almost no pressure.
 
@@ -1340,6 +1375,7 @@ Endure elements doesn’t provide any protection from fire or cold damage, nor d
   # endure_elements_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp75.id, spell_level: 1)
   endure_elements_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp75.id, spell_level: 1)
   # endure_elements_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp75.id, spell_level: 1)
+  endure_elements_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp75.id, spell_level: 1)
 
 sp76 = Spell.create!(name: "Alter Self", description: "When you cast this spell, you can assume the form of any Small or Medium creature of the humanoid type. If the form you assume has any of the following abilities, you gain the listed ability: darkvision 60 feet, low-light vision, scent, and swim 30 feet.
 
@@ -1357,6 +1393,7 @@ Medium creature: If the form you take is that of a Medium humanoid, you gain a +
   # alter_self_shaman = SpellListSpell.create!(spell_list_id: shaman.id, spell_id: sp76.id, spell_level: 2)
   alter_self_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp76.id, spell_level: 2)
   # alter_self_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp76.id, spell_level: 2)
+  alter_self_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp76.id, spell_level: 2)
 
 sp77 = Spell.create!(name: "Air Bubble", description: "Air bubble creates a small pocket of breathable air that surrounds the touched creature’s head or the touched object. The air bubble allows the creature touched to breathe underwater or in similar airless environments, or protects the object touched from water damage. A firearm within an air bubble can be loaded—assuming the black powder comes from a powder horn, a cartridge, or some other airtight protective device—and fired. When shooting such a firearm underwater, the shot still takes the standard –2 penalty on attack rolls for every 5 feet of water the bullet passes through, in addition to normal penalties due to range. If a firearm within the air bubble explodes, the explosion occurs normally.", target: "one creature or one object no larger than a Large two-handed weapon", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: touch.id, magic_school_id: conjuration.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp77.id, subschool_id: creation.id)
@@ -1398,6 +1435,7 @@ sp80 = Spell.create!(name: "Charm Monster", description: "This spell functions l
   charm_monster_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp80.id, spell_level: 4)
   # charm_monster_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp80.id, spell_level: 4)
   charm_monster_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp80.id, spell_level: 4)
+  charm_monster_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp80.id, spell_level: 3)
 
 print "80 Spells Created \r"
 
@@ -1421,6 +1459,7 @@ sp82 = Spell.create!(name: "Vitriolic Mist", description: "This functions as fir
   # vitriolic_mist_bloodrager = SpellListSpell.create!(spell_list_id: bloodrager.id, spell_id: sp82.id, spell_level: 4)
   vitriolic_mist_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp82.id, spell_level: 4)
   # vitriolic_mist_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp82.id, spell_level: 4)
+  vitriolic_mist_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp82.id, spell_level: 4)
 
 sp83 = Spell.create!(name: "Fire Shield", description: "This spell wreathes you in flame and causes damage to each creature that attacks you in melee. The flames also protect you from either cold-based or fire-based attacks, depending on if you choose cool or warm flames for your fire shield.
 
@@ -1441,6 +1480,7 @@ Warm Shield: The flames are warm to the touch. You take only half damage from co
   fire_shield_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp83.id, spell_level: 4)
   fire_shield_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp83.id, spell_level: 4)
   # fire_shield_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp83.id, spell_level: 4)
+  fire_shield_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp83.id, spell_level: 3)
 
 sp84 = Spell.create!(name: "Minor Creation", description: "You create a non-magical, unattended object of nonliving vegetable matter. The volume of the item created cannot exceed 1 cubic foot per caster level. You must succeed on an appropriate Craft skill check to make a complex item.
 
@@ -1452,6 +1492,7 @@ Attempting to use any created object as a material component causes the spell to
   minor_creation_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp84.id, spell_level: 4)
   # minor_creation_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp84.id, spell_level: 3)
   minor_creation_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp84.id, spell_level: 4)
+  minor_creation_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp84.id, spell_level: 3)
 
   FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp84.id, added_to_known_spells: false, applicable_spell_level: 4, bonus_spell_slot_option: true)
 
@@ -1470,6 +1511,7 @@ Rare metal*	1 round/level", target: "unattended, non-magical object, up to 1 cu.
   major_creation_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp85.id, spell_level: 5)
   # major_creation_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp85.id, spell_level: 4)
   major_creation_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp85.id, spell_level: 5)
+  major_creation_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp85.id, spell_level: 4)
 
   FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp85.id, added_to_known_spells: false, applicable_spell_level: 6, bonus_spell_slot_option: true)
 
@@ -1553,6 +1595,7 @@ Arcane mark must be cast on an object prior to casting instant summons on the sa
   arcane_mark_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp92.id, spell_level: 0)
   # arcane_mark_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp92.id, spell_level: 0)
   arcane_mark_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp92.id, spell_level: 0)
+  arcane_mark_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp92.id, spell_level: 0)
 
 sp93 = Spell.create!(name: "Bleed", description: "You cause a living creature that is below 0 hit points but stabilized to resume dying. Upon casting this spell, you target a living creature that has -1 or fewer hit points. That creature begins dying, taking 1 point of damage per round. The creature can be stabilized later normally. This spell causes a creature that is dying to take 1 point of damage.", target: "one living creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: necromancy.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: sp93.id, component_id: verbal.id, item: nil)
@@ -1578,6 +1621,7 @@ sp94 = Spell.create!(name: "Daze", description: "This spell clouds the mind of a
   daze_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp94.id, spell_level: 0)
   # daze_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp94.id, spell_level: 0)
   daze_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp94.id, spell_level: 0)
+  daze_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp94.id, spell_level: 0)
 
 sp95 = Spell.create!(name: "Detect Poison", description: "You determine whether a creature, object, or area has been poisoned or is poisonous. You can determine the exact type of poison with a DC 20 Wisdom check. A character with the Craft (alchemy) skill may try a DC 20 Craft (alchemy) check if the Wisdom check fails, or may try the Craft (alchemy) check prior to the Wisdom check. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.", target: "one creature, one object, or a 5-ft. cube", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: divination.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellComponent.create!(spell_id: sp95.id, component_id: verbal.id, item: nil)
@@ -1603,6 +1647,7 @@ The creature gets a +1 competence bonus on a single attack roll, saving throw, o
   # guidance_inquisitor = SpellListSpell.create!(spell_list_id: inquisitor.id, spell_id: sp96.id, spell_level: 0)
   # guidance_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp96.id, spell_level: 0)
   guidance_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp96.id, spell_level: 0)
+  guidance_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp96.id, spell_level: 0)
 
 sp97 = Spell.create!(name: "Putrefy Food and Drink", description: "This spell causes otherwise edible food to rot and spoil instantly, and water and other liquids to become brackish and undrinkable. Holy water and similar food and drink of significance are spoiled by putrefy food and drink, but the spell has no effect on creatures of any type, nor upon unholy water. Water weighs about 8 pounds per gallon. One cubic foot of water contains roughly 8 gallons and weighs about 60 pounds.
 
@@ -1682,6 +1727,7 @@ Unlike mundane armor, mage armor entails no armor check penalty, arcane spell fa
   mage_armor_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp103.id, spell_level: 1)
   # mage_armor_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp103.id, spell_level: 1)
   mage_armor_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp103.id, spell_level: 1)
+  mage_armor_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp103.id, spell_level: 1)
 
 sp104 = Spell.create!(name: "Snowball", description: "You throw a ball of elemental ice and snow at a single target as a ranged touch attack. The snowball deals 1d6 points of cold damage per caster level you have (maximum 5d6).", target: "one ball of ice and snow", saving_throw: "none", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: evocation.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp104.id, subschool_id: cold.id)
@@ -1693,6 +1739,7 @@ sp104 = Spell.create!(name: "Snowball", description: "You throw a ball of elemen
   # snowball_magus = SpellListSpell.create!(spell_list_id: magus, spell_id: sp104.id, spell_level: 1)
   snowball_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp104.id, spell_level: 1)
   snowball_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp104.id, spell_level: 1)
+  snowball_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp104.id, spell_level: 1)
 
 sp105 = Spell.create!(name: "Acid Splash", description: "You fire a small orb of acid at the target. You must succeed on a ranged touch attack to hit your target. The orb deals 1d3 points of acid damage. This acid disappears after 1 round.", target: "one missile of acid", saving_throw: "none", spell_resistance: false, action_id: standard.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp105.id, subschool_id: creation.id)
@@ -1703,6 +1750,7 @@ sp105 = Spell.create!(name: "Acid Splash", description: "You fire a small orb of
   acid_splash_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp105.id, spell_level: 0)
   acid_splash_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp105.id, spell_level: 0)
   # acid_splash_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp105.id, spell_level: 0)
+  acid_splash_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp105.id, spell_level: 0)
 
 sp106 = Spell.create!(name: "Comprehend Languages", description: "You can understand the spoken words of creatures or read otherwise incomprehensible written messages. The ability to read does not necessarily impart insight into the material, merely its literal meaning. The spell enables you to understand or read an unknown language, not speak or write it.
 
@@ -1892,6 +1940,7 @@ sp122 = Spell.create!(name: "Twisted Space", description: "You distort the space
   # twisted_space_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp122.id, spell_level: 2)
   twisted_space_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp122.id, spell_level: 2)
   # twisted_space_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp122.id, spell_level: 2)
+  twisted_space_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp122.id, spell_level: 2)
 
 sp123 = Spell.create!(name: "Make Whole", description: "This spell functions as mending, except that it repairs 1d6 points of damage per level when cast on an object or construct creature (maximum 5d6).
 
@@ -1961,6 +2010,7 @@ sp126 = Spell.create!(name: "Spider Climb", description: "The subject can climb 
   # spider_climb_psychic = SpellListSpell.create!(spell_list_id: psychic.id, spell_id: sp126.id, spell_level: 2)
   spider_climb_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp126.id, spell_level: 2)
   # spider_climb_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp126.id, spell_level: 2)
+  spider_climb_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp126.id, spell_level: 2)
 
 sp127 = Spell.create!(name: "Magic Aura", description: "You alter an item’s aura so that it registers to detect spells (and spells with similar capabilities) as though it were non-magical, or a magic item of a kind you specify, or the subject of a spell you specify. If the object bearing magic aura has identify cast on it or is similarly examined, the examiner recognizes that the aura is false and detects the object’s actual qualities if he succeeds on a Will save. Otherwise, he believes the aura and no amount of testing reveals what the true magic is.
 
@@ -2054,6 +2104,7 @@ Any creature covered by the dust takes a -40 penalty on Stealth checks.", target
   glitterdust_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp131.id, spell_level: 2)
   # glitterdust_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner.id, spell_id: sp131.id, spell_level: 2)
   glitterdust_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp131.id, spell_level: 2)
+  glitterdust_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp131.id, spell_level: 2)
 
 sp132 = Spell.create!(name: "Deep Slumber", description: "This spell functions like sleep, except that it affects 10 HD of targets.", target: "one or more living creatures within a 10-ft.-radius burst", saving_throw: "Will", spell_resistance: true, action_id: full_round.id, spell_range_id: close.id, magic_school_id: enchantment.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp132.id, subschool_id: compulsion.id)
@@ -2256,6 +2307,7 @@ While the wall must be vertical, you can shape it in any continuous path along t
   # wind_wall_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp147.id, spell_level: 3)
   wind_wall_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp147.id, spell_level: 3)
   # wind_wall_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp147.id, spell_level: 3)
+  wind_wall_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp147.id, spell_level: 2)
 
   FeatureCastableSpell.create!(feature_id: air_domain3_feature.id, spell_id: sp147.id, added_to_known_spells: false, applicable_spell_level: 2, bonus_spell_slot_option: true)
 
@@ -2724,6 +2776,7 @@ Like any iron wall, this wall is subject to rust, perforation, and other natural
   wall_of_iron_magus = SpellListSpell.create!(spell_list_id: magus_spell_list.id, spell_id: sp182.id, spell_level: 6)
   wall_of_iron_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp182.id, spell_level: 6)
   # wall_of_iron_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp182.id, spell_level: 6)
+  wall_of_iron_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp182.id, spell_level: 5)
 
   FeatureCastableSpell.create!(feature_id: artifice_domain3_feature.id, spell_id: sp182.id, added_to_known_spells: false, applicable_spell_level: 7, bonus_spell_slot_option: true)
 
@@ -2800,6 +2853,7 @@ Third, the spell prevents bodily contact by evil summoned creatures. This causes
   # protection_from_evil_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp186.id, spell_level: 1)
   protection_from_evil_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp186.id, spell_level: 1)
   # protection_from_evil_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp186.id, spell_level: 1)
+  protection_from_evil_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp186.id, spell_level: 1)
 
 sp187 = Spell.create!(name: "Protection from Law", description: "This spell functions like protection from evil, except that the deflection and resistance bonuses apply to attacks made by lawful creatures. The target receives a new saving throw against control by lawful creatures and lawful summoned creatures cannot touch the target.", target: "creature touched", saving_throw: "Will", spell_resistance: false, action_id: standard.id, spell_range_id: touch.id, magic_school_id: abjuration.id, duration: "1 min./level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: true, concentration: false)
   SpellSubschool.create!(spell_id: sp187.id, subschool_id: chaotic.id)
@@ -2813,6 +2867,7 @@ sp187 = Spell.create!(name: "Protection from Law", description: "This spell func
   # protection_from_law_shaman = SpellListSpell.create!(spell_list_id: shaman_spell_list.id, spell_id: sp187.id, spell_level: 1)
   protection_from_law_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp187.id, spell_level: 1)
   # protection_from_law_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp187.id, spell_level: 1)
+  protection_from_law_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp187.id, spell_level: 1)
 
   FeatureCastableSpell.create!(feature_id: chaos_domain3_feature.id, spell_id: sp187.id, added_to_known_spells: false, applicable_spell_level: 1, bonus_spell_slot_option: true)
 
@@ -2843,6 +2898,7 @@ When you use a calling spell to call an air, chaotic, earth, evil, fire, good, l
   SpellComponent.create!(spell_id: sp189.id, component_id: somatic.id, item: nil)
   lesser_planar_binding_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp189.id, spell_level: 5)
   # lesser_planar_binding_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp189.id, spell_level: 5)
+  lesser_planar_binding_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp189.id, spell_level: 4)
 
 sp190 = Spell.create!(name: "Planar Binding", description: "This spell functions like lesser planar binding, except that you may call a single creature of 12 HD or less, or up to three creatures of the same kind whose Hit Dice total no more than 12. Each creature gets a saving throw, makes an independent attempt to escape, and must be individually persuaded to aid you.", target: "up to three elementals or outsiders, totaling no more than 12 HD, no two of which can be more than 30 ft. apart when they appear", saving_throw: "Will", spell_resistance: true, action_id: ten.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "instantaneous", time: 0, unit_of_time: "second", increase_per_level: 0, dismissible: false, concentration: false)
   SpellSubschool.create!(spell_id: sp190.id, subschool_id: calling.id)
@@ -2850,6 +2906,7 @@ sp190 = Spell.create!(name: "Planar Binding", description: "This spell functions
   SpellComponent.create!(spell_id: sp190.id, component_id: somatic.id, item: nil)
   planar_binding_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp190.id, spell_level: 6)
   # planar_binding_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp190.id, spell_level: 6)
+  planar_binding_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp190.id, spell_level: 5)
 
 print "190 Spells Created \r"
 
@@ -2857,7 +2914,8 @@ sp191 = Spell.create!(name: "Greater Planar Binding", description: "This spell f
   SpellSubschool.create!(spell_id: sp191.id, subschool_id: calling.id)
   SpellComponent.create!(spell_id: sp191.id, component_id: verbal.id, item: nil)
   SpellComponent.create!(spell_id: sp191.id, component_id: somatic.id, item: nil)
-  planar_binding_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp191.id, spell_level: 8)
+  greater_planar_binding_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp191.id, spell_level: 8)
+  greater_planar_binding_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp191.id, spell_level: 6)
 
 sp192 = Spell.create!(name: "Astral Projection", description: "By freeing your spirit from your physical body, this spell allows you to project an astral body onto another plane altogether. You can bring the astral forms of other willing creatures with you, provided that these subjects are linked in a circle with you at the time of the casting. These fellow travelers are dependent upon you and must accompany you at all times. If something happens to you during the journey, your companions are stranded wherever you left them.
 
@@ -2887,6 +2945,7 @@ If there is no free space within 100 feet, you and each creature traveling with 
   dimension_door_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp193.id, spell_level: 4)
   # dimension_door_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp193.id, spell_level: 4)
   dimension_door_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp193.id, spell_level: 4)
+  dimension_door_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp193.id, spell_level: 3)
 
 sp194 = Spell.create!(name: "Ethereal Jaunt", description: "You become ethereal, along with your equipment. For the duration of the spell, you are in the Ethereal Plane, which overlaps the Material Plane. When the spell expires, you return to material existence.
 
@@ -3214,6 +3273,7 @@ sp213 = Spell.create!(name: "Summon Monster IV", description: "This spell functi
   # summon_monster_IV_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist_spell_list.id, spell_id: sp213.id, spell_level: 4)
   summon_monster_IV_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp213.id, spell_level: 4)
   # summon_monster_IV_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp213.id, spell_level: 3)
+  summon_monster_IV_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp213.id, spell_level: 3)
 
 sp214 = Spell.create!(name: "Summon Monster V", description: "This spell functions like summon monster I, except that you can summon one creature from the 5th-level list, 1d3 creatures of the same kind from the 4th-level list, or 1d4+1 creatures of the same kind from a lower-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
   SpellSubschool.create!(spell_id: sp214.id, subschool_id: summoning.id)
@@ -3229,6 +3289,7 @@ sp214 = Spell.create!(name: "Summon Monster V", description: "This spell functio
   # summon_monster_V_spiritualist = SpellListSpell.create!(spell_list_id: spiritualist_spell_list.id, spell_id: sp214.id, spell_level: 5)
   summon_monster_V_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp214.id, spell_level: 5)
   # summon_monster_V_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp214.id, spell_level: 4)
+  summon_monster_V_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp214.id, spell_level: 4)
 
 sp215 = Spell.create!(name: "Summon Monster VI", description: "This spell functions like summon monster I, except that you can summon one creature from the 6th-level list, 1d3 creatures of the same kind from the 5th-level list, or 1d4+1 creatures of the same kind from a lower-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
   SpellSubschool.create!(spell_id: sp215.id, subschool_id: summoning.id)
@@ -3255,6 +3316,7 @@ sp216 = Spell.create!(name: "Summon Monster VII", description: "This spell funct
   summon_monster_VII_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp216.id, spell_level: 7)
   summon_monster_VII_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp216.id, spell_level: 7)
   # summon_monster_VII_unchained_summoner = SpellListSpell.create!(spell_list_id: unchained_summoner_spell_list.id, spell_id: sp216.id, spell_level: 6)
+  summon_monster_VII_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp216.id, spell_level: 5)
 
 sp217 = Spell.create!(name: "Summon Monster VIII", description: "This spell functions like summon monster I, except that you can summon one creature from the 8th-level list, 1d3 creatures of the same kind from the 7th-level list, or 1d4+1 creatures of the same kind from a lower-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
   SpellSubschool.create!(spell_id: sp217.id, subschool_id: summoning.id)
@@ -3266,6 +3328,7 @@ sp217 = Spell.create!(name: "Summon Monster VIII", description: "This spell func
   # summon_monster_VIII_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: sp217.id, spell_level: 8)
   summon_monster_VIII_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: sp217.id, spell_level: 8)
   summon_monster_VIII_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: sp217.id, spell_level: 8)
+  summon_monster_VIII_summoner = SpellListSpell.create!(spell_list_id: summoner_spell_list.id, spell_id: sp217.id, spell_level: 6)
 
 sp218 = Spell.create!(name: "Summon Monster IX", description: "This spell functions like summon monster I, except that you can summon one creature from the 9th-level list, 1d3 creatures of the same kind from the 8th-level list, or 1d4+1 creatures of the same kind from a lower-level list.", target: "one summoned creature", saving_throw: "none", spell_resistance: false, action_id: full_round.id, spell_range_id: close.id, magic_school_id: conjuration.id, duration: "1 round/level", time: 1, unit_of_time: "round", increase_per_level: 1, dismissible: true, concentration: false)
   SpellSubschool.create!(spell_id: sp218.id, subschool_id: summoning.id)
