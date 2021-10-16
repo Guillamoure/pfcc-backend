@@ -4012,11 +4012,13 @@ molten_orb = Spell.create!(name: "Molten Orb", description: "You create a fist-s
   molten_orb_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: molten_orb.id, spell_level: 2)
   molten_orb_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: molten_orb.id, spell_level: 2)
 
-#IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
-  # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: verbal.id, item: nil)
-  # SpellComponent.create!(spell_id: IDENTIFIER.id, component_id: somatic.id, item: nil)
-  # IDENTIFIER_CLASS = SpellListSpell.create!(spell_list_id: CLASS_spell_list.id, spell_id: IDENTIFIER.id, spell_level: 0)
+adoration = Spell.create!(name: "Adoration", description: "The target of this spell is the subject of adoration by those whom it tries to affect with Diplomacy or during performance combat. If the target is out of combat, it receives a +2 morale bonus on all Diplomacy checks it makes to influence creatures. If the creature is engaged in performance combat the target gains a +2 morale bonus on all performance combat checks.", target: "one creature", saving_throw: "Will", spell_resistance: true, action_id: standard.id, spell_range_id: close.id, magic_school_id: transmutation.id, duration: "1 minute/level", time: 1, unit_of_time: "minute", increase_per_level: 1, dismissible: false, concentration: false)
+  SpellComponent.create!(spell_id: adoration.id, component_id: verbal.id, item: nil)
+  SpellComponent.create!(spell_id: adoration.id, component_id: somatic.id, item: nil)
+  adoration_bard = SpellListSpell.create!(spell_list_id: bard_spell_list.id, spell_id: adoration.id, spell_level: 1)
+  # adoration_psychic = SpellListSpell.create!(spell_list_id: psychic_spell_list.id, spell_id: adoration.id, spell_level: 2)
+  adoration_wizard = SpellListSpell.create!(spell_list_id: wizard_spell_list.id, spell_id: adoration.id, spell_level: 2)
+  adoration_witch = SpellListSpell.create!(spell_list_id: witch_spell_list.id, spell_id: adoration.id, spell_level: 2)
 
 #IDENTIFIER = Spell.create!(name: "", description: "", target: "", saving_throw: "", spell_resistance: false, action_id: standard.id, spell_range_id: , magic_school_id: , duration: "", time: , unit_of_time: "", increase_per_level: , dismissible: false, concentration: false)
   # SpellSubschool.create!(spell_id: IDENTIFIER.id, subschool_id: )

@@ -24,7 +24,7 @@ You are going to be a scrappy band of ne'er-do-wells, who are doing jobs for the
 
 
 
-majestik = Character.create!(name: "Majestik", user_id: nlscott744.id, strength: 15, dexterity: 15, constitution: 15, intelligence: 16, wisdom: 10, charisma: 9, race_id: Race.find_by!(name: "Tiefling").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Evil", campaign_id: ravnica_campaign.id, description: "Hot. (literally)", pp: 5, gp: 95, sp: 5)
+majestik = Character.create!(name: "Majestik", user_id: nlscott744.id, strength: 15, dexterity: 15, constitution: 15, intelligence: 16, wisdom: 10, charisma: 9, race_id: Race.find_by!(name: "Tiefling").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Evil", campaign_id: ravnica_campaign.id, description: "Hot. (literally)", pp: 5, gp: 1645, sp: 5)
 
   CharacterKlassArchetype.create!(character_id: majestik.id, klass_archetype_id: KlassArchetype.find_by!(name: "Cartomancer").id)
   CharacterAlternateRacialTrait.create!(character_id: majestik.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Prehensile Tail").id)
@@ -104,20 +104,10 @@ majestik = Character.create!(name: "Majestik", user_id: nlscott744.id, strength:
   CharacterKnownSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Hold Person").id).id)
   CharacterKnownSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Molten Orb").id).id)
 
-  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Bleed").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
-  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Daze").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
-  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Detect Magic").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
-  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Mending").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
-  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Message").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
-  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Hold Person").id).id, spell_level: 2, cast: false, bonus_spell: nil, )
-  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Cure Light Wounds").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
-  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Burning Hands").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
-  PreparedSpell.create!(character_id: majestik.id, feature_spellcasting_id: witch_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: witch_spell_list.id, spell_id: Spell.find_by!(name: "Command").id).id, spell_level: 2, cast: false, bonus_spell: nil, )
-
 
   print "Majestik created! \r"
 
-fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id: clare_voyance.id, strength: 10, dexterity: 12, constitution: 14, intelligence: 10, wisdom: 4, charisma: 9, race_id: Race.find_by!(name: "Vine Leshy").id, skillset_id: ravnica_custom.id, alignment: "", campaign_id: ravnica_campaign.id, description: "", height: "2'3\"", weight: "9 lbs", pp: 237, gp: 2110, sp: 7, lethal_damage: 7)
+fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id: clare_voyance.id, strength: 10, dexterity: 12, constitution: 14, intelligence: 10, wisdom: 4, charisma: 9, race_id: Race.find_by!(name: "Vine Leshy").id, skillset_id: ravnica_custom.id, alignment: "", campaign_id: ravnica_campaign.id, description: "", height: "2'3\"", weight: "9 lbs", pp: 237, gp: 3685, sp: 7)
 
   CharacterAlternateRacialTrait.create!(character_id: fire_roasted_tomatoes.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Grapevine").id)
   CharacterAlternateRacialTrait.create!(character_id: fire_roasted_tomatoes.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Swamp Leshy").id)
@@ -163,7 +153,7 @@ fire_roasted_tomatoes = Character.create!(name: "Fire-Roasted Tomatoes", user_id
 
   print "Fire-Roasted Tomatoes created! \r"
 
-iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexterity: 16, constitution: 16, intelligence: 13, wisdom: 15, charisma: 12, race_id: Race.find_by!(name: "Kitsune").id, skillset_id: ravnica_custom.id, alignment: "Neutral", campaign_id: ravnica_campaign.id, description: "", deity: "Pharasma", pp: 65, gp: 117)
+iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexterity: 16, constitution: 16, intelligence: 13, wisdom: 15, charisma: 12, race_id: Race.find_by!(name: "Kitsune").id, skillset_id: ravnica_custom.id, alignment: "Neutral", campaign_id: ravnica_campaign.id, description: "", deity: "Pharasma", pp: 65, gp: 1892)
 
   CharacterAlternateRacialTrait.create!(character_id: iyugi.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Fast Shifter").id)
   CharacterKlassArchetype.create!(character_id: iyugi.id, klass_archetype_id: KlassArchetype.find_by!(name: "Scout").id)
@@ -173,30 +163,21 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
   CharacterKlass.create!(character_id: iyugi.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 6, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
     CharacterKlassFeatureOption.create!(character_id: iyugi.id, feature_option_id: FeatureOption.find_by!(name: "Combat Trick").id, level: 2)
   CharacterKlass.create!(character_id: iyugi.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 5, feat_id: nil, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
-  # CharacterKlass.create!(character_id: iyugi.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 7, feat_id: nil, ability_score_improvement: "intelligence", level: 4, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: iyugi.id, klass_id: Klass.find_by!(name: "Rogue").id, hp: 7, feat_id: nil, ability_score_improvement: "intelligence", level: 4, favored_klass_bonus_id: nil)
 
 
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 3)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Bluff").id, ranks: 3)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Disguise").id, ranks: 2)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Diplomacy").id, ranks: 3)
   CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Finesse").id, ranks: 3)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Investigation").id, ranks: 1)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 2, detail: "dimir")
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 3)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Sense Motive").id, ranks: 3)
   CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Society").id, ranks: 1)
-  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Stealth").id, ranks: 3)
 
-  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 4)
-  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Bluff").id, ranks: 4)
-  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Diplomacy").id, ranks: 4)
-  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Disguise").id, ranks: 4)
-  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 4, detail: "dimir")
-  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 4)
-  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Sense Motive").id, ranks: 4)
-  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Stealth").id, ranks: 4)
-  # CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Investigation").id, ranks: 3)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Acrobatics").id, ranks: 4)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Bluff").id, ranks: 4)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Diplomacy").id, ranks: 4)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Disguise").id, ranks: 4)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 4, detail: "dimir")
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 4)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Sense Motive").id, ranks: 4)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Stealth").id, ranks: 4)
+  CharacterSkillsetSkill.create!(character_id: iyugi.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Investigation").id, ranks: 3)
 
 
   CharacterWeapon.create!(character_id: iyugi.id, weapon_id: Weapon.find_by!(name: "Dagger").id, masterwork: false, discovered: true, known: true, name: "")
@@ -234,7 +215,7 @@ iyugi = Character.create!(name: "Iyugi", user_id: adam1.id, strength: 10, dexter
 
   print "Iyugi created! \r"
 
-ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence", pp: 177, gp: 7, sp: 7)
+ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dexterity: 13, constitution: 13, intelligence: 16, wisdom: 12, charisma: 15, race_id: Race.find_by!(name: "Human").id, skillset_id: ravnica_custom.id, alignment: "Chaotic Neutral", campaign_id: ravnica_campaign.id, any_bonus: "intelligence", pp: 177, gp: 982, sp: 7)
 
   CharacterAlternateRacialTrait.create!(character_id: ildre.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Innovative").id)
   CharacterKlassArchetype.create!(character_id: ildre.id, klass_archetype_id: KlassArchetype.find_by!(name: "Occultist").id)
@@ -242,11 +223,10 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
   CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 6, feat_id: Feat.find_by!(name: "Spell Focus").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
   CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 3, feat_id: nil, ability_score_improvement: nil, level: 2, favored_klass_bonus_id: nil)
   CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 4, feat_id: Feat.find_by!(name: "Augment Summoning").id, ability_score_improvement: nil, level: 3, favored_klass_bonus_id: nil)
-  # CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 5, feat_id: nil, ability_score_improvement: "constitution", level: 4, favored_klass_bonus_id: nil)
+  CharacterKlass.create!(character_id: ildre.id, klass_id: Klass.find_by!(name: "Arcanist").id, hp: 5, feat_id: nil, ability_score_improvement: "constitution", level: 4, favored_klass_bonus_id: nil)
 
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id, ranks: 1, detail: "blacksmithing")
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Craft").id, ranks: 2, detail: "alchemy")
-  CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Diplomacy").id, ranks: 2)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Finesse").id, ranks: 1)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Investigation").id, ranks: 1)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Knowledge").id, ranks: 2, detail: "izzet")
@@ -254,13 +234,12 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Nature").id, ranks: 1)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 1)
   CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Religion").id, ranks: 2)
-  CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 3)
 
-  # CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 4)
-  # CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Diplomacy").id, ranks: 3)
-  # CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Bluff").id, ranks: 1)
-  # CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Society").id, ranks: 1)
-  # CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Swim").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 4)
+  CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Diplomacy").id, ranks: 3)
+  CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Bluff").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Society").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: ildre.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Swim").id, ranks: 1)
 
   CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Quarterstaff").id, masterwork: true, discovered: true, known: true, name: "")
   CharacterWeapon.create!(character_id: ildre.id, weapon_id: Weapon.find_by!(name: "Light Crossbow").id, masterwork: true, discovered: true, known: true, name: "Cerulean Hope", description: "hopefully cerulean")
@@ -309,17 +288,6 @@ ildre = Character.create!(name: "Ildre", user_id: snegerj.id, strength: 10, dext
 
     CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Create Pit").id).id)
     CharacterKnownSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Glitterdust").id).id)
-
-    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Shield").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
-    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Color Spray").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
-    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Grease").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
-    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Magic Missile").id).id, spell_level: 1, cast: false, bonus_spell: nil, )
-    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Prestidigitation").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
-    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Dancing Lights").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
-    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Mage Hand").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
-    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Bleed").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
-    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Touch of Fatigue").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
-    PreparedSpell.create!(character_id: ildre.id, feature_spellcasting_id: arcanist_spellcasting.id, spell_list_spell_id: SpellListSpell.find_by!(spell_list_id: arcanist_spell_list.id, spell_id: Spell.find_by!(name: "Message").id).id, spell_level: 0, cast: false, bonus_spell: nil, )
 
   print "Ildre created! \r"
 
@@ -399,7 +367,7 @@ natesse = Character.create!(name: "Natesse", user_id: bluegdec1.id, strength: 14
     print "Natesse created! \r"
 
 
-dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexterity: 17, constitution: 15, intelligence: 9, wisdom: 16, charisma: 12, race_id: Race.find_by!(name: "Grippli").id, skillset_id: ravnica_custom.id, alignment: "Neutral Evil", campaign_id: ravnica_campaign.id, height: "2'", weight: "30 lbs", age: 14, pp: 162, gp: 83, sp: 8)
+dzeyn = Character.create!(name: "Dz'eyn", user_id: tdubb.id, strength: 15, dexterity: 17, constitution: 15, intelligence: 9, wisdom: 16, charisma: 12, race_id: Race.find_by!(name: "Grippli").id, skillset_id: ravnica_custom.id, alignment: "Neutral Evil", campaign_id: ravnica_campaign.id, height: "2'", weight: "30 lbs", age: 14, pp: 262, gp: 83, sp: 8)
 
   CharacterAlternateRacialTrait.create!(character_id: dzeyn.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Toxic Skin").id)
 
