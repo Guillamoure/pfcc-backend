@@ -118,5 +118,7 @@ extra_hex = Feat.create!(name: "Extra Hex", benefit: "You gain one additional he
 
 lightning_reflexes = Feat.create!(name: "Lightning Reflexes", benefit: "You get a +2 bonus on all Reflex saving throws.", blurb: "You have faster reflexes than normal.", source_id: core_rulebook.id)
 
+Feat.create!(name: "Eschew Materials", benefit: "You can cast any spell with a material component costing 1 gp or less without needing that component. The casting of the spell still provokes attacks of opportunity as normal. If the spell requires a material component that costs more than 1 gp, you must have the material component on hand to cast the spell, as normal.", blurb: "You can cast many spells without needing to utilize minor material components.", source_id: core_rulebook.id)
+
 
 puts "Feats Created!"

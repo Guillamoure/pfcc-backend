@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_210115) do
+ActiveRecord::Schema.define(version: 2021_10_17_182119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -532,6 +532,12 @@ ActiveRecord::Schema.define(version: 2021_03_23_210115) do
     t.integer "feature_id"
     t.string "attack_type"
     t.string "armor_class"
+  end
+
+  create_table "feature_bonus_feats", force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "feat_id"
+    t.boolean "player_choice"
   end
 
   create_table "feature_bonus_spell_slots", force: :cascade do |t|

@@ -30,6 +30,7 @@ class Feature < ApplicationRecord
   has_many :castable_spells, class_name: 'FeatureCastableSpell', dependent: :destroy
   has_many :weapon_applications, class_name: 'FeatureWeaponApplication', dependent: :destroy
   has_one :animal, class_name: 'FeatureAnimal', dependent: :destroy
+  has_many :bonus_feat, class_name: 'FeatureBonusFeat', dependent: :destroy
 
   has_one :klass_feature_feature, dependent: :destroy
   has_one :klass_feature, through: :klass_feature_feature

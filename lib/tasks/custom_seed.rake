@@ -45,9 +45,9 @@ namespace :seed do
   desc 'reset database and runs all seed files in sequence'
   task :all do
     Rake::Task['db:reset'].invoke
+    Rake::Task['db:seed:feats'].invoke
     Rake::Task['seed:classes'].invoke
     Rake::Task['db:seed:spells'].invoke
-    Rake::Task['db:seed:feats'].invoke
     Rake::Task['db:seed:items'].invoke
     Rake::Task['seed:creatures'].invoke
     Rake::Task['seed:campaign'].invoke
@@ -55,9 +55,9 @@ namespace :seed do
 
   task :heroku_seed do
     Rake::Task['db:seed'].invoke
+    Rake::Task['db:seed:feats'].invoke
     Rake::Task['seed:classes'].invoke
     Rake::Task['db:seed:spells'].invoke
-    Rake::Task['db:seed:feats'].invoke
     Rake::Task['db:seed:items'].invoke
     Rake::Task['seed:creatures'].invoke
     Rake::Task['seed:campaign'].invoke

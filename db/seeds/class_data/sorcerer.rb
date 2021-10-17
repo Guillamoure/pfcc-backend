@@ -350,6 +350,9 @@ sorcerer4 = KlassFeature.create!(klass_id: sorcerer.id, name: "Cantrips", descri
 
 sorcerer5 = KlassFeature.create!(klass_id: sorcerer.id, name: "Eschew Materials", description: "A sorcerer gains Eschew Materials as a bonus feat at 1st level.")
   FeatureLevel.create!(klass_feature_id: sorcerer5.id, level: 1, table_description: "Eschew Materials")
+  sorcerer5_feature = Feature.create!()
+    KlassFeatureFeature.create!(klass_feature_id: sorcerer5.id, feature_id: sorcerer5_feature.id)
+    FeatureBonusFeat.create!(feature_id: sorcerer5_feature.id, feat_id: Feat.find_by!(name: "Eschew Materials").id, player_choice: false)
 
 print "Sorcerer Features Created! \r"
 

@@ -5120,9 +5120,11 @@ RacialTrait.create!(name: "Type", race_id: catfolk.id, description: "Catfolk are
 RacialTrait.create!(name: "Languages", race_id: catfolk.id, description: "Catfolk begin play speaking Common and Catfolk. Catfolk with high Intelligence scores can choose from the following languages: Elven, Gnoll, Gnome, Goblin, Halfling, Orc, and Sylvan.")
 RacialTrait.create!(name: "Cat's Luck", race_id: catfolk.id, description: "Once per day when a catfolk makes a Reflex saving throw, he can roll the saving throw twice and take the better result. He must decide to use this ability before the saving throw is attempted.")
 RacialTrait.create!(name: "Natural Hunter", race_id: catfolk.id, description: "Catfolk receive a +2 racial bonus on Perception, Stealth, and Survival checks.")
-RacialTrait.create!(name: "Sprinter", race_id: catfolk.id, description: "Catfolk gain a 10-foot racial bonus to their speed when using the charge, run, or withdraw actions.")
+sprinter_catfolk = RacialTrait.create!(name: "Sprinter", race_id: catfolk.id, description: "Catfolk gain a 10-foot racial bonus to their speed when using the charge, run, or withdraw actions.")
 RacialTrait.create!(name: "Low-Light Vision", race_id: catfolk.id, description: "Catfolk have low-light vision allowing them to see twice as far as humans in dim light.")
 
+  nimble_faller_catfolk = AlternateRacialTrait.create!(race_id: catfolk.id, name: "Nimble Faller", description: "Some catfolk have an amazing sense of balance and keen knowledge of their own center of gravity. Catfolk with this trait land on their feet even when they take lethal damage from a fall. Furthermore, catfolk with this trait gain a +1 bonus to their CMD against trip maneuvers. This racial trait replaces sprinter.", source_id: advanced_race_guide.id)
+    AlternateTraitReplaceRacialTrait.create!(alternate_racial_trait_id: nimble_faller_catfolk.id, racial_trait_id: sprinter_catfolk.id)
 print "Catfolk Created! \r"
 
 ganzi = Race.create!(name: "Ganzi", speed: 30, size: "Medium", img_url: "https://pathfinderwiki.com/mediawiki/images/thumb/a/ad/Ganzi.jpg/250px-Ganzi.jpg", source_id: planar_adventures.id, description: "Unlike the crossbreed aasimars and tieflings, ganzi are mutations caused by generations of exposure to chaotic energies in the Material Plane.
