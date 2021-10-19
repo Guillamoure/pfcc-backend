@@ -13,6 +13,10 @@ char1 = Character.create!(name: "Char1", user_id: tlyearl.id, strength: 12, dext
   CharacterAlternateRacialTrait.create!(character_id: char1.id, alternate_racial_trait_id: AlternateRacialTrait.find_by!(name: "Nimble Faller").id)
 
   CharacterKlass.create!(character_id: char1.id, klass_id: Klass.find_by!(name: "Sorcerer").id, hp: 6, feat_id: Feat.find_by!(name: "Improved Initiative").id, ability_score_improvement: nil, level: 1, favored_klass_bonus_id: nil)
+    CharacterKlassSpecialization.create!(character_id: char1.id, klass_feature_klass_specialization_id: KlassSpecialization.find_by!(name: "Solar Bloodline").id)
+
 
   CharacterSkillsetSkill.create!(character_id: char1.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Perception").id, ranks: 1)
-  CharacterSkillsetSkill.create!(character_id: char1.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft").id, ranks: 1)
+  CharacterSkillsetSkill.create!(character_id: char1.id, skillset_id: ravnica_custom.id, skill_id: Skill.find_by!(name: "Spellcraft", untrained: true).id, ranks: 1)
+
+puts "Ixalan Campaign Created!"

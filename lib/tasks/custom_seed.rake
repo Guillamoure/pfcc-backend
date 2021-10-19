@@ -81,6 +81,7 @@ namespace :seed do
 
   task :campaign do
     Rake::Task['db:seed:campaign:ravnica'].invoke
+    Rake::Task['db:seed:campaign:ixalan'].invoke
   end
 
   task :creatures do

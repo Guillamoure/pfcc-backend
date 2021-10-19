@@ -356,6 +356,30 @@ sorcerer5 = KlassFeature.create!(klass_id: sorcerer.id, name: "Eschew Materials"
 
 print "Sorcerer Features Created! \r"
 
+# ///////////////////////////////////////////////////////
+# <-*-*-----*-*-*- Class Specializations!-*-*-*-----*-*->
+# ///////////////////////////////////////////////////////
+
+solar_bloodline = KlassSpecialization.create!(name: "Solar Bloodline", description: "Sorcerers who serve in the sun goddess’s court display powers infused with the glory of the sun itself.
+
+Class Skill: Perception.
+
+Bonus Spells: searing light (3rd), fury of the sun (5th), daylight (7th), shield of dawn (9th), flame strike (11th), true seeing (13th), sunbeam (15th), sunburst (17th), overwhelming presence (19th).
+
+Bonus Feats: Alertness, Combat Casting, Empower Spell, Improved Initiative, Lightning Reflexes, Quicken Spell, Spell Focus, Spell Penetration.
+
+Bloodline Arcana: Whenever you cast a spell with the fire descriptor, if it deals damage, it deals +1 point of damage per die rolled.
+
+Bloodline Powers: The solar power that infuses your being alters the way you interact with the world, searing through your spells.")
+  KlassFeatureKlassSpecialization.create!(klass_feature_id: sorcerer3.id, klass_specialization_id: solar_bloodline.id)
+  solar_bloodline1 = KlassSpecializationFeature.create!(klass_specialization_id: solar_bloodline.id, name: "Sunsight", description: "At 1st level, you gain low-light vision and cannot be dazzled. If you already have low-light vision, you instead gain a +4 bonus on saving throws against blindness effects.", level: 1)
+  solar_bloodline2 = KlassSpecializationFeature.create!(klass_specialization_id: solar_bloodline.id, name: "Friend of Fire", description: "At 3rd level, you gain fire resistance 10. At 5th level, when in contact with flame or a burning object (including a flaming weapon, lantern, or torch), add 1 per die to any healing effect of which you are the target. At 9th level, your fire resistance increases to 20. At 20th level, you gain immunity to fire.", level: 3)
+  solar_bloodline3 = KlassSpecializationFeature.create!(klass_specialization_id: solar_bloodline.id, name: "Cleansing Flame", description: "At 9th level, twice per day, you can use fire to restore the health of yourself or your allies. As a standard action, you can wreathe your hand in a halo of flame and touch yourself or another creature. The touch heals 2d8 + your character level points of damage. You can also remove one of the following conditions affecting the target: 1d6 points of ability damage, blinded, confused, dazzled, deafened, diseased, exhausted, fatigued, nauseated, poisoned, or sickened. At 20th level, you can use this ability three times per day.", level: 9)
+  solar_bloodline4 = KlassSpecializationFeature.create!(klass_specialization_id: solar_bloodline.id, name: "Healing Fire", description: "At 15th level, you can channel energy twice per day as a cleric of half your level. Instead of using this ability to damage undead, you can convert the positive energy to flame and deal an equivalent amount of fire damage instead.", level: 15)
+  solar_bloodline5 = KlassSpecializationFeature.create!(klass_specialization_id: solar_bloodline.id, name: "Solar Ascension", description: "At 20th level, as a full-round action, you can become an incorporeal being of light for 1 round per sorcerer level. While in this form, you gain the incorporeal subtype and take half the normal damage from corporeal magic attacks (you take no damage from nonmagical weapons and objects). Your spells deal half damage to corporeal creatures, but spells and abilities that do not deal damage function normally. The duration need not be continuous, but it must be used in 1-round increments. While in this form, any creature you move through (as the overrun combat maneuver) takes 2d6 points of fire damage.", level: 20)
+
+
+
 # //////////////////////////////////////////////////
 # <-*-*-----*-*-*- Class Archetypes!-*-*-*-----*-*->
 # //////////////////////////////////////////////////
